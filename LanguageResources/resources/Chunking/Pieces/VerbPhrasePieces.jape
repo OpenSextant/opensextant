@@ -1,0 +1,122 @@
+Phase: VerbPhraseParts
+Input: Token
+Options: control = appelt
+
+Rule: PureModal
+(
+
+		{Token.pos ==MD }|
+		{Token.pos =="MD*" }
+):mod
+-->
+		:mod.tempVP_MODAL = {kind = "MODAL"}
+
+Rule: BeDoHave
+(
+		{Token.pos ==BE }|
+		{Token.pos ==BEN }|
+		{Token.pos ==BEDZ }|
+		{Token.pos =="BEDZ*" }|
+		{Token.pos ==BED }|
+		{Token.pos =="BED*" }|
+		{Token.pos ==BEG }|
+		{Token.pos ==BEM }|
+		{Token.pos =="BEM*" }|
+		{Token.pos ==BER }|
+		{Token.pos =="BER*" }|
+		{Token.pos ==BEZ }|
+		{Token.pos =="BEZ*" }|
+		{Token.pos =="DO+PPSS" }|
+		{Token.pos ==DOD }|
+		{Token.pos =="DOD*" }|
+		{Token.pos ==DOZ }|
+		{Token.pos =="DOZ*" }|
+		{Token.pos =="DO*" }|
+		{Token.pos ==DO }|
+		{Token.pos ==HVN }|
+		{Token.pos ==HVD }|
+		{Token.pos =="HVD*" }|
+		{Token.pos ==HVG }|
+		{Token.pos ==HVZ }|
+		{Token.pos =="HVZ*" }|
+		{Token.pos =="HV*" }|
+		{Token.pos ==HV }
+):mod
+-->
+		:mod.tempVP_BDH = {kind = "BeDoHave"}
+
+
+Rule: Modifier
+(
+		{Token.pos ==RB }|
+		{Token.pos =="RB+CS" }|
+		{Token.pos =="RB+BEZ" }|
+		{Token.pos ==RBR }|
+		{Token.pos =="RBR+CS" }|
+		{Token.pos =="RB$" }|
+		{Token.pos ==RN }|
+		{Token.pos ==RP }|
+		{Token.pos =="RP+IN" }|
+		{Token.pos ==RBT }|
+		{Token.pos =="*" }|
+		{Token.pos =="NOT" }|
+		{Token.pos ==QL }
+		
+):mod
+-->
+		:mod.tempVP_MOD = {kind = "MOD"}
+
+
+Rule: HeadWithParticle
+(
+		({Token.pos =="VB+AT" }|
+		{Token.pos ==VB }|
+		{Token.pos =="VB+JJ" }|
+		{Token.pos =="VB+IN" }|
+		{Token.pos =="VB+VB" }|
+		{Token.pos =="VB+RP" }|
+//		{Token.pos ==VBN }|
+		{Token.pos ==VBD }|
+		{Token.pos ==VBG }|
+		{Token.pos ==VBZ }|
+		{Token.pos =="VB+PPO" })({Token.pos ==RP })
+):head
+-->
+	:head.tempVP_HEAD = {kind = "HEADandParticle"}
+	
+Rule: Head
+(
+		({Token.pos =="VB+AT" }|
+		{Token.pos ==VB }|
+		{Token.pos =="VB+JJ" }|
+		{Token.pos =="VB+IN" }|
+		{Token.pos =="VB+VB" }|
+		{Token.pos =="VB+RP" }|
+//		{Token.pos ==VBN }|
+		{Token.pos ==VBD }|
+		{Token.pos ==VBG }|
+		{Token.pos ==VBZ }|
+		{Token.pos =="VB+PPO" })
+):head
+-->
+:head.tempVP_HEAD = {kind = "HEAD"}		
+
+
+		
+// ------ Need to deal with Participle vs Gerund -------		
+/*
+Rule: HeadParticiple
+(
+		{Token.pos ==VBG }
+):head
+-->
+:head.tempVP_HEAD = {kind = "HEAD_Participle"}		
+
+
+Rule: HeadGerundandParticiple
+(
+		{Token.pos ==VBG }{Token.pos ==RP }
+):head
+-->
+:head.tempVP_HEAD = {kind = "HEAD_PARTICIPLEandPARTICLE"}			
+*/	

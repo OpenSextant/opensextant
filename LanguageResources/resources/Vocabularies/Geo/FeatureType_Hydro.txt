@@ -1,0 +1,149 @@
+anchorage
+anchorages
+aqueduct
+aqueducts
+bay
+bays
+bight
+bights
+bog
+bogs
+canal
+canals
+channel
+channels
+coral reef
+coral reefs
+cove
+coves
+crater lake
+crater lakes
+ditch
+ditchs
+docking basin
+docking basins
+drainage canal
+drainage canals
+drainage ditch
+drainage ditchs
+estuaries
+estuary
+fishpond
+fishponds
+fjord
+fjords
+geyser
+geysers
+glacier
+glaciers
+gulf
+gulfs
+harbor
+harbors
+hot spring
+hot springs
+inlet
+inlets
+irrigation canal
+irrigation canals
+irrigation ditch
+irrigation ditchs
+irrigation system
+irrigation systems
+lagoon
+lagoons
+lake
+lake bed
+lake beds
+lake channel
+lake channels
+lakes
+mangrove swamp
+mangrove swamps
+marine channel
+marine channels
+marsh
+marshs
+moor
+moors
+mud flat
+mud flats
+narrow
+narrows
+navigation canal
+navigation canals
+navigation channel
+navigation channels
+ocean
+oceans
+overfall
+overfalls
+oxbow lake
+oxbow lakes
+pond
+ponds
+pool
+pools
+rapid
+rapids
+ravine
+ravines
+reef
+reefs
+reservoir
+reservoirs
+river
+riverbed
+riverbeds
+rivers
+rivers
+roadstead
+roadsteads
+sabkha
+sabkhas
+salt evaporation pond
+salt evaporation ponds
+salt lake
+salt lakes
+salt marsh
+salt marshs
+salt pond
+salt ponds
+sea
+seaplane landing area
+seaplane landing areas
+seas
+shoal
+shoals
+sound
+sounds
+spring
+springs
+strait
+straits
+stream
+streams
+sulphur spring
+sulphur springs
+swamp
+swamps
+tidal creek
+tidal creeks
+tidal flat
+tidal flats
+underground irrigation canal
+underground irrigation canals
+underground lake
+underground lakes
+wadi
+wadis
+waterfall
+waterfalls
+waterhole
+waterholes
+waterway
+waterways
+wetland
+wetlands
+whirlpool
+whirlpools

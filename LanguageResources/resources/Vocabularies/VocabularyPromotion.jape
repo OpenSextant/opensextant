@@ -1,0 +1,57 @@
+/* 
+ Promotes Lookup types of the vocabulary to typed annotations
+ according to the following convention:
+ 1) The lookup's "majorType" feature becomes the Annotation type
+ 2) The lookup's "minorType" feature (if not null) becomes the "hierarchy" feature on the Annotation
+ 3) each Annotation also gets a "string" feature which is the string in the document which matched this vocabulary item
+ */
+
+Imports: {
+import static gate.Utils.*;
+}
+
+Phase:	VocabularyPromotion
+Input:	Token Lookup
+Options: control = all
+
+Rule: Promote
+( 
+	{Lookup}
+)
+:look
+-->
+{
+	gate.AnnotationSet lookSet = (gate.AnnotationSet)bindings.get("look");
+	
+	for(Annotation obj : lookSet){
+		gate.Annotation look = (gate.Annotation)obj;
+		gate.FeatureMap lookFeatures = look.getFeatures();
+		Node startNode = lookSet.firstNode(); 
+		Node endNode   = lookSet.lastNode();
+	
+		// create new featuremap and copy over all features from Lookup
+		FeatureMap fm = gate.Factory.newFeatureMap();
+		fm.putAll(lookFeatures);
+		// add the "string" feature
+		fm.put("string", stringFor(doc,lookSet));
+	
+		//get the lookup type information
+		String major = (String)lookFeatures.get("majorType");
+		String minor = (String)lookFeatures.get("minorType");
+	
+		// using conventions
+		// major  becomes Annotation Type
+		// minor  becomes hierarchy feature
+
+		if(minor != null ){
+		  fm.put("hierarchy",minor);
+		 }
+   
+		// remove the now redundant major and minor types
+		fm.remove("majorType");
+		fm.remove("minorType");
+
+		// create new annotations of type major
+		outputAS.add(startNode, endNode, major,fm);
+	}
+}

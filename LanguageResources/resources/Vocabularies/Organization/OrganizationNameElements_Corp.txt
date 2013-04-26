@@ -1,0 +1,66 @@
+airline
+airlines
+bank
+bank of
+banks of
+bureau
+bureaus
+business
+businesses
+companies
+company
+contractor
+contractors
+corp
+corp.
+corporation
+corporations
+co. ltd.
+department
+departments
+directorate
+directorates
+firm
+firms
+foundation
+foundations
+gmbh
+inc
+inc.
+incorporated
+industries
+industry
+institute
+institutes
+joint venture
+joint ventures
+ltd
+ltd.
+management group
+management groups
+manufacturer
+manufacturers
+news agencies
+news agency
+ngo
+ngos
+non governmental organization
+non governmental organizations
+non-governmental organization
+non-governmental organizations
+press agencies
+press agency
+presse
+sub contractor
+sub contractors
+subcontractor
+sub-contractor
+subcontractors
+sub-contractors
+subsidiaries
+subsidiary
+trading company
+trading firm
+work force
+brokerage
+brokerages

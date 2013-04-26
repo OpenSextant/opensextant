@@ -1,0 +1,30 @@
+aqua
+beige
+black
+blue
+brown
+crimson
+cyan
+fuchsia
+gold
+gray
+green
+grey
+indigo
+khaki
+lime
+magenta
+maroon
+navy blue
+olive
+olive drab
+orange
+pink
+purple
+red
+silver
+tan
+teal
+violet
+white
+yellow

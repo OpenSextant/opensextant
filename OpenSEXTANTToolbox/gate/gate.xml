@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- gate.xml -->
+<!-- $Id: gate.xml,v 1.1 2005/01/17 16:31:17 ian Exp $ -->
+
+<!-- any entries in this file will be processed at Gate.init()
+     time - i.e. will appear in every GATE invocation -->
+
+<GATE>
+
+<GATECONFIG Save_options_on_exit="false" Save_session_on_exit="false" />
+
+</GATE>

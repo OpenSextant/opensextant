@@ -1,0 +1,166 @@
+antenna
+antennas
+antennae
+antennaes
+avionics
+cellphone
+cellphones
+circuit board
+circuit boards
+computer
+computers
+communication channel
+communication channels
+communications net
+communications network
+computer network
+computer networks
+communication net
+communication network
+communication nets
+communication networks
+communications net
+communications network
+communications nets
+communications networks
+telecommunication net
+telecommunication network
+telecommunication nets
+telecommunication networks
+telecommunications net
+telecommunications network
+telecommunications nets
+telecommunications networks
+data link
+data links
+detector
+detectors
+detecter
+detecters
+demultiplexor
+demultiplexer
+demultiplexors
+demultiplexers
+direction finder
+electronics
+fiber network
+fiber optic network
+flat-screen television
+flight recorder
+flight recorders
+optic network
+fiber networks
+fiber optic networks
+optic networks
+jammer
+jammers
+gps
+gps reciever
+gps system
+gps recievers
+gps systems
+gyroscope
+gyroscopes
+handset
+handsets
+hard drive
+hard drives
+landline
+landlines
+laser pointer
+laser pointers
+loudspeaker
+loudspeakers
+metal detector
+metal detectors
+microprocessor
+microprocessors
+microwave link
+mobile phone
+mobile phones
+mobile satellite phone
+mobile satellite phones
+multiplexor
+multiplexer
+multiplexors
+multiplexers
+phone
+phone card
+phone cards
+phones
+telephone number
+phone number
+telephone numbers
+phone numbers
+tel num
+tel no
+tel. no.
+tel. num.
+pstn
+public switched telehone network
+public switched telehone networks
+public switching telehone network
+public switching telehone networks
+telehone network
+radio
+radios
+receiver
+receivers
+reciever
+recievers
+router
+routers
+ethernet router
+ethernet routers
+satcom dish
+satcom dishs
+satcom dishes
+satellite dish
+parabolic dish
+parabolic dishes
+satellite dishes
+satellite phone
+satellite phones
+satphone
+satphones
+sensor
+sensors
+service pole
+service poles
+server
+servers
+sim card
+sim cards
+tape recorder
+tape recorders
+telephone
+telephones
+transmitter
+transmitters
+svoip
+voip
+voice over ip
+voice-over-ip
+secure voice over ip
+secure voice-over-ip
+telemetry
+walkie talkie
+walkie talkies
+walkie-talkie
+walkie-talkies
+walky talky
+walky talkys
+walky-talky
+walky-talkys
+web browser
+web browsers
+xcvr
+xcvrs
+xmitter
+xmitters
+xmtr
+xmtrs
+radome
+radomes
+modem
+modems

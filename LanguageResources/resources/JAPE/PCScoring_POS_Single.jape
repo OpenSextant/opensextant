@@ -1,0 +1,458 @@
+/** 
+ Copyright 2009-2013 The MITRE Corporation.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+ * **************************************************************************
+ *                          NOTICE
+ * This software was produced for the U. S. Government under Contract No.
+ * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
+ * Software and Noncommercial Computer Software Documentation Clause
+ * 252.227-7014 (JUN 1995)
+ *
+ * (c) 2012 The MITRE Corporation. All Rights Reserved.
+ * **************************************************************************
+**/
+
+
+Imports: {
+import org.mitre.opensextant.placedata.PlaceCandidate;
+}
+
+
+Phase: PCScoring_POS_Single
+Input: Token Lookup Split FeatureType Country CountryCode BigCity
+LocationPrepStrong LocationPrepWeak LocationPrepNeedsVerb LocationVerb LocationVerbNeedsPrep Person PersonTitle PersonVerb
+LocationContextPhrase geocoord CardinalDirection Organization placecandidate
+Options: control = all
+
+
+
+//-------------------------------------------------------------
+/*
+Rule: PCIsCountry
+(
+		({placecandidate,Country}):pc
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+
+}
+*/
+
+//-------------------------------------------------------------
+
+Rule: PCWithCountryCode
+(
+		({placecandidate}):pc ({Token.string ==","})? ({CountryCode}):c
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	// get the countrycode
+	gate.AnnotationSet cSet = bindings.get("c");
+	gate.Annotation c = cSet.iterator().next();
+	String cc = (String)c.getFeatures().get("countryCode");
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	  pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+
+}
+
+
+
+
+//-------------------------------------------------------------
+
+Rule: PCWithFeatureTypePreposition
+(
+		{FeatureType} ({LocationPrepStrong}|{LocationPrepWeak})({Token.string ==~ "the|The|THE"})?({CardinalDirection})?({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+
+
+//-------------------------------------------------------------
+
+// south Wazi , southern and western Wazi
+Rule: DirectionPC
+(
+		{CardinalDirection}({Token.string == "and"}{CardinalDirection})?({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+//-------------------------------------------------------------
+
+//south of Wazi, north of the Wazi River
+Rule: DirectionToPC
+(
+		{CardinalDirection}{Token.string ==~ "of|Of|OF|to|To|TO"}({Token.string ==~ "the|The|THE"})?({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+
+}
+
+//-------------------------------------------------------------
+
+//south side of Wazi
+Rule: EdgeOfPC
+(
+		{CardinalDirection}{Token.string ==~ "edge|side|coast|Edge|Side|Coast|EDGE|SIDE|COAST"} {Token.string ==~ "of|Of|OF"}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+/*
+//-------------------------------------------------------------
+// Afhanistan's Wazi
+Rule: CountrysPC
+(
+		({Country}):c{Token.string =="'s"}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+*/
+/*
+//-------------------------------------------------------------
+//Wazi region of Iran 
+Rule: PCofCountry
+(
+		({placecandidate}):pc {FeatureType} {Token.string ==~ "of|Of|OF"}({Country}):c
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+*/
+
+//-------------------------------------------------------------
+
+// a river in Wazi
+Rule: FeatureTypeInPC
+(
+		{FeatureType}{Token.string ==~ "in|In|IN"}({Token.string ==~ "the|The|THE"})?({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+
+//-------------------------------------------------------------
+// traveling towards Wazi, located near Wazi
+Rule: LocationVerbPrepPC
+(
+		{LocationVerb}({LocationPrepStrong}|{LocationPrepWeak})({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+//-------------------------------------------------------------
+// departed Wazi
+Rule: LocationVerbPC
+(
+		{LocationVerb}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+//-------------------------------------------------------------
+// resided in Wazi, lived in the Amazon
+Rule: LocationVerbWithPrepPC
+(
+		{LocationVerbNeedsPrep} {LocationPrepNeedsVerb} ({Token.string ==~ "the|The|THE"})? ({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+
+
+//-------------------------------------------------------------
+//resident of Wazi
+Rule: LocationContextPC
+(
+		{LocationContextPhrase}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+//-------------------------------------------------------------
+// Wazi based,
+Rule: RegisteredPC
+(
+		({placecandidate}):pc ({Token.string == "-"})?{Token.string ==~ "registered|based|flagged|located"}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+//-------------------------------------------------------------
+//Wazi 1234N 01234W
+Rule: PCwithGeocoordPlain
+(
+	({placecandidate}):pc ({geocoord}):geo
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+//-------------------------------------------------------------
+//Wazi 1234N 01234W
+Rule: PCwithGeocoordParens
+(
+	({placecandidate}):pc {Token.string ==~ "\\("} ({geocoord}):geo
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+//-------------------------------------------------------------
+//Wazi 1234N 01234W
+Rule: PCwithGeocoordAndPunct
+(
+	({placecandidate}):pc 
+	  ( {Token.string ==~ "[(|\\[]"} ) ({Token.string ==~ "geo|mgrs|mgr|geocoord|GEO|MGR|MGRS|GEOCOORD"} ( {Token.string ==~ "[:;]"})? )? ({geocoord}):geo
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+//-------------------------------------------------------------
+// Wazi (1234N 01234W), Iraq
+Rule: PCwithGeocoordAndCountry
+(
+	({placecandidate}):pc ({Token.string ==~ "[(|\\[]"})? ({Token.string ==~ "geo|mgrs|mgr|GEO|MGR|MGRS"})?({geocoord}):geo ({Token.string ==~ "[)|\\]]"})?({Token.string ==~ ","})?({Country}):c
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+
+
+//-------------------------------------------------------------
+// Wazi (unlocated)
+Rule: UnlocatedPC
+(
+		({placecandidate}):pc {Token.string ==~ "[(|\\[]"}{Token.string ==~ "unlocated|UNLOCATED|Unlocated"}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+
+//-------------------------------------------------------------
+// outside of Wazi
+Rule: LocationPrepStrongPC
+(
+		{LocationPrepStrong}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+//-------------------------------------------------------------
+//from Wazi
+Rule: LocationPrepWeakPC
+(
+		{LocationPrepWeak}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+//-------------------------------------------------------------
+//officials in Wazi
+Rule: PersonOrgInPC
+(
+		({Person}|{PersonTitle}|{Organization}) {Token.string ==~ "in|at|In|At|IN|AT"}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+//-------------------------------------------------------------
+//officials in Wazi said, department of something in Wazi said
+Rule: PersonOrgInPCVerbed
+(
+		({Person}|{PersonTitle}|{Organization}) {Token.string ==~ "in|at|In|At|IN|AT"}({placecandidate}):pc {PersonVerb}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), 1.0 );
+}
+
+

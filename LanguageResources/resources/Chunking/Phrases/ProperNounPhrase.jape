@@ -1,0 +1,33 @@
+
+Imports: {
+import static gate.Utils.*;
+}
+
+
+Phase: ProperPhraseSpotting
+Input: Token Split tempNP_HEAD
+Options: control = appelt
+
+
+Rule: Proper
+(
+
+		({tempNP_HEAD.nounType == "proper"})[1,3]
+):np
+-->
+		{
+
+			// get the whole thing
+			gate.AnnotationSet npSet = (gate.AnnotationSet)bindings.get("np");
+			Node npStartNode = npSet.firstNode(); 
+			Node npEndNode   = npSet.lastNode();
+		
+			gate.FeatureMap npFeatures = Factory.newFeatureMap();
+			
+			npFeatures.put("string",stringFor(doc,npSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			
+
+			
+    outputAS.add( npStartNode,npEndNode, "ProperNounSequence", npFeatures );
+
+}	

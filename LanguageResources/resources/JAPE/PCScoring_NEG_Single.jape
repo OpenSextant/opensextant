@@ -1,0 +1,654 @@
+/** 
+ Copyright 2009-2013 The MITRE Corporation.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+ * **************************************************************************
+ *                          NOTICE
+ * This software was produced for the U. S. Government under Contract No.
+ * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
+ * Software and Noncommercial Computer Software Documentation Clause
+ * 252.227-7014 (JUN 1995)
+ *
+ * (c) 2012 The MITRE Corporation. All Rights Reserved.
+ * **************************************************************************
+**/
+
+Imports: {
+import org.mitre.opensextant.placedata.PlaceCandidate;
+}
+
+Phase: PCScoring_NEG_Single
+Input: Token Lookup Split placecandidate Country  Nationality Ethnicity PersonTitle PersonRelation 
+PersonVerb PersonPossession Month DayOfWeek Organization OrganizationNameElement OrganizationContextPhrase PersonContextPhrase
+NonPlaceContextPhrase NonPlacePrep LocationPrepWeak LocationVerb LocationPrepStrong NonPlace PersonName PersonNameFragment PersonNameSuffix 
+Initials Disease
+Options: control = all
+
+
+//-------------------------------------------------------------
+
+Rule: PersonNameBefore
+(
+		 ({PersonTitle})? ({Initials})? (({PersonNameFragment})?{PersonName})+ ({Initials})? (({PersonNameFragment})?{PersonName})*({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+Rule: PersonNameAfter
+(
+		({placecandidate}):pc ({Initials})? ({PersonName})+ ({Initials})? ({PersonName})*
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+Rule: PersonTitleBefore
+(
+		 {PersonTitle} ({Initials})?({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+
+Rule: WhoPerson
+(
+		({placecandidate}):pc ({Token.string == ","})? {Token.string ==~ "who|Who|WHO|whose|Whose|WHOSE"}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+
+//-------------------------------------------------------------
+
+Rule: RelationOfPC
+(
+		{PersonRelation} {Token.string ==~ "of|Of|OF"}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+Rule: PossessiveRelationPC
+(
+		{Token.string ==~ "his|her|their|His|Her|Their|HIS|HER|THEIR"}{PersonRelation} ({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+
+//-------------------------------------------------------------
+// brother called Wazi
+Rule: PersonNamedPC
+(
+		{PersonRelation} {Token.string ==~ "named|Named|NAMED|called|Called|CALLED|alias|Alias|ALIAS|aka|AKA"}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+//-------------------------------------------------------------
+// called Wazi
+Rule: PersonNamedPC2
+(
+		{PersonRelation} {Token.string ==~ "named|Named|NAMED|called|Called|CALLED|alias|Alias|ALIAS|aka|AKA"}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+
+
+//-------------------------------------------------------------
+
+Rule: PCsRelation
+(
+		({placecandidate}):pc {Token.string ==~ "'s|`s"}{PersonRelation}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+//-------------------------------------------------------------
+// someones's son Bob
+Rule: PCsRelationAppositive
+(
+		{Token.string ==~ "'s|`s"}{PersonRelation}({Token.string ==~ ","})? ({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+//-------------------------------------------------------------
+
+Rule: PCsPossessions
+(
+		({placecandidate}):pc {Token.string ==~ "'s|`s"}{PersonPossession}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+Rule: PCsPersonNameSuffix
+(
+		({placecandidate}):pc ({Token.string ==~ ","})?{PersonNameSuffix}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+Rule: PCsAge
+(
+		({placecandidate}):pc ({Token.string ==~ "\""})? ({Token.string ==~ ","})?    {Token.string ==~ "age|aged|Age|Aged|AGE|AGED"} {Token.kind ==~ "number"}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+// TODO check if number is appropriate as a persons age
+Rule: PCsAge2
+(
+		({placecandidate}):pc {Token.string ==~ ","} {Token.kind ==~ "number"} {Token.string ==~ ","}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+//-------------------------------------------------------------
+
+Rule: PCsPossessionPrep
+(
+		{PersonPossession}{Token.string ==~ "of|Of|OF"}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+
+
+//-------------------------------------------------------------
+
+Rule: PCsHouse
+(
+		({placecandidate}):pc {Token.string ==~ "'s|`s"}{Token.string ==~ "location|house|residence|destination|place|store|business"}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+//-------------------------------------------------------------
+
+Rule: PCPersonVerb
+(
+		({Token.string !=~ "in|at|In|At|IN|AT"}|{Split})({placecandidate,!Country}):pc {PersonVerb}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+Rule: PCPersonVerbPast
+(
+		({Token.string !=~ "in|at|In|At|IN|AT"}|{Split})({placecandidate,!Country}):pc {Token.string ==~ "has|had|have|Has|Had|Have|HAS|HAD|HAVE"} {PersonVerb}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+// "Bob was convicted" but not "from Paris was convicted" 
+Rule: PCVerbPast
+(
+		{!LocationPrepStrong,!LocationPrepWeak}({placecandidate,!Country}):pc {Token.string ==~ "was|were|Was|Were|WAS|WERE"} {Token.string =~ "[a-zA-Z]+ed"}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+
+//-------------------------------------------------------------
+
+Rule: PCisLanguage
+(
+		{Token.string ==~ "speak|speaks|spoke|speaking|Speak|Speaks|Spoke|Speaking|SPEAK|SPEAKS|SPOKE|SPEAKING"}({Token.string ==~ "in|In|IN"})?({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+//-------------------------------------------------------------
+//
+Rule: PCisRelation
+(
+({placecandidate}):pc {Token.string ==~"is|Is|IS|was|Was|WAS"}({Token.string ==~"his|her|the|His|Her|The|HIS|HER|THE"})? {PersonRelation} 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+
+
+
+
+//-------------------------------------------------------------
+//
+Rule: PCMemberOf
+(
+ {OrganizationContextPhrase}({placecandidate}):pc
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+
+
+//-------------------------------------------------------------
+//
+Rule: SomeonesCompany
+(
+   {Token.string ==~ "'s|`s|his|her|their|His|Her|HIS|HER"}{OrganizationNameElement}({placecandidate}):pc
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+
+
+
+
+
+//-------------------------------------------------------------
+//
+Rule: PCAppositive1
+(
+({placecandidate}):pc {Token.string == ","} ({Token.string ==~ "a|an|the|A|An|The|AN|THE"})? {PersonTitle}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+Rule: PCAppositive2
+(
+({placecandidate}):pc ({Token.string == ","})? {Token.string ==~ "a|an|the|A|An|The|AN|THE"} {PersonTitle}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+Rule: PCAppositive3
+(
+({placecandidate}):pc ({Token.string == ","})? {Token.string ==~ "a|an|the|A|An|The|AN|THE"} {Nationality}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+//-------------------------------------------------------------
+//
+Rule: PersonContextPC
+(
+{PersonContextPhrase}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+
+//-------------------------------------------------------------
+//
+Rule: NonPlaceContext
+(
+   {NonPlaceContextPhrase}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+//-------------------------------------------------------------
+//
+Rule: NonPlacePrep
+(
+  {NonPlacePrep}({placecandidate}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+
+}
+
+//-------------------------------------------------------------
+//residing in Wazi Wazi's residence
+Rule: LocationVerbSomeonesPossessionPC
+(
+		{LocationVerb}({LocationPrepStrong}|{LocationPrepWeak})({Token.orth == "upperInitial"})?({placecandidate}):pc ({Token.orth == "upperInitial"})? {Token.string ==~ "'s|`s"}{PersonPossession}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+//-------------------------------------------------------------
+//area code
+Rule: NonPlaces
+(
+		({placecandidate within NonPlace}):pc 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+//-------------------------------------------------------------
+//Rift Valley fever
+Rule: PCisDisease
+(
+		({placecandidate}):pc ({Token.string ==~ "'s"})?{Disease} 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc").get("placecandidate");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+
+
+//TODO: make this explicit as to which Lookups are negatives
+// Nationality, Ethnicity,FeatureType,Language, PersonName, PersonTitle ....
+Rule: PCisVocab
+(
+	({placecandidate within Lookup, Lookup within placecandidate  }):pc
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.get("placecandidate").iterator().next();
+	gate.Annotation lu = pcSet.get("Lookup").iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+	
+	if( pc.coextensive(lu) ){
+	 	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+	}
+}
+
+//TODO: make this explicit as to which Lookups are negatives
+// Nationality, Ethnicity,FeatureType,Language, PersonName, PersonTitle ....
+Rule: PCisWithinVocab
+(
+	({placecandidate within Lookup,placecandidate notWithin Lookup.majorType == Organization }):pc
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.get("placecandidate").iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+	
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+	
+}
+
+//TODO: use explicit abbrev feature when that is added to gazetteer
+// AK-47
+Rule: PCisEmbeddedAbbrev
+(
+	({placecandidate.string ==~ "[a-zA-Z]{2,3}\\-"}):pc
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.get("placecandidate").iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+	
+	pcObj.addRuleAndConfidence(ruleName(), -1.0);
+	
+}

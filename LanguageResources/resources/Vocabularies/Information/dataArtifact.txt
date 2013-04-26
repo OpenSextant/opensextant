@@ -1,0 +1,176 @@
+announcement
+announcements
+annual report
+annual reports
+affidavit
+affidavits
+article
+articles
+artifact
+blueprint
+blueprints
+book
+books
+bulletin
+bulletins
+certificate
+certificates
+chart
+charts
+copyrighted material
+copyrighted materials
+copywritten material
+copywritten materials
+computer file
+computer files
+conversation
+conversations
+credentials
+data file
+data files
+diagram
+diagrams
+document
+documentation
+documents
+email
+e-mail
+emails
+e-mails
+fax
+faxes
+footage
+footnote
+footnotes
+graphic
+graphics
+headline
+headlines
+identity card
+identity cards
+identification card
+identification cards
+image
+images
+imagery
+invoice
+invoices
+journal
+journals
+letter
+letters
+leaflet
+leaflets
+license
+licenses
+list
+lists
+literature
+magazine
+magazines
+media report
+media reports
+memo
+memorandum
+memos
+memorandums
+message
+messages
+missive
+missives
+monthly report
+monthly reports
+news report
+news reports
+newspaper
+newspapers
+notebook
+notebooks
+passport
+passports
+paragraph
+paragraphs
+photo
+photograph
+photographs
+photography
+photos
+picture
+pictures
+post card
+post cards
+postcard
+postcards
+press report
+press reporting
+press reports
+publication
+publications
+report
+reporting
+reports
+signal
+signals
+social security card
+social security cards
+study
+studies
+subpoena
+subpoenas
+thesis
+theses
+transcript
+transcripts
+url
+urls
+video
+video footage
+videos
+videotape
+videotapes
+visa
+visas
+web page
+web pages
+web site
+web sites
+webpage
+webpages
+website
+websites
+weekly report
+weekly reports
+white paper
+white papers
+waybill
+waybills
+handbook
+handbooks
+newsletter
+newsletters
+questionnaire
+questionnaires
+television show
+press release
+press releases
+printed pages
+printed page
+memoir
+memoirs
+advertisement
+advertisements
+advertising
+autobiography
+bibliography
+biography
+discography
+filmography
+webography
+textbook
+textbooks
+audio
+audiotape
+broadcasts
+brochures
+compendium
+movies

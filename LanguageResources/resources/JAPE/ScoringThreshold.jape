@@ -1,0 +1,80 @@
+/** 
+ Copyright 2009-2013 The MITRE Corporation.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+ * **************************************************************************
+ *                          NOTICE
+ * This software was produced for the U. S. Government under Contract No.
+ * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
+ * Software and Noncommercial Computer Software Documentation Clause
+ * 252.227-7014 (JUN 1995)
+ *
+ * (c) 2012 The MITRE Corporation. All Rights Reserved.
+ * **************************************************************************
+**/
+
+/* 
+ Categorizes placecandidates based on total score
+ essentially makes final decision if candidate is a place or not
+ */
+ 
+Imports: {
+ import org.mitre.opensextant.placedata.PlaceCandidate;
+ import org.mitre.opensextant.placedata.Place;
+}
+ 
+
+Phase:	ScoringThreshold
+Input:	Token Lookup placecandidate
+Options: control = all
+
+Rule: Score
+(
+	{placecandidate}
+)
+:pc
+-->
+{
+
+	gate.AnnotationSet pcSet = bindings.get("pc");
+	gate.Annotation pc = pcSet.iterator().next();
+	
+	gate.FeatureMap pcFeatures = pc.getFeatures();
+	PlaceCandidate pcObj = (PlaceCandidate) pcFeatures.get("placeCandidate");
+
+
+	Double totalScore = pcObj.getPlaceConfidenceScore();
+	
+
+	if(totalScore > 0 ){
+		FeatureMap placeFeatures = Factory.newFeatureMap();
+		placeFeatures.put("placeCandidate",pcObj);
+		Place bestPlace = pcObj.getBestPlace();
+		placeFeatures.put("bestPlace",bestPlace);
+		placeFeatures.put("name",bestPlace.getPlaceName());
+		placeFeatures.put("country",bestPlace.getCountryCode());
+		placeFeatures.put("score",pcObj.getBestPlaceScore());
+		outputAS.add(pcSet.firstNode(), pcSet.lastNode(), "PLACE",placeFeatures);
+	}
+
+	if(totalScore < 0 ){
+		outputAS.add(pcSet.firstNode(), pcSet.lastNode(), "NOT_place",pcFeatures);
+	}
+	
+	if(totalScore == 0 ){
+		outputAS.add(pcSet.firstNode(), pcSet.lastNode(), "NO_OPINION_place",pcFeatures);
+	}
+
+}

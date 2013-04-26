@@ -1,0 +1,127 @@
+/** 
+ Copyright 2009-2013 The MITRE Corporation.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+ * **************************************************************************
+ *                          NOTICE
+ * This software was produced for the U. S. Government under Contract No.
+ * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
+ * Software and Noncommercial Computer Software Documentation Clause
+ * 252.227-7014 (JUN 1995)
+ *
+ * (c) 2012 The MITRE Corporation. All Rights Reserved.
+ * **************************************************************************
+**/
+
+
+/*
+ * Create Country,Admin1 and NationalCapital (reference) annotations based on places
+ * in the placeCandidate objects
+ */
+
+Imports: {
+import static gate.Utils.*;
+import org.mitre.opensextant.placedata.PlaceCandidate;
+import org.mitre.opensextant.placedata.Place;
+}
+
+
+Phase:	ResolveOverlapsLongest
+Input:	Token Lookup placecandidate CardinalDirection
+Options: control = appelt
+
+
+// Negative rule to catch pcs which are exactly cardinal directions 
+Rule: PCisDirection
+(
+	({placecandidate within CardinalDirection, CardinalDirection within placecandidate  }):pc
+):phrase
+-->
+{
+// do nothing
+}
+
+
+  Rule: GenerateReferences
+(
+		{placecandidate}
+):hit
+-->{
+		gate.AnnotationSet hitSet = (gate.AnnotationSet)bindings.get("hit");
+		gate.Annotation hit = (gate.Annotation)hitSet.get("placecandidate").iterator().next();
+
+		Node hitStartNode = hitSet.firstNode();
+		Node hitEndNode   = hitSet.lastNode();
+		Long hitStartOffset = hitStartNode.getOffset();
+		Long hitEndOffset   = hitEndNode.getOffset();
+		
+		gate.FeatureMap pcFeatures = hit.getFeatures();
+		PlaceCandidate pc = (PlaceCandidate) pcFeatures.get("placeCandidate");
+		
+		// see if any of the Places on this PC are Countries,
+			// State/Provinces, or national capitals
+			//TODO replace this with a general ADMIN annotation with a level
+			for (Place p : pc.getPlaces()) {
+				// if it is a country,generate a Country annotation
+				if (p.isCountry()) {
+					//System.out.println("Found a country " + p.toString());
+					FeatureMap countryFeats = Factory.newFeatureMap();
+					countryFeats.put("string", pc.getPlaceName());
+					countryFeats.put("countryCode", p.getCountryCode());
+					countryFeats.put("placeCandidate", pc);
+					try {
+						outputAS.add(pc.getStart(), pc.getEnd(),"Country", countryFeats);
+					} catch (InvalidOffsetException e) {
+						// log.error(e.getStackTrace());
+					}
+				}
+				
+				//if it is a state/province, generate a Admin1 annotation
+				if (p.isAdmin1()) {
+					//System.out.println("Found a ADM1 " + p.toString());
+					FeatureMap admFeats = Factory.newFeatureMap();
+					admFeats.put("string", pc.getPlaceName());
+					admFeats.put("countryCode", p.getCountryCode());
+					admFeats.put("adm1code", p.getAdmin1());
+					admFeats.put("placeCandidate", pc);
+					try {
+						outputAS.add(pc.getStart(), pc.getEnd(),"Admin1", admFeats);
+					} catch (InvalidOffsetException e) {
+						// log.error(e.getStackTrace());
+					}
+				}
+				
+				//if it is a national capital, generate a NationalCapital annotation
+				if (p.isNationalCapital()) {
+					//System.out.println("Found a Capital " + p.toString());
+					FeatureMap capFeats = Factory.newFeatureMap();
+					capFeats.put("string", pc.getPlaceName());
+					capFeats.put("countryCode", p.getCountryCode());
+					capFeats.put("placeCandidate", pc);
+					try {
+						outputAS.add(pc.getStart(), pc.getEnd(),"NationalCapital", capFeats);
+					} catch (InvalidOffsetException e) {
+						// log.error(e.getStackTrace());
+					}
+				}
+				
+
+			}
+		
+	
+	
+  }
+  
+  

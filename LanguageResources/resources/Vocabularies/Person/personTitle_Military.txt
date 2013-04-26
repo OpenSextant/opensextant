@@ -1,0 +1,92 @@
+adjutant
+adjutant general
+admiral
+air vice marshal
+brig
+brig.
+brig. gen.
+bgen
+brigadier
+brigadier general
+capt
+capt.
+captain
+chief
+chief petty officer
+col
+col.
+colonel
+colonel general
+color sergeant
+cmdr
+cmdr.
+commander
+commander in chief
+commander-in-chief
+commodore
+corporal
+drill instructor
+ensign
+field marshal
+first lieutenant
+first mate
+first sergeant
+1st sgt
+flag captain
+fleet admiral
+full admiral
+full general
+gen.
+general
+group captain
+gunnery sergeant
+lance corporal
+lieutenant
+lt
+lt.
+lieutenant colonel
+lieutenant commander
+lieutenant general
+lieutenant jg
+lieutenant junior grade
+light colonel
+ltcol
+lt col
+lt. col.
+lt comdr
+lt. comdr.
+ltcol.
+maj.
+major
+maj gen
+major general
+major-general
+marshal
+marshall
+master sergeant
+master-at-arms
+msgt
+msgt.
+petty officer
+quartermaster
+quartermaster general
+rear admiral
+recruiting-sergeant
+seaman
+second lieutenant
+sergeant
+sgt
+sergeant at arms
+sergeant first class
+staff sergeant
+sub commander
+subcommander
+sub-commander
+subcommanders
+sublieutenant
+supreme commander
+technical sergeant
+vice admiral
+warrant officer
+wing commander
+

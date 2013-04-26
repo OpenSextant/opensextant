@@ -1,0 +1,98 @@
+action party
+agrarian party
+alliance party
+centre party
+christian democratic party
+christian democratic union
+christian party
+christian peoples party
+christian people's party
+civic democratic party
+civic party
+colorado party
+communist league
+communist party
+conservative party
+conservative peoples party
+conservative people's party
+conservatives
+democratic alliance
+democratic labour party
+democratic party
+democratic peoples party
+democratic people's party
+democratic socialist party
+democrats
+equality party
+fatherland party
+fatherland union
+free democratic party
+freedom party
+green party
+independence party
+international communist league
+labour party
+left party
+left radical party
+liberal democratic party
+liberal party
+liberal peoples party
+liberal people's party
+liberals
+libertarian party
+motherland party
+national action party
+national alliance
+national congress
+national democratic congress
+national democratic party
+national front
+national liberal party
+national party
+national socialist party
+national unity party
+new alliance party
+new democratic party
+new national party
+new party
+peoples action party
+people's action party
+peoples party
+people's party
+pirate party
+popular alliance
+popular party
+progressive democratic party
+progressive party
+radical democratic party
+radical liberal party
+radical party
+reform party
+republican party
+republican peoples party
+republican people's party
+republicans
+revolutionary communist league
+revolutionary communist party
+revolutionary party
+social democratic party
+social democratic union
+social liberal party
+socialist labour party
+socialist party
+socialist workers party
+socialist workers' party
+union of democratic forces
+unionist party
+united democratic party
+united left
+united party
+united workers party
+united workers' party
+unity party
+worker communist party
+worker-communist party
+workers league
+workers' league
+workers party
+workers' party

@@ -1,0 +1,26 @@
+food
+foodstuffs
+meal
+meals
+bread
+pasta
+wheat
+meat
+grain
+biscuit
+biscuits
+milk
+ice cream
+breakfast
+lunch
+luncheon
+dinner
+supper
+alcoholic drinks
+alcoholic drink
+beef
+beer
+cake
+cakes
+cereal
+cereals

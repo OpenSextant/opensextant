@@ -1,0 +1,58 @@
+bluff
+bluffs
+canyon
+canyons
+cliff
+cliff face
+cliff faces
+cliffs
+corridor
+corridors
+crater
+craters
+desert
+deserts
+foothill
+foothills
+gap
+gaps
+gorge
+gorges
+highland
+highlands
+hill
+hills
+island
+islands
+ledge
+ledges
+mound
+mounds
+mount
+mountain
+mountain face
+mountain faces
+mountains
+mounts
+pass
+passes
+peak
+peaks
+peninsula
+peninsulas
+plain
+plains
+plateau
+plateaus
+ridgeline
+ridgelines
+river valley
+river valleys
+slope
+slopes
+terrain
+terrains
+valley
+valleys
+volcano
+volcanoes

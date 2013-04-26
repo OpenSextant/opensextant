@@ -1,0 +1,103 @@
+/** 
+ Copyright 2009-2013 The MITRE Corporation.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+ * **************************************************************************
+ *                          NOTICE
+ * This software was produced for the U. S. Government under Contract No.
+ * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
+ * Software and Noncommercial Computer Software Documentation Clause
+ * 252.227-7014 (JUN 1995)
+ *
+ * (c) 2012 The MITRE Corporation. All Rights Reserved.
+ * **************************************************************************
+**/
+
+Imports: {
+import org.mitre.opensextant.placedata.PlaceCandidate;
+}
+
+Phase: PCScoring_NEG_Multi
+Input: Token Lookup Split placecandidate Country FeatureType
+PersonContextPhrase OrganizationContextPhrase PersonRelation InterOrgPersonPhrase
+Options: control = all
+
+
+
+//-------------------------------------------------------------
+//
+Rule: PCRelatedToPC
+(
+		({placecandidate}):pc1{Token.string ==~ "'s|`s"}{PersonRelation}({placecandidate}):pc2
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet1 = bindings.get("pc1");
+	gate.Annotation pc1 = pcSet1.iterator().next();
+	gate.AnnotationSet pcSet2 = bindings.get("pc2");
+	gate.Annotation pc2 = pcSet2.iterator().next();
+	
+	gate.FeatureMap pc1Features = pc1.getFeatures();
+	PlaceCandidate pc1Obj = (PlaceCandidate) pc1Features.get("placeCandidate");
+	gate.FeatureMap pc2Features = pc2.getFeatures();
+	PlaceCandidate pc2Obj = (PlaceCandidate) pc2Features.get("placeCandidate");
+
+	pc1Obj.addRuleAndConfidence(ruleName(), -1.0);
+	pc2Obj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+//-------------------------------------------------------------
+//
+Rule: PChasPCRelation
+(
+		({placecandidate}):pc1 {Token.string ==~ "is|Is|IS|was|Was|WAS"}({placecandidate}):pc2{Token.string ==~ "'s|`s"} {PersonRelation} 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet1 = bindings.get("pc1");
+	gate.Annotation pc1 = pcSet1.iterator().next();
+	gate.AnnotationSet pcSet2 = bindings.get("pc2");
+	gate.Annotation pc2 = pcSet2.iterator().next();
+	
+	gate.FeatureMap pc1Features = pc1.getFeatures();
+	PlaceCandidate pc1Obj = (PlaceCandidate) pc1Features.get("placeCandidate");
+	gate.FeatureMap pc2Features = pc2.getFeatures();
+	PlaceCandidate pc2Obj = (PlaceCandidate) pc2Features.get("placeCandidate");
+
+	pc1Obj.addRuleAndConfidence(ruleName(), -1.0);
+	pc2Obj.addRuleAndConfidence(ruleName(), -1.0);
+}
+
+//-------------------------------------------------------------
+//
+Rule: InterPersonOrg
+(
+		{InterOrgPersonPhrase}{Token.string ==~ "between|Between|BETWEEN"}({placecandidate}):pc1 {Token.string ==~"and|And|AND"}({placecandidate}):pc2
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet1 = bindings.get("pc1");
+	gate.Annotation pc1 = pcSet1.iterator().next();
+	gate.AnnotationSet pcSet2 = bindings.get("pc2");
+	gate.Annotation pc2 = pcSet2.iterator().next();
+	
+	gate.FeatureMap pc1Features = pc1.getFeatures();
+	PlaceCandidate pc1Obj = (PlaceCandidate) pc1Features.get("placeCandidate");
+	gate.FeatureMap pc2Features = pc2.getFeatures();
+	PlaceCandidate pc2Obj = (PlaceCandidate) pc2Features.get("placeCandidate");
+
+	pc1Obj.addRuleAndConfidence(ruleName(), -1.0);
+	pc2Obj.addRuleAndConfidence(ruleName(), -1.0);
+}

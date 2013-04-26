@@ -1,0 +1,165 @@
+bacteria
+bacterium
+acquired immunodeficiency syndrome
+acute poliomyelitis
+aids
+conjunctivitis
+amoebic dysentery
+anaplasmosis
+anthrax
+arbovirus infections
+arenavirus
+babesiosis
+bacillus
+bacilli
+bacillary dysentery
+barmah forest fever
+barmah forest virus
+botulism
+brucellosis
+bubonic plague
+california serogroup virus
+campylobacteriosis
+chancroid
+chickenpox
+chikungunya fever
+chlamydia
+chlamydia trachomatis
+cholera
+coccidioidomycosis
+cough
+colitis
+creutzfeldt-jakob disease
+crimean-congo hemorrhagic fever
+cryptosporidiosis
+cyclosporiasis
+dengue fever
+dengue hemorraghic fever
+diphtheria
+donovanosis
+dysentery
+e. coli
+eastern equine encephalitis virus
+ebola virus
+ehrlichiosis
+encephalitis
+enterovirus
+escherichia coli
+food poisoning
+foodborne disease
+food-borne disease
+foodborne diseases
+food-borne diseases
+giardiasis
+gonococcal infection
+gonorrhea
+group a streptococcal disease
+haemolytic uraemic syndrome
+haemophilus influenzae
+hansen's disease
+hantavirus
+hantavirus infection
+headache
+headaches
+heart attack
+heart attacks
+heart disease
+heart condition
+heart failure
+heart palpitations
+hemolytic uremic syndrome
+hepatitis
+hepatitis a
+hepatitis b
+hepatitis c
+hepatitis d
+hepatitis e
+hiv
+human immunodeficiency virus
+influenza
+japanese encephalitis
+kunjin virus
+lassa fever
+lassa virus
+legionellosis
+legionnaire's disease
+leprosy
+leptospirosis
+listeriosis
+lyme disease
+lyssavirus
+malady
+maladies
+malaria
+marburg virus
+measles
+meningitis
+meningococcal disease
+meningococcal infection
+meningococcal septicaemia
+methicillin-resistant staphylococcus aureus infection
+msra
+mumps
+murray valley encephalitis virus
+mycobacterium tuberculosis
+ophthalmia neonatorum
+parasite
+parasites
+paratyphoid fever
+pertussis
+pharyngeal plague
+plague
+pneumococcal disease
+pneumonic plague
+polio
+poliomyelitis
+poisoning
+powassan virus
+psittacosis
+q fever
+rabies
+radiation sickness
+radiation poisoning
+relapsing fever
+rickettsiosis
+ross river virus
+rubella
+rubella and congenital rubella syndrome
+salmonellosis
+salmonella
+scarlet fever
+septicemic plague
+severe acute respiratory syndrome
+shiga-toxin producing escherichia coli
+shigellosis
+silicosis
+smallpox
+spotted fever
+st. louis encephalitis virus
+streptococcus pneumoniae
+streptococcus suis infection
+syphilis
+tetanus
+trichinosis
+tuberculosis
+tularemia
+typhoid fever
+typhus
+vancomycin intermediate staph aureus
+vancomycin resistant staph aureus
+varicella
+viral haemorrhagic fever
+viral hemorrhagic fever
+vrsa
+waterborne disease
+west nile virus
+western equine encephalitis virus
+whooping cough
+yellow fever
+muscle spasm
+muscle spasms
+muscle cramp
+muscle cramps
+cramps
+septicemia
+ebola

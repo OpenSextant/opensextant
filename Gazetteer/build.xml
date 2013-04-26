@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+
+<project name="OpenSextant-Gazetteer" default="build">
+
+	<!-- where to deploy the Solr Gazetteer -->
+	
+    <property environment="env" />
+	
+	<property name="opensextant.home" value="/mitre/opensextant" />
+	<property name="solr_home" value="${opensextant.home}/solr" />
+
+	<!--NOTE the source gazetteer data files distributed by NGA and USGS have the date of release appended-->
+	<!--You must changes these values to the dates desired and actually available at the time of download -->
+	<!-- Tou can find these dates available by looking at:
+	    USGS - http://geonames.usgs.gov/domestic/download_data.htm 
+		NGA - http://earth-info.nga.mil/gns/html/namefiles.htm
+	-->
+	<property name="NGA_date" value="20130422" />
+	<property name="USGS_date" value="20130404" />
+
+	<!-- where did you install Pentaho Data Integration aka Kettle? -->
+	<!--property name="kettle.home" location="C:\Program Files\Kettle\data-integration" /-->  
+	<!--property name="kettle.home" location="${env.MY_KETTLE}" /-->
+
+
+	<!-- location of processed Gazetteer data-->
+	<property name="csv" value="${basedir}/GazetteerETL/GeoData/Merged/Merged.txt" />
+	<property name="exec_dir" value="${basedir}" />
+	<property name="opensextant.build" value="${basedir}/../OpenSextantToolbox/build" />
+	<property name="opensextant.lib" value="${basedir}/../OpenSextantToolbox/lib" />
+	<property name="fieldnames" value="id,place_id,name,lat,lon,feat_class,feat_code,FIPS_cc,ISO_cc,ISO3_cc,adm1,adm2,adm3,,,source,,,,,name_bias,id_bias,name_type," />
+
+	<property name="kitchen.script.win" location="${kettle.home}/kitchen.bat" />
+	<property name="kitchen.script.unix" location="${kettle.home}/kitchen.sh" />
+
+	<property name="processGazetteer.script" location="${basedir}/GazetteerETL/BuildMergedGazetteer.kjb" />
+
+
+	<path id="runtime.classpath">
+		<fileset dir="${solr_home}/gazetteer/lib" includes="**/*.jar" />
+		<!-- Solr webapp -->
+		<fileset dir="${solr_home}/webapp/WEB-INF/lib" includes="**/*.jar" />
+	</path>
+
+	<!-- deletes generated gazetteer data -->
+	<target name="clean">
+		<delete includeemptydirs="true">
+			<fileset dir="${basedir}/GazetteerETL/Logs" includes="**/*" />
+			<fileset dir="${basedir}/GazetteerETL/GeoData/Merged" includes="**/*" />
+		</delete>
+	</target>
+
+
+
+	<!-- Fetch original source gazetteers from their various websites, unzip and rename (removing date from file name) -->
+	<!-- NOTE: make sure proxies are set if needed-->
+        <target name="data.nga">
+           <echo > Retrieving Data from NGA </echo>
+		<!--NGA world Gazetteer -->
+		<property name="NGA_basename_2012" value="geonames_dd_dms_date_${NGA_date}" />
+		<property name="NGA_basename" value="geonames_${NGA_date}" />
+		<get src="http://earth-info.nga.mil/gns/html/${NGA_basename}.zip" dest="${basedir}/GazetteerETL/GeoData/NGA" />
+		<unzip src="${basedir}/GazetteerETL/GeoData/NGA/${NGA_basename}.zip" dest="${basedir}/GazetteerETL/GeoData/NGA" />
+		<move file="${basedir}/GazetteerETL/GeoData/NGA/${NGA_basename}.txt" tofile="${basedir}/GazetteerETL/GeoData/NGA/geonames_dd_dms_date.txt" />
+        </target>
+        <target name="data.usgs">
+           <echo > Retrieving Data from USGS </echo>
+		<!-- The three parts of the USGS gazetteer -->
+		<property name="USGS_basename_Nat" value="NationalFile_${USGS_date}" />
+		<property name="USGS_basename_Gov" value="GOVT_UNITS_${USGS_date}" />
+		<property name="USGS_basename_All" value="AllNames_${USGS_date}" />
+
+		<get src="http://geonames.usgs.gov/docs/stategaz/${USGS_basename_Nat}.zip" dest="${basedir}/GazetteerETL/GeoData/USGS" />
+		<get src="http://geonames.usgs.gov/docs/stategaz/${USGS_basename_Gov}.zip" dest="${basedir}/GazetteerETL/GeoData/USGS" />
+		<get src="http://geonames.usgs.gov/docs/stategaz/${USGS_basename_All}.zip" dest="${basedir}/GazetteerETL/GeoData/USGS" />
+		<unzip src="${basedir}/GazetteerETL/GeoData/USGS/${USGS_basename_Nat}.zip" dest="${basedir}/GazetteerETL/GeoData/USGS" />
+		<unzip src="${basedir}/GazetteerETL/GeoData/USGS/${USGS_basename_Gov}.zip" dest="${basedir}/GazetteerETL/GeoData/USGS" />
+		<unzip src="${basedir}/GazetteerETL/GeoData/USGS/${USGS_basename_All}.zip" dest="${basedir}/GazetteerETL/GeoData/USGS" />
+		<move file="${basedir}/GazetteerETL/GeoData/USGS/${USGS_basename_Nat}.txt" tofile="${basedir}/GazetteerETL/GeoData/USGS/NationalFile.txt" />
+		<move file="${basedir}/GazetteerETL/GeoData/USGS/${USGS_basename_Gov}.txt" tofile="${basedir}/GazetteerETL/GeoData/USGS/GOVT_UNITS.txt" />
+		<move file="${basedir}/GazetteerETL/GeoData/USGS/${USGS_basename_All}.txt" tofile="${basedir}/GazetteerETL/GeoData/USGS/AllNames.txt" />
+        </target>
+  
+	<target name="getOriginalSources" depends="data.nga,data.usgs">
+               <echo > Finished Retrieving Data Sources</echo>
+	</target>
+
+
+	<!-- run the overall Gazetteer cleaning/transformation process in Kettle -->
+	<!-- this produces the Merged.txt gazetteer file which contains the cleaned and merged gazetteer
+		data ready to be ingested into the Solr gazetteer -->
+	<target name="ProcessGazetteer">
+		<exec executable="cmd" spawn="false">
+			<env key="PENTAHO_DI_JAVA_OPTIONS" value="-Xmx4G" />
+			<arg value="/c" />
+			<arg value="${kitchen.script.win}" />
+			<arg value="/file" />
+			<arg value="${processGazetteer.script}" />
+		</exec>
+	</target>
+
+
+        <!--  Using a unix friendly name for this target.  Should be shorter, no mixed case. -->
+	<target name="process-gazetteer-unix">
+                <echo >Launching ${kitchen.script.unix}</echo>
+                <echo >with options ${env.PENTAHO_DI_JAVA_OPTIONS} on kettle job ${processGazetteer.script}</echo>
+		<exec executable="${kitchen.script.unix}" spawn="false">
+			<arg value="-file" />
+			<arg value="${processGazetteer.script}" />
+		</exec>
+        </target>
+
+<!-- create and populate Solr -->
+	<target name="createSolrGazettteer">
+		<antcall target="create-solr-home" />
+		<antcall target="create" />
+		<antcall target="build-fst" />
+	</target>
+
+
+	<!-- Prepare Solr Home-->
+
+	<!-- 1. create Solr home 
+         2. copy Solr home skeleton
+         3. unpack solr4-conf.zip to gaz/conf/.
+         4. copy runtime libs - SolrTextTagger, OpenSextantToolbox, servlet-api  - to gaz/lib
+     -->
+
+	<target name="create-solr-home">
+		<mkdir dir="${solr_home}" />
+		<mkdir dir="${solr_home}/gazetteer" />
+		<mkdir dir="${solr_home}/gazetteer/lib" />
+		<mkdir dir="${solr_home}/gazetteer/data" />
+		<mkdir dir="${solr_home}/input" />
+		<mkdir dir="${solr_home}/webapp" />
+
+		<!-- Unpack Solr4 config baseline-->
+		<unzip src="${basedir}/solr/solr4-conf.zip" dest="${solr_home}/gazetteer/." />
+
+		<!-- Gaz and SolrTextTagger Solr config -->
+		<copy todir="${solr_home}/" file="${basedir}/solr/solr.xml" />
+		<copy todir="${solr_home}/gazetteer/conf" file="${basedir}/solr/gazetteer/conf/solrconfig.xml" />
+		<copy todir="${solr_home}/gazetteer/conf" file="${basedir}/solr/gazetteer/conf/schema.xml" />
+		<copy todir="${solr_home}/gazetteer/conf" file="${basedir}/solr/gazetteer/conf/update-script.js" />
+		<copy todir="${solr_home}/gazetteer/conf" file="${basedir}/solr/gazetteer/conf/contraction-filter.txt" />
+		<copy todir="${solr_home}/gazetteer/conf" file="${basedir}/solr/gazetteer/conf/contraction-filter2.txt" />
+
+		<unjar src="${basedir}/solr/solr.war" dest="${solr_home}/webapp/." />
+
+
+		<!-- Internal libs:  OpenSextant Phonetics JAR External libs:  SolrTextTagger, servlet API-->
+		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.build}/opensextant-phonetics.jar" />
+		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.lib}/SolrTextTagger.jar" />
+		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.lib}/solr/javax.servlet-api-3.0.1.jar" />
+		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.lib}/solr/jts-1.13.jar" />
+
+	</target>
+
+	<target name="create">
+		<java classname="org.mitre.solr.tagger.loader.EmbeddedSolrUpdater" classpathref="runtime.classpath" fork="yes" dir="${exec_dir}">
+			<jvmArg value="-Xmx4G" />
+                        <!-- This MaxPermSize appears to be helpful for loading numerous JARs -->
+			<jvmArg value="-XX:MaxPermSize=256m" />
+			<jvmArg value="-Dsolr.solr.home=${solr_home}" />
+			<arg value="--input=${csv}" />
+			<arg value="/update?update.contentType=text/csv&amp;skipLines=1&amp;optimize=true&amp;separator=%09&amp;header=false&amp;trim=on&amp;fieldnames=${fieldnames}" />
+		</java>
+	</target>
+
+	<!-- 2 GB to build current gazetteer with 13 million rows -->
+	<target name="build-fst">
+		<java classname="org.mitre.solr.tagger.loader.EmbeddedSolrUpdater" classpathref="runtime.classpath" fork="yes" dir="${exec_dir}">
+			<jvmArg value="-Xmx4G" />
+                        <!-- This MaxPermSize appears to be helpful for loading numerous JARs -->
+			<jvmArg value="-XX:MaxPermSize=256m" />
+			<jvmArg value="-Dsolr.solr.home=${solr_home}" />
+			<arg value="/tag?build=true" />
+		</java>
+	</target>
+
+       <!-- OS detection -  kettle scripts are tailored based on OS -->
+       <condition property="isWindows"  value="true" >
+           <os family="windows" />
+       </condition>
+
+       <condition property="isUnix"  value="true" >
+           <or>
+             <os family="mac" />
+             <os family="unix" />
+           </or>
+       </condition>
+
+        <target name="copy-libs" >
+    	    <copy todir="${kettle.home}/libext" file="${opensextant.build}/opensextant-phonetics.jar" />
+        	<copy todir="${kettle.home}/libext" file="${opensextant.lib}/commons-codec-1.7.jar" />
+        </target>
+
+        <!-- do everything: get the original data, process it, create solr home and populate it from processed gazeteeer
+          -->
+	<target name="build" if="isWindows" depends="copy-libs">
+		<antcall target="getOriginalSources" />
+		<antcall target="ProcessGazetteer" />
+		<antcall target="create-solr-home" />
+		<antcall target="create" />
+		<antcall target="build-fst" />
+	</target>
+
+	<target name="build.unix" if="isUnix" depends="copy-libs">
+		<antcall target="getOriginalSources" />
+		<antcall target="process-gazetteer-unix" />
+		<antcall target="create-solr-home" />
+		<antcall target="create" />
+		<antcall target="build-fst" />
+      </target>
+
+	<!-- zip up the Solr home for release -->
+	<target name="zip.solrhome" >
+    	<zip destfile="${basedir}/GazetteerETL/GeoData/Merged/solrHome.zip">
+     	   <zipfileset dir="${opensextant.home}" />
+    	</zip>
+	</target>	
+
+	
+</project>

@@ -1,0 +1,43 @@
+bandoleer
+bandoleers
+turban
+turbans
+beret
+berets
+clothes
+clothing
+uniform
+uniforms
+gas mask
+gas masks
+helmet
+helmets
+jacket
+jackets
+shoe
+shoes
+boots
+rubber boots
+handbag
+head gear
+robe
+robes
+sandal
+sandals
+dress
+attire
+eye glasses
+prescription glasses
+sun glasses
+sunglasses
+ski mask
+ski masks
+basketball jersey
+football jersey
+coat
+coats
+fur coat
+fur coats
+pants
+shirt
+shirts

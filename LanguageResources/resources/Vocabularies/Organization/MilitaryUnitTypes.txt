@@ -1,0 +1,77 @@
+aaa
+air defence
+air defence artillery
+air defense
+air defense artillery
+airborne
+airmobile
+anti-aircraft
+antitank
+anti-tank guided missile
+anti-tank gun
+armor
+armored
+armoured car
+artillery
+border guard
+border security
+bridge
+cavalry
+chemical defence
+chemical defense
+coastal defence
+coastal defence artillery
+coastal defense
+coastal defense artillery
+combat
+combat engineer
+commando
+communication
+counter drug
+counter guerrilla
+counter terrorism
+counter terrorist
+countersubversive
+engineer
+field ambulance
+field artillery
+heavy infantry
+honor guard
+horse cavalry
+howitzer
+infantry
+internal security
+light infantry
+logistic
+logistics
+maintenance
+mech
+mech infantry
+mechanized
+mechanized infantry
+medical
+mi
+military intelligence
+military police
+mountain infantry
+mrl
+multiple rocket launcher
+nbc
+parachute
+police
+radio
+recon
+reconnaisance
+reserve
+security
+service
+signal
+signals
+sniper
+special forces
+support
+survey
+tank
+training
+transportaion
+urban special forces

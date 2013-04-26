@@ -1,0 +1,96 @@
+device
+devices
+equipment
+gear
+engine
+engines
+machine
+machines
+motor
+motors
+system
+systems
+material
+materials
+hardware
+component
+components
+piece
+pieces
+optics
+lens
+lenses
+tool
+tools
+electro-optics
+scope
+scopes
+lathe
+lathes
+pump
+water pump
+pumps
+water pumps
+centrifuge
+centrifuges
+sprayer
+sprayers
+purifier
+purifiers
+generator
+generators
+cooler
+coolers
+turbine
+turbines
+gas turbine
+gas turbines
+tow bar
+tow bars
+dolly
+dollies
+module
+modules
+airstair
+airstairs
+air stair
+air stairs
+grease rack
+grease racks
+hatch
+hatches
+tray
+trays
+silo loader
+air conditioning unit
+air conditioning units
+air-conditioning unit
+air-conditioning units
+conveyor
+conveyors
+loading cradle
+loading cradles
+witness panel
+witness panels
+launch rail
+launch rails
+air conditioner
+air conditioners
+air conditioning unit
+air conditioning units
+air handler
+air handlers
+cooling deck
+cooling decks
+burner
+heater
+burners
+heaters
+decompression chamber
+decompression chambers
+mechanism
+mechanisms
+microscope
+microscopes
+clock
+clocks

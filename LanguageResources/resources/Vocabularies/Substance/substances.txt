@@ -1,0 +1,47 @@
+alloy
+alloys
+solid
+solids
+liquid
+liquids
+gas
+gases
+glass
+powder
+powders
+fluid
+fluids
+gel
+gels
+slurry
+slurries
+crystal
+crystals
+fuel
+electricity
+metal
+metals
+steel
+propellant
+pollutant
+pollutants
+water
+drinking water
+chemical
+chemicals
+polymerase
+gunpowder
+gunpowders
+lubricant
+lubricants
+polymer
+polymers
+glue
+glues
+oil
+oils
+toxic material
+toxic materials
+wax
+waxes
+aerosol

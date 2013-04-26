@@ -1,0 +1,116 @@
+backpack
+backpacks
+bag
+bags
+baggage
+baggages
+barrel
+barrels
+basin
+basins
+blanket
+blankets
+bottle
+bottles
+bowl
+bowls
+box
+boxes
+boxs
+briefcase
+briefcases
+cammo net
+cammo nets
+camo net
+camo nets
+camouflage net
+camouflage nets
+camouflage netting
+camouflage nettings
+canister
+canisters
+cannister
+cannisters
+canopies
+canopy
+canvas
+capsule
+capsules
+carton
+cartons
+cartridge
+cartridges
+cassette
+cassettes
+chemical tank
+chemical tanks
+container
+containers
+crate
+crates
+drum
+drums
+fuel tank
+fuel tanks
+fuel bladder
+fule bladders
+gas cylinder
+gas cylinders
+horizontal tank
+horizontal tanks
+hood
+hoods
+hose
+hoses
+jar
+jars
+jug
+jugs
+net
+nets
+netting
+nettings
+pallet
+pallets
+pallett
+palletts
+pipe
+pipes
+pipe section
+pipe sections
+pot
+pots
+retort
+retorts
+shipping container
+shipping containers
+storage tank
+storage tanks
+POL storage tank
+POL storage tanks
+POL tank
+POL tanks
+cylindrical tank
+cylindrical tanks
+suitcase
+suitcases
+tarp
+tarpaulin
+tarpaulins
+tarps
+tube
+tubes
+vat
+vats
+vial
+vials
+water tank
+water tanks
+wood case
+wooden case
+wood cases
+wooden cases
+handbag
+handbags
+coffin
+coffins

@@ -1,0 +1,294 @@
+
+Phase:	POS_Promotion
+Input:   Token 
+Options: control = appelt
+
+Rule: POS_Error
+(	
+		{Token.pos == "<END>"}|
+		{Token.pos == "NIL"}
+):t
+-->
+:t.POS_ERROR = {pos = :t.Token.pos string =:t.Token.string  rule = "POS_Error"}
+
+
+Rule: POS_Adj
+(	
+		{Token.pos == "JJ+JJ"} |
+		{Token.pos == "JJR+CS"} |
+		{Token.pos == "JJ"} |
+		{Token.pos == "JJ$"} |
+		{Token.pos == "JJR"} |
+		{Token.pos == "JJS"} |
+		{Token.pos == "JJT"} 
+
+):t
+-->
+:t.POS_Adjective = {pos = :t.Token.pos string =:t.Token.string  rule = "POS_Adj"}
+
+
+Rule: POS_Adv
+(	
+		{Token.pos == "RB+BEZ"} |
+		{Token.pos == "RB+CS"} |
+		{Token.pos == "RP+IN"} |
+		{Token.pos == "RBR+CS"} |
+		  {Token.pos == "QL"} |
+		  {Token.pos == "QLP"} |
+		{Token.pos == "RB"} |
+		{Token.pos == "RB$"} |
+		{Token.pos == "RBR"} |
+		{Token.pos == "RBT"} |
+		{Token.pos == "RN"} |
+		{Token.pos == "RP"} 
+
+):t
+-->
+:t.POS_Adverb = {pos = :t.Token.pos string =:t.Token.string   rule = "POS_Adv"}
+
+
+Rule: POS_Conj
+(	
+		{Token.pos == "CC"} |
+		{Token.pos == "CS"}
+
+):t
+-->
+:t.POS_Conjunction = {pos = :t.Token.pos string =:t.Token.string   rule = "POS_Conj"}
+
+
+Rule: POS_Det
+(	
+		  {Token.pos == "DT$"} |
+		  {Token.pos == "DTI"} |
+		  {Token.pos == "DTS"} |
+		  {Token.pos == "DTX"} |
+		 {Token.pos == "DT"}|
+		 {Token.pos == "DT+MD"} |
+		 {Token.pos == "PDT"}|
+		 {Token.pos == "WDT"}|
+		  {Token.pos == "ABL"} |
+		  {Token.pos == "ABN"} |
+		  {Token.pos == "ABX"} |
+		  {Token.pos == "AP"} |
+		  {Token.pos == "AP$"} |
+		  {Token.pos == "AT"} 
+):t
+-->
+:t.POS_Determiner = {pos = :t.Token.pos string =:t.Token.string   rule = "POS_Det"}
+
+Rule: POS_Noun
+(	
+		{Token.pos == "NN+BEZ"} |
+		{Token.pos == "NN+HVD"} |
+		{Token.pos == "NN+HVZ"} |
+		{Token.pos == "NN+IN"} |
+		{Token.pos == "NN+MD"} |
+		{Token.pos == "NN+NN"} |
+		{Token.pos == "NP+BEZ"} |
+		{Token.pos == "NP+HVZ"} |
+		{Token.pos == "NP+MD"} |
+		{Token.pos == "NR+MD"} |
+		{Token.pos == "NNS+MD"} |
+		{Token.pos == "NN"} |
+		{Token.pos == "NN$"} |
+		{Token.pos == "NNS"} |
+		{Token.pos == "NNS$"} |
+		{Token.pos == "NP"} |
+		{Token.pos == "NP$"} |
+		{Token.pos == "NPS"} |
+		{Token.pos == "NPS$"} |
+		{Token.pos == "NR"} |
+		{Token.pos == "NR$"} |
+		{Token.pos == "NRS"} |
+		{Token.pos == "EX"}
+
+):t
+-->
+:t.POS_Noun = {pos = :t.Token.pos string =:t.Token.string   rule = "POS_Noun"}
+ 
+ 
+
+
+ Rule: POS_Number
+ (	
+		 {Token.pos == "CD"} |
+		 {Token.pos == "CD$"} |
+		 {Token.pos == "OD"} 
+
+ ):t
+ -->
+ :t.POS_Number = {pos = :t.Token.pos string =:t.Token.string   rule = "POS_Number"}
+  
+ 
+  Rule: POS_Other
+  (	
+		  {Token.pos == "AP+AP"} |
+		  {Token.pos == "DT+BEZ"} |
+		  {Token.pos == "EX+BEZ"} |
+		  {Token.pos == "EX+HVD"} |
+		  {Token.pos == "EX+HVZ"} |
+		  {Token.pos == "EX+MD"} |
+		  {Token.pos == "TO+VB"} |
+		  {Token.pos == "WDT+BER"} |
+		  {Token.pos == "WDT+BER+PP"} |
+		  {Token.pos == "WDT+BEZ"} |
+		  {Token.pos == "WDT+DO+PPS"} |
+		  {Token.pos == "WDT+DOD"} |
+		  {Token.pos == "WDT+HVZ"} |
+		  {Token.pos == "WPS+BEZ"} |
+		  {Token.pos == "WPS+HVD"} |
+		  {Token.pos == "WPS+HVZ"} |
+		  {Token.pos == "WPS+MD"} |
+		  {Token.pos == "WRB+BER"} |
+		  {Token.pos == "WRB+BEZ"} |
+		  {Token.pos == "WRB+DO"} |
+		  {Token.pos == "WRB+DOD"} |
+		  {Token.pos == "WRB+DOD*"} |
+		  {Token.pos == "WRB+DOZ"} |
+		  {Token.pos == "WRB+IN"} |
+		  {Token.pos == "WRB+MD"} |
+		  {Token.pos == "TO"} |
+		  {Token.pos == "UH"} |
+		  {Token.pos == "WDT"} |
+		  {Token.pos == "WP$"} |
+		  {Token.pos == "WPO"} |
+		  {Token.pos == "WPS"} |
+		  {Token.pos == "WQL"} |
+		  {Token.pos == "WRB"} 
+
+  ):t 
+  -->
+  :t.POS_Other = {pos = :t.Token.pos string =:t.Token.string   rule = "POS_Other"}
+ 
+ 
+   Rule: POS_Prep
+   (	
+		   {Token.pos == "IN+IN"} |
+		   {Token.pos == "IN+PPO"} |
+		   {Token.pos == "IN"} 
+
+   ):t 
+   -->
+   :t.POS_Preposition = {pos = :t.Token.pos string =:t.Token.string   rule = "POS_Prep"} 
+   
+   
+    Rule: POS_Pronoun
+    (	
+    		{Token.pos == "PN+BEZ"} |
+    		{Token.pos == "PN+HVD"} |
+    		{Token.pos == "PN+HVZ"} |
+    		{Token.pos == "PN+MD"} |
+    		{Token.pos == "DTS+BEZ"} |
+    		{Token.pos == "PPS+BEZ"} |
+    		{Token.pos == "PPS+HVD"} |
+    		{Token.pos == "PPS+HVZ"} |
+    		{Token.pos == "PPS+MD"} |
+    		{Token.pos == "PPSS+BEM"} |
+    		{Token.pos == "PPSS+BER"} |
+    		{Token.pos == "PPSS+BEZ"} |
+    		{Token.pos == "PPSS+BEZ*"} |
+    		{Token.pos == "PPSS+HV"} |
+    		{Token.pos == "PPSS+HVD"} |
+    		{Token.pos == "PPSS+MD"} |
+    		{Token.pos == "PPSS+VB"} |
+    		{Token.pos == "PN"} |
+    		{Token.pos == "PN$"} |
+  		    {Token.pos == "PP$"} |
+    		{Token.pos == "PP$$"} |
+    		{Token.pos == "PPL"} |
+    		{Token.pos == "PPLS"} |
+    		{Token.pos == "PPO"} |
+    		{Token.pos == "PPS"} |
+    		{Token.pos == "PPSS"}
+
+    ):t 
+    -->
+    :t.POS_Pronoun = {pos = :t.Token.pos string =:t.Token.string   rule = "POS_Prep"} 
+    
+     Rule: POS_Punct
+     (	
+    		 {Token.pos == "CLOSEPAREN"} |
+    		 {Token.pos == "COLON"} |
+    		 {Token.pos == "COMMA"} |
+    		 {Token.pos == "DASH"} |
+    		 {Token.pos == "DQUOTE"} |
+    		 {Token.pos == "NOT"} |
+    		 {Token.pos == "OPENPAREN"}|
+    		 {Token.pos == "PERIOD"} |
+    		 {Token.pos == "POSS"} |
+    		 {Token.pos == "TIC"}| 
+    		 {Token.pos == "APOS"}
+
+     ):t 
+     -->
+     :t.POS_Punct = {pos = :t.Token.pos string =:t.Token.string   rule = "POS_Punct"} 
+   
+ 
+   
+ Rule: POS_Verb
+ (	
+		 {Token.pos == "DO+PPSS"} |
+		 {Token.pos == "HV+TO"} |
+		 {Token.pos == "MD+HV"} |
+		 {Token.pos == "MD+PPSS"} |
+		 {Token.pos == "MD+TO"} |
+		 {Token.pos == "VB+AT"} |
+		 {Token.pos == "VB+IN"} |
+		 {Token.pos == "VB+JJ"} |
+		 {Token.pos == "VB+PPO"} |
+		 {Token.pos == "VB+RP"} |
+		 {Token.pos == "VB+TO"} |
+		 {Token.pos == "VB+VB"} |
+		 {Token.pos == "VBG+TO"} |
+		 {Token.pos == "VBN+TO"} |
+		 {Token.pos == "BE"} |
+		 {Token.pos == "BED"} |
+		 {Token.pos == "BED*"} |
+		 {Token.pos == "BEDZ"} |
+		 {Token.pos == "BEDZ*"} |
+		 {Token.pos == "BEG"} |
+		 {Token.pos == "BEM"} |
+		 {Token.pos == "BEM*"} |
+		 {Token.pos == "BEN"} |
+		 {Token.pos == "BER"} |
+		 {Token.pos == "BER*"} |
+		 {Token.pos == "BEZ"} |
+		 {Token.pos == "BEZ*"} |
+		 {Token.pos == "DO"} |
+		 {Token.pos == "DO*"} |
+		 {Token.pos == "DOD"} |
+		 {Token.pos == "DOD*"} |
+		 {Token.pos == "DOZ"} |
+		 {Token.pos == "DOZ*"} |
+		 {Token.pos == "HV"} |
+		 {Token.pos == "HV*"} |
+		 {Token.pos == "HVD"} |
+		 {Token.pos == "HVD*"} |
+		 {Token.pos == "HVG"} |
+		 {Token.pos == "HVN"} |
+		 {Token.pos == "HVZ"} |
+		 {Token.pos == "HVZ*"} |
+		 {Token.pos == "MD"} |
+		 {Token.pos == "MD*"} |
+		 {Token.pos == "VB"} |
+		 {Token.pos == "VBD"} |
+		 {Token.pos == "VBG"} |
+		 {Token.pos == "VBN"} |
+		 {Token.pos == "VBZ"}
+
+ ):t 
+ -->
+ :t.POS_Verb = {pos = :t.Token.pos string =:t.Token.string   rule = "POS_Verb"}
+ 
+ 
+ 
+ Rule: POS_CatchAll
+ (	
+ 		{Token}
+ ):t
+ -->
+ :t.POS_Catch = {pos = :t.Token.pos string =:t.Token.string  rule = "POS_Catch"}
+
+
+ 

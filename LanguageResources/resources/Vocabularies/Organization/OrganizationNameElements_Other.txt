@@ -1,0 +1,53 @@
+assembly
+association
+alliance
+cell
+committee
+contingent
+council
+crew
+delegation
+delegations
+element
+elements
+ethnic group
+ethnic groups
+faction
+factions
+federation
+firm
+foundation
+gang
+general public
+group
+groups
+headquarters
+hq
+institution
+movement
+network
+nomadic group
+organisation
+organization
+organization
+organizations
+populace
+section
+society
+team
+townspeople
+tribal force
+tribal forces
+tribe
+tribes
+volunteers
+consortium
+partnership
+audience
+audiences
+bureaucracy
+bureaucracies
+cartel
+cartels
+commitee
+commitees

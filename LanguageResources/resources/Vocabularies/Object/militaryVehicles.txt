@@ -1,0 +1,65 @@
+ambulance
+ambulances
+amphibious vehicle
+amphibious vehicles
+armored car
+armored cars
+armored fighting vehicle
+armored fighting vehicles
+apc
+apcs 
+apc's
+armored personnel carrier
+armored personnel carriers
+armored recovery vehicle
+armored recovery vehicles
+armored vehicle launched bridge
+armored vehicle launched bridges
+armoured car
+armoured cars
+armoured vehicle
+armoured vehicles
+armored vehicle
+armored vehicles
+armoured fighting vehicle
+armoured fighting vehicles
+armoured personnel carrier
+armoured personnel carriers
+armoured recovery vehicle
+armoured recovery vehicles
+armoured vehicle launched bridge
+armoured vehicle launched bridges
+combat engineering vehicle
+combat engineering vehicles
+command and control vehicle
+command and control vehicles
+support vehicle
+support vehicles
+power supply vehicle
+power supply vehicles
+generator vehicle
+generator vehicles
+ground support vehicle
+ground support vehicles
+hmmwv
+hmmwvs
+humvee
+ifv
+ifvs
+ifv's
+infantry fighting vehicle
+infantry fighting vehicles
+field ambulance
+field ambulances
+gunship
+gunships
+main battle tank
+main battle tanks
+military vehicle
+military vehicles
+missile launcher
+missile launchers
+security vehicle
+security vehicles
+tank
+tanks
