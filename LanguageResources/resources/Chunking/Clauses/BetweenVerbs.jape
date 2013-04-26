@@ -1,0 +1,20 @@
+Phase: BetweenVerbs
+Input: Split Token SplitCandidate VerbPhrase
+Options: control = all
+
+Rule: betweenVerbPhrases
+(
+{VerbPhrase} ({Token,!VerbPhrase,!Split})+:between  {VerbPhrase}
+):whole
+-->
+ :between.Between = {rule = "betweenVerbPhrases"}
+
+/*
+Rule: betweenVerbPhrases
+(
+{VerbPhrase} ({SplitCandidate,!VerbPhrase,!Split})+:between  {VerbPhrase}
+):whole
+-->
+ :between.Between = {rule = "betweenVG"}
+*/
+

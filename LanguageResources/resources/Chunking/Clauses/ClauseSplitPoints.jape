@@ -1,0 +1,51 @@
+Phase: BetweenVerbsCandidate
+Input: Between Token Split
+Options: control = appelt
+
+// create ClauseSplitPoint from appropriate  SplitCandidates 
+// need to add type info to ClauseSplitPoint
+Rule:SplitPoint
+(
+		{Between}
+):b
+-->
+{
+	gate.AnnotationSet betweenSet = ((gate.AnnotationSet)bindings.get("b")).get("Between");
+	gate.Annotation between = (gate.Annotation)betweenSet.iterator().next();
+
+	gate.FeatureMap betweenFeatures =between.getFeatures();
+	Node betweenStartNode = between.getStartNode(); 
+	Node betweenEndNode   = between.getEndNode();
+	Long betweenStartOffset = betweenStartNode.getOffset();
+	Long betweenEndOffset = betweenEndNode.getOffset();
+	
+	AnnotationSet splitSet = inputAS.get("SplitCandidate",betweenStartOffset,betweenEndOffset );
+	
+	if(splitSet.size() >0 ){
+	
+		List<Annotation> splitList = new ArrayList<Annotation>();
+		splitList.addAll(splitSet);
+		Collections.sort(splitList, new OffsetComparator());
+	
+		// get the last (rightmost) split
+		Annotation split = splitList.get(splitList.size()-1);
+		gate.FeatureMap splitFeatures =split.getFeatures();
+		Node splitStartNode = split.getStartNode(); 
+		Node splitEndNode   = split.getEndNode();
+		Long splitStartOffset = splitStartNode.getOffset();
+		Long splitEndOffset = splitEndNode.getOffset();
+	
+		try{
+			outputAS.add(splitStartOffset, splitEndOffset, "ClauseSplitPoint",splitFeatures);
+			}catch(InvalidOffsetException e) {
+
+			}
+		
+		
+	}else{
+		// no marked candidate need to look for something else
+	}
+	
+	
+	
+}

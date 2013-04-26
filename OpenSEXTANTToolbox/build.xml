@@ -1,0 +1,479 @@
+<!--======================================================================
+
+Build file for OpenSextantToolbox.  
+The core library is contained in this jar.
+
+=======================================================================-->
+<project name="OpenSextantToolbox" basedir="." default="jar">
+
+  <property name="version" value="1.2" />
+
+  <!-- Name of the project -->
+  <property name="project.name" value="OpenSextantToolbox" />
+  <property name="java_level" value="1.7" />
+	
+  <!-- Source directory - contains the Java source files for this project -->
+  <property name="src.dir" location="src" />
+
+  <!-- directory to contain the jar -->
+  <property name="build.dir" location="build" />
+		
+  <!-- documentation directory -->
+  <property name="doc.dir" location="${basedir}/doc" />
+
+  <!-- JavaDoc documentation directory -->
+  <property name="javadoc.dir" location="${doc.dir}/javadoc" />
+
+  <!-- lib directories - additional required jar files  -->
+  <property name="lib.dir" location="lib" />
+  <property name="solr.lib.dir" location="lib/solr" />
+
+  <!-- location of the Language Resources directory -->
+  <property name="resources.home" location="../LanguageResources" />
+
+  <!-- location of staging of GateHome files -->
+  <property name="gate.home.staging" location="${resources.home}/GAPPs" />
+
+  <!-- directory to contain the contents of the zip release -->
+  <property name="release.dir" location="${basedir}/release" />
+
+  <!-- location of GateHome files and Plugin directory, installed -->
+  <property name="gate.home.install" location="${release.dir}/gate" />
+
+  <property name="opensextant.plugin" location="${gate.home.install}/plugins/OpenSextant" />        
+        
+  <property name="gaz.home" location="../Gazetteer" />
+	
+  <!-- location of the XCoord directory -->
+  <property name="xcoord.home" location="../Xponents/XCoord" />
+	
+  <!-- location of the XTemporal directory -->
+  <property name="xtemp.home" location="../Xponents/XTemporal" />
+  <property name="xtext.home" location="../Xponents/XText" />
+  <property name="commons.home" location="../Commons" />
+	
+  <!-- location of the FlexPat directory -->
+  <property name="flexpat.home" location="../Xponents/FlexPat" />
+	
+  <!-- location of the top-level SolrTextTagger directory -->
+  <property name="solrtagger.home" location="../SolrTextTagger" />
+	
+  <!-- location for the generated JAR file -->
+  <property name="jar.location" location="${build.dir}/${project.name}.jar" />
+  <property name="phonetics_jar.location" location="${build.dir}/opensextant-phonetics.jar" />
+  <property name="commons_jar.location" location="${commons.home}/build/opensextant-commons.jar" />
+  <property name="flexpat_jar.location" location="${flexpat.home}/build/flexpat-1.3.jar"/>
+  <property name="apps_jar.location" location="${build.dir}/opensextant-apps.jar" />
+
+  <!-- gate jars required for building and running -->
+  <import file="${basedir}/dependencies.xml"/>
+        
+  <!-- Classpath to compile - includes local sources, gate.jar, local
+  library JAR files, GATE/lib/*.jar, and lib-solr jars in that order -->
+  <path id="compile.classpath">
+    <fileset dir="${lib.dir}" includes="**/*.jar" />
+    <fileset dir="${solr.lib.dir}" includes="**/*.jar" />
+    <path refid="gate.dependencies"/>
+  </path>
+
+  <!--====================== Targets ============================-->
+  <!-- clean up created jars  -->
+  <target name="clean">
+    <delete file="${jar.location}" />
+    <delete file="${phonetics_jar.location}" />
+    <delete file="${apps_jar.location}" />
+    <delete dir="${build.dir}/org" />
+  </target>
+	
+  	<!-- remove copied dependencies -->	
+	  <target name="cleanDependencies">
+	  	<delete file="${lib.dir}/opensextant-commons.jar" />
+	  	<delete file="${lib.dir}/flexpat-1.3.jar"/>
+	  	<delete file="${lib.dir}/xcoord-1.6.jar" />
+	  	<delete file="${lib.dir}/xtemporal-1.0.jar" />
+	  	<delete file="${lib.dir}/xtext-1.0.jar" />
+	  </target>
+	
+	 <!-- clean up javadocs  -->
+	  <target name="clean.javadocs">
+	    <delete dir="${basedir}/doc/javadoc" />
+	  </target>
+	
+	
+  <!-- compile the source -->
+  <target name="compile" depends="clean,dependencies">
+    <javac classpathref="compile.classpath" srcdir="${src.dir}" destdir="${build.dir}" 
+      debug="true" debuglevel="lines,source" source="${java_level}" encoding="utf-8" />
+  </target>
+	
+  <!-- create the JAR files -->
+  <target name="jar" depends="compile">
+    <jar destfile="${jar.location}" update="false" basedir="${build.dir}" >
+      <include name="org/mitre/opensextant/**"/>
+      <exclude name="org/mitre/opensextant/apps/**"/>
+    </jar>
+
+    <jar destfile="${phonetics_jar.location}" update="false" basedir="${build.dir}" >
+      <include name="org/mitre/opensextant/phonetic/**"/>
+    </jar>
+    <jar destfile="${apps_jar.location}" update="false" basedir="${build.dir}" >
+      <include name="org/mitre/opensextant/apps/**"/>
+    </jar>
+  </target>
+	
+  <!-- create JavaDoc directory -->
+  <target name="javadoc.prepare">
+    <delete dir="${javadoc.dir}" />
+    <mkdir dir="${javadoc.dir}" />
+  </target>
+
+  <!-- Generate JavaDoc documentation for this project -->
+  <target name="javadoc" depends="javadoc.prepare">
+    <javadoc destdir="${javadoc.dir}" packagenames="*" classpathref="compile.classpath" 
+      encoding="utf-8" access="public" windowtitle="OpenSextant JavaDoc" source="${java_level}">
+      <sourcepath>
+        <pathelement location="${src.dir}" />
+      </sourcepath>
+    </javadoc>
+  </target>
+	
+  <!-- Generate JavaDoc documentation for all projects -->
+  <target name="all-javadoc" depends="javadoc.prepare">
+    <javadoc destdir="${javadoc.dir}" packagenames="*" classpathref="compile.classpath" 
+      encoding="utf-8" access="public" windowtitle="OpenSextant JavaDoc" source="${java_level}">
+      <sourcepath>
+        <pathelement location="${src.dir}" />
+        <pathelement location="../OpenSextantWebService/src" />
+      </sourcepath>
+    </javadoc>
+  </target>
+
+  <target name="dependencies" depends="solrtagger.update, commons.update,flexpat.update,xcoord.update,xtemp.update, xtext.update" >
+  </target>
+
+	
+  <target name="commons.update">
+    <subant target="all">
+      <fileset dir="${commons.home}" includes="build.xml"/>
+    </subant>
+    <copy tofile="${lib.dir}/opensextant-commons.jar" file="${commons_jar.location}" />
+  </target>
+	
+  <!-- Copy over FlexPat jar -->
+  <target name="flexpat.update">
+    
+    <subant target="all">
+    <fileset dir="${flexpat.home}" includes="build.xml"/>
+    </subant>
+    
+    <copy tofile="${lib.dir}/flexpat-1.3.jar"         file="${flexpat_jar.location}" />
+  </target>
+	
+  <target name="xtext.update" >
+    <subant target="all">
+      <fileset dir="${xtext.home}" includes="build.xml"/>
+    </subant>
+    <copy todir="${lib.dir}" file="${xtext.home}/build/xtext-1.0.jar" />
+  </target>
+
+
+  <!-- Copy over XCoord jar -->
+  <target name="xcoord.update" >
+    <subant target="all">
+      <fileset dir="${xcoord.home}" includes="build.xml"/>
+    </subant>
+    <copy todir="${lib.dir}" file="${xcoord.home}/build/xcoord-1.6.jar" />
+    <copy file="${xcoord.home}/src/main/resources/geocoord_regex.cfg" todir="${resources.home}/resources/patterns" />
+  </target>
+
+  <!-- Copy over XTemp jar and datetime patterns config file -->
+  <target name="xtemp.update">
+    <subant target="all">
+      <fileset dir="${xtemp.home}" includes="build.xml"/>
+    </subant>
+    <copy todir="${lib.dir}" file="${xtemp.home}/build/xtemporal-1.0.jar" />
+    <copy file="${xtemp.home}/src/main/resources/datetime_patterns.cfg" todir="${resources.home}/resources/patterns" />
+  </target>
+		
+  <!-- Copy over SolrTextTagger jar -->
+  <target name="solrtagger.update" >
+    <subant target="build">
+      <fileset dir="${solrtagger.home}" includes="build.xml"/>
+    </subant>
+    <copy todir="${lib.dir}" file="${solrtagger.home}/build/SolrTextTagger.jar" />
+    <copy todir="${gaz.home}/solr/gazetteer/lib" file="${solrtagger.home}/build/SolrTextTagger.jar" />
+  </target>
+	
+  <!-- Build the jars and jar dependencies. Note that the FlexPat build should precede the XCoord and Xtemporal builds -->
+  <target name="build" depends="jar"/>
+		         
+	<!-- deploy OpenSextantToolbox locally to test -->
+	<target name="toolbox.deploy" depends="build">
+		<!-- create the target directory under GATE_HOME/plugins -->
+		<delete dir="${GATE.location}/plugins/OpenSextantToolbox"  />
+        <mkdir dir="${GATE.location}/plugins/OpenSextantToolbox" />
+		<!-- copy over the libs and creole.xml -->
+        <copy todir="${GATE.location}/plugins/OpenSextantToolbox/lib">
+            <fileset dir="${basedir}/lib">
+              <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${GATE.location}/plugins/OpenSextantToolbox/lib">
+            <fileset dir="${basedir}/lib/solr">
+              <include name="*.jar" />
+            </fileset>
+        </copy>
+		<copy file="${jar.location}" todir="${GATE.location}/plugins/OpenSextantToolbox/lib" /> 
+		<copy file="${basedir}/creole.xml" todir="${GATE.location}/plugins/OpenSextantToolbox" /> 
+	</target>
+	
+  <!-- create release directory structure -->
+  <target name="prepare.release">
+    <delete dir="${release.dir}" />
+          
+    <mkdir dir="${release.dir}" />
+    <mkdir dir="${release.dir}/lib" />
+    <mkdir dir="${gate.home.install}" />
+  </target>
+
+	
+  <!-- Copy over the GateHome files -->
+  <target name="copy.gate.home" >
+    <copy todir="${gate.home.install}">
+      <fileset dir="${gate.home.staging}" />
+      <fileset dir="${basedir}/gate" />
+    </copy>
+
+   <unzip src="${resources.home}/resources/GATE-plugin-ANNIE.zip" dest="${gate.home.install}/plugins"/>
+  </target>
+
+  <!-- copy over jars to the release directory -->
+  <target name="copy.lib" depends="prepare.release, jar">
+    <copy todir="${release.dir}/lib" flatten="true">
+      <path refid="gate.dependencies"/>
+    </copy>
+    <copy todir="${release.dir}/lib">
+      <fileset dir="${basedir}/lib">
+        <include name="*.jar" />
+      </fileset>
+      <fileset dir="${basedir}/lib/solr">
+        <include name="*.jar" />
+      </fileset>
+      <fileset dir="${basedir}/lib/apps">
+        <include name="*.jar" />
+      </fileset>
+    </copy>
+
+
+    <!-- Copy in both OpenSextant.jar and opensextant-commons.jar -->
+    <copy file="${jar.location}" todir="${release.dir}/lib" />                
+    <copy file="${basedir}/creole.xml" todir="${opensextant.plugin}" />
+    <copy file="${jar.location}" todir="${opensextant.plugin}/lib" />
+
+    <copy file="${apps_jar.location}" todir="${release.dir}/lib" />                
+          
+    <!-- Once complete then copy -->
+    <copy todir="${opensextant.plugin}/lib" flatten="true">
+      <path refid="runtime.dependencies"/>
+    </copy>
+
+  </target>
+		
+  <!-- Copy over the resource files -->
+  <target name="copy.resources" >
+    <delete dir="${release.dir}/resources" />
+          
+    <mkdir dir="${release.dir}/resources" />
+    <copy todir="${release.dir}/resources">
+      <fileset dir="${resources.home}/resources" />
+    </copy>
+  </target>
+
+		
+  <!-- Copy over the gazetteer files -->
+  <target name="release.gaz">
+    <delete dir="${release.dir}/Gazetteer" />
+    <mkdir dir="${release.dir}/Gazetteer" />
+    <copy todir="${release.dir}/Gazetteer/">
+      <fileset dir="${gaz.home}">
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- Copy over the documentation -->
+  <target name="copy.doc" >
+    <copy todir="${release.dir}/doc">
+      <fileset dir="${doc.dir}">
+        <filename name="*.docx"/>
+      </fileset>
+    </copy>
+          
+    <copy todir="${release.dir}/doc/javadoc">
+      <fileset dir="${javadoc.dir}" />
+    </copy>
+    <copy todir="${release.dir}">
+      <fileset dir="${basedir}/.."> <filename name="*.txt"/> </fileset>
+    </copy>
+
+    <copy todir="${release.dir}/doc">
+      <fileset dir="${basedir}/../doc"> <filename name="Apache*.txt"/> </fileset>
+    </copy>
+  </target>
+	
+	
+  <!-- Copy over the shell scripts, configuration, and basic test data -->
+  <target name="copy.scripts">
+    <mkdir dir="${release.dir}/script"/>
+          
+    <copy todir="${release.dir}/script">
+      <fileset dir="${basedir}/script">
+        <filename name="*.*"/>
+      </fileset>
+    </copy>
+    <copy todir="${release.dir}/test">
+      <fileset dir="${basedir}/test"> <filename name="*.*"/> </fileset>
+    </copy>
+    <copy todir="${release.dir}/etc">
+      <fileset dir="${basedir}/etc"> <filename name="*.*"/> </fileset>
+    </copy>
+  </target>
+	
+   	
+	<!-- Kettle scripts and resources needed to process gazetteer data into OpenSextant-ready form (no data)--> 
+	<target name="release.Gazetteer">
+	    <delete dir="${release.dir}/Gazetteer" />
+	    <mkdir dir="${release.dir}/Gazetteer" />
+
+	    <copy todir="${release.dir}/Gazetteer">
+	      <fileset dir="${gaz.home}/">
+	      	<exclude name= "**/Logs/**" />
+	      	<exclude name= "**/GeoData/Merged/*.txt" />
+	      	<exclude name= "**/GeoData/Merged/*.zip" />
+	      	<exclude name= "**/GeoData/NGA/*.txt" />
+	      	<exclude name= "**/GeoData/NGA/*.zip" />
+	      	<exclude name= "**/GeoData/USGS/*.txt" />
+	      	<exclude name= "**/GeoData/USGS/*.zip" />
+	      </fileset>
+	    </copy>
+	</target>
+	
+	<!-- Preprocessed/Prebuilt versions of the gazetteer data as a file and as a ready-to-run Solr Home -->
+	<target name="release.GazetteerData" depends = "release.GazetteerData.file, release.GazetteerData.prebuiltSolr" >
+		
+	</target>
+	
+	
+	<!-- the preprocessed gazetteer data as file (big)-->
+	<target name="release.GazetteerData.file">
+	    <mkdir dir="${release.dir}/GazetteerData" />
+	    <copy todir="${release.dir}/GazetteerData">
+	      <fileset file="${gaz.home}/GazetteerETL/GeoData/Merged/Merged.txt"/>
+	    </copy>		
+	</target>
+	
+	<!-- the preprocessed gazetteer data as prebuilt solr home (very big) -->
+	<target name="release.GazetteerData.prebuiltSolr">
+		<mkdir dir="${release.dir}/GazetteerData" />
+	    <copy todir="${release.dir}/GazetteerData">
+	      <fileset file="${gaz.home}/GazetteerETL/GeoData/Merged/solrHome.zip"/>
+	    </copy>
+	</target>
+	
+	<!-- the OpenSextant Toolbox, a GATE plugin-->
+	<target name="release.Toolbox">
+		<!-- create the target directory -->
+		<delete dir="${release.dir}/OpenSextantToolbox"  />
+		<mkdir dir="${release.dir}/OpenSextantToolbox"  />
+		<!-- copy over the libs and creole.xml -->
+        <copy todir="${release.dir}/OpenSextantToolbox/lib">
+            <fileset dir="${basedir}/lib">
+              <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${release.dir}/OpenSextantToolbox/lib">
+            <fileset dir="${basedir}/lib/solr">
+              <include name="*.jar" />
+            </fileset>
+        </copy>
+		<copy file="${jar.location}" todir="${release.dir}/OpenSextantToolbox/lib" /> 
+		<copy file="${basedir}/creole.xml" todir="${release.dir}/OpenSextantToolbox" /> 
+	</target>
+	
+	
+	<!-- the Xponents, a handy set of libraries for doing Regex extraction and other text stuff -->
+	<target name="release.XComponents">
+		
+	</target>
+	
+	
+	<!-- the SolrTextTagger, how to tag text using very large vocabularies stored in Solr -->
+	<target name="release.SolrTagger">
+		
+	</target>
+	
+	<!-- the Language Resources, GATE applications and its resources-->
+	<target name="release.LanguageResources">
+	    <delete dir="${release.dir}/LanguageResources" />  
+	    <mkdir dir="${release.dir}/LanguageResources" />
+		
+	    <copy todir="${release.dir}/LanguageResources">
+	      <fileset dir="${resources.home}" />
+	    </copy>
+	</target>
+	
+	
+	  <!-- Copy over the documentation -->
+	  <target name="release.doc" >
+	    <copy todir="${release.dir}/doc">
+	      <fileset dir="${doc.dir}">
+	        <filename name="*.docx"/>
+	      </fileset>
+	    </copy>
+	          
+	    <copy todir="${release.dir}/doc/javadoc">
+	      <fileset dir="${javadoc.dir}" />
+	    </copy>
+	    <copy todir="${release.dir}">
+	      <fileset dir="${basedir}/.."> <filename name="*.txt"/> </fileset>
+	    </copy>
+
+	    <copy todir="${release.dir}/doc">
+	      <fileset dir="${basedir}/../doc"> <filename name="Apache*.txt"/> </fileset>
+	    </copy>
+	  </target>
+	
+	
+	
+	<!-- some test and demonstration applications of the geotagger -->
+	<target name="release.apps">
+
+	</target>
+	
+	
+	<!-- a simple geotagger web service -->
+	<target name="release.webservice">
+		
+	</target>
+	
+	
+	<!-- the whole thing-->
+	<target name="release.FullRelease">
+		
+	</target>
+	
+	
+	
+  <!-- copy over everything to the release directory -->
+	<target name="release" depends="build, javadoc,release.Gazetteer,release.Toolbox,release.XComponents,release.LanguageResources, release.doc "/>
+
+  <!-- target name="release" depends="build, javadoc, prepare.release, copy.gate.home, copy.lib, copy.resources, copy.scripts, copy.doc"-->
+	<!--
+    <delete file="${basedir}/build/OpenSextant-build-${version}.zip" />
+   
+    <zip destfile="${basedir}/build/OpenSextant-build-${version}.zip">
+      <zipfileset dir="${release.dir}" prefix="opensextant-${version}"/>
+    </zip>
+  </target>
+-->
+		
+</project>

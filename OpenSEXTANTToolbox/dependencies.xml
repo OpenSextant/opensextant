@@ -1,0 +1,176 @@
+<project name="OpenSextant depenendencies" basedir=".">
+
+
+  <!-- 
+  
+  OpenSextant "Toolbox" Plugin  dependencies
+    path =  runtime.dependencies
+  
+  GATE 7.x dependencies for application runtime
+    + libraries for a normal WAR as well as for a JBoss-specific WAR are listed.
+      JBoss deployment will require a full review of libraries, as many have changed
+  
+   path = gate.dependencies
+  
+  -->
+  <path id="runtime.dependencies">
+
+    <!-- project level libraries -->
+    <pathelement location="${release.dir}/lib/xcoord-1.6.jar" />
+    <pathelement location="${release.dir}/lib/xtemporal-1.0.jar" />
+    <pathelement location="${release.dir}/lib/flexpat-1.3.jar" />
+    <pathelement location="${release.dir}/lib/geodesy-1.9.24.jar" />
+    <pathelement location="${release.dir}/lib/giscore-1.8.jar" />
+    <pathelement location="${release.dir}/lib/SolrTextTagger.jar" />
+    <pathelement location="${release.dir}/lib/opensextant-commons.jar" />
+    <pathelement location="${release.dir}/lib/OpenSextantToolbox.jar" />
+
+    <pathelement location="${release.dir}/lib/solr-core-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/solr-solrj-4.2.1.jar" />
+
+    <pathelement location="${release.dir}/lib/commons-codec-1.7.jar" />
+    <pathelement location="${release.dir}/lib/commons-io-2.1.jar" />
+    <pathelement location="${release.dir}/lib/commons-lang-2.6.jar" />
+    <pathelement location="${release.dir}/lib/commons-fileupload-1.2.1.jar" />
+
+    <pathelement location="${release.dir}/lib/guava-13.0.1.jar" />
+    <pathelement location="${release.dir}/lib/httpclient-4.2.3.jar" />
+    <pathelement location="${release.dir}/lib/httpcore-4.2.2.jar" />
+    <pathelement location="${release.dir}/lib/httpmime-4.2.3.jar" />
+
+    <pathelement location="${release.dir}/lib/jts-1.13.jar" />
+    <pathelement location="${release.dir}/lib/spatial4j-0.3.jar" />
+
+    <pathelement location="${release.dir}/lib/lucene-analyzers-common-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-analyzers-kuromoji-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-analyzers-phonetic-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-codecs-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-core-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-grouping-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-highlighter-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-memory-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-misc-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-queries-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-queryparser-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-spatial-4.2.1.jar" />
+    <pathelement location="${release.dir}/lib/lucene-suggest-4.2.1.jar" />
+
+    <pathelement location="${release.dir}/lib/slf4j-api-1.7.4.jar" />
+    <pathelement location="${release.dir}/lib/slf4j-log4j12-1.7.4.jar" />
+
+    <pathelement location="${release.dir}/lib/wstx-asl-3.2.7.jar" />
+    <pathelement location="${release.dir}/lib/zookeeper-3.4.5.jar" />
+
+    <pathelement location="${release.dir}/lib/log4j-1.2.17.jar" />
+
+
+  </path>
+
+	
+  <!-- Current as of GATE 7.0 -->
+
+  <!-- location of the top-level GATE installation directory ; For now we create a symlink or install GATE 7.x just one level above this source module -->
+  <property name="GATE.location" location="../GATE" />
+
+  <!-- location of the GATE jar -->
+  <property name="gate.jar" location="../GATE/bin/gate.jar" />
+	
+  <!-- location of various GATE jars -->
+  <property name="gate.lib" location="../GATE/lib" />
+	
+  <!-- The GATE jars required to build and run OpenSextant -->
+  <path id="gate.dependencies">
+    <!-- GATE API -->
+    <!--  "gate.jar" was copied over to our lib area as it is required for compilation.
+    <pathelement location="${GATE.location}/bin/gate.jar"/> -->
+    <pathelement location="${gate.lib}/gate-asm.jar"/>
+    <pathelement location="${gate.lib}/gate-compiler-jdt.jar"/>
+
+    <!-- Apache Commons -->
+    <pathelement location="${gate.lib}/commons-compress.jar"/>
+
+    <!-- All sorts of GATE stuff for XML support -->
+    <pathelement location="${gate.lib}/javacc.jar"/>
+    <pathelement location="${gate.lib}/jdom.jar"/>
+    <pathelement location="${gate.lib}/junit.jar"/>
+    <pathelement location="${gate.lib}/xercesImpl.jar"/>
+    <pathelement location="${gate.lib}/dom4j.jar"/>
+    <pathelement location="${gate.lib}/jaxen.jar"/>
+    <pathelement location="${gate.lib}/xmlbeans.jar"/>
+    <pathelement location="${gate.lib}/xmlunit.jar"/>
+    <pathelement location="${gate.lib}/xpp3.jar"/>
+    <pathelement location="${gate.lib}/xstream.jar"/>
+
+    <!-- Apache Ant components -->
+    <pathelement location="${gate.lib}/ivy.jar"/>
+    <pathelement location="${gate.lib}/ant-contrib.jar"/>
+    <pathelement location="${gate.lib}/ant-launcher.jar"/>
+    <pathelement location="${gate.lib}/ant.jar"/>
+
+    <!-- GATE: full neko is used.  Tika: tagsoup is used, minimal neko is used.-->
+    <pathelement location="${gate.lib}/nekohtml.jar"/>
+
+    <!-- 
+
+    Commons Logging, Tika, and Lucene depenedencies are removed.
+    We're either already using them in OpenSextant or upgraded.  But not using GATE's features
+    that require these.
+
+    <pathelement location="${gate.lib}/wstx-lgpl.jar"/>
+
+    Bouncy Castle java security stuff 
+    <pathelement location="${gate.lib}/bcprov-jdk15.jar"/>
+    <pathelement location="${gate.lib}/bcmail-jdk15.jar"/>
+
+    <pathelement location="${gate.lib}/commons-io.jar"/>
+    <pathelement location="${gate.lib}/commons-lang.jar"/>
+
+    <pathelement location="${gate.lib}/commons-logging.jar"/>
+    <pathelement location="${gate.lib}/fontbox.jar"/>
+    <pathelement location="${gate.lib}/jempbox.jar"/>
+    <pathelement location="${gate.lib}/log4j.jar"/>
+    <pathelement location="${gate.lib}/lucene-core.jar"/>
+    <pathelement location="${gate.lib}/pdfbox.jar"/>
+    <pathelement location="${gate.lib}/poi-ooxml-schemas.jar"/>
+    <pathelement location="${gate.lib}/poi-ooxml.jar"/>
+    <pathelement location="${gate.lib}/poi-scratchpad.jar"/>
+    <pathelement location="${gate.lib}/poi.jar"/>
+    <pathelement location="${gate.lib}/tika-core.jar"/>
+    <pathelement location="${gate.lib}/tika-parsers.jar"/>
+    -->
+  </path>
+	
+  <!-- The GATE jars required to build and run OpenSextant, 
+  excluding those also in JBoss modules for JBoss AS 7.1 -->
+  <path id="gate.dependencies.jboss">
+    <pathelement location="${gate.lib}/gate-asm.jar"/>
+    <pathelement location="${gate.lib}/gate-compiler-jdt.jar"/>
+    <pathelement location="${gate.lib}/javacc.jar"/>
+    <pathelement location="${gate.lib}/junit.jar"/>
+    <pathelement location="${gate.jar}"/>
+    <pathelement location="${gate.lib}/bcprov-jdk15.jar"/>
+    <pathelement location="${gate.lib}/commons-compress.jar"/>
+    <pathelement location="${gate.lib}/dom4j.jar"/>
+    <pathelement location="${gate.lib}/fontbox.jar"/>
+    <pathelement location="${gate.lib}/jempbox.jar"/>
+    <pathelement location="${gate.lib}/lucene-core.jar"/>
+    <pathelement location="${gate.lib}/nekohtml.jar"/>
+    <pathelement location="${gate.lib}/pdfbox.jar"/>
+    <pathelement location="${gate.lib}/poi-ooxml-schemas.jar"/>
+    <pathelement location="${gate.lib}/poi-ooxml.jar"/>
+    <pathelement location="${gate.lib}/poi-scratchpad.jar"/>
+    <pathelement location="${gate.lib}/poi.jar"/>
+    <pathelement location="${gate.lib}/tika-core.jar"/>
+    <pathelement location="${gate.lib}/tika-parsers.jar"/>
+    <pathelement location="${gate.lib}/wstx-lgpl.jar"/>
+    <pathelement location="${gate.lib}/xmlbeans.jar"/>
+    <pathelement location="${gate.lib}/xmlunit.jar"/>
+    <pathelement location="${gate.lib}/xpp3.jar"/>
+    <pathelement location="${gate.lib}/xstream.jar"/>
+    <pathelement location="${gate.lib}/ivy.jar"/>
+    <pathelement location="${gate.lib}/ant-contrib.jar"/>
+    <pathelement location="${gate.lib}/ant-launcher.jar"/>
+    <pathelement location="${gate.lib}/bcmail-jdk15.jar"/>
+    <pathelement location="${gate.lib}/ant.jar"/>
+  </path>
+</project>

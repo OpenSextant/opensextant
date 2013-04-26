@@ -1,0 +1,39 @@
+/* 
+Looks for words (Tokens) which are not covered by vocabulary and labels them as NotCovered annotations
+ */
+
+Imports: {
+import static gate.Utils.*;
+}
+
+Phase:	VocabularyCoverage
+Input:	Token Lookup
+Options: control = appelt
+
+// NOTE: notWithin operator is GATE 7.x
+Rule: NotCoveredToken
+( 
+	{Token notWithin Lookup}
+)
+:tok
+-->
+{
+	gate.AnnotationSet tokSet = (gate.AnnotationSet)bindings.get("tok");
+	
+	for(Annotation obj : tokSet){
+		gate.Annotation tok = (gate.Annotation)obj;
+		gate.FeatureMap tokFeatures = tok.getFeatures();
+		Node startNode = tokSet.firstNode(); 
+		Node endNode   = tokSet.lastNode();
+	
+		// create new featuremap and copy over all features from Token
+		FeatureMap fm = gate.Factory.newFeatureMap();
+		fm.putAll(tokFeatures);
+		
+		// create new annotations of type major
+		outputAS.add(startNode, endNode, "NotCovered",fm);
+	}
+}
+
+
+

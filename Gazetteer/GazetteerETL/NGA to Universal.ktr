@@ -1,0 +1,2817 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>NGA to Univeral</name>
+    <description/>
+    <extended_description>&#47;** 
+ Copyright 2009-2013 The MITRE Corporation.
+
+   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+ * **************************************************************************
+ *                          NOTICE
+ * This software was produced for the U. S. Government under Contract No.
+ * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
+ * Software and Noncommercial Computer Software Documentation Clause
+ * 252.227-7014 (JUN 1995)
+ *
+ * (c) 2012 The MITRE Corporation. All Rights Reserved.
+ * **************************************************************************
+**&#47;</extended_description>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>&#47;</directory>
+    <parameters>
+    </parameters>
+    <log>
+<trans-log-table><connection/>
+<schema/>
+<table/>
+<size_limit_lines/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<perf-log-table><connection/>
+<schema/>
+<table/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<channel-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<step-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+  <created_user>-</created_user>
+  <created_date>2011&#47;11&#47;13 11:05:57.044</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2011&#47;11&#47;13 11:05:57.044</modified_date>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Convert Geonames to &quot;universal&quot; model</note>
+      <xloc>405</xloc>
+      <yloc>508</yloc>
+      <width>205</width>
+      <heigth>22</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Data validation and simple conflation (deduping)</note>
+      <xloc>1632</xloc>
+      <yloc>531</yloc>
+      <width>245</width>
+      <heigth>22</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Auto-fixer step which repairs simple errors
+(make this optional)</note>
+      <xloc>970</xloc>
+      <yloc>501</yloc>
+      <width>221</width>
+      <heigth>35</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <order>
+  <hop> <from>Expand on NameList</from><to>Expand on CountryList</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Errors</from><to>Error Log</to><enabled>Y</enabled> </hop>  <hop> <from>Coord Check</from><to>Name Check</to><enabled>Y</enabled> </hop>  <hop> <from>NGA Geonames</from><to>Rework fields</to><enabled>Y</enabled> </hop>  <hop> <from>Rework fields</from><to>Expand on NameList</to><enabled>Y</enabled> </hop>  <hop> <from>Remove Fields</from><to>Rename Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Country Code Lookup</from><to>Map FIPS to ISO</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Errors</from><to>Create Conflate Key</to><enabled>Y</enabled> </hop>  <hop> <from>Create Conflate Key</from><to>Dedup</to><enabled>Y</enabled> </hop>  <hop> <from>Expand on CountryList</from><to>Map FIPS to ISO</to><enabled>Y</enabled> </hop>  <hop> <from>Field Validation</from><to>Coord Check</to><enabled>Y</enabled> </hop>  <hop> <from>Map FIPS to ISO</from><to>Remove Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Rename Fields</from><to>Add Source Field</to><enabled>Y</enabled> </hop>  <hop> <from>Auto Fixer</from><to>Add Error Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Add Error Fields</from><to>Feature Class&#47;Code Check</to><enabled>Y</enabled> </hop>  <hop> <from>Feature Class&#47;Code Check</from><to>Field Validation</to><enabled>Y</enabled> </hop>  <hop> <from>Feature Code Lookup</from><to>Feature Class&#47;Code Check</to><enabled>Y</enabled> </hop>  <hop> <from>Add Source Field</from><to>Auto Fixer</to><enabled>Y</enabled> </hop>  <hop> <from>Name Check</from><to>Script Check</to><enabled>Y</enabled> </hop>  <hop> <from>Script Check</from><to>Filter Errors</to><enabled>Y</enabled> </hop>  <hop> <from>Dedup</from><to>Duplicate Log</to><enabled>Y</enabled> </hop>  <hop> <from>Dedup</from><to>Set name type</to><enabled>Y</enabled> </hop>  <hop> <from>Set name type</from><to>Clean NGA Output</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Add Error Fields</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>Error</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>0</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>ErrorDetails</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>0</length>
+        <precision>0</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1393</xloc>
+      <yloc>398</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add Source Field</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>SOURCE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>NGA</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ADMIN_LEVEL_2</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ADMIN_LEVEL_3</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ADMIN_LEVEL_4</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ADMIN_LEVEL_5</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>805</xloc>
+      <yloc>401</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Auto Fixer</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	Object[] r = getRow();
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+    if (first)
+    {
+        first = false;
+    }
+	// It is always safest to call createOutputRow() to ensure that your output row's Object[] is large
+    // enough to handle any new fields you are creating in this step.
+    r = createOutputRow(r, r.length + 1);
+	
+	// get the source field
+	String srcOrig = get(Fields.In, "SOURCE").getString(r);
+
+	if(srcOrig == null){ 
+		srcOrig = "ADHOC";
+	}
+
+	String src = srcOrig;
+
+
+
+	// get the place name
+    String name = get(Fields.In, "PLACE_NAME").getString(r);
+	String nameOrig = name;
+
+	// all types of whitespace -> single space
+	name = name.replaceAll("\\p{Z}+"," ").trim();
+
+/*
+	// fix phantoms, regular and busted
+	if( name.contains("((") && name.contains("))")  ){
+		name = name.replaceAll("\\(\\("," ").replaceAll("\\)\\)"," ").replaceAll(" +"," ").trim();
+	}
+
+*/
+	// remove trailing numbers in parens
+	if( name.trim().matches(".*\\([0-9]+\\)$") ){
+		name = name.replaceAll("\\([0-9]+\\)$","").trim();
+	}
+
+
+	// convert underbars to space
+	if( name.contains("_")){
+		name = name.replaceAll("_"," ").replaceAll(" +"," ").trim();
+	}
+
+
+
+ 	// Set new value for name field and source if any changes made
+
+	if( !name.equals(nameOrig) ){
+		src = srcOrig + "-AUTOFIXED";
+   	 	get(Fields.Out, "PLACE_NAME").setValue(r, name);
+   	 	get(Fields.Out, "SOURCE").setValue(r, src);
+	}
+
+	// Send the row on to the next step.
+    putRow(data.outputRowMeta, r);
+
+	return true;
+}
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1067</xloc>
+      <yloc>403</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Clean NGA Output</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>	</separator>
+    <enclosure/>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>N</create_parent_folder>
+    <file>
+      <name>${Internal.Transformation.Filename.Directory}\GeoData\Merged\NGA</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>PLACE_ID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>PLACE_NAME</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>LATITUDE</name>
+        <type>Number</type>
+        <format>0.#####</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>LONGITUDE</name>
+        <type>Number</type>
+        <format>0.#####</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>FEATURE_CLASS</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>FEATURE_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>FIPS_COUNTRY_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ISO2_COUNTRY_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ISO3_COUNTRY_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ADMIN_LEVEL_1</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ADMIN_LEVEL_2</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ADMIN_LEVEL_3</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ADMIN_LEVEL_4</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ADMIN_LEVEL_5</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>SOURCE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>SOURCE_FEATURE_ID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>SOURCE_NAME_ID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>SCRIPT</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>CONFLATE_KEY</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>NAME_TYPE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>NAME_TYPE_SYSTEM</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2609</xloc>
+      <yloc>394</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Coord Check</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	Object[] r = getRow();
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+    if (first)
+    {
+        first = false;
+    }
+
+	// It is always safest to call createOutputRow() to ensure that your output row's Object[] is large
+    // enough to handle any new fields you are creating in this step.
+    r = createOutputRow(r, r.length);
+	
+	String error = get(Fields.In, "Error").getString(r);
+	if(error == null){ error = "";}
+
+	// get the coords
+    Double lat = get(Fields.In, "LATITUDE").getNumber(r);
+	Double lon = get(Fields.In, "LONGITUDE").getNumber(r);
+
+
+	if(lat > 90.0 || lat < -90.0 || lon > 180.0 || lon < -180.0 ) {
+		error = error + "," + "CoordOutOfRange";
+	}
+
+	if( lat == 0.0  &&  lon == 0.0) {
+		error = error + "," + "ZeroCoords";
+	}
+
+
+
+ 	// Set error field
+    get(Fields.Out, "Error").setValue(r, error);
+
+
+	// Send the row on to the next step.
+    putRow(data.outputRowMeta, r);
+
+	return true;
+}
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1772</xloc>
+      <yloc>397</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Country Code Lookup</name>
+    <type>ExcelInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <header>Y</header>
+    <noempty>Y</noempty>
+    <stoponempty>N</stoponempty>
+    <filefield/>
+    <sheetfield/>
+    <sheetrownumfield/>
+    <rownumfield/>
+    <sheetfield/>
+    <filefield/>
+    <limit>0</limit>
+    <encoding/>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <accept_filenames>N</accept_filenames>
+    <accept_field/>
+    <accept_stepname/>
+    <file>
+      <name>${Internal.Transformation.Filename.Directory}&#47;Resources\UniversalGazetterModel.xlsx</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>Country Name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>FIPS 10-4 Code</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>ISO 3166 digraph</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>ISO 3166 trigraph</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>ISO 3166 numeric</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>TLD</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>IOC</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+    </fields>
+    <sheets>
+      <sheet>
+        <name>Country_Code FIPS to ISO</name>
+        <startrow>0</startrow>
+        <startcol>0</startcol>
+        </sheet>
+    </sheets>
+    <strict_types>N</strict_types>
+    <error_ignored>N</error_ignored>
+    <error_line_skipped>N</error_line_skipped>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <spreadsheet_type>POI</spreadsheet_type>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>466</xloc>
+      <yloc>218</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Create Conflate Key</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[
+import org.apache.commons.codec.digest.DigestUtils;
+ 
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	Object[] r = getRow();
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+    if (first)
+    {
+        first = false;
+    }
+
+	// create output row with room for one more field
+    r = createOutputRow(r, r.length + 1);
+	
+	// get the coords
+    Double lat = get(Fields.In, "LATITUDE").getNumber(r);
+	Double lon = get(Fields.In, "LONGITUDE").getNumber(r);
+
+	// get the name
+	String name = get(Fields.In, "PLACE_NAME").getString(r);
+
+	// get the cc
+	String cc = get(Fields.In, "ISO2_COUNTRY_CODE").getString(r);
+
+	// get the feature type
+	String type = get(Fields.In, "FEATURE_CODE").getString(r);
+
+
+	// create the key by concating name,country_code,type, latitude and longitude
+	String keyString = name + "-" + cc +"-" + type +"-" + lat +"-" + lon;
+	Long key = ((Integer)keyString.hashCode()).longValue();
+
+ 	// Set conflate_key field
+    get(Fields.Out, "CONFLATE_KEY").setValue(r, key);
+
+
+
+	// Send the row on to the next step.
+    putRow(data.outputRowMeta, r);
+
+	return true;
+}
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+        <field>
+        <field_name>CONFLATE_KEY</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2195</xloc>
+      <yloc>394</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dedup</name>
+    <type>UniqueRowsByHashSet</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <store_values>N</store_values>
+      <reject_duplicate_row>Y</reject_duplicate_row>
+      <error_description>Duplicate</error_description>
+    <fields>      <field>        <name>CONFLATE_KEY</name>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2319</xloc>
+      <yloc>394</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Duplicate Log</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>	</separator>
+    <enclosure/>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>N</create_parent_folder>
+    <file>
+      <name>${Internal.Transformation.Filename.Directory}&#47;Logs\NGA_duplicates.log</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>Y</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>PLACE_ID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>SOURCE_NAME_ID</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>LATITUDE</name>
+        <type>Number</type>
+        <format>0.#####</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>LONGITUDE</name>
+        <type>Number</type>
+        <format>0.#####</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>FEATURE_CLASS</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>FEATURE_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ADMIN_LEVEL_1</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>FIPS_COUNTRY_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ISO2_COUNTRY_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ISO3_COUNTRY_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>PLACE_NAME</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>SOURCE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>SOURCE_FEATURE_ID</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2317</xloc>
+      <yloc>529</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Error Log</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>	</separator>
+    <enclosure/>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>N</create_parent_folder>
+    <file>
+      <name>${Internal.Transformation.Filename.Directory}&#47;Logs\NGA_error.log</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>PLACE_ID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>SOURCE_NAME_ID</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>LATITUDE</name>
+        <type>Number</type>
+        <format>0.#####</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>LONGITUDE</name>
+        <type>Number</type>
+        <format>0.#####</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>FEATURE_CLASS</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>FEATURE_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ADMIN_LEVEL_1</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>FIPS_COUNTRY_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ISO2_COUNTRY_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ISO3_COUNTRY_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>PLACE_NAME</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>SOURCE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Error</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ErrorDetails</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2092</xloc>
+      <yloc>542</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Expand on CountryList</name>
+    <type>SplitFieldToRows3</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <splitfield>COUNTRYCODELIST</splitfield>
+   <delimiter>|</delimiter>
+   <newfield>FIPS_COUNTRY_CODE</newfield>
+   <rownum>N</rownum>
+   <rownum_field/>
+   <resetrownumber>Y</resetrownumber>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>339</xloc>
+      <yloc>399</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Expand on NameList</name>
+    <type>SplitFieldToRows3</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <splitfield>NAMELIST</splitfield>
+   <delimiter>|</delimiter>
+   <newfield>PLACE_NAME</newfield>
+   <rownum>N</rownum>
+   <rownum_field/>
+   <resetrownumber>Y</resetrownumber>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>228</xloc>
+      <yloc>399</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Feature Class&#47;Code Check</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <from>Feature Code Lookup</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>FEATURE_CODE</name>
+        <field>Feature Designation Code</field>
+      </key>
+      <value>
+        <name>ValidCombination</name>
+        <rename>MappedFeatureCombination</rename>
+        <default>UNMATCHED</default>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1549</xloc>
+      <yloc>396</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Feature Code Lookup</name>
+    <type>ExcelInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <header>Y</header>
+    <noempty>Y</noempty>
+    <stoponempty>N</stoponempty>
+    <filefield/>
+    <sheetfield/>
+    <sheetrownumfield/>
+    <rownumfield/>
+    <sheetfield/>
+    <filefield/>
+    <limit>0</limit>
+    <encoding/>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <accept_filenames>N</accept_filenames>
+    <accept_field/>
+    <accept_stepname/>
+    <file>
+      <name>${Internal.Transformation.Filename.Directory}&#47;Resources\UniversalGazetterModel.xlsx</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>Feature Designation Code</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>Feature Designation Name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>Feature Designation Text</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>Feature Class</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>ValidCombination</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+    </fields>
+    <sheets>
+      <sheet>
+        <name>FEATURE_CODE</name>
+        <startrow>0</startrow>
+        <startcol>0</startcol>
+        </sheet>
+    </sheets>
+    <strict_types>N</strict_types>
+    <error_ignored>N</error_ignored>
+    <error_line_skipped>N</error_line_skipped>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <spreadsheet_type>POI</spreadsheet_type>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1550</xloc>
+      <yloc>223</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Field Validation</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+		Object[] r = getRow();
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+    if (first)
+    {
+        first = false;
+    }
+
+	// It is always safest to call createOutputRow() to ensure that your output row's Object[] is large
+    // enough to handle any new fields you are creating in this step.
+    r = createOutputRow(r, r.length);
+	
+	String error = get(Fields.In, "Error").getString(r);
+	if(error == null){ error = "";}
+	String residue = get(Fields.In, "ErrorDetails").getString(r);
+	if(residue == null){ residue = "";}
+
+
+	// get the Feature Class/Code validation fields
+    String featClass = get(Fields.In, "Feature_Class").getString(r);
+	String featCode = get(Fields.In, "Feature_Code").getString(r);
+	String featCombo = featClass + "-" + featCode;
+
+    String mappedCombo = get(Fields.In, "MappedFeatureCombination").getString(r);
+
+
+	// get the original and mapped country codes
+	String ccFIPS = get(Fields.In, "FIPS_COUNTRY_CODE").getString(r);
+	String ccISO2 = get(Fields.In, "ISO2_COUNTRY_CODE").getString(r);
+	String ccISO3 = get(Fields.In, "ISO3_COUNTRY_CODE").getString(r);
+
+	// check for valid values and combinations
+
+	// at least 1 cc must be non null
+		// look for bad or unmapped country code
+		if(ccFIPS == null && ccISO2 == null && ccISO3 == null)  {
+		error = error + "," + "NoCounryCode" ;
+		}
+
+
+		// check for valid FIPS and ISO ccs
+
+
+		// check for valid feature code combo 
+		if( mappedCombo == null  || mappedCombo.equals("UNMATCHED") || !mappedCombo.equals(featCombo)) {
+		error = error + "," + "BadFeatureClassCodeOrMismatch";
+		}
+
+
+
+ 	// Set error field
+    get(Fields.Out, "Error").setValue(r, error);
+	get(Fields.Out, "ErrorDetails").setValue(r, residue);
+
+	// Send the row on to the next step.
+    putRow(data.outputRowMeta, r);
+
+	return true;
+}
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1685</xloc>
+      <yloc>397</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter Errors</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Create Conflate Key</send_true_to>
+<send_false_to>Error Log</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>Error</leftvalue>
+ <function>IS NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2088</xloc>
+      <yloc>397</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Map FIPS to ISO</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <from>Country Code Lookup</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>N</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>FIPS_COUNTRY_CODE</name>
+        <field>FIPS 10-4 Code</field>
+      </key>
+      <value>
+        <name>ISO 3166 digraph</name>
+        <rename>ISO2_COUNTRY_CODE</rename>
+        <default>UNMAPPED</default>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ISO 3166 trigraph</name>
+        <rename>ISO3_COUNTRY_CODE</rename>
+        <default>UNMAPPED</default>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>466</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>NGA Geonames</name>
+    <type>CsvInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <filename>${Internal.Transformation.Filename.Directory}\GeoData\NGA\geonames_dd_dms_date.txt</filename>
+    <filename_field/>
+    <rownum_field/>
+    <include_filename>N</include_filename>
+    <separator>	</separator>
+    <enclosure/>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <encoding>UTF-8</encoding>
+    <fields>
+      <field>
+        <name>RC</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>UFI</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>UNI</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>LAT</name>
+        <type>Number</type>
+        <format>#.#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>LONG</name>
+        <type>Number</type>
+        <format>#.#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>DMS_LAT</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>DMS_LONG</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>MGRS</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>JOG</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>7</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>FC</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>DSG</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>5</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>PC</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>CC1</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>2</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>ADM1</name>
+        <type>String</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>POP</name>
+        <type>Date</type>
+        <format>yyyy&#47;MM&#47;dd HH:mm:ss.SSS</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>ELEV</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>CC2</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>2</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>NT</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>2</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>LC</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>3</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>SHORT_FORM</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>7</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>GENERIC</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>17</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>SORT_NAME_RO</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>39</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>FULL_NAME_RO</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>46</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>FULL_NAME_ND_RO</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>46</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>SORT_NAME_RG</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>39</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>FULL_NAME_RG</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>46</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>FULL_NAME_ND_RG</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>46</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>NOTE</name>
+        <type>Date</type>
+        <format>yyyy&#47;MM&#47;dd HH:mm:ss.SSS</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>MODIFY_DATE</name>
+        <type>Date</type>
+        <format>yyyy-MM-dd</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>33</xloc>
+      <yloc>397</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Name Check</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	Object[] r = getRow();
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+    if (first)
+    {
+        first = false;
+    }
+	
+	// create output row
+    r = createOutputRow(r, r.length);
+	
+	// get the error and residue fields
+	String error = get(Fields.In, "Error").getString(r);
+	if(error == null){ error = "";}
+
+	String residue = get(Fields.In, "ErrorDetails").getString(r);
+	if( residue == null) {residue = "";}
+
+	// get the place name
+    String name = get(Fields.In, "PLACE_NAME").getString(r);
+
+	// look for error conditions
+	// if found append error name to error field
+	// if appropriate, append some info to residue field
+
+	// look for "phantom" names i.e. "((name))
+	if( name.matches("\\(\\(.*\\)\\)") ){
+		error =  error + "," + "PhantomLocation";
+	}
+
+	// look for busted "phantom" names i.e. "namePart))((namePart"
+	if( !error.contains("Phantom") && name.contains("((") && name.contains("))")  ){
+		error =  error + "," + "PhantomLocation-Busted";
+	}
+
+
+	// name is all digits
+	if( name.trim().matches("\\p{N}+")  ){
+		error =  error + "," + "AllNumbers";
+	}
+
+
+	// name followed by parened number e.g. name (2)
+	if( name.trim().matches(".*\\([0-9]+\\)$") ){
+		error =  error + "," + "NumbersAtEnd";
+	}
+
+	// name has number but not all numbers or parened numbers
+	if( !error.contains("NumbersAtEnd") && !error.contains("AllNumbers") &&  name.matches(".*\\p{N}+.*") ){
+		error =  error + "," + "NumbersInName";
+	}
+
+	// names has commas,colon or semicolon
+	if (name.matches(".*[:;,].*")) {
+		error =  error + "," + "ExtraPunctComma";
+	}
+
+	// brackets or rivets
+	if (name.matches(".*[\\[\\]{}<>].*")) {
+		error =  error + "," + "ExtraPunctBracket";
+	}
+
+	// name has parens but not a phantom
+	if (!error.contains("Phantom") && name.matches(".*[\\(\\)].*")) {
+		error =  error + "," + "ExtraPunctBracket";
+	}
+
+	// name has some sort of slash
+	if (name.matches(".*[/\\\\].*")) {
+		error =  error + "," + "ExtraPunctSlash";
+	}
+
+	// name has misc punct
+	if (name.matches(".*[\\*\\+_\\^\\&=¿!?].*")) {
+		error =  error + "," + "ExtraPunctOther";
+	}
+
+	// name has quotes
+	if (name.matches(".*[\"].*")) {
+		error =  error + "," + "ExtraPunctQuotes";
+	}
+
+	// namde has a pound sign not folowed by a number
+	if (name.matches(".*#\\D+.*")) {
+		error =  error + "," + "ExtraPunctPound";
+	}
+
+	// name has extra whitspace of some kind
+	if (name.compareTo(name.replaceAll("\\p{Z}+", " ").trim()) != 0) {
+		error =  error + "," + "ExtraWhiteSpace";
+	}
+
+	// name is an explicit NULL
+	if (name.toUpperCase().matches(".*(^|\\s)NULL(\\s|$).*")  ||  name.toUpperCase().matches("<NULL>")     )   {
+		error =  error + "," + "NullInName";
+	}
+
+
+	// name looks like a roman number
+	if (name.trim().matches("[IXVLCDM]+")  )  {
+		error =  error + "," + "RomanNumber";
+	}
+
+	// name is some form of UNKNOWN
+	if (name.toUpperCase().contains("UNKNOWN") || name.toUpperCase().contains("NOT KNOWN")  )  {
+		error =  error + "," + "UnknownName";
+	}
+
+
+	// name looks likes name1 see name2
+	if (name.toLowerCase().trim().matches(".+\\ssee\\s.+")  )  {
+		error =  error + "," + "SeeReference";
+	}
+
+	// name is marked as historical i.e "name (historical)
+	if (name.toUpperCase().matches(".*[\\(\\[\\{]HISTORICAL[\\)\\]\\}]$")  ) {
+		error =  error + "," + "HistoricName";
+	}
+
+	// name is marked as inactive i.e "name (inactive)
+	if (name.toUpperCase().contains("INACTIVE")  ) {
+		error =  error + "," + "HistoricName";
+	}
+
+
+	// name is too short (just simple Latin chars)
+	if(name.length() < 3 && name.matches("[-a-zA-Z0-9'`]+")  ){
+		error =  error + "," + "TooShortName";
+	}
+
+	// diagnostics, remove for production
+	// catchall: not caught above but contains something other then letters, spaces and "normal" punct
+	if( error.length() <1 && !name.matches("[-­\\p{L}\\p{M}`'‘’´\.\\s]+") ){
+
+		residue = name.replaceAll("[-­\\p{L}\\p{M}`'‘’´\.\\s]+","");
+		error =  error + "," + "CatchallUnicode";
+	}
+
+
+
+ 	// Set error and residue fields
+    get(Fields.Out, "Error").setValue(r, error);
+ 	get(Fields.Out, "ErrorDetails").setValue(r, residue);
+
+
+	// Send the row on to the next step.
+    putRow(data.outputRowMeta, r);
+
+	return true;
+}
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1861</xloc>
+      <yloc>398</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Remove Fields</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>RC</name>
+      </remove>      <remove>        <name>DMS_LAT</name>
+      </remove>      <remove>        <name>DMS_LONG</name>
+      </remove>      <remove>        <name>MGRS</name>
+      </remove>      <remove>        <name>JOG</name>
+      </remove>      <remove>        <name>PC</name>
+      </remove>      <remove>        <name>CC1</name>
+      </remove>      <remove>        <name>ADM1</name>
+      </remove>      <remove>        <name>POP</name>
+      </remove>      <remove>        <name>ELEV</name>
+      </remove>      <remove>        <name>CC2</name>
+      </remove>      <remove>        <name>NT</name>
+      </remove>      <remove>        <name>LC</name>
+      </remove>      <remove>        <name>SHORT_FORM</name>
+      </remove>      <remove>        <name>GENERIC</name>
+      </remove>      <remove>        <name>SORT_NAME_RO</name>
+      </remove>      <remove>        <name>FULL_NAME_RO</name>
+      </remove>      <remove>        <name>FULL_NAME_ND_RO</name>
+      </remove>      <remove>        <name>SORT_NAME_RG</name>
+      </remove>      <remove>        <name>FULL_NAME_RG</name>
+      </remove>      <remove>        <name>FULL_NAME_ND_RG</name>
+      </remove>      <remove>        <name>NOTE</name>
+      </remove>      <remove>        <name>MODIFY_DATE</name>
+      </remove>      <remove>        <name>COUNTRYCODELIST</name>
+      </remove>      <remove>        <name>NAMELIST</name>
+      </remove>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>602</xloc>
+      <yloc>401</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Rename Fields</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>UFI</name>
+        <rename>SOURCE_FEATURE_ID</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>UNI</name>
+        <rename>SOURCE_NAME_ID</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>LAT</name>
+        <rename>LATITUDE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>LONG</name>
+        <rename>LONGITUDE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FC</name>
+        <rename>FEATURE_CLASS</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DSG</name>
+        <rename>FEATURE_CODE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>Y</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>703</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Rework fields</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[
+import java.util.*;
+
+
+// this step
+// 1) creates the ADMIN1ID by concatenating the "main" country code and the admin1 value (ADMIN1ID)
+// 2) creates a list of distinct country codes from the cc1 and cc2 fields (COUNTRYCODELIST)
+// 3) creates a list from all the distinct names from this record (NAMELIST)
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	Object[] r = getRow();
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+
+	// create an ouput row with room for three new fields
+    r = createOutputRow(r, r.length + 3);
+
+
+	// Get the country codes
+    String cc1 = get(Fields.In, "CC1").getString(r);
+	String cc2 = get(Fields.In, "CC2").getString(r);
+
+	// get the admin1 value
+	String admin1 = get(Fields.In, "ADM1").getString(r);
+
+	// get the three flavors of place names
+	String shortName = get(Fields.In, "SHORT_FORM").getString(r);
+	String fullName = get(Fields.In, "FULL_NAME_RO").getString(r);
+	String fullNameND = get(Fields.In, "FULL_NAME_ND_RO").getString(r);
+
+
+	// create an admin1 ID (ADMIN_LEVEL_1) by concatenating the "main" cc with the admin1 value
+	// main cc is the single (or first, in case of multiple values) value in cc1 
+	// do not use "00" values of admin1 
+
+	String mainCC = cc1.split(",")[0];
+
+	String admin1ID = "";
+
+	if(  admin1 != null && !admin1.equals("00") ){
+		admin1ID = mainCC + admin1;
+	}
+
+    // Set the new ADMIN1ID output field
+    get(Fields.Out, "ADMIN_LEVEL_1").setValue(r, admin1ID);
+
+
+	// create the list of distinct country codes in cc1 and cc2
+
+	String ccList = mergeCC(cc1,cc2);
+
+	// set the output field
+    get(Fields.Out, "COUNTRYCODELIST").setValue(r, ccList);
+	
+
+
+	// concatenate the place names into a comma separated list
+
+	String nameList = fullName;
+
+	// add the FullNameND only if it is non-null and distinct from full name
+	if(!fullNameND.equalsIgnoreCase(fullName)){
+		nameList = nameList + "|" + fullNameND;
+	}
+
+	// add the short name only if non-null and distinct from both full name and full name nd
+	if( shortName != null && !shortName.equalsIgnoreCase(fullName) &&  !shortName.equalsIgnoreCase(fullNameND) ){
+		nameList = nameList + "|" + shortName;
+	}
+
+
+	// set the NAMELIST output field
+    get(Fields.Out, "NAMELIST").setValue(r, nameList);
+
+	// create a PLACE_ID by concatenating the UFI with a constant
+
+	String placeID = "NGA" +get(Fields.In, "UFI").getInteger(r).toString();
+	
+	// set the placeID
+	get(Fields.Out, "PLACE_ID").setValue(r, placeID);
+
+
+	// Send the row on to the next step.
+    putRow(data.outputRowMeta, r);
+
+	return true;
+}
+
+
+public String mergeCC(String cc1, String cc2){
+
+	
+	if(cc2 == null || cc2.trim().length() <1) {
+		cc1 = cc1.replaceAll(",","|");
+		return cc1;
+	}
+
+	String tmp = cc1 + "," + cc2;
+	String[] ccArray = tmp.split(",");
+
+	Set ccSet = new TreeSet();
+
+	for(int i=0; i < ccArray.length; i++){
+	   ccSet.add(ccArray[i].trim());
+	}
+
+	//turn ccSet back into tab separated list
+	Iterator iter = ccSet.iterator();
+
+	String ccList = (String) iter.next();
+
+	while(iter.hasNext()){
+		ccList = ccList + "|" + (String) iter.next();
+	}
+
+	return ccList;
+  }]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+        <field>
+        <field_name>ADMIN_LEVEL_1</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>COUNTRYCODELIST</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>NAMELIST</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>PLACE_ID</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>120</xloc>
+      <yloc>398</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Script Check</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[
+import java.util.Set;
+import java.util.HashSet;
+import org.mitre.opensextant.phonetic.PhoneticUtils;
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+		Object[] r = getRow();
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+    if (first)
+    {
+        first = false;
+    }
+	// It is always safest to call createOutputRow() to ensure that your output row's Object[] is large
+    // enough to handle any new fields you are creating in this step.
+    r = createOutputRow(r, r.length + 1);
+	
+	String error = get(Fields.In, "Error").getString(r);
+	if(error == null){ error = "";}
+	String residue = get(Fields.In, "ErrorDetails").getString(r);
+	if( residue == null) {residue = "";}
+
+	// get the place name
+    String name = get(Fields.In, "PLACE_NAME").getString(r);
+
+	// identify the script(s) used by the name
+	Set scripts = PhoneticUtils.scripts(name);
+
+	if(scripts.size() > 1) {
+		error = error  + "," + "MultipleScripts";
+		residue = residue +  + "," +  scripts.toString();
+	}
+
+ 	// Set error and residue fields
+    get(Fields.Out, "Error").setValue(r, error);
+ 	get(Fields.Out, "ErrorDetails").setValue(r, residue);
+	// set the scripts field
+	get(Fields.Out, "SCRIPT").setValue(r, scripts.toString());
+
+	// Send the row on to the next step.
+    putRow(data.outputRowMeta, r);
+
+	return true;
+}
+
+
+
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+        <field>
+        <field_name>SCRIPT</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1941</xloc>
+      <yloc>395</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set name type</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	Object[] r = getRow();
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+    if (first)
+    {
+        first = false;
+    }
+
+    r = createOutputRow(r, data.outputRowMeta.size());
+
+	String type = "name";
+
+	String name = get(Fields.In, "PLACE_NAME").getString(r);
+
+	// look for names which look like abbreviations
+	// ABC or A.B.C. or Abc. or A B C or PDQ (no vowels)
+	if(name.matches("[A-Z]{2,4}|([A-Z]\\.){2,3}|[A-Z][a-z]{1,3}\\.|([A-Z] )+[A-Z]|[B-D,F-H,J-N,P-T,V-X,Z]+")){
+			type = "abbrev";
+	 }
+
+	get(Fields.Out, "NAME_TYPE").setValue(r, type);
+
+	// Send the row on to the next step.
+    putRow(data.outputRowMeta, r);
+
+	return true;
+}
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+        <field>
+        <field_name>NAME_TYPE</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>NAME_TYPE_SYSTEM</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2462</xloc>
+      <yloc>389</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+      <error>
+        <source_step>Dedup</source_step>
+        <target_step>Duplicate Log</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename/>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors/>
+        <max_pct_errors/>
+        <min_pct_rows/>
+      </error>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+</transformation>

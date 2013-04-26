@@ -1,0 +1,242 @@
+
+Imports: {
+import static gate.Utils.*;
+}
+
+
+Phase: CompoundNP_Chunking
+Input: Token Split NounPhrase ClassMark
+Options: control = appelt
+
+
+Rule: CompoundPossessive
+(
+		({NounPhrase}):posser {Token.pos == "POSS"} ({NounPhrase}):possee
+):np
+-->
+		{
+
+			// get all of the pieces
+			gate.AnnotationSet npSet = (gate.AnnotationSet)bindings.get("np");
+			Node npStartNode = npSet.firstNode(); 
+			Node npEndNode   = npSet.lastNode();
+			
+			
+			gate.AnnotationSet erSet = (gate.AnnotationSet)bindings.get("posser");
+			gate.AnnotationSet eeSet = (gate.AnnotationSet)bindings.get("possee");
+			
+			gate.Annotation er = (gate.Annotation)erSet.iterator().next();
+			gate.Annotation ee = (gate.Annotation)eeSet.iterator().next();
+			
+			
+			
+			gate.FeatureMap npFeatures = Factory.newFeatureMap();
+			
+			
+			// attach strings for each element as features
+			// attach spans for each element
+			if(npSet != null){
+			 npFeatures.put("NP",stringFor(doc,npSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}else{
+			 npFeatures.put("NP","");
+			}
+			
+			if(erSet != null){
+			 npFeatures.put("possesser",stringFor(doc,erSet).replaceAll("[\\s\t\n\r]+"," ").trim()); 
+			}else{
+			 npFeatures.put("possesser","");
+			}
+			
+			if(eeSet != null){
+			  npFeatures.put("possessee",stringFor(doc,eeSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}else{
+			  npFeatures.put("possessee","");
+			}
+			
+	
+			
+			npFeatures.put("compoundType","Possessive");
+			npFeatures.put("code","CNP");
+			
+    outputAS.add( npStartNode,npEndNode, "CompoundNounPhrase", npFeatures );
+
+}	
+
+
+Rule: CompoundAppositive
+(
+		({NounPhrase}):posser {Token.pos == "OPENPAREN"} ({NounPhrase,!ClassMark}):possee {Token.pos == "CLOSEPAREN"}
+):np
+-->
+		{
+
+			// get all of the pieces
+			gate.AnnotationSet npSet = (gate.AnnotationSet)bindings.get("np");
+			Node npStartNode = npSet.firstNode(); 
+			Node npEndNode   = npSet.lastNode();
+			
+			
+			gate.AnnotationSet erSet = (gate.AnnotationSet)bindings.get("posser");
+			gate.AnnotationSet eeSet = (gate.AnnotationSet)bindings.get("possee");
+			
+			gate.Annotation er = (gate.Annotation)erSet.iterator().next();
+			gate.Annotation ee = (gate.Annotation)eeSet.iterator().next();
+			
+			
+			
+			gate.FeatureMap npFeatures = Factory.newFeatureMap();
+			
+			
+			// attach strings for each element as features
+			// attach spans for each element
+			if(npSet != null){
+			 npFeatures.put("NP",stringFor(doc,npSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}else{
+			 npFeatures.put("NP","");
+			}
+			
+			if(erSet != null){
+			 npFeatures.put("possesser",stringFor(doc,erSet).replaceAll("[\\s\t\n\r]+"," ").trim()); 
+			}else{
+			 npFeatures.put("possesser","");
+			}
+			
+			if(eeSet != null){
+			  npFeatures.put("possessee",stringFor(doc,eeSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}else{
+			  npFeatures.put("possessee","");
+			}
+			
+	
+			
+			npFeatures.put("compoundType","Appositive");
+			npFeatures.put("code","CNP");
+			
+    outputAS.add( npStartNode,npEndNode, "CompoundNounPhrase", npFeatures );
+
+}	
+
+Rule: CompoundInterupted
+(
+		{NounPhrase} {Token.pos == "OPENPAREN"} {NounPhrase,!ClassMark} {Token.pos == "CLOSEPAREN"}{NounPhrase}
+):np
+-->
+		{
+
+			// get all of the pieces
+			gate.AnnotationSet npSet = (gate.AnnotationSet)bindings.get("np");
+			Node npStartNode = npSet.firstNode(); 
+			Node npEndNode   = npSet.lastNode();
+			
+			gate.FeatureMap npFeatures = Factory.newFeatureMap();
+			
+			
+			// attach strings for each element as features
+			// attach spans for each element
+			if(npSet != null){
+			 npFeatures.put("NP",stringFor(doc,npSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}else{
+			 npFeatures.put("NP","");
+			}
+			
+	
+			npFeatures.put("compoundType","Interupted");
+			npFeatures.put("code","CNP");
+			
+    outputAS.add( npStartNode,npEndNode, "CompoundNounPhrase", npFeatures );
+
+}
+
+
+Rule: TrappedConj
+(
+		{Split}({ClassMark})? {NounPhrase,!ClassMark} {Token.pos == "CC"}{NounPhrase}
+):np
+-->
+		{
+
+			// get all of the pieces
+			gate.AnnotationSet npSet = (gate.AnnotationSet)bindings.get("np");
+			Node npStartNode = npSet.firstNode(); 
+			Node npEndNode   = npSet.lastNode();
+			
+			gate.FeatureMap npFeatures = Factory.newFeatureMap();
+			
+			
+			// attach strings for each element as features
+			// attach spans for each element
+			if(npSet != null){
+			 npFeatures.put("NP",stringFor(doc,npSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}else{
+			 npFeatures.put("NP","");
+			}
+			
+	
+			npFeatures.put("compoundType","TrappedConj");
+			npFeatures.put("code","CNP");
+			
+    outputAS.add( npStartNode,npEndNode, "CompoundNounPhrase", npFeatures );
+
+}
+
+Rule: TrappedConj2
+(
+	{NounPhrase} {Token.pos == "CC"}{NounPhrase,!ClassMark}	{Split}
+):np
+-->
+		{
+
+			// get all of the pieces
+			gate.AnnotationSet npSet = (gate.AnnotationSet)bindings.get("np");
+			Node npStartNode = npSet.firstNode(); 
+			Node npEndNode   = npSet.lastNode();
+			
+			gate.FeatureMap npFeatures = Factory.newFeatureMap();
+			
+			
+			// attach strings for each element as features
+			// attach spans for each element
+			if(npSet != null){
+			 npFeatures.put("NP",stringFor(doc,npSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}else{
+			 npFeatures.put("NP","");
+			}
+			
+	
+			npFeatures.put("compoundType","TrappedConj2");
+			npFeatures.put("code","CNP");
+			
+    outputAS.add( npStartNode,npEndNode, "CompoundNounPhrase", npFeatures );
+
+}
+
+Rule: TrappedPrep
+(
+		{Split}{NounPhrase,!ClassMark} {Token.pos == "IN"}{NounPhrase}
+):np
+-->
+		{
+
+			// get all of the pieces
+			gate.AnnotationSet npSet = (gate.AnnotationSet)bindings.get("np");
+			Node npStartNode = npSet.firstNode(); 
+			Node npEndNode   = npSet.lastNode();
+			
+			gate.FeatureMap npFeatures = Factory.newFeatureMap();
+			
+			
+			// attach strings for each element as features
+			// attach spans for each element
+			if(npSet != null){
+			 npFeatures.put("NP",stringFor(doc,npSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}else{
+			 npFeatures.put("NP","");
+			}
+			
+	
+			npFeatures.put("compoundType","TrappedPrep");
+			npFeatures.put("code","CNP");
+			
+    outputAS.add( npStartNode,npEndNode, "CompoundNounPhrase", npFeatures );
+
+}

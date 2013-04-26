@@ -1,0 +1,12 @@
+drill
+drills
+saws
+hammer
+hammers
+pipe cutter
+pipe cutters
+shovel
+axe
+pickaxe
+mattock
+trenching tool

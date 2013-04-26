@@ -1,0 +1,105 @@
+Phase: PiecesRepair
+Input: Token
+Options: control = appelt
+
+
+// flip "<END>" to N if it looks like a hyphenated abbrev e.g. T-72
+Rule: EndToNoun
+(
+   ({Token.string ==~ "[A-Za-z]+-",Token.pos == "<END>"}):n {Token.pos == "CD"}
+):whole
+-->
+{
+	gate.AnnotationSet nounSet = (gate.AnnotationSet)bindings.get("n");
+	gate.Annotation noun = (gate.Annotation)nounSet.iterator().next();
+	gate.FeatureMap nounFeatures = noun.getFeatures();
+	nounFeatures.put("pos","NN");
+	nounFeatures.put("repairedBy","EndToNoun");
+	Node nStartNode = nounSet.firstNode(); 
+	Node nEndNode   = nounSet.lastNode();
+	outputAS.add( nStartNode,nEndNode, "Repair", nounFeatures );
+}
+
+
+// flip "to" from preposition to infinitive if followed by verb
+Rule: PrepToInf
+(
+		({Token.pos == IN, Token.string ==~ "to|To|TO" }):to
+		({Token.pos ==BE }|
+		{Token.pos ==DO }|
+		{Token.pos ==HV }|
+		{Token.pos ==VB })
+):whole
+-->
+{
+	gate.AnnotationSet infSet = (gate.AnnotationSet)bindings.get("to");
+	gate.Annotation inf = (gate.Annotation)infSet.iterator().next();
+	gate.FeatureMap infFeatures = inf.getFeatures();
+	infFeatures.put("pos","TO");
+	infFeatures.put("repairedBy","PrepToInf");
+	Node infStartNode = infSet.firstNode(); 
+	Node infEndNode   = infSet.lastNode();
+	outputAS.add( infStartNode,infEndNode, "Repair", infFeatures );
+}
+
+//flip "to" from infinitive to preposition if not followed by verb
+Rule: InfToPrep
+(
+		({Token.pos == TO}):to
+		 {Token.pos != "VB"}
+):whole
+-->
+{
+	gate.AnnotationSet infSet = (gate.AnnotationSet)bindings.get("to");
+	gate.Annotation inf = (gate.Annotation)infSet.iterator().next();
+	gate.FeatureMap infFeatures = inf.getFeatures();
+	infFeatures.put("pos","IN");
+	infFeatures.put("repairedBy","InfToPrep");
+	Node infStartNode = infSet.firstNode(); 
+	Node infEndNode   = infSet.lastNode();
+	outputAS.add( infStartNode,infEndNode, "Repair", infFeatures );
+}
+
+
+//change VBx to NN when preceded by a determiner
+Rule: VBxtoNN
+(
+		
+		( {Token.pos == AT }|
+		  {Token.pos == DT}| 
+		  {Token.pos ==  "PP$" }
+		)
+		 ({Token.pos ==  "JJ" })[0,2]
+		({Token.pos ==~ "VBN|VBG|VBZ|VB"}):vb
+):whole
+-->
+{
+	gate.AnnotationSet vbSet = (gate.AnnotationSet)bindings.get("vb");
+	gate.Annotation vb = (gate.Annotation)vbSet.iterator().next();
+	gate.FeatureMap vbFeatures = vb.getFeatures();
+	vbFeatures.put("pos","NN");
+	vbFeatures.put("repairedBy","VBxtoNN");
+	Node vbStartNode = vbSet.firstNode(); 
+	Node vbEndNode   = vbSet.lastNode();
+	outputAS.add( vbStartNode,vbEndNode, "Repair", vbFeatures );
+}
+
+//change VBx to NN when preceded by a adjective
+Rule: VBxtoNN2
+(
+		 {Token.pos ==  "JJ" }
+		({Token.pos ==~ "VBN|VBG|VBZ|VB"}):vb
+):whole
+-->
+{
+	gate.AnnotationSet vbSet = (gate.AnnotationSet)bindings.get("vb");
+	gate.Annotation vb = (gate.Annotation)vbSet.iterator().next();
+	gate.FeatureMap vbFeatures = vb.getFeatures();
+	vbFeatures.put("pos","NN");
+	vbFeatures.put("repairedBy","VBxtoNN2");
+	Node vbStartNode = vbSet.firstNode(); 
+	Node vbEndNode   = vbSet.lastNode();
+	outputAS.add( vbStartNode,vbEndNode, "Repair", vbFeatures );
+}
+
+

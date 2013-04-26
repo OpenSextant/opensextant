@@ -1,0 +1,53 @@
+accident
+accidents
+avalanche
+avalanches
+blast
+blasts
+bush fire
+bush fires
+brush fire
+brush fires
+building fire
+catastrophe
+catastrophes
+collision
+collisions
+crash
+crashes
+disaster
+disasters
+distress call
+distress calls
+earthquake
+earthquakes
+explosion
+explosions
+flash flood
+flash flooding
+flash floods
+flood
+flooding
+floods
+forest fire
+forest fires
+house fire
+house fires
+natural disaster
+natural disasters
+nuclear disaster
+nuclear disasters
+plane crash
+plane crashes
+shipwreck
+shipwrecks
+tidal wave
+tidal waves
+traffic accident
+traffic accidents
+tsunami
+tsunamis
+volcanic eruption
+volcanic eruptions
+wildfire
+wildfires

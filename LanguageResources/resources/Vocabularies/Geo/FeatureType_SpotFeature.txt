@@ -1,0 +1,1055 @@
+ab
+acid plant
+acid plants
+adit
+adits
+administrative facilities
+administrative facility
+afb
+afld
+agricultural facilities
+agricultural facility
+agricultural school
+agricultural schools
+air base
+air bases
+air defence facilities
+air defence facility
+air defense facilities
+air defense facility
+air force base
+air force bases
+airbase
+airbases
+airfield
+airfields
+airforce base
+airforce bases
+airport
+airports
+airstrip
+airstrips
+air strip
+air strips
+alcohol plant
+alcohol plants
+ammunition storage area
+ammunition storage areas
+amphitheater
+amphitheaters
+amusement park
+amusement parks
+ancient site
+ancient sites
+ancient wall
+ancient walls
+apartment
+apartment complex
+apartment complexes
+apartments
+apron
+aprons
+arch
+archs
+army barracks
+army bks
+arsenal
+arsenals
+asphalt plant
+asphalt plants
+astronomical station
+astronomical stations
+asylum
+asylums
+atc radar facilities
+atc radar facility
+atc radar site
+atc radar sites
+athletic field
+athletic fields
+atomic center
+atomic centers
+bakeries
+bakery
+baling station
+baling stations
+ballpark
+ballparks
+banana plantation
+banana plantations
+barracks
+base
+bases
+basketball court
+basketball courts
+batch plant
+batch plants
+battlefield
+battlefields
+bazaar
+bazaars
+beach
+beach head
+beach heads
+beaches
+beachhead
+beach-head
+beachheads
+beach-heads
+beachs
+beacon
+beacons
+berm
+berms
+berth
+berths
+birthplace
+birthplaces
+bks
+bldg
+bldgs
+boatyard
+boatyards
+bomb range
+bomb ranges
+bombing range
+bombing ranges
+bookstore
+bookstores
+border crossing
+border crossing point
+border crossing points
+border crossings
+border point
+border point of entries
+border point of entry
+border points
+border post
+border posts
+bordello
+boundary marker
+boundary markers
+boys preparatory school
+boys preparatory schools
+boys school
+boys schools
+break water
+break waters
+breakwater
+breakwaters
+breweries
+brewery
+bridge
+bridges
+building
+buildings
+bunker
+bunkers
+burial cave
+burial caves
+cache
+cache site
+cache sites
+caches
+cafe
+cafes
+cairn
+cairns
+camp
+camps
+canneries
+cannery
+cantonment
+cantonments
+casino
+casinos
+castle
+castles
+cave
+cave exit
+cave exits
+caves
+cellphone tower
+cellphone towers
+cemeteries
+cemetery
+center
+centers
+centre
+centres
+chanceries
+chancery
+check point
+check points
+check post
+check posts
+checkpoint
+checkpoints
+checkpost
+checkposts
+chemical complex
+chemical complexes
+chemical plant
+chemical plants
+church
+churches
+clinic
+clinics
+coal plant
+coal plants
+coal-fired plant
+coal-fired plants
+coast
+coast guard station
+coast guard stations
+coasts
+college
+colleges
+command center
+command centers
+command centre
+command centres
+command post
+command posts
+communication center
+communication centers
+community center
+community centers
+company headquarters
+compound
+compounds
+concrete batch plant
+concrete batch plants
+consulate
+consulate building
+consulate buildings
+consulates
+control point
+control points
+convent
+convents
+conversion facilities
+conversion facility
+conversion plant
+conversion plants
+coordinate
+coordinates
+coordination center
+coordination centers
+coordination centre
+coordination centres
+copper refineries
+copper refinery
+corner
+corners
+corral
+corrals
+cotton plantation
+cotton plantations
+country house
+country houses
+courthouse
+courthouses
+courtyard
+courtyards
+cp
+crossing
+crossing point
+crossing points
+crossings
+crossroad
+crossroads
+customs house
+customs houses
+customs post
+customs posts
+dairies
+dairy
+dam
+dams
+defensive ring
+defensive rings
+deplotment areas
+deployment area
+depot
+depots
+desalination plant
+desalination plants
+detention facilities
+detention facility
+dike
+dikes
+dipping tank
+dipping tanks
+dispensary
+dispensarys
+district center
+district centers
+district centre
+district centres
+dockyard
+dockyards
+drop zone
+drop zones
+drug cache
+drug caches
+dry dock
+dry docks
+dry wash
+dry washs
+dynamite plant
+dynamite plants
+earthen berm
+earthen berms
+edge
+edges
+educational facilities
+educational facility
+elementary school
+elementary schools
+embassies
+embassy
+encampment
+encampments
+energy site
+energy sites
+engine room
+engine rooms
+enrichment plant
+enrichment plants
+entrance
+entrances
+entry control point
+entry control points
+estate
+estates
+ether plant
+ether plants
+experiment station
+experiment stations
+fabrication plant
+fabrication plants
+facilities
+facility
+facility center
+facility centers
+factories
+factory
+farm
+farms
+farmstead
+farmsteads
+ferries
+ferry
+field
+fields
+fighter base
+fighter bases
+fire rescue station
+fire rescue stations
+fire station
+fire stations
+firebase
+firebases
+firing pad
+firing pads
+fld
+flds
+fob
+fobs
+forest station
+forest stations
+fort
+forts
+forward line
+forward lines
+forward operating base
+forward operating bases
+foundries
+foundry
+front line
+front lines
+frontier crossing
+frontier crossings
+fuel complex
+fuel complexes
+fuel complexs
+fuel depot
+fuel depots
+garage
+garages
+garden
+gardens
+garrison
+garrisons
+gas field
+gas fields
+gas plant
+gas plants
+gas refineries
+gas refinery
+gas station
+gas stations
+gasoline station
+gasoline stations
+gate
+gate house
+gate houses
+gatehouse
+gate-house
+gatehouses
+gate-houses
+gates
+geographic coordinate
+geographic coordinates
+girls preparatory school
+girls preparatory schools
+girls school
+girls schools
+golf course
+golf courses
+granaries
+granary
+grave
+graves
+graving dock
+graving docks
+groundstation
+groundstations
+gsm tower
+gsm towers
+guard tower
+guard towers
+guard twr
+guard twrs
+guest house
+guest houses
+hangar
+hangars
+headquarters
+health complex
+health complexes
+helicopter landing pad
+helicopter landing pads
+helicopter landing zone
+helicopter landing zones
+helipad
+helipads
+heliport
+heliports
+hermitage
+hermitages
+high school
+high school for boys
+high schools
+highway intersection
+highway intersections
+historical site
+historical sites
+hlz
+hlzs
+home
+home port
+home ports
+homeport
+homeports
+homes
+hospital
+hospitals
+hotel
+hotels
+house
+houses
+hq
+hqs
+hut
+huts
+hydro power plant
+hydro power plants
+hydroelectric dam
+hydroelectric dams
+hydroelectric power plant
+hydroelectric power plants
+impact point
+impact points
+industrial complex
+industrial complexes
+industrial complexs
+infrastructure
+infrastructures
+inspection station
+inspection stations
+installation
+installations
+institute
+institutes
+instructional facilities
+instructional facility
+international airport
+international airports
+internet cafe
+internet cafes
+intersection
+intersections
+iron mine
+iron mines
+jetties
+jetty
+junior high school
+laager
+laagers
+lab
+labor camp
+labor camps
+laboratories
+laboratory
+labs
+landing
+landing pad
+landing pads
+landings
+launch pad
+launch pads
+launch position
+launch positions
+launchpad
+launchpads
+leper colonies
+leper colony
+leprosarium
+leprosariums
+lighthouse
+lighthouses
+limekiln
+limekilns
+lock
+locks
+logging camp
+logging camps
+madaris
+madrasa
+madrasah
+madrasahs
+madrasas
+madrassa
+madrassah
+madrassahs
+madrassas
+manufacturing plant
+manufacturing plants
+marina
+marinas
+maritime school
+maritime schools
+market
+markets
+medical center
+medical centers
+medical facilities
+medical facility
+medical school
+medical schools
+metal works
+meteorological station
+meteorological stations
+middle school
+middle schools
+mil fac
+military academies
+military academy
+military base
+military bases
+military facilities
+military facility
+military installation
+military installations
+military outpost
+military outposts
+military school
+military schools
+mill
+mills
+mine
+mines
+mining camp
+mining camps
+mission
+missions
+mole
+moles
+monasteries
+monastery
+monument
+monuments
+mosque
+mosques
+multi bay garage
+multi bay garages
+multi-bay garage
+multi-bay garages
+munitions plant
+munitions plants
+museum
+museums
+naval base
+naval bases
+naval facilities
+naval facility
+naval station
+naval stations
+navy base
+navy bases
+nitrocellulose plant
+nitrocellulose plants
+novitiate
+novitiates
+nuclear facilities
+nuclear facility
+nuclear power plant
+nuclear power plants
+nurseries
+nursery
+observation point
+observation points
+observatories
+observatory
+office
+offices
+oil camp
+oil camps
+oil field
+oil fields
+oil pipeline junction
+oil pipeline junctions
+oil pipeline terminal
+oil pipeline terminals
+oil platform
+oil platforms
+oil pumping station
+oil pumping stations
+oil refineries
+oil refinery
+oil well
+oil wells
+oilfield
+oilfields
+operations center
+operations centers
+ore processing plant
+ore processing plants
+out station
+out stations
+outpost
+outposts
+outstation
+out-station
+outstations
+out-stations
+pagoda
+pagodas
+palace
+palaces
+parade field
+parade fields
+parade fld
+parade flds
+parking
+parking apron
+parking aprons
+parking area
+parking areas
+parking lot
+parking lots
+passenger terminal
+passenger terminals
+patrol post
+patrol posts
+perimeter
+perimeters
+pharmacies
+pharmacy
+phone exchange
+phone exchanges
+pier
+piers
+plaza
+plazas
+point
+point of entries
+point of entry
+points
+police post
+police posts
+police station
+police stations
+port
+ports
+post
+post office
+post offices
+posts
+power plant
+power plants
+power station
+power stations
+prep school
+prep schools
+preparatory school
+preparatory schools
+primary school
+primary schools
+prison
+prisons
+processing plant
+processing plants
+production plant
+production plants
+public school
+pyramid
+pyramids
+quarries
+quarry
+quay
+quays
+racetrack
+racetracks
+radar facility
+radar facilitys
+radar station
+radar stations
+radio observatory
+radio observatorys
+radio station
+radio stations
+rail transfer point
+rail yard
+rail yards
+railroad siding
+railroad sidings
+railroad signal
+railroad signals
+railroad station
+railroad stations
+railroad stop
+railroad stops
+railroad terminal
+railroad terminals
+railroad yard
+railroad yards
+railyard
+railyards
+ramp
+ramps
+ranch
+ranchs
+refineries
+refinery
+reformatories
+reformatory
+refugee camp
+refugee camps
+religious center
+religious centers
+religious school
+religious schools
+religious site
+religious sites
+repair plant
+repair plants
+repair yard
+repair yards
+repairway
+repairways
+repairyard
+repairyards
+reprocessing plant
+reprocessing plants
+rescue station
+rescue stations
+research center
+research centers
+research centre
+research centres
+research complex
+research complexes
+research institute
+research institutes
+residence
+residences
+resort
+resorts
+restaurant
+restaurants
+resthouse
+resthouses
+retreat
+retreats
+revetment
+revetments
+road intersection
+road intersections
+roadblock
+roadblocks
+rookeries
+rookery
+rr yard
+rr yards
+rtp
+ruin
+ruins
+run way
+run ways
+runway
+runways
+safe haven
+safe havens
+safe house
+safe houses
+safehaven
+safehavens
+safehouse
+safehouses
+sales lot
+sales lots
+salt mine
+salt mines
+sam fac
+sam facilities
+sam facility
+sam installation
+sam installations
+sam site
+sam sites
+sanatorium
+sanatoriums
+sanctuaries
+sanctuary
+satellite station
+satellite stations
+sawmill
+sawmills
+school
+school for boys
+school for girls
+schools
+secondary school
+secondary schools
+sector operations center
+sector operations centers
+security check point
+security check points
+security checkpoint
+security checkpoints
+security point
+security points
+seminaries
+seminary
+separation plant
+separation plants
+shed
+sheds
+sheepfold
+sheepfolds
+shelter
+shelters
+ship yard
+ship yards
+shipyard
+shipyards
+shop
+shops
+shrine
+shrines
+side
+sides
+sigint site
+sigint sites
+silo
+silos
+site
+sites
+sluice
+sluices
+small arms range
+small arms ranges
+smallarms range
+small-arms range
+smallarms ranges
+small-arms ranges
+smokeless powder plant
+smokeless powder plants
+soccer goal
+soccer goals
+spa
+spas
+spillway
+spillways
+spt fac
+square
+squares
+stable
+stables
+stadium
+stadiums
+staging area
+staging areas
+stor fac
+storage
+storage bunker
+storage bunkers
+storage depot
+storage depots
+storage facilities
+storage facility
+store
+storehouse
+storehouses
+stores
+street intersection
+street intersections
+stronghold
+strongholds
+structure
+structures
+sub base
+sub bases
+subase
+subases
+subbase
+subbases
+submarine base
+submarine bases
+substation
+substations
+sugar refineries
+sugar refinery
+support facilities
+support facility
+swath
+swaths
+tank farm
+tank farms
+target
+targets
+taxiway
+taxiways
+telephone exchange
+telephone exchanges
+temple
+temples
+tench
+tennis court
+tennis courts
+terminal
+terminals
+terraglyph
+terraglyphs training camps
+terrorist training camp
+terrorist training camps
+test center
+test centers
+test site
+test sites
+theater
+theater hq
+theater hqs
+theaters
+theatre
+theatre hq
+theatre hqs
+theatres
+thermal power plant
+thermal power plants
+thermoelectric power plant
+thermoelectric power plants
+tomb
+tombs
+tower
+towers
+train station
+train stations
+training camp
+training camps
+training center
+training centers
+training centre
+training centres
+transit camp
+transit camps
+transportation hub
+transportation hubs
+tree line
+tree lines
+trenches
+trenching
+trenchs
+triangulation station
+triangulation stations
+twr
+twrs
+underground complex
+underground complexes
+universities
+university
+uranium conversion facilities
+uranium conversion facility
+uranium enrichment facilities
+uranium enrichment facility
+uranium processing facilities
+uranium processing facility
+vehicle park
+vehicle parks
+veterinary facilities
+veterinary facility
+vocational school
+vocational schools
+volleyball court
+volleyball courts
+volleyball field
+volleyball fields
+voting site
+voting sites
+wall
+walls
+warehouse
+warehouses
+water cistern
+water cisterns
+water pumping station
+water pumping stations
+water tank
+water tanks
+water tower
+water tower
+water treatment plant
+water treatment plants
+water twr
+water twr
+waterworks
+weapons cache
+weapons caches
+weir
+weirs
+wharf
+wharfs
+wharves
+windmill
+windmills
+workshop
+workshops
+wreck
+wrecks
+yard
+yards
+zoo
+zoos
+brothel
+pawnshop
+brothels
+pawnshops
+cabin
+cabins
+campus
+campuses
+coastline
+coastlines

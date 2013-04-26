@@ -1,0 +1,229 @@
+/* 
+  This phase categorizes each NounPhrase based on
+  1) the Simple Entities found within (annotations of type "Entity")
+  2) the vocabulary found within (annotations of type "Vocab")
+  
+  Two scopes are considered for each of the above: whole scope and head scope
+  
+  The result is a ranked list of category labels which are the entity types 
+  
+ */
+ 
+Imports: {
+import static gate.Utils.*;
+}
+
+
+Phase:	PhraseCategorization
+Input:	NounPhrase VerbPhrase Entity
+Options: control = appelt
+
+
+Rule: DontDoEntity
+(
+	{NounPhrase contains Entity}
+)
+:np
+-->
+{}
+
+
+
+
+Rule: NPCategorize
+(
+	{NounPhrase}
+)
+:np
+-->
+{
+	gate.AnnotationSet npSet = (gate.AnnotationSet)bindings.get("np");
+	gate.Annotation np = (gate.Annotation)npSet.iterator().next();
+	gate.FeatureMap npFeatures = np.getFeatures();
+	Node npStartNode = npSet.firstNode(); 
+	Node npEndNode   = npSet.lastNode();
+
+	
+    // two sorted sets to keep the list of types found:
+    // hierachy type anywhere in NP
+    // hierachy type in HEAD
+	SortedSet<String> npTypeSet = new TreeSet<String>();
+	SortedSet<String> headTypeSet = new TreeSet<String>();
+	
+	
+	// get the head annotation which is a feature of the NP
+	AnnotationSet head = (AnnotationSet)npFeatures.get("headSetAnnotation");
+	Node headStartNode = head.firstNode(); 
+	Node headEndNode   = head.lastNode(); 
+	
+	
+   // get all annotations which have a "hierarchy" feature
+	Set<String> featureNameSet = new HashSet<String>();
+	featureNameSet.add("hierarchy");
+
+	
+
+	// get the vocabulary for the whole NP and just the head (and sort them)
+	List<Annotation> vocabSetNP =   inDocumentOrder(doc.getAnnotations().get(  npStartNode.getOffset(),  npEndNode.getOffset()).get(null,featureNameSet));
+	List<Annotation> vocabSetHead = inDocumentOrder(doc.getAnnotations().get(headStartNode.getOffset(),headEndNode.getOffset()).get(null,featureNameSet));
+
+   //  get the entities for the whole NP and just the head (and sort them)
+    AnnotationSet tmpEntitySet = doc.getAnnotations().get("Entity",npStartNode.getOffset(),npEndNode.getOffset());
+	List<Annotation> entitySetNP =   inDocumentOrder(tmpEntitySet);
+	List<Annotation> entitySetHead = inDocumentOrder(doc.getAnnotations().get("Entity",headStartNode.getOffset(),headEndNode.getOffset()));
+
+
+	// loop thru all of the sets and aggregate the types (hierarchy) seen in the NP and the Head	
+
+	String lastVocabInNP = "";
+	String lastEntityInNP = "";
+	String lastVocabInHead = "";
+	String lastEntityInHead = "";
+
+	// get all of the vocab for the NP
+	for(Annotation tmpAnno : vocabSetNP) {
+	 String tmpType = (String)tmpAnno.getFeatures().get("hierarchy");
+	 if(tmpType != null){
+	   npTypeSet.add(tmpType);
+	   lastVocabInNP = tmpType;
+	 }
+	}
+
+
+	// get all of the vocab for the head
+	for(Annotation tmpAnno : vocabSetHead) {
+	 String tmpType = (String)tmpAnno.getFeatures().get("hierarchy");
+	 if(tmpType != null){
+	   headTypeSet.add(tmpType);
+	   lastVocabInHead = tmpType;
+	 }
+	}
+
+
+	// get all of the entities for the NP
+	for(Annotation tmpAnno : entitySetNP) {
+	 String tmpType = (String)tmpAnno.getFeatures().get("hierarchy");
+	 if(tmpType != null){
+	   npTypeSet.add(tmpType);
+	   lastEntityInNP = tmpType;
+	 }
+	}
+
+
+	// get all of the entities for the head
+	for(Annotation tmpAnno : entitySetHead) {
+	 String tmpType = (String)tmpAnno.getFeatures().get("hierarchy");
+	 if(tmpType != null){
+	   headTypeSet.add(tmpType);
+	   lastEntityInHead = tmpType;
+	 }
+	}
+
+
+	// Add all of the types sets to the NP as features
+	npFeatures.put("npTypeSet",npTypeSet);
+	npFeatures.put("headTypeSet",headTypeSet);
+	
+	
+	// Select a single category type for this NP by
+	// head is more specific then the np
+	// later in the span is more specific then earlier
+	// entities are more specific then vocabulary (???)
+	
+	// Default type and rule
+	String entityType = "THING";
+	String selectRule = "No Opinion";
+	
+	// 1) select from head first
+	if(headTypeSet.size() >0){
+	
+		// exactly one type in head	
+		if(headTypeSet.size() == 1){
+			entityType = headTypeSet.first();
+			selectRule = "OneHead";
+		}else{ // more then one in head
+		// pick the last entity type (if not null) else the last vocab
+			if( !lastEntityInHead.matches("")){
+			  entityType = lastEntityInHead;
+			  selectRule = "LastEntityInHead";
+			 }else{
+			  entityType = lastVocabInHead;
+			  selectRule = "LastVocabInHead";
+			 }
+		}
+
+	}else{ // if head has nothing look at whole NP
+	
+		if(npTypeSet.size() > 0 ){
+			if(npTypeSet.size() == 1){
+				entityType = npTypeSet.first();
+				selectRule = "OneNP";
+			}else{ // more then one in np
+			// pick the last entity type (if not null) else the last vocab
+			if( !lastEntityInNP.matches("")){
+			  entityType = lastEntityInNP;
+			  selectRule = "LastEntityInNP";
+			 }else{
+			  entityType = lastVocabInNP;
+			   selectRule = "LastVocabInNP";
+			 }
+			}
+		}else{
+		  // no opinion at all
+		}	
+	}
+	
+	// put the entityType and rule onto the NP as features
+	npFeatures.put("entityType",entityType);
+	npFeatures.put("selectRule",selectRule);
+	
+	
+	// create a "PhraseType Entity from applicable NPs
+	
+	// if it has an assigned entityType
+	if(npFeatures.get("entityType") != null ) {  // should be != ""THING" ?
+		//and if the NP is not exactly an entity
+	  if(npSet.firstNode() == tmpEntitySet.firstNode() && npSet.lastNode() == tmpEntitySet.lastNode()   ) {
+	  // do nothing
+	  }else{
+	  
+	   //copy over/remap all relevant features to a new featureMap
+	   FeatureMap entityFeatures = gate.Factory.newFeatureMap();
+	   entityFeatures.put("entityCategory","PhraseEntity");
+	   String tmpType = (String)npFeatures.get("entityType");
+	   String[] tmpTypePieces = tmpType.split("\\.");
+	   
+	   if(tmpTypePieces.length >0){
+	    entityFeatures.put("entityType",tmpTypePieces[tmpTypePieces.length-1] );
+	    }else{
+	     entityFeatures.put("entityType",tmpType);
+	   }
+	   
+	   entityFeatures.put("hierarchy",tmpType);
+	   entityFeatures.put("string",npFeatures.get("NP"));
+	   
+	   entityFeatures.put("corePhrase",npFeatures.get("HEAD"));
+	   entityFeatures.put("modifierPhrase",npFeatures.get("MOD"));
+	   
+	   entityFeatures.put("commonOrProper",npFeatures.get("nounPhraseType"));
+	   
+	   outputAS.add(npStartNode, npEndNode, "Entity",entityFeatures);
+	  }
+	}
+	
+
+// for debugging purposes	
+	if(npTypeSet.size() == 0 ) {
+		outputAS.add(npStartNode, npEndNode, "NP_NOT_Handled",npFeatures);
+	}else{
+	  outputAS.add(npStartNode, npEndNode, "NP_Handled",npFeatures);
+	}
+	
+	String npt =(String)npFeatures.get("nounPhraseType");
+	
+	if(npt.matches( "proper")){
+	   outputAS.add(npStartNode, npEndNode, "NP_Proper",npFeatures);
+	}
+}
+
+

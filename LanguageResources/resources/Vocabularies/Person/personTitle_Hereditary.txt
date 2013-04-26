@@ -1,0 +1,39 @@
+archduchess
+archduke
+caliph
+countess
+crown prince
+crown princess
+czarina
+czaritza
+dauphin
+duchess
+duke
+earl
+esquire
+grand duchess
+grand duke
+king
+landgrave
+lord
+marchioness
+margrave
+marquess
+marquis
+marquise
+prince
+prince consort
+princess
+princess royal
+queen
+queen consort
+queen dowager
+queen mother
+queen regent
+queen regnant
+tsarina
+tsaritsa
+tzarina
+viceroy
+viscount
+viscountess

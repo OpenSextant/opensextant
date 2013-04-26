@@ -1,0 +1,574 @@
+aluminium antimonide
+aluminium arsenide
+aluminium chloride
+aluminium fluoride
+aluminium hydroxide
+aluminium nitrate
+aluminium nitride
+aluminium oxide
+aluminium phosphide
+aluminium sulfate
+ammonia
+ammonium bicarbonate
+ammonium cerium nitrate
+ammonium chloride
+ammonium hydroxide
+ammonium nitrate
+ammonium sulfate
+ammonium tetrathiocyanatodiamminechromate
+antimony hydride
+antimony pentachloride
+antimony pentafluoride
+antimony trioxide
+arsenic oxide
+arsenic trioxide
+arsenous acid
+arsine
+baking soda
+barium chloride
+barium chromate
+barium hydroxide
+barium iodide
+barium nitrate
+barium sulfate
+barium titanate
+beryllium borohydride
+beryllium bromide
+beryllium carbonate
+beryllium chloride
+beryllium fluoride
+beryllium hydride
+beryllium hydroxide
+beryllium iodide
+beryllium nitrate
+beryllium nitride
+beryllium oxide
+beryllium sulfate
+beryllium sulfite
+beryllium telluride
+bismuth oxide
+bismuth telluride
+bleach
+borane
+borax
+boric acid
+boron carbide
+boron nitride
+boron oxide
+boron suboxide
+boron trichloride
+boron trifluoride
+bromine pentafluoride
+bromine trifluoride
+cacodylic acid
+cadmium arsenide
+cadmium bromide
+cadmium chloride
+cadmium fluoride
+cadmium iodide
+cadmium nitrate
+cadmium selenide
+cadmium sulfate
+cadmium telluride
+caesium bicarbonate
+caesium carbonate
+caesium chloride
+caesium chromate
+caesium fluoride
+caesium hydride
+calcium carbide
+calcium chlorate
+calcium chloride
+calcium chromate
+calcium cyanamide
+calcium fluoride
+calcium hydride
+calcium hydroxide
+calcium sulfate
+carbon dioxide
+carbon disulfide
+carbon monoxide
+carbon tetrabromide
+carbon tetrachloride
+carbon tetraiodide
+carbonic acid
+carbonyl fluoride
+carbonyl sulfide
+carboplatin
+carborundum
+cerium aluminium
+cerium bromide
+cerium cadmium
+cerium chloride
+cerium magnesium
+cerium mercury
+cerium silver
+cerium sulfate
+cerium thallium
+cerium zinc
+chrome-alum;
+chromic acid
+chromic acid
+chromium chloride
+chromium chloride
+chromium oxide
+chromium oxide
+chromium sulfate
+chromium trioxide
+chromyl chloride
+cisplatin
+cis-platinum chloride diammine
+coal
+cobalt bromide
+cobalt carbonate
+cobalt chloride
+cobalt sulfate
+columbite
+copper carbonate
+copper chloride
+copper chloride
+copper hydroxide
+copper nitrate
+copper oxide
+copper oxide
+copper sulfate
+copper sulfide
+copper sulfide
+cyanogen
+cyanogen chloride
+cyanuric chloride
+decaborane
+diammonium phosphate
+diborane
+diborane
+dichlorosilane
+digallane
+dinitrogen pentoxide
+disilane
+disulfur dichloride
+dysprosium chloride
+erbium chloride
+erbium-copper
+erbium-gold
+erbium-iridium
+erbium-silver
+europium chloride
+gadolinium chloride
+gadolinium oxide
+gallium antimonide
+gallium arsenide
+gallium nitride
+gallium phosphide
+gallium trichloride
+germane
+germanium bromide
+germanium bromide
+germanium chloride
+germanium chloride
+germanium fluoride
+germanium fluoride
+germanium hydride
+germanium hydride
+germanium iodide
+germanium iodide
+germanium nitride
+germanium oxide
+germanium oxide
+germanium selenide
+germanium selenide
+germanium sulfide
+germanium sulfide
+germanium telluride
+gold bromide
+gold bromide
+gold chloride
+gold chloride
+gold chloride
+gold chloride
+gold ditelluride
+gold fluoride
+gold fluoride
+gold iodide
+gold iodide
+gold oxide
+gold selenide
+gold selenide
+gold sulfide
+gold sulfide
+gypsum
+hafnium fluoride
+hafnium tetrachloride
+hexadecacarbonylhexarhodium
+hydrazine
+hydrazoic acid
+hydrobromic acid
+hydrochloric acid
+hydrogen bromide
+hydrogen chloride
+hydrogen fluoride
+hydrogen peroxide
+hydrogen selenide
+hydrogen sulfide
+hydrogen telluride
+hydroiodic acid
+hydroxylamine
+hypochlorous acid
+hypophosphorous acid
+indium antimonide
+indium arsenide
+indium chloride
+indium nitride
+indium phosphide
+iodic acid
+iodine heptafluoride
+iodine monochloride
+iodine pentafluoride
+iridium chloride
+iron chloride
+iron chloride
+iron hexacyanoferrate
+iron nitrate
+iron oxide
+iron oxide
+iron oxide
+iron thiocyanate
+iron-sulfur cluster
+krypton difluoride
+lanthanum aluminium
+lanthanum cadmium
+lanthanum carbonate
+lanthanum magnesium
+lanthanum mercury
+lanthanum silver
+lanthanum tallium
+lanthanum zinc
+lead carbonate
+lead chloride
+lead iodide
+lead nitrate
+lead oxide
+lead oxide
+lead phosphate
+lead selenide
+lead sulfate
+lead sulfide
+lead telluride
+lead zirconate titanate
+lithium aluminium hydride
+lithium bromide
+lithium carbonate
+lithium chloride
+lithium hydride
+lithium hydroxide
+lithium iodide
+lithium nitrate
+lithium salt
+lithium sulfate
+magnesium antimonide
+magnesium carbonate
+magnesium chloride
+magnesium oxide
+magnesium phosphate
+magnesium sulfate
+manganese chloride
+manganese chloride
+manganese dioxide
+manganese fluoride
+manganese oxide
+manganese phosphate
+manganese sulfate monohydrate
+mercury chloride
+mercury chloride
+mercury fulminate
+mercury selenide
+mercury sulfate
+mercury sulfate
+mercury sulfide
+mercury telluride
+metaphosphoric acid
+molybdate orange
+molybdenum disulfide
+molybdenum hexacarbonyl
+molybdenum trioxide
+molybdic acid
+neodymium chloride
+nessler's reagent
+nickel carbonate
+nickel chloride
+nickel hydroxide
+nickel nitrate
+nickel oxide
+niobium oxychloride
+niobium pentachloride
+nitric acid
+nitrogen dioxide
+nitrogen monoxide
+nitroglycerine
+nitronium nitrate
+nitrosylsulfuric acid
+osmium oxide
+osmium oxide
+osmium tetroxide
+osmium trioxide
+oxybis
+oxygen difluoride
+ozone
+palladium chloride
+palladium nitrate
+pentaborane
+pentasulfide antimony
+perchloric acid
+perchloryl fluoride
+persulfuric acid
+perxenic acid
+phenylarsine oxide
+phenylphosphine
+phosgene
+phosphine
+phosphite
+phosphomolybdic acid
+phosphoric acid
+phosphoric acid
+phosphorous acid
+phosphorus pentabromide
+phosphorus pentafluoride
+phosphorus pentasulfide
+phosphorus pentoxide
+phosphorus sesquisulfide
+phosphorus tribromide
+phosphorus trichloride
+phosphorus trifluoride
+phosphorus triiodide
+phosphotungstic acid
+pitchblende
+platinum chloride
+platinum chloride
+plutonium chloride
+plutonium dioxide
+plutonium oxide
+potash alum
+potassium aluminium fluoride
+potassium borate
+potassium bromide
+potassium calcium chloride
+potassium carbonate
+potassium chlorate
+potassium chloride
+potassium ferrioxalate
+potassium hydrogen fluoride
+potassium hydrogencarbonate
+potassium hydroxide
+potassium iodide
+potassium monopersulfate
+potassium nitrate
+potassium perbromate
+potassium perchlorate
+potassium permanganate
+potassium sulfate
+potassium sulfide
+potassium titanyl phosphate
+potassium vanadate
+praseodymium chloride
+protonated molecular hydrogen
+prussian blue
+pyrosulfuric acid
+radium chloride
+radon difluoride
+rhodium chloride
+rubidium bromide
+rubidium chloride
+rubidium fluoride
+rubidium hydroxide
+rubidium iodide
+rubidium nitrate
+rubidium oxide
+rubidium telluride
+ruthenium oxide
+samarium chloride
+samarium iodide
+scandium chloride
+scandium fluoride
+scandium nitrate
+scandium oxide
+scandium triflate
+selenic acid
+selenious acid
+selenium dioxide
+selenium trioxide
+silane
+silica gel
+silicic acid
+silicochloroform
+silicofluoric acid
+silicon dioxide
+silver chloride
+silver fluoride
+silver fluoride
+silver iodide
+silver nitrate
+silver sulfide
+soda lime
+sodamide
+sodium bicarbonate
+sodium borohydride
+sodium bromate
+sodium bromide
+sodium carbonate
+sodium chlorate
+sodium chloride
+sodium cyanide
+sodium ferrocyanide
+sodium hydride
+sodium hydrogen carbonate
+sodium hydrosulfide
+sodium hydroxide
+sodium iodide
+sodium monofluorophosphate
+sodium nitrate
+sodium nitrite
+sodium percarbonate
+sodium persulfate
+sodium phosphate
+sodium silicate
+sodium sulfate
+sodium sulfide
+sodium sulfite
+sodium tellurite
+stannous chloride
+stibine
+strontium chloride
+strontium nitrate
+strontium titanate
+sulfamic acid
+sulfane
+sulfur dioxide
+sulfuric acid
+sulfurous acid
+sulfuryl chloride
+tantalum carbide
+tantalum oxide
+telluric acid
+tellurium dioxide
+tellurium tetrachloride
+tellurous acid
+terbium chloride
+tetraborane
+tetrachloroauric acid
+tetrafluorohydrazine
+tetramminecopper sulfate
+tetrasulfur tetranitride
+thallium carbonate
+thallium fluoride
+thallium oxide
+thallium sulfate
+thionyl chloride
+thiophosgene
+thiophosphoryl chloride
+thorium dioxide
+thortveitite
+thulium chloride
+tin chloride
+tin chloride
+tin chloride
+tin fluoride
+titanium boride
+titanium bromide
+titanium carbide
+titanium chloride
+titanium chloride
+titanium chloride
+titanium dioxide
+titanium dioxide
+titanium iodide
+titanium nitride
+titanium oxide
+titanium oxide
+titanium tetrabromide
+titanium tetrachloride
+titanium tetraiodide
+tributyltin
+trifluoromethanesulfonic acid
+trifluoromethylisocyanide
+trimethylphosphine
+trioxidane
+tripotassium phosphate
+trisodium phosphate
+trisodium phosphate
+triuranium octaoxide
+tungsten carbide
+tungsten chloride
+tungsten fluoride
+tungsten hexacarbonyl
+tungstic acid
+uranium hexafluoride
+uranium pentafluoride
+uranium tetrachloride
+uranium tetrafluoride
+uranyl carbonate
+uranyl chloride
+uranyl fluoride
+uranyl hydroxide
+uranyl hydroxide
+uranyl nitrate
+uranyl sulfate
+vanadium bromide
+vanadium carbide
+vanadium chloride
+vanadium chloride
+vanadium chloride
+vanadium fluoride
+vanadium fluoride
+vanadium nitride
+vanadium oxide
+vanadium oxide
+vanadium oxide
+vanadium oxide
+vanadium oxide trichloride
+vanadium oxytrichloride
+vanadium sulfate
+xenic acid
+xenon difluoride
+xenon hexafluoroplatinate
+xenon tetrafluoride
+xenon tetroxide
+yellowcake
+yellow cake
+ytterbium chloride
+ytterbium oxide
+yttrium aluminium garnet
+yttrium antimonide
+yttrium arsenide
+yttrium barium copper oxide
+yttrium bromide
+yttrium cadmium
+yttrium copper
+yttrium fluoride
+yttrium gold
+yttrium iridium
+yttrium iron garnet
+yttrium magnesium
+yttrium oxide
+yttrium rhodium
+yttrium silver
+yttrium sulfide
+yttrium zinc
+zinc bromide
+zinc carbonate
+zinc chloride
+zinc cyanide
+zinc fluoride
+zinc iodide
+zinc oxide
+zinc selenide
+zinc sulfate
+zinc sulfide
+zinc telluride
+zirconia hydrate
+zirconium carbide
+zirconium chloride
+zirconium hydroxide
+zirconium nitride
+zirconium orthosilicate
+zirconium oxide
+zirconium tetrahydroxide
+zirconium tungstate

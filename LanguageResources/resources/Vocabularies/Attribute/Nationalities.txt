@@ -1,0 +1,547 @@
+﻿abkhaz
+abkhazian
+abkhazians
+afghan
+afghani
+afghans
+africans
+albanian
+albanians
+algerian
+algerians
+american
+american samoan
+american samoans
+americans
+andean
+andeans
+andorran
+andorrans
+angolan
+angolans
+anguillan
+anguillans
+antiguan
+antiguans
+argentine
+argentinean
+argentineans
+argentines
+argentinian
+argentinians
+armenian
+armenians
+aruban
+arubans
+aussie
+australian
+australians
+austrian
+austrians
+azerbaijani
+azerbaijanis
+azeri
+azeris
+bahamian
+bahamians
+bahraini
+bahrainis
+bajuns
+bamar
+bangladeshi
+bangladeshis
+barbadian
+barbadian 
+barbadians
+barbudan
+barbudans
+basotho
+batswana
+belarusian
+belarusians
+belgian
+belgians
+belizean
+belizeans
+beninese
+beninois
+bermudan
+bermudans
+bermudian
+bermudians
+bhutanese
+bolivian
+bolivians
+boricuas
+bosniak
+bosniaks
+bosnian
+bosnians
+botswanan
+botswanans
+brazilian
+brazilians
+british
+british virgin islanders
+briton
+britons
+brit
+brits
+bruneian
+bruneians
+bulgarian
+bulgarians
+burkinabe
+burmese
+burundian
+burundians
+cambodian
+cambodians
+cameroonian
+cameroonians
+canadian
+canadians
+canuck
+canucks
+cape verdean
+cape verdeans
+cape verdian
+caymanian
+caymanians
+central african
+central africans
+chadian
+chadians
+chilean
+chileans
+chinese
+christmas islanders
+citizen of the holy see
+cocos islanders
+colombian
+colombians
+comoran
+comorian
+comorians
+congolese
+cook islanders
+costa rican
+costa ricans
+croat
+croatian
+croatians
+croats
+cuban
+cubans
+cypriot
+cypriots
+czech
+czechs
+dane
+danes
+danish
+djiboutian
+djiboutians
+dominican
+dominicans
+dutch
+dutch antillean
+dutch antilleans
+east timorese
+ecuadorean
+ecuadorian
+ecuadorians
+egyptian
+egyptians
+emirati
+emiratis
+emirian
+emirians
+english
+equatoguinean
+equatoguineans
+equatorial guinean
+equatorial guineans
+eritrean
+eritreans
+estonian
+estonians
+ethiopian
+ethiopians
+falkland islanders
+faroese
+fijian
+fijians
+filipina
+filipino
+filipinos
+finn
+finnish
+finns
+french
+french guianese
+french polynesian
+french polynesians
+frenchman
+frenchwoman
+futunan
+futunans
+gabonese
+gambian
+gambians
+georgian
+georgians
+german
+germans
+ghanaian
+ghanaians
+gibraltar
+gibraltarians
+grecian
+grecians
+greek
+greeks
+greenlanders
+greenlandic
+grenadan
+grenadian
+grenadians
+guadeloupe
+guadeloupians
+guamanian
+guamanians
+guatemalan
+guatemalans
+guinea-bissauan
+guinean
+guineans
+guyanese
+haitian
+haitians
+hellenes
+hellenic
+herzegovinian
+herzegovinians
+honduran
+hondurans
+hongkongers
+hongkongese
+hungarian
+hungarians
+icelander
+icelanders
+icelandic
+i-kiribati
+indian
+indians
+indonesian
+indonesians
+iranian
+iranians
+iraqi
+iraqis
+irish
+irishman
+israeli
+israelis
+italian
+italians
+italic
+italics
+ivorian
+ivorians
+jamaican
+jamaicans
+japanese
+jordanian
+jordanians
+kazakh
+kazakhs
+kazakhstani
+kazakhstanis
+kenyan
+kenyans
+kirghiz
+kirgiz
+kiribati
+kittian and nevisian
+kittitian
+kittitians
+kiwi
+korean
+koreans
+kosovar
+kosovars
+kuwaiti
+kuwaitis
+kyrgyz
+kyrgyzstani
+kyrgyzstanis
+lao
+laotian
+laotians
+latvian
+latvians
+lebanese
+letts
+liberian
+liberians
+libyan
+libyans
+liechtenstein
+liechtensteiner
+liechtensteiners
+lithuanian
+lithuanians
+luxembourger
+luxembourgers
+macanese
+macedonian
+macedonians
+magyar
+magyars
+mahorais
+mahoran
+malagasy
+malawian
+malawians
+malaysian
+malaysians
+maldivan
+maldivian
+maldivians
+malian
+malians
+maltese
+manx
+marshallese
+martinican
+martiniquais
+mauritanian
+mauritanians
+mauritian
+mauritians
+mexican
+mexicans
+micronesian
+micronesians
+miquelonnais
+moldovan
+moldovans
+monacan
+monacans
+monegasque
+monégasque
+monégasques
+mongolian
+mongolians
+mongols
+montenegrin
+montenegrins
+montserratian
+montserratians
+moroccan
+moroccans
+mosotho
+motswana
+motswana
+mozambican
+mozambicans
+myanmarese
+namibian
+namibians
+nauruan
+nauruans
+nepalese
+nepali
+netherlander
+nevisian
+nevisians
+new caledonian
+new caledonians
+new zealander
+new zealanders
+nicaraguan
+nicaraguans
+nigerian
+nigerians
+nigerien
+nigeriens
+niuean
+niueans
+ni-vanuatu
+north korean
+northern irish
+northern marianan
+northern marianans
+norwegian
+norwegians
+omani
+omanis
+pakistani
+pakistanis
+palauan
+palauans
+palestinian
+palestinians
+panamanian
+panamanians
+papua new guinean
+papua new guineans
+papuan
+papuans
+paraguayan
+paraguayans
+peruvian
+peruvians
+philippine
+pitcairn islanders
+pole
+poles
+polish
+portuguese
+puerto rican
+puerto ricans
+qatari
+qataris
+réunionese
+réunionnais
+romanian
+romanians
+russian
+russians
+rwandan
+rwandans
+sahraouian
+sahraouis
+sahraw
+sahrawian
+sahrawis
+saint lucian
+saint-pierrais
+salvadoran
+salvadorans
+sammarinese
+samoan
+samoans
+san marinese
+sao tomean
+são toméan
+são toméans
+saudi
+saudi arabian
+saudi arabians
+saudis
+scotch
+scots
+scottish
+senegalese
+serbian
+serbians
+serbs
+seychellois
+sierra leonean
+sierra leoneans
+singaporean
+singaporeans
+sino
+slovak
+slovaks
+slovene
+slovenes
+slovenian
+slovenians
+solomon islander
+solomon islanders
+somali
+somalis
+south african
+south africans
+south korean
+south ossetian
+south ossetians
+southern irish
+spaniard
+spaniards
+spanish
+sri lankan
+sri lankans
+st. helenian
+st. helenians
+st. lucian
+st. lucians
+st. vincentian
+st. vincentians
+sudanese
+surinamer
+surinamers
+surinamese
+swazi
+swazis
+swede
+swedes
+swedish
+swiss
+syrian
+syrians
+tadzhik
+tahitians
+taiwanese
+tajik
+tajikistani
+tajikistanis
+tajiks
+tanzanian
+tanzanians
+texan
+texans
+thai
+tibetan
+tibetans
+timorese
+tobagonian
+tobagonians
+togolese
+tongan
+tongans
+trinidadian
+trinidadians
+tunisian
+tunisians
+turk
+turkish
+turkmen
+turkmens
+turks
+turks and caicos islanders
+tuvaluan
+tuvaluans
+ugandan
+ugandans
+ukrainian
+ukrainians
+uruguayan
+uruguayans
+uzbek
+uzbekistani
+uzbekistanis
+uzbeks
+vanuatuan
+venezuelan
+venezuelans
+vietnamese
+viking
+vikings
+vincentian
+vincentians
+virgin islanders
+wallisian
+wallisians
+welsh
+yemeni
+yemenis
+yemenite
+zambian
+zambians
+zimbabwean
+zimbabweans

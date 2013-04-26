@@ -1,0 +1,27 @@
+alley
+alleys
+avenue
+avenues
+highway
+highways
+pipeline
+pipelines
+rail fac
+rail facilities
+rail facility
+rail link
+rail links
+road
+roads
+roadway
+roadways
+route
+routes
+street
+streets
+traffic circle
+traffic circles
+trail
+trails
+tunnel
+tunnels

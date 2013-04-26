@@ -1,0 +1,27 @@
+death
+deaths
+injured
+injuries
+casualty
+casualties
+well being
+well-being
+health
+medicine
+vaccine
+vaccines
+ointment
+ointments
+medical treatment
+medical research
+hunger
+starvation
+therapy
+therapies
+surgery
+surgeries
+fatality
+fatalities
+tumor
+tumour
+mastectomy

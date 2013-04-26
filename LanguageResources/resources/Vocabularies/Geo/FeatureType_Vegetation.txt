@@ -1,0 +1,12 @@
+forest
+forests
+grassland
+grasslands
+grove
+groves
+meadow
+meadows
+orchard
+orchards
+vineyard
+vineyards

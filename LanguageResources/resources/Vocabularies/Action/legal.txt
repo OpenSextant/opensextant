@@ -1,0 +1,71 @@
+acquittal
+acquittals
+adjournment
+allegation
+allegations
+amnesty
+appeal
+appeals
+arrest
+arrests
+arraignment
+arraignments
+bail application
+bail applications
+bankruptcies
+bankruptcy
+conviction
+convictions
+criminal charge
+custody
+death penalty
+deportation
+deportation order
+drug bust
+drug busts
+extradition
+extradition order
+grand juries
+grand jury
+grievance
+grievances
+guilty plea
+immigration offense
+immigration offenses
+immigration violation
+immigration violations
+indictment
+indictments
+interrogation
+interrogations
+investigation
+investigations
+jury duty
+jury trial
+lawsuit
+lawsuits
+life sentence
+life sentences
+maximum sentence
+mimimum sentence
+parole
+peremptory plea
+plea
+plea bargain
+preliminary hearing
+probation
+prosecution
+sanction
+sanctions
+search warrant
+search warrants
+seizure
+seizures
+sentencing
+statutory sentence
+suspended sentence
+suspended sentences
+trial
+trials
+verdict
+year sentence

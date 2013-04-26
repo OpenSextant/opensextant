@@ -1,0 +1,63 @@
+<!--
+This file defines the dependencies for the OpenSextantToolbox
+-->
+
+<CREOLE-DIRECTORY>
+    <JAR SCAN="True" >lib/OpenSextantToolbox.jar</JAR>
+    <JAR SCAN="False" >lib/opensextant-commons.jar</JAR>
+    
+    <JAR SCAN="False">lib/geodesy-1.9.24.jar</JAR>
+    <JAR SCAN="False">lib/giscore-1.8.jar</JAR>
+    
+    <JAR SCAN="False">lib/slf4j-api-1.7.4.jar</JAR>
+    <JAR SCAN="False">lib/slf4j-log4j12-1.7.4.jar</JAR>
+    
+
+    <!-- Core OpenSextant capabilities - Date and coordinate extraction --> 
+    <JAR SCAN="False">lib/flexpat-1.3.jar</JAR>
+    <JAR SCAN="False">lib/xcoord-1.6.jar</JAR>
+    <JAR SCAN="False">lib/xtemporal-1.0.jar</JAR>
+    
+    <!-- Solr 4.x support -->
+
+    <!-- OpenSextant extension for tagging text. -->
+    <JAR SCAN="False">lib/SolrTextTagger.jar</JAR>
+    
+    <!-- Solr Spatial - Lucene + add-ons -->
+    <!--JAR SCAN="False">lib/solr/jts-1.13.jar</JAR-->
+    <JAR SCAN="False">lib/lucene-spatial-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/spatial4j-0.3.jar</JAR>
+
+    <!-- Solr Core/Client -->
+    <JAR SCAN="False">lib/solr-core-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/solr-solrj-4.2.1.jar</JAR>
+
+    <!-- Lucene analyzers -->
+    
+    <JAR SCAN="False">lib/lucene-analyzers-common-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/lucene-analyzers-kuromoji-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/lucene-analyzers-phonetic-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/lucene-core-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/lucene-codecs-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/lucene-grouping-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/lucene-highlighter-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/lucene-memory-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/lucene-misc-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/lucene-queries-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/lucene-queryparser-4.2.1.jar</JAR>
+    <JAR SCAN="False">lib/lucene-suggest-4.2.1.jar</JAR>
+    
+    <!-- Solr support libs -->
+    <JAR SCAN="False">lib/wstx-asl-3.2.7.jar</JAR>
+    <JAR SCAN="False">lib/zookeeper-3.4.5.jar</JAR>
+    <JAR SCAN="False">lib/commons-io-2.1.jar</JAR>
+    <JAR SCAN="False">lib/commons-fileupload-1.2.1.jar</JAR>    
+    <JAR SCAN="False">lib/commons-codec-1.7.jar</JAR>  
+    <JAR SCAN="False">lib/commons-lang-2.6.jar</JAR>
+    <JAR SCAN="False">lib/guava-13.0.1.jar</JAR>
+
+    <JAR SCAN="False">lib/httpclient-4.2.3.jar</JAR>
+    <JAR SCAN="False">lib/httpcore-4.2.2.jar</JAR>
+    <JAR SCAN="False">lib/httpmime-4.2.3.jar</JAR>
+     
+</CREOLE-DIRECTORY>

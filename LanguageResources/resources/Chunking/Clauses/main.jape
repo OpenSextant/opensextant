@@ -1,0 +1,6 @@
+MultiPhase:	VGTest
+Phases: 
+SplitCandidates
+BetweenVerbs
+ClauseSplitPoints
+ClauseSplitter

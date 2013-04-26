@@ -1,0 +1,12 @@
+ship
+ships
+boat
+boats
+barge
+barges
+cruise ship
+speedboat
+canoe
+canoes
+kayak
+kayaks

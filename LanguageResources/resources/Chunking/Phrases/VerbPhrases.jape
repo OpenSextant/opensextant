@@ -1,0 +1,414 @@
+
+Phase: VP_Chunking
+Input: Token tempVP_MOD tempVP_BDH tempVP_MODAL tempVP_HEAD tempINF_MOD tempINF_HEAD tempINF_HEAD_PASSIVE
+Options: control = appelt
+
+
+Rule: INF
+(
+		(({tempINF_MOD })*):mod
+		{Token.string ==~ "to|To|TO"}
+		(({tempINF_MOD })*):mod2
+		({tempINF_HEAD })+:head
+
+):inf
+-->
+		{
+
+			// get the whole INF
+			gate.AnnotationSet infSet = (gate.AnnotationSet)bindings.get("inf");
+			gate.Annotation inf = (gate.Annotation)infSet.iterator().next();
+			gate.FeatureMap infFeatures = Factory.newFeatureMap();
+			Node infStartNode = infSet.firstNode(); 
+			Node infEndNode   = infSet.lastNode();
+
+			String infPhraseString = null;
+			try{
+				infPhraseString  = doc.getContent().getContent(infStartNode.getOffset(), infEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+			}catch(InvalidOffsetException e) {
+
+			}
+
+			if(infPhraseString != null){
+				infFeatures.put("INF",infPhraseString);
+			}
+
+	
+			// get the pre modifier(s)
+			gate.AnnotationSet modSet = (gate.AnnotationSet)bindings.get("mod");
+			if(modSet != null){
+			gate.Annotation mod = (gate.Annotation)modSet.iterator().next();
+			Node modStartNode = modSet.firstNode(); 
+			Node modEndNode   = modSet.lastNode();
+
+			String modPhraseString = null;
+			try{
+				modPhraseString  = doc.getContent().getContent(modStartNode.getOffset(), modEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+			}catch(InvalidOffsetException e) {
+
+			}
+
+			if(modPhraseString != null){
+				infFeatures.put("MOD_PRE",modPhraseString);
+			}
+			}else{
+				infFeatures.put("MOD_PRE","");
+			}
+			
+			
+			// get the post modifier(s)
+			gate.AnnotationSet mod2Set = (gate.AnnotationSet)bindings.get("mod2");
+			if(mod2Set != null){
+			gate.Annotation mod2 = (gate.Annotation)mod2Set.iterator().next();
+			Node mod2StartNode = mod2Set.firstNode(); 
+			Node mod2EndNode   = mod2Set.lastNode();
+
+			String mod2PhraseString = null;
+			try{
+				mod2PhraseString  = doc.getContent().getContent(mod2StartNode.getOffset(), mod2EndNode.getOffset()).toString().replaceAll("\\s+"," ");
+			}catch(InvalidOffsetException e) {
+
+			}
+
+			if(mod2PhraseString != null){
+				infFeatures.put("MOD_POST",mod2PhraseString);
+			}
+			}else{
+				infFeatures.put("MOD_POST","");
+			}
+			
+	
+			// get the head
+			gate.AnnotationSet headSet = (gate.AnnotationSet)bindings.get("head");
+			if(headSet != null){
+			gate.Annotation head = (gate.Annotation)headSet.iterator().next();
+			Node headStartNode = headSet.firstNode(); 
+			Node headEndNode   = headSet.lastNode();
+
+			String headPhraseString = null;
+			try{
+				headPhraseString  = doc.getContent().getContent(headStartNode.getOffset(), headEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+			}catch(InvalidOffsetException e) {
+
+			}
+
+			if(headPhraseString != null){
+				infFeatures.put("HEAD",headPhraseString);
+			}
+			}else{
+				infFeatures.put("HEAD","");
+			}
+	
+			infFeatures.put("code","INF");
+    outputAS.add( infStartNode,infEndNode, "InfinitivePhrase", infFeatures );
+}
+
+	
+		Rule: INFPassive
+		(
+				(({tempINF_MOD })*):mod
+				{Token.string ==~ "to|To|TO"}
+				({Token.pos == "BE"}|{Token.pos == "HV"})
+				({Token.pos == "BEN"})?
+				(({tempINF_MOD })*):mod2
+				({tempINF_HEAD_PASSIVE })+:head
+
+		):inf
+		-->
+				{
+
+					// get the whole INF
+					gate.AnnotationSet infSet = (gate.AnnotationSet)bindings.get("inf");
+					gate.Annotation inf = (gate.Annotation)infSet.iterator().next();
+					gate.FeatureMap infFeatures = Factory.newFeatureMap();
+					Node infStartNode = infSet.firstNode(); 
+					Node infEndNode   = infSet.lastNode();
+
+					String infPhraseString = null;
+					try{
+						infPhraseString  = doc.getContent().getContent(infStartNode.getOffset(), infEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+					}catch(InvalidOffsetException e) {
+
+					}
+
+					if(infPhraseString != null){
+						infFeatures.put("INF",infPhraseString);
+					}
+
+			
+					// get the pre modifier(s)
+					gate.AnnotationSet modSet = (gate.AnnotationSet)bindings.get("mod");
+					if(modSet != null){
+					gate.Annotation mod = (gate.Annotation)modSet.iterator().next();
+					Node modStartNode = modSet.firstNode(); 
+					Node modEndNode   = modSet.lastNode();
+
+					String modPhraseString = null;
+					try{
+						modPhraseString  = doc.getContent().getContent(modStartNode.getOffset(), modEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+					}catch(InvalidOffsetException e) {
+
+					}
+
+					if(modPhraseString != null){
+						infFeatures.put("MOD_PRE",modPhraseString);
+					}
+					}else{
+						infFeatures.put("MOD_PRE","");
+					}
+					
+					
+					// get the post modifier(s)
+					gate.AnnotationSet mod2Set = (gate.AnnotationSet)bindings.get("mod2");
+					if(mod2Set != null){
+					gate.Annotation mod2 = (gate.Annotation)mod2Set.iterator().next();
+					Node mod2StartNode = mod2Set.firstNode(); 
+					Node mod2EndNode   = mod2Set.lastNode();
+
+					String mod2PhraseString = null;
+					try{
+						mod2PhraseString  = doc.getContent().getContent(mod2StartNode.getOffset(), mod2EndNode.getOffset()).toString().replaceAll("\\s+"," ");
+					}catch(InvalidOffsetException e) {
+
+					}
+
+					if(mod2PhraseString != null){
+						infFeatures.put("MOD_POST",mod2PhraseString);
+					}
+					}else{
+						infFeatures.put("MOD_POST","");
+					}
+					
+			
+					// get the head
+					gate.AnnotationSet headSet = (gate.AnnotationSet)bindings.get("head");
+					if(headSet != null){
+					gate.Annotation head = (gate.Annotation)headSet.iterator().next();
+					Node headStartNode = headSet.firstNode(); 
+					Node headEndNode   = headSet.lastNode();
+
+					String headPhraseString = null;
+					try{
+						headPhraseString  = doc.getContent().getContent(headStartNode.getOffset(), headEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+					}catch(InvalidOffsetException e) {
+
+					}
+
+					if(headPhraseString != null){
+						infFeatures.put("HEAD",headPhraseString);
+					}
+					}else{
+						infFeatures.put("HEAD","");
+					}
+			
+					infFeatures.put("code","INF");
+		    outputAS.add( infStartNode,infEndNode, "InfinitivePhrase", infFeatures );
+		}		
+		
+	
+Rule: VP
+(
+		(({tempVP_MOD   })*
+		 ({tempVP_MODAL })?
+		 ({tempVP_BDH   })[0,2]				 
+		 ({tempVP_MOD   })? 			 
+		 ({tempVP_BDH   })[0,2]
+		 ({tempVP_MOD })? ):mod
+		({tempVP_HEAD   }):head
+		(({tempVP_MOD   })*):mod2
+):vp
+-->
+		{
+
+			// get the whole VP
+			gate.AnnotationSet vpSet = (gate.AnnotationSet)bindings.get("vp");
+			gate.Annotation vp = (gate.Annotation)vpSet.iterator().next();
+			gate.FeatureMap vpFeatures = Factory.newFeatureMap();
+			Node vpStartNode = vpSet.firstNode(); 
+			Node vpEndNode   = vpSet.lastNode();
+
+			String vpPhraseString = null;
+			try{
+				vpPhraseString  = doc.getContent().getContent(vpStartNode.getOffset(), vpEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+			}catch(InvalidOffsetException e) {
+
+			}
+
+			if(vpPhraseString != null){
+				vpFeatures.put("VP",vpPhraseString);
+			}
+
+	
+			// get the pre modifier(s)
+			gate.AnnotationSet modSet = (gate.AnnotationSet)bindings.get("mod");
+			if(modSet != null){
+			gate.Annotation mod = (gate.Annotation)modSet.iterator().next();
+			Node modStartNode = modSet.firstNode(); 
+			Node modEndNode   = modSet.lastNode();
+
+			String modPhraseString = null;
+			try{
+				modPhraseString  = doc.getContent().getContent(modStartNode.getOffset(), modEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+			}catch(InvalidOffsetException e) {
+
+			}
+
+			if(modPhraseString != null){
+				vpFeatures.put("MOD_PRE",modPhraseString);
+			}
+			}else{
+				vpFeatures.put("MOD_PRE","");
+			}
+			
+			
+			// get the post modifier(s)
+			gate.AnnotationSet mod2Set = (gate.AnnotationSet)bindings.get("mod2");
+			if(mod2Set != null){
+			gate.Annotation mod2 = (gate.Annotation)mod2Set.iterator().next();
+			Node mod2StartNode = mod2Set.firstNode(); 
+			Node mod2EndNode   = mod2Set.lastNode();
+
+			String mod2PhraseString = null;
+			try{
+				mod2PhraseString  = doc.getContent().getContent(mod2StartNode.getOffset(), mod2EndNode.getOffset()).toString().replaceAll("\\s+"," ");
+			}catch(InvalidOffsetException e) {
+
+			}
+
+			if(mod2PhraseString != null){
+				vpFeatures.put("MOD_POST",mod2PhraseString);
+			}
+			}else{
+				vpFeatures.put("MOD_POST","");
+			}
+			
+	
+			// get the head
+			gate.AnnotationSet headSet = (gate.AnnotationSet)bindings.get("head");
+			if(headSet != null){
+			gate.Annotation head = (gate.Annotation)headSet.iterator().next();
+			Node headStartNode = headSet.firstNode(); 
+			Node headEndNode   = headSet.lastNode();
+
+			String headPhraseString = null;
+			try{
+				headPhraseString  = doc.getContent().getContent(headStartNode.getOffset(), headEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+			}catch(InvalidOffsetException e) {
+
+			}
+
+			if(headPhraseString != null){
+				vpFeatures.put("HEAD",headPhraseString);
+			}
+			}else{
+				vpFeatures.put("HEAD","");
+			}
+	
+
+			vpFeatures.put("code","VP");
+    outputAS.add( vpStartNode,vpEndNode, "VerbPhrase", vpFeatures );
+}
+	
+		
+		Rule: VP_BDH
+		(
+				(({tempVP_MOD   })*
+				 ({tempVP_MODAL })?
+				 ({tempVP_MOD   })?):mod 			 
+				 ({tempVP_BDH   }):head
+				 ({tempVP_MOD   })*:mod2
+		):vp
+		-->
+				{
+
+					// get the whole VP
+					gate.AnnotationSet vpSet = (gate.AnnotationSet)bindings.get("vp");
+					gate.Annotation vp = (gate.Annotation)vpSet.iterator().next();
+					gate.FeatureMap vpFeatures = Factory.newFeatureMap();
+					Node vpStartNode = vpSet.firstNode(); 
+					Node vpEndNode   = vpSet.lastNode();
+
+					String vpPhraseString = null;
+					try{
+						vpPhraseString  = doc.getContent().getContent(vpStartNode.getOffset(), vpEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+					}catch(InvalidOffsetException e) {
+
+					}
+
+					if(vpPhraseString != null){
+						vpFeatures.put("VP",vpPhraseString);
+					}
+
+			
+					// get the pre modifier(s)
+					gate.AnnotationSet modSet = (gate.AnnotationSet)bindings.get("mod");
+					if(modSet != null){
+					gate.Annotation mod = (gate.Annotation)modSet.iterator().next();
+					Node modStartNode = modSet.firstNode(); 
+					Node modEndNode   = modSet.lastNode();
+
+					String modPhraseString = null;
+					try{
+						modPhraseString  = doc.getContent().getContent(modStartNode.getOffset(), modEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+					}catch(InvalidOffsetException e) {
+
+					}
+
+					if(modPhraseString != null){
+						vpFeatures.put("MOD_PRE",modPhraseString);
+					}
+					}else{
+						vpFeatures.put("MOD_PRE","");
+					}
+					
+					
+					// get the post modifier(s)
+					gate.AnnotationSet mod2Set = (gate.AnnotationSet)bindings.get("mod2");
+					if(mod2Set != null){
+					gate.Annotation mod2 = (gate.Annotation)mod2Set.iterator().next();
+					Node mod2StartNode = mod2Set.firstNode(); 
+					Node mod2EndNode   = mod2Set.lastNode();
+
+					String mod2PhraseString = null;
+					try{
+						mod2PhraseString  = doc.getContent().getContent(mod2StartNode.getOffset(), mod2EndNode.getOffset()).toString().replaceAll("\\s+"," ");
+					}catch(InvalidOffsetException e) {
+
+					}
+
+					if(mod2PhraseString != null){
+						vpFeatures.put("MOD_POST",mod2PhraseString);
+					}
+					}else{
+						vpFeatures.put("MOD_POST","");
+					}
+					
+			
+					// get the head
+					gate.AnnotationSet headSet = (gate.AnnotationSet)bindings.get("head");
+					if(headSet != null){
+					gate.Annotation head = (gate.Annotation)headSet.iterator().next();
+					Node headStartNode = headSet.firstNode(); 
+					Node headEndNode   = headSet.lastNode();
+
+					String headPhraseString = null;
+					try{
+						headPhraseString  = doc.getContent().getContent(headStartNode.getOffset(), headEndNode.getOffset()).toString().replaceAll("\\s+"," ");
+					}catch(InvalidOffsetException e) {
+
+					}
+
+					if(headPhraseString != null){
+						vpFeatures.put("HEAD",headPhraseString);
+					}
+					}else{
+						vpFeatures.put("HEAD","");
+					}
+			
+
+					vpFeatures.put("code","VP");
+		    outputAS.add( vpStartNode,vpEndNode, "VerbPhrase", vpFeatures );
+		}		
+		
+		
+	

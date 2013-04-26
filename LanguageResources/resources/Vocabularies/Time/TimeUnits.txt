@@ -1,0 +1,36 @@
+secs
+second
+seconds
+seconds
+mins
+minute
+minutes
+minutes
+hour
+hours
+hours
+day
+days
+night
+nights
+week
+weeks
+fortnight
+fortnights
+month
+months
+year
+years
+decade
+decades
+centuries
+century
+milleniums
+millenia
+fiscal year
+financial year
+financial years
+fiscal half
+fiscal quarter
+fiscal quarters
+tax year

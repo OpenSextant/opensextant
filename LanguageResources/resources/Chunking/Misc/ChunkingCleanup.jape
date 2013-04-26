@@ -1,0 +1,32 @@
+Phase: ChunkCleanUp
+Input: Token
+
+Options: control = once
+
+Rule: ChunkCleanUp
+(
+		{Token}
+):cl
+-->
+{
+
+	Set<String> removeSetTypes = new HashSet<String>();
+		removeSetTypes.add("tempADJ_MOD");
+		removeSetTypes.add("tempConjunction");
+		removeSetTypes.add("tempINF_HEAD");
+		removeSetTypes.add("tempINF_HEAD_PASSIVE");
+		removeSetTypes.add("tempINF_MOD");
+		removeSetTypes.add("tempNP_DET");
+		removeSetTypes.add("tempNP_HEAD");
+		removeSetTypes.add("tempNP_MOD");
+		removeSetTypes.add("tempPrep");
+		removeSetTypes.add("tempVP_BDH");
+		removeSetTypes.add("tempVP_HEAD");
+		removeSetTypes.add("tempVP_MOD");
+		removeSetTypes.add("tempVP_MODAL");
+	
+	outputAS.removeAll(outputAS.get(removeSetTypes));
+	
+}
+
+

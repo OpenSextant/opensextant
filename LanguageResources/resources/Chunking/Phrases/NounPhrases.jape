@@ -1,0 +1,139 @@
+
+Imports: {
+import static gate.Utils.*;
+}
+
+
+Phase: NP_Chunking
+Input: Token Split tempNP_DET  tempNP_MOD tempNP_HEAD
+Options: control = appelt
+
+Rule: NPProper
+(
+		({tempNP_DET})?:det
+		({tempNP_MOD})[0,5]:mod
+		({tempNP_HEAD.nounType == "proper"}):head
+):np
+-->
+		{
+
+			// get all of the pieces
+			gate.AnnotationSet npSet = (gate.AnnotationSet)bindings.get("np");
+			Node npStartNode = npSet.firstNode(); 
+			Node npEndNode   = npSet.lastNode();
+			
+			
+			gate.AnnotationSet detSet = (gate.AnnotationSet)bindings.get("det");
+			gate.AnnotationSet modSet = (gate.AnnotationSet)bindings.get("mod");
+			gate.AnnotationSet headSet = (gate.AnnotationSet)bindings.get("head");
+			
+			gate.Annotation head = (gate.Annotation)headSet.iterator().next();
+			
+			String headNounType = (String)head.getFeatures().get("nounType");
+			
+			gate.FeatureMap npFeatures = Factory.newFeatureMap();
+			
+			npFeatures.put("nounPhraseType",headNounType);
+			
+			// attach strings for each element as features
+			// attach spans for each element
+			if(npSet != null){
+			 npFeatures.put("NP",stringFor(doc,npSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}
+			//else{
+			// npFeatures.put("NP","");
+			//}
+			
+			if(detSet != null){
+			 npFeatures.put("DET",stringFor(doc,detSet).replaceAll("[\\s\t\n\r]+"," ").trim()); 
+			}else{
+			 npFeatures.put("DET","");
+			}
+			
+			if(modSet != null){
+			  npFeatures.put("MOD",stringFor(doc,modSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}else{
+			  npFeatures.put("MOD","");
+			}
+			
+			//also attach headset annotation as feature
+			if(headSet != null){
+			  npFeatures.put("HEAD",stringFor(doc,headSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			  npFeatures.put("headSetAnnotation",headSet);  
+			}
+			//else{
+			//  npFeatures.put("HEAD","");
+			//}
+			
+			npFeatures.put("chunkerRule","NPProper");
+			npFeatures.put("code","NP");
+			
+    outputAS.add( npStartNode,npEndNode, "NounPhrase", npFeatures );
+
+}	
+
+
+
+Rule: NP
+(
+		({tempNP_DET})?:det
+		({tempNP_MOD})[0,5]:mod
+		({tempNP_HEAD})[1,5]:head
+):np
+-->
+		{
+
+			// get all of the pieces
+			gate.AnnotationSet npSet = (gate.AnnotationSet)bindings.get("np");
+			Node npStartNode = npSet.firstNode(); 
+			Node npEndNode   = npSet.lastNode();
+			
+			
+			gate.AnnotationSet detSet = (gate.AnnotationSet)bindings.get("det");
+			gate.AnnotationSet modSet = (gate.AnnotationSet)bindings.get("mod");
+			gate.AnnotationSet headSet = (gate.AnnotationSet)bindings.get("head");
+			
+			gate.Annotation head = (gate.Annotation)headSet.iterator().next();
+			
+			String headNounType = (String)head.getFeatures().get("nounType");
+			
+			gate.FeatureMap npFeatures = Factory.newFeatureMap();
+			
+			npFeatures.put("nounPhraseType",headNounType);
+			
+			// attach strings for each element as features
+			// attach spans for each element
+			if(npSet != null){
+			 npFeatures.put("NP",stringFor(doc,npSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}
+			//else{
+			// npFeatures.put("NP","");
+			//}
+			
+			if(detSet != null){
+			 npFeatures.put("DET",stringFor(doc,detSet).replaceAll("[\\s\t\n\r]+"," ").trim()); 
+			}else{
+			 npFeatures.put("DET","");
+			}
+			
+			if(modSet != null){
+			  npFeatures.put("MOD",stringFor(doc,modSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			}else{
+			  npFeatures.put("MOD","");
+			}
+			
+			//also attach headset annotation as feature
+			if(headSet != null){
+			  npFeatures.put("HEAD",stringFor(doc,headSet).replaceAll("[\\s\t\n\r]+"," ").trim());
+			  npFeatures.put("headSetAnnotation",headSet);  
+			}
+			//else{
+			//  npFeatures.put("HEAD","");
+			//}
+			
+			npFeatures.put("chunkerRule","NP");
+			npFeatures.put("code","NP");
+			
+    outputAS.add( npStartNode,npEndNode, "NounPhrase", npFeatures );
+
+}	

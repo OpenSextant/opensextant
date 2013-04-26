@@ -1,0 +1,54 @@
+//
+// $Id: combineNumbers.jape,v 1.3 2006/03/03 10:54:19 witte Exp $
+//
+// (Multi-lingual) number combiner
+//
+// (c) 2006 University of Karlsruhe, IPD, Ralf Krestel
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+
+Phase:	NumberCombine
+Input: Token SpaceToken
+Options: control = appelt
+
+Macro: MID
+(
+ {Token.string == "."}|
+ {Token.string == ","}|
+ {Token.string == "-"}|
+ {Token.string == "*"}|
+ {Token.string == "+"}
+)
+
+Macro: BEG
+(
+ {Token.string == "-"}|
+ {Token.string == "~"}|
+ {Token.string == "#"}|
+ {Token.string == "."}
+)
+
+Macro: END
+(
+ {Token.string == "b"}|
+ {Token.string == "m"}|
+ {Token.string == "k"}
+)
+
+Rule: CombineNumber
+Priority: 100
+(
+ (BEG)?
+ {Token.kind == "number"}
+ ((MID)?
+  ({Token.kind == "number"})+)
+ (END)?
+)
+:combinenumber
+-->
+:combinenumber.Number = { rule="combinenumber" } 
+

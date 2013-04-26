@@ -1,0 +1,49 @@
+agencies
+agency
+amirate
+amirates
+caliphate
+caliphates
+commonwealth
+counties
+countries
+country
+county
+directorate
+directorates
+district
+districts
+emirate
+emirates
+federation
+federations
+governate
+governates
+governorate
+governorates
+governorship
+governorships
+military district
+military districts
+military region
+military regions
+naval district
+naval districts
+ostan
+ostans
+parish
+parishs
+province
+provinces
+republic
+republics
+shaikdom
+shaikdoms
+sheikdom
+sheikdoms
+state
+states
+territories
+territory
+union
+unions

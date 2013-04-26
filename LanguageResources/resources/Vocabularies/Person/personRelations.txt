@@ -1,0 +1,116 @@
+child
+children
+descendent
+descendents
+son
+sons
+daughter
+daughters
+sibling
+siblings
+brother
+brothers
+sister
+sisters
+parent
+parents
+mother
+mothers
+father
+fathers
+cousin
+cousins
+uncle
+uncles
+aunt
+aunts
+nephew
+nephews
+niece
+nieces
+grandparent
+grandfather
+grandmother
+grandson
+grandsons
+grand son
+grand sons
+granddaughter
+granddaughters
+grand daughter
+grand daughters
+grandchild
+grandchildren
+husband
+wife
+wives
+common law wife
+common-law wife
+common law wives
+common-law wives
+spouse
+inlaw
+inlaws
+father-in-law
+father-in-laws
+sister-in-law
+sister-in-laws
+brother-in-law
+brother-in-laws
+mother-in-law
+mother-in-laws
+son-in-law
+son-in-laws
+in-law
+in law
+family
+families
+family member
+family members
+family ties
+relative
+relatives
+kin
+kinship
+friend
+friends
+associate
+associates
+contact
+contacts
+partner
+partner
+accomplice
+accomplices
+acquaintance
+acquaintances
+associate
+associates
+colleague
+colleagues
+business colleague
+business colleagues
+business associate
+business associates
+close associate
+close associates
+girlfriend
+girl friend
+girlfriends
+girl friends
+boyfriend
+boy friend
+boyfriends
+boy friends
+godfather
+godfathers
+godmother
+godmothers
+god-father
+god-fathers
+god-mother
+god-mothers
+god father
+god fathers
+god mother
+god mothers

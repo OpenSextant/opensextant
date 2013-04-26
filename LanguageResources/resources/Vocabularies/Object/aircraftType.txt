@@ -1,0 +1,59 @@
+all weather
+all-weather
+autogyro
+autogyros
+antisubmarine warfare
+asw
+attack
+bomber
+cargo
+combat
+fighter
+fighter bomber
+fighter bombers
+fighter/bomber
+fighter/bombers
+fighterbomber
+fighter-bomber
+fighterbombers
+fighter-bombers
+fixed wing
+fixed-wing
+ground attack
+heavy lift
+heavy-lift
+heavy bomber
+heavy bombers
+helicopter gunship
+helicopter gunships
+jet
+jet trainer
+jet trainers
+light lift
+light-lift
+maritime patrol
+medium lift
+medium-lift
+multirole
+multi-role
+multirole fighter
+multi-role fighter
+multirole fighters
+multi-role fighters
+observation
+patrol
+recon
+reconaissance
+reconn
+reconnaisance
+reconnaissance
+rotary wing
+rotary-wing
+search and rescue
+tanker
+tankers
+trainer
+transport
+uav
+unmanned aerial vehicle
+utility

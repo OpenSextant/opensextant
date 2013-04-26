@@ -1,0 +1,70 @@
+b.s.t.
+british summer time
+bst
+c.d.t.
+c.e.t.
+c.s.t.
+cdt
+central daily time
+central day time
+central european time
+central standard time
+central time
+cet
+cst
+e.c.t.
+e.d.t.
+e.s.t.
+e.t.
+east coast time
+east daily time
+east day time
+eastern coast time
+eastern daily time
+eastern day time
+eastern standard time
+eastern time
+eastern time
+ect
+edt
+est
+et
+g.m.t.
+gmt
+greenwich mean time
+greenwich meantime
+greenwich meantime
+greenwich time
+m.e.t.
+met
+middle eastern time
+northern time
+northern time
+p.d.t.
+pacific daily time
+pacific day time
+pacific time
+pacific time
+pdt
+southern time
+southern time
+w.c.t.
+w.d.t.
+w.s.t.
+wct
+wdt
+west coast time
+west daily time
+west day time
+western coast time
+western daily time
+western day time
+western standard time
+western time
+western time
+wst
+z.s.t.
+zone standard time
+zst
+zulu standard time
+zulu

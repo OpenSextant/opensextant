@@ -1,0 +1,197 @@
+/** 
+ Copyright 2009-2013 The MITRE Corporation.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+ * **************************************************************************
+ *                          NOTICE
+ * This software was produced for the U. S. Government under Contract No.
+ * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
+ * Software and Noncommercial Computer Software Documentation Clause
+ * 252.227-7014 (JUN 1995)
+ *
+ * (c) 2012 The MITRE Corporation. All Rights Reserved.
+ * **************************************************************************
+**/
+
+Imports: {
+import org.mitre.opensextant.placedata.PlaceCandidate;
+}
+
+Phase: PCScoring_POS_Multi
+Input: Token Lookup Split placecandidate FeatureType
+LocationContextPhrase  CardinalDirection LocationVerb
+Options: control = all
+
+
+//--------------------------------------------------------------------------
+// road between Wazi and Wautusi
+Rule: FeatureTypeBetween
+(
+		{FeatureType} {Token.string ==~ "between|Between|BETWEEN"}({placecandidate}):pc1 {Token.string ==~ "and|And|AND"}({placecandidate}):pc2 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet1 = bindings.get("pc1");
+	gate.Annotation pc1 = pcSet1.iterator().next();
+	gate.AnnotationSet pcSet2 = bindings.get("pc2");
+	gate.Annotation pc2 = pcSet2.iterator().next();
+	
+	gate.FeatureMap pc1Features = pc1.getFeatures();
+	PlaceCandidate pc1Obj = (PlaceCandidate) pc1Features.get("placeCandidate");
+	gate.FeatureMap pc2Features = pc2.getFeatures();
+	PlaceCandidate pc2Obj = (PlaceCandidate) pc2Features.get("placeCandidate");
+
+	pc1Obj.addRuleAndConfidence(ruleName(), 1.0);
+	pc2Obj.addRuleAndConfidence(ruleName(), 1.0);
+}
+
+
+//--------------------------------------------------------------------------
+// from Wazi to Wautusi
+Rule: FeatureTypeBetween
+(
+		{Token.string ==~ "from|From|FROM"}({placecandidate}):pc1 {Token.string ==~ "to|To|TO"}({placecandidate}):pc2 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet1 = bindings.get("pc1");
+	gate.Annotation pc1 = pcSet1.iterator().next();
+	gate.AnnotationSet pcSet2 = bindings.get("pc2");
+	gate.Annotation pc2 = pcSet2.iterator().next();
+	
+	gate.FeatureMap pc1Features = pc1.getFeatures();
+	PlaceCandidate pc1Obj = (PlaceCandidate) pc1Features.get("placeCandidate");
+	gate.FeatureMap pc2Features = pc2.getFeatures();
+	PlaceCandidate pc2Obj = (PlaceCandidate) pc2Features.get("placeCandidate");
+
+	pc1Obj.addRuleAndConfidence(ruleName(), 1.0);
+	pc2Obj.addRuleAndConfidence(ruleName(), 1.0);
+}
+
+
+//--------------------------------------------------------------------------
+// US-Canada border
+Rule: HyphenatedPlaces
+(
+ ({placecandidate}):pc1 {Token.string == "-"} ({placecandidate}):pc2 {FeatureType}
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet1 = bindings.get("pc1");
+	gate.Annotation pc1 = pcSet1.iterator().next();
+	gate.AnnotationSet pcSet2 = bindings.get("pc2");
+	gate.Annotation pc2 = pcSet2.iterator().next();
+	
+	gate.FeatureMap pc1Features = pc1.getFeatures();
+	PlaceCandidate pc1Obj = (PlaceCandidate) pc1Features.get("placeCandidate");
+	gate.FeatureMap pc2Features = pc2.getFeatures();
+	PlaceCandidate pc2Obj = (PlaceCandidate) pc2Features.get("placeCandidate");
+
+	pc1Obj.addRuleAndConfidence(ruleName(), 1.0);
+	pc2Obj.addRuleAndConfidence(ruleName(), 1.0);
+}
+
+
+//--------------------------------------------------------------------------
+//traveled between Wazi and Wautusi
+Rule: PlaceVerbBetween
+(
+		{LocationVerb} {Token.string ==~ "between|Between|BETWEEN"}({placecandidate}):pc1 {Token.string ==~ "and|And|AND"}({placecandidate}):pc2 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet1 = bindings.get("pc1");
+	gate.Annotation pc1 = pcSet1.iterator().next();
+	gate.AnnotationSet pcSet2 = bindings.get("pc2");
+	gate.Annotation pc2 = pcSet2.iterator().next();
+	
+	gate.FeatureMap pc1Features = pc1.getFeatures();
+	PlaceCandidate pc1Obj = (PlaceCandidate) pc1Features.get("placeCandidate");
+	gate.FeatureMap pc2Features = pc2.getFeatures();
+	PlaceCandidate pc2Obj = (PlaceCandidate) pc2Features.get("placeCandidate");
+
+	pc1Obj.addRuleAndConfidence(ruleName(), 1.0);
+	pc2Obj.addRuleAndConfidence(ruleName(), 1.0);
+}
+
+
+//--------------------------------------------------------------------------
+// Wazi village of Wazito District
+Rule: FeatureTypeOf_General
+(
+		({placecandidate}):pc1 {FeatureType} {Token.string ==~ "of|Of|OF"}({placecandidate}):pc2 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet1 = bindings.get("pc1");
+	gate.Annotation pc1 = pcSet1.iterator().next();
+	gate.AnnotationSet pcSet2 = bindings.get("pc2");
+	gate.Annotation pc2 = pcSet2.iterator().next();
+	
+	gate.FeatureMap pc1Features = pc1.getFeatures();
+	PlaceCandidate pc1Obj = (PlaceCandidate) pc1Features.get("placeCandidate");
+	gate.FeatureMap pc2Features = pc2.getFeatures();
+	PlaceCandidate pc2Obj = (PlaceCandidate) pc2Features.get("placeCandidate");
+
+	pc1Obj.addRuleAndConfidence(ruleName(), 1.0);
+	pc2Obj.addRuleAndConfidence(ruleName(), 1.0);
+}
+
+
+//--------------------------------------------------------------------------
+//Wazi area of Wazito
+Rule: FeatureTypeOf_Area
+(
+		({placecandidate}):pc1 {FeatureType.featureClass =="L"} {Token.string ==~ "of|Of|OF"}({placecandidate}):pc2 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet1 = bindings.get("pc1");
+	gate.Annotation pc1 = pcSet1.iterator().next();
+	gate.AnnotationSet pcSet2 = bindings.get("pc2");
+	gate.Annotation pc2 = pcSet2.iterator().next();
+	
+	gate.FeatureMap pc1Features = pc1.getFeatures();
+	PlaceCandidate pc1Obj = (PlaceCandidate) pc1Features.get("placeCandidate");
+	gate.FeatureMap pc2Features = pc2.getFeatures();
+	PlaceCandidate pc2Obj = (PlaceCandidate) pc2Features.get("placeCandidate");
+
+	pc1Obj.addRuleAndConfidence(ruleName(), 1.0);
+	pc2Obj.addRuleAndConfidence(ruleName(), 1.0);
+}
+
+
+//--------------------------------------------------------------------------
+//Wazi district of Wazito
+Rule: FeatureTypeOf_Admin
+(
+		({placecandidate}):pc1 {FeatureType.featureClass =="A"} {Token.string ==~ "of|Of|OF"}({placecandidate}):pc2 
+):phrase
+-->
+{
+	gate.AnnotationSet pcSet1 = bindings.get("pc1");
+	gate.Annotation pc1 = pcSet1.iterator().next();
+	gate.AnnotationSet pcSet2 = bindings.get("pc2");
+	gate.Annotation pc2 = pcSet2.iterator().next();
+	
+	gate.FeatureMap pc1Features = pc1.getFeatures();
+	PlaceCandidate pc1Obj = (PlaceCandidate) pc1Features.get("placeCandidate");
+	gate.FeatureMap pc2Features = pc2.getFeatures();
+	PlaceCandidate pc2Obj = (PlaceCandidate) pc2Features.get("placeCandidate");
+
+	pc1Obj.addRuleAndConfidence(ruleName(), 1.0);
+	pc2Obj.addRuleAndConfidence(ruleName(), 1.0);
+}
+
