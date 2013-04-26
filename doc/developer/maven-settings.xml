@@ -1,0 +1,16 @@
+
+<settings>
+  <proxies>
+   <proxy>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>myproxy</host>
+      <port>80</port>
+      <!--
+      <username>proxyuser</username>
+      <password>somepassword</password> 
+      -->
+      <nonProxyHosts>*.mydomain</nonProxyHosts>
+    </proxy>
+  </proxies>
+</settings>
