@@ -127,7 +127,7 @@
 		<copy todir="${jetty.home}/lib/ext" file="${opensextant.lib}/solr/jts-1.13.jar" />
 		<copy todir="${jetty.home}/webapps" file="${basedir}/solr/solr.war" />
 
-                <chmod perm="go-rwx" type="file">
+                <chmod perm="ug+x" type="file">
                    <fileset dir="${jetty.home}">
                       <include name="bin/*.*" />
                    </fileset>
