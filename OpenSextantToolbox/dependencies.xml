@@ -63,20 +63,13 @@
 
     <pathelement location="${release.dir}/lib/log4j-1.2.17.jar" />
 
-
   </path>
 
 	
   <!-- Current as of GATE 7.0 -->
-
-  <!-- location of the top-level GATE installation directory ; For now we create a symlink or install GATE 7.x just one level above this source module -->
-  <property name="GATE.location" location="../GATE" />
-
-  <!-- location of the GATE jar -->
-  <property name="gate.jar" location="../GATE/bin/gate.jar" />
 	
   <!-- location of various GATE jars -->
-  <property name="gate.lib" location="../GATE/lib" />
+  <property name="gate.lib" location="${gate7.home}/lib" />
 	
   <!-- The GATE jars required to build and run OpenSextant -->
   <path id="gate.dependencies">

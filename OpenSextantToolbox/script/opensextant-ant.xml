@@ -11,7 +11,6 @@
   
   <!-- Processing choices. -->
   <property name="solr_gapp" value="OpenSextant_Solr" />
-  <property name="solr_gapp2" value="OpenSextant_Solr_NO_CANTILEVER.gapp" />
   <property name="mysql_gapp" value="OpenSextant_MySQL" />
   <property name="mysql_gapp_plus" value="OpenSextant_MySQLWithPhoneticsAndCaseDetector" />
 
@@ -45,7 +44,7 @@
       <arg value="-i" />
       <arg value="${inputfile}" />
       <arg value="-f" />
-      <arg value="CSV" />
+      <arg value="${format}" />
       <arg value="-o" />
       <arg value="${outputfile}" />
       <arg value="-t" />

@@ -1,3 +1,4 @@
+#!/bin/sh 
 # Copyright 2009-2013 The MITRE Corporation.
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,8 +25,24 @@
 # * **************************************************************************
 #
 
+usage() {
+   echo "Usage: $0 <input> <output> <format>"
+   echo "  where "
+   echo "    input is an input file or folder"
+   echo "    output is an output file or folder; depends on format"
+   echo "    format is the format of your output: one of GDB, CSV, Shapefile, WKT, KML"
+}
+
 dir=`dirname $0`
 install=`cd -P $dir/..; echo $PWD`
 
-ant -f ${install}/script/opensextant-ant.xml run-solr
+DATA_IN=$1
+GEOCODE_OUT=$2
+FORMAT=$3
+
+if [ -z "$DATA_IN" -o -z "$GEOCODE_OUT" -o -z "$FORMAT" ] ; then 
+   usage;
+fi
+
+ant -f ${install}/script/opensextant-ant.xml -Dinputfile=$DATA_IN -Doutputfile=$GEOCODE_OUT -Dformat=$FORMAT  run-solr
 
