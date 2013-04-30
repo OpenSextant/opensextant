@@ -118,6 +118,17 @@
 	</target>
 
 
+        <property name="jetty.home" value="${opensextant.home}/jetty" />
+
+        <!-- Create a Jetty or other Webapp server to allow us to browse the gazetteer
+          -->
+	<target name="create-server">
+		<unzip src="${basedir}/../external/jetty-v8.zip" dest="${opensextant.home}/" />
+		<copy todir="${jetty.home}/lib/ext" file="${opensextant.lib}/solr/jts-1.13.jar" />
+		<copy todir="${jetty.home}/webapps" file="${basedir}/solr/solr.war" />
+	</target>
+
+
 	<!-- Prepare Solr Home-->
 
 	<!-- 1. create Solr home 

@@ -22,7 +22,7 @@ The core library is contained in this jar.
   <property name="doc.dir" location="${basedir}/../doc" />
 
   <!-- JavaDoc documentation directory -->
-  <property name="javadoc.dir" location="${doc.dir}/javadoc" />
+  <property name="javadoc.dir" location="${basedir}/doc/javadoc" />
 
   <property file="build.properties" />
 
@@ -149,6 +149,7 @@ The core library is contained in this jar.
       encoding="utf-8" access="public" windowtitle="OpenSextant JavaDoc" source="${java_level}">
       <sourcepath>
         <pathelement location="${src.dir}" />
+        <pathelement location="${commons.home}/src/main/java" />
       </sourcepath>
     </javadoc>
   </target>
@@ -237,11 +238,11 @@ The core library is contained in this jar.
   <!-- Copy over the GateHome files -->
   <target name="copy.gate.home" >
     <copy todir="${gate.home.install}">
-      <fileset dir="${gate.home.staging}" />
-      <fileset dir="${basedir}/gate" />
+      <fileset dir="${gate.home.staging}"/> 
+      <fileset dir="${basedir}/gate" includes="*.xml" />
     </copy>
 
-   <unzip src="${resources.home}/resources/GATE-plugin-ANNIE.zip" dest="${gate.home.install}/plugins"/>
+   <unzip src="${basedir}/gate/GATE-plugin-ANNIE.zip" dest="${gate.home.install}/plugins"/>
 
   </target>
 
@@ -450,10 +451,10 @@ The core library is contained in this jar.
 		
 	</target>
 	
-	<target name="release.components" depends="build, javadoc,release.Gazetteer,release.Toolbox,release.XComponents,release.LanguageResources, release.doc "/>
+	<target name="release.components" depends="build, all-javadoc,release.Gazetteer,release.Toolbox,release.XComponents,release.LanguageResources, release.doc "/>
 
 	<!-- copy over everything to the release directory -->
-  <target name="release" depends="build, javadoc, prepare.release, copy.gate.home, copy.lib, copy.resources, copy.scripts, copy.doc">
+    <target name="release" depends="build, all-javadoc, prepare.release, copy.gate.home, copy.lib, copy.resources, copy.scripts, copy.doc">
 	
     <delete file="${basedir}/build/OpenSextant-build-${version}.zip" />
    
