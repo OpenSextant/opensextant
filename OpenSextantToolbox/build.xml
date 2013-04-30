@@ -24,6 +24,8 @@ The core library is contained in this jar.
   <!-- JavaDoc documentation directory -->
   <property name="javadoc.dir" location="${doc.dir}/javadoc" />
 
+  <property file="build.properties" />
+
   <!-- lib directories - additional required jar files  -->
   <property name="lib.dir" location="lib" />
   <property name="solr.lib.dir" location="lib/solr" />
@@ -40,34 +42,33 @@ The core library is contained in this jar.
   <!-- location of GateHome files and Plugin directory, installed -->
   <property name="gate.home.install" location="${release.dir}/gate" />
 
-  <property name="opensextant.plugin" location="${gate.home.install}/plugins/OpenSextant" />        
+  <property name="opensextant.plugin" location="${gate.home.install}/plugins/OpenSextantToolbox" />        
         
   <property name="gaz.home" location="../Gazetteer" />
 	
   <!-- location of the XCoord directory -->
-  <property name="xcoord.home" location="../Xponents/XCoord" />
+  <property name="xcoord.home" location="../../Xponents/XCoord" />
 	
   <!-- location of the XTemporal directory -->
-  <property name="xtemp.home" location="../Xponents/XTemporal" />
-  <property name="xtext.home" location="../Xponents/XText" />
-  <property name="commons.home" location="../Commons" />
+  <property name="xtemp.home" location="../../Xponents/XTemporal" />
+  <property name="xtext.home" location="../../Xponents/XText" />
+  <property name="commons.home" location="../../Commons" />
 	
   <!-- location of the FlexPat directory -->
-  <property name="flexpat.home" location="../Xponents/FlexPat" />
-	
-  <!-- location of the top-level SolrTextTagger directory -->
-  <property name="solrtagger.home" location="../../SolrTextTagger" />
+  <property name="flexpat.home" location="../../Xponents/FlexPat" />
 	
   <!-- location for the generated JAR file -->
   <property name="jar.location" location="${build.dir}/${project.name}.jar" />
   <property name="phonetics_jar.location" location="${build.dir}/opensextant-phonetics.jar" />
+  <property name="apps_jar.location" location="${build.dir}/opensextant-apps.jar" />
+
+  <!-- External OpenSextant dependencies -->
   <property name="commons_jar.location" location="${commons.home}/build/opensextant-commons.jar" />
   <property name="flexpat_jar.location" location="${flexpat.home}/build/flexpat-1.3.jar"/>
-  <property name="apps_jar.location" location="${build.dir}/opensextant-apps.jar" />
 
 	
  <!-- location of the license file -->
-  <property name="license.location" location="${doc.dir}/Apache_Software_License_2.txt" />
+  <property name="license.location" location="../LICENSE.txt" />
 	
   <!-- gate jars required for building and running -->
   <import file="${basedir}/dependencies.xml"/>
@@ -83,10 +84,11 @@ The core library is contained in this jar.
   <!--====================== Targets ============================-->
   <!-- clean up created jars  -->
   <target name="clean">
-    <delete file="${jar.location}" />
-    <delete file="${phonetics_jar.location}" />
-    <delete file="${apps_jar.location}" />
-    <delete dir="${build.dir}/org" />
+    <delete dir="${build.dir}" />
+    <delete dir="${release.dir}" />
+
+    <mkdir dir="${build.dir}" />
+    <mkdir dir="${release.dir}" />
   </target>
 	
   	<!-- remove copied dependencies -->	
@@ -147,12 +149,11 @@ The core library is contained in this jar.
       encoding="utf-8" access="public" windowtitle="OpenSextant JavaDoc" source="${java_level}">
       <sourcepath>
         <pathelement location="${src.dir}" />
-        <pathelement location="../OpenSextantWebService/src" />
       </sourcepath>
     </javadoc>
   </target>
 
-  <target name="dependencies" depends="solrtagger.update, commons.update,flexpat.update,xcoord.update,xtemp.update, xtext.update" >
+  <target name="dependencies" depends="commons.update,flexpat.update,xcoord.update,xtemp.update, xtext.update" >
   </target>
 
 	
@@ -199,36 +200,28 @@ The core library is contained in this jar.
     <copy file="${xtemp.home}/src/main/resources/datetime_patterns.cfg" todir="${resources.home}/resources/patterns" />
   </target>
 		
-  <!-- Copy over SolrTextTagger jar -->
-  <target name="solrtagger.update" >
-    <subant target="build">
-      <fileset dir="${solrtagger.home}" includes="build.xml"/>
-    </subant>
-    <copy todir="${lib.dir}" file="${solrtagger.home}/build/SolrTextTagger.jar" />
-    <copy todir="${gaz.home}/solr/gazetteer/lib" file="${solrtagger.home}/build/SolrTextTagger.jar" />
-  </target>
-	
   <!-- Build the jars and jar dependencies. Note that the FlexPat build should precede the XCoord and Xtemporal builds -->
   <target name="build" depends="jar"/>
-		         
-	<!-- deploy OpenSextantToolbox locally to test -->
+
+	<!-- deploy OpenSextantToolbox locally to test  - and note, this copies the plugin bundle into your GATE7 install
+          -->
 	<target name="toolbox.deploy" depends="build">
 		<!-- create the target directory under GATE_HOME/plugins -->
-		<delete dir="${GATE.location}/plugins/OpenSextantToolbox"  />
-        <mkdir dir="${GATE.location}/plugins/OpenSextantToolbox" />
+		<delete dir="${gate7.home}/plugins/OpenSextantToolbox"  />
+        <mkdir dir="${gate7.home}/plugins/OpenSextantToolbox" />
 		<!-- copy over the libs and creole.xml -->
-        <copy todir="${GATE.location}/plugins/OpenSextantToolbox/lib">
+        <copy todir="${gate7.home}/plugins/OpenSextantToolbox/lib">
             <fileset dir="${basedir}/lib">
               <include name="*.jar" />
             </fileset>
         </copy>
-        <copy todir="${GATE.location}/plugins/OpenSextantToolbox/lib">
+        <copy todir="${gate7.home}/plugins/OpenSextantToolbox/lib">
             <fileset dir="${basedir}/lib/solr">
               <include name="*.jar" />
             </fileset>
         </copy>
-		<copy file="${jar.location}" todir="${GATE.location}/plugins/OpenSextantToolbox/lib" /> 
-		<copy file="${basedir}/creole.xml" todir="${GATE.location}/plugins/OpenSextantToolbox" /> 
+		<copy file="${jar.location}" todir="${gate7.home}/plugins/OpenSextantToolbox/lib" /> 
+		<copy file="${basedir}/creole.xml" todir="${gate7.home}/plugins/OpenSextantToolbox" /> 
 	</target>
 	
   <!-- create release directory structure -->
@@ -249,6 +242,7 @@ The core library is contained in this jar.
     </copy>
 
    <unzip src="${resources.home}/resources/GATE-plugin-ANNIE.zip" dest="${gate.home.install}/plugins"/>
+
   </target>
 
   <!-- copy over jars to the release directory -->
@@ -269,7 +263,7 @@ The core library is contained in this jar.
     </copy>
 
 
-    <!-- Copy in both OpenSextant.jar and opensextant-commons.jar -->
+    <!-- Copy in both OpenSextant.jar -->
     <copy file="${jar.location}" todir="${release.dir}/lib" />                
     <copy file="${basedir}/creole.xml" todir="${opensextant.plugin}" />
     <copy file="${jar.location}" todir="${opensextant.plugin}/lib" />
@@ -359,7 +353,7 @@ The core library is contained in this jar.
 	      	<exclude name= "**/GeoData/USGS/*.zip" />
 	      </fileset>
 	    </copy>	
-		<copy file="${license.location}" tofile="${release.dir}/Gazetteer/license.txt" /> 	
+		<copy file="${license.location}" todir="${release.dir}/Gazetteer/" /> 	
 	</target>
 	
 	<!-- Preprocessed/Prebuilt versions of the gazetteer data as a file and as a ready-to-run Solr Home -->
@@ -382,7 +376,7 @@ The core library is contained in this jar.
 	    <copy todir="${release.dir}/GazetteerData">
 	      <fileset file="${gaz.home}/GazetteerETL/GeoData/Merged/solrHome.zip"/>
 	    </copy>
-		<copy file="${license.location}" tofile="${release.dir}/GazetteerData/license.txt" /> 	
+		<copy file="${license.location}" todir="${release.dir}/GazetteerData" /> 	
 	</target>
 	
 	<!-- the OpenSextant Toolbox, a GATE plugin-->
@@ -403,7 +397,7 @@ The core library is contained in this jar.
         </copy>
 		<copy file="${jar.location}" todir="${release.dir}/OpenSextantToolbox/lib" /> 
 		<copy file="${basedir}/creole.xml" todir="${release.dir}/OpenSextantToolbox" />
-		<copy file="${license.location}" tofile="${release.dir}/OpenSextantToolbox/license.txt" /> 
+		<copy file="${license.location}" todir="${release.dir}/OpenSextantToolbox" /> 
 	</target>
 	
 	
@@ -413,11 +407,6 @@ The core library is contained in this jar.
 	</target>
 	
 	
-	<!-- the SolrTextTagger, how to tag text using very large vocabularies stored in Solr -->
-	<target name="release.SolrTagger">
-		
-	</target>
-	
 	<!-- the Language Resources, GATE applications and its resources-->
 	<target name="release.LanguageResources">
 	    <delete dir="${release.dir}/LanguageResources" />  
@@ -426,7 +415,7 @@ The core library is contained in this jar.
 	    <copy todir="${release.dir}/LanguageResources">
 	      <fileset dir="${resources.home}" />
 	    </copy>
-		<copy file="${license.location}" tofile="${release.dir}/LanguageResources/license.txt" />
+		<copy file="${license.location}" todir="${release.dir}/LanguageResources" />
 	</target>
 	
 	
@@ -451,18 +440,10 @@ The core library is contained in this jar.
 	  </target>
 	
 	
-	
 	<!-- some test and demonstration applications of the geotagger -->
 	<target name="release.apps">
 
 	</target>
-	
-	
-	<!-- a simple geotagger web service -->
-	<target name="release.webservice">
-		
-	</target>
-	
 	
 	<!-- the whole thing-->
 	<target name="release.FullRelease">
