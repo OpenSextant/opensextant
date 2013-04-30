@@ -126,6 +126,12 @@
 		<unzip src="${basedir}/../external/jetty-v8.zip" dest="${opensextant.home}/" />
 		<copy todir="${jetty.home}/lib/ext" file="${opensextant.lib}/solr/jts-1.13.jar" />
 		<copy todir="${jetty.home}/webapps" file="${basedir}/solr/solr.war" />
+
+                <chmod perm="go-rwx" type="file">
+                   <fileset dir="${jetty.home}">
+                      <include name="bin/*.*" />
+                   </fileset>
+                </chmod>
 	</target>
 
 
@@ -222,7 +228,7 @@
 		<antcall target="build-fst" />
 	</target>
 
-	<target name="build.unix" if="isUnix" depends="prepare,copy-libs">
+	<target name="build-unix" if="isUnix" depends="prepare,copy-libs">
 		<antcall target="getOriginalSources" />
 		<antcall target="process-gazetteer-unix" />
 		<antcall target="create-solr-home" />
