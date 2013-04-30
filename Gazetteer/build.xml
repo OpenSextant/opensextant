@@ -4,9 +4,8 @@
 
 	<!-- where to deploy the Solr Gazetteer -->
 	
-    <property environment="env" />
+    <property file="${basedir}/build.properties" />
 	
-	<property name="opensextant.home" value="/mitre/opensextant" />
 	<property name="solr_home" value="${opensextant.home}/solr" />
 
 	<!--NOTE the source gazetteer data files distributed by NGA and USGS have the date of release appended-->
@@ -89,9 +88,9 @@
 	<!-- run the overall Gazetteer cleaning/transformation process in Kettle -->
 	<!-- this produces the Merged.txt gazetteer file which contains the cleaned and merged gazetteer
 		data ready to be ingested into the Solr gazetteer -->
-	<target name="ProcessGazetteer">
+	<target name="ProcessGazetteer" depends="prepare">
 		<exec executable="cmd" spawn="false">
-			<env key="PENTAHO_DI_JAVA_OPTIONS" value="-Xmx4G" />
+			<env key="PENTAHO_DI_JAVA_OPTIONS" value="${kettle.options.jvm}" />
 			<arg value="/c" />
 			<arg value="${kitchen.script.win}" />
 			<arg value="/file" />
@@ -101,10 +100,11 @@
 
 
         <!--  Using a unix friendly name for this target.  Should be shorter, no mixed case. -->
-	<target name="process-gazetteer-unix">
+	<target name="process-gazetteer-unix" depends="prepare">
                 <echo >Launching ${kitchen.script.unix}</echo>
-                <echo >with options ${env.PENTAHO_DI_JAVA_OPTIONS} on kettle job ${processGazetteer.script}</echo>
+                <echo >with options ${kettle.options.jvm} on kettle job ${processGazetteer.script}</echo>
 		<exec executable="${kitchen.script.unix}" spawn="false">
+		        <env key="PENTAHO_DI_JAVA_OPTIONS" value="${kettle.options.jvm}" />
 			<arg value="-file" />
 			<arg value="${processGazetteer.script}" />
 		</exec>
@@ -158,7 +158,7 @@
 
 	<target name="create">
 		<java classname="org.mitre.solr.tagger.loader.EmbeddedSolrUpdater" classpathref="runtime.classpath" fork="yes" dir="${exec_dir}">
-			<jvmArg value="-Xmx4G" />
+			<jvmArg value="-Xmx2G" />
                         <!-- This MaxPermSize appears to be helpful for loading numerous JARs -->
 			<jvmArg value="-XX:MaxPermSize=256m" />
 			<jvmArg value="-Dsolr.solr.home=${solr_home}" />
@@ -170,7 +170,7 @@
 	<!-- 2 GB to build current gazetteer with 13 million rows -->
 	<target name="build-fst">
 		<java classname="org.mitre.solr.tagger.loader.EmbeddedSolrUpdater" classpathref="runtime.classpath" fork="yes" dir="${exec_dir}">
-			<jvmArg value="-Xmx4G" />
+			<jvmArg value="-Xmx2G" />
                         <!-- This MaxPermSize appears to be helpful for loading numerous JARs -->
 			<jvmArg value="-XX:MaxPermSize=256m" />
 			<jvmArg value="-Dsolr.solr.home=${solr_home}" />
@@ -195,9 +195,15 @@
         	<copy todir="${kettle.home}/libext" file="${opensextant.lib}/commons-codec-1.7.jar" />
         </target>
 
+
+        <target name="prepare" >
+           <mkdir dir="${basedir}/GazetteerETL/Logs"/>
+        </target>
+
+
         <!-- do everything: get the original data, process it, create solr home and populate it from processed gazeteeer
           -->
-	<target name="build" if="isWindows" depends="copy-libs">
+	<target name="build" if="isWindows" depends="prepare,copy-libs">
 		<antcall target="getOriginalSources" />
 		<antcall target="ProcessGazetteer" />
 		<antcall target="create-solr-home" />
@@ -205,7 +211,7 @@
 		<antcall target="build-fst" />
 	</target>
 
-	<target name="build.unix" if="isUnix" depends="copy-libs">
+	<target name="build.unix" if="isUnix" depends="prepare,copy-libs">
 		<antcall target="getOriginalSources" />
 		<antcall target="process-gazetteer-unix" />
 		<antcall target="create-solr-home" />
@@ -216,7 +222,7 @@
 	<!-- zip up the Solr home for release -->
 	<target name="zip.solrhome" >
     	<zip destfile="${basedir}/GazetteerETL/GeoData/Merged/solrHome.zip">
-     	   <zipfileset dir="${opensextant.home}" />
+     	   <zipfileset dir="${opensextant.home}/solr" />
     	</zip>
 	</target>	
 
