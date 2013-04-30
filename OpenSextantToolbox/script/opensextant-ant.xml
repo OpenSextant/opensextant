@@ -15,6 +15,8 @@
   <property name="mysql_gapp_plus" value="OpenSextant_MySQLWithPhoneticsAndCaseDetector" />
 
   <property name="test.dir" value="${opensextant.home}/test" />
+
+  <property name="os.name" value="linux" />  <!--  OS = win, osx, linux -->
   
   <path id="runtime.classpath">
     <pathelement location="${opensextant.home}/etc" />  
@@ -29,7 +31,7 @@
     <java  classname="org.mitre.opensextant.apps.OpenSextantRunner" classpathref="runtime.classpath" fork="yes" >
 
       <jvmArg value="-Xmx2500m"/>
-      <jvmArg value="-Djava.library.path=${env.LD_LIBRARY_PATH}"/>
+      <jvmArg value="-Djava.library.path=${opensextant.home}/lib/${os.name}-x64"/>
       <jvmArg value="-Dopensextant.home=${opensextant.home}"/>
       <!-- SOLR HOME 
       <jvmArg value="-Dsolr.solr.home=${solr_home}"/>
