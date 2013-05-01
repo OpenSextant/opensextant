@@ -64,7 +64,7 @@ public abstract class PlacenameMatcher {
     public abstract void cleanup();
 
     /**
-     * Forms a key from two long integers.
+     * Forms a key from two long integers which is useful for identifying the same span by start/end offsets.   
      */
     public String getKey(long x1, long x2) {
         return x1 + "_" + x2;

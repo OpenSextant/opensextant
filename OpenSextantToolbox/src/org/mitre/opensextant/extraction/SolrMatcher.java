@@ -126,11 +126,22 @@ public class SolrMatcher extends PlacenameMatcher {
      */
     @Override
     public void cleanup() {
-        if (solr != null) {
+        // Solr handle is now static
+        // Reuse of a GAPP or this 
+       /* if (solr != null) {
             solr.close();
         }
+        */
     }
-
+    
+    /** Close solr resources. */
+    public void shutdown(){
+        if (solr != null) {
+            solr.close();
+        }        
+    }
+    
+    
     /** Capture this */
     @SuppressWarnings("serial")
     class TaggerQueryRequest extends QueryRequest {
