@@ -9,6 +9,47 @@
   <version>1.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <name>OpenSextant</name>
+  <description>An information extraction pipeline focused on geography and temporal entities</description>
+  <inceptionYear>2013</inceptionYear>
+
+  <scm>
+    <connection>scm:git:https://github.com/OpenSextant/opensextant.git</connection>
+    <developerConnection>scm:git:https://github.com/OpenSextant/opensextant.git</developerConnection>
+    <url>https://github.com/OpenSextant/opensextant.git</url>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>Apache 2</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>David Smiley</name>
+      <email>dsmiley@mitre.org</email>
+      <organization>MITRE</organization>
+    </developer>
+    <developer>
+      <name>Todd Hay</name>
+      <email>hayt@mitre.org</email>
+      <organization>MITRE</organization>
+    </developer>
+    <developer>
+      <name>David Lutz</name>
+      <email>dlutz@mitre.org</email>
+      <organization>MITRE</organization>
+    </developer>
+    <developer>
+      <name>Marc Ubaldino</name>
+      <email>ubaldino@mitre.org</email>
+      <organization>MITRE</organization>
+    </developer>
+  </developers>
+
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <slf4j.version>1.7.4</slf4j.version>
@@ -109,6 +150,8 @@
     </plugins>
   </build>
 
+
+ <!-- TBD:  artifact repo
   <repositories>
     <repository>
       <id>maven-proxy</id>
@@ -137,4 +180,6 @@
       <url>http://maven-proxy.mitre.org/artifactory/libs-snapshots-local</url>
     </snapshotRepository>
   </distributionManagement>
+
+  -->
 </project>
