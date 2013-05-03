@@ -58,7 +58,6 @@
   <modules>
     <module>Commons</module>
     <module>Xponents</module>
-    <module>SolrTextTagger</module>
   </modules>
 
   <dependencyManagement>
