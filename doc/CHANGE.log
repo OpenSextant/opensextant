@@ -1,0 +1,61 @@
+
+
+30 APR 2013
+-=========-
+
+
+top level notices:
+,,,,,,,,,,,,,,,,,,,,,,,,,,,
+LICENSE.txt
+NOTICE.txt
+README.txt
+README.md 
+
+Gazetteer
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
++ for now we have a copy of text tagger in our lib area; simplifies our migration decision to support Ant, Ivy, Maven
+   and local repos, remote, etc.; TODO: resolve the issue with deps.
++ Moved some global properties out of Ant and into build props files.
++ Added smaller Jetty install (w/out javadoc);  Since Gaz is only app that uses the jetty server this build script takes
+  on the jetty install 
+Gazetteer/solr/gazetteer/lib/SolrTextTagger.jar
+Gazetteer/build.properties
+Gazetteer/build.xml 
+external/jetty-v8.tgz
+external/jetty-v8.zip 
+
+
+Toolbox
+,,,,,,,,,,,,,,,,,,,,,,,,,,,
++ "geocode.sh" script added for linux;  will add win bat later.
++ build props pulled out of Ant and into its own file
++ GATE7 variables we confusing;  added "gate7.home" which makes it clear that it is the GATE 7.0 install, not a stripped down gate.home
++ moved ANNIE plugin to other gate staging area.
++ reviewed JVM / Env vars in scripts
++
+OpenSextantToolbox/build.properties
+OpenSextantToolbox/build.xml
+OpenSextantToolbox/dependencies.xml
+OpenSextantToolbox/lib/SolrTextTagger.jar
+OpenSextantToolbox/script/{OpenSextantRun.sh -> geocode.sh}
+OpenSextantToolbox/script/opensextant-ant.xml
+{LanguageResources/resources → OpenSextantToolbox/gate}/GATE-plugin-ANNIE.zip
+OpenSextantToolbox/script/default.env
+
+Apps - GISCore GDB support
+,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ + Install and configure native OS library paths
+   Ant run script still has to change OS name  to add proper path
+external/giscore-native-libs.zip
+OpenSextantToolbox/build.xml
+OpenSextantToolbox/script/opensextant-ant.xml
+
+
+
+Master
+,,,,,,,,,,,,,,,,,,,,,,,,,,,
++ Added Master as a proposal to centralize all build orchestration in one place up above most components.
++ In distro see "version.txt"  on build notes.
+
+Master/README.txt
+
