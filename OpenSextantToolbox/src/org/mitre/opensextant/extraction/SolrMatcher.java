@@ -114,7 +114,8 @@ public class SolrMatcher extends PlacenameMatcher {
         // TODO: verify that all the right metadata is being retrieved here
         _params.set(CommonParams.FL, "id,name,cc,adm1,adm2,feat_class,feat_code,lat,lon,place_id,name_bias,id_bias,name_type");
 
-        _params.set("tagsLimit", 20000);
+        _params.set("tagsLimit", 100000);
+        _params.set(CommonParams.ROWS, 100000);
         _params.set("subTags", false);
         _params.set("matchText", false);//we've got the input doc as a string instead
 
