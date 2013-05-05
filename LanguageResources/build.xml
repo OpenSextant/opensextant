@@ -3,8 +3,7 @@
 	<target name="clean" depends="" />
 
 	<target name="build" depends="" />
-	
+
 	<target name="all" depends="" />
-	
-	
+
 </project>
