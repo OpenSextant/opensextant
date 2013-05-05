@@ -158,10 +158,8 @@ The core library is contained in this jar.
         </javadoc>
     </target>
 
-    <target name="dependencies-v1" depends="commons.update,flexpat.update,xcoord.update,xtemp.update, xtext.update" />
     <target name="dependencies" depends="commons.update,xponents.update" />
 
-	
     <target name="commons.update">
         <subant target="all">
             <fileset dir="${commons.home}" includes="build.xml"/>
@@ -358,122 +356,6 @@ The core library is contained in this jar.
         </copy>
     </target>
 	
-   	
-    <!-- Kettle scripts and resources needed to process gazetteer data into OpenSextant-ready form (no data)--> 
-    <target name="release.Gazetteer">
-        <delete dir="${release.dir}/Gazetteer" />
-        <mkdir dir="${release.dir}/Gazetteer" />
-
-        <copy todir="${release.dir}/Gazetteer">
-            <fileset dir="${gaz.home}/">
-                <exclude name= "**/Logs/**" />
-                <exclude name= "**/GeoData/Merged/*.txt" />
-                <exclude name= "**/GeoData/Merged/*.zip" />
-                <exclude name= "**/GeoData/NGA/*.txt" />
-                <exclude name= "**/GeoData/NGA/*.zip" />
-                <exclude name= "**/GeoData/USGS/*.txt" />
-                <exclude name= "**/GeoData/USGS/*.zip" />
-            </fileset>
-        </copy>	
-        <copy file="${license.location}" todir="${release.dir}/Gazetteer/" /> 	
-    </target>
-	
-    <!-- Preprocessed/Prebuilt versions of the gazetteer data as a file and as a ready-to-run Solr Home -->
-    <target name="release.GazetteerData" depends = "release.GazetteerData.file, release.GazetteerData.prebuiltSolr" >
-		
-    </target>
-	
-	
-    <!-- the preprocessed gazetteer data as file (big)-->
-    <target name="release.GazetteerData.file">
-        <mkdir dir="${release.dir}/GazetteerData" />
-        <copy todir="${release.dir}/GazetteerData">
-            <fileset file="${gaz.home}/GazetteerETL/GeoData/Merged/Merged.txt"/>
-        </copy>		
-    </target>
-	
-    <!-- the preprocessed gazetteer data as prebuilt solr home (very big) -->
-    <target name="release.GazetteerData.prebuiltSolr">
-        <mkdir dir="${release.dir}/GazetteerData" />
-        <copy todir="${release.dir}/GazetteerData">
-            <fileset file="${gaz.home}/GazetteerETL/GeoData/Merged/solrHome.zip"/>
-        </copy>
-        <copy file="${license.location}" todir="${release.dir}/GazetteerData" /> 	
-    </target>
-	
-    <!-- the OpenSextant Toolbox, a GATE plugin-->
-    <target name="release.Toolbox">
-        <!-- create the target directory -->
-        <delete dir="${release.dir}/OpenSextantToolbox"  />
-        <mkdir dir="${release.dir}/OpenSextantToolbox"  />
-        <!-- copy over the libs and creole.xml -->
-        <copy todir="${release.dir}/OpenSextantToolbox/lib">
-            <fileset dir="${basedir}/lib">
-                <include name="*.jar" />
-            </fileset>
-        </copy>
-        <copy todir="${release.dir}/OpenSextantToolbox/lib">
-            <fileset dir="${basedir}/lib/solr">
-                <include name="*.jar" />
-            </fileset>
-        </copy>
-        <copy file="${jar.location}" todir="${release.dir}/OpenSextantToolbox/lib" /> 
-        <copy file="${basedir}/creole.xml" todir="${release.dir}/OpenSextantToolbox" />
-        <copy file="${license.location}" todir="${release.dir}/OpenSextantToolbox" /> 
-    </target>
-	
-	
-    <!-- the Xponents, a handy set of libraries for doing Regex extraction and other text stuff -->
-    <target name="release.XComponents">
-		
-    </target>
-	
-	
-    <!-- the Language Resources, GATE applications and its resources-->
-    <target name="release.LanguageResources">
-        <delete dir="${release.dir}/LanguageResources" />  
-        <mkdir dir="${release.dir}/LanguageResources" />
-		
-        <copy todir="${release.dir}/LanguageResources">
-            <fileset dir="${resources.home}" />
-        </copy>
-        <copy file="${license.location}" todir="${release.dir}/LanguageResources" />
-    </target>
-	
-	
-    <!-- Copy over the documentation -->
-    <target name="release.doc" >
-        <copy todir="${release.dir}/doc">
-            <fileset dir="${doc.dir}">
-                <filename name="*.docx"/>
-            </fileset>
-        </copy>
-	          
-        <copy todir="${release.dir}/doc/javadoc">
-            <fileset dir="${javadoc.dir}" />
-        </copy>
-        <copy todir="${release.dir}">
-            <fileset dir="${basedir}/.."> <filename name="*.txt"/> </fileset>
-        </copy>
-
-        <copy todir="${release.dir}/doc">
-            <fileset dir="${basedir}/../doc"> <filename name="Apache*.txt"/> </fileset>
-        </copy>
-    </target>
-	
-	
-    <!-- some test and demonstration applications of the geotagger -->
-    <target name="release.apps">
-
-    </target>
-	
-    <!-- the whole thing-->
-    <target name="release.FullRelease">
-		
-    </target>
-	
-    <target name="release.components" depends="build, all-javadoc,release.Gazetteer,release.Toolbox,release.XComponents,release.LanguageResources, release.doc "/>
-
     <!-- copy over everything to the release directory -->
     <target name="release" depends="build, all-javadoc, prepare.release, copy.gate.home, copy.lib, copy.resources, copy.scripts, copy.doc">
 	
