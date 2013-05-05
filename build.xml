@@ -1,0 +1,60 @@
+<project name="OpenSextant" basedir="." default="release">
+
+	<property name="version" value="1.2" />
+
+	<!-- include the user settings -->
+	<property file="build.properties" />
+
+	<!-- all of the component homes -->
+	<property name="commons.home" location="./Commons" />
+	<property name="gazetteer.home" location="./Gazetteer" />
+	<property name="lang.home" location="./LanguageResources" />
+	<property name="toolbox.home" location="./OpenSextantToolbox" />
+	<property name="xponents.home" location="./Xponents" />
+
+	<!-- the release dir -->
+	<property name="release.dir" location="./Release" />
+
+
+    <!--====================== Targets ============================-->
+
+	<!-- clean all of the components -->
+	<target name="clean" depends="">
+		<subant target="clean">
+			<fileset dir="${commons.home}" includes="build.xml" />
+			<fileset dir="${xponents.home}" includes="build.xml" />
+			<fileset dir="${toolbox.home}" includes="build.xml" />
+			<!-- fileset dir="${gazetteer.home}" includes="build.xml" /-->
+			<fileset dir="${lang.home}" includes="build.xml" />
+		</subant>
+	</target>
+
+	<!--  build all of the components -->
+	<target name="build" depends="">
+		<subant target="build">
+			<fileset dir="${commons.home}" includes="build.xml" />
+			<fileset dir="${xponents.home}" includes="build.xml" />
+			<fileset dir="${toolbox.home}" includes="build.xml" />
+			<!-- fileset dir="${gazetteer.home}" includes="build.xml" /-->
+			<fileset dir="${lang.home}" includes="build.xml" />
+		</subant>
+	</target>
+
+
+
+	<!-- Build the release -->
+	<target name="release" depends="build">
+
+		<!-- For now use the existing "release" target inside Toolbox and copy the result up -->
+		<subant target="release">
+			<fileset dir="${toolbox.home}" includes="build.xml" />
+		</subant>
+		<copy todir="${release.dir}">
+			<fileset dir="${toolbox.home}/build">
+				<filename name="OpenSextant-build-*.zip" />
+			</fileset>
+		</copy>
+
+	</target>
+
+</project>
