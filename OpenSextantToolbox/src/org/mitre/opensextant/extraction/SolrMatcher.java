@@ -1,17 +1,17 @@
 /** 
  Copyright 2009-2013 The MITRE Corporation.
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+ http://www.apache.org/licenses/LICENSE-2.0
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 
 
  * **************************************************************************
@@ -23,7 +23,7 @@
  *
  * (c) 2012 The MITRE Corporation. All Rights Reserved.
  * **************************************************************************
-**/
+ **/
 package org.mitre.opensextant.extraction;
 
 //import gate.Annotation;
@@ -89,6 +89,14 @@ public class SolrMatcher extends PlacenameMatcher {
         // Instance variable that will have the transient payload to tag
         // this is not thread safe and is not static:
         tag_request = new TaggerQueryRequest(params, SolrRequest.METHOD.POST);
+
+        // Pre-loading the Solr FST
+        // 
+        try {
+            tagText("trivial priming of the solr pump", "__initialization___");
+        } catch (MatcherException initErr) {
+            throw new IOException("Unable to prime the tagger", initErr);
+        }
     }
 
     public void setAllowLowerCaseAbbreviations(boolean b) {
@@ -130,19 +138,18 @@ public class SolrMatcher extends PlacenameMatcher {
         // Solr handle is now static
         // Reuse of a GAPP or this 
        /* if (solr != null) {
-            solr.close();
-        }
-        */
+         solr.close();
+         }
+         */
     }
-    
+
     /** Close solr resources. */
-    public void shutdown(){
+    public void shutdown() {
         if (solr != null) {
             solr.close();
-        }        
+        }
     }
-    
-    
+
     /** Capture this */
     @SuppressWarnings("serial")
     class TaggerQueryRequest extends QueryRequest {
@@ -319,9 +326,9 @@ public class SolrMatcher extends PlacenameMatcher {
                     if (Pgeo.isAbbreviation() && _is_lower) {
                         _is_valid = false;
                         if (debug) {
-                            log.debug("Ignore lower case term="+pc.getText());
+                            log.debug("Ignore lower case term=" + pc.getText());
                         }
-                        
+
                         break;
                     }
 
