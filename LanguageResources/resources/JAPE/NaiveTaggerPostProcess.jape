@@ -33,5 +33,5 @@
 
 MultiPhase:	OpenSextant
 Phases:
-ResolveOverlaps
+//ResolveOverlaps
 GenerateCountryAdminAndCaps
