@@ -7,6 +7,7 @@ Build file for OpenSextant Desktop
 
     <property name="version" value="1.3" />
 
+
     <!-- Name of the project -->
     <property name="project.name" value="OpenSextantDesktop" />
     <property name="java_level" value="1.7" />
@@ -15,10 +16,26 @@ Build file for OpenSextant Desktop
 	
     <!-- directory to contain the jar -->
     <property name="build.dir" location="build" />
-		
+
+
+    <path id="compile.classpath">
+
+    <!-- project level libraries -->
+    <pathelement location="${opensextant.home}/lib/OpenSextantToolbox.jar" />
+    <pathelement location="${opensextant.home}/lib/opensextant-apps.jar" />
+    <pathelement location="${opensextant.home}/lib/opensextant-commons.jar" />
+    <pathelement location="${opensextant.home}/lib/opensextant-xponents-1.6.jar" />
+    <pathelement location="${opensextant.home}/lib/commons-lang-2.6.jar" />
+
+    <pathelement location="${opensextant.home}/lib/slf4j-api-1.7.4.jar" />
+    <pathelement location="${opensextant.home}/lib/slf4j-log4j12-1.7.4.jar" />
+
+    <pathelement location="${opensextant.home}/lib/log4j-1.2.17.jar" />
+
+    </path>
+
     <!-- JavaDoc documentation directory -->
     <property name="javadoc.dir" location="${basedir}/doc/javadoc" />
-
 
     <!-- compile the source -->
     <target name="compile" >
