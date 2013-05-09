@@ -1,0 +1,30 @@
+<!--======================================================================
+
+Build file for OpenSextant Desktop
+
+=======================================================================-->
+<project name="OpenSextantDesktop" basedir="." default="compile">
+
+    <property name="version" value="1.3" />
+
+    <!-- Name of the project -->
+    <property name="project.name" value="OpenSextantDesktop" />
+    <property name="java_level" value="1.7" />
+
+    <property file="build.properties" />
+	
+    <!-- directory to contain the jar -->
+    <property name="build.dir" location="build" />
+		
+    <!-- JavaDoc documentation directory -->
+    <property name="javadoc.dir" location="${basedir}/doc/javadoc" />
+
+
+    <!-- compile the source -->
+    <target name="compile" >
+        <javac classpathref="compile.classpath" srcdir="src" destdir="${build.dir}" 
+            debug="true" debuglevel="lines,source" source="${java_level}" encoding="utf-8" />
+    </target>
+
+</project>
+
