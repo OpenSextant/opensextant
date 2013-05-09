@@ -38,9 +38,17 @@ Build file for OpenSextant Desktop
     <property name="javadoc.dir" location="${basedir}/doc/javadoc" />
 
     <!-- compile the source -->
-    <target name="compile" >
+    <target name="compile"  depends="setup" >
         <javac classpathref="compile.classpath" srcdir="src" destdir="${build.dir}" 
             debug="true" debuglevel="lines,source" source="${java_level}" encoding="utf-8" />
+    </target>
+
+
+    <target name="setup" >
+        <mkdir dir="${build.dir}" />
+    </target>
+    <target name="clean" >
+        <delete dir="${build.dir}" />
     </target>
 
 </project>
