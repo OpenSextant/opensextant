@@ -28,11 +28,10 @@ import org.mitre.opensextant.apps.OpenSextantRunner;
 //TODO class name is quickly becoming nonsensical
 //TODO should break up threads and OpenSextant container classes
 public class ApiHelper implements Runnable {
-  public static final String BASE_PATH = "/mitre/"; //TODO: Make relative 
-  public static final String TMP_ADDENDUM = "tmp/";
+  public static final String BASE_PATH = "output"; //TODO: Make relative 
+  public static final String TMP_ADDENDUM = "tmp";
   public static final long HALF_GIGABYTE = 536870912L;
   public static final int NOT_ON_LIST = -1;
-  public static final String SEP = System.getProperty("file.separator");
   
   private static Logger log = LoggerFactory.getLogger(ApiHelper.class);
     
@@ -110,7 +109,7 @@ public class ApiHelper implements Runnable {
         String inType = "FILE";
         String outputTypePrime = outputType;
         if("KML".equals(outputType)) outputTypePrime = "KMZ";
-        String fullLoc = outputLocation + SEP + (outName + dateStr) 
+        String fullLoc = outputLocation + File.separator+ (outName + dateStr) 
                        + "." + outputTypePrime;
         guiEntry = OpenSextant.addRow("Initializing..."
                                       , fullLoc
@@ -137,7 +136,7 @@ public class ApiHelper implements Runnable {
         
         // Actually run the mess
         runner.runOpenSextant( inputFile, outputType
-                             , outputLocation + SEP + outName );
+                             , outputLocation + File.separator + outName );
         
       } catch (Exception e) { e.printStackTrace(); } //TODO:Fortify will dislike
       inUse = false;
@@ -156,7 +155,7 @@ public class ApiHelper implements Runnable {
   }
   
   public static void processText(String text) { 
-    String file = BASE_PATH + TMP_ADDENDUM 
+    String file = BASE_PATH + File.separator + TMP_ADDENDUM  + File.separator 
                 + "textEntry" + (textCount++) + ".txt";
     boolean wroteFile = false;
     try {
