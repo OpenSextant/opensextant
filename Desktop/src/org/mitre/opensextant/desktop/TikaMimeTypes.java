@@ -1,0 +1,98 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package org.mitre.opensextant.desktop;
+
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+/**
+ *
+ * @author GBLACK
+ */
+public class TikaMimeTypes {
+  public static FileNameExtensionFilter makeFileBrowser(){
+    return new FileNameExtensionFilter( "Opensextant supported files"
+, "conf"
+, "config"
+, "csv"
+, "cwiki"
+, "data"
+, "diff"
+, "doc"
+, "docm"
+, "docx"
+, "dot"
+, "dotm"
+, "dotx"
+, "dump"
+, "htm"
+, "html"
+, "json"
+, "kml"
+, "less"
+, "list"
+, "log"
+, "lostxml"
+, "mhtml"
+, "msg"
+, "mxml"
+, "oda"
+, "odb"
+, "odc"
+, "odf"
+, "odft"
+, "odg"
+, "odi"
+, "odp"
+, "ods"
+, "odt"
+, "otf"
+, "otg"
+, "oth"
+, "oti"
+, "otm"
+, "otp"
+, "ots"
+, "ott"
+, "patch"
+, "pdf"
+, "pot"
+, "potm"
+, "potx"
+, "pp"
+, "ppa"
+, "ppam"
+, "ppd"
+, "ppj"
+, "ppm"
+, "pps"
+, "ppsm"
+, "ppsx"
+, "ppt"
+, "pptm"
+, "pptx"
+, "rss"
+, "rtf"
+, "txt"
+, "xhtml"
+, "xls"
+, "xlsb"
+, "xlsm"
+, "xlsx"
+, "xlt"
+, "xltm"
+, "xltx"
+, "xml"
+, "xsd"
+, "xsl"
+, "xslt"
+, "zip"
+, "gz"
+, "tar"
+, "jar"
+, "zipx"
+);
+    
+  }
+}

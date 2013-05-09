@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<project name="OpenSextantDesktop" >
+
+  <property environment="env"/>
+  <property name="version" value="0.10"/>
+
+  <!-- OS dependent things? -->
+  <property name="opensextant.home" value="${env.OPENSEXTANT_HOME}" />
+  
+  <path id="runtime.classpath">
+    <pathelement location="${basedir}/etc" />  
+    <pathelement location="${basedir}/build/OpenSextantDesktop.jar" />
+
+    <pathelement location="${opensextant.home}/etc" />  
+    <fileset dir="${opensextant.home}/lib" includes="**/*.jar" />
+
+  </path>
+
+  <!-- GUI JAR should be in classpath above,...
+    -->
+  <target name="launch">
+    <java  classname="org.mitre.opensextant.desktop.OpenSextant" classpathref="runtime.classpath" fork="yes" >
+
+      <jvmArg value="-Xmx2000m"/>
+      <jvmArg value="-Dopensextant.home=${opensextant.home}"/>
+
+    </java>
+  </target>
+
+</project>
+
+
