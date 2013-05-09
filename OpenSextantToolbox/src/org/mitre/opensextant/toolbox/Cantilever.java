@@ -134,10 +134,9 @@ public class Cantilever {
 				// Now do the actual propagation by adding the jointEvidence (if
 				// any) and the averaged place confidence score to each PC
 				for (PlaceCandidate p : pcs) {
-					// dont add zero confidences
-					if (totalPlaceConfidence != 0.0) {
-						p.addRuleAndConfidence("CoRefConfidence",
-								totalPlaceConfidence);
+					// don't add zero confidences and only propagate to no opinion pcs
+					if (totalPlaceConfidence != 0.0 && p.getPlaceConfidenceScore() == 0.0) {
+						p.addRuleAndConfidence("CoRefConfidence",totalPlaceConfidence);
 					}
 					// if we have any evidence to propagate
 					if (jointEvidence.size() > 0) {
