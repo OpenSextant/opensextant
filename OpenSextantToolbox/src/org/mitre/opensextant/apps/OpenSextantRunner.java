@@ -209,6 +209,7 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
 
         log.info("Finished all processing");
         processor.shutdown();
+        processor = null;
     }
 
     /** Shutdown all IO for the GATE app and release Corpus level resources
@@ -269,7 +270,7 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
                 doc = Factory.newDocument(txtdoc.payload);
             }
 
-            this.corpus.add(doc);   _docs.add(doc);
+            this.corpus.add(doc);   // _docs.add(doc);
             batch_signal_size += txtdoc.payload.length();
             ++total_docs;
 
@@ -298,36 +299,11 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
         //
         processor.processCorpus(corpus);
 
-
-        // GATE: Clean up -- but do not destroy the corpus.
-        // 
-        // Only process or release documents currently in the corpus
-        // Do not destroy corpus yet, as caller may be optimizing or controlling the corpus.
-        // 
-        // http://article.gmane.org/gmane.comp.ai.gate.general/2367/match=deleteResource   c.clear() before deleteing docs?
-        // 
-        corpus.clear();
-        int x = 0;
-        try {
-            for (Document d: _docs) {
-                Factory.deleteResource(d);
-                ++x;
-                log.debug("Clearing DOC=" + x);
-            }
-        } catch (Exception obscureErr) {
-            log.error("TODO: Not sure why GATE is unable to release Docs from a corpus; DOC COUNT=" + x + " / " + corpus.size(), obscureErr);
-            /**   If I have 55 docs
-                     and iterate through the list,  at 28 (of 55) I have deleted 27 documents, 27 docs ahead.
-                     * At that point this loop fails and says at x=28, you are out of bounds there are only 27 docs in the list.
-                 So Factory "deleteResource" deletes items from the corpus that contains them. So this is a fundamental Java problem: deleting from a list as you navigate it.
-
-                 GATE authors recommend "corpus.clear" first before deleting. That unforunately leaves me with nothing to iterate over.
-               
-
-                Solution:  indepdent of GATE, I must track all my own "Document" creations and delete on my own.  Awful book keeping.  GATE!!!!
-              */
+        for (Iterator<Document> iter = corpus.iterator(); iter.hasNext(); ) {
+            Document doc = iter.next();
+            iter.remove();
+            Factory.deleteResource(doc);
         }
-        _docs.clear();
 
         // Any difference with memory management if I just create a new corpus each time?
         boolean use_new = true;
@@ -388,7 +364,7 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
                 case 'h':
                 default:
                     printHelp();
-                    System.exit(0);
+                    System.exit(-1);
             }
         }
     }
@@ -545,8 +521,8 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
 
         System.out.println("Parsing Commandline");
         parseCommandLine(args);
-        OpenSextantRunner runner = null;
         try {
+            OpenSextantRunner runner = null;
             if (_gappFile != null) { 
                 runner = new OpenSextantRunner(_gappFile);
             } else {
@@ -555,19 +531,14 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
             // TESTING:
             //OpenSextantRunner.BATCH_THRESHOLD = 0x10000;
             runner.initialize();
-        } catch (/*Processing*/Exception err) {
+            runner.runOpenSextant(_inFile, _outFormat, _outFile, _tempDir);
+            runner.shutdown();
+            // Success.
+            System.exit(0);
+        } catch (Exception err) {
             err.printStackTrace();
         }
-
-        if (runner == null) {
-            System.exit(-1);
-
-        }
-        try {
-            runner.runOpenSextant(_inFile, _outFormat, _outFile, _tempDir);
-        } catch (Exception procErr) {
-            procErr.printStackTrace();
-            runner.shutdown();
-        }
+        // Failed 
+        System.exit(-1);
     }
 }
