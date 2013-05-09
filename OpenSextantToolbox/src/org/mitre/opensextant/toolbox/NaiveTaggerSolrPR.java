@@ -110,6 +110,7 @@ public class NaiveTaggerSolrPR
         try {
             if (matcher != null) {
                 matcher.cleanup();
+                matcher.shutdown();
             }
         } finally {
             super.cleanup();
