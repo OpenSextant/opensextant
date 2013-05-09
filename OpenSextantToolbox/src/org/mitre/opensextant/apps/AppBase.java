@@ -105,4 +105,13 @@ public abstract class AppBase {
         long usedMemory = R.totalMemory() - R.freeMemory();
         log.info("CURRENT MEM USAGE(K)=" + (int) (usedMemory / 1024));
     }
+
+
+    /** Call this from your instance of apps when you are really done.  
+     * This is an attempt to close global, static JVM-wide resources that we have optimized for one reason or another.
+     * Call this from your Main program -- not from your child threads -- when you are exiting the process.
+     */
+    public static void globalShutdown() {
+       org.mitre.opensextant.extraction.SolrMatcher.shutdown();
+    }
 }

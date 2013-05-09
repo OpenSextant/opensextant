@@ -144,7 +144,7 @@ public class SolrMatcher extends PlacenameMatcher {
     }
 
     /** Close solr resources. */
-    public void shutdown() {
+    public static void shutdown() {
         if (solr != null) {
             solr.close();
         }
@@ -428,7 +428,7 @@ public class SolrMatcher extends PlacenameMatcher {
                 System.out.println(pc.toString());
             }
 
-            sm.cleanup();
+            sm.shutdown();
         } catch (Exception err) {
             err.printStackTrace();
         }
