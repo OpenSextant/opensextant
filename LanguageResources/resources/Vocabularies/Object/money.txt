@@ -16,6 +16,8 @@ buys
 budget
 budgets
 cash
+checking account
+checking accounts
 compensation
 contract
 contracts
@@ -111,3 +113,9 @@ benefit
 benefits
 stocks
 pork barrel
+savings account
+savings accounts
+reimbursement
+reimbursements
+wire transfer
+wire transfers

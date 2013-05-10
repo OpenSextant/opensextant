@@ -96,6 +96,8 @@ minibus
 minibuses
 van
 vans
+vessel
+vessels
 water tanker
 water tankers
 motorcycle

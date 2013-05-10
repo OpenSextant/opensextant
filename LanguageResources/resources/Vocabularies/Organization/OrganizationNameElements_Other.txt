@@ -51,3 +51,5 @@ cartel
 cartels
 commitee
 commitees
+sect
+sects

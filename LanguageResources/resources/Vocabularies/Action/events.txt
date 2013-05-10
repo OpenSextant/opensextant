@@ -79,3 +79,16 @@ capitulation
 cessation
 collapse
 comeback
+victory
+victories
+loss
+defeat
+defeats
+disgrace
+disgraces
+failure
+failures
+escape
+escapes
+retirement
+retirements

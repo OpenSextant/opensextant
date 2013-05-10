@@ -7,8 +7,16 @@ missile
 missiles
 laser blinder
 knife
+knives
 molotov cocktail
 ammunition
 ammunitions
 bullet
 bullets
+cannon
+cannons
+artillery
+artillery piece
+artillery pieces
+howitzer
+howitzers
