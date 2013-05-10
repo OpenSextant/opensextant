@@ -18,3 +18,5 @@ blasting cap
 blasting caps
 land mine
 land mines
+torpedo
+torpedoes

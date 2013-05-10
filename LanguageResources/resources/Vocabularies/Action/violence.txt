@@ -46,6 +46,8 @@ provocation
 provocations
 raid
 raids
+retaliation
+retaliations
 revenge
 revolt
 revolts

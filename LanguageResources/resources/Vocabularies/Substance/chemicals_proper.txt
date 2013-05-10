@@ -374,6 +374,8 @@ prussian blue
 pyrosulfuric acid
 radium chloride
 radon difluoride
+red phosphorus
+red phosphorous
 rhodium chloride
 rubidium bromide
 rubidium chloride
@@ -526,6 +528,8 @@ vanadium oxide
 vanadium oxide trichloride
 vanadium oxytrichloride
 vanadium sulfate
+white phosphorus
+white phosphorous
 xenic acid
 xenon difluoride
 xenon hexafluoroplatinate
