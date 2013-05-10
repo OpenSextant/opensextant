@@ -247,8 +247,6 @@ public class SolrMatcher extends PlacenameMatcher {
             bean.setLatitude(SolrProxy.getDouble(solrDoc, "lat"));
             bean.setLongitude(SolrProxy.getDouble(solrDoc, "lon"));
 
-            //bean.setSourceNameID(SolrProxy.getString(solrDoc, "SOURCE_NAME_ID"));
-            //bean.setSourceFeatureID(SolrProxy.getString(solrDoc, "SOURCE_FEATURE_ID"));
             bean.setPlaceID(SolrProxy.getString(solrDoc, "place_id"));
             bean.setName_bias(SolrProxy.getDouble(solrDoc, "name_bias"));
             bean.setId_bias(SolrProxy.getDouble(solrDoc, "id_bias"));
