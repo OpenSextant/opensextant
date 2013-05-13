@@ -363,6 +363,7 @@
     <!-- Enables a transaction log, currently used for real-time get.
          "dir" - the target directory for transaction logs, defaults to the
             solr data directory.  --> 
+<!-- OPENSEXTANT: disable -->
     <!-- <updateLog>
       <str name="dir">${solr.data.dir:}</str>
     </updateLog> -->
@@ -480,11 +481,11 @@
          this cache will not be autowarmed.  
       -->
       <!-- LFU cache is probably better, and use a big cache for tagging -->
-    <!-- SOLR 4.x OPTIMIZATION: disable documentCache -->
+    <!-- OPENSEXTANT NOT helpful for tagger
     <documentCache class="solr.LFUCache"
                    size="0"
                    initialSize="512"
-                   autowarmCount="0"/>
+                   autowarmCount="0"/> -->
     
     <!-- Field Value Cache
          
@@ -527,6 +528,7 @@
          especially if the skipped fields are large compressed text
          fields.
     -->
+    <!-- OPENSEXTANT false since we need nearly all -->
     <enableLazyFieldLoading>false</enableLazyFieldLoading>
 
    <!-- Use Filter For Sorted Query
