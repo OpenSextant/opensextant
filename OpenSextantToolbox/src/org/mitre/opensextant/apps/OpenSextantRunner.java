@@ -537,11 +537,9 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
             // Release all resources
             AppBase.globalShutdown();
             // Success.
-            // System.exit(0);
         } catch (Exception err) {
             err.printStackTrace();
         }
-        // Failed 
-        System.exit(-1);
+        System.exit(0);
     }
 }
