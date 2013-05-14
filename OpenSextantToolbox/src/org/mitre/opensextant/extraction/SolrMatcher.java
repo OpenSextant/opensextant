@@ -127,6 +127,11 @@ public class SolrMatcher extends PlacenameMatcher {
         _params.set("subTags", false);
         _params.set("matchText", false);//we've got the input doc as a string instead
 
+        /* Possible overlaps: ALL, NO_SUB, LONGEST_DOMINANT_RIGHT
+         * See Solr Text Tagger documentation for details. 
+         */
+        _params.set("overlaps", "LONGEST_DOMINANT_RIGHT");
+
         params = _params;
     }
 

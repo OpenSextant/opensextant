@@ -167,7 +167,7 @@
 
 		<!-- Internal libs:  OpenSextant Phonetics JAR External libs:  SolrTextTagger, servlet API-->
 		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.build}/opensextant-phonetics.jar" />
-		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.lib}/SolrTextTagger.jar" />
+		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.lib}/solr-text-tagger-1.1.jar" />
 		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.lib}/solr/javax.servlet-api-3.0.1.jar" />
 		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.lib}/solr/jts-1.13.jar" />
 
