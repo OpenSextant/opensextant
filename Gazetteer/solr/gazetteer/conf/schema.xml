@@ -400,11 +400,11 @@
          </analyzer>
     </fieldType>
     
-        <fieldType name="name_idx2" class="solr.TextField" positionIncrementGap="100">
+    <fieldType name="name_idx2" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
         <charFilter class="solr.MappingCharFilterFactory" mapping="contraction-filter2.txt"/>
         <tokenizer class="solr.ClassicTokenizerFactory"/>
-        <filter class="solr.ASCIIFoldingFilterFactory"/>
+        <filter class="solr.ASCIIFoldingFilterFactory" mapping="OpenSextant-Gazetteer-ASCIIFolding.txt" />
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
     </fieldType>

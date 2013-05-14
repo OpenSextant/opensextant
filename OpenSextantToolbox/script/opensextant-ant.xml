@@ -42,7 +42,7 @@
       <arg value="-t" />
       <arg value="${test.dir}/temp" />
       <arg value="-g" />
-      <arg value="${gate_home}/${solr_gapp}.gapp" />
+      <arg value="${opensextant.home}/gate/${solr_gapp}.gapp" />
 
     </java>
   </target>
@@ -62,7 +62,7 @@
       <arg value="-i" />
       <arg value="${inputfile}" />
       <arg value="-g" />
-      <arg value="${gate_home}/${solr_gapp}.gapp" />
+      <arg value="${opensextant.home}/gate/${solr_gapp}.gapp" />
 
     </java>
   </target>
