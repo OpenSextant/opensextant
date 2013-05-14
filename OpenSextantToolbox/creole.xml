@@ -16,7 +16,7 @@ This file defines the dependencies for the OpenSextantToolbox
     <!-- Solr 4.x support -->
 
     <!-- OpenSextant extension for tagging text. -->
-    <JAR SCAN="False">lib/SolrTextTagger.jar</JAR>
+    <JAR SCAN="False">lib/solr-text-tagger-1.1.jar</JAR>
     
     <!-- Solr Spatial - Lucene + add-ons -->
     <!--JAR SCAN="False">lib/solr/jts-1.13.jar</JAR-->
