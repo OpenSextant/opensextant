@@ -16,21 +16,22 @@ Build file for OpenSextant Desktop
 	
     <!-- directory to contain the jar -->
     <property name="build.dir" location="build" />
+    <property name="dist.dir" location="dist" />
 
 
     <path id="compile.classpath">
 
-    <!-- project level libraries -->
-    <pathelement location="${opensextant.home}/lib/OpenSextantToolbox.jar" />
-    <pathelement location="${opensextant.home}/lib/opensextant-apps.jar" />
-    <pathelement location="${opensextant.home}/lib/opensextant-commons.jar" />
-    <pathelement location="${opensextant.home}/lib/opensextant-xponents-1.6.jar" />
-    <pathelement location="${opensextant.home}/lib/commons-lang-2.6.jar" />
-
-    <pathelement location="${opensextant.home}/lib/slf4j-api-1.7.4.jar" />
-    <pathelement location="${opensextant.home}/lib/slf4j-log4j12-1.7.4.jar" />
-
-    <pathelement location="${opensextant.home}/lib/log4j-1.2.17.jar" />
+	    <!-- project level libraries -->
+	    <pathelement location="${opensextant.home}/lib/OpenSextantToolbox.jar" />
+	    <pathelement location="${opensextant.home}/lib/opensextant-apps.jar" />
+	    <pathelement location="${opensextant.home}/lib/opensextant-commons.jar" />
+	    <pathelement location="${opensextant.home}/lib/opensextant-xponents-1.6.jar" />
+	    <pathelement location="${opensextant.home}/lib/commons-lang-2.6.jar" />
+	
+	    <pathelement location="${opensextant.home}/lib/slf4j-api-1.7.4.jar" />
+	    <pathelement location="${opensextant.home}/lib/slf4j-log4j12-1.7.4.jar" />
+	
+	    <pathelement location="${opensextant.home}/lib/log4j-1.2.17.jar" />
 
     </path>
 
@@ -41,6 +42,10 @@ Build file for OpenSextant Desktop
     <target name="compile"  depends="setup" >
         <javac classpathref="compile.classpath" srcdir="src" destdir="${build.dir}" 
             debug="true" debuglevel="lines,source" source="${java_level}" encoding="utf-8" />
+    	
+    	<copy todir="${build.dir}">
+    	    <fileset dir="src" includes="**/*.png" />
+    	</copy>
     </target>
 
 
@@ -50,6 +55,27 @@ Build file for OpenSextant Desktop
     <target name="clean" >
         <delete dir="${build.dir}" />
     </target>
+	
+    <target name="release" depends="compile">
+        <delete dir="${dist.dir}" />
+    	<mkdir dir="${dist.dir}" />
+	    <jar destfile="${dist.dir}/${project.name}-${version}.jar" basedir="${build.dir}" manifest="${basedir}/MANIFEST.MF"/>
+		<copy todir="${dist.dir}/lib">
+			<fileset dir="${opensextant.home}/lib">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+
+    </target>
+	
+	<target name="release-full" depends="release">
+		<copy todir="${dist.dir}/opensextant">
+			<fileset dir="${opensextant.home}">
+				<include name="**"/>
+			</fileset>
+		</copy>
+	</target>
+
 
 </project>
 
