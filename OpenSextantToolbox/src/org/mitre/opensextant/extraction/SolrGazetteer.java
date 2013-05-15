@@ -89,7 +89,7 @@ public class SolrGazetteer {
      */
     private void initialize() throws IOException {
 
-        java.io.InputStream io = SolrGazetteer.class.getResourceAsStream("/country_names_2013.csv");
+        java.io.InputStream io = SolrGazetteer.class.getResourceAsStream("/country-names-2013.csv");
         java.io.Reader countryIO = new InputStreamReader(io);
         CsvMapReader countryMap = new CsvMapReader(countryIO, CsvPreference.EXCEL_PREFERENCE);
         String[] columns = countryMap.getHeader(true);
