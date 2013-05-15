@@ -136,8 +136,7 @@ public class ApiHelper implements Runnable {
        // } 
         
         // Actually run the mess
-        runner.runOpenSextant( inputFile, outputType
-                             , outputLocation + File.separator + outName );
+        runner.runOpenSextant( inputFile, outputType, outputLocation + File.separator + outName );
         
       } catch (Exception e) { e.printStackTrace(); } //TODO:Fortify will dislike
       inUse = false;
@@ -198,7 +197,7 @@ public class ApiHelper implements Runnable {
         tmp.setInputFile(file);
         tmp.setOutputType(outType);
         tmp.setOutputLocation(outLoc);
-    } else if(runtime.freeMemory() >= HALF_GIGABYTE) {
+    } else { //if(runtime.freeMemory() >= HALF_GIGABYTE) {
       tmp = new ApiHelper(file, outType, outLoc); 
       tmp.setInUse();
       threadList.add(tmp);

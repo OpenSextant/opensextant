@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
@@ -73,6 +74,43 @@ public class OpenSextant extends javax.swing.JFrame {
      */
     public OpenSextant() {
       Config.loadConfig();
+      log.info("loaded config");
+      
+      Properties props = System.getProperties();
+      
+      String osHome = props.getProperty("opensextant.home");
+      if(osHome == null) {
+    	  
+    	  List<String> osHomes = new ArrayList<String>() {{
+    		  add(ApiHelper.BASE_PATH + "opensextant");
+    		  add((new File("")).getAbsolutePath()+File.separator+"opensextant");
+    		  add((new File("")).getAbsolutePath()+File.separator+"dist"+File.separator+"opensextant");
+    	  }};
+    	  
+    	  for (String potentialHome : osHomes) {
+        	  if ((new File(potentialHome)).exists()) {
+        		  props.setProperty("opensextant.home", potentialHome); 
+        		  osHome = potentialHome;
+        		  log.info("Open sextant home set to: " + osHome);
+        		  break;
+        	  }
+    	  }
+    	  
+      }
+
+      if(osHome == null || !(new File(osHome)).exists()) { 
+          final JFileChooser chooser = new JFileChooser();
+          chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+          int returnVal = chooser.showOpenDialog(this);
+          
+          if (returnVal == JFileChooser.APPROVE_OPTION) {
+              props.setProperty("opensextant.home", chooser.getSelectedFile().getAbsolutePath());
+          }
+          
+      }
+
+      Initialize.init();
+      
       initComponents();
 
       java.net.URL imgURL = OpenSextant.class.getResource("/org/mitre/opensextant/desktop/icons/logo.png");
@@ -777,7 +815,7 @@ public class OpenSextant extends javax.swing.JFrame {
          */
     //    PropertyConfigurator.configure(l4j);
     //    logger = Logger.getLogger("RbReport");
-        BasicConfigurator.configure();
+    //    BasicConfigurator.configure();
         
         
         log.info("Starting Desktop Client");
@@ -801,11 +839,11 @@ public class OpenSextant extends javax.swing.JFrame {
             log.error(ex.getMessage()); 
         }
         //</editor-fold>
-        Initialize.init();
-        Properties props = System.getProperties();
-        if(props.getProperty("opensextant.home") == null)
-          props.setProperty( "opensextant.home"
-                           , ApiHelper.BASE_PATH + "opensextant"); 
+//        Initialize.init();
+//        Properties props = System.getProperties();
+//        if(props.getProperty("opensextant.home") == null)
+//          props.setProperty( "opensextant.home"
+//                           , ApiHelper.BASE_PATH + "opensextant"); 
       /*  try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
