@@ -10,3 +10,13 @@ canoe
 canoes
 kayak
 kayaks
+skiff
+skiffs
+warship
+warships
+frigate
+frigates
+aircraft carrier
+aircraft carriers
+battleship
+battleships

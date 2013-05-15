@@ -63,6 +63,8 @@ public class CantileverPR extends AbstractLanguageAnalyser implements
 	private String outputAnnotationSet;
 	private String candidateAnnotationName;
 	private String candidateFeatureName;
+	
+	private boolean DOCOREF = true;
 
 	private Cantilever cntlvr;
 	private Scorer scr;
@@ -125,14 +127,17 @@ public class CantileverPR extends AbstractLanguageAnalyser implements
 			}
 		}// end place candidate loop
 
-		// do the coreferencing and propagate the evidence amongst the PCs
-		cntlvr.propagateEvidence(pcList);
-		
-		// collect the document level evidence
-		List<PlaceEvidence> docEvidList = collectDocumentEvidence(annotSet);
-		
-		// attach document level evidence to scorer
-		scr.setDocumentLevelEvidence(docEvidList);
+		// enable/disable co-referencing
+		if(DOCOREF){
+			// do the coreferencing and propagate the evidence amongst the PCs
+			cntlvr.propagateEvidence(pcList);
+
+			// collect the document level evidence
+			List<PlaceEvidence> docEvidList = collectDocumentEvidence(annotSet);
+
+			// attach document level evidence to scorer
+			scr.setDocumentLevelEvidence(docEvidList);
+		}
 		
 		// score and rank the Places in each PC according to the evidence
 		scr.score(pcList);

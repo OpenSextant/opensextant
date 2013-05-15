@@ -7,6 +7,10 @@ cellphone
 cellphones
 circuit board
 circuit boards
+camera
+cameras
+camcorder
+camcorders
 computer
 computers
 communication channel
@@ -144,6 +148,10 @@ voice-over-ip
 secure voice over ip
 secure voice-over-ip
 telemetry
+video camera
+video cameras
+video recorder
+video recorders
 walkie talkie
 walkie talkies
 walkie-talkie

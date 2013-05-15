@@ -41,3 +41,5 @@ fur coats
 pants
 shirt
 shirts
+suit
+suits

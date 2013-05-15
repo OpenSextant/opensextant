@@ -127,6 +127,11 @@ public class SolrMatcher extends PlacenameMatcher {
         _params.set("subTags", false);
         _params.set("matchText", false);//we've got the input doc as a string instead
 
+        /* Possible overlaps: ALL, NO_SUB, LONGEST_DOMINANT_RIGHT
+         * See Solr Text Tagger documentation for details. 
+         */
+        _params.set("overlaps", "LONGEST_DOMINANT_RIGHT");
+
         params = _params;
     }
 
@@ -144,7 +149,7 @@ public class SolrMatcher extends PlacenameMatcher {
     }
 
     /** Close solr resources. */
-    public void shutdown() {
+    public static void shutdown() {
         if (solr != null) {
             solr.close();
         }
@@ -247,8 +252,6 @@ public class SolrMatcher extends PlacenameMatcher {
             bean.setLatitude(SolrProxy.getDouble(solrDoc, "lat"));
             bean.setLongitude(SolrProxy.getDouble(solrDoc, "lon"));
 
-            //bean.setSourceNameID(SolrProxy.getString(solrDoc, "SOURCE_NAME_ID"));
-            //bean.setSourceFeatureID(SolrProxy.getString(solrDoc, "SOURCE_FEATURE_ID"));
             bean.setPlaceID(SolrProxy.getString(solrDoc, "place_id"));
             bean.setName_bias(SolrProxy.getDouble(solrDoc, "name_bias"));
             bean.setId_bias(SolrProxy.getDouble(solrDoc, "id_bias"));
@@ -428,7 +431,7 @@ public class SolrMatcher extends PlacenameMatcher {
                 System.out.println(pc.toString());
             }
 
-            sm.cleanup();
+            sm.shutdown();
         } catch (Exception err) {
             err.printStackTrace();
         }

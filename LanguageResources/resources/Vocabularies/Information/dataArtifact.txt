@@ -174,3 +174,16 @@ broadcasts
 brochures
 compendium
 movies
+wiki
+wikis
+blog
+blogs
+wikipedia
+registered trademark
+registered trademarks
+trademark
+trademarks
+encyclopedia
+encyclopedias
+copyright
+copyrights

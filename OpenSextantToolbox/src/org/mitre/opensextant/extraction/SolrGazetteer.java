@@ -96,8 +96,8 @@ public class SolrGazetteer {
         Map<String, String> country_names = null;
         while ((country_names = countryMap.read(columns)) != null) {
             String n = country_names.get("country_name");
-            String cc = country_names.get("cc_iso2");
-            String fips = country_names.get("cc_fips");
+            String cc = country_names.get("ISO2_cc");
+            String fips = country_names.get("FIPS_cc");
             iso2fips.put(cc, fips);
             fips2iso.put(fips, cc);
 
@@ -164,7 +164,7 @@ public class SolrGazetteer {
         country_lookup = new HashMap<>();
 
         ModifiableSolrParams ctryparams = new ModifiableSolrParams();
-        ctryparams.set(CommonParams.FL, "id,name,cc,cc_fips,cc_iso3,adm1,adm2,feat_class,feat_code,lat,lon,name_type");
+        ctryparams.set(CommonParams.FL, "id,name,cc,FIPS_cc,ISO3_cc,adm1,adm2,feat_class,feat_code,lat,lon,name_type");
 
         ctryparams.set("q", "+feat_class:A +feat_code:PCL* +name_type:N");
         ctryparams.set("rows", 2000);

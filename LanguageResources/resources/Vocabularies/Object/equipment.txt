@@ -94,3 +94,7 @@ microscope
 microscopes
 clock
 clocks
+nuclear reactor
+nuclear reactors
+reactor
+reactors

@@ -133,6 +133,7 @@ department of transportation
 department of veterans affairs
 domestic policy council
 drug enforcement administration
+dea
 economic adjustment office
 economic development administration
 economic research service
@@ -521,6 +522,7 @@ us commission on international religious freedom
 us commodity futures trading commission
 us court of appeals for veterans claims
 us customs and border protection
+us dea
 us department of agriculture
 us department of commerce
 us department of health and human services

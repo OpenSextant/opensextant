@@ -108,8 +108,6 @@ public class PlaceNameStatisticsPR extends AbstractLanguageAnalyser implements
 		// get all of the annotations of interest
 		
 		AnnotationSet placeCandAnnoSet = document.getAnnotations().get(this.placeAnnotationName);
-		AnnotationSet notPlaceannoSet = document.getAnnotations().get(this.notPlaceAnnotationName);
-		AnnotationSet noOpinionAnnoSet = document.getAnnotations().get(this.noOpionPlaceAnnotationName);
 
 		docCount++;
 		log.info( "(" + docCount + ") " + document.getName() + " has " + placeCandAnnoSet.size() + " " + placeAnnotationName +   " annotations"); 

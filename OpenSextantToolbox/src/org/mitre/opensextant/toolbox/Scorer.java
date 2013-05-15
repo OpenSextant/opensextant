@@ -26,6 +26,7 @@
 **/
 package org.mitre.opensextant.toolbox;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mitre.opensextant.placedata.Geocoord;
@@ -69,7 +70,7 @@ public class Scorer {
 	double totalWeight = nameWeight + geocoordWeight + featureTypeWeight + adminStructureWeight;
 
 	// document level country and admin1  evidence
-	List<PlaceEvidence> docEvidList;
+	List<PlaceEvidence> docEvidList = new ArrayList<PlaceEvidence>();
 	
 	
 	// the minimum value returned by scoreEvidence to avoid multiplying

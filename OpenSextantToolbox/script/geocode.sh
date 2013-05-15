@@ -40,9 +40,12 @@ DATA_IN=$1
 GEOCODE_OUT=$2
 FORMAT=$3
 
-if [ -z "$DATA_IN" -o -z "$GEOCODE_OUT" -o -z "$FORMAT" ] ; then 
-   usage;
+if [ -n "$DATA_IN" -a -n "$GEOCODE_OUT" -a -n "$FORMAT" ] ; then 
+   ant -f ${install}/script/opensextant-ant.xml -Dinputfile=$DATA_IN -Doutputfile=$GEOCODE_OUT -Dformat=$FORMAT  geocode
+elif [ -n "$DATA_IN" ]; then 
+   ant -f ${install}/script/opensextant-ant.xml -Dinputfile=$DATA_IN  geocode-no-output
+else
+  usage
 fi
 
-ant -f ${install}/script/opensextant-ant.xml -Dinputfile=$DATA_IN -Doutputfile=$GEOCODE_OUT -Dformat=$FORMAT  run-solr
 

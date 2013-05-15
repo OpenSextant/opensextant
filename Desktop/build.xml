@@ -18,7 +18,6 @@ Build file for OpenSextant Desktop
     <property name="build.dir" location="build" />
     <property name="dist.dir" location="dist" />
 
-
     <path id="compile.classpath">
 
 	    <!-- project level libraries -->
@@ -39,7 +38,7 @@ Build file for OpenSextant Desktop
     <property name="javadoc.dir" location="${basedir}/doc/javadoc" />
 
     <!-- compile the source -->
-    <target name="compile"  depends="setup" >
+    <target name="compile" depends="setup" >
         <javac classpathref="compile.classpath" srcdir="src" destdir="${build.dir}" 
             debug="true" debuglevel="lines,source" source="${java_level}" encoding="utf-8" />
     	
@@ -76,6 +75,20 @@ Build file for OpenSextant Desktop
 		</copy>
 	</target>
 
+
+
+     <!-- create the JAR files -->
+    <target name="jar" depends="compile">
+        <jar destfile="build/${project.name}.jar" update="false" basedir="${build.dir}" >
+            <include name="org/**"/>
+        </jar>
+        <jar destfile="build/${project.name}.jar" update="true" basedir="${basedir}/src" >
+            <include name="org/mitre/opensextant/desktop/icons/**.png" />
+        </jar>
+        <jar destfile="build/${project.name}.jar" update="true" basedir="${basedir}/src" >
+            <include name="org/mitre/opensextant/desktop/**.form" />
+        </jar>
+    </target>
 
 </project>
 
