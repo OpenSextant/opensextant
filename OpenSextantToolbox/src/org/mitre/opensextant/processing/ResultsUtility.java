@@ -1,17 +1,17 @@
 /** 
  Copyright 2009-2013 The MITRE Corporation.
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+ http://www.apache.org/licenses/LICENSE-2.0
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 
 
  * **************************************************************************
@@ -23,7 +23,7 @@
  *
  * (c) 2012 The MITRE Corporation. All Rights Reserved.
  * **************************************************************************
-**/
+ **/
 package org.mitre.opensextant.processing;
 
 import gate.Annotation;
@@ -31,22 +31,27 @@ import gate.Utils;
 import java.text.DecimalFormat;
 import org.mitre.opensextant.util.TextUtils;
 import org.mitre.opensextant.extraction.TextEntity;
-
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Abstract class encapsulating basic results formatter functionality.
  *
  */
-public class ResultsUtility  {
+public class ResultsUtility {
 
     // -------------
-    public final static String DEFAULT_PL_ANNOT_TYPE = "PLACE";
-    public final static String DEFAULT_PL_FEAT_TYPE = "placeCandidate";
-    public final static String DEFAULT_XY_ANNOT_TYPE = "geocoord";
-    
+    public final static String PLACE_ANNOTATION = "PLACE";
+    public final static String PLACE_CANDIDATE_ANNOTATION = "placeCandidate";
+    public final static String GEOCOORD_ANNOTATION = "geocoord";
+    public final static Set<String> GATE_GEOCODE_ANNOTATIONS = new HashSet<>();
+    static {
+        // This annot set matches "isLocation(annotType)"
+        GATE_GEOCODE_ANNOTATIONS.add(GEOCOORD_ANNOTATION);
+        GATE_GEOCODE_ANNOTATIONS.add(PLACE_ANNOTATION);
+    }
     /** The default TEXT WIDTH */
     public static int TEXT_WIDTH = 200;
-
 
     /**
      * Given the GATE annotation set the context on the TextEntity object.
@@ -70,9 +75,9 @@ public class ResultsUtility  {
     /**
      * Given the GATE annotation set the context on the TextEntity object.
      */
-    public static void setContextFor(String content, Annotation annot, 
+    public static void setContextFor(String content, Annotation annot,
             TextEntity t, int match_size, int doc_size) {
-        
+
         if (t.getContext() != null) {
             return;
         }
@@ -87,21 +92,21 @@ public class ResultsUtility  {
      * Is this a Location annotation type?
      */
     public static boolean isLocation(String a) {
-        return DEFAULT_XY_ANNOT_TYPE.equals(a) || DEFAULT_PL_ANNOT_TYPE.equals(a);
+        return GEOCOORD_ANNOTATION.equals(a) || PLACE_ANNOTATION.equals(a);
     }
 
     /**
      * Is this a Location geocoordinate annotation type?
      */
     public static boolean isCoordinate(String a) {
-        return DEFAULT_XY_ANNOT_TYPE.equals(a);
+        return GEOCOORD_ANNOTATION.equals(a);
     }
 
     /**
      * Is this a Location placename annotation type?
      */
     public static boolean isPlaceName(String a) {
-        return DEFAULT_PL_ANNOT_TYPE.equals(a);
+        return PLACE_ANNOTATION.equals(a);
     }
     /**
      * Control floating point accuracy on any results.
