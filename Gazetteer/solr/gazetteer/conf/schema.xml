@@ -400,11 +400,15 @@
          </analyzer>
     </fieldType>
     
+    <!-- Looks like we could benefit from a char filter that combines contractions and ASCII folding;
+             Sure, its more elegant to maintain separate char filters;  Or a char filter and token filter.
+      -->
     <fieldType name="name_idx2" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
-        <charFilter class="solr.MappingCharFilterFactory" mapping="contraction-filter2.txt"/>
+        <!-- <charFilter class="solr.MappingCharFilterFactory" mapping="contraction-filter2.txt"/> -->
+        <charFilter class="solr.MappingCharFilterFactory" mapping="OpenSextant-Gazetteer-ASCIIFolding.txt" />
         <tokenizer class="solr.ClassicTokenizerFactory"/>
-        <filter class="solr.ASCIIFoldingFilterFactory" mapping="OpenSextant-Gazetteer-ASCIIFolding.txt" />
+        <!-- <filter class="solr.ASCIIFoldingFilterFactory" /> -->
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
     </fieldType>

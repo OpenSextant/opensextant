@@ -148,7 +148,6 @@
 		<mkdir dir="${solr_home}/gazetteer" />
 		<mkdir dir="${solr_home}/gazetteer/lib" />
 		<mkdir dir="${solr_home}/gazetteer/data" />
-		<mkdir dir="${solr_home}/input" />
 		<mkdir dir="${solr_home}/webapp" />
 
 		<!-- Unpack Solr4 config baseline-->
@@ -156,11 +155,12 @@
 
 		<!-- Gaz and SolrTextTagger Solr config -->
 		<copy todir="${solr_home}/" file="${basedir}/solr/solr.xml" />
-		<copy todir="${solr_home}/gazetteer/conf" file="${basedir}/solr/gazetteer/conf/solrconfig.xml" />
-		<copy todir="${solr_home}/gazetteer/conf" file="${basedir}/solr/gazetteer/conf/schema.xml" />
-		<copy todir="${solr_home}/gazetteer/conf" file="${basedir}/solr/gazetteer/conf/update-script.js" />
-		<copy todir="${solr_home}/gazetteer/conf" file="${basedir}/solr/gazetteer/conf/contraction-filter.txt" />
-		<copy todir="${solr_home}/gazetteer/conf" file="${basedir}/solr/gazetteer/conf/contraction-filter2.txt" />
+		<copy todir="${solr_home}/gazetteer/conf">
+                  <fileset dir="${basedir}/solr/gazetteer/conf">
+                    <!-- Include character mappings, schema, server config -->
+                    <include name="**/*.*"/>
+                  </fileset>
+                </copy>
 
 		<unjar src="${basedir}/solr/solr.war" dest="${solr_home}/webapp/." />
 
@@ -234,7 +234,14 @@
 		<antcall target="create-solr-home" />
 		<antcall target="create" />
 		<antcall target="build-fst" />
-      </target>
+        </target>
+
+        <!-- Just rebuild the gazetteer from Merged.txt into an existing SOLR_HOME -->
+	<target name="rebuild" >
+            <echo > No depdencies enforced.  If you are rebuilding the Gazetteer then SOLR_HOME must exist, per create-solr-home</echo>
+	    <antcall target="create" />
+	    <antcall target="build-fst" />
+        </target>
 
 	<!-- zip up the Solr home for release -->
 	<target name="zip.solrhome" >
