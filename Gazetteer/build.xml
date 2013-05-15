@@ -14,7 +14,7 @@
 	    USGS - http://geonames.usgs.gov/domestic/download_data.htm 
 		NGA - http://earth-info.nga.mil/gns/html/namefiles.htm
 	-->
-	<property name="NGA_date" value="20130506" />
+	<property name="NGA_date" value="20130513" />
 	<property name="USGS_date" value="20130404" />
 
 	<!-- where did you install Pentaho Data Integration aka Kettle? -->
@@ -215,6 +215,9 @@
 
         <target name="prepare" >
            <mkdir dir="${basedir}/GazetteerETL/Logs"/>
+           <mkdir dir="${basedir}/GazetteerETL/GeoData/NGA"/>
+           <mkdir dir="${basedir}/GazetteerETL/GeoData/USGS"/>
+           <mkdir dir="${basedir}/GazetteerETL/GeoData/Merged"/>
         </target>
 
 
