@@ -5,12 +5,18 @@
   <property environment="env"/>
   <property name="version" value="0.10"/>
 
-  <!-- OS dependent things? -->
+  <!--  basedir is ./script ... so Desktop app appears at ..
+   -->
+
+  <!-- OS dependent things? 
   <property name="opensextant.home" value="${env.OPENSEXTANT_HOME}" />
+  -->
+ 
+  <property file="${basedir}/../build.properties" />
   
   <path id="runtime.classpath">
-    <pathelement location="${basedir}/etc" />  
-    <pathelement location="${basedir}/build/OpenSextantDesktop.jar" />
+    <pathelement location="${basedir}/../etc" />  
+    <pathelement location="${basedir}/../build/OpenSextantDesktop.jar" />
 
     <pathelement location="${opensextant.home}/etc" />  
     <fileset dir="${opensextant.home}/lib" includes="**/*.jar" />

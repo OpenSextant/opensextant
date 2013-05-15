@@ -95,12 +95,6 @@
    <field name="_version_" type="long" indexed="true" stored="true"/>
 
    <field name="place_id" type="string" required="true" />
-
-   <!-- 
-   <copyField source="Record_ID" dest="id" />
-   <copyField source="PLACE_ID"  dest="place_id" />
-    -->
-
    <field name="name"     type="name_idx2" required="true" /> 
   
    <!-- phonetic variant for FST -->
@@ -112,72 +106,35 @@
    <!-- phonetic variant for deep name matching -->
    <field name="name_phoneme"  type="phonetic"               stored="false"  omitTermFreqAndPositions="true" omitNorms="true"/>
    
-   <!-- <copyField source="PLACE_NAME" dest="name" /> -->
    <copyField source="name" dest="name_phoneme" /> 
    
    <!-- this is kind of a trick without requiring a latLon "lat,lon" in the incoming CSV -->
    <field name="geo" type="geo" />
    <field name="lat" type="tdouble" />
    <field name="lon" type="tdouble" />
-   <!-- 
-   <copyField source="LATITUDE" dest="lat" />
-   <copyField source="LONGITUDE" dest="lon" />
-   <copyField source="lat" dest="geo_0_coordinate" />
-   <copyField source="lon" dest="geo_1_coordinate" />
-   -->
    
-   <!--
-   <field name="SOURCE_FEATURE_ID" type="long" />
-   <field name="SOURCE_NAME_ID" type="long" />
-   <field name="CONFLATE_KEY" type="long" />
-   -->
    <field name="name_bias" type="tfloat" />
    <field name="id_bias" type="tfloat" />
-   <!--
-   <copyField source="PLACE_NAME_BIAS" dest="name_bias" />
-   <copyField source="PLACE_ID_BIAS"  dest="id_bias" />   
-   -->
-
    
    <field name="feat_class" type="string" />
    <field name="feat_code"  type="string" />
    
-   <!-- 
-   <copyField source="FEATURE_CLASS" dest="feat_class" />
-   <copyField source="FEATURE_CODE"  dest="feat_code" />   
-   -->
    <field name="cc"       type="string" /> <!-- ISO -->
    <field name="FIPS_cc"  type="string" />
-   <field name="ISO_cc"   type="string" multiValued="true" />
+   <field name="ISO_cc"   type="string" />
    <field name="ISO3_cc"  type="string" />
    
-   <!--
-   <copyField source="FIPS_COUNTRY_CODE" dest="FIPS_cc" />
-   <copyField source="ISO2_COUNTRY_CODE" dest="ISO_cc" />
-   -->
    <copyField source="ISO_cc" dest="cc" />
 
    <field name="adm1"       type="string" /> 
    <field name="adm2"       type="string" /> 
    <field name="adm3"       type="string" /> 
 
-   <!--
-   <copyField source="ADMIN_LEVEL_1" dest="adm1" />
-   <copyField source="ADMIN_LEVEL_2" dest="adm2" />
-   <copyField source="ADMIN_LEVEL_3" dest="adm3" />
-   -->
-
    <field name="name_type"    type="string" stored="true" /> 
    <field name="script"       type="string" stored="false" /> 
    <field name="source"       type="string" stored="false" /> 
 
    <!--
-   <copyField source="SCRIPT" dest="script" />
-   <copyField source="SOURCE" dest="source" />
-   -->
-   
-   <!--
-
 
    "Record_ID":12803368, X
    "PLACE_ID":"USGS1992110", Y
@@ -443,11 +400,11 @@
          </analyzer>
     </fieldType>
     
-        <fieldType name="name_idx2" class="solr.TextField" positionIncrementGap="100">
+    <fieldType name="name_idx2" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
         <charFilter class="solr.MappingCharFilterFactory" mapping="contraction-filter2.txt"/>
         <tokenizer class="solr.ClassicTokenizerFactory"/>
-        <filter class="solr.ASCIIFoldingFilterFactory"/>
+        <filter class="solr.ASCIIFoldingFilterFactory" mapping="OpenSextant-Gazetteer-ASCIIFolding.txt" />
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
     </fieldType>

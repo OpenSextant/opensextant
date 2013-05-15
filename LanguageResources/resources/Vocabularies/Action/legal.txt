@@ -69,3 +69,5 @@ trial
 trials
 verdict
 year sentence
+negotiation
+negotiations

@@ -14,7 +14,7 @@
 	    USGS - http://geonames.usgs.gov/domestic/download_data.htm 
 		NGA - http://earth-info.nga.mil/gns/html/namefiles.htm
 	-->
-	<property name="NGA_date" value="20130422" />
+	<property name="NGA_date" value="20130506" />
 	<property name="USGS_date" value="20130404" />
 
 	<!-- where did you install Pentaho Data Integration aka Kettle? -->
@@ -167,7 +167,7 @@
 
 		<!-- Internal libs:  OpenSextant Phonetics JAR External libs:  SolrTextTagger, servlet API-->
 		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.build}/opensextant-phonetics.jar" />
-		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.lib}/SolrTextTagger.jar" />
+		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.lib}/solr-text-tagger-1.1.jar" />
 		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.lib}/solr/javax.servlet-api-3.0.1.jar" />
 		<copy todir="${solr_home}/gazetteer/lib" file="${opensextant.lib}/solr/jts-1.13.jar" />
 

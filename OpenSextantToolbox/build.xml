@@ -6,7 +6,7 @@ The core library is contained in this jar.
 =======================================================================-->
 <project name="OpenSextantToolbox" basedir="." default="jar">
 
-    <property name="version" value="1.2" />
+    <property name="version" value="1.3" />
 
     <!-- Name of the project -->
     <property name="project.name" value="OpenSextantToolbox" />

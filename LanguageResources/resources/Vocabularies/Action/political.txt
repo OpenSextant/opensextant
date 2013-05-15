@@ -2,6 +2,7 @@ election
 elections
 peace deal
 peace deals
+peace process
 treaty
 treaties
 nonaggression pact
@@ -13,3 +14,7 @@ referendums
 constitutional amendment
 constitutional amendments
 embargo
+truce
+truces
+defection
+defections

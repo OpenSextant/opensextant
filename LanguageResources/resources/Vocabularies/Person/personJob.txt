@@ -1320,6 +1320,8 @@ persona grata
 persona non grata
 petty officer
 photographer''s model
+physicist
+physicists
 piano tuner
 picker
 pigman
@@ -1330,6 +1332,8 @@ pilots
 pinko
 pin-up
 pipe fitter
+pirate
+pirates
 pitching coach
 pitman
 placeman
@@ -1658,6 +1662,8 @@ shepherdess
 shipboard soldier
 shipping clerk
 ship's officer
+shipmaster
+shipmasters
 shipwright
 shop assistant
 shop boy
@@ -2277,4 +2283,7 @@ aide
 aides
 alumni
 alumnus
-
+robber
+robbers
+watchman
+watchmen

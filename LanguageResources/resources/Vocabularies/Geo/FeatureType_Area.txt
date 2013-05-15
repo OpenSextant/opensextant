@@ -26,3 +26,5 @@ urban area
 urban areas
 zone
 zones
+heartland
+heartlands

@@ -533,12 +533,13 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
             runner.initialize();
             runner.runOpenSextant(_inFile, _outFormat, _outFile, _tempDir);
             runner.shutdown();
+
+            // Release all resources
+            AppBase.globalShutdown();
             // Success.
-            System.exit(0);
         } catch (Exception err) {
             err.printStackTrace();
         }
-        // Failed 
-        System.exit(-1);
+        System.exit(0);
     }
 }
