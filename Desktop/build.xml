@@ -32,6 +32,13 @@ Build file for OpenSextant Desktop
 	
 	    <pathelement location="${opensextant.home}/lib/log4j-1.2.17.jar" />
 
+	    <pathelement location="${opensextant.home}/lib/commons-io-2.1.jar" />
+
+	    <pathelement location="lib/appframework-1.0.3.jar" />
+	    <pathelement location="lib/commons-configuration-1.9.jar" />
+	    <pathelement location="lib/swing-layout-1.0.3.jar" />
+	    <pathelement location="lib/swing-worker-1.1.jar" />
+
     </path>
 
     <!-- JavaDoc documentation directory -->
@@ -44,6 +51,9 @@ Build file for OpenSextant Desktop
     	
     	<copy todir="${build.dir}">
     	    <fileset dir="src" includes="**/*.png" />
+    	</copy>
+    	<copy todir="${build.dir}">
+    	    <fileset dir="src" includes="**/*.xml" />
     	</copy>
     </target>
 
@@ -58,13 +68,24 @@ Build file for OpenSextant Desktop
     <target name="release" depends="compile">
         <delete dir="${dist.dir}" />
     	<mkdir dir="${dist.dir}" />
-	    <jar destfile="${dist.dir}/${project.name}-${version}.jar" basedir="${build.dir}" manifest="${basedir}/MANIFEST.MF"/>
+        <jar destfile="${dist.dir}/${project.name}-${version}.jar" update="false" basedir="${build.dir}" manifest="${basedir}/MANIFEST.MF" >
+            <include name="**"/>
+        </jar>
 		<copy todir="${dist.dir}/lib">
 			<fileset dir="${opensextant.home}/lib">
 				<include name="*.jar"/>
 			</fileset>
 		</copy>
-
+		<copy todir="${dist.dir}/lib">
+			<fileset dir="lib">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="${dist.dir}/help-pages">
+			<fileset dir="help-pages">
+				<include name="**"/>
+			</fileset>
+		</copy>
     </target>
 	
 	<target name="release-full" depends="release">
@@ -74,21 +95,6 @@ Build file for OpenSextant Desktop
 			</fileset>
 		</copy>
 	</target>
-
-
-
-     <!-- create the JAR files -->
-    <target name="jar" depends="compile">
-        <jar destfile="build/${project.name}.jar" update="false" basedir="${build.dir}" >
-            <include name="org/**"/>
-        </jar>
-        <jar destfile="build/${project.name}.jar" update="true" basedir="${basedir}/src" >
-            <include name="org/mitre/opensextant/desktop/icons/**.png" />
-        </jar>
-        <jar destfile="build/${project.name}.jar" update="true" basedir="${basedir}/src" >
-            <include name="org/mitre/opensextant/desktop/**.form" />
-        </jar>
-    </target>
 
 </project>
 
