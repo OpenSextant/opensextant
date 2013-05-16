@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 public class ApiHelper {
 	public static final long HALF_GIGABYTE = 536870912L;
 
+	// TODO: this probably should be set via some form of intelligence... memory, or cores
 	private static final int MAXIMUM_THREADS = 2;
 
 	private static Logger log = LoggerFactory.getLogger(ApiHelper.class);
