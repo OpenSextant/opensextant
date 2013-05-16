@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.3
+Created-By: 1.7.0_21-b12 (Oracle Corporation)
+Class-Path: lib/OpenSextantToolbox.jar lib/SolrTextTagger.jar lib/ant-
+ contrib.jar lib/ant-launcher.jar lib/ant.jar lib/cglib-nodep-2.2.jar 
+ lib/commons-beanutils.jar lib/commons-cli-1.2.jar lib/commons-codec-1
+ .7.jar lib/commons-collections3.jar lib/commons-compress.jar lib/comm
+ ons-fileupload-1.2.1.jar lib/commons-io-2.1.jar lib/commons-lang-2.6.
+ jar lib/commons-logging-1.1.1.jar lib/dom4j.jar lib/ezmorph-1.jar lib
+ /flexpat-1.3.jar lib/gate-asm.jar lib/gate-compiler-jdt.jar lib/gate.
+ jar lib/geodesy-1.9.24.jar lib/giscore-1.8.jar lib/guava-13.0.1.jar l
+ ib/httpclient-4.2.3.jar lib/httpcore-4.2.2.jar lib/httpmime-4.2.3.jar
+  lib/icu4j-51_1.jar lib/icu4j-charset-51_1.jar lib/ivy.jar lib/java-g
+ etopt.jar lib/javacc.jar lib/javax.servlet-api-3.0.1.jar lib/jaxen.ja
+ r lib/jdom.jar lib/jgeohash-1.4.0.jar lib/json-lib-2.4-jdk15.jar lib/
+ jts-1.13.jar lib/junit.jar lib/log4j-1.2.17.jar lib/lucene-analyzers-
+ common-4.2.1.jar lib/lucene-analyzers-kuromoji-4.2.1.jar lib/lucene-a
+ nalyzers-phonetic-4.2.1.jar lib/lucene-codecs-4.2.1.jar lib/lucene-co
+ re-4.2.1.jar lib/lucene-grouping-4.2.1.jar lib/lucene-highlighter-4.2
+ .1.jar lib/lucene-memory-4.2.1.jar lib/lucene-misc-4.2.1.jar lib/luce
+ ne-queries-4.2.1.jar lib/lucene-queryparser-4.2.1.jar lib/lucene-spat
+ ial-4.2.1.jar lib/lucene-suggest-4.2.1.jar lib/nekohtml.jar lib/objen
+ esis-1.2.jar lib/opensextant-commons.jar lib/opensextant-phonetics.ja
+ r lib/slf4j-api-1.7.4.jar lib/slf4j-log4j12-1.7.4.jar lib/solr-core-4
+ .2.1.jar lib/solr-solrj-4.2.1.jar lib/spatial4j-0.3.jar lib/super-csv
+ -2.1.0.jar lib/tika-app-1.3-nologger.jar lib/wstx-asl-3.2.7.jar lib/x
+ coord-1.6.jar lib/xercesImpl.jar lib/xmlbeans.jar lib/xmlunit.jar lib
+ /xpp3.jar lib/xstream.jar lib/xtemporal-1.0.jar lib/xtext-1.0.jar lib
+ /zookeeper-3.4.5.jar lib/opensextant-apps.jar lib/commons-configurati
+ on-1.9.jar lib/appframework-1.0.3.jar lib/swing-layout-1.0.3.jar lib/
+ swing-worker-1.1.jar
+X-COMMENT: Main-Class will be added automatically by build
+Main-Class: org.mitre.opensextant.desktop.Main
+

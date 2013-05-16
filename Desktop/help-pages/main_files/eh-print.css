@@ -1,0 +1,110 @@
+/*
+                                NOTICE
+                                   
+     This software (or technical data) was produced for the U. S.
+  Government under contract 2006*1014026*000, and is subject to the 
+  Rights in Data-General Clause 52.227-14 - Alternate IV (June 1987)
+                                   
+         (c) 2007 The MITRE Corporation. All Rights Reserved.
+*/
+
+body {
+width: 80%;
+  margin:0px; 
+	padding:0px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:0.9em;
+	color: black;
+}
+
+a:link {
+	color:  #000000;
+	text-decoration:underline;
+}
+
+a:visited {
+	color: #330000;
+	text-decoration:underline;
+}
+
+a:hover {
+	color: #990111;
+	text-decoration:none;
+}
+
+a:active {
+	color: #990111;
+	text-decoration:underline;
+}
+
+/* header H1 can't be H1 because of PDF conversion tool. See #header h1 below.
+   Rest of headers: H1 like H2, H2 like H3, H3 like H4. See
+   http://www.w3.org/TR/REC-CSS2/sample.html */
+
+h1 {
+  font-size:1.4em;
+  margin: .83em 0
+}
+
+h2 {
+  font-size:1.2em;
+  margin: 1em 0
+}
+
+h3 {
+  font-size:1em;
+  margin: 1.33em 0
+}
+
+tt {
+font-size:1.3em;
+font-weight:bold;
+}
+
+ ul {
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}	
+
+ul ul {
+	margin:0px;
+	padding:0px;
+	padding-left:1em;
+	}	
+
+#header {
+	height:100px;
+	margin:0;
+	padding:0;
+    line-height:55px;
+    border-top: solid #000000 1px;
+	border-bottom: solid #000000 1px;
+}
+
+#header .titleheader {
+	font-size: 24px;
+	font-weight: normal;
+	margin: 0 0 0 0px;
+}
+
+#content {
+    margin:20px; 
+    padding:0 1em;
+}
+
+#content ul {
+    list-style: disc inside;
+    text-indent: 20px;
+}
+
+#footer {
+	font-size:1.5em;
+	font-style:italic;
+	margin:0;
+	padding:0 0 0 170px;
+	background-color: #FFFFFF;
+	border-top: solid #000000 2px;
+	border-bottom: solid #000000 2px;
+}
+

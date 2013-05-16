@@ -1,16 +1,15 @@
-package org.mitre.opensextant.desktop.handlers;
+package org.mitre.opensextant.desktop.ui.handlers;
 
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.io.File;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
 import org.apache.commons.lang.ArrayUtils;
-import org.mitre.opensextant.desktop.ApiHelper;
+import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +17,12 @@ import org.slf4j.LoggerFactory;
 public class FileDropTransferHandler extends TransferHandler {
 
     private static Logger log = LoggerFactory.getLogger(FileDropTransferHandler.class);
+    private ApiHelper apiHelper;
+    
+	public FileDropTransferHandler(ApiHelper apiHelper) {
+		super();
+		this.apiHelper = apiHelper;
+	}
 
 	public boolean canImport(JComponent component, DataFlavor[] flavors) {
 		return ArrayUtils.contains(flavors, DataFlavor.javaFileListFlavor);
@@ -32,7 +37,7 @@ public class FileDropTransferHandler extends TransferHandler {
 			@SuppressWarnings("unchecked")
 			List<File> files = (List<File>)transferable.getTransferData(DataFlavor.javaFileListFlavor);
 			for (File file :  files) {
-				ApiHelper.processFile(file.getAbsolutePath());
+				apiHelper.processFile(file.getAbsolutePath());
 			}
 			return true;
 		} catch (Exception e) {

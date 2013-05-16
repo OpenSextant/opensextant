@@ -1,0 +1,257 @@
+package org.mitre.opensextant.desktop.ui;
+
+import java.awt.Desktop;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
+import org.mitre.opensextant.desktop.ui.forms.OpenSextantMainFrame;
+import org.mitre.opensextant.desktop.ui.forms.TextEntryFrame;
+import org.mitre.opensextant.desktop.ui.handlers.FileDropTransferHandler;
+import org.mitre.opensextant.desktop.ui.handlers.HelpKeyListener;
+import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
+import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
+import org.mitre.opensextant.desktop.util.TikaMimeTypes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
+
+
+    private static Logger log = LoggerFactory.getLogger(OpenSextantMainFrameImpl.class);
+    private MainFrameTableHelper tableHelper;
+    private ApiHelper apiHelper;
+
+
+	public enum ButtonType {
+		CANCEL, DELETE, FILTER, RERUN
+	};
+
+	public enum IconType {
+		BOLD, NORMAL, TRASH, CANCEL
+	};
+
+	public OpenSextantMainFrameImpl() {
+		super();
+		tableHelper = new MainFrameTableHelper(this);
+		apiHelper = new ApiHelper(this);
+		initialize(this);
+
+		java.net.URL imgURL = OpenSextantMainFrameImpl.class.getResource("/org/mitre/opensextant/desktop/icons/logo.png");
+		if (imgURL != null) {
+			this.setIconImage(new ImageIcon(imgURL, "Icon").getImage());
+		}
+
+		HelpKeyListener helpListen = new HelpKeyListener();
+		
+		// Listeners for everywhere
+		// TODO: Is there really no better way to do this?
+		// TODO: Probably key mnemonics after I add a button
+		this.addKeyListener(helpListen);
+		addButton.addKeyListener(helpListen);
+		addTextButton.addKeyListener(helpListen);
+		this.cancelButton.addKeyListener(helpListen);
+		this.configButton.addKeyListener(helpListen);
+		this.deleteButton.addKeyListener(helpListen);
+		this.filterButton.addKeyListener(helpListen);
+		this.rerunButton.addKeyListener(helpListen);
+		this.allCheck.addKeyListener(helpListen);
+		this.sortCombo.addKeyListener(helpListen);
+
+		
+		mainPanel.setTransferHandler(new FileDropTransferHandler(apiHelper));
+		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+
+	}
+
+	private void initialize(final OpenSextantMainFrameImpl parent) {
+		
+        allCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allCheckActionPerformed(evt);
+            }
+        });
+
+        configButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                configButtonActionPerformed(evt);
+            }
+        });
+
+        rerunButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parent.rerunButtonActionPerformed(evt);
+            }
+        });
+
+        filterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	parent.filterButtonActionPerformed(evt);
+            }
+        });
+
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	parent.cancelButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	parent.deleteButtonActionPerformed(evt);
+            }
+        });
+
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	parent.viewButtonActionPerformed(evt);
+            }
+        });
+
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	parent.addButtonActionPerformed(evt);
+            }
+        });
+
+        addTextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	parent.addTextButtonActionPerformed(evt);
+            }
+        });
+
+        helpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	parent.helpButtonActionPerformed(evt);
+            }
+        });
+		
+	}
+	
+	private void allCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_allCheckActionPerformed
+		boolean value = ((JCheckBox) evt.getSource()).isSelected();
+		tableHelper.checkAll(value);
+	}
+
+	private void rerunButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		tableHelper.runTopLevelButtons(ButtonType.RERUN);
+	}
+
+	private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		tableHelper.runTopLevelButtons(ButtonType.FILTER);
+	}
+
+	private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		tableHelper.runTopLevelButtons(ButtonType.CANCEL);
+	}
+
+	private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		tableHelper.runTopLevelButtons(ButtonType.DELETE);
+		tableHelper.updateActionVisibility();
+	}
+
+	private void configButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		JFrame frame = new ConfigFrame();
+		frame.pack();
+		frame.setVisible(true);
+	}
+
+	private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = TikaMimeTypes.makeFileBrowser();
+		chooser.setFileFilter(filter);
+		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+
+		try {
+			File f = new File(ConfigFrame.getInLocation());
+			chooser.setCurrentDirectory(f);
+		} catch (Exception e) {
+		}
+		int returnVal = chooser.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			String selFile = chooser.getSelectedFile().toString();
+			ConfigFrame.setInLocation(selFile);
+			apiHelper.processFile(selFile);
+			ConfigFrame.saveSettings();
+		}
+	}
+	
+
+
+	private void addTextButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		JFrame frame = new TextEntryFrame(apiHelper);
+		frame.setVisible(true);
+	}
+
+	private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+		String path = System.getProperty("user.dir") + HelpKeyListener.HELP_FILE;
+
+		try {
+			Desktop.getDesktop().open(new File(path));
+		} catch (IOException ex) {
+			log.error(ex.getMessage());
+		}
+	}
+	
+	private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		tableHelper.viewResult();
+	}
+	
+	public javax.swing.JButton getAddTextButton() {
+		return addTextButton;
+	}
+	public javax.swing.JButton getCancelButton() {
+		return cancelButton;
+	}
+	public javax.swing.JButton getConfigButton() {
+		return configButton;
+	}
+	public javax.swing.JButton getDeleteButton() {
+		return deleteButton;
+	}
+	public javax.swing.JButton getFilterButton() {
+		return filterButton;
+	}
+	public javax.swing.JButton getHelpButton() {
+		return helpButton;
+	}
+	public javax.swing.JButton getRerunButton() {
+		return rerunButton;
+	}
+	public javax.swing.JButton getViewButton() {
+		return viewButton;
+	}
+	public javax.swing.JLabel getProgressLabel() {
+		return progressLabel;
+	}
+	public javax.swing.JPanel getTablePanel() {
+		return tablePanel;
+	}
+	public javax.swing.JScrollPane getTableScrollPane() {
+		return tableScrollPane;
+	}
+
+	
+
+	public MainFrameTableHelper getTableHelper() {
+		return tableHelper;
+	}
+	public ApiHelper getApiHelper() {
+		return apiHelper;
+	}
+
+
+
+}
