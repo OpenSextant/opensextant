@@ -158,3 +158,9 @@ treasury department
 treasury ministry
 veteran affairs department
 veteran affairs ministry
+transit agency
+transit agencies
+transit authority
+transit authorities
+coast guard
+coastguard

@@ -114,3 +114,7 @@ handbag
 handbags
 coffin
 coffins
+oxygen tank
+oxygen tanks
+gas tank
+gas tanks

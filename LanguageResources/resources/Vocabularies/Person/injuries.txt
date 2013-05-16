@@ -1,9 +1,13 @@
 bruise
 bruises
 wound
+wounds
 lesion
+lesions
 scar
+scars
 fracture
+fractures
 broken limb
 broken limbs
 heart attack
@@ -14,3 +18,5 @@ animal bite
 animal bites
 broken bone
 broken bones
+injury
+injuries

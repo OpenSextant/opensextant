@@ -1063,3 +1063,5 @@ campus
 campuses
 coastline
 coastlines
+data center
+data centers

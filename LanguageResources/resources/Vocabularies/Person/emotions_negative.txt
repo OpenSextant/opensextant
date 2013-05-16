@@ -30,6 +30,7 @@ embarrassment
 envy
 exasperation
 fear
+fears
 ferocity
 fright
 frustration
@@ -51,6 +52,7 @@ humiliation
 hurt
 hysteria
 insecurity
+insecurities
 insult
 irritation
 isolation
@@ -92,6 +94,9 @@ unhappiness
 vengefulness
 woe
 worry
+worries
 wrath
 guilty conscience
 animosity
+paranoia
+paranoias

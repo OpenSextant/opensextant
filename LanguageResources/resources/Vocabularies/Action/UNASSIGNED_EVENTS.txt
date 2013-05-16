@@ -21,6 +21,7 @@ training
 training cycle
 training cycles
 nuclear alert
+red alert
 
 buyout
 hostile takeover
