@@ -9,7 +9,7 @@ This file defines the dependencies for the OpenSextantToolbox
     
     <JAR SCAN="False">lib/geodesy-1.9.24.jar</JAR>
     
-    <!-- JAR SCAN="False">lib/JITAR.jar</JAR-->
+    <JAR SCAN="False">lib/JITAR.jar</JAR>
     
     <JAR SCAN="False">lib/slf4j-api-1.7.4.jar</JAR>
     <JAR SCAN="False">lib/slf4j-log4j12-1.7.4.jar</JAR>
