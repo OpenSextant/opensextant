@@ -172,3 +172,7 @@ radome
 radomes
 modem
 modems
+radar
+radars
+sonar
+sonars

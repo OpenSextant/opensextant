@@ -127,7 +127,7 @@
 ./Substance/chemical_parts.txt:ChemicalPart:Substance.chemicalPart
 ./Substance/chemicals_proper.txt:Chemical:Substance.chemical
 ./Substance/drugs.txt:Drug:Substance.drug
-./Substance/material.txt:Material:Substance.Material
+./Substance/materials.txt:Material:Substance.Material
 ./Substance/substances.txt:Substance:Substance
 ./Time/AMPM.txt:AMPM:Time.ampm
 ./Time/daysOfTheWeek.txt:DayOfWeek:Time.dayOfTheWeek

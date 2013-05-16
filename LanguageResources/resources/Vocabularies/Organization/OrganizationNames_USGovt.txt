@@ -401,6 +401,7 @@ trade and development agency
 transportation command
 transportation department
 transportation security administration
+transportation and security administration 
 treasury department
 tricare management
 tricare management activity
@@ -569,3 +570,6 @@ western area power administration
 white house commission on presidential scholars
 white house office of administration
 woodrow wilson international center for scholars
+postal inspection service
+us postal inspection service
+u.s. postal inspection service

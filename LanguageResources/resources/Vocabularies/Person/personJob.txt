@@ -473,6 +473,8 @@ dignitaries
 drug dealer
 opium dealer
 heroin dealer
+crime lord
+crime lords
 drug lord
 drug lords
 dealers
@@ -1539,6 +1541,7 @@ sadar
 sadars
 sailing master
 sailor
+sailors
 sailor boy
 saint
 sales demonstrator
@@ -2106,6 +2109,7 @@ attorney
 attornies
 bioanthropologist
 archaeologist
+archaeologists
 writer
 writers
 dictator
@@ -2287,3 +2291,11 @@ robber
 robbers
 watchman
 watchmen
+gendarme
+gendarmes
+consultant
+consultants
+holidaymaker
+holidaymakers
+portfolio manager
+portfolio managers
