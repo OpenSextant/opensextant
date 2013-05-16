@@ -109,11 +109,8 @@ public class GeocodingResult {
         String match;
         String placename;
 
-        for (Annotation a : doc.getAnnotations()) {
+        for (Annotation a : doc.getAnnotations().get(ResultsUtility.GATE_GEOCODE_ANNOTATIONS)) {
 
-            if (!ResultsUtility.isLocation(a.getType())) {
-                continue;
-            }
             ++incr;
             FeatureMap fm = a.getFeatures();
 
@@ -134,7 +131,7 @@ public class GeocodingResult {
             if ((params.tag_places | params.tag_countries)
                     && ResultsUtility.isPlaceName(a.getType())) {
                 // get the PlaceCanidate obj which represent the all the
-                PlaceCandidate placeMeta = (PlaceCandidate) fm.get(ResultsUtility.DEFAULT_PL_FEAT_TYPE);
+                PlaceCandidate placeMeta = (PlaceCandidate) fm.get(ResultsUtility.PLACE_CANDIDATE_ANNOTATION);
 
                 // get the 
                 geo.place = placeMeta.getBestPlace();

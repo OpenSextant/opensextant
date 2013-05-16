@@ -77,6 +77,7 @@ public class SolrMatcher extends PlacenameMatcher {
      */
     private static SolrParams params = null;
     private static SolrProxy solr = null;
+    private MatchFilter filter = null;
     private boolean allow_lowercase_abbrev = false;
 
     /**
@@ -84,7 +85,9 @@ public class SolrMatcher extends PlacenameMatcher {
      * @throws IOException
      */
     public SolrMatcher() throws IOException {
-        initialize();
+        SolrMatcher.initialize();
+
+        filter = new MatchFilter("/filters/tagging-filters.txt");
 
         // Instance variable that will have the transient payload to tag
         // this is not thread safe and is not static:
@@ -106,6 +109,7 @@ public class SolrMatcher extends PlacenameMatcher {
     /** 
      */
     private static void initialize() throws IOException {
+
         if (solr != null) {
             return;
         }
@@ -131,21 +135,16 @@ public class SolrMatcher extends PlacenameMatcher {
          * See Solr Text Tagger documentation for details. 
          */
         _params.set("overlaps", "LONGEST_DOMINANT_RIGHT");
+        //_params.set("overlaps", "NO_SUB");
 
         params = _params;
     }
 
-    /**
-     *
-     */
+    /** A no-op */
     @Override
     public void cleanup() {
-        // Solr handle is now static
-        // Reuse of a GAPP or this 
-       /* if (solr != null) {
-         solr.close();
-         }
-         */
+        // Solr handle is now static -- this interface method is standard practice for a GATE resource
+        // even if this item is not a proper GATE PR.
     }
 
     /** Close solr resources. */
@@ -207,17 +206,6 @@ public class SolrMatcher extends PlacenameMatcher {
         }
 
         List<PlaceCandidate> candidates = new ArrayList<>();
-        //Map<String, PlaceCandidate> lookup = new HashMap<String, PlaceCandidate>();
-
-        //This is a little awkward because it is abnormal for a query to POST raw text
-        /*
-         @SuppressWarnings("serial")
-         QueryRequest request = new QueryRequest(params, SolrRequest.METHOD.POST) {
-         @Override
-         public Collection<ContentStream> getContentStreams() {
-         return Collections.singleton((ContentStream) new ContentStreamBase.StringStream(docContent));
-         }
-         }; */
 
         // Setup request to tag... 
         tag_request.input = buffer;
@@ -233,7 +221,14 @@ public class SolrMatcher extends PlacenameMatcher {
         //List<GeoBean> geoBeans = response.getBeans(GeoBean.class); maybe works but probably slow
         SolrDocumentList docList = (SolrDocumentList) response.getResponse().get("matchingDocs");
         beanMap.clear();
+        String name = null;
         for (SolrDocument solrDoc : docList) {
+
+            name = SolrProxy.getString(solrDoc, "name");
+            if (filter.filterOut(name.toLowerCase())) {
+                continue;
+            }
+
             Place bean = new Place();
 
             bean.setName_type(SolrProxy.getChar(solrDoc, "name_type"));
@@ -241,7 +236,7 @@ public class SolrMatcher extends PlacenameMatcher {
             // Gazetteer place name & country:
             //   NOTE: this may be different than "matchtext" or PlaceCandidate.name field.
             // 
-            bean.setPlaceName(SolrProxy.getString(solrDoc, "name"));
+            bean.setPlaceName(name);
             bean.setCountryCode(SolrProxy.getString(solrDoc, "cc"));
 
             // Other metadata.
@@ -286,17 +281,30 @@ public class SolrMatcher extends PlacenameMatcher {
         Set<String> seenPlaces = new HashSet<>();
         Double name_bias = 0.0;
 
+        String matchText = null;
         for (NamedList<?> tag : tags) {
-            pc = new PlaceCandidate();
             x1 = (Integer) tag.get("startOffset");
             x2 = (Integer) tag.get("endOffset");//+1 char after last matched
+            matchText = buffer.substring(x1, x2);
+
+            /** We can filter out trivial place name matches that we know to be
+             * close to false positives 100% of the time.  E.g,. "way", "back", "north"
+             * You might consider two different stop filters, Is "North" different than "north"?
+             * This first pass filter should really filter out only text we know to be 
+             * false positives regardless of case.
+             */
+            if (filter.filterOut(matchText.toLowerCase())) {
+                continue;
+            }
+
+            pc = new PlaceCandidate();
             pc.setStart(x1);
             pc.setEnd(x2);
 
             // Could have enabled the "matchText" option from the tagger to get
             // this, but since we already have the content as a String then
             // we might as well not make the tagger do any more work.
-            pc.setPlaceName(buffer.substring(x1, x2)); //
+            pc.setPlaceName(matchText); //
             name_bias = 0.0;
 
             @SuppressWarnings("unchecked")
@@ -378,6 +386,9 @@ public class SolrMatcher extends PlacenameMatcher {
 
     /** Debugging */
     private void summarizeExtraction(List<PlaceCandidate> candidates, String docid) {
+        if (candidates == null) {
+            log.error("Something is very wrong.");
+        }
         log.debug("DOC=" + docid + " PLACE CANDIDATES SIZE = " + candidates.size());
         Map<String, Integer> countries = new HashMap<>();
 

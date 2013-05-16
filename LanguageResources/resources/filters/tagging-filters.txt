@@ -1,0 +1,51 @@
+# OPENSEXTANT
+# (c)2013
+#
+# This is a SolrMatcher optimization
+# It contains terms that 99.9% of the time are not actual names of places.
+# Adding filters here reduces the number of candidate tags processed for geotagging/geocoding
+#
+#
+# ordinals, directions.
+east
+west
+north
+south
+eastern
+western
+northern
+southern
+central
+#
+# generic location references.
+city
+town
+base
+road
+highway
+federal
+national
+international
+place
+way
+back
+home
+public
+region
+#
+# document artifacts
+head
+page
+read
+note
+close
+#
+# Sizes
+long
+short
+low
+high
+
+##
+##  Only add to this file as a developer/integrator. 
+##
