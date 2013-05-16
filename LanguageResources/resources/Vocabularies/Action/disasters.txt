@@ -63,3 +63,5 @@ aftershock
 aftershocks
 seismic event
 seismic events
+emergency
+emergencies

@@ -53,3 +53,6 @@ commitee
 commitees
 sect
 sects
+dept
+caucus
+caucuses

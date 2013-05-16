@@ -20,3 +20,5 @@ child
 children
 infant
 infants
+guy
+guys
