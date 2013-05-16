@@ -41,7 +41,7 @@ Options: control = all
 
 Rule: PersonNameBefore
 (
-		 ({PersonTitle})? ({Initials})? (({PersonNameFragment})?{PersonName})+ ({Initials})? (({PersonNameFragment})?{PersonName})*({placecandidate}):pc 
+		({PersonName}|{PersonNameFragment}|({PersonName}{Initials})) ({placecandidate}):pc 
 ):phrase
 -->
 {
@@ -56,7 +56,7 @@ Rule: PersonNameBefore
 
 Rule: PersonNameAfter
 (
-		({placecandidate}):pc ({Initials})? ({PersonName})+ ({Initials})? ({PersonName})*
+		({placecandidate}):pc ({Initials})? ({PersonName})
 ):phrase
 -->
 {
