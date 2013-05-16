@@ -67,3 +67,5 @@ weapon testing
 weapons testing
 withdrawal
 withdrawals
+disarmament
+disarmaments

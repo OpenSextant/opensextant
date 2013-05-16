@@ -55,6 +55,7 @@ revolution
 revolutions
 riot
 riots
+rioting
 siege
 sieges
 strife
@@ -67,3 +68,5 @@ uprisings
 violence
 violent act
 violent acts
+rebellion
+rebellion

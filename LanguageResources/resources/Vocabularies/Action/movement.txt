@@ -23,3 +23,7 @@ visit
 visits
 voyage
 voyages
+maneuver
+maneuvers
+exploration
+explorations

@@ -57,3 +57,14 @@ pesticides
 petrochemicals
 pesticide
 petrochemical
+ink
+inks
+soil
+dirt
+mud
+poison
+poisons
+toxin
+toxins
+radioactive waste
+radioactive wastes

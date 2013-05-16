@@ -141,3 +141,7 @@ woundings
 sex offense
 sexual abuses
 piracy
+possession with intent to distribute
+possession of firearm by a felon
+possession of narcotics
+reckless driving

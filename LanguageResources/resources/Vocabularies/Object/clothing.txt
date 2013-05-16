@@ -43,3 +43,5 @@ shirt
 shirts
 suit
 suits
+gown
+gowns

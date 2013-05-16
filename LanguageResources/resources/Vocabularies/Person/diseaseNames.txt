@@ -135,6 +135,7 @@ shigellosis
 silicosis
 smallpox
 spotted fever
+pneumonia
 st. louis encephalitis virus
 streptococcus pneumoniae
 streptococcus suis infection

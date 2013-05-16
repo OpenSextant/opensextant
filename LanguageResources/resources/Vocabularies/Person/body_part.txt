@@ -9,6 +9,8 @@ beards
 bellies
 belly
 blood
+blood vessel
+blood vessels
 capillaries
 capillary
 cartilage
@@ -26,6 +28,7 @@ feet
 finger
 fingers
 foot
+forearm
 hair
 hand
 hands
