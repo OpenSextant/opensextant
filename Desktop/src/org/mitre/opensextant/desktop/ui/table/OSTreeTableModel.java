@@ -1,5 +1,8 @@
 package org.mitre.opensextant.desktop.ui.table;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
@@ -93,5 +96,24 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 		}
 	}
         
-        
+        /**
+         * Used to sort the rows depending on the column clicked
+         */
+        public static void sortRows(ArrayList<DefaultMutableTreeTableNode> nodes, final int nColumn){
+            Collections.sort(nodes, new Comparator<DefaultMutableTreeTableNode>() {
+              @Override
+              public int compare(DefaultMutableTreeTableNode left, DefaultMutableTreeTableNode right) {
+                  OSRow l = (OSRow) left.getUserObject();
+                  OSRow r = (OSRow) right.getUserObject();
+                  switch (nColumn) {
+                    case LAST_RUN:
+                    case TITLE:
+                        return l.getTitle().compareToIgnoreCase(r.getTitle());
+                    case PROGRESS:
+                        return ((Integer)l.getPercent()).compareTo(r.getPercent());
+                    default: 
+                        return 0;
+                  }
+            }});
+        }
 }
