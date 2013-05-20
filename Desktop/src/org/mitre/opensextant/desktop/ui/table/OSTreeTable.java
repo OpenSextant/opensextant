@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Set;
@@ -250,6 +251,7 @@ public class OSTreeTable {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
                                 OSRow row = (OSRow) p.getUserObject();
 				row.setProgress(3 + row.getPercent(), "Running");
+                                row.setLastRun(new Date());
 				// ((DefaultTreeTableModel)
 				// treeTable.getTreeTableModel()).removeNodeFromParent(p);
 			}
