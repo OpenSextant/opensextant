@@ -77,5 +77,6 @@
 	<classpathentry kind="lib" path="lib/swing-layout-1.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/swing-worker-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-configuration-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/swingx-all-1.6.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

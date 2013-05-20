@@ -10,8 +10,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import org.jdesktop.swingx.JXTreeTable;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.forms.OpenSextantMainFrame;
 import org.mitre.opensextant.desktop.ui.forms.TextEntryFrame;
@@ -19,6 +23,7 @@ import org.mitre.opensextant.desktop.ui.handlers.FileDropTransferHandler;
 import org.mitre.opensextant.desktop.ui.handlers.HelpKeyListener;
 import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
+import org.mitre.opensextant.desktop.ui.table.OSTreeTable;
 import org.mitre.opensextant.desktop.util.TikaMimeTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +34,7 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
     private static Logger log = LoggerFactory.getLogger(OpenSextantMainFrameImpl.class);
     private MainFrameTableHelper tableHelper;
     private ApiHelper apiHelper;
+    private OSTreeTable table;
 
 
 	public enum ButtonType {
@@ -69,11 +75,20 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		
 		mainPanel.setTransferHandler(new FileDropTransferHandler(apiHelper));
 		
+		table = new OSTreeTable();
+		JScrollPane scrollPane = new JScrollPane(table.create());
+		jPanel1.add(scrollPane);
+
+		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 	}
 
+	public OSTreeTable getTable() {
+		return table;
+	}
+	
 	private void initialize(final OpenSextantMainFrameImpl parent) {
 		
         allCheck.addActionListener(new java.awt.event.ActionListener() {

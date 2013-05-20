@@ -21,6 +21,7 @@ import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl.ButtonType;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl.IconType;
 import org.mitre.opensextant.desktop.ui.handlers.OSMouseAdapter;
+import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,7 +67,7 @@ public class MainFrameTableHelper {
 		verticalGroup = tableLayout.createSequentialGroup();
 		tableLayout.setVerticalGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(verticalGroup));
 		frame.getTableScrollPane().setViewportView(frame.getTablePanel());
-
+		
 		setVisibleActions(false);
 
 	}
@@ -91,14 +92,6 @@ public class MainFrameTableHelper {
 		frame.getApiHelper().processFile(inputFiles.get(rowNum));
 	}
 
-	private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		for (int i = 0; i < tableCheck.size(); i++) {
-			JCheckBox jc = tableCheck.get(i);
-			if (jc.isVisible() && jc.isSelected()) {
-				viewFile(this.outputLocs.get(i));
-			}
-		}
-	}
 	public void toggleCheck(Object caller, ArrayList list) {
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i) == caller) {
@@ -261,18 +254,25 @@ public class MainFrameTableHelper {
 	}
 
 	public int addRow(String status, String loc, String name, String type, String input) {
-		String symbol = "file.png";
-		// Set up metadata
-		outputLocs.add(loc);
-		timestamps.add(System.currentTimeMillis());
-		inputFiles.add(input);
+		
 
-		// Test what icon to use
-		File f = new File(input);
-		if (f != null && f.isDirectory())
-			symbol = "folder.png";
-
-		return addRowHelper(status, loc, name, type, symbol);
+		OSRow row = new OSRow(name, status);
+		frame.getTable().createRow(row);
+		return 0;
+		
+//		
+//		String symbol = "file.png";
+//		// Set up metadata
+//		outputLocs.add(loc);
+//		timestamps.add(System.currentTimeMillis());
+//		inputFiles.add(input);
+//
+//		// Test what icon to use
+//		File f = new File(input);
+//		if (f != null && f.isDirectory())
+//			symbol = "folder.png";
+//
+//		return addRowHelper(status, loc, name, type, symbol);
 	}
 	
 	private void checkActionPerformed(java.awt.event.ActionEvent evt) {

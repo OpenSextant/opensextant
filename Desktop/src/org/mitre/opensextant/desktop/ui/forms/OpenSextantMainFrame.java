@@ -46,6 +46,7 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         addTextButton = new javax.swing.JButton();
         helpButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,11 +86,11 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         tablePanel.setLayout(tablePanelLayout);
         tablePanelLayout.setHorizontalGroup(
             tablePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 903, Short.MAX_VALUE)
+            .add(0, 888, Short.MAX_VALUE)
         );
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 349, Short.MAX_VALUE)
+            .add(0, 100, Short.MAX_VALUE)
         );
 
         tableScrollPane.setViewportView(tablePanel);
@@ -158,16 +159,18 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, topSep)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
-                    .add(mainPanelLayout.createSequentialGroup()
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(topSep)
+                    .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, mainPanelLayout.createSequentialGroup()
                         .add(allCheck)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(titleLabel)
@@ -175,8 +178,11 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
                         .add(progressLabel)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(lastRunLabel))
-                    .add(tableTopSep)
-                    .add(mainPanelLayout.createSequentialGroup()
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, mainPanelLayout.createSequentialGroup()
+                        .add(tableTopSep)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 895, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, mainPanelLayout.createSequentialGroup()
                         .add(addButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(0, 0, 0)
                         .add(addTextButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -219,17 +225,23 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
                     .add(helpButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(topSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(24, 24, 24)
+                        .add(tableTopSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(98, 98, 98)
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(allCheck, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(progressLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(lastRunLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(titleLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(0, 0, 0)
-                .add(tableTopSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(tableScrollPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 94, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -240,7 +252,9 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -340,6 +354,7 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     protected javax.swing.JButton deleteButton;
     protected javax.swing.JButton filterButton;
     protected javax.swing.JButton helpButton;
+    protected javax.swing.JPanel jPanel1;
     protected javax.swing.JLabel lastRunLabel;
     protected javax.swing.JPanel mainPanel;
     protected javax.swing.JLabel progressLabel;

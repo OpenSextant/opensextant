@@ -42,13 +42,9 @@ public class OpenSextantExecutor {
 				}
 			}
 		})).start();
-		
-			
-
 	}
 	
 	public void execute(OpenSextantMainFrameImpl parent, String inputFile, String outputType, String outputLocation) {
-		
 		executor.execute(new OpenSextantWorker(parent, inputFile, outputType, outputLocation));
 	}
 

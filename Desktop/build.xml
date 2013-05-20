@@ -38,6 +38,7 @@ Build file for OpenSextant Desktop
 	    <pathelement location="lib/commons-configuration-1.9.jar" />
 	    <pathelement location="lib/swing-layout-1.0.3.jar" />
 	    <pathelement location="lib/swing-worker-1.1.jar" />
+	    <pathelement location="lib/swingx-all-1.6.4.jar" />
 
     </path>
 
