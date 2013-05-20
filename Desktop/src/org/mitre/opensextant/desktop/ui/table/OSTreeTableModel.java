@@ -3,6 +3,7 @@ package org.mitre.opensextant.desktop.ui.table;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
@@ -113,6 +114,12 @@ class OSTreeTableModel extends DefaultTreeTableModel {
                  
                   switch (nColumn) {
                     case LAST_RUN:
+                        Date rd = r.getLastRun();
+                        Date ld = l.getLastRun();
+                        if(rd == null) rd = new Date(0);
+                        if(ld == null) ld = new Date(0);
+                        if(asc) return rd.compareTo(ld);
+                        else return ld.compareTo(rd);
                     case TITLE:
                         if(asc) return r.getTitle().compareToIgnoreCase(l.getTitle());
                         return l.getTitle().compareToIgnoreCase(r.getTitle());
