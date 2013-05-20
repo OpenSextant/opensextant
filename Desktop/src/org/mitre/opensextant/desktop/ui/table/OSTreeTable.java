@@ -248,7 +248,8 @@ public class OSTreeTable {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
-				((OSRow) p.getUserObject()).setProgress(30, "Running");
+                                OSRow row = (OSRow) p.getUserObject();
+				row.setProgress(3 + row.getPercent(), "Running");
 				// ((DefaultTreeTableModel)
 				// treeTable.getTreeTableModel()).removeNodeFromParent(p);
 			}
