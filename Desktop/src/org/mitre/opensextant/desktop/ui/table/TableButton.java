@@ -13,6 +13,7 @@ import javax.swing.event.CellEditorListener;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public class TableButton extends JButton implements TableCellRenderer, TableCellEditor {
 	private int selectedRow;
 	private int selectedColumn;

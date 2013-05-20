@@ -24,6 +24,7 @@ import org.mitre.opensextant.desktop.util.TikaMimeTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("serial")
 public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 
 
@@ -72,7 +73,7 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		mainPanel.setTransferHandler(new FileDropTransferHandler(apiHelper));
 		
 		table = new OSTreeTable();
-		JScrollPane scrollPane = new JScrollPane(table.create(this));
+		JScrollPane scrollPane = new JScrollPane(table.create());
 		treePanel.add(scrollPane);
 
 		

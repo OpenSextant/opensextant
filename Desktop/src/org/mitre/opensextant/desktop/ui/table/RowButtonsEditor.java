@@ -8,6 +8,7 @@ import javax.swing.JTable;
 
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 
+@SuppressWarnings("serial")
 public class RowButtonsEditor extends DefaultCellEditor {
 
 	public RowButtonsEditor(JCheckBox checkBox) {

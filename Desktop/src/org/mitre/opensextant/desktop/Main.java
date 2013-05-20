@@ -38,6 +38,7 @@ public class Main {
 			if (osHome == null) {
 
 				List<String> osHomes = new ArrayList<String>() {
+					private static final long serialVersionUID = 2733142560232972138L;
 					{
 						add("opensextant");
 						add((new File("")).getAbsolutePath() + File.separator + "opensextant");

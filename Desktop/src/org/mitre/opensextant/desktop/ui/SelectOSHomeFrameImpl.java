@@ -15,6 +15,7 @@ import org.mitre.opensextant.desktop.Main;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.forms.SelectOSHomeFrame;
 
+@SuppressWarnings("serial")
 public class SelectOSHomeFrameImpl extends SelectOSHomeFrame {
 
 	public SelectOSHomeFrameImpl() {

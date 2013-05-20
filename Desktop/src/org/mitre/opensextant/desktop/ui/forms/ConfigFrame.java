@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author GBLACK
  */
+@SuppressWarnings("serial")
 public class ConfigFrame extends javax.swing.JFrame {
 
 	private static Logger log = LoggerFactory.getLogger(ConfigFrame.class);

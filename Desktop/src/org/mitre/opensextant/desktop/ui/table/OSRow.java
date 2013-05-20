@@ -8,13 +8,10 @@ import java.util.concurrent.Future;
 import javax.swing.JButton;
 
 import org.apache.commons.io.FilenameUtils;
-import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
-import org.mitre.opensextant.desktop.executor.OpenSextantWorker;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
-import org.mitre.opensextant.desktop.ui.table.OSRow.STATUS;
 
 public class OSRow implements Comparable<OSRow> {
 

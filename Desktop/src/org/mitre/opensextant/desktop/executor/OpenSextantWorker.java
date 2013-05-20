@@ -2,20 +2,12 @@ package org.mitre.opensextant.desktop.executor;
 
 import org.mitre.opensextant.apps.OpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
-import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class OpenSextantWorker implements Runnable {
 
-	public static final int NOT_ON_LIST = -1;
-	private static Logger log = LoggerFactory.getLogger(ApiHelper.class);
-	
 	private OSRow row;
 	private OpenSextantMainFrameImpl parent;
-	// Keep track of the ordering on the gui list
-	private int guiEntry = NOT_ON_LIST;
 
 	public OpenSextantWorker(OpenSextantMainFrameImpl parent, OSRow row) {
 		this.parent = parent;

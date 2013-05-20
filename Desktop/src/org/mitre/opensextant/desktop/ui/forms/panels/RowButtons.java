@@ -9,6 +9,7 @@ package org.mitre.opensextant.desktop.ui.forms.panels;
  *
  * @author aquina
  */
+@SuppressWarnings("serial")
 public class RowButtons extends javax.swing.JPanel {
 
     /**

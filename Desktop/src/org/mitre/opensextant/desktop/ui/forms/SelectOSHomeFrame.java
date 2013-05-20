@@ -8,6 +8,7 @@ package org.mitre.opensextant.desktop.ui.forms;
  *
  * @author aquina
  */
+@SuppressWarnings("serial")
 public class SelectOSHomeFrame extends javax.swing.JFrame {
 
     /**

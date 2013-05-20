@@ -8,6 +8,7 @@ package org.mitre.opensextant.desktop.ui.forms.panels;
  *
  * @author aquina
  */
+@SuppressWarnings("serial")
 public class RowProgressBar extends javax.swing.JPanel {
 
     /**

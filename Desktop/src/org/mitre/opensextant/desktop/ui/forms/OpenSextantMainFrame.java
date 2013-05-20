@@ -33,9 +33,9 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         tableTopSep = new javax.swing.JSeparator();
         addButton = new javax.swing.JButton();
         addTextButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        bodyPanel = new javax.swing.JPanel();
         treePanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        statusLabel = new javax.swing.JLabel();
         helpButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,7 +66,7 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
 
         treePanel.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel2.setText(" ");
+        statusLabel.setText(" ");
 
         helpButton.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
         helpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/questionSmall.png"))); // NOI18N
@@ -76,27 +76,27 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
             }
         });
 
-        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
+        org.jdesktop.layout.GroupLayout bodyPanelLayout = new org.jdesktop.layout.GroupLayout(bodyPanel);
+        bodyPanel.setLayout(bodyPanelLayout);
+        bodyPanelLayout.setHorizontalGroup(
+            bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(bodyPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel2Layout.createSequentialGroup()
-                        .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                .add(bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(bodyPanelLayout.createSequentialGroup()
+                        .add(statusLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
                         .add(18, 18, 18)
                         .add(helpButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(treePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
+        bodyPanelLayout.setVerticalGroup(
+            bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(bodyPanelLayout.createSequentialGroup()
                 .add(treePanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel2)
+                .add(bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(statusLabel)
                     .add(helpButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -116,7 +116,7 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
                         .add(configButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .add(mainPanelLayout.createSequentialGroup()
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(bodyPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(34, 34, 34)
                         .add(tableTopSep)
                         .add(907, 907, 907))
@@ -140,7 +140,7 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(topSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(2, 2, 2)
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(bodyPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -218,11 +218,11 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton addButton;
     protected javax.swing.JButton addTextButton;
+    private javax.swing.JPanel bodyPanel;
     protected javax.swing.JButton configButton;
     protected javax.swing.JButton helpButton;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel2;
     protected javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel statusLabel;
     private javax.swing.JSeparator tableTopSep;
     private javax.swing.JSeparator topSep;
     protected javax.swing.JPanel treePanel;

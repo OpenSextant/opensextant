@@ -52,7 +52,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="bodyPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="tableTopSep" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="907" max="-2" attributes="0"/>
@@ -83,7 +83,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="topSep" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="bodyPanel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -144,7 +144,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
           </AuxValues>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="bodyPanel">
 
           <Layout>
             <DimensionLayout dim="0">
@@ -153,7 +153,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel2" pref="850" max="32767" attributes="0"/>
+                              <Component id="statusLabel" pref="850" max="32767" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="helpButton" min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
@@ -169,7 +169,7 @@
                       <Component id="treePanel" min="-2" pref="330" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="statusLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="helpButton" min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -188,7 +188,7 @@
                 <Property name="rows" type="int" value="1"/>
               </Layout>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="statusLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value=" "/>
               </Properties>

@@ -13,7 +13,6 @@ import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -29,7 +28,6 @@ import org.apache.commons.lang.ArrayUtils;
 import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
-import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 
@@ -37,8 +35,6 @@ public class OSTreeTable {
 
 	private JXTreeTable treeTable;
 	private final OSTreeTableModel treeTableModel = generateTestModel();
-	private OpenSextantMainFrameImpl frame;
-
 
 	public OSTreeTable() {
 	}
@@ -58,7 +54,7 @@ public class OSTreeTable {
 		// tb.add(new DeleteNodeAction());
 
 		OSTreeTable test = new OSTreeTable();
-		JXTreeTable table = test.create(null);
+		JXTreeTable table = test.create();
 
 		f.add(new JScrollPane(table));
 		f.setSize(600, 300);
@@ -66,8 +62,7 @@ public class OSTreeTable {
 
 	}
 
-	public JXTreeTable create(OpenSextantMainFrameImpl frame) {
-		this.frame = frame;
+	public JXTreeTable create() {
 
 		treeTable = new JXTreeTable(treeTableModel);
 
@@ -224,6 +219,7 @@ public class OSTreeTable {
 		((DefaultTreeTableModel)treeTable.getTreeTableModel()).removeNodeFromParent(getNodeForRow(row));
 	}
 
+	@SuppressWarnings("serial")
 	class DeleteNodeAction extends AbstractAction {
 		DeleteNodeAction() {
 			super("Delete/Cancel");
@@ -240,6 +236,7 @@ public class OSTreeTable {
 			treeTable.repaint();
 		}
 	}
+	@SuppressWarnings("serial")
 	class ViewResultsAction extends AbstractAction {
 		ViewResultsAction() {
 			super("View Results");
@@ -255,6 +252,7 @@ public class OSTreeTable {
 			treeTable.repaint();
 		}
 	}
+	@SuppressWarnings("serial")
 	class ReRunAction extends AbstractAction {
 		ReRunAction() {
 			super("Re-Run");

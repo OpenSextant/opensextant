@@ -6,11 +6,8 @@ package org.mitre.opensextant.desktop.ui.helpers;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.desktop.executor.OpenSextantExecutor;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
@@ -27,7 +24,7 @@ public class ApiHelper {
 	private static Logger log = LoggerFactory.getLogger(ApiHelper.class);
 
 	// Need to keep track of memory usage of the JVM
-	private static Runtime runtime = Runtime.getRuntime();
+//	private static Runtime runtime = Runtime.getRuntime();
 
 	// Keep track of the number of raw text entries to avoid overwriting each
 	private static int textCount = 0;
