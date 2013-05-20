@@ -1,19 +1,12 @@
 package org.mitre.opensextant.desktop.executor;
 
-import java.io.File;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.SwingUtilities;
-
-import org.mitre.opensextant.apps.OpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
-import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
+import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.desktop.util.Initialize;
-import org.mitre.opensextant.processing.ProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,8 +37,8 @@ public class OpenSextantExecutor {
 		})).start();
 	}
 	
-	public void execute(OpenSextantMainFrameImpl parent, String inputFile, String outputType, String outputLocation) {
-		executor.execute(new OpenSextantWorker(parent, inputFile, outputType, outputLocation));
+	public void execute(OpenSextantMainFrameImpl parent, OSRow row) {
+		row.setExecutor(executor.submit(new OpenSextantWorker(parent, row)));
 	}
 
 }

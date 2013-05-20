@@ -4,9 +4,6 @@
  */
 package org.mitre.opensextant.desktop.ui.forms.panels;
 
-import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

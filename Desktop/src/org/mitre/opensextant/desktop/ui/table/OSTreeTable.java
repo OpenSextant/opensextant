@@ -1,27 +1,15 @@
 package org.mitre.opensextant.desktop.ui.table;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.DefaultRowSorter;
-import javax.swing.Icon;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,30 +18,26 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
-import javax.swing.RowSorter;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableRowSorter;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.ListUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
-import org.jdesktop.swingx.treetable.TreeTableNode;
+import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 
 public class OSTreeTable {
 
 	private JXTreeTable treeTable;
-	private Hashtable<Integer, DefaultMutableTreeTableNode> rowsById = new Hashtable<Integer, DefaultMutableTreeTableNode>();
 	private final OSTreeTableModel treeTableModel = generateTestModel();
+	private OpenSextantMainFrameImpl frame;
 
 
 	public OSTreeTable() {
@@ -74,7 +58,7 @@ public class OSTreeTable {
 		// tb.add(new DeleteNodeAction());
 
 		OSTreeTable test = new OSTreeTable();
-		JXTreeTable table = test.create();
+		JXTreeTable table = test.create(null);
 
 		f.add(new JScrollPane(table));
 		f.setSize(600, 300);
@@ -82,7 +66,8 @@ public class OSTreeTable {
 
 	}
 
-	public JXTreeTable create() {
+	public JXTreeTable create(OpenSextantMainFrameImpl frame) {
+		this.frame = frame;
 
 		treeTable = new JXTreeTable(treeTableModel);
 
@@ -173,6 +158,8 @@ public class OSTreeTable {
 
 					JPopupMenu popup = new JPopupMenu();
 					popup.add(new DeleteNodeAction());
+					popup.add(new ReRunAction());
+					popup.add(new ViewResultsAction());
 					popup.show(e.getComponent(), e.getX(), e.getY());
 				}
 			}
@@ -211,61 +198,79 @@ public class OSTreeTable {
 		return treeTable;
 	}
 	
-	public int createRow(OSRow row) {
+	public OSRow createRow(OSRow row) {
 		DefaultMutableTreeTableNode root = (DefaultMutableTreeTableNode) treeTable.getTreeTableModel().getRoot();
 		DefaultMutableTreeTableNode parent = new DefaultMutableTreeTableNode(row);
 		
 		((DefaultTreeTableModel) treeTable.getTreeTableModel()).insertNodeInto(parent, root, root.getChildCount());
 		
-		int id =  row.hashCode();
-		rowsById.put(id, parent);
-		return id;
+		return row;
 
 	}
 	
-	public OSRow getRowById(int id) {
-		return (OSRow)rowsById.get(id).getUserObject();
+
+	public DefaultMutableTreeTableNode getNodeForRow(OSRow row) {
+		DefaultMutableTreeTableNode node = null;
+		for (int i = 0; i < treeTableModel.getRoot().getChildCount(); i++) {
+			if (treeTableModel.getRoot().getChildAt(i).getUserObject().equals(row)) {
+				return (DefaultMutableTreeTableNode)treeTableModel.getRoot().getChildAt(i);
+			}
+		}
+		return null;
+	}
+	
+	public void removeRow(OSRow row) {
+		
+		((DefaultTreeTableModel)treeTable.getTreeTableModel()).removeNodeFromParent(getNodeForRow(row));
 	}
 
-	/**
-	 * Inserts a new node, the kind and name depends on the selected node.
-	 * 
-	 */
-	class InsertNodeAction extends AbstractAction {
-		InsertNodeAction() {
-			super("Insert");
-		}
-
-		public void actionPerformed(ActionEvent e) {
-
-			String title = JOptionPane.showInputDialog(SwingUtilities.windowForComponent(treeTable), "What is the title?");
-
-			OSRow nuObj = new OSRow("Parent", OSRow.STATUS.INITIALIZING, "", "");
-			createRow(nuObj);
-
-		}
-	}
-
-	/**
-	 * Deletes a node after one is selected.
-	 * 
-	 */
 	class DeleteNodeAction extends AbstractAction {
 		DeleteNodeAction() {
-			super("Delete");
+			super("Delete/Cancel");
 		}
 
 		public void actionPerformed(ActionEvent e) {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
-				((OSRow) p.getUserObject()).setProgress(30, OSRow.STATUS.PROCESSING);
-				// ((DefaultTreeTableModel)
-				// treeTable.getTreeTableModel()).removeNodeFromParent(p);
+				OSRow row = (OSRow)p.getUserObject();
+				row.cancelExecution();
+				removeRow(row);
 			}
 			treeTable.repaint();
 		}
 	}
+	class ViewResultsAction extends AbstractAction {
+		ViewResultsAction() {
+			super("View Results");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
+			for (TreePath selp : paths) {
+				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
+				OSRow row = (OSRow)p.getUserObject();
+				row.viewResults();
+			}
+			treeTable.repaint();
+		}
+	}
+	class ReRunAction extends AbstractAction {
+		ReRunAction() {
+			super("Re-Run");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
+			for (TreePath selp : paths) {
+				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
+				OSRow row = (OSRow)p.getUserObject();
+				row.rerun();
+			}
+			treeTable.repaint();
+		}
+	}
+
 
 	/**
 	 * Generates a PersonTreeTableModel of fake persons.
@@ -277,8 +282,8 @@ public class OSTreeTable {
 		return new OSTreeTableModel(aRoot);
 	}
 	
-	public void repaint(int id) {
-		treeTableModel.update(rowsById.get(id));
+	public void repaint(OSRow row) {
+		treeTableModel.update(getNodeForRow(row));
 	}
 
 }

@@ -1,20 +1,12 @@
 package org.mitre.opensextant.desktop;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import javax.swing.GroupLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
 import javax.swing.UIManager;
 
-import org.jdesktop.swingx.JXTreeTable;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.SelectOSHomeFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;

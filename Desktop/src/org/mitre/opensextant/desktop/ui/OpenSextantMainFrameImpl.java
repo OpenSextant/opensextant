@@ -7,15 +7,11 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import org.jdesktop.swingx.JXTreeTable;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.forms.OpenSextantMainFrame;
 import org.mitre.opensextant.desktop.ui.forms.TextEntryFrame;
@@ -76,7 +72,7 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		mainPanel.setTransferHandler(new FileDropTransferHandler(apiHelper));
 		
 		table = new OSTreeTable();
-		JScrollPane scrollPane = new JScrollPane(table.create());
+		JScrollPane scrollPane = new JScrollPane(table.create(this));
 		treePanel.add(scrollPane);
 
 		

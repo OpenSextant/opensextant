@@ -1,58 +1,20 @@
 package org.mitre.opensextant.desktop.ui.helpers;
 
-import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JProgressBar;
-import javax.swing.JSeparator;
 
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
-import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl.ButtonType;
-import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl.IconType;
-import org.mitre.opensextant.desktop.ui.handlers.OSMouseAdapter;
+import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MainFrameTableHelper {
 
-	// How many entries have been entered into the table
-	// used as a unique id for entries
-	private static int tableCount = 0;
-
 	private static Logger log = LoggerFactory.getLogger(OpenSextantMainFrameImpl.class);
-
-	// Table components
-	private ArrayList<JCheckBox> tableCheck = new ArrayList<JCheckBox>();
-	private ArrayList<JLabel> tableLabel = new ArrayList<JLabel>();
-	private ArrayList<JLabel> tableRunLabel = new ArrayList<JLabel>();
-	private ArrayList<JLabel> tableProgressLabel = new ArrayList<JLabel>();
-	private ArrayList<JProgressBar> tableProgress = new ArrayList<JProgressBar>();
-	private ArrayList<JSeparator> tableSep = new ArrayList<JSeparator>();
-	private ArrayList<JLabel> tableStopLabel = new ArrayList<JLabel>();
-	private ArrayList<JLabel> tableTermLabel = new ArrayList<JLabel>();
-
-	// Table book keeping
-	private ArrayList<String> inputFiles = new ArrayList<String>();
-	private ArrayList<String> outputLocs = new ArrayList<String>();
-	private ArrayList<Long> timestamps = new ArrayList<Long>();
-
-	// Table layout
-	private javax.swing.GroupLayout tableLayout;
-	private javax.swing.GroupLayout.Group horizontalGroup;
-	private javax.swing.GroupLayout.SequentialGroup verticalGroup;
-
 	private OpenSextantMainFrameImpl frame;
 
 	public MainFrameTableHelper(OpenSextantMainFrameImpl frame) {
@@ -71,7 +33,7 @@ public class MainFrameTableHelper {
 
 	}
 	
-	public void updateRowProgress(int guiEntry, OSRow.STATUS status, int num) {
+	public void updateRowProgress(OSRow row, OSRow.STATUS status, int num) {
 
 //		if (num >= 100) {
 //			JLabel stopLabel = tableStopLabel.get(guiEntry);
@@ -79,8 +41,8 @@ public class MainFrameTableHelper {
 //			updateIcon(stopLabel, OpenSextantMainFrameImpl.IconType.TRASH);
 //		}
 		
-		frame.getTable().getRowById(guiEntry).setProgress(num, status);
-		frame.getTable().repaint(guiEntry);
+		row.setProgress(num, status);
+		frame.getTable().repaint(row);
 		
 
 		// Swing ridiculously makes it incredibly difficult to change an
@@ -102,10 +64,9 @@ public class MainFrameTableHelper {
 
 	}
 
-	public int addRow(String outputLocation, String name, String type, String inputFile) {
+	public OSRow addRow(OSRow row) {
 		
 
-		OSRow row = new OSRow(name, OSRow.STATUS.INITIALIZING, outputLocation, inputFile);
 		return frame.getTable().createRow(row);
 		
 //		
@@ -121,6 +82,25 @@ public class MainFrameTableHelper {
 //			symbol = "folder.png";
 //
 //		return addRowHelper(status, loc, name, type, symbol);
+	}
+
+	public void removeRow(OSRow row) {
+		frame.getTable().removeRow(row);
+	}
+	
+	public void viewResults(OSRow row) {
+		File file = new File(row.getOutputLocation());
+		try {
+			log.info("FILE: " + file);
+			Desktop.getDesktop().open(file);
+		} catch (Exception ex) {
+			log.error(ex.getMessage());
+			JOptionPane.showMessageDialog(frame, "Error opening file: " + row.getOutputLocation(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public OpenSextantMainFrameImpl getMainFrame() {
+		return frame;
 	}
 
 

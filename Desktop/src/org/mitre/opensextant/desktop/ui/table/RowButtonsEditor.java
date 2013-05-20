@@ -8,7 +8,7 @@ import javax.swing.JTable;
 
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 
-class RowButtonsEditor extends DefaultCellEditor {
+public class RowButtonsEditor extends DefaultCellEditor {
 
 	public RowButtonsEditor(JCheckBox checkBox) {
 		super(checkBox);
@@ -17,6 +17,7 @@ class RowButtonsEditor extends DefaultCellEditor {
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
 
 		RowButtonsImpl panel = ((OSRow) value).getButtonPanel();
+		panel.setCellEditor(this);
 		if (isSelected) {
 			panel.setBackground(table.getSelectionBackground());
 		} else {

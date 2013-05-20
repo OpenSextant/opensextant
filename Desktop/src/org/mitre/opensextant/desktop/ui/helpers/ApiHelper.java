@@ -6,11 +6,15 @@ package org.mitre.opensextant.desktop.ui.helpers;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.desktop.executor.OpenSextantExecutor;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
+import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,8 +58,14 @@ public class ApiHelper {
 	public void processFile(String file) {
 		
 		String outType = ConfigFrame.getOutType();
-		String outLoc = ConfigFrame.getOutLocation();
+		String baseOutputLocation = ConfigFrame.getOutLocation();
 		
-		executor.execute(parent, file, outType, outLoc);
+		OSRow row = new OSRow(file, baseOutputLocation, outType, parent.getTableHelper());
+		
+		executor.execute(parent, row);
+	}
+
+	public void reRun(OSRow row) {
+		executor.execute(parent, row.duplicate());
 	}
 }

@@ -8,7 +8,9 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
+import org.mitre.opensextant.desktop.ui.table.RowButtonsEditor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +19,8 @@ public class RowButtonsImpl extends RowButtons {
 	private static Logger log = LoggerFactory.getLogger(RowButtonsImpl.class);
 
 	private OSRow row;
+
+	private RowButtonsEditor rowButtonsEditor;
 	
 	public RowButtonsImpl(OSRow osRow) {
 		super();
@@ -29,7 +33,12 @@ public class RowButtonsImpl extends RowButtons {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(RowButtonsImpl.this, "ROW: " + row.getTitle() + " : " + row.getPercent(), "TITLE", JOptionPane.INFORMATION_MESSAGE);
+				if (!row.isRunning()) {
+					row.removeFromTable();
+					rowButtonsEditor.stopCellEditing();
+				} else {
+					row.cancelExecution();
+				}
 			}
 		});
 		
@@ -37,13 +46,7 @@ public class RowButtonsImpl extends RowButtons {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				File file = new File(row.getOutputLocation());
-				try {
-					Desktop.getDesktop().open(file);
-				} catch (IOException ex) {
-					log.error(ex.getMessage());
-					JOptionPane.showMessageDialog(RowButtonsImpl.this, "Error opening file: " + row.getOutputLocation(), "Error", JOptionPane.ERROR_MESSAGE);
-				}
+				row.viewResults();
 			}
 		});
 		
@@ -51,8 +54,7 @@ public class RowButtonsImpl extends RowButtons {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(RowButtonsImpl.this, "Need to add re-run functionality", "Error", JOptionPane.ERROR_MESSAGE);
-				
+				row.rerun();
 			}
 		});
 	}
@@ -67,6 +69,11 @@ public class RowButtonsImpl extends RowButtons {
 
 	public javax.swing.JButton getViewResultsButton() {
 		return viewResultsButton;
+	}
+
+	public void setCellEditor(RowButtonsEditor rowButtonsEditor) {
+		this.rowButtonsEditor = rowButtonsEditor;
+		
 	}
 
 }
