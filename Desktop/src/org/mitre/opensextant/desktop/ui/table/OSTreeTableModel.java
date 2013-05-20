@@ -2,6 +2,10 @@ package org.mitre.opensextant.desktop.ui.table;
 
 import java.text.SimpleDateFormat;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
@@ -16,6 +20,8 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	private static final int LAST_RUN = 3;
 	private SimpleDateFormat dateFormat;
 
+        private static boolean[] ascSort = new boolean[LAST_RUN + 1];
+        
 	public OSTreeTableModel(TreeTableNode root) {
 		super(root);
 		dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -99,4 +105,37 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 		modelSupport.firePathChanged((new TreePath(getPathToRoot(row))));
 	}
 	
+        
+        /**
+         * Used to sort the rows depending on the column clicked
+         */
+        public static void sortRows(ArrayList<DefaultMutableTreeTableNode> nodes, final int nColumn){
+            final boolean asc = ascSort[nColumn];
+            ascSort[nColumn] = !asc;
+                  
+            Collections.sort(nodes, new Comparator<DefaultMutableTreeTableNode>() {
+              @Override
+              public int compare(DefaultMutableTreeTableNode left, DefaultMutableTreeTableNode right) {
+                  OSRow l = (OSRow) left.getUserObject();
+                  OSRow r = (OSRow) right.getUserObject();
+                 
+                  switch (nColumn) {
+                    case LAST_RUN:
+                        Date rd = r.getLastRun();
+                        Date ld = l.getLastRun();
+                        if(rd == null) rd = new Date(0);
+                        if(ld == null) ld = new Date(0);
+                        if(asc) return rd.compareTo(ld);
+                        else return ld.compareTo(rd);
+                    case TITLE:
+                        if(asc) return r.getTitle().compareToIgnoreCase(l.getTitle());
+                        return l.getTitle().compareToIgnoreCase(r.getTitle());
+                    case PROGRESS:
+                        if(asc) return ((Integer)r.getPercent()).compareTo(l.getPercent());
+                        else return ((Integer)l.getPercent()).compareTo(r.getPercent());
+                    default: 
+                        return 0;
+                  }
+            }});
+        }
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
@@ -198,18 +199,7 @@ public class OSTreeTable {
 					nodes.add(child);
 					model.removeNodeFromParent(child);
 				}
-
-				Collections.sort(nodes, new Comparator<DefaultMutableTreeTableNode>() {
-					@Override
-					public int compare(DefaultMutableTreeTableNode left, DefaultMutableTreeTableNode right) {
-						if (nColumn == 0) {
-							return ((OSRow) left.getUserObject()).getTitle()
-									.compareToIgnoreCase(((OSRow) right.getUserObject()).getTitle());
-						}
-						return 0;
-					}
-
-				});
+                                OSTreeTableModel.sortRows(nodes, nColumn);
 
 				for (DefaultMutableTreeTableNode node : nodes) {
 					model.insertNodeInto(node, root, 0);

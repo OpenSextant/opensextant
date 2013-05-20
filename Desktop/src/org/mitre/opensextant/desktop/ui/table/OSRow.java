@@ -89,6 +89,10 @@ public class OSRow implements Comparable<OSRow> {
 	public Date getLastRun() {
 		return lastRun;
 	}
+        
+        public void setLastRun(Date lastRun) {
+		this.lastRun = lastRun;
+	}
 
 	@Override
 	public int compareTo(OSRow other) {
