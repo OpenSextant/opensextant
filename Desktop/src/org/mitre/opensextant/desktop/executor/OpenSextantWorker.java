@@ -33,16 +33,6 @@ public class OpenSextantWorker implements Runnable {
 			
 			parent.getTableHelper().updateRowProgress(row, OSRow.STATUS.PROCESSING, 0);
 
-			Thread.sleep(1000);
-			parent.getTableHelper().updateRowProgress(row, OSRow.STATUS.PROCESSING, 25);
-
-			Thread.sleep(1000);
-			parent.getTableHelper().updateRowProgress(row, OSRow.STATUS.PROCESSING, 50);
-
-			Thread.sleep(1000);
-			parent.getTableHelper().updateRowProgress(row, OSRow.STATUS.PROCESSING, 75);
-
-
 			runner.runOpenSextant(row.getInputFile(), row.getOutputType(), row.getOutputLocation());
 
 			parent.getTableHelper().updateRowProgress(row, OSRow.STATUS.COMPLETE, 100);
