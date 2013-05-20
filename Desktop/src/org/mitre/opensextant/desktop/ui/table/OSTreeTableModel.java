@@ -15,6 +15,8 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	private static final int ACTIONS = 2;
 	private static final int LAST_RUN = 3;
 
+        private static boolean[] ascSort = new boolean[LAST_RUN + 1];
+        
 	public OSTreeTableModel(TreeTableNode root) {
 		super(root);
 	}
@@ -100,17 +102,23 @@ class OSTreeTableModel extends DefaultTreeTableModel {
          * Used to sort the rows depending on the column clicked
          */
         public static void sortRows(ArrayList<DefaultMutableTreeTableNode> nodes, final int nColumn){
+            final boolean asc = ascSort[nColumn];
+            ascSort[nColumn] = !asc;
+                  
             Collections.sort(nodes, new Comparator<DefaultMutableTreeTableNode>() {
               @Override
               public int compare(DefaultMutableTreeTableNode left, DefaultMutableTreeTableNode right) {
                   OSRow l = (OSRow) left.getUserObject();
                   OSRow r = (OSRow) right.getUserObject();
+                 
                   switch (nColumn) {
                     case LAST_RUN:
                     case TITLE:
+                        if(asc) return r.getTitle().compareToIgnoreCase(l.getTitle());
                         return l.getTitle().compareToIgnoreCase(r.getTitle());
                     case PROGRESS:
-                        return ((Integer)l.getPercent()).compareTo(r.getPercent());
+                        if(asc) return ((Integer)r.getPercent()).compareTo(l.getPercent());
+                        else return ((Integer)l.getPercent()).compareTo(r.getPercent());
                     default: 
                         return 0;
                   }
