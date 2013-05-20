@@ -197,16 +197,20 @@ public class OSTreeTable {
 				}
 
 				Collections.sort(nodes, new Comparator<DefaultMutableTreeTableNode>() {
-					@Override
-					public int compare(DefaultMutableTreeTableNode left, DefaultMutableTreeTableNode right) {
-						if (nColumn == 0) {
-							return ((OSRow) left.getUserObject()).getTitle()
-									.compareToIgnoreCase(((OSRow) right.getUserObject()).getTitle());
-						}
-						return 0;
-					}
-
-				});
+                                    @Override
+                                    public int compare(DefaultMutableTreeTableNode left, DefaultMutableTreeTableNode right) {
+					switch (nColumn) {
+                                            case 0:
+                                        	return ((OSRow) left.getUserObject()).getTitle()
+								.compareToIgnoreCase(((OSRow) right.getUserObject()).getTitle());
+                                            case 1:
+                                                Integer l = ((OSRow) left.getUserObject()).getPercent();
+                                                Integer r = ((OSRow) right.getUserObject()).getPercent();
+                                                return l.compareTo(r);
+                                            default: 
+                                                return 0;
+                                        }
+				}});
 
 				for (DefaultMutableTreeTableNode node : nodes) {
 					model.insertNodeInto(node, root, 0);
