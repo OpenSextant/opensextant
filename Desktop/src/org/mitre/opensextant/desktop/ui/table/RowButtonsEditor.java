@@ -17,7 +17,11 @@ class RowButtonsEditor extends DefaultCellEditor {
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
 
 		RowButtonsImpl panel = ((OSRow) value).getButtonPanel();
-		panel.setBackground(table.getSelectionBackground());
+		if (isSelected) {
+			panel.setBackground(table.getSelectionBackground());
+		} else {
+			panel.setBackground(table.getBackground());
+		}
 		return panel;
 	}
 

@@ -1,6 +1,9 @@
 package org.mitre.opensextant.desktop.ui.table;
 
+import java.text.SimpleDateFormat;
+
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
@@ -11,9 +14,11 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	private static final int PROGRESS = 1;
 	private static final int ACTIONS = 2;
 	private static final int LAST_RUN = 3;
+	private SimpleDateFormat dateFormat;
 
 	public OSTreeTableModel(TreeTableNode root) {
 		super(root);
+		dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	}
 
 	public int getColumnCount() {
@@ -40,7 +45,7 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 					res = person.getTitle();
 					break;
 				case LAST_RUN:
-					res = person.getLastRun();
+					res = dateFormat.format(person.getLastRun());
 					break;
 				}
 			}
@@ -77,10 +82,6 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 		return true;
 	}
 	
-	public OSRow getRowData(int row) {
-		return (OSRow)getRoot().getChildAt(row).getUserObject();
-	}
-
 	/**
 	 * Called when done editing a cell.
 	 */
@@ -92,4 +93,10 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 			}
 		}
 	}
+	
+
+	public void update(DefaultMutableTreeTableNode row) {
+		modelSupport.firePathChanged((new TreePath(getPathToRoot(row))));
+	}
+	
 }

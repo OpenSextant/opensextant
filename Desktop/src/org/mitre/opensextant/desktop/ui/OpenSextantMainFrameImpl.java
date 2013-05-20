@@ -64,20 +64,20 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		this.addKeyListener(helpListen);
 		addButton.addKeyListener(helpListen);
 		addTextButton.addKeyListener(helpListen);
-		this.cancelButton.addKeyListener(helpListen);
+//		this.cancelButton.addKeyListener(helpListen);
 		this.configButton.addKeyListener(helpListen);
-		this.deleteButton.addKeyListener(helpListen);
-		this.filterButton.addKeyListener(helpListen);
-		this.rerunButton.addKeyListener(helpListen);
-		this.allCheck.addKeyListener(helpListen);
-		this.sortCombo.addKeyListener(helpListen);
+//		this.deleteButton.addKeyListener(helpListen);
+//		this.filterButton.addKeyListener(helpListen);
+//		this.rerunButton.addKeyListener(helpListen);
+//		this.allCheck.addKeyListener(helpListen);
+//		this.sortCombo.addKeyListener(helpListen);
 
 		
 		mainPanel.setTransferHandler(new FileDropTransferHandler(apiHelper));
 		
 		table = new OSTreeTable();
 		JScrollPane scrollPane = new JScrollPane(table.create());
-		jPanel1.add(scrollPane);
+		treePanel.add(scrollPane);
 
 		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -91,47 +91,47 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 	
 	private void initialize(final OpenSextantMainFrameImpl parent) {
 		
-        allCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allCheckActionPerformed(evt);
-            }
-        });
-
+//        allCheck.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                allCheckActionPerformed(evt);
+//            }
+//        });
+//
         configButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 configButtonActionPerformed(evt);
             }
         });
+//
+//        rerunButton.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                parent.rerunButtonActionPerformed(evt);
+//            }
+//        });
+//
+//        filterButton.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//            	parent.filterButtonActionPerformed(evt);
+//            }
+//        });
+//
+//        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//            	parent.cancelButtonActionPerformed(evt);
+//            }
+//        });
 
-        rerunButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                parent.rerunButtonActionPerformed(evt);
-            }
-        });
+//        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//            	parent.deleteButtonActionPerformed(evt);
+//            }
+//        });
 
-        filterButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	parent.filterButtonActionPerformed(evt);
-            }
-        });
-
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	parent.cancelButtonActionPerformed(evt);
-            }
-        });
-
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	parent.deleteButtonActionPerformed(evt);
-            }
-        });
-
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	parent.viewButtonActionPerformed(evt);
-            }
-        });
+//        viewButton.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//            	parent.viewButtonActionPerformed(evt);
+//            }
+//        });
 
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,27 +153,27 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		
 	}
 	
-	private void allCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_allCheckActionPerformed
-		boolean value = ((JCheckBox) evt.getSource()).isSelected();
-		tableHelper.checkAll(value);
-	}
-
-	private void rerunButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		tableHelper.runTopLevelButtons(ButtonType.RERUN);
-	}
-
-	private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		tableHelper.runTopLevelButtons(ButtonType.FILTER);
-	}
-
-	private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		tableHelper.runTopLevelButtons(ButtonType.CANCEL);
-	}
-
-	private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		tableHelper.runTopLevelButtons(ButtonType.DELETE);
-		tableHelper.updateActionVisibility();
-	}
+//	private void allCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_allCheckActionPerformed
+//		boolean value = ((JCheckBox) evt.getSource()).isSelected();
+//		tableHelper.checkAll(value);
+//	}
+//
+//	private void rerunButtonActionPerformed(java.awt.event.ActionEvent evt) {
+//		tableHelper.runTopLevelButtons(ButtonType.RERUN);
+//	}
+//
+//	private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {
+//		tableHelper.runTopLevelButtons(ButtonType.FILTER);
+//	}
+//
+//	private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {
+//		tableHelper.runTopLevelButtons(ButtonType.CANCEL);
+//	}
+//
+//	private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
+//		tableHelper.runTopLevelButtons(ButtonType.DELETE);
+//		tableHelper.updateActionVisibility();
+//	}
 
 	private void configButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
@@ -220,43 +220,43 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		}
 	}
 	
-	private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		tableHelper.viewResult();
-	}
+//	private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {
+//		tableHelper.viewResult();
+//	}
 	
 	public javax.swing.JButton getAddTextButton() {
 		return addTextButton;
 	}
-	public javax.swing.JButton getCancelButton() {
-		return cancelButton;
-	}
+//	public javax.swing.JButton getCancelButton() {
+//		return cancelButton;
+//	}
 	public javax.swing.JButton getConfigButton() {
 		return configButton;
 	}
-	public javax.swing.JButton getDeleteButton() {
-		return deleteButton;
-	}
-	public javax.swing.JButton getFilterButton() {
-		return filterButton;
-	}
+//	public javax.swing.JButton getDeleteButton() {
+//		return deleteButton;
+//	}
+//	public javax.swing.JButton getFilterButton() {
+//		return filterButton;
+//	}
 	public javax.swing.JButton getHelpButton() {
 		return helpButton;
 	}
-	public javax.swing.JButton getRerunButton() {
-		return rerunButton;
-	}
-	public javax.swing.JButton getViewButton() {
-		return viewButton;
-	}
-	public javax.swing.JLabel getProgressLabel() {
-		return progressLabel;
-	}
-	public javax.swing.JPanel getTablePanel() {
-		return tablePanel;
-	}
-	public javax.swing.JScrollPane getTableScrollPane() {
-		return tableScrollPane;
-	}
+//	public javax.swing.JButton getRerunButton() {
+//		return rerunButton;
+//	}
+//	public javax.swing.JButton getViewButton() {
+//		return viewButton;
+//	}
+//	public javax.swing.JLabel getProgressLabel() {
+//		return progressLabel;
+//	}
+//	public javax.swing.JPanel getTablePanel() {
+//		return tablePanel;
+//	}
+//	public javax.swing.JScrollPane getTableScrollPane() {
+//		return tableScrollPane;
+//	}
 
 	
 
@@ -267,6 +267,9 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		return apiHelper;
 	}
 
+	public static ImageIcon getIcon(IconType type) {
+		return new javax.swing.ImageIcon(OpenSextantMainFrameImpl.class.getResource("/org/mitre/opensextant/desktop/icons/" + type.toString().toLowerCase() + ".png"));
+	}
 
 
 }

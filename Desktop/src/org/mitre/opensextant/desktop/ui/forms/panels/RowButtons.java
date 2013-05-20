@@ -4,6 +4,10 @@
  */
 package org.mitre.opensextant.desktop.ui.forms.panels;
 
+import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  *
  * @author aquina
@@ -33,15 +37,17 @@ public class RowButtons extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
-        setLayout(new java.awt.GridLayout());
+        setLayout(new java.awt.GridLayout(1, 0));
 
         cancelDeleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/cancelCircle.png"))); // NOI18N
         add(cancelDeleteButton);
 
         reRunButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/rerun.png"))); // NOI18N
+        reRunButton.setEnabled(false);
         add(reRunButton);
 
         viewResultsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/eye.png"))); // NOI18N
+        viewResultsButton.setEnabled(false);
         add(viewResultsButton);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

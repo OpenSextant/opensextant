@@ -8,6 +8,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.apps.OpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
+import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,14 +45,13 @@ public class OpenSextantWorker implements Runnable {
 		String linkLocation = outputLocation + File.separator + (outName + dateStr) + "." + outputTypePrime;
 
 		String inType = "FILE";
-		guiEntry = parent.getTableHelper().addRow("Initializing...", linkLocation, outName, inType, inputFile);
-
-		parent.getTableHelper().updateProgress(guiEntry, "Processing...", 0);
+		guiEntry = parent.getTableHelper().addRow(linkLocation, outName, inType, inputFile);
 
 	}
 
 	@Override
 	public void run() {
+		
 		String outName = FilenameUtils.getBaseName(inputFile);
 
 		try {
@@ -59,14 +59,17 @@ public class OpenSextantWorker implements Runnable {
 			// this can potentially be moved up into the executor, but currently you get an array index out of bounds exception if you re-use a runner.
 			OpenSextantRunner runner = new OpenSextantRunner();
 			runner.initialize();
-
+			
+			parent.getTableHelper().updateRowProgress(guiEntry, OSRow.STATUS.PROCESSING, 0);
+			
 			runner.runOpenSextant(inputFile, outputType, outputLocation + File.separator + outName+dateStr);
 
 		} catch (Exception e) {
+			parent.getTableHelper().updateRowProgress(guiEntry, OSRow.STATUS.ERROR, 0);
 			e.printStackTrace();
 		}
 
-		parent.getTableHelper().updateProgress(guiEntry, "Finished", 100);
+		parent.getTableHelper().updateRowProgress(guiEntry, OSRow.STATUS.COMPLETE, 100);
 	}
 
 }

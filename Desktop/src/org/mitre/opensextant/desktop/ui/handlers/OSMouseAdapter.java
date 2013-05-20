@@ -26,20 +26,20 @@ public class OSMouseAdapter extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getClickCount() == 2)
-			frame.getTableHelper().viewFileFromRow(e.getSource(), list);
-		else
-			frame.getTableHelper().toggleCheck(e.getSource(), list);
+//		if (e.getClickCount() == 2)
+//			frame.getTableHelper().viewFileFromRow(e.getSource(), list);
+//		else
+//			frame.getTableHelper().toggleCheck(e.getSource(), list);
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		frame.getTableHelper().hoverRow(true, e.getSource(), list);
+//		frame.getTableHelper().hoverRow(true, e.getSource(), list);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		frame.getTableHelper().hoverRow(false, e.getSource(), list);
+//		frame.getTableHelper().hoverRow(false, e.getSource(), list);
 	}
 
 }

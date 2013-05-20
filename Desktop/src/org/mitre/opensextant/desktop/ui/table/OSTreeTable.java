@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -50,6 +51,9 @@ import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 public class OSTreeTable {
 
 	private JXTreeTable treeTable;
+	private Hashtable<Integer, DefaultMutableTreeTableNode> rowsById = new Hashtable<Integer, DefaultMutableTreeTableNode>();
+	private final OSTreeTableModel treeTableModel = generateTestModel();
+
 
 	public OSTreeTable() {
 	}
@@ -79,8 +83,7 @@ public class OSTreeTable {
 
 	public JXTreeTable create() {
 
-		final OSTreeTableModel personTreeTableModel = generateTestModel();
-		treeTable = new JXTreeTable(personTreeTableModel);
+		treeTable = new JXTreeTable(treeTableModel);
 
 		// treeTable.getColumn(1).setCellRenderer(buttonEditor);
 		// treeTable.getColumn(1).setCellEditor(buttonEditor);
@@ -218,13 +221,20 @@ public class OSTreeTable {
 		return treeTable;
 	}
 	
-	public void createRow(OSRow row) {
+	public int createRow(OSRow row) {
 		DefaultMutableTreeTableNode root = (DefaultMutableTreeTableNode) treeTable.getTreeTableModel().getRoot();
 		DefaultMutableTreeTableNode parent = new DefaultMutableTreeTableNode(row);
 		
-
 		((DefaultTreeTableModel) treeTable.getTreeTableModel()).insertNodeInto(parent, root, root.getChildCount());
+		
+		int id =  row.hashCode();
+		rowsById.put(id, parent);
+		return id;
 
+	}
+	
+	public OSRow getRowById(int id) {
+		return (OSRow)rowsById.get(id).getUserObject();
 	}
 
 	/**
@@ -240,7 +250,7 @@ public class OSTreeTable {
 
 			String title = JOptionPane.showInputDialog(SwingUtilities.windowForComponent(treeTable), "What is the title?");
 
-			OSRow nuObj = new OSRow("Parent", "Started");
+			OSRow nuObj = new OSRow("Parent", OSRow.STATUS.INITIALIZING, "", "");
 			createRow(nuObj);
 
 		}
@@ -259,7 +269,7 @@ public class OSTreeTable {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
-				((OSRow) p.getUserObject()).setProgress(30, "Running");
+				((OSRow) p.getUserObject()).setProgress(30, OSRow.STATUS.PROCESSING);
 				// ((DefaultTreeTableModel)
 				// treeTable.getTreeTableModel()).removeNodeFromParent(p);
 			}
@@ -273,28 +283,12 @@ public class OSTreeTable {
 	 * @return
 	 */
 	public OSTreeTableModel generateTestModel() {
-		Set<OSRow> list = new TreeSet<OSRow>();
 		DefaultMutableTreeTableNode aRoot = new DefaultMutableTreeTableNode(new OSRow());
-		// gen test persons
-		for (int i = 0; i < 6; i++) {
-			list.add(new OSRow(TITLES[i], STATUSES[i]));
-		}
-		// shouldn't be visible
-		int i = 0;
-		for (OSRow child : list) {
-
-			DefaultMutableTreeTableNode parent = new DefaultMutableTreeTableNode(new OSRow("Parent" + (++i), "Running"));
-			parent.add(new DefaultMutableTreeTableNode(child));
-
-			aRoot.add(parent);
-		}
-		aRoot.add(new DefaultMutableTreeTableNode(new OSRow("Last", "Last")));
-
 		return new OSTreeTableModel(aRoot);
 	}
-
-	private static String[] STATUSES = { "Started", "Started", "Started", "Started", "Started", "Started" };
-
-	private static String[] TITLES = { "Test1", "Test2", "Test3", "Test4", "Test5", "Test6" };
+	
+	public void repaint(int id) {
+		treeTableModel.update(rowsById.get(id));
+	}
 
 }
