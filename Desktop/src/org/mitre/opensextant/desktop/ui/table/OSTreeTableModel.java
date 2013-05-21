@@ -20,7 +20,7 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	private static final int LAST_RUN = 3;
 	private SimpleDateFormat dateFormat;
 
-        private static boolean[] ascSort = new boolean[LAST_RUN + 1];
+        private boolean[] ascSort = new boolean[LAST_RUN + 1];
         
 	public OSTreeTableModel(TreeTableNode root) {
 		super(root);
@@ -109,7 +109,7 @@ class OSTreeTableModel extends DefaultTreeTableModel {
         /**
          * Used to sort the rows depending on the column clicked
          */
-        public static void sortRows(ArrayList<DefaultMutableTreeTableNode> nodes, final int nColumn){
+        public void sortRows(ArrayList<DefaultMutableTreeTableNode> nodes, final int nColumn){
             final boolean asc = ascSort[nColumn];
             ascSort[nColumn] = !asc;
                   
