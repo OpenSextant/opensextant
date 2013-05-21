@@ -74,46 +74,6 @@ public class Main {
 
 	public static void openMainWindow() {
 		log.info("Starting Desktop Client");
-//		try {
-//			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//				if ("Nimbus".equals(info.getName())) {
-//					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//					UIManager.getLookAndFeelDefaults().put("nimbusOrange", (Color.green));
-//					break;
-//				}
-//			}
-//		} catch (ClassNotFoundException ex) {
-//			log.error(ex.getMessage());
-//		} catch (InstantiationException ex) {
-//			log.error(ex.getMessage());
-//		} catch (IllegalAccessException ex) {
-//			log.error(ex.getMessage());
-//		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//			log.error(ex.getMessage());
-//		}
-		// </editor-fold>
-		// Initialize.init();
-		// Properties props = System.getProperties();
-		// if(props.getProperty("opensextant.home") == null)
-		// props.setProperty( "opensextant.home"
-		// , ApiHelper.BASE_PATH + "opensextant");
-		/*
-		 * try {
-		 * UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		 * } catch (ClassNotFoundException ex) {
-		 * java.util.logging.Logger.getLogger
-		 * (OpenSextant.class.getName()).log(Level.SEVERE, null, ex); } catch
-		 * (InstantiationException ex) {
-		 * java.util.logging.Logger.getLogger(OpenSextant
-		 * .class.getName()).log(Level.SEVERE, null, ex); } catch
-		 * (IllegalAccessException ex) {
-		 * java.util.logging.Logger.getLogger(OpenSextant
-		 * .class.getName()).log(Level.SEVERE, null, ex); } catch
-		 * (UnsupportedLookAndFeelException ex) {
-		 * java.util.logging.Logger.getLogger
-		 * (OpenSextant.class.getName()).log(Level.SEVERE, null, ex); }
-		 */
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {

@@ -25,7 +25,7 @@ public class OpenSextantWorker implements Runnable {
 			
 			parent.getTableHelper().updateRowProgress(row, OSRow.STATUS.PROCESSING, 0);
 
-			runner.runOpenSextant(row.getInputFile(), row.getOutputType(), row.getOutputLocation());
+			runner.runOpenSextant(row.getInputFile().getAbsolutePath(), row.getOutputType(), row.getOutputLocation());
 
 			parent.getTableHelper().updateRowProgress(row, OSRow.STATUS.COMPLETE, 100);
 		} catch (InterruptedException ie) {

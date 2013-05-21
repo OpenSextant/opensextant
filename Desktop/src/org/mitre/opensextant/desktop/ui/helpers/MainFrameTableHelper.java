@@ -48,7 +48,6 @@ public class MainFrameTableHelper {
 	public void viewResults(OSRow row) {
 		File file = new File(row.getOutputLocation());
 		try {
-			log.info("FILE: " + file);
 			Desktop.getDesktop().open(file);
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
