@@ -4,6 +4,8 @@
  */
 package org.mitre.opensextant.desktop.ui.helpers;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -17,9 +19,6 @@ import org.slf4j.LoggerFactory;
 
 public class ApiHelper {
 	public static final long HALF_GIGABYTE = 536870912L;
-
-	// TODO: this probably should be set via some form of intelligence... memory, or cores
-	private static final int MAXIMUM_THREADS = 2;
 
 	private static Logger log = LoggerFactory.getLogger(ApiHelper.class);
 
@@ -35,7 +34,7 @@ public class ApiHelper {
 	public ApiHelper(OpenSextantMainFrameImpl parent) {
 		this.parent = parent;
 		try {
-			this.executor = new OpenSextantExecutor(MAXIMUM_THREADS);
+			this.executor = new OpenSextantExecutor(ConfigHelper.getInstance().getNumThreads());
 		} catch (Exception e) {
 			log.error("Error setting up executor", e);
 		}

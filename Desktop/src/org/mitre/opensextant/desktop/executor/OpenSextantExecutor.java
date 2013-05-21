@@ -5,6 +5,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
+import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.desktop.util.Initialize;
 import org.slf4j.Logger;
@@ -35,10 +36,21 @@ public class OpenSextantExecutor {
 				}
 			}
 		})).start();
+		
+		ConfigHelper.getInstance().addUpdateListener(new ThreadCountChangeListener(this));
 	}
 	
 	public void execute(OpenSextantMainFrameImpl parent, OSRow row) {
 		row.setExecutor(executor.submit(new OpenSextantWorker(parent, row)));
+	}
+
+	public int getThreadCount() {
+		return executor.getMaximumPoolSize();
+	}
+
+	public void setThreadCount(int threadCount) {
+		executor.setCorePoolSize(threadCount);
+		executor.setMaximumPoolSize(threadCount);
 	}
 
 }

@@ -1,8 +1,11 @@
 package org.mitre.opensextant.desktop.ui.helpers;
 
+import java.awt.Container;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -22,6 +25,8 @@ public class ConfigHelper {
 	private String inLocation = "";
 	private String osHome = "";
 	private int numThreads = 1;
+
+	private List<PropertyChangeListener> listeners = new ArrayList<PropertyChangeListener>();
 
 	private static ConfigHelper instance = new ConfigHelper();
 	
@@ -55,6 +60,7 @@ public class ConfigHelper {
 			config.setProperty("osHome", osHome);
 			config.setProperty("numThreads", numThreads);
 			config.save();
+			fireUpdate();
 		} catch (ConfigurationException e) {
 			log.error("Error saving settings", e);
 		}
@@ -119,8 +125,14 @@ public class ConfigHelper {
 		this.numThreads = numThreads;
 	}
 	
-	public void addPropertyChangeListener(PropertyChangeListener listener) {
-		
+	public void addUpdateListener(PropertyChangeListener listener) {
+		listeners.add(listener);
+	}
+	
+	private void fireUpdate() {
+		for (PropertyChangeListener listener : listeners) {
+			listener.propertyChange(null);
+		}
 	}
 
 }
