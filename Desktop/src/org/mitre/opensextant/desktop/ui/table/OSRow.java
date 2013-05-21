@@ -11,6 +11,7 @@ import javax.swing.JButton;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.mitre.opensextant.desktop.executor.opensextant.ext.OSDOpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
@@ -21,7 +22,8 @@ import org.slf4j.LoggerFactory;
 public class OSRow implements Comparable<OSRow> {
 
 	public static enum STATUS {
-		INITIALIZING("Initializing"),
+		INITIALIZING("Initiali!!!zing"),
+		QUEUED("Queued"),
 		PROCESSING("Processing"),
 		COMPLETE("Complete"),
 		CANCELED("Canceled"),
@@ -73,7 +75,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.id = (new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss")).format(lastRun) + "_" + ++counter;
 		this.parent = parent;
 
-		this.status = STATUS.INITIALIZING;
+		this.status = STATUS.QUEUED;
 		this.baseOutputLocation = baseOutputLocation;
 		this.outputType = outputType;
 		this.inputFile = new File(input);
@@ -84,7 +86,10 @@ public class OSRow implements Comparable<OSRow> {
 		if (inputFile.isDirectory()) {
 			List<File> childInputFiles = new ArrayList<File>(FileUtils.listFiles(inputFile, null, true));
 			for (File childInputFile : childInputFiles) {
-				children.add(new OSRow(this, childInputFile.getAbsolutePath(), baseOutputLocation, outputType, tableHelper));
+				// ignore files that start with '.'
+				if (!childInputFile.getName().startsWith(".")) {
+					children.add(new OSRow(this, childInputFile.getAbsolutePath(), baseOutputLocation, outputType, tableHelper));
+				}
 			}
 			childrenCountString = " ("+children.size()+" children)";
 		}
@@ -94,11 +99,7 @@ public class OSRow implements Comparable<OSRow> {
 		if ("KML".equals(outputType))
 			outputTypePrime = "KMZ";
 		
-		if (inputFile.getName().startsWith(".")) {
-			this.title = inputFile.getName();
-		} else {
-			this.title = FilenameUtils.getBaseName(inputFile.getAbsolutePath());
-		}
+		this.title = FilenameUtils.getBaseName(inputFile.getAbsolutePath());
 		this.title += childrenCountString;
 		
 		this.outputLocation = baseOutputLocation + File.separator + (title.replaceAll(" ", "_") + "_" + id) + "." + outputTypePrime;
@@ -154,6 +155,8 @@ public class OSRow implements Comparable<OSRow> {
 			}
 
 		}
+		tableHelper.getMainFrame().getTable().repaint(this);
+
 	}
 
 	public Date getLastRun() {
@@ -194,6 +197,14 @@ public class OSRow implements Comparable<OSRow> {
 	
 	public List<OSRow> getChildren() {
 		return children;
+	}
+	public OSRow getChildForInputFile(File selection) {
+		for (OSRow child : getChildren()) {
+			if (child.getInputFile().getAbsolutePath().equals(selection.getAbsolutePath())) {
+				return child;
+			}
+		}
+		return null;
 	}
 
 	public void setExecutor(Future<?> future) {
@@ -292,5 +303,6 @@ public class OSRow implements Comparable<OSRow> {
 			return false;
 		return true;
 	}
+
 
 }

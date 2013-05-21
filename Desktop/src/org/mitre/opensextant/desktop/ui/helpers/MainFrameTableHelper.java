@@ -19,23 +19,6 @@ public class MainFrameTableHelper {
 		this.frame = frame;
 	}
 	
-	public void updateRowProgress(OSRow row, OSRow.STATUS status, int num) {
-		
-		row.setProgress(num, status);
-		frame.getTable().repaint(row);
-		
-		// Swing ridiculously makes it incredibly difficult to change an
-		// individual progress bar's color. May revisit this.
-		/*
-		 * UIDefaults overrides = UIManager.getDefaults();
-		 * overrides.put("nimbusOrange", (Color.red));
-		 * 
-		 * instance.tableProgress.get(guiEntry).putClientProperty("Nimbus.Overrides"
-		 * , overrides); instance.tableProgress.get(guiEntry).putClientProperty(
-		 * "Nimbus.Overrides.InheritDefaults", false);
-		 */
-
-	}
 
 	public OSRow addRow(OSRow row) {
 		return frame.getTable().createRow(row);

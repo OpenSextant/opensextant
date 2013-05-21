@@ -34,7 +34,7 @@ public class RowProgressBar extends javax.swing.JPanel {
         setLayout(new java.awt.CardLayout());
 
         progressBar.setMinimumSize(new java.awt.Dimension(50, 20));
-        progressBar.setString("Initializing: 0%");
+        progressBar.setString("Queued: 0%");
         progressBar.setStringPainted(true);
         add(progressBar, "card2");
     }// </editor-fold>//GEN-END:initComponents

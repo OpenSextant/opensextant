@@ -36,7 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class OSTreeTable {
-        private static final String ICON_LOCATION = "/org/mitre/opensextant/desktop/icons/";
+	private static final String ICON_LOCATION = "/org/mitre/opensextant/desktop/icons/";
 	private JXTreeTable treeTable;
 	private final OSTreeTableModel treeTableModel = generateTestModel();
 	private static Logger log = LoggerFactory.getLogger(OSTreeTable.class);
@@ -66,7 +66,7 @@ public class OSTreeTable {
 		f.setVisible(true);
 
 	}
-        
+
 	public JXTreeTable create() {
 
 		treeTable = new JXTreeTable(treeTableModel);
@@ -75,17 +75,20 @@ public class OSTreeTable {
 		// treeTable.getColumn(1).setCellEditor(buttonEditor);
 
 		class MyTableHeaderRenderer extends JLabel implements TableCellRenderer {
-                        
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,int column) {
+
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,
+					int column) {
 				TableCellRenderer defaultRenderer = table.getTableHeader().getDefaultRenderer();
 
 				Component component = defaultRenderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                                String iconLoc = ICON_LOCATION;
-                             
-                                if(treeTableModel.getSortAscending(column)) iconLoc += "arrow_up.png";
-                                else iconLoc += "arrow_down.png";
-                                
-				((JLabel)component).setIcon(new javax.swing.ImageIcon(getClass().getResource(iconLoc)));
+				String iconLoc = ICON_LOCATION;
+
+				if (treeTableModel.getSortAscending(column))
+					iconLoc += "arrow_up.png";
+				else
+					iconLoc += "arrow_down.png";
+
+				((JLabel) component).setIcon(new javax.swing.ImageIcon(getClass().getResource(iconLoc)));
 				return component;
 			}
 
@@ -94,7 +97,7 @@ public class OSTreeTable {
 		treeTable.getColumn(0).setMinWidth(200);
 
 		treeTable.getColumn(1).setMinWidth(120);
-                treeTable.getColumn(1).setHeaderRenderer(new MyTableHeaderRenderer());
+		treeTable.getColumn(1).setHeaderRenderer(new MyTableHeaderRenderer());
 		treeTable.getColumn(1).setCellRenderer(new TableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,
@@ -128,8 +131,8 @@ public class OSTreeTable {
 			}
 		});
 
-                treeTable.getColumn(3).setHeaderRenderer(new MyTableHeaderRenderer());
-		
+		treeTable.getColumn(3).setHeaderRenderer(new MyTableHeaderRenderer());
+
 		treeTable.setEditable(true);
 		treeTable.setRowHeight(30);
 		treeTable.getTableHeader().setReorderingAllowed(false);
@@ -138,12 +141,13 @@ public class OSTreeTable {
 
 			public java.awt.Component getTreeCellRendererComponent(javax.swing.JTree tree, Object value, boolean sel, boolean expanded,
 					boolean leaf, int row, boolean hasFocus) {
+				
 				super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 
 				if (value instanceof DefaultMutableTreeTableNode) {
 					DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) value;
 					setText(((OSRow) node.getUserObject()).getTitle());
-					setIcon(null);
+					//setIcon();
 				}
 
 				return this;
@@ -196,7 +200,7 @@ public class OSTreeTable {
 					nodes.add(child);
 					model.removeNodeFromParent(child);
 				}
-                                treeTableModel.sortRows(nodes, nColumn, treeTable);
+				treeTableModel.sortRows(nodes, nColumn, treeTable);
 
 				for (DefaultMutableTreeTableNode node : nodes) {
 					model.insertNodeInto(node, root, 0);
@@ -207,10 +211,10 @@ public class OSTreeTable {
 		// treeTable.setRowSorter(
 		return treeTable;
 	}
-	
+
 	public OSRow createRow(OSRow row) {
 		DefaultMutableTreeTableNode root = (DefaultMutableTreeTableNode) treeTable.getTreeTableModel().getRoot();
-		
+
 		DefaultMutableTreeTableNode node = new DefaultMutableTreeTableNode(row);
 		if (row.hasChildren()) {
 			for (OSRow child : row.getChildren()) {
@@ -218,35 +222,34 @@ public class OSTreeTable {
 				node.add(childNode);
 			}
 		}
-		
+
 		((DefaultTreeTableModel) treeTable.getTreeTableModel()).insertNodeInto(node, root, root.getChildCount());
-		
+
 		return row;
 
 	}
-	
 
 	public DefaultMutableTreeTableNode getNodeForRow(OSRow row) {
-		
-		DefaultMutableTreeTableNode parentNode = null; 
-		
+
+		DefaultMutableTreeTableNode parentNode = null;
+
 		if (row.isChild()) {
-			parentNode = getNodeForRow(row.getParent()); 
+			parentNode = getNodeForRow(row.getParent());
 		} else {
-			parentNode = (DefaultMutableTreeTableNode)treeTableModel.getRoot(); 
+			parentNode = (DefaultMutableTreeTableNode) treeTableModel.getRoot();
 		}
-		
+
 		for (int i = 0; i < parentNode.getChildCount(); i++) {
-			DefaultMutableTreeTableNode candidate = (DefaultMutableTreeTableNode)parentNode.getChildAt(i);
+			DefaultMutableTreeTableNode candidate = (DefaultMutableTreeTableNode) parentNode.getChildAt(i);
 			if (candidate.getUserObject().equals(row)) {
 				return candidate;
 			}
 		}
 		return null;
 	}
-	
+
 	public void removeRow(OSRow row) {
-		((DefaultTreeTableModel)treeTable.getTreeTableModel()).removeNodeFromParent(getNodeForRow(row));
+		((DefaultTreeTableModel) treeTable.getTreeTableModel()).removeNodeFromParent(getNodeForRow(row));
 	}
 
 	@SuppressWarnings("serial")
@@ -259,13 +262,14 @@ public class OSTreeTable {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
-				OSRow row = (OSRow)p.getUserObject();
+				OSRow row = (OSRow) p.getUserObject();
 				row.cancelExecution();
 				removeRow(row);
 			}
 			treeTable.repaint();
 		}
 	}
+
 	@SuppressWarnings("serial")
 	class ViewResultsAction extends AbstractAction {
 		ViewResultsAction() {
@@ -276,12 +280,13 @@ public class OSTreeTable {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
-				OSRow row = (OSRow)p.getUserObject();
+				OSRow row = (OSRow) p.getUserObject();
 				row.viewResults();
 			}
 			treeTable.repaint();
 		}
 	}
+
 	@SuppressWarnings("serial")
 	class ReRunAction extends AbstractAction {
 		ReRunAction() {
@@ -292,7 +297,7 @@ public class OSTreeTable {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
-				OSRow row = (OSRow)p.getUserObject();
+				OSRow row = (OSRow) p.getUserObject();
 				row.rerun();
 			}
 			treeTable.repaint();
@@ -309,7 +314,7 @@ public class OSTreeTable {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
-				OSRow row = (OSRow)p.getUserObject();
+				OSRow row = (OSRow) p.getUserObject();
 				JOptionPane.showMessageDialog(treeTable, row.getInputFile().getAbsolutePath(), "Info", JOptionPane.INFORMATION_MESSAGE);
 			}
 			treeTable.repaint();
@@ -325,7 +330,7 @@ public class OSTreeTable {
 		DefaultMutableTreeTableNode aRoot = new DefaultMutableTreeTableNode(new OSRow());
 		return new OSTreeTableModel(aRoot);
 	}
-	
+
 	public void repaint(OSRow row) {
 		treeTableModel.update(getNodeForRow(row));
 	}

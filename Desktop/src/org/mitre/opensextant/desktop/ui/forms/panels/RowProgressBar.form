@@ -29,7 +29,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[50, 20]"/>
         </Property>
-        <Property name="string" type="java.lang.String" value="Initializing: 0%"/>
+        <Property name="string" type="java.lang.String" value="Queued: 0%"/>
         <Property name="stringPainted" type="boolean" value="true"/>
       </Properties>
       <AuxValues>
