@@ -226,7 +226,7 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	public void removeFromTable() {
-             //   if(showPrompt && !MainFrameTableHelper.confirmationPrompt("Delete this job?", "Confirm delete", tableHelper.getMainFrame())) return;
+                if(!MainFrameTableHelper.confirmationPrompt("Delete this job?", "Confirm delete", tableHelper.getMainFrame())) return;
 		
                 tableHelper.removeRow(this);
 	}
