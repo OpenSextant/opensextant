@@ -32,6 +32,7 @@ import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
+import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -248,7 +249,7 @@ public class OSTreeTable {
 	public void removeRow(OSRow row) {
 		((DefaultTreeTableModel)treeTable.getTreeTableModel()).removeNodeFromParent(getNodeForRow(row));
 	}
-
+        
 	@SuppressWarnings("serial")
 	class DeleteNodeAction extends AbstractAction {
 		DeleteNodeAction() {
@@ -257,22 +258,14 @@ public class OSTreeTable {
 
 		public void actionPerformed(ActionEvent e) {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
-                        Object[] options = {"Yes", "No"};
-                        int n = JOptionPane.showOptionDialog( treeTable
-                                                             , "Remove all selected jobs?"
-                                                             , "Confirm removing jobs"
-                                                             , JOptionPane.YES_NO_OPTION
-                                                             , JOptionPane.QUESTION_MESSAGE
-                                                             , null
-                                                             , options
-                                                             , options[1]
-                                                             );
-                        if(n == 1) return;
+                        
+                        if(!MainFrameTableHelper.confirmationPrompt("Remove all selected jobs?", "Confirm removing jobs", treeTable)) return;
                         
                         for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
 				OSRow row = (OSRow)p.getUserObject();
-				row.cancelExecution();
+				row.cancelExecution(false);
+                                //row.removeFromTable(false);
 				removeRow(row);
 			}
 			treeTable.repaint();

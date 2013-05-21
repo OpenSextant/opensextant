@@ -212,8 +212,8 @@ public class OSRow implements Comparable<OSRow> {
 		return new OSRow(inputFile.getAbsolutePath(), baseOutputLocation, outputType, tableHelper);
 	}
 
-	public void cancelExecution() {
-                System.out.println(">>>>>>>>>>> CANCEL ONE");
+	public void cancelExecution(boolean showPrompt) {
+                if(showPrompt && !MainFrameTableHelper.confirmationPrompt("Cancel running job?", "Confirm cancel", tableHelper.getMainFrame())) return;
 
 		if (!isChild()) {
 			executor.cancel(true);
@@ -226,9 +226,9 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	public void removeFromTable() {
-                System.out.println(">>>>>>>>>>> DELETE ONE");
-
-		tableHelper.removeRow(this);
+             //   if(showPrompt && !MainFrameTableHelper.confirmationPrompt("Delete this job?", "Confirm delete", tableHelper.getMainFrame())) return;
+		
+                tableHelper.removeRow(this);
 	}
 
 	public void viewResults() {

@@ -1,5 +1,6 @@
 package org.mitre.opensextant.desktop.ui.helpers;
 
+import java.awt.Component;
 import java.awt.Desktop;
 import java.io.File;
 
@@ -37,6 +38,21 @@ public class MainFrameTableHelper {
 
 	}
 
+        public static boolean confirmationPrompt( String msg, String title, Component parent) {
+                Object[] options = {"Yes", "No"};
+                int n = JOptionPane.showOptionDialog( parent
+                                                     , msg
+                                                     , title
+                                                     , JOptionPane.YES_NO_OPTION
+                                                     , JOptionPane.QUESTION_MESSAGE
+                                                     , null
+                                                     , options
+                                                     , options[1]
+                                                     );
+                if(n == 0) return true; 
+                else return false;
+        }
+        
 	public OSRow addRow(OSRow row) {
 		return frame.getTable().createRow(row);
 	}
