@@ -36,7 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class OSTreeTable {
-
+        private static final String ICON_LOCATION = "/org/mitre/opensextant/desktop/icons/";
 	private JXTreeTable treeTable;
 	private final OSTreeTableModel treeTableModel = generateTestModel();
 	private static Logger log = LoggerFactory.getLogger(OSTreeTable.class);
@@ -66,7 +66,7 @@ public class OSTreeTable {
 		f.setVisible(true);
 
 	}
-
+        
 	public JXTreeTable create() {
 
 		treeTable = new JXTreeTable(treeTableModel);
@@ -75,11 +75,17 @@ public class OSTreeTable {
 		// treeTable.getColumn(1).setCellEditor(buttonEditor);
 
 		class MyTableHeaderRenderer extends JLabel implements TableCellRenderer {
+                        
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,int column) {
 				TableCellRenderer defaultRenderer = table.getTableHeader().getDefaultRenderer();
 
 				Component component = defaultRenderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-				((JLabel)component).setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/arrow_down.png")));
+                                String iconLoc = ICON_LOCATION;
+                             
+                                if(treeTableModel.getSortAscending(column)) iconLoc += "arrow_up.png";
+                                else iconLoc += "arrow_down.png";
+                                
+				((JLabel)component).setIcon(new javax.swing.ImageIcon(getClass().getResource(iconLoc)));
 				return component;
 			}
 
@@ -88,6 +94,7 @@ public class OSTreeTable {
 		treeTable.getColumn(0).setMinWidth(200);
 
 		treeTable.getColumn(1).setMinWidth(120);
+                treeTable.getColumn(1).setHeaderRenderer(new MyTableHeaderRenderer());
 		treeTable.getColumn(1).setCellRenderer(new TableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,
@@ -121,6 +128,8 @@ public class OSTreeTable {
 			}
 		});
 
+                treeTable.getColumn(3).setHeaderRenderer(new MyTableHeaderRenderer());
+		
 		treeTable.setEditable(true);
 		treeTable.setRowHeight(30);
 		treeTable.getTableHeader().setReorderingAllowed(false);
@@ -187,7 +196,7 @@ public class OSTreeTable {
 					nodes.add(child);
 					model.removeNodeFromParent(child);
 				}
-                                treeTableModel.sortRows(nodes, nColumn);
+                                treeTableModel.sortRows(nodes, nColumn, treeTable);
 
 				for (DefaultMutableTreeTableNode node : nodes) {
 					model.insertNodeInto(node, root, 0);

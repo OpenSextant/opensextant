@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.Date;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
+import org.jdesktop.swingx.JXTreeTable;
 
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
@@ -107,12 +108,20 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	
         
         /**
+         * Get which rows are sorted ascending
+         */
+        public boolean getSortAscending(int column) {
+            return ascSort[column];
+        }
+        
+        /**
          * Used to sort the rows depending on the column clicked
          */
-        public void sortRows(ArrayList<DefaultMutableTreeTableNode> nodes, final int nColumn){
+        public void sortRows(ArrayList<DefaultMutableTreeTableNode> nodes, final int nColumn, JXTreeTable caller){
             final boolean asc = ascSort[nColumn];
             ascSort[nColumn] = !asc;
-                  
+            caller.getTableHeader().repaint();
+            
             Collections.sort(nodes, new Comparator<DefaultMutableTreeTableNode>() {
               @Override
               public int compare(DefaultMutableTreeTableNode left, DefaultMutableTreeTableNode right) {
