@@ -257,7 +257,19 @@ public class OSTreeTable {
 
 		public void actionPerformed(ActionEvent e) {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
-			for (TreePath selp : paths) {
+                        Object[] options = {"Yes", "No"};
+                        int n = JOptionPane.showOptionDialog( treeTable
+                                                             , "Remove all selected jobs?"
+                                                             , "Confirm removing jobs"
+                                                             , JOptionPane.YES_NO_OPTION
+                                                             , JOptionPane.QUESTION_MESSAGE
+                                                             , null
+                                                             , options
+                                                             , options[1]
+                                                             );
+                        if(n == 1) return;
+                        
+                        for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
 				OSRow row = (OSRow)p.getUserObject();
 				row.cancelExecution();

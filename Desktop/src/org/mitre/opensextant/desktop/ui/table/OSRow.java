@@ -15,6 +15,7 @@ import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
+import org.mitre.opensextant.processing.Parameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -101,7 +102,9 @@ public class OSRow implements Comparable<OSRow> {
 		}
 		this.title += childrenCountString;
 		
-		this.outputLocation = baseOutputLocation + File.separator + (title.replaceAll(" ", "_") + "_" + id) + "." + outputTypePrime;
+                Parameters p = new Parameters();
+                p.setJobName(title);
+		this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
 		this.buttonContainer = new RowButtonsImpl(this);
 
 
@@ -210,6 +213,8 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	public void cancelExecution() {
+                System.out.println(">>>>>>>>>>> CANCEL ONE");
+
 		if (!isChild()) {
 			executor.cancel(true);
 			setProgress(-1, OSRow.STATUS.CANCELED);
@@ -221,6 +226,8 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	public void removeFromTable() {
+                System.out.println(">>>>>>>>>>> DELETE ONE");
+
 		tableHelper.removeRow(this);
 	}
 
