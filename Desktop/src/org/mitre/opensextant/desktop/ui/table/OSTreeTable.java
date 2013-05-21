@@ -187,7 +187,7 @@ public class OSTreeTable {
 					nodes.add(child);
 					model.removeNodeFromParent(child);
 				}
-                                OSTreeTableModel.sortRows(nodes, nColumn);
+                                treeTableModel.sortRows(nodes, nColumn);
 
 				for (DefaultMutableTreeTableNode node : nodes) {
 					model.insertNodeInto(node, root, 0);
