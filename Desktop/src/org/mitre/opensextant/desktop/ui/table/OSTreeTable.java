@@ -32,7 +32,7 @@ import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 
 public class OSTreeTable {
-
+        private static final String ICON_LOCATION = "/org/mitre/opensextant/desktop/icons/";
 	private JXTreeTable treeTable;
 	private final OSTreeTableModel treeTableModel = generateTestModel();
 
@@ -61,7 +61,7 @@ public class OSTreeTable {
 		f.setVisible(true);
 
 	}
-
+        
 	public JXTreeTable create() {
 
 		treeTable = new JXTreeTable(treeTableModel);
@@ -70,16 +70,26 @@ public class OSTreeTable {
 		// treeTable.getColumn(1).setCellEditor(buttonEditor);
 
 		class MyTableHeaderRenderer extends JLabel implements TableCellRenderer {
+                        private int colNum;
+                        MyTableHeaderRenderer(int column) {
+                            this.colNum = colNum;
+                        }
+                        
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,int column) {
 				TableCellRenderer defaultRenderer = table.getTableHeader().getDefaultRenderer();
 
 				Component component = defaultRenderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-				((JLabel)component).setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/arrow_down.png")));
+                                String iconLoc = ICON_LOCATION;
+                                
+                                if(treeTableModel.getSortAscending(colNum)) iconLoc += "arrow_up.png";
+                                else iconLoc += "arrow_down.png";
+                                
+				((JLabel)component).setIcon(new javax.swing.ImageIcon(getClass().getResource(iconLoc)));
 				return component;
 			}
 
 		}
-		treeTable.getColumn(0).setHeaderRenderer(new MyTableHeaderRenderer());
+		treeTable.getColumn(0).setHeaderRenderer(new MyTableHeaderRenderer(0));
 		treeTable.getColumn(0).setMinWidth(200);
 
 		treeTable.getColumn(1).setMinWidth(120);
@@ -181,7 +191,7 @@ public class OSTreeTable {
 					nodes.add(child);
 					model.removeNodeFromParent(child);
 				}
-                                treeTableModel.sortRows(nodes, nColumn);
+                                treeTableModel.sortRows(nodes, nColumn, treeTable);
 
 				for (DefaultMutableTreeTableNode node : nodes) {
 					model.insertNodeInto(node, root, 0);
