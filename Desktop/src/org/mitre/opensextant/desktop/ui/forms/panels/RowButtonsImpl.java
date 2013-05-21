@@ -15,8 +15,8 @@ public class RowButtonsImpl extends RowButtons {
 	
 	public RowButtonsImpl(OSRow osRow) {
 		super();
-		initialize();
 		this.row = osRow;
+		initialize();
 	}
 
 	private void initialize() {
@@ -48,6 +48,12 @@ public class RowButtonsImpl extends RowButtons {
 				row.rerun();
 			}
 		});
+		
+		if (row.isChild()) {
+			cancelDeleteButton.setVisible(false);
+			viewResultsButton.setVisible(false);
+			reRunButton.setVisible(false);
+		}
 	}
 
 	public javax.swing.JButton getCancelDeleteButton() {

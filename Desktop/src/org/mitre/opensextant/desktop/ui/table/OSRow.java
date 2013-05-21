@@ -71,6 +71,7 @@ public class OSRow implements Comparable<OSRow> {
 		super();
 		this.lastRun = new Date();
 		this.id = (new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss")).format(lastRun) + "_" + ++counter;
+		this.parent = parent;
 
 		this.status = STATUS.INITIALIZING;
 		this.baseOutputLocation = baseOutputLocation;
@@ -78,8 +79,6 @@ public class OSRow implements Comparable<OSRow> {
 		this.inputFile = new File(input);
 		this.progressBarContainer = new RowProgressBarImpl();
 		this.tableHelper = tableHelper;
-		this.buttonContainer = new RowButtonsImpl(this);
-		this.parent = parent;
 		
 		String childrenCountString = "";
 		if (inputFile.isDirectory()) {
@@ -103,6 +102,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.title += childrenCountString;
 		
 		this.outputLocation = baseOutputLocation + File.separator + (title.replaceAll(" ", "_") + "_" + id) + "." + outputTypePrime;
+		this.buttonContainer = new RowButtonsImpl(this);
 
 
 	}

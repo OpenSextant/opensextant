@@ -4,17 +4,11 @@
  */
 package org.mitre.opensextant.desktop.ui.forms;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
-import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
