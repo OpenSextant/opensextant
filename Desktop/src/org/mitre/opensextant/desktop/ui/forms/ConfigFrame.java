@@ -14,6 +14,7 @@ import javax.swing.JFileChooser;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,53 +25,7 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("serial")
 public class ConfigFrame extends javax.swing.JFrame {
 
-	private static Logger log = LoggerFactory.getLogger(ConfigFrame.class);
-
-	private static final String CONFIG_FILE = "./conf.properties";
-	private static PropertiesConfiguration config = null;
-
-	static {
-		try {
-			File settingsFile = new File(CONFIG_FILE);
-			if (!settingsFile.exists()) {
-				settingsFile.createNewFile();
-			}
-			config = new PropertiesConfiguration(CONFIG_FILE);
-		} catch (ConfigurationException ex) {
-			log.error(ex.getMessage());
-		} catch (IOException e) {
-			log.error(e.getMessage());
-		}
-	}
-
-	private static String outType = "";
-	private static String outLocation = "";
-	private static String inLocation = "";
-	private static String osHome = "";
-
-	public static String getOutType() {
-		return outType;
-	}
-
-	public static String getOutLocation() {
-		return outLocation;
-	}
-
-	public static String getInLocation() {
-		return inLocation;
-	}
-
-	public static String getOsHome() {
-		return osHome;
-	}
-
-	public static void setInLocation(String loc) {
-		inLocation = loc;
-	}
-
-	public static void setOsHome(String osHomeProp) {
-		osHome = osHomeProp;
-	}
+    private static Logger log = LoggerFactory.getLogger(ConfigFrame.class);
 
 	/**
 	 * Creates new form LoadForm
@@ -82,36 +37,9 @@ public class ConfigFrame extends javax.swing.JFrame {
 		if (imgURL != null) {
 			this.setIconImage(new ImageIcon(imgURL, "Icon").getImage());
 		}
-		outputText.setText(outLocation);
-		for (String t : outType.split(",")) {
-			if ("CSV".equals(t))
-				csvCheck.setSelected(true);
-			else if ("KML".equals(t))
-				kmlCheck.setSelected(true);
-			else if ("WKT".equals(t))
-				wktCheck.setSelected(true);
-			else if ("JSON".equals(t))
-				jsonCheck.setSelected(true);
-			else if ("SHAPEFILE".equals(t))
-				shapefileCheck.setSelected(true);
-		}
-
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 	}
 
-	public static void loadConfig() {
-
-		outType = config.getString("outType", "CSV");
-		outLocation = config.getString("outLocation", new File("output").getAbsolutePath());
-		if (!(new File(outLocation).exists())) {
-			(new File(outLocation)).mkdir();
-		}
-		inLocation = config.getString("inLocation", "");
-		osHome = config.getString("osHome", null);
-
-	}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -131,12 +59,14 @@ public class ConfigFrame extends javax.swing.JFrame {
         outputText = new javax.swing.JTextField();
         outputLabel = new javax.swing.JLabel();
         pathLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        formatLabel = new javax.swing.JLabel();
         csvCheck = new javax.swing.JCheckBox();
         jsonCheck = new javax.swing.JCheckBox();
         kmlCheck = new javax.swing.JCheckBox();
         wktCheck = new javax.swing.JCheckBox();
         shapefileCheck = new javax.swing.JCheckBox();
+        threadsLabel = new javax.swing.JLabel();
+        threadCount = new javax.swing.JSpinner();
 
         jCheckBox3.setText("JSON");
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -157,11 +87,6 @@ public class ConfigFrame extends javax.swing.JFrame {
         setResizable(false);
 
         doneButton.setText("Done");
-        doneButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doneButtonActionPerformed(evt);
-            }
-        });
 
         browseOutButton.setText("Browse...");
         browseOutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +106,7 @@ public class ConfigFrame extends javax.swing.JFrame {
 
         pathLabel.setText("Path:");
 
-        jLabel2.setText("Format:");
+        formatLabel.setText("Format:");
 
         csvCheck.setText("CSV");
         csvCheck.addActionListener(new java.awt.event.ActionListener() {
@@ -218,6 +143,11 @@ public class ConfigFrame extends javax.swing.JFrame {
             }
         });
 
+        threadsLabel.setText("Threads:");
+
+        threadCount.setModel(new javax.swing.SpinnerNumberModel(1, 1, 25, 1));
+        threadCount.setToolTipText("the number of threads to use during processing");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -231,8 +161,9 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(pathLabel))
+                            .addComponent(formatLabel)
+                            .addComponent(pathLabel)
+                            .addComponent(threadsLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -244,12 +175,15 @@ public class ConfigFrame extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(shapefileCheck)
                                     .addComponent(wktCheck))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                                 .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(outputText)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(browseOutButton)))))
+                                .addComponent(browseOutButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -264,7 +198,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addComponent(pathLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(formatLabel)
                     .addComponent(csvCheck)
                     .addComponent(wktCheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -274,50 +208,16 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(kmlCheck)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(threadsLabel)
+                    .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
                 .addComponent(doneButton)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-	public static void saveSettings() {
-
-		try {
-			config.setProperty("outType", outType);
-			config.setProperty("outLocation", outLocation);
-			config.setProperty("inLocation", inLocation);
-			config.setProperty("osHome", osHome);
-			config.save();
-		} catch (ConfigurationException e) {
-			log.error("Error saving settings", e);
-		}
-
-	}
-
-	private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_doneButtonActionPerformed
-		outLocation = outputText.getText();
-
-		// Somewhat ugly due to netbeans lack of arrays in the GUI designer
-		outType = "";
-		if (csvCheck.isSelected())
-			outType += "CSV,";
-		if (kmlCheck.isSelected())
-			outType += "KML,";
-		if (jsonCheck.isSelected())
-			outType += "JSON,";
-		if (shapefileCheck.isSelected())
-			outType += "SHAPEFILE,";
-		if (wktCheck.isSelected())
-			outType += "WKT,";
-
-		if (outType.length() > 1)
-			outType = outType.substring(0, outType.length() - 1);
-
-		saveSettings();
-
-		this.dispose();
-	}// GEN-LAST:event_doneButtonActionPerformed
 
 	private void outputTextActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_outputTextActionPerformed
 		// TODO add your handling code here:
@@ -423,19 +323,21 @@ public class ConfigFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseOutButton;
-    private javax.swing.JCheckBox csvCheck;
-    private javax.swing.JButton doneButton;
+    protected javax.swing.JCheckBox csvCheck;
+    protected javax.swing.JButton doneButton;
+    private javax.swing.JLabel formatLabel;
     private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JCheckBox jsonCheck;
-    private javax.swing.JCheckBox kmlCheck;
+    protected javax.swing.JCheckBox jsonCheck;
+    protected javax.swing.JCheckBox kmlCheck;
     private javax.swing.JLabel outputLabel;
-    private javax.swing.JTextField outputText;
+    protected javax.swing.JTextField outputText;
     private javax.swing.JLabel pathLabel;
-    private javax.swing.JCheckBox shapefileCheck;
-    private javax.swing.JCheckBox wktCheck;
+    protected javax.swing.JCheckBox shapefileCheck;
+    protected javax.swing.JSpinner threadCount;
+    private javax.swing.JLabel threadsLabel;
+    protected javax.swing.JCheckBox wktCheck;
     // End of variables declaration//GEN-END:variables
 
 }

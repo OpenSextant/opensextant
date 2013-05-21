@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import org.mitre.opensextant.desktop.Main;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.forms.SelectOSHomeFrame;
+import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 
 @SuppressWarnings("serial")
 public class SelectOSHomeFrameImpl extends SelectOSHomeFrame {
@@ -65,8 +66,8 @@ public class SelectOSHomeFrameImpl extends SelectOSHomeFrame {
 				Properties props = System.getProperties();
                 props.setProperty("opensextant.home", directoryTextField.getText());
 				if (rememberCheckbox.isSelected()) {
-					ConfigFrame.setOsHome(directoryTextField.getText());
-					ConfigFrame.saveSettings();
+					ConfigHelper.getInstance().setOsHome(directoryTextField.getText());
+					ConfigHelper.getInstance().saveSettings();
 				}
 				SelectOSHomeFrameImpl.this.dispose();
 				Main.openMainWindow();

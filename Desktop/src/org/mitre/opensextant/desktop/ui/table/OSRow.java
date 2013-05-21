@@ -3,14 +3,12 @@ package org.mitre.opensextant.desktop.ui.table;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Future;
 
 import javax.swing.JButton;
 
-import org.apache.commons.collections.ListUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;

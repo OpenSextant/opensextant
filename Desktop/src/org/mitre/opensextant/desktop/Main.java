@@ -10,6 +10,7 @@ import javax.swing.UIManager;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.SelectOSHomeFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
+import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.util.Initialize;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,12 +27,11 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		ConfigFrame.loadConfig();
 		log.info("loaded config");
 
 		Properties props = System.getProperties();
 
-		String osHome = ConfigFrame.getOsHome();
+		String osHome = ConfigHelper.getInstance().getOsHome();
 
 		if (osHome == null || osHome.trim().length() == 0) {
 			osHome = props.getProperty("opensextant.home");
@@ -62,8 +62,8 @@ public class Main {
 		}
 
 		props.setProperty("opensextant.home", osHome);
-		ConfigFrame.setOsHome(osHome);
-		ConfigFrame.saveSettings();
+		ConfigHelper.getInstance().setOsHome(osHome);
+		ConfigHelper.getInstance().saveSettings();
 		Initialize.init();
 		
 

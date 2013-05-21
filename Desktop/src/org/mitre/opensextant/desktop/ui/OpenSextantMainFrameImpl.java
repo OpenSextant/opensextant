@@ -13,11 +13,13 @@ import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
+import org.mitre.opensextant.desktop.ui.forms.ConfigFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.OpenSextantMainFrame;
 import org.mitre.opensextant.desktop.ui.forms.TextEntryFrame;
 import org.mitre.opensextant.desktop.ui.handlers.FileDropTransferHandler;
 import org.mitre.opensextant.desktop.ui.handlers.HelpKeyListener;
 import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
+import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
 import org.mitre.opensextant.desktop.ui.table.OSTreeTable;
 import org.mitre.opensextant.desktop.util.TikaMimeTypes;
@@ -174,7 +176,7 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 
 	private void configButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		JFrame frame = new ConfigFrame();
+		JFrame frame = new ConfigFrameImpl();
 		frame.pack();
 		frame.setVisible(true);
 	}
@@ -186,16 +188,16 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
 		try {
-			File f = new File(ConfigFrame.getInLocation());
+			File f = new File(ConfigHelper.getInstance().getInLocation());
 			chooser.setCurrentDirectory(f);
 		} catch (Exception e) {
 		}
 		int returnVal = chooser.showOpenDialog(this);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			String selFile = chooser.getSelectedFile().toString();
-			ConfigFrame.setInLocation(selFile);
+			ConfigHelper.getInstance().setInLocation(selFile);
 			apiHelper.processFile(selFile);
-			ConfigFrame.saveSettings();
+			ConfigHelper.getInstance().saveSettings();
 		}
 	}
 	

@@ -54,8 +54,8 @@ public class ApiHelper {
 
 	public void processFile(String file) {
 		
-		String outType = ConfigFrame.getOutType();
-		String baseOutputLocation = ConfigFrame.getOutLocation();
+		String outType = ConfigHelper.getInstance().getOutType();
+		String baseOutputLocation = ConfigHelper.getInstance().getOutLocation();
 		
 		OSRow row = new OSRow(file, baseOutputLocation, outType, parent.getTableHelper());
 		
