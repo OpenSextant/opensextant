@@ -81,8 +81,8 @@ Build file for OpenSextant Desktop
 				<include name="*.jar"/>
 			</fileset>
 		</copy>
-		<copy todir="${dist.dir}/help-pages">
-			<fileset dir="help-pages">
+		<copy todir="${dist.dir}/help">
+			<fileset dir="help">
 				<include name="**"/>
 			</fileset>
 		</copy>
