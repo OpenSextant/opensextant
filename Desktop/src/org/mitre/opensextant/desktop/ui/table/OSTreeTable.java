@@ -75,18 +75,14 @@ public class OSTreeTable {
 		// treeTable.getColumn(1).setCellEditor(buttonEditor);
 
 		class MyTableHeaderRenderer extends JLabel implements TableCellRenderer {
-                        private int colNum;
-                        MyTableHeaderRenderer(int column) {
-                            this.colNum = colNum;
-                        }
                         
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,int column) {
 				TableCellRenderer defaultRenderer = table.getTableHeader().getDefaultRenderer();
 
 				Component component = defaultRenderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                                 String iconLoc = ICON_LOCATION;
-                                
-                                if(treeTableModel.getSortAscending(colNum)) iconLoc += "arrow_up.png";
+                             
+                                if(treeTableModel.getSortAscending(column)) iconLoc += "arrow_up.png";
                                 else iconLoc += "arrow_down.png";
                                 
 				((JLabel)component).setIcon(new javax.swing.ImageIcon(getClass().getResource(iconLoc)));
@@ -94,10 +90,11 @@ public class OSTreeTable {
 			}
 
 		}
-		treeTable.getColumn(0).setHeaderRenderer(new MyTableHeaderRenderer(0));
+		treeTable.getColumn(0).setHeaderRenderer(new MyTableHeaderRenderer());
 		treeTable.getColumn(0).setMinWidth(200);
 
 		treeTable.getColumn(1).setMinWidth(120);
+                treeTable.getColumn(1).setHeaderRenderer(new MyTableHeaderRenderer());
 		treeTable.getColumn(1).setCellRenderer(new TableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,
@@ -131,6 +128,8 @@ public class OSTreeTable {
 			}
 		});
 
+                treeTable.getColumn(3).setHeaderRenderer(new MyTableHeaderRenderer());
+		
 		treeTable.setEditable(true);
 		treeTable.setRowHeight(30);
 		treeTable.getTableHeader().setReorderingAllowed(false);
