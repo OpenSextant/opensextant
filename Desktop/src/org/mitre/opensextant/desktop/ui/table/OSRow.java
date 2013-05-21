@@ -225,9 +225,17 @@ public class OSRow implements Comparable<OSRow> {
 		}
 	}
 
+        public void deleteFile() {
+            try {
+                File file = new File(this.getOutputLocation());
+                file.delete();
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+        } 
 	public void removeFromTable() {
                 if(!MainFrameTableHelper.confirmationPrompt("Delete this job?", "Confirm delete", tableHelper.getMainFrame())) return;
-		
+		deleteFile();
                 tableHelper.removeRow(this);
 	}
 

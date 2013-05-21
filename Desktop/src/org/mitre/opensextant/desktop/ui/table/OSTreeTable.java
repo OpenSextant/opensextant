@@ -265,6 +265,7 @@ public class OSTreeTable {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
 				OSRow row = (OSRow)p.getUserObject();
 				row.cancelExecution(false);
+                                row.deleteFile();
 				removeRow(row);
 			}
 			treeTable.repaint();
