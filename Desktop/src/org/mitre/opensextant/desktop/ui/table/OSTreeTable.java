@@ -13,6 +13,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -30,11 +31,15 @@ import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
+import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OSTreeTable {
 
 	private JXTreeTable treeTable;
 	private final OSTreeTableModel treeTableModel = generateTestModel();
+	private static Logger log = LoggerFactory.getLogger(OSTreeTable.class);
 
 	public OSTreeTable() {
 	}
@@ -155,6 +160,7 @@ public class OSTreeTable {
 					popup.add(new DeleteNodeAction());
 					popup.add(new ReRunAction());
 					popup.add(new ViewResultsAction());
+					popup.add(new InfoAction());
 					popup.show(e.getComponent(), e.getX(), e.getY());
 				}
 			}
@@ -195,9 +201,16 @@ public class OSTreeTable {
 	
 	public OSRow createRow(OSRow row) {
 		DefaultMutableTreeTableNode root = (DefaultMutableTreeTableNode) treeTable.getTreeTableModel().getRoot();
-		DefaultMutableTreeTableNode parent = new DefaultMutableTreeTableNode(row);
 		
-		((DefaultTreeTableModel) treeTable.getTreeTableModel()).insertNodeInto(parent, root, root.getChildCount());
+		DefaultMutableTreeTableNode node = new DefaultMutableTreeTableNode(row);
+		if (row.hasChildren()) {
+			for (OSRow child : row.getChildren()) {
+				DefaultMutableTreeTableNode childNode = new DefaultMutableTreeTableNode(child);
+				node.add(childNode);
+			}
+		}
+		
+		((DefaultTreeTableModel) treeTable.getTreeTableModel()).insertNodeInto(node, root, root.getChildCount());
 		
 		return row;
 
@@ -205,17 +218,25 @@ public class OSTreeTable {
 	
 
 	public DefaultMutableTreeTableNode getNodeForRow(OSRow row) {
-		DefaultMutableTreeTableNode node = null;
-		for (int i = 0; i < treeTableModel.getRoot().getChildCount(); i++) {
-			if (treeTableModel.getRoot().getChildAt(i).getUserObject().equals(row)) {
-				return (DefaultMutableTreeTableNode)treeTableModel.getRoot().getChildAt(i);
+		
+		DefaultMutableTreeTableNode parentNode = null; 
+		
+		if (row.isChild()) {
+			parentNode = getNodeForRow(row.getParent()); 
+		} else {
+			parentNode = (DefaultMutableTreeTableNode)treeTableModel.getRoot(); 
+		}
+		
+		for (int i = 0; i < parentNode.getChildCount(); i++) {
+			DefaultMutableTreeTableNode candidate = (DefaultMutableTreeTableNode)parentNode.getChildAt(i);
+			if (candidate.getUserObject().equals(row)) {
+				return candidate;
 			}
 		}
 		return null;
 	}
 	
 	public void removeRow(OSRow row) {
-		
 		((DefaultTreeTableModel)treeTable.getTreeTableModel()).removeNodeFromParent(getNodeForRow(row));
 	}
 
@@ -269,6 +290,22 @@ public class OSTreeTable {
 		}
 	}
 
+	@SuppressWarnings("serial")
+	class InfoAction extends AbstractAction {
+		InfoAction() {
+			super("Details");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
+			for (TreePath selp : paths) {
+				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
+				OSRow row = (OSRow)p.getUserObject();
+				JOptionPane.showMessageDialog(treeTable, row.getInputFile().getAbsolutePath(), "Info", JOptionPane.INFORMATION_MESSAGE);
+			}
+			treeTable.repaint();
+		}
+	}
 
 	/**
 	 * Generates a PersonTreeTableModel of fake persons.
