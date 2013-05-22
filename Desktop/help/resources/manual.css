@@ -1,12 +1,6 @@
 /*
-                                NOTICE
-                                   
-     This software (or technical data) was produced for the U. S.
-  Government under contract 2006*1014026*000, and is subject to the 
-  Rights in Data-General Clause 52.227-14 - Alternate IV (June 1987)
-                                   
          (c) 2007 The MITRE Corporation. All Rights Reserved.
-*/
+ */
 
 body, html {
 margin:0px; 
@@ -79,7 +73,7 @@ font-weight:bold;
     text-align:center;
     margin:0;
     padding:0;
-    background-color: #660000;
+    background-color: #4090D0;
     color: #FFFFFF;
 }
 
@@ -95,7 +89,7 @@ height: 65px;
 	height:65px;
 	margin:0;
 	padding:10px;
-	background-color:#660000;
+	background-color:#4090D0;
     /*line-height:45px; */
 	color:#FFFFFF;
 }
@@ -284,7 +278,7 @@ background-color:#99CCFF;}
 	text-align:center;
 	margin:0;
 	padding:0;
-	background-color: #660000;
+	background-color: #4090D0;
     color: #FFFFFF;
 }
 

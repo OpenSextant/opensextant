@@ -1,5 +1,7 @@
 backpack
 backpacks
+body bag
+body bags
 bag
 bags
 baggage

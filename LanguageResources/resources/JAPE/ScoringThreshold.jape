@@ -66,6 +66,7 @@ Rule: Score
 		placeFeatures.put("name",bestPlace.getPlaceName());
 		placeFeatures.put("country",bestPlace.getCountryCode());
 		placeFeatures.put("score",pcObj.getBestPlaceScore());
+		placeFeatures.put("hierarchy","Geo.place.namedPlace");
 		outputAS.add(pcSet.firstNode(), pcSet.lastNode(), "PLACE",placeFeatures);
 	}
 

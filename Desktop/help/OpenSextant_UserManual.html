@@ -2,43 +2,31 @@
 <html><head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-    <link href="main_files/eh-manual.css" rel="stylesheet" type="text/css" media="screen">
-    <link href="main_files/eh-print.css" rel="stylesheet" type="text/css" media="print">
-    <!--
-                                NOTICE
-                                   
-     This software (or technical data) was produced for the U. S.
-  Government under contract 2006*1014026*000, and is subject to the 
-  Rights in Data-General Clause 52.227-14 - Alternate IV (June 1987)
-                                   
+    <link href="resources/manual.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="resources/manual-print.css" rel="stylesheet" type="text/css" media="print">
+    <!--                         
          (c) 2007 The MITRE Corporation. All Rights Reserved.
---><!-- Each documentation file should include /newsstand/css/newsstand-manual.css and 
-/newsstand/css/newsstand-manual-print.css for print media; and the first item
-in the body should be a <script> tag which loads *manual.js,
+     -->
+
+<!-- Each documentation file should include manual.css and manual-print.css for print media;
+ and the first item in the body should be a <script> tag which loads *manual.js,
 and another <script> tag which invokes the appropriate write_..._sidebar()
 function from that file. -->
-    <title>Event Horizon Documentation: OpenSextant Geocoding &amp; Gazetteer</title>
+    <title>OpenSextant Documentation: OpenSextant Geocoding &amp; Gazetteer</title>
   </head>
   <body>
-    <div id="banner">UNCLASSIFIED</div>
-    <script type="text/javascript" src="main_files/eh-manual.js"></script>
-    <script type="text/javascript">write_user_sidebar()</script><div id="wrapper-head"><div id="header"><img src="main_files/globe.png" alt="ICON HERE"><div class="titleheader"> (U) Geocoding with OpenSextant</div>
-<table><tbody><tr class="titleheader&gt;&lt;td class=" titleheader"=""></tr></tbody></table>
-</div></div><div id="wrapper-nav"><div id="leftcol"><div class="navigation"><ul><li><a href="http://apvm1.mitre.org/p/eh/eval/oxygen/oxygen_v096/doc/OpenSextantUserManual.htm" class="nav1 curpage" title="Intro">Introduction</a></li>
-<li><a href="http://apvm1.mitre.org/p/eh/eval/oxygen/oxygen_v096/doc/oxygen_desktop.htm" class="nav1" title="Desktop">Desktop Geocoding</a></li>
-<li><a href="http://apvm1.mitre.org/p/eh/eval/oxygen/oxygen_v096/doc/oxygen_search.htm" class="nav1" title="Search">Name Search</a></li>
-<li><a href="http://apvm1.mitre.org/p/eh/eval/oxygen/oxygen_v096/doc/oxygen_geocoding_detail.htm" class="nav1" title="InDepth">Geocoding in Depth</a></li>
-<li><a href="http://apvm1.mitre.org/p/eh/eval/oxygen/oxygen_v096/doc/oxygen_features.htm" class="nav1" title="Features">Special Features</a></li>
-</ul></div><br></div></div>
+    <!-- <div id="banner">UNCLASSIFIED</div> -->
+    <script type="text/javascript" src="resources/opsx-manual.js"></script>
+    <script type="text/javascript">write_user_sidebar()</script>
     <div id="wrapper-content">
       <div id="content">
         <h1> Introduction</h1>
-        Event Horizon (EH) is a text processing suite geared towards
+        OpenSextant is a text processing suite geared towards
         geo-referencing (a.k.a geocoding)
         documents, spreadsheets and other data. In otherwords, whereever
         geospatial references are made in some text, the references can
         be plotted to a map.&nbsp;
-        OpenSextant is an EH module that extracts and geocodes place name
+        OpenSextant extracts and geocodes place name
         mentions in text. It also supports a basic place name search
         against standard name catalogs and your own custom name
         catalogs.&nbsp; The activity of associating names and codes with
@@ -49,14 +37,11 @@ function from that file. -->
         The place names used for geocoding include two standard
         catalogs, NGA Geonames for non-US names, and USGS for US
         domestic names.&nbsp; These catalogs together provide world-wide
-        coverage for 260+ countries and territories.&nbsp; Other OpenSextant
-        catalogs
-        include Airports, ad-hoc catalogs from NGOs, and IP address
-        catalogs.&nbsp; <br>
+        coverage for 260+ countries and territories. The OpenSextant catalog of gazetteers can be extended through its programming interface (TBD) <br>
         <br>
         A name catalog is a mapping of some text, name or code to a geo
         coordinate.&nbsp;&nbsp; Such a mapping is also known as a
-        gazetteer.&nbsp; <span style="text-decoration: underline;">Funamentally,
+        gazetteer.&nbsp; <span style="text-decoration: underline;">Fundamentally,
 these
 catalogs
 could
@@ -135,7 +120,7 @@ imply
       </div>
     </div>
     <!-- DOC FOOTER STARTS -->
-    <div id="footer">UNCLASSIFIED</div>
+    <div id="footer"></div>
     <!-- DOC FOOTER ENDS-->
   
 

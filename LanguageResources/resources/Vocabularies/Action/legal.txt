@@ -71,3 +71,12 @@ verdict
 year sentence
 negotiation
 negotiations
+life imprisonment
+life imprisonments
+background check
+background checks
+criminal history check
+criminal history checks
+bail hearing
+bail hearings
+hearings

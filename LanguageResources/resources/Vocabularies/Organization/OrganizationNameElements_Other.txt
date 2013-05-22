@@ -56,3 +56,9 @@ sects
 dept
 caucus
 caucuses
+advisory board
+advisory boards
+tribunal
+tribunals
+think tank
+think tanks

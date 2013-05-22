@@ -97,6 +97,8 @@ military unit
 military units
 militia
 militias
+air national guard
+army national guard
 national guard
 navy
 parties

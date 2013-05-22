@@ -45,3 +45,4 @@ suit
 suits
 gown
 gowns
+body armor

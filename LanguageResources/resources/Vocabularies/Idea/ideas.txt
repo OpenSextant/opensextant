@@ -12,4 +12,5 @@ belief
 beliefs
 principles
 reasoning
-
+hypothesis
+hypotheses

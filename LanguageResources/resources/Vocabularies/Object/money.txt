@@ -119,3 +119,7 @@ reimbursement
 reimbursements
 wire transfer
 wire transfers
+balance sheet
+balance sheets
+cash withdrawal
+cash withdrawals

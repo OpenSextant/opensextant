@@ -7,6 +7,8 @@ affidavits
 article
 articles
 artifact
+atm card
+atm cards
 blueprint
 blueprints
 book
@@ -53,6 +55,8 @@ identification cards
 image
 images
 imagery
+intelligence estimate
+intelligence estimates
 invoice
 invoices
 journal

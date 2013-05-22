@@ -1,11 +1,8 @@
-/*
-                                NOTICE
-                                   
-     This software (or technical data) was produced for the U. S.
-  Government under contract 2006*1014026*000, and is subject to the 
-  Rights in Data-General Clause 52.227-14 - Alternate IV (June 1987)
-                                   
-         (c) 2007 The MITRE Corporation. All Rights Reserved.
+/*                                   
+         (c) 2007,2013 The MITRE Corporation. All Rights Reserved.
+         
+         @author sam at mitre dot org
+         @author ubaldino at mitre dot org
 */
 
 // JavaScript Document, Titlebar and Menu
@@ -58,13 +55,13 @@ function write_doc_frame(dTitle, dTabs, dTree) {
 
   // Doc header with menu links
 
-  var PROGRAM_NAME='Oxygen'
-  var CLASSIFICATION='(U)'
+  var PROGRAM_NAME='OpenSextant'
+  var CLASSIFICATION=''
   
   document.write('<div id="header">');
-  document.write('<img src="./img/globe.png" alt="ICON HERE" />'
+  document.write('<img src="./resources/globe.png" alt="ICON HERE" />'
     + '<div class="titleheader"> '+CLASSIFICATION + ' '+ dTitle + '</div>\n');
-  document.write('<table><tr class="titleheader>');
+  document.write('<table><tr class="titleheader">');
   for (var i = 0; i < dTabs.length; i++) {
     var dTab = dTabs[i][0];
     var dLink = dTabs[i][1];
@@ -120,21 +117,21 @@ function write_doc_frame(dTitle, dTabs, dTree) {
 function write_user_sidebar() {
   write_doc_frame(
                   //-- TITLE
-                  'Geocoding with Oxygen',
+                  'Geocoding with OpenSextant',
                   //-- Sub-title
                   [['', null]],
                   // CHAPTERS
                   [
                    // Ch. 1,
-                   ['Introduction', ['./OxygenUserManual.htm', 'Intro'] ],
+                   ['Introduction', ['./OpenSextant_UserManual.html', 'Intro'] ],
                    // Ch. 2a, etc.
-                   ['Desktop Geocoding', ['./oxygen_desktop.htm', 'Desktop']], 
+                   ['Desktop Geocoding', ['./OpenSextant_Desktop.html', 'Desktop']], 
                    // Ch. 2b, etc.
-                   ['Name Search', ['./oxygen_search.htm', 'Search']], 
+                   ['Place Name Search', ['./OpenSextant_Search.html', 'Search']], 
                    // Ch. 3, etc.
-                   ['Geocoding in Depth', ['./oxygen_geocoding_detail.htm', 'InDepth']], 
+                   ['Geocoding in Depth', ['./OpenSextant_Geocoding.html', 'InDepth']], 
                    // Ch. 4, etc.
-                   ['Special Features', ['./oxygen_features.htm', 'Features']] 
+                   ['Special Features', ['./OpenSextant_Features.html', 'Features']] 
                    
                    //--- end CHAPTERS--- 
                    ]

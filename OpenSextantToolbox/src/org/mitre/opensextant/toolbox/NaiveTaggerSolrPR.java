@@ -139,7 +139,7 @@ public class NaiveTaggerSolrPR
 
         List<PlaceCandidate> matches = null;
         try {
-            matches = matcher.tagDocument(document, null, null);
+            matches = matcher.tagText(document.getContent().toString(), document.getName());
         } catch (Exception err) {
             log.error("Error when tagging document " + document.getName(), err);
             return;

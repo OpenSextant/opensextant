@@ -18,3 +18,11 @@ truce
 truces
 defection
 defections
+political campaign
+election campaign
+presidential campaign
+gubernatorial campaign
+political campaigns
+election campaigns
+presidential campaigns
+gubernatorial campaigns
