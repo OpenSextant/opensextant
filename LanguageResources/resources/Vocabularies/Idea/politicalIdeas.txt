@@ -93,7 +93,6 @@ shachtmanism
 socialism
 stalinism
 strasserism
-terrorism
 thatcherism
 titoism
 tribalism
@@ -105,3 +104,4 @@ venizelism
 volunteerism
 yeltsinism
 zionism
+monarchy

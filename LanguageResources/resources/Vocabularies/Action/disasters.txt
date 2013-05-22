@@ -21,6 +21,8 @@ distress call
 distress calls
 earthquake
 earthquakes
+earth quake
+earth quakes
 explosion
 explosions
 flash flood
@@ -65,3 +67,7 @@ seismic event
 seismic events
 emergency
 emergencies
+catastrophic event
+catastrophic events
+disastrous event
+disastrous events

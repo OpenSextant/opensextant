@@ -25,6 +25,7 @@ red alert
 
 buyout
 hostile takeover
+layoffs
 
 
 marshalling

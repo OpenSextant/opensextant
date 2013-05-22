@@ -64,3 +64,5 @@ trading firm
 work force
 brokerage
 brokerages
+franchise
+franchises

@@ -9,6 +9,7 @@ laser blinder
 knife
 knives
 molotov cocktail
+molotov cocktails
 ammunition
 ammunitions
 bullet
@@ -20,3 +21,8 @@ artillery piece
 artillery pieces
 howitzer
 howitzers
+pepper spray
+pepper sprays
+tear gas
+weapons system
+weapons systems
