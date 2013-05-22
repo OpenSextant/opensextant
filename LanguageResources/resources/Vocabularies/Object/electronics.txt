@@ -93,9 +93,15 @@ phone card
 phone cards
 phones
 telephone number
-phone number
 telephone numbers
+telephone #
+telephone num
+telephone nums
+phone number
 phone numbers
+phone #
+phone num
+phone nums
 tel num
 tel no
 tel. no.

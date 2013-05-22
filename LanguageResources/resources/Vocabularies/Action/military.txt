@@ -69,3 +69,13 @@ withdrawal
 withdrawals
 disarmament
 disarmaments
+military action
+military activity
+military actions
+military activities
+military campaign
+military campaigns
+friendly fire
+friendly fire incident
+friendly fire incidents
+combat

@@ -1,8 +1,6 @@
 tent
 tents
 binoculars
-camera
-cameras
 cigarette
 cigarettes
 table
@@ -37,7 +35,6 @@ turret
 turrets
 mattress
 mattresses
-bodybag
 gold medal
 silver medal
 bronze medal

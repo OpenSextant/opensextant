@@ -41,6 +41,8 @@ knee
 knees
 leg
 legs
+lymph node
+lymph nodes
 mouth
 mouths
 mustache
