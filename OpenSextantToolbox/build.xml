@@ -38,6 +38,9 @@ The core library is contained in this jar.
 
     <!-- directory to contain the contents of the zip release -->
     <property name="release.dir" location="${basedir}/release" />
+	
+	<!-- directory containing Open Sextant Desktop -->
+    <property name="osd.dir" location="${basedir}/../Desktop" />
 
     <!-- location of GateHome files and Plugin directory, installed -->
     <property name="gate.home.install" location="${release.dir}/gate" />
@@ -75,7 +78,7 @@ The core library is contained in this jar.
     <!-- gate jars required for building and running -->
     <import file="${basedir}/dependencies.xml"/>
         
-    <!-- Classpath to compile - includes local sources, gate.jar, local
+	<!-- Classpath to compile - includes local sources, gate.jar, local
     library JAR files, GATE/lib/*.jar, and lib-solr jars in that order -->
     <path id="compile.classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar" />
@@ -375,10 +378,18 @@ The core library is contained in this jar.
     <target name="release" depends="build, all-javadoc, prepare.release, copy.gate.home, copy.lib, copy.resources, copy.scripts, copy.doc">
 	
         <delete file="${basedir}/build/OpenSextant-build-${version}.zip" />
-   
+
+        <copy todir="${release.dir}/OpenSextantDesktop">
+            <fileset dir="${osd.dir}/dist" includes="**"/>
+        </copy>
+        <subant target="release">
+            <fileset dir="${osd.dir}" includes="build.xml"/>
+        </subant>
+
         <zip destfile="${basedir}/build/OpenSextant-build-${version}.zip">
             <zipfileset dir="${release.dir}" prefix="opensextant-${version}"/>
         </zip>
+    	
     </target>
 
 		

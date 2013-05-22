@@ -12,34 +12,34 @@ Build file for OpenSextant Desktop
     <property name="project.name" value="OpenSextantDesktop" />
     <property name="java_level" value="1.7" />
 
-    <property file="build.properties" />
+    <property file="${basedir}/build.properties" />
 	
     <!-- directory to contain the jar -->
-    <property name="build.dir" location="build" />
-    <property name="dist.dir" location="dist" />
+    <property name="build.dir" location="${basedir}/build" />
+    <property name="dist.dir" location="${basedir}/dist" />
 
     <path id="compile.classpath">
 
 	    <!-- project level libraries -->
-	    <pathelement location="${opensextant.home}/lib/OpenSextantToolbox.jar" />
-	    <pathelement location="${opensextant.home}/lib/opensextant-apps.jar" />
-	    <pathelement location="${opensextant.home}/lib/opensextant-commons.jar" />
-	    <pathelement location="${opensextant.home}/lib/opensextant-xponents-1.6.jar" />
-	    <pathelement location="${opensextant.home}/lib/commons-lang-2.6.jar" />
+	    <pathelement location="${basedir}/${opensextant.home}/lib/OpenSextantToolbox.jar" />
+	    <pathelement location="${basedir}/${opensextant.home}/lib/opensextant-apps.jar" />
+	    <pathelement location="${basedir}/${opensextant.home}/lib/opensextant-commons.jar" />
+	    <pathelement location="${basedir}/${opensextant.home}/lib/opensextant-xponents-1.6.jar" />
+	    <pathelement location="${basedir}/${opensextant.home}/lib/commons-lang-2.6.jar" />
 	
-	    <pathelement location="${opensextant.home}/lib/slf4j-api-1.7.4.jar" />
-	    <pathelement location="${opensextant.home}/lib/slf4j-log4j12-1.7.4.jar" />
+	    <pathelement location="${basedir}/${opensextant.home}/lib/slf4j-api-1.7.4.jar" />
+	    <pathelement location="${basedir}/${opensextant.home}/lib/slf4j-log4j12-1.7.4.jar" />
 	
-	    <pathelement location="${opensextant.home}/lib/log4j-1.2.17.jar" />
+	    <pathelement location="${basedir}/${opensextant.home}/lib/log4j-1.2.17.jar" />
 
-	    <pathelement location="${opensextant.home}/lib/commons-io-2.1.jar" />
-	    <pathelement location="${opensextant.home}/lib/gate.jar" />
+	    <pathelement location="${basedir}/${opensextant.home}/lib/commons-io-2.1.jar" />
+	    <pathelement location="${basedir}/${opensextant.home}/lib/gate.jar" />
 
-	    <pathelement location="lib/appframework-1.0.3.jar" />
-	    <pathelement location="lib/commons-configuration-1.9.jar" />
-	    <pathelement location="lib/swing-layout-1.0.3.jar" />
-	    <pathelement location="lib/swing-worker-1.1.jar" />
-	    <pathelement location="lib/swingx-all-1.6.4.jar" />
+	    <pathelement location="${basedir}/lib/appframework-1.0.3.jar" />
+	    <pathelement location="${basedir}/lib/commons-configuration-1.9.jar" />
+	    <pathelement location="${basedir}/lib/swing-layout-1.0.3.jar" />
+	    <pathelement location="${basedir}/lib/swing-worker-1.1.jar" />
+	    <pathelement location="${basedir}/lib/swingx-all-1.6.4.jar" />
 
     </path>
 
@@ -48,7 +48,7 @@ Build file for OpenSextant Desktop
 
     <!-- compile the source -->
     <target name="compile" depends="setup" >
-        <javac classpathref="compile.classpath" srcdir="src" destdir="${build.dir}" 
+        <javac classpathref="compile.classpath" srcdir="${basedir}/src" destdir="${build.dir}" 
             debug="true" debuglevel="lines,source" source="${java_level}" encoding="utf-8" />
     	
     	<copy todir="${build.dir}">
