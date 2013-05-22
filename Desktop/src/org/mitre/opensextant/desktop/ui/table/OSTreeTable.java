@@ -8,7 +8,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EventObject;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
@@ -264,16 +266,23 @@ public class OSTreeTable {
 		public void actionPerformed(ActionEvent e) {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
 
-			if (!MainFrameTableHelper.confirmationPrompt("Remove all selected jobs?", "Confirm removing jobs", treeTable))
+			if (!MainFrameTableHelper.confirmationPrompt("Remove all selected jobs? WARNING: Removing children will remove the entire job.", "Confirm removing jobs", treeTable))
 				return;
 
+			Set<OSRow> rows = new HashSet<OSRow>();
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
 				OSRow row = (OSRow) p.getUserObject();
+				if (row.isChild()) row = row.getParent();
+				rows.add(row);
+			}
+			
+			for (OSRow row : rows) {
 				row.cancelExecution(false);
 				row.deleteFile();
 				removeRow(row);
 			}
+
 			treeTable.repaint();
 		}
 	}
@@ -286,9 +295,14 @@ public class OSTreeTable {
 
 		public void actionPerformed(ActionEvent e) {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
+			Set<OSRow> rows = new HashSet<OSRow>();
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
 				OSRow row = (OSRow) p.getUserObject();
+				if (row.isChild()) row = row.getParent();
+				rows.add(row);
+			}
+			for (OSRow row : rows) {
 				row.viewResults();
 			}
 			treeTable.repaint();
