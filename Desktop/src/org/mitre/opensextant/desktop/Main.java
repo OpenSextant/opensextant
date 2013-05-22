@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import javax.swing.UIManager;
 
+import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.SelectOSHomeFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
@@ -26,49 +27,22 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		log.info("loaded config");
-
-		Properties props = System.getProperties();
+		
+		SelectOSHomeFrameImpl.setupOpenSextantHome();
 
 		String osHome = ConfigHelper.getInstance().getOsHome();
+		String gateHome = ConfigHelper.getInstance().getGateHome();
+		String solrHome = ConfigHelper.getInstance().getSolrHome();
+		
+		if ((SelectOSHomeFrameImpl.validateOSHome(osHome) || (SelectOSHomeFrameImpl.validateHomeDir(gateHome) && SelectOSHomeFrameImpl.validateHomeDir(solrHome)))) {
+			System.setProperty("opensextant.home", osHome);
+			Config.GATE_HOME = gateHome;
+	        Config.SOLR_HOME = solrHome;
 
-		if (osHome == null || osHome.trim().length() == 0) {
-			osHome = props.getProperty("opensextant.home");
-			if (osHome == null) {
-
-				List<String> osHomes = new ArrayList<String>() {
-					private static final long serialVersionUID = 2733142560232972138L;
-					{
-						add("opensextant");
-						add((new File("")).getAbsolutePath() + File.separator + "opensextant");
-						add((new File("")).getAbsolutePath() + File.separator + "dist" + File.separator + "opensextant");
-					}
-				};
-
-				for (String potentialHome : osHomes) {
-					if ((new File(potentialHome)).exists()) {
-						osHome = potentialHome;
-						log.info("Open sextant home set to: " + osHome);
-						break;
-					}
-				}
-
-			}
-
-			if (osHome == null || !(new File(osHome)).exists()) {
-				new SelectOSHomeFrameImpl();
-			}
+			Initialize.init();
+			openMainWindow();
 		}
 
-		props.setProperty("opensextant.home", osHome);
-		ConfigHelper.getInstance().setOsHome(osHome);
-		ConfigHelper.getInstance().saveSettings();
-		Initialize.init();
-		
-
-
-		openMainWindow();
 
 	}
 

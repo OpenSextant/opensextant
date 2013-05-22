@@ -5,7 +5,7 @@
     <appender name="default.file" class="org.apache.log4j.FileAppender">
         <param name="file" value="OpenSextantDesktop.log" />
         <param name="append" value="false" />
-        <param name="threshold" value="debug" />
+        <param name="threshold" value="info" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1}] - %m%n" />
         </layout>

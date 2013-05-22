@@ -28,6 +28,10 @@ public class ConfigHelper {
 
 	private List<PropertyChangeListener> listeners = new ArrayList<PropertyChangeListener>();
 
+	private String gateHome;
+
+	private String solrHome;
+
 	private static ConfigHelper instance = new ConfigHelper();
 	
 	public static ConfigHelper getInstance() {
@@ -58,6 +62,8 @@ public class ConfigHelper {
 			config.setProperty("outLocation", outLocation);
 			config.setProperty("inLocation", inLocation);
 			config.setProperty("osHome", osHome);
+			config.setProperty("gateHome", gateHome);
+			config.setProperty("solrHome", solrHome);
 			config.setProperty("numThreads", numThreads);
 			config.save();
 			fireUpdate();
@@ -77,6 +83,8 @@ public class ConfigHelper {
 		}
 		inLocation = config.getString("inLocation", "");
 		osHome = config.getString("osHome", null);
+		gateHome = config.getString("gateHome", null);
+		solrHome = config.getString("solrHome", null);
 		numThreads = config.getInt("numThreads", 1);
 
 	}
@@ -97,6 +105,12 @@ public class ConfigHelper {
 	public String getOsHome() {
 		return osHome;
 	}
+	public String getGateHome() {
+		return gateHome;
+	}
+	public String getSolrHome() {
+		return solrHome;
+	}
 
 	
 	public void setOutType(String outType) {
@@ -113,6 +127,12 @@ public class ConfigHelper {
 
 	public void setOsHome(String osHomeProp) {
 		osHome = osHomeProp;
+	}
+	public void setGateHome(String gateHomeProp) {
+		gateHome = gateHomeProp;
+	}
+	public void setSolrHome(String solrHomeProp) {
+		solrHome = solrHomeProp;
 	}
 
 
@@ -134,5 +154,7 @@ public class ConfigHelper {
 			listener.propertyChange(null);
 		}
 	}
+
+
 
 }
