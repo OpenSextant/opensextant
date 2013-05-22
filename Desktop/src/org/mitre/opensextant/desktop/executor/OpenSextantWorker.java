@@ -19,13 +19,13 @@ public class OpenSextantWorker implements Runnable {
 		
 		try {
 			
-			row.setProgress(0, OSRow.STATUS.INITIALIZING);
+			row.setProgress(0, OSRow.STATUS.INITIALIZING, 0);
 			
 			// this can potentially be moved up into the executor, but currently you get an array index out of bounds exception if you re-use a runner.
 			OSDOpenSextantRunner runner = new OSDOpenSextantRunner(row);
 			runner.initialize();
 			
-			row.setProgress(0, OSRow.STATUS.PROCESSING);
+			row.setProgress(0, OSRow.STATUS.PROCESSING, 0);
 
 			runner.runOpenSextant(row.getInputFile().getAbsolutePath(), row.getOutputType(), row.getOutputLocation());
 

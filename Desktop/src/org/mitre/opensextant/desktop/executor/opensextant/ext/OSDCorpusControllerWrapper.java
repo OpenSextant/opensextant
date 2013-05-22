@@ -22,6 +22,7 @@ public class OSDCorpusControllerWrapper implements CorpusController {
 
 	private ConditionalSerialAnalyserController wrapped;
 	private OSRow row;
+	private int completed = 0;
 	private static Logger log = LoggerFactory.getLogger(OSDCorpusControllerWrapper.class);
 
 	public OSDCorpusControllerWrapper(final ConditionalSerialAnalyserController wrapped, final OSRow row) {
@@ -44,7 +45,7 @@ public class OSDCorpusControllerWrapper implements CorpusController {
 					}
 				} 
 				if (row.getPercent() != calculatedProgress) {
-					row.setProgress(calculatedProgress, OSRow.STATUS.PROCESSING);
+					row.setProgress(calculatedProgress, OSRow.STATUS.PROCESSING, completed);
 				}
 			}
 
@@ -63,12 +64,15 @@ public class OSDCorpusControllerWrapper implements CorpusController {
 			wrapped.setDocument(doc);
 			wrapped.execute();
 			
-			
 			if (row.hasChildren()) {
 				File docFile = new File((String)doc.getFeatures().get(OSDOpenSextantRunner.ORIGINAL_FILE));
 				OSRow child = row.getChildForInputFile(docFile);
 				child.setProgress(100, OSRow.STATUS.COMPLETE);
 			}
+			
+			completed++;
+			row.setProgress(row.getPercent(), OSRow.STATUS.PROCESSING, completed);
+
 		}
 
 	}

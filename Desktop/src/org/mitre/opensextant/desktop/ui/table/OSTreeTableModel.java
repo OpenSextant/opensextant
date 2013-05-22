@@ -8,6 +8,8 @@ import java.util.Comparator;
 import java.util.Date;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
+
+import org.apache.commons.io.FileUtils;
 import org.jdesktop.swingx.JXTreeTable;
 
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
@@ -15,10 +17,11 @@ import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import org.jdesktop.swingx.treetable.TreeTableNode;
 
 class OSTreeTableModel extends DefaultTreeTableModel {
-	private static final int TITLE = 0;
-	private static final int PROGRESS = 1;
-	private static final int ACTIONS = 2;
-	private static final int LAST_RUN = 3;
+	public static final int TITLE = 0;
+	public static final int PROGRESS = 1;
+	public static final int ACTIONS = 2;
+	public static final int FILE_INFO = 3;
+	public static final int LAST_RUN = 4;
 	private SimpleDateFormat dateFormat;
 
 	private boolean[] ascSort = new boolean[LAST_RUN + 1];
@@ -29,64 +32,65 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	}
 
 	public int getColumnCount() {
-		return 4;
+		return 5;
 	}
 
 	/**
 	 * Returns which object is displayed in this column.
 	 */
 	public Object getValueAt(Object node, int column) {
-		Object res = "n/a";
-		if (node instanceof DefaultMutableTreeTableNode) {
-			DefaultMutableTreeTableNode defNode = (DefaultMutableTreeTableNode) node;
-			if (defNode.getUserObject() instanceof OSRow) {
-				OSRow person = (OSRow) defNode.getUserObject();
-				switch (column) {
-				case PROGRESS:
-					res = person;
-					break;
-				case ACTIONS:
-					res = person;
-					break;
-				case TITLE:
-					res = person.getTitle();
-					break;
-				case LAST_RUN:
-					res = dateFormat.format(person.getLastRun());
-					break;
+		OSRow row = (OSRow) ((DefaultMutableTreeTableNode) node).getUserObject();
+		switch (column) {
+			case PROGRESS:
+				return row;
+			case ACTIONS:
+				return row;
+			case TITLE:
+				return row.getTitle();
+			case FILE_INFO:
+				String info = "";
+				if (row.hasChildren()) {
+					long size = 0;
+					for (OSRow child : row.getChildren()) {
+						size += FileUtils.sizeOf(child.getInputFile());
+					}
+					info += FileUtils.byteCountToDisplaySize(size);
+					info += " (" + row.getChildren().size() + " files)";
+				} else {
+					info += FileUtils.byteCountToDisplaySize(FileUtils.sizeOf(row.getInputFile()));
+					
 				}
-			}
+				return info;
+			case LAST_RUN:
+				return dateFormat.format(row.getLastRun());
 		}
-		return res;
+		return "n/a";
 	}
 
 	/**
 	 * What the TableHeader displays when the Table is in a JScrollPane.
 	 */
 	public String getColumnName(int column) {
-		String res = "";
 		switch (column) {
-		case PROGRESS:
-			res = "Progress";
-			break;
-		case TITLE:
-			res = "Title";
-			break;
-		case ACTIONS:
-			res = "";
-			break;
-		case LAST_RUN:
-			res = "Last Run";
-			break;
+			case PROGRESS:
+				return "Progress";
+			case TITLE:
+				return "Title";
+			case ACTIONS:
+				return "";
+			case FILE_INFO:
+				return "Info";
+			case LAST_RUN:
+				return "Last Run";
 		}
-		return res;
+		return "";
 	}
 
 	/**
 	 * Tells if a column can be edited.
 	 */
 	public boolean isCellEditable(Object node, int column) {
-		return column == ACTIONS && !((OSRow)((DefaultMutableTreeTableNode)node).getUserObject()).isChild();
+		return column == ACTIONS && !((OSRow) ((DefaultMutableTreeTableNode) node).getUserObject()).isChild();
 	}
 
 	/**

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -22,27 +23,23 @@ import org.slf4j.LoggerFactory;
 public class OSRow implements Comparable<OSRow> {
 
 	public static enum STATUS {
-		INITIALIZING("Initializing"),
-		QUEUED("Queued"),
-		PROCESSING("Processing"),
-		COMPLETE("Complete"),
-		CANCELED("Canceled"),
-		ERROR("Error");
-		
+		INITIALIZING("Initializing"), QUEUED("Queued"), PROCESSING("Processing"), COMPLETE("Complete"), CANCELED("Canceled"), ERROR("Error");
+
 		private String title;
+
 		private STATUS(String title) {
 			this.title = title;
 		}
+
 		public String getTitle() {
 			return title;
 		}
 	};
-	
+
 	private static Logger log = LoggerFactory.getLogger(OSRow.class);
 
-	
 	private static int counter = 0;
-	
+
 	private String title;
 	private String id;
 	private STATUS status;
@@ -62,7 +59,7 @@ public class OSRow implements Comparable<OSRow> {
 	private MainFrameTableHelper tableHelper;
 
 	public OSRow() {
-		
+
 	}
 
 	public OSRow(String input, String baseOutputLocation, String outputType, MainFrameTableHelper tableHelper) {
@@ -81,35 +78,34 @@ public class OSRow implements Comparable<OSRow> {
 		this.inputFile = new File(input);
 		this.progressBarContainer = new RowProgressBarImpl();
 		this.tableHelper = tableHelper;
-		
-		String childrenCountString = "";
+
 		if (inputFile.isDirectory()) {
 			List<File> childInputFiles = new ArrayList<File>(FileUtils.listFiles(inputFile, null, true));
 			for (File childInputFile : childInputFiles) {
-				// ignore files that start with '.'
-				if (!childInputFile.getName().startsWith(".")) {
-					children.add(new OSRow(this, childInputFile.getAbsolutePath(), baseOutputLocation, outputType, tableHelper));
+				if (childInputFile.exists()) {
+					// ignore files that start with '.'
+					if (!childInputFile.getName().startsWith(".")) {
+						children.add(new OSRow(this, childInputFile.getAbsolutePath(), baseOutputLocation, outputType, tableHelper));
+					}
+				} else {
+					JOptionPane.showMessageDialog(tableHelper.getMainFrame(), "Could not find file: "+childInputFile.getAbsolutePath()+".", "Warning", JOptionPane.WARNING_MESSAGE);
 				}
 			}
-			childrenCountString = " ("+children.size()+" children)";
 		}
-		
+
 		// Put in the table gui table
 		String outputTypePrime = outputType;
 		if ("KML".equals(outputType))
 			outputTypePrime = "KMZ";
-		
+
 		this.title = FilenameUtils.getBaseName(inputFile.getAbsolutePath());
-		this.title += childrenCountString;
-		
-                Parameters p = new Parameters();
-                p.setJobName(title);
+
+		Parameters p = new Parameters();
+		p.setJobName(title);
 		this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
 		this.buttonContainer = new RowButtonsImpl(this);
 
-
 	}
-
 
 	public String getTitle() {
 		return title;
@@ -126,31 +122,37 @@ public class OSRow implements Comparable<OSRow> {
 	public int getPercent() {
 		return percent;
 	}
-	
+
 	public boolean hasChildren() {
 		return children.size() > 0;
 	}
+
 	public boolean isChild() {
 		return parent != null;
 	}
+
 	public OSRow getParent() {
 		return parent;
 	}
 
-	public void setProgress(int percent, OSRow.STATUS status) {
+	public void setProgress(int percent, OSRow.STATUS status, int childrenCompleted) {
 		String percentString = ": " + percent + "%";
-		if (percent < 0) percentString = "";
+		if (hasChildren() && childrenCompleted >= 0) {
+			percentString += " ("+childrenCompleted+"/"+getChildren().size()+")";
+		}
+		if (percent < 0)
+			percentString = "";
 		this.percent = percent;
 		this.status = status;
 		progressBarContainer.getProgressBar().setValue(percent);
 		progressBarContainer.getProgressBar().setString(status.getTitle() + percentString);
-	
+
 		if (!isRunning()) {
 			JButton cancelDeleteButton = buttonContainer.getCancelDeleteButton();
-			
+
 			cancelDeleteButton.setToolTipText("Delete job from list");
 			cancelDeleteButton.setIcon(OpenSextantMainFrameImpl.getIcon(OpenSextantMainFrameImpl.IconType.TRASH));
-			
+
 			if (status == STATUS.COMPLETE) {
 				buttonContainer.getReRunButton().setEnabled(true);
 				buttonContainer.getViewResultsButton().setEnabled(true);
@@ -158,14 +160,17 @@ public class OSRow implements Comparable<OSRow> {
 
 		}
 		tableHelper.getMainFrame().getTable().repaint(this);
+	}
 
+	public void setProgress(int percent, OSRow.STATUS status) {
+		setProgress(percent, status, -1);
 	}
 
 	public Date getLastRun() {
 		return lastRun;
 	}
-        
-        public void setLastRun(Date lastRun) {
+
+	public void setLastRun(Date lastRun) {
 		this.lastRun = lastRun;
 	}
 
@@ -193,13 +198,15 @@ public class OSRow implements Comparable<OSRow> {
 	public String getOutputType() {
 		return outputType;
 	}
+
 	public String getId() {
 		return id;
 	}
-	
+
 	public List<OSRow> getChildren() {
 		return children;
 	}
+
 	public OSRow getChildForInputFile(File selection) {
 		for (OSRow child : getChildren()) {
 			if (child.getInputFile().getAbsolutePath().equals(selection.getAbsolutePath())) {
@@ -211,7 +218,7 @@ public class OSRow implements Comparable<OSRow> {
 
 	public void setExecutor(Future<?> future) {
 		this.executor = future;
-		
+
 	}
 
 	public boolean isRunning() {
@@ -223,7 +230,8 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	public void cancelExecution(boolean showPrompt) {
-                if(showPrompt && !MainFrameTableHelper.confirmationPrompt("Cancel running job?", "Confirm cancel", tableHelper.getMainFrame())) return;
+		if (showPrompt && !MainFrameTableHelper.confirmationPrompt("Cancel running job?", "Confirm cancel", tableHelper.getMainFrame()))
+			return;
 
 		if (!isChild()) {
 			executor.cancel(true);
@@ -235,18 +243,20 @@ public class OSRow implements Comparable<OSRow> {
 		}
 	}
 
-        public void deleteFile() {
-            try {
-                File file = new File(this.getOutputLocation());
-                file.delete();
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
-        } 
+	public void deleteFile() {
+		try {
+			File file = new File(this.getOutputLocation());
+			file.delete();
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+	}
+
 	public void removeFromTable() {
-                if(!MainFrameTableHelper.confirmationPrompt("Delete this job?", "Confirm delete", tableHelper.getMainFrame())) return;
+		if (!MainFrameTableHelper.confirmationPrompt("Delete this job?", "Confirm delete", tableHelper.getMainFrame()))
+			return;
 		deleteFile();
-                tableHelper.removeRow(this);
+		tableHelper.removeRow(this);
 	}
 
 	public void viewResults() {
@@ -317,6 +327,5 @@ public class OSRow implements Comparable<OSRow> {
 			return false;
 		return true;
 	}
-
 
 }

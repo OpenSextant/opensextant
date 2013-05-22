@@ -75,10 +75,7 @@ public class OSTreeTable {
 
 		treeTable = new JXTreeTable(treeTableModel);
 
-		// treeTable.getColumn(1).setCellRenderer(buttonEditor);
-		// treeTable.getColumn(1).setCellEditor(buttonEditor);
-
-		class MyTableHeaderRenderer extends JLabel implements TableCellRenderer {
+		class SortIconTableHeaderRenderer extends JLabel implements TableCellRenderer {
 
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,
 					int column) {
@@ -97,12 +94,12 @@ public class OSTreeTable {
 			}
 
 		}
-		treeTable.getColumn(0).setHeaderRenderer(new MyTableHeaderRenderer());
-		treeTable.getColumn(0).setMinWidth(200);
+		treeTable.getColumn(OSTreeTableModel.TITLE).setHeaderRenderer(new SortIconTableHeaderRenderer());
+		treeTable.getColumn(OSTreeTableModel.TITLE).setMinWidth(200);
 
-		treeTable.getColumn(1).setMinWidth(120);
-		treeTable.getColumn(1).setHeaderRenderer(new MyTableHeaderRenderer());
-		treeTable.getColumn(1).setCellRenderer(new TableCellRenderer() {
+		treeTable.getColumn(OSTreeTableModel.PROGRESS).setMinWidth(120);
+		treeTable.getColumn(OSTreeTableModel.PROGRESS).setHeaderRenderer(new SortIconTableHeaderRenderer());
+		treeTable.getColumn(OSTreeTableModel.PROGRESS).setCellRenderer(new TableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,
 					int column) {
@@ -117,10 +114,10 @@ public class OSTreeTable {
 			}
 		});
 
-		treeTable.getColumn(2).setMinWidth(120);
-		treeTable.getColumn(2).setMaxWidth(120);
-		treeTable.getColumn(2).setCellEditor(new RowButtonsEditor(new JCheckBox()));
-		treeTable.getColumn(2).setCellRenderer(new TableCellRenderer() {
+		treeTable.getColumn(OSTreeTableModel.ACTIONS).setMinWidth(120);
+		treeTable.getColumn(OSTreeTableModel.ACTIONS).setMaxWidth(120);
+		treeTable.getColumn(OSTreeTableModel.ACTIONS).setCellEditor(new RowButtonsEditor(new JCheckBox()));
+		treeTable.getColumn(OSTreeTableModel.ACTIONS).setCellRenderer(new TableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,
 					int column) {
@@ -135,7 +132,9 @@ public class OSTreeTable {
 			}
 		});
 
-		treeTable.getColumn(3).setHeaderRenderer(new MyTableHeaderRenderer());
+		treeTable.getColumn(OSTreeTableModel.FILE_INFO).setHeaderRenderer(new SortIconTableHeaderRenderer());
+		treeTable.getColumn(OSTreeTableModel.LAST_RUN).setHeaderRenderer(new SortIconTableHeaderRenderer());
+
 
 		treeTable.setEditable(true);
 		treeTable.setRowHeight(30);
