@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EventObject;
 import java.util.List;
 
 import javax.swing.AbstractAction;
@@ -20,7 +21,9 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.event.CellEditorListener;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
@@ -32,6 +35,7 @@ import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
+import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -141,13 +145,13 @@ public class OSTreeTable {
 
 			public java.awt.Component getTreeCellRendererComponent(javax.swing.JTree tree, Object value, boolean sel, boolean expanded,
 					boolean leaf, int row, boolean hasFocus) {
-				
+
 				super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 
 				if (value instanceof DefaultMutableTreeTableNode) {
 					DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) value;
 					setText(((OSRow) node.getUserObject()).getTitle());
-					//setIcon();
+					// setIcon();
 				}
 
 				return this;
@@ -260,10 +264,15 @@ public class OSTreeTable {
 
 		public void actionPerformed(ActionEvent e) {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
+
+			if (!MainFrameTableHelper.confirmationPrompt("Remove all selected jobs?", "Confirm removing jobs", treeTable))
+				return;
+
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
 				OSRow row = (OSRow) p.getUserObject();
-				row.cancelExecution();
+				row.cancelExecution(false);
+				row.deleteFile();
 				removeRow(row);
 			}
 			treeTable.repaint();

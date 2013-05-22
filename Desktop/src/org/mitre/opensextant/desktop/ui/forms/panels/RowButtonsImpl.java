@@ -28,7 +28,7 @@ public class RowButtonsImpl extends RowButtons {
 					row.removeFromTable();
 					rowButtonsEditor.stopCellEditing();
 				} else {
-					row.cancelExecution();
+					row.cancelExecution(true);
 				}
 			}
 		});

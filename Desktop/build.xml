@@ -33,6 +33,7 @@ Build file for OpenSextant Desktop
 	    <pathelement location="${opensextant.home}/lib/log4j-1.2.17.jar" />
 
 	    <pathelement location="${opensextant.home}/lib/commons-io-2.1.jar" />
+	    <pathelement location="${opensextant.home}/lib/gate.jar" />
 
 	    <pathelement location="lib/appframework-1.0.3.jar" />
 	    <pathelement location="lib/commons-configuration-1.9.jar" />

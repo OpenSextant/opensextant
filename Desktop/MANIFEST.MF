@@ -30,5 +30,5 @@ Class-Path: lib/OpenSextantToolbox.jar lib/SolrTextTagger.jar lib/ant-
  on-1.9.jar lib/appframework-1.0.3.jar lib/swing-layout-1.0.3.jar lib/
  swing-worker-1.1.jar lib/swingx-all-1.6.4.jar
 X-COMMENT: Main-Class will be added automatically by build
-Main-Class: org.mitre.opensextant.desktop.ui.table.TestTreeTable
+Main-Class: org.mitre.opensextant.desktop.Main
 

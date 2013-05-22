@@ -21,8 +21,8 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	private static final int LAST_RUN = 3;
 	private SimpleDateFormat dateFormat;
 
-        private boolean[] ascSort = new boolean[LAST_RUN + 1];
-        
+	private boolean[] ascSort = new boolean[LAST_RUN + 1];
+
 	public OSTreeTableModel(TreeTableNode root) {
 		super(root);
 		dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -86,9 +86,9 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	 * Tells if a column can be edited.
 	 */
 	public boolean isCellEditable(Object node, int column) {
-		return true;
+		return column == ACTIONS && !((OSRow)((DefaultMutableTreeTableNode)node).getUserObject()).isChild();
 	}
-	
+
 	/**
 	 * Called when done editing a cell.
 	 */
@@ -100,51 +100,57 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 			}
 		}
 	}
-	
 
 	public void update(DefaultMutableTreeTableNode row) {
 		modelSupport.firePathChanged((new TreePath(getPathToRoot(row))));
 	}
-	
-        
-        /**
-         * Get which rows are sorted ascending
-         */
-        public boolean getSortAscending(int column) {
-            return ascSort[column];
-        }
-        
-        /**
-         * Used to sort the rows depending on the column clicked
-         */
-        public void sortRows(ArrayList<DefaultMutableTreeTableNode> nodes, final int nColumn, JXTreeTable caller){
-            final boolean asc = ascSort[nColumn];
-            ascSort[nColumn] = !asc;
-            caller.getTableHeader().repaint();
-            
-            Collections.sort(nodes, new Comparator<DefaultMutableTreeTableNode>() {
-              @Override
-              public int compare(DefaultMutableTreeTableNode left, DefaultMutableTreeTableNode right) {
-                  OSRow l = (OSRow) left.getUserObject();
-                  OSRow r = (OSRow) right.getUserObject();
-                 
-                  switch (nColumn) {
-                    case LAST_RUN:
-                        Date rd = r.getLastRun();
-                        Date ld = l.getLastRun();
-                        if(rd == null) rd = new Date(0);
-                        if(ld == null) ld = new Date(0);
-                        if(asc) return rd.compareTo(ld);
-                        else return ld.compareTo(rd);
-                    case TITLE:
-                        if(asc) return r.getTitle().compareToIgnoreCase(l.getTitle());
-                        return l.getTitle().compareToIgnoreCase(r.getTitle());
-                    case PROGRESS:
-                        if(asc) return ((Integer)r.getPercent()).compareTo(l.getPercent());
-                        else return ((Integer)l.getPercent()).compareTo(r.getPercent());
-                    default: 
-                        return 0;
-                  }
-            }});
-        }
+
+	/**
+	 * Get which rows are sorted ascending
+	 */
+	public boolean getSortAscending(int column) {
+		return ascSort[column];
+	}
+
+	/**
+	 * Used to sort the rows depending on the column clicked
+	 */
+	public void sortRows(ArrayList<DefaultMutableTreeTableNode> nodes, final int nColumn, JXTreeTable caller) {
+		final boolean asc = ascSort[nColumn];
+		ascSort[nColumn] = !asc;
+		caller.getTableHeader().repaint();
+
+		Collections.sort(nodes, new Comparator<DefaultMutableTreeTableNode>() {
+			@Override
+			public int compare(DefaultMutableTreeTableNode left, DefaultMutableTreeTableNode right) {
+				OSRow l = (OSRow) left.getUserObject();
+				OSRow r = (OSRow) right.getUserObject();
+
+				switch (nColumn) {
+				case LAST_RUN:
+					Date rd = r.getLastRun();
+					Date ld = l.getLastRun();
+					if (rd == null)
+						rd = new Date(0);
+					if (ld == null)
+						ld = new Date(0);
+					if (asc)
+						return rd.compareTo(ld);
+					else
+						return ld.compareTo(rd);
+				case TITLE:
+					if (asc)
+						return r.getTitle().compareToIgnoreCase(l.getTitle());
+					return l.getTitle().compareToIgnoreCase(r.getTitle());
+				case PROGRESS:
+					if (asc)
+						return ((Integer) r.getPercent()).compareTo(l.getPercent());
+					else
+						return ((Integer) l.getPercent()).compareTo(r.getPercent());
+				default:
+					return 0;
+				}
+			}
+		});
+	}
 }

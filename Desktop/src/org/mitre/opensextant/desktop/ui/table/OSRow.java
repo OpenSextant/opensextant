@@ -11,18 +11,18 @@ import javax.swing.JButton;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.mitre.opensextant.desktop.executor.opensextant.ext.OSDOpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
+import org.mitre.opensextant.processing.Parameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class OSRow implements Comparable<OSRow> {
 
 	public static enum STATUS {
-		INITIALIZING("Initiali!!!zing"),
+		INITIALIZING("Initializing"),
 		QUEUED("Queued"),
 		PROCESSING("Processing"),
 		COMPLETE("Complete"),
@@ -102,7 +102,9 @@ public class OSRow implements Comparable<OSRow> {
 		this.title = FilenameUtils.getBaseName(inputFile.getAbsolutePath());
 		this.title += childrenCountString;
 		
-		this.outputLocation = baseOutputLocation + File.separator + (title.replaceAll(" ", "_") + "_" + id) + "." + outputTypePrime;
+                Parameters p = new Parameters();
+                p.setJobName(title);
+		this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
 		this.buttonContainer = new RowButtonsImpl(this);
 
 
@@ -220,7 +222,9 @@ public class OSRow implements Comparable<OSRow> {
 		return new OSRow(inputFile.getAbsolutePath(), baseOutputLocation, outputType, tableHelper);
 	}
 
-	public void cancelExecution() {
+	public void cancelExecution(boolean showPrompt) {
+                if(showPrompt && !MainFrameTableHelper.confirmationPrompt("Cancel running job?", "Confirm cancel", tableHelper.getMainFrame())) return;
+
 		if (!isChild()) {
 			executor.cancel(true);
 			setProgress(-1, OSRow.STATUS.CANCELED);
@@ -231,8 +235,18 @@ public class OSRow implements Comparable<OSRow> {
 		}
 	}
 
+        public void deleteFile() {
+            try {
+                File file = new File(this.getOutputLocation());
+                file.delete();
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+        } 
 	public void removeFromTable() {
-		tableHelper.removeRow(this);
+                if(!MainFrameTableHelper.confirmationPrompt("Delete this job?", "Confirm delete", tableHelper.getMainFrame())) return;
+		deleteFile();
+                tableHelper.removeRow(this);
 	}
 
 	public void viewResults() {
