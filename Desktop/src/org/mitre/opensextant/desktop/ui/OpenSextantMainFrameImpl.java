@@ -186,6 +186,7 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		FileNameExtensionFilter filter = TikaMimeTypes.makeFileBrowser();
 		chooser.setFileFilter(filter);
 		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		chooser.setMultiSelectionEnabled(true);
 
 		try {
 			File f = new File(ConfigHelper.getInstance().getInLocation());
@@ -194,9 +195,13 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		}
 		int returnVal = chooser.showOpenDialog(this);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			String selFile = chooser.getSelectedFile().toString();
-			ConfigHelper.getInstance().setInLocation(selFile);
-			apiHelper.processFile(selFile);
+			File[] files = chooser.getSelectedFiles();
+			for (File file : files) {
+				apiHelper.processFile(file.getAbsolutePath());
+			}
+			if (files.length > 0) {
+				ConfigHelper.getInstance().setInLocation(files[0].getParentFile().getAbsolutePath());
+			}
 			ConfigHelper.getInstance().saveSettings();
 		}
 	}
