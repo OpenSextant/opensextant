@@ -1,29 +1,29 @@
-/** 
- Copyright 2009-2013 The MITRE Corporation.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-
-
+/**
+ * Copyright 2009-2013 The MITRE Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ *
  * **************************************************************************
- *                          NOTICE
- * This software was produced for the U. S. Government under Contract No.
+ * NOTICE This software was produced for the U. S. Government under Contract No.
  * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
  * Software and Noncommercial Computer Software Documentation Clause
  * 252.227-7014 (JUN 1995)
  *
  * (c) 2012 The MITRE Corporation. All Rights Reserved.
  * **************************************************************************
- **/
+ *
+ */
 package org.mitre.opensextant.extraction;
 
 //import gate.Annotation;
@@ -58,9 +58,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Connects to a Solr sever via HTTP and tags place names in document.
- * The <code>SOLR_HOME</code> environment variable must be set to the location of the Solr server.
- * 
+ * Connects to a Solr sever via HTTP and tags place names in document. The
+ * <code>SOLR_HOME</code> environment variable must be set to the location of
+ * the Solr server.
+ *
  * @author David Smiley - dsmiley@mitre.org
  * @author Marc Ubaldino - ubaldino@mitre.org
  */
@@ -72,8 +73,10 @@ public class SolrMatcher extends PlacenameMatcher {
     private final String APRIORI_NAME_RULE = "AprioriNameBias";
     private TaggerQueryRequest tag_request = null;
     private Map<Integer, Place> beanMap = new HashMap<>(100); // initial size
-    /** In the interest of optimization we made the Solr instance 
-     *  a static class attribute that should be thread safe and shareable across instances of SolrMatcher
+    /**
+     * In the interest of optimization we made the Solr instance a static class
+     * attribute that should be thread safe and shareable across instances of
+     * SolrMatcher
      */
     private static SolrParams params = null;
     private static SolrProxy solr = null;
@@ -106,14 +109,21 @@ public class SolrMatcher extends PlacenameMatcher {
         allow_lowercase_abbrev = b;
     }
 
-    /** 
+    /**
      */
     private static void initialize() throws IOException {
 
         if (solr != null) {
             return;
         }
-        solr = new SolrProxy();
+        
+        // NOTE: This is set via opensextant.apps.Config or by some other means
+        // But it is required to intialize.  "gazetteer" is the core name of interest.
+        // Being explicit here about the core name allows integrator to field multiple cores 
+        // in the same gazetteer.  
+        // 
+        String config_solr_home = System.getProperty("solr.solr.home");
+        solr = new SolrProxy(config_solr_home, "gazetteer");
 
         ModifiableSolrParams _params = new ModifiableSolrParams();
         _params.set(CommonParams.QT, requestHandler);
@@ -140,21 +150,27 @@ public class SolrMatcher extends PlacenameMatcher {
         params = _params;
     }
 
-    /** A no-op */
+    /**
+     * A no-op
+     */
     @Override
     public void cleanup() {
         // Solr handle is now static -- this interface method is standard practice for a GATE resource
         // even if this item is not a proper GATE PR.
     }
 
-    /** Close solr resources. */
+    /**
+     * Close solr resources.
+     */
     public static void shutdown() {
         if (solr != null) {
             solr.close();
         }
     }
 
-    /** Capture this */
+    /**
+     * Capture this
+     */
     @SuppressWarnings("serial")
     class TaggerQueryRequest extends QueryRequest {
 
@@ -172,14 +188,14 @@ public class SolrMatcher extends PlacenameMatcher {
 
     /**
      * Tag a document, returning PlaceCandidates for the mentions in document.
-     * Converts a GATE document to a string and passes it to the Solr server via 
+     * Converts a GATE document to a string and passes it to the Solr server via
      * HTTP POST. The tokens and featureName parameters are not used.
      *
      * @param doc The GATE document to be tagged
-     * @param tokens 
-     * @param featureName 
+     * @param tokens
+     * @param featureName
      * @return place_candidates List of place candidates
-     * @throws MatcherException  
+     * @throws MatcherException
      */
     // "tagsCount":10, "tags":[{ "ids":[35], "endOffset":40, "startOffset":38},
     // { "ids":[750308, 2769912, 2770041, 10413973, 10417546], "endOffset":49,
@@ -287,11 +303,13 @@ public class SolrMatcher extends PlacenameMatcher {
             x2 = (Integer) tag.get("endOffset");//+1 char after last matched
             matchText = buffer.substring(x1, x2);
 
-            /** We can filter out trivial place name matches that we know to be
-             * close to false positives 100% of the time.  E.g,. "way", "back", "north"
-             * You might consider two different stop filters, Is "North" different than "north"?
-             * This first pass filter should really filter out only text we know to be 
-             * false positives regardless of case.
+            /**
+             * We can filter out trivial place name matches that we know to be
+             * close to false positives 100% of the time. E.g,. "way", "back",
+             * "north" You might consider two different stop filters, Is "North"
+             * different than "north"? This first pass filter should really
+             * filter out only text we know to be false positives regardless of
+             * case.
              */
             if (filter.filterOut(matchText.toLowerCase())) {
                 continue;
@@ -362,8 +380,10 @@ public class SolrMatcher extends PlacenameMatcher {
                 // else { log.info("Does this ever happen -- ? " + pc.getText() + " " + Pgeo.getPlaceName()); }
             }
 
-            /** Some rule above triggered a flag that indicates this token/place/name is not valid.
-             *  
+            /**
+             * Some rule above triggered a flag that indicates this
+             * token/place/name is not valid.
+             *
              */
             if (!_is_valid) {
                 continue;
@@ -384,7 +404,9 @@ public class SolrMatcher extends PlacenameMatcher {
         return candidates;
     }
 
-    /** Debugging */
+    /**
+     * Debugging
+     */
     private void summarizeExtraction(List<PlaceCandidate> candidates, String docid) {
         if (candidates == null) {
             log.error("Something is very wrong.");

@@ -28,6 +28,7 @@ package org.mitre.opensextant.extraction;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.util.Date;
 import org.apache.solr.client.solrj.SolrServer;
@@ -66,6 +67,15 @@ public class SolrProxy {
         // get SOLR_HOME variable from environment
         // This produces a local EmbeddedSolrServer
         initialize();
+    }
+    
+        /**
+     * Initializes a Solr server from the SOLR_HOME environment variable
+     * @throws IOException
+     */
+    public SolrProxy(String solr_home, String core) throws IOException {
+        this.server_url = null;
+        setupCore(solr_home, core);
     }
 
     protected Logger logger = LoggerFactory.getLogger(SolrProxy.class);
@@ -117,13 +127,38 @@ public class SolrProxy {
         return server;
 
     }
+    
+    /** An improved, supported method for creating an EmbeddedSolr from a single or multi-core
+     * solr instance.  If you just have the one core, this setup still relies on the presence of 
+     * solr.xml 
+     */    
+    public void setupCore(String solr_home, String corename) throws IOException {
+        this.solrServer = SolrProxy.initialize_embedded(solr_home, corename);
+    }
+    
+    /** 
+     */
+    public static SolrServer initialize_embedded(String solr_home, String corename)
+            throws IOException {
+
+        try {
+            File solr_xml = new File(solr_home + File.separator + "solr.xml");
+            CoreContainer solrContainer = new CoreContainer(solr_home);
+            solrContainer.load(solr_home, solr_xml);
+            return new EmbeddedSolrServer(solrContainer, corename);
+        } catch (Exception err) {
+            throw new IOException("Failed to set up Embedded Solr", err);
+        }
+    }
 
     /**
      * Much simplified EmbeddedSolr setup.
+     * 
      * @throws IOException 
      */
     public static SolrServer initialize_embedded()
             throws IOException {
+
         try {
             CoreContainer.Initializer initializer = new CoreContainer.Initializer();
             CoreContainer solrContainer = initializer.initialize();

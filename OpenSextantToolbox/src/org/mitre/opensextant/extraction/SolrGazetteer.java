@@ -115,9 +115,9 @@ public class SolrGazetteer {
             throw new IOException("No data found in country name map");
         }
 
-
-        solr = new SolrProxy();
-
+        String config_solr_home = System.getProperty("solr.solr.home");
+        solr = new SolrProxy(config_solr_home, "gazetteer");
+        
         params.set(CommonParams.Q, "*:*");
         params.set(CommonParams.FL, "id,name,cc,adm1,adm2,feat_class,feat_code,lat,lon,place_id,name_bias,id_bias,name_type");
         try {
@@ -302,7 +302,6 @@ public class SolrGazetteer {
             for (Country c : countries.values()) {
                 System.out.println(c.getKey() + " = " + c.name + "\t  Aliases: " + c.getAliases().toString());
             }
-
 
             List<Place> matches = gaz.search("+Boston +City");
 
