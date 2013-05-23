@@ -1,5 +1,6 @@
 package org.mitre.opensextant.desktop;
 
+import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,8 @@ public class Main {
 			Initialize.init();
 			openMainWindow();
 		}
-
+                
+                UIManager.put("ProgressBar.foreground", new Color(133, 196, 17));
 
 	}
 

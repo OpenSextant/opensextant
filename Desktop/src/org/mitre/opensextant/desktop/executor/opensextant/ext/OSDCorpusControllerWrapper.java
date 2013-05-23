@@ -36,6 +36,7 @@ public class OSDCorpusControllerWrapper implements CorpusController {
 				if (row.hasChildren()) {
 					File docFile = new File((String)wrapped.getDocument().getFeatures().get(OSDOpenSextantRunner.ORIGINAL_FILE));
 					OSRow child = row.getChildForInputFile(docFile);
+
 					if (child.getPercent() != progress) {
 						calculatedProgress = row.getPercent() - child.getPercent()/wrapped.getCorpus().size();
 						child.setProgress(progress, OSRow.STATUS.PROCESSING);
