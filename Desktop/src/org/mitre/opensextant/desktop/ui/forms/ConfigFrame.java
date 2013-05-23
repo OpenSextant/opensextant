@@ -61,6 +61,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         shapefileCheck = new javax.swing.JCheckBox();
         threadsLabel = new javax.swing.JLabel();
         threadCount = new javax.swing.JSpinner();
+        processingLabel = new javax.swing.JLabel();
 
         jCheckBox3.setText("JSON");
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +143,9 @@ public class ConfigFrame extends javax.swing.JFrame {
         threadCount.setModel(new javax.swing.SpinnerNumberModel(1, 1, 25, 1));
         threadCount.setToolTipText("the number of threads to use during processing");
 
+        processingLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        processingLabel.setText("Processing");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,6 +183,10 @@ public class ConfigFrame extends javax.swing.JFrame {
                                 .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(processingLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +209,9 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addComponent(shapefileCheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(kmlCheck)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(processingLabel)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(threadsLabel)
                     .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -328,6 +338,7 @@ public class ConfigFrame extends javax.swing.JFrame {
     private javax.swing.JLabel outputLabel;
     protected javax.swing.JTextField outputText;
     private javax.swing.JLabel pathLabel;
+    private javax.swing.JLabel processingLabel;
     protected javax.swing.JCheckBox shapefileCheck;
     protected javax.swing.JSpinner threadCount;
     private javax.swing.JLabel threadsLabel;
