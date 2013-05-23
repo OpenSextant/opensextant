@@ -84,12 +84,14 @@ public class ConfigFrame extends javax.swing.JFrame {
         doneButton.setText("Done");
 
         browseOutButton.setText("Browse...");
+        browseOutButton.setToolTipText("Navigate filesystem for output directory location");
         browseOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 browseOutButtonActionPerformed(evt);
             }
         });
 
+        outputText.setToolTipText("Directly enter output directory location");
         outputText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 outputTextActionPerformed(evt);
@@ -98,12 +100,16 @@ public class ConfigFrame extends javax.swing.JFrame {
 
         outputLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         outputLabel.setText("Output");
+        outputLabel.setToolTipText("");
 
         pathLabel.setText("Path:");
+        pathLabel.setToolTipText("The location of the directory to place output files");
 
         formatLabel.setText("Format:");
+        formatLabel.setToolTipText("The type of file to output the results into");
 
         csvCheck.setText("CSV");
+        csvCheck.setToolTipText("Comma-Separated Values");
         csvCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 csvCheckActionPerformed(evt);
@@ -111,6 +117,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
 
         jsonCheck.setText("JSON");
+        jsonCheck.setToolTipText("JavaScript Object Notation");
         jsonCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jsonCheckActionPerformed(evt);
@@ -118,6 +125,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
 
         kmlCheck.setText("KML");
+        kmlCheck.setToolTipText("Keyhole Markup Language");
         kmlCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kmlCheckActionPerformed(evt);
@@ -125,6 +133,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
 
         wktCheck.setText("WKT");
+        wktCheck.setToolTipText("Well-Known Text");
         wktCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 wktCheckActionPerformed(evt);
@@ -132,6 +141,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
 
         shapefileCheck.setText("Shapefile");
+        shapefileCheck.setToolTipText("Esri Shapefile");
         shapefileCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 shapefileCheckActionPerformed(evt);
@@ -139,12 +149,14 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
 
         threadsLabel.setText("Threads:");
+        threadsLabel.setToolTipText("The number of simultaneous jobs that can be run");
 
         threadCount.setModel(new javax.swing.SpinnerNumberModel(1, 1, 25, 1));
-        threadCount.setToolTipText("the number of threads to use during processing");
+        threadCount.setToolTipText("Each additional thread allows an additional job to run concurrently");
 
         processingLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         processingLabel.setText("Processing");
+        processingLabel.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

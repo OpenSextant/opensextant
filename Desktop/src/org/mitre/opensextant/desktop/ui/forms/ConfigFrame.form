@@ -158,12 +158,16 @@
     <Component class="javax.swing.JButton" name="browseOutButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Browse..."/>
+        <Property name="toolTipText" type="java.lang.String" value="Navigate filesystem for output directory location"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseOutButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="outputText">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Directly enter output directory location"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="outputTextActionPerformed"/>
       </Events>
@@ -177,21 +181,25 @@
           <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Output"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="pathLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Path:"/>
+        <Property name="toolTipText" type="java.lang.String" value="The location of the directory to place output files"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="formatLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Format:"/>
+        <Property name="toolTipText" type="java.lang.String" value="The type of file to output the results into"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="csvCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="CSV"/>
+        <Property name="toolTipText" type="java.lang.String" value="Comma-Separated Values"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="csvCheckActionPerformed"/>
@@ -203,6 +211,7 @@
     <Component class="javax.swing.JCheckBox" name="jsonCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="JSON"/>
+        <Property name="toolTipText" type="java.lang.String" value="JavaScript Object Notation"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jsonCheckActionPerformed"/>
@@ -214,6 +223,7 @@
     <Component class="javax.swing.JCheckBox" name="kmlCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="KML"/>
+        <Property name="toolTipText" type="java.lang.String" value="Keyhole Markup Language"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kmlCheckActionPerformed"/>
@@ -225,6 +235,7 @@
     <Component class="javax.swing.JCheckBox" name="wktCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="WKT"/>
+        <Property name="toolTipText" type="java.lang.String" value="Well-Known Text"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wktCheckActionPerformed"/>
@@ -236,6 +247,7 @@
     <Component class="javax.swing.JCheckBox" name="shapefileCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="Shapefile"/>
+        <Property name="toolTipText" type="java.lang.String" value="Esri Shapefile"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shapefileCheckActionPerformed"/>
@@ -247,6 +259,7 @@
     <Component class="javax.swing.JLabel" name="threadsLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Threads:"/>
+        <Property name="toolTipText" type="java.lang.String" value="The number of simultaneous jobs that can be run"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="threadCount">
@@ -254,7 +267,7 @@
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
           <SpinnerModel initial="1" maximum="25" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="the number of threads to use during processing"/>
+        <Property name="toolTipText" type="java.lang.String" value="Each additional thread allows an additional job to run concurrently"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
@@ -266,6 +279,7 @@
           <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Processing"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
   </SubComponents>
