@@ -39,6 +39,7 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         helpButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("OpenSextant Desktop");
 
         configButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/cog.png"))); // NOI18N
         configButton.setToolTipText("Configuration");
@@ -114,7 +115,7 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
                         .add(addTextButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(configButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(mainPanelLayout.createSequentialGroup()
                         .add(bodyPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(34, 34, 34)
@@ -148,7 +149,9 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 906, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 906, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -223,8 +226,8 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     protected javax.swing.JButton helpButton;
     protected javax.swing.JPanel mainPanel;
     private javax.swing.JLabel statusLabel;
-    private javax.swing.JSeparator tableTopSep;
-    private javax.swing.JSeparator topSep;
+    protected javax.swing.JSeparator tableTopSep;
+    protected javax.swing.JSeparator topSep;
     protected javax.swing.JPanel treePanel;
     // End of variables declaration//GEN-END:variables
 	
