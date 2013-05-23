@@ -78,7 +78,8 @@ public class OSRow implements Comparable<OSRow> {
 		this.outputType = outputType;
 		this.inputFile = new File(input);
 		this.progressBarContainer = new RowProgressBarImpl();
-		this.tableHelper = tableHelper;
+		this.buttonContainer = new RowButtonsImpl(this);           
+                this.tableHelper = tableHelper;
 
 		if (inputFile.isDirectory()) {
 			List<File> childInputFiles = new ArrayList<File>(FileUtils.listFiles(inputFile, null, true));
@@ -112,19 +113,11 @@ public class OSRow implements Comparable<OSRow> {
                 if(f.exists()) 
 		  this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "(" + counter + ")." + outputTypePrime;
                 
-		this.buttonContainer = new RowButtonsImpl(this);
-                saveConfig();
+		saveConfig();
 	}
 
         public OSRow(String[] rowValues, MainFrameTableHelper tableHelper) {
             super();
-            /*rowValues[1] = this.title;
-            rowValues[2] = this.inputFile.getAbsolutePath();
-            rowValues[3] = this.baseOutputLocation;
-            rowValues[4] = this.outputType;
-            rowValues[5] = this.status.toString();
-            rowValues[6] = "" + this.lastRun.getTime();
-            */
             
             this.lastRun = new Date(Long.parseLong(rowValues[6]));
             this.id = rowValues[0];
@@ -138,6 +131,9 @@ public class OSRow implements Comparable<OSRow> {
             this.outputType = rowValues[4];
             this.inputFile = new File(rowValues[2]);
             this.title = rowValues[1];
+            this.progressBarContainer = new RowProgressBarImpl();
+            this.buttonContainer = new RowButtonsImpl(this);
+           
             this.tableHelper = tableHelper;    
         }
 

@@ -97,7 +97,7 @@ public class ConfigHelper {
         }
         
         public void loadRows(ApiHelper apiHelper, MainFrameTableHelper tableHelper) {
-                Iterator<String> i = config.getKeys("rows");
+             /*   Iterator<String> i = config.getKeys("rows");
                 String rowName = "";
                 while( i.hasNext()) {
                     String[] rowValues = config.getStringArray(i.next());
@@ -108,9 +108,9 @@ public class ConfigHelper {
                       apiHelper.processFile(rowValues[1]);
                     } else {
                         OSRow row = new OSRow(rowValues, tableHelper);
-                      //  tableHelper.addRow(row);
+                        tableHelper.addRow(row);
                     }
-                }
+                }*/
         }
 
 	
