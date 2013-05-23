@@ -6,10 +6,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +57,7 @@ public class ConfigHelper {
 		
 		loadConfig();
 	}
-	
+        
         public synchronized void updateRow(String id, String[] rowValues) {
            config.setProperty("rows." + id, rowValues);
            saveSettings();
@@ -81,7 +83,6 @@ public class ConfigHelper {
 
 	
 	private void loadConfig() {
-
 		outType = config.getString("outType", "CSV");
 		outLocation = config.getString("outLocation", new File("output").getAbsolutePath());
 		if (!(new File(outLocation).exists())) {
@@ -92,8 +93,21 @@ public class ConfigHelper {
 		gateHome = config.getString("gateHome", null);
 		solrHome = config.getString("solrHome", null);
 		numThreads = config.getInt("numThreads", 1);
-
-	}
+        }
+        
+        public void loadRows(ApiHelper apiHelper) {
+                Iterator<String> i = config.getKeys("rows");
+                String rowName = "";
+                while( i.hasNext()) {
+                    String[] rowValues = config.getStringArray(i.next());
+                    String status = rowValues[4];
+                    
+                    // If we were waiting to run or hadn't run yet, redo the job from the start
+                    if("INITIALIZING".equals(status) || "QUEUED".equals(status) || "PROCESSING".equals(status))
+                      apiHelper.processFile(rowValues[1]);
+               
+                }
+        }
 
 	
 	public String getOutType() {
