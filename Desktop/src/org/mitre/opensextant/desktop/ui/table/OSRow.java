@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.mitre.opensextant.desktop.executor.opensextant.ext.OSDOpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowDurationImpl;
@@ -67,6 +68,8 @@ public class OSRow implements Comparable<OSRow> {
 	private Date executionStartTime;
 	private Date endTime;
 
+	private OSDOpenSextantRunner runner;
+
 	public OSRow() {
 
 	}
@@ -105,22 +108,9 @@ public class OSRow implements Comparable<OSRow> {
 			}
 		}
 
-		// Put in the table gui table
-		String outputTypePrime = outputType;
-		if ("KML".equals(outputType))
-			outputTypePrime = "KMZ";
-
 		this.title = FilenameUtils.getBaseName(inputFile.getAbsolutePath());
 
-		Parameters p = new Parameters();
-
-		String dateStr = new SimpleDateFormat("_yyyyMMdd_hhmmss").format(this.startTime);
-		p.setJobName(title + dateStr);
-		this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
-
-		File f = new File(this.outputLocation);
-		if (f.exists())
-			this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "(" + counter + ")." + outputTypePrime;
+		this.updateOutputFileName();
 
 		saveConfig();
 	}
@@ -159,6 +149,20 @@ public class OSRow implements Comparable<OSRow> {
 		rowValues[5] = this.status.toString();
 		rowValues[6] = "" + this.startTime.getTime();
 		ConfigHelper.getInstance().updateRow(this.id, rowValues);
+	}
+
+	private void updateOutputFileName() {
+		String dateStr = new SimpleDateFormat("_yyyyMMdd_hhmmss").format(this.startTime);
+		Parameters p = new Parameters();
+		String outputTypePrime = outputType;
+		if ("KML".equals(outputType))
+			outputTypePrime = "KMZ";
+		p.setJobName(title + dateStr);
+		this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
+
+		File f = new File(this.outputLocation);
+		if (f.exists())
+			this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "(" + counter + ")." + outputTypePrime;
 	}
 
 	public String getTitle() {
@@ -204,27 +208,33 @@ public class OSRow implements Comparable<OSRow> {
 		}
 		if (percent < 0)
 			percentString = "";
-		this.percent = percent;
-		
-		if (this.status != STATUS.PROCESSING && status == STATUS.PROCESSING) {
-			executionStartTime = new Date();
-		    class DurationUpdateTask extends TimerTask {
-		        public void run() {
-		        	durationContainer.updateDuration(OSRow.this);
-		        	tableHelper.getMainFrame().getTable().repaint(OSRow.this);
-		        	if (!OSRow.this.isRunning()) cancel();
-		        }
-		    }
-	        timer.schedule(new DurationUpdateTask(), 1000, 1000);
-	        
+
+
+		if (this.status != STATUS.ERROR && this.status != STATUS.CANCELED) {
+			this.percent = percent;
+			
+			if (this.status != STATUS.PROCESSING && status == STATUS.PROCESSING) {
+				executionStartTime = new Date();
+				class DurationUpdateTask extends TimerTask {
+					public void run() {
+						durationContainer.updateDuration(OSRow.this);
+						tableHelper.getMainFrame().getTable().repaint(OSRow.this);
+						if (!OSRow.this.isRunning())
+							cancel();
+					}
+				}
+				timer.schedule(new DurationUpdateTask(), 1000, 1000);
+
+			}
+
+			this.status = status;
+			progressBarContainer.getProgressBar().setValue(percent);
+			progressBarContainer.getProgressBar().setString(status.getTitle() + percentString);
 		}
 		
-		this.status = status;
-		progressBarContainer.getProgressBar().setValue(percent);
-		progressBarContainer.getProgressBar().setString(status.getTitle() + percentString);
 
 		if (!isRunning()) {
-			
+
 			endTime = new Date();
 			JButton cancelDeleteButton = buttonContainer.getCancelDeleteButton();
 
@@ -310,7 +320,11 @@ public class OSRow implements Comparable<OSRow> {
 
 		if (!isChild()) {
 			executor.cancel(true);
+			runner.cancelExecution();
 			setProgress(-1, OSRow.STATUS.CANCELED);
+			for (OSRow child : getChildren()) {
+				child.setProgress(-1, OSRow.STATUS.CANCELED);
+			}
 		} else {
 			// TODO: NEED TO IMPLEMENT CANCELING CHILD
 			setProgress(-1, OSRow.STATUS.CANCELED);
@@ -339,6 +353,32 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	public void rerun() {
+		JButton cancelDeleteButton = buttonContainer.getCancelDeleteButton();
+
+		cancelDeleteButton.setToolTipText("Stop current execution");
+		cancelDeleteButton.setIcon(OpenSextantMainFrameImpl.getIcon(OpenSextantMainFrameImpl.IconType.CANCEL));
+
+		this.startTime = new Date();
+
+		this.updateOutputFileName();
+		this.deleteFile();
+		
+		this.executionStartTime = null;
+		this.endTime = null;
+		this.durationContainer.reset();
+
+		this.setProgress(0, OSRow.STATUS.QUEUED);
+		for (OSRow r : this.children) {
+			r.setProgress(0, OSRow.STATUS.QUEUED);
+			r.executionStartTime = null;
+			r.endTime = null;
+			r.durationContainer.reset();
+			
+		}
+		
+		buttonContainer.getReRunButton().setEnabled(false);
+		buttonContainer.getViewResultsButton().setEnabled(false);
+
 		tableHelper.getMainFrame().getApiHelper().reRun(this);
 	}
 
@@ -405,6 +445,10 @@ public class OSRow implements Comparable<OSRow> {
 
 	public Date getExecutionStartTime() {
 		return executionStartTime;
+	}
+
+	public void setRunner(OSDOpenSextantRunner runner) {
+		this.runner = runner;
 	}
 
 }

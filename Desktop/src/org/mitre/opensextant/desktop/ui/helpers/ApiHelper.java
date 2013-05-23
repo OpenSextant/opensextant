@@ -58,10 +58,10 @@ public class ApiHelper {
 		
 		OSRow row = new OSRow(file, baseOutputLocation, outType, parent.getTableHelper());
 		
-		executor.execute(parent, row);
+		executor.execute(parent, row, true);
 	}
 
 	public void reRun(OSRow row) {
-		executor.execute(parent, row.duplicate());
+		executor.execute(parent, row, false);//.duplicate());
 	}
 }

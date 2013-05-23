@@ -43,7 +43,7 @@ public class MainFrameTableHelper {
 	public void removeRow(OSRow row) {
 		frame.getTable().removeRow(row);
 	}
-	
+
 	public void viewResults(OSRow row) {
 		File file = new File(row.getOutputLocation());
 		try {

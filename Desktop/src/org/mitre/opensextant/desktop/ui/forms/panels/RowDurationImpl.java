@@ -13,7 +13,11 @@ public class RowDurationImpl extends RowDuration {
 		super();
 	}
 
-
+	public void reset() {
+		duration = 0;
+		durationLabel.setText(" --");
+	}
+	
 	public void updateDuration(OSRow row) {
 		long updatedDuration = -1;
 		long estimatedDuration = -1;

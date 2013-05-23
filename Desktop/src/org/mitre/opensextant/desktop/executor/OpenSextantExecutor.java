@@ -40,8 +40,8 @@ public class OpenSextantExecutor {
 		ConfigHelper.getInstance().addUpdateListener(new ThreadCountChangeListener(this));
 	}
 	
-	public void execute(OpenSextantMainFrameImpl parent, OSRow row) {
-		row.setExecutor(executor.submit(new OpenSextantWorker(parent, row)));
+	public void execute(OpenSextantMainFrameImpl parent, OSRow row, boolean addToTable) {
+		row.setExecutor(executor.submit(new OpenSextantWorker(parent, row, addToTable)));
 	}
 
 	public int getThreadCount() {

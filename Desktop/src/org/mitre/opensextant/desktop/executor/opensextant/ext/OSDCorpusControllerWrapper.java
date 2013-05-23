@@ -23,6 +23,7 @@ public class OSDCorpusControllerWrapper implements CorpusController {
 	private ConditionalSerialAnalyserController wrapped;
 	private OSRow row;
 	private int completed = 0;
+	private boolean canceled = false;
 	private static Logger log = LoggerFactory.getLogger(OSDCorpusControllerWrapper.class);
 
 	public OSDCorpusControllerWrapper(final ConditionalSerialAnalyserController wrapped, final OSRow row) {
@@ -57,10 +58,14 @@ public class OSDCorpusControllerWrapper implements CorpusController {
 			
 		});
 	}
+	
+	public void cancelExecution() {
+		canceled = true;
+	}
 
 	@Override
 	public void execute() throws ExecutionException {
-		for (int i = 0; i < getCorpus().size(); i++) {
+		for (int i = 0; i < getCorpus().size() && !canceled; i++) {
 			Document doc = getCorpus().get(i);
 			wrapped.setDocument(doc);
 			wrapped.execute();

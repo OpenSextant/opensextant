@@ -1,13 +1,8 @@
 package org.mitre.opensextant.desktop.executor.opensextant.ext;
 
-import java.io.File;
-
 import gate.creole.ConditionalSerialAnalyserController;
 
-import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.apps.OpenSextantRunner;
-import org.mitre.opensextant.desktop.Main;
-import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.processing.ProcessingException;
 import org.mitre.xtext.ConvertedDocument;
@@ -38,6 +33,10 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
 	public void handleConversion(ConvertedDocument txtdoc) {
 		super.handleConversion(txtdoc);
 		corpus.get(corpus.size()-1).getFeatures().put(ORIGINAL_FILE, txtdoc.filepath);
+	}
+
+	public void cancelExecution() {
+		((OSDCorpusControllerWrapper)controller).cancelExecution();
 	}
 	
 

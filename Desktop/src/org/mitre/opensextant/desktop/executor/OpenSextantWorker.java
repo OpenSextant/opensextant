@@ -9,21 +9,26 @@ public class OpenSextantWorker implements Runnable {
 	private OSRow row;
 	private OpenSextantMainFrameImpl parent;
 
-	public OpenSextantWorker(OpenSextantMainFrameImpl parent, OSRow row) {
+	public OpenSextantWorker(OpenSextantMainFrameImpl parent, OSRow row, boolean addToTable) {
 		this.parent = parent;
-		this.row = parent.getTableHelper().addRow(row);
-	}
+                
+		if(addToTable) this.row = parent.getTableHelper().addRow(row);
+                else this.row = row;
+        }
 
 	@Override
 	public void run() {
 		
+		OSDOpenSextantRunner runner = null;
 		try {
 			
 			row.setProgress(0, OSRow.STATUS.INITIALIZING, 0);
 			
 			// this can potentially be moved up into the executor, but currently you get an array index out of bounds exception if you re-use a runner.
-			OSDOpenSextantRunner runner = new OSDOpenSextantRunner(row);
+			runner = new OSDOpenSextantRunner(row);
 			runner.initialize();
+			
+			row.setRunner(runner);
 			
 			row.setProgress(0, OSRow.STATUS.PROCESSING, 0);
                         runner.runOpenSextant(row.getInputFile().getAbsolutePath(), row.getOutputType(), row.getOutputLocation());
@@ -38,6 +43,7 @@ public class OpenSextantWorker implements Runnable {
 			}
 			
 		} catch (InterruptedException ie) {
+			if (runner != null) runner.cancelExecution();
 			row.setProgress(-1, OSRow.STATUS.CANCELED);
 		} catch (Exception e) {
 			row.setProgress(-1, OSRow.STATUS.ERROR);
