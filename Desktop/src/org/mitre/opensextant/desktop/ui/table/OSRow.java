@@ -116,14 +116,41 @@ public class OSRow implements Comparable<OSRow> {
                 saveConfig();
 	}
 
+        public OSRow(String[] rowValues, MainFrameTableHelper tableHelper) {
+            super();
+            /*rowValues[1] = this.title;
+            rowValues[2] = this.inputFile.getAbsolutePath();
+            rowValues[3] = this.baseOutputLocation;
+            rowValues[4] = this.outputType;
+            rowValues[5] = this.status.toString();
+            rowValues[6] = "" + this.lastRun.getTime();
+            */
+            
+            this.lastRun = new Date(Long.parseLong(rowValues[6]));
+            this.id = rowValues[0];
+	
+            String stat = rowValues[5];
+            if("COMPLETE".equals(stat)) this.status = STATUS.COMPLETE;
+            else if("CANCELED".equals(stat)) this.status = STATUS.CANCELED;
+            else this.status = STATUS.ERROR;
+            
+            this.baseOutputLocation = rowValues[3];
+            this.outputType = rowValues[4];
+            this.inputFile = new File(rowValues[2]);
+            this.title = rowValues[1];
+            this.tableHelper = tableHelper;    
+        }
+
+        
         private void saveConfig(){
-            String[] rowValues = new String[6];
-            rowValues[0] = this.title;
-            rowValues[1] = this.inputFile.getAbsolutePath();
-            rowValues[2] = this.baseOutputLocation;
-            rowValues[3] = this.outputType;
-            rowValues[4] = this.status.toString();
-            rowValues[5] = "" + this.lastRun.getTime();
+            String[] rowValues = new String[7];
+            rowValues[0] = this.id;
+            rowValues[1] = this.title;
+            rowValues[2] = this.inputFile.getAbsolutePath();
+            rowValues[3] = this.baseOutputLocation;
+            rowValues[4] = this.outputType;
+            rowValues[5] = this.status.toString();
+            rowValues[6] = "" + this.lastRun.getTime();
             ConfigHelper.getInstance().updateRow(this.id, rowValues);
         }
         
