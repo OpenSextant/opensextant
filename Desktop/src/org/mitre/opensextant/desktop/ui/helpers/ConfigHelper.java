@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.configuration.ConfigurationException;
@@ -55,6 +56,11 @@ public class ConfigHelper {
 		loadConfig();
 	}
 	
+        public synchronized void updateRow(String id, String[] rowValues) {
+           config.setProperty("rows." + id, rowValues);
+           saveSettings();
+        }
+        
 	public synchronized void saveSettings() {
 
 		try {
@@ -154,7 +160,7 @@ public class ConfigHelper {
 			listener.propertyChange(null);
 		}
 	}
-
-
+        
+        
 
 }

@@ -15,6 +15,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
+import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
 import org.mitre.opensextant.processing.Parameters;
 import org.slf4j.Logger;
@@ -112,9 +113,20 @@ public class OSRow implements Comparable<OSRow> {
 		  this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "(" + counter + ")." + outputTypePrime;
                 
 		this.buttonContainer = new RowButtonsImpl(this);
-
+                saveConfig();
 	}
 
+        private void saveConfig(){
+            String[] rowValues = new String[6];
+            rowValues[0] = this.title;
+            rowValues[1] = this.inputFile.getAbsolutePath();
+            rowValues[2] = this.baseOutputLocation;
+            rowValues[3] = this.outputType;
+            rowValues[4] = this.status.toString();
+            rowValues[5] = "" + this.lastRun.getTime();
+            ConfigHelper.getInstance().updateRow(this.id, rowValues);
+        }
+        
 	public String getTitle() {
 		return title;
 	}
@@ -165,6 +177,7 @@ public class OSRow implements Comparable<OSRow> {
 				buttonContainer.getReRunButton().setEnabled(true);
 				buttonContainer.getViewResultsButton().setEnabled(true);
 			}
+                        saveConfig();
 
 		}
 		tableHelper.getMainFrame().getTable().repaint(this);
