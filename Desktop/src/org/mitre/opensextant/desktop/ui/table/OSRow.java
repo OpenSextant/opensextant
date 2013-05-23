@@ -95,23 +95,9 @@ public class OSRow implements Comparable<OSRow> {
 			}
 		}
 
-		// Put in the table gui table
-		String outputTypePrime = outputType;
-		if ("KML".equals(outputType))
-			outputTypePrime = "KMZ";
-
 		this.title = FilenameUtils.getBaseName(inputFile.getAbsolutePath());
 
-		Parameters p = new Parameters();
-                
-                String dateStr = new SimpleDateFormat("_yyyyMMdd_hhmmss").format(this.lastRun);
-         
-		p.setJobName(title + dateStr);
-                this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
-                
-                File f = new File(this.outputLocation);
-                if(f.exists()) 
-		  this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "(" + counter + ")." + outputTypePrime;
+                this.updateOutputFileName();
                 
 		saveConfig();
 	}
@@ -148,6 +134,20 @@ public class OSRow implements Comparable<OSRow> {
             rowValues[5] = this.status.toString();
             rowValues[6] = "" + this.lastRun.getTime();
             ConfigHelper.getInstance().updateRow(this.id, rowValues);
+        }
+        
+        private void updateOutputFileName(){
+                String dateStr = new SimpleDateFormat("_yyyyMMdd_hhmmss").format(this.lastRun);
+                Parameters p = new Parameters();
+                String outputTypePrime = outputType;
+		if ("KML".equals(outputType))
+			outputTypePrime = "KMZ";
+		p.setJobName(title + dateStr);
+                this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
+
+                File f = new File(this.outputLocation);
+                if(f.exists()) 
+		  this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "(" + counter + ")." + outputTypePrime;        
         }
         
 	public String getTitle() {
@@ -307,7 +307,11 @@ public class OSRow implements Comparable<OSRow> {
 		tableHelper.viewResults(this);
 	}
 
+        
 	public void rerun() {
+                this.lastRun = new Date();
+                this.updateOutputFileName();
+                this.deleteFile();
 		tableHelper.getMainFrame().getApiHelper().reRun(this);
 	}
 

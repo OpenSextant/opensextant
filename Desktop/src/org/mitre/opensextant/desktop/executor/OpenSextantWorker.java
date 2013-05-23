@@ -9,10 +9,12 @@ public class OpenSextantWorker implements Runnable {
 	private OSRow row;
 	private OpenSextantMainFrameImpl parent;
 
-	public OpenSextantWorker(OpenSextantMainFrameImpl parent, OSRow row) {
+	public OpenSextantWorker(OpenSextantMainFrameImpl parent, OSRow row, boolean addToTable) {
 		this.parent = parent;
-		this.row = parent.getTableHelper().addRow(row);
-	}
+                
+		if(addToTable) this.row = parent.getTableHelper().addRow(row);
+                else this.row = row;
+        }
 
 	@Override
 	public void run() {
