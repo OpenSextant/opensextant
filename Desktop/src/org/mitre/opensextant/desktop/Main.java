@@ -35,7 +35,10 @@ public class Main {
 		String solrHome = ConfigHelper.getInstance().getSolrHome();
 		
 		if ((SelectOSHomeFrameImpl.validateOSHome(osHome) || (SelectOSHomeFrameImpl.validateHomeDir(gateHome) && SelectOSHomeFrameImpl.validateHomeDir(solrHome)))) {
-			System.setProperty("opensextant.home", osHome);
+			if (osHome != null) {
+				System.setProperty("opensextant.home", osHome);
+			}
+			
 			Config.GATE_HOME = gateHome;
 	        Config.SOLR_HOME = solrHome;
 

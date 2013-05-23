@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.EventObject;
 import java.util.HashSet;
 import java.util.List;
@@ -35,6 +36,7 @@ import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
+import org.mitre.opensextant.desktop.ui.forms.panels.RowDurationImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
@@ -106,6 +108,25 @@ public class OSTreeTable {
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,
 					int column) {
 				RowProgressBarImpl panel = ((OSRow) value).getProgressBarPanel();
+
+				if (isSelected) {
+					panel.setBackground(table.getSelectionBackground());
+				} else {
+					panel.setBackground(table.getBackground());
+				}
+				return panel;
+			}
+		});
+
+		treeTable.getColumn(OSTreeTableModel.TIMING).setMinWidth(120);
+		treeTable.getColumn(OSTreeTableModel.TIMING).setHeaderRenderer(new SortIconTableHeaderRenderer());
+		treeTable.getColumn(OSTreeTableModel.TIMING).setCellRenderer(new TableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				OSRow osRow = (OSRow) value;
+				
+				RowDurationImpl panel = osRow.getDurationPanel();
+				panel.updateDuration(osRow);
 
 				if (isSelected) {
 					panel.setBackground(table.getSelectionBackground());

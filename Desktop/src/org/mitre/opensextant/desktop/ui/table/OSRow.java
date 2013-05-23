@@ -14,6 +14,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
+import org.mitre.opensextant.desktop.ui.forms.panels.RowDurationImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
 import org.mitre.opensextant.processing.Parameters;
@@ -44,9 +45,9 @@ public class OSRow implements Comparable<OSRow> {
 	private String id;
 	private STATUS status;
 	private int percent;
-	private Date lastRun;
 	private RowProgressBarImpl progressBarContainer;
 	private RowButtonsImpl buttonContainer;
+	private RowDurationImpl durationContainer;
 	private String outputLocation;
 	private File inputFile;
 	private String outputType;
@@ -58,6 +59,9 @@ public class OSRow implements Comparable<OSRow> {
 
 	private MainFrameTableHelper tableHelper;
 
+	private Date startTime;
+	private Date endTime;
+
 	public OSRow() {
 
 	}
@@ -68,8 +72,8 @@ public class OSRow implements Comparable<OSRow> {
 
 	public OSRow(OSRow parent, String input, String baseOutputLocation, String outputType, MainFrameTableHelper tableHelper) {
 		super();
-		this.lastRun = new Date();
-		this.id = (new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss")).format(lastRun) + "_" + ++counter;
+		this.startTime = new Date();
+		this.id = (new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss")).format(startTime) + "_" + ++counter;
 		this.parent = parent;
 
 		this.status = STATUS.QUEUED;
@@ -77,6 +81,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.outputType = outputType;
 		this.inputFile = new File(input);
 		this.progressBarContainer = new RowProgressBarImpl();
+		this.durationContainer = new RowDurationImpl();
 		this.tableHelper = tableHelper;
 
 		if (inputFile.isDirectory()) {
@@ -102,7 +107,7 @@ public class OSRow implements Comparable<OSRow> {
 
 		Parameters p = new Parameters();
                 
-                String dateStr = new SimpleDateFormat("_yyyyMMdd_hhmmss").format(this.lastRun);
+                String dateStr = new SimpleDateFormat("_yyyyMMdd_hhmmss").format(this.startTime);
 
 		p.setJobName(title + dateStr);
 		this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
@@ -124,6 +129,12 @@ public class OSRow implements Comparable<OSRow> {
 
 	public int getPercent() {
 		return percent;
+	}
+	public Date getStartTime() {
+		return startTime;
+	}
+	public Date getEndTime() {
+		return endTime;
 	}
 
 	public boolean hasChildren() {
@@ -157,6 +168,7 @@ public class OSRow implements Comparable<OSRow> {
 			cancelDeleteButton.setIcon(OpenSextantMainFrameImpl.getIcon(OpenSextantMainFrameImpl.IconType.TRASH));
 
 			if (status == STATUS.COMPLETE) {
+				endTime = new Date();
 				buttonContainer.getReRunButton().setEnabled(true);
 				buttonContainer.getViewResultsButton().setEnabled(true);
 			}
@@ -169,14 +181,6 @@ public class OSRow implements Comparable<OSRow> {
 		setProgress(percent, status, -1);
 	}
 
-	public Date getLastRun() {
-		return lastRun;
-	}
-
-	public void setLastRun(Date lastRun) {
-		this.lastRun = lastRun;
-	}
-
 	@Override
 	public int compareTo(OSRow other) {
 		return title.compareTo(other.getTitle());
@@ -184,6 +188,10 @@ public class OSRow implements Comparable<OSRow> {
 
 	public RowProgressBarImpl getProgressBarPanel() {
 		return progressBarContainer;
+	}
+
+	public RowDurationImpl getDurationPanel() {
+		return durationContainer;
 	}
 
 	public RowButtonsImpl getButtonPanel() {
@@ -277,7 +285,7 @@ public class OSRow implements Comparable<OSRow> {
 		result = prime * result + ((baseOutputLocation == null) ? 0 : baseOutputLocation.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((inputFile == null) ? 0 : inputFile.hashCode());
-		result = prime * result + ((lastRun == null) ? 0 : lastRun.hashCode());
+		result = prime * result + ((startTime == null) ? 0 : startTime.hashCode());
 		result = prime * result + ((outputLocation == null) ? 0 : outputLocation.hashCode());
 		result = prime * result + ((outputType == null) ? 0 : outputType.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
@@ -308,10 +316,10 @@ public class OSRow implements Comparable<OSRow> {
 				return false;
 		} else if (!inputFile.equals(other.inputFile))
 			return false;
-		if (lastRun == null) {
-			if (other.lastRun != null)
+		if (startTime == null) {
+			if (other.startTime != null)
 				return false;
-		} else if (!lastRun.equals(other.lastRun))
+		} else if (!startTime.equals(other.startTime))
 			return false;
 		if (outputLocation == null) {
 			if (other.outputLocation != null)
@@ -330,5 +338,7 @@ public class OSRow implements Comparable<OSRow> {
 			return false;
 		return true;
 	}
+
+
 
 }

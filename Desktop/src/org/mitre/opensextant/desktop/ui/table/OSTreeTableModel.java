@@ -19,9 +19,10 @@ import org.jdesktop.swingx.treetable.TreeTableNode;
 class OSTreeTableModel extends DefaultTreeTableModel {
 	public static final int TITLE = 0;
 	public static final int PROGRESS = 1;
-	public static final int ACTIONS = 2;
-	public static final int FILE_INFO = 3;
-	public static final int LAST_RUN = 4;
+	public static final int TIMING = 2;
+	public static final int ACTIONS = 3;
+	public static final int FILE_INFO = 4;
+	public static final int LAST_RUN = 5;
 	private SimpleDateFormat dateFormat;
 
 	private boolean[] ascSort = new boolean[LAST_RUN + 1];
@@ -32,7 +33,7 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	}
 
 	public int getColumnCount() {
-		return 5;
+		return 6;
 	}
 
 	/**
@@ -41,12 +42,14 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	public Object getValueAt(Object node, int column) {
 		OSRow row = (OSRow) ((DefaultMutableTreeTableNode) node).getUserObject();
 		switch (column) {
+			case TITLE:
+				return row.getTitle();
+			case TIMING:
+				return row;
 			case PROGRESS:
 				return row;
 			case ACTIONS:
 				return row;
-			case TITLE:
-				return row.getTitle();
 			case FILE_INFO:
 				String info = "";
 				if (row.hasChildren()) {
@@ -62,7 +65,7 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 				}
 				return info;
 			case LAST_RUN:
-				return dateFormat.format(row.getLastRun());
+				return dateFormat.format(row.getStartTime());
 		}
 		return "n/a";
 	}
@@ -72,10 +75,12 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	 */
 	public String getColumnName(int column) {
 		switch (column) {
-			case PROGRESS:
-				return "Progress";
 			case TITLE:
 				return "Title";
+			case PROGRESS:
+				return "Progress";
+			case TIMING:
+				return "Time";
 			case ACTIONS:
 				return "";
 			case FILE_INFO:
@@ -97,12 +102,6 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	 * Called when done editing a cell.
 	 */
 	public void setValueAt(Object value, Object node, int column) {
-		if (node instanceof DefaultMutableTreeNode) {
-			DefaultMutableTreeNode defNode = (DefaultMutableTreeNode) node;
-			if (defNode.getUserObject() instanceof OSRow) {
-				OSRow row = (OSRow) defNode.getUserObject();
-			}
-		}
 	}
 
 	public void update(DefaultMutableTreeTableNode row) {
@@ -132,8 +131,8 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 
 				switch (nColumn) {
 				case LAST_RUN:
-					Date rd = r.getLastRun();
-					Date ld = l.getLastRun();
+					Date rd = r.getStartTime();
+					Date ld = l.getStartTime();
 					if (rd == null)
 						rd = new Date(0);
 					if (ld == null)
