@@ -309,6 +309,11 @@ public class OSRow implements Comparable<OSRow> {
 
         
 	public void rerun() {
+                JButton cancelDeleteButton = buttonContainer.getCancelDeleteButton();
+
+		cancelDeleteButton.setToolTipText("Stop current execution");
+		cancelDeleteButton.setIcon(OpenSextantMainFrameImpl.getIcon(OpenSextantMainFrameImpl.IconType.CANCEL));
+
                 this.lastRun = new Date();
                 this.updateOutputFileName();
                 this.deleteFile();
