@@ -1,29 +1,29 @@
-/** 
- Copyright 2009-2013 The MITRE Corporation.
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-
+/**
+ * Copyright 2009-2013 The MITRE Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ *
  * **************************************************************************
- *                          NOTICE
- * This software was produced for the U. S. Government under Contract No.
+ * NOTICE This software was produced for the U. S. Government under Contract No.
  * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
  * Software and Noncommercial Computer Software Documentation Clause
  * 252.227-7014 (JUN 1995)
  *
  * (c) 2012 The MITRE Corporation. All Rights Reserved.
  * **************************************************************************
-**/
+ *
+ */
 package org.mitre.opensextant.processing.output;
 
 import gate.Corpus;
@@ -50,6 +50,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  * This is the base class for classes that convert document annotations to
@@ -60,7 +61,7 @@ import java.util.HashSet;
  * text containing the annotation is a better choice.
  *
  * @author Rich Markeloff, MITRE Corp. Initial version created on Dec 20, 2011
- * 
+ *
  * @author Marc C. Ubaldino, MITRE Corp. Refactored, redesigned package, 2013.
  */
 public abstract class GISDataFormatter extends AbstractFormatter {
@@ -93,30 +94,38 @@ public abstract class GISDataFormatter extends AbstractFormatter {
     }
 
     public final void defaultFields() {
+        // ID occurs in all output.
+        // id.
+
         // Matching data
-        field_order.add("matchtext");
-        field_order.add("start");
-        field_order.add("end");
         field_order.add("placename");
 
         // Geographic
+        field_order.add("province");
+        field_order.add("iso_cc");
         field_order.add("lat");
         field_order.add("lon");
-        field_order.add("iso_cc");
-        field_order.add("province");
-        field_order.add("feat_class");
-        field_order.add("feat_code");
+
+        // Textual context.
+        field_order.add("matchtext");
+        field_order.add("context");
+        field_order.add("filename");
+        field_order.add("filepath");
+        field_order.add("textpath");
 
         // File mechanics
+        field_order.add("method");
+        field_order.add("feat_class");
+        field_order.add("feat_code");
         field_order.add("confidence");
         field_order.add("precision");
-        field_order.add("context");
-        field_order.add("filepath");
-        field_order.add("method");
+        field_order.add("start");
+        field_order.add("end");
 
     }
 
-    /** Start output.
+    /**
+     * Start output.
      */
     @Override
     public void start(String containerName) throws ProcessingException {
@@ -158,8 +167,8 @@ public abstract class GISDataFormatter extends AbstractFormatter {
      * Write out each place and geocoord to a file. There is a folder for each
      * corpus and a subfolder for each document.
      *
-     * @param corpusList 
-     * @throws Exception 
+     * @param corpusList
+     * @throws Exception
      */
     @Override
     public void writeOutput(Corpus c) throws Exception {
@@ -187,7 +196,8 @@ public abstract class GISDataFormatter extends AbstractFormatter {
         }
     }
 
-    /** This helps you figure out what to put in the GIS products.
+    /**
+     * This helps you figure out what to put in the GIS products.
      */
     protected boolean filterOut(Geocoding geo) {
         if (geo.filtered_out) {
@@ -204,7 +214,7 @@ public abstract class GISDataFormatter extends AbstractFormatter {
         return false;
     }
 
-    /** 
+    /**
      */
     protected boolean canAdd(SimpleField f) {
         if (f == null) {
@@ -213,7 +223,10 @@ public abstract class GISDataFormatter extends AbstractFormatter {
         return field_set.contains(f.getName()) && (schema.get(f.getName()) != null);
     }
 
-    /** Add a column of data to output;  Field is validated ; value is not added if null*/
+    /**
+     * Add a column of data to output; Field is validated ; value is not added
+     * if null
+     */
     protected void addColumn(Feature row, SimpleField f, Object d) {
         if (d == null) {
             return;
@@ -223,31 +236,36 @@ public abstract class GISDataFormatter extends AbstractFormatter {
         }
     }
 
-    /** Add a column of data to output;  Field is validated */
+    /**
+     * Add a column of data to output; Field is validated
+     */
     protected void addColumn(Feature row, SimpleField f, int d) {
         if (canAdd(f)) {
             row.putData(f, d);
         }
     }
 
-    /** Add a column of data to output;  Field is validated */
+    /**
+     * Add a column of data to output; Field is validated
+     */
     protected void addColumn(Feature row, SimpleField f, double d) {
         if (canAdd(f)) {
             row.putData(f, d);
         }
     }
 
-    /** This allows you to add either output of a Corpus processor (gate.Document, gate.Corpus)
-     *  or to add a Geocoding Result directly
-     * 
+    /**
+     * This allows you to add either output of a Corpus processor
+     * (gate.Document, gate.Corpus) or to add a Geocoding Result directly
+     *
      */
     @Override
-    public void writeGeocodingResult(GeocodingResult rowdata, String link) {
+    public void writeGeocodingResult(GeocodingResult rowdata) {
         Feature row;
         boolean error = false;
 
         if (log.isDebugEnabled()) {
-            log.debug("Adding data for File " + link + " Count=" + rowdata.geocodes.size());
+            log.debug("Adding data for File " + rowdata.recordFile + " Count=" + rowdata.geocodes.size());
         }
 
         for (Geocoding g : rowdata.geocodes) {
@@ -270,8 +288,8 @@ public abstract class GISDataFormatter extends AbstractFormatter {
 
             // 
             if (includeOffsets) {
-                addColumn(row, OpenSextantSchema.START_OFFSET, (int)g.start);
-                addColumn(row, OpenSextantSchema.END_OFFSET, (int)g.end);
+                addColumn(row, OpenSextantSchema.START_OFFSET, (int) g.start);
+                addColumn(row, OpenSextantSchema.END_OFFSET, (int) g.end);
             }
 
             addColumn(row, OpenSextantSchema.ISO_COUNTRY, g.place.getCountryCode());
@@ -296,11 +314,14 @@ public abstract class GISDataFormatter extends AbstractFormatter {
             // row.setName(g.getText());
 
 
-            /**   If the caller has additional data to attach to records, allow them to 
-             *   add fields to schema at runtime and map their data to keys on GeocodingResult
+            /**
+             * If the caller has additional data to attach to records, allow
+             * them to add fields to schema at runtime and map their data to
+             * keys on GeocodingResult
              *
-             *   Similarly, you could have Geocoding row-level attributes unique to the geocoding 
-             *   whereas attrs on GeocodingResult are global for all geocodings in that result set
+             * Similarly, you could have Geocoding row-level attributes unique
+             * to the geocoding whereas attrs on GeocodingResult are global for
+             * all geocodings in that result set
              */
             if (rowdata.attributes != null) {
 
@@ -323,12 +344,18 @@ public abstract class GISDataFormatter extends AbstractFormatter {
             row.setGeometry(new Point(g.place.getLatitude(), g.place.getLongitude()));
 
             // TOOD: HPATH goes here.
-            addColumn(row, OpenSextantSchema.FILEPATH, link);
+            if (rowdata.recordFile != null) {
+                addColumn(row, OpenSextantSchema.FILENAME, FilenameUtils.getBaseName(rowdata.recordFile));
+                addColumn(row, OpenSextantSchema.FILEPATH, rowdata.recordFile);
+                addColumn(row, OpenSextantSchema.TEXTPATH, rowdata.recordTextFile);
+            } else {
+                log.info("No File path given");
+            }
 
             if (log.isDebugEnabled()) {
                 log.debug("FEATURE: " + row.toString());
             }
-            
+
             this.os.write(row);
         }
 
@@ -338,18 +365,19 @@ public abstract class GISDataFormatter extends AbstractFormatter {
      * Returns a list of Features corresponding to place and geocoord
      * annotations. The name of each Feature is the text mention.
      *
-     * @param doc 
+     * @param doc
      */
     @Override
     public void writeRowsFor(Document doc) {
 
-        String docName = doc.getSourceUrl().getPath();
-        log.info("Writing output for " + docName);
-        // Set the hyperlink for shapefile output
-        String hyperlink = docName;
+
 
         // Is there a doc ID?
-        GeocodingResult annotations = new GeocodingResult(docName);
+        GeocodingResult annotations = new GeocodingResult(doc.getName());
+        annotations.recordFile = (String) doc.getFeatures().get(OpenSextantSchema.FILEPATH_FLD);
+        annotations.recordTextFile = doc.getSourceUrl().getPath();
+        log.info("Writing output for " + annotations.recordFile);
+
         try {
             annotations.retrieveGeocodes(doc);
 
@@ -366,7 +394,7 @@ public abstract class GISDataFormatter extends AbstractFormatter {
                 this.os.write(containerStart);
             }
 
-            writeGeocodingResult(annotations, hyperlink);
+            writeGeocodingResult(annotations);
 
             if (this.groupByDocument) {
                 ContainerEnd end = new ContainerEnd();
@@ -377,9 +405,11 @@ public abstract class GISDataFormatter extends AbstractFormatter {
         }
     }
 
-    /** Create a schema instance with the fields properly typed and ordered
+    /**
+     * Create a schema instance with the fields properly typed and ordered
+     *
      * @return
-     * @throws ProcessingException  
+     * @throws ProcessingException
      */
     public Schema getSchema() throws ProcessingException {
 

@@ -112,6 +112,6 @@ public abstract class AppBase {
      * Call this from your Main program -- not from your child threads -- when you are exiting the process.
      */
     public static void globalShutdown() {
-       org.mitre.opensextant.extraction.SolrMatcher.shutdown();
+       org.mitre.opensextant.extraction.PlacenameMatcher.shutdown();
     }
 }

@@ -49,8 +49,13 @@ import org.jgeohash.GeoHashUtils;
 public class GeocodingResult {
 
     public List<Geocoding> geocodes = new ArrayList<>();
+    
+    /** short ID or name of file*/
     public String recordID = null;
+    /** Original file for record */
     public String recordFile = null;
+    /** Text version of file used for processing */
+    public String recordTextFile = null;
     private final static Parameters DEFAULT_FILTERS = new Parameters();
     public Map<String, Object> attributes = null;
     
@@ -160,13 +165,15 @@ public class GeocodingResult {
                     //  While short terms or codes can be tagged as a place, it will help to have
                     //  a flag to indicate if this short name/code is a state or province code.
                     //
+                    
+                    geo.precision = ResultsUtility.getFeaturePrecision(geo.place.getFeatureClass(), geo.place.getFeatureCode());
                 }
 
                 geo.confidence = placeMeta.getBestPlaceScore();
 
                 if ((Parameters.RUNTIME_FLAGS & Parameters.FLAG_EXTRACT_CONTEXT) > 0) {
                     // TODO: Acquire "context" in a more consistent fashion for both Places and coords.
-                    ResultsUtility.setContextFor(content, a, geo, match.length(), content_length);
+                    ResultsUtility.setContextFor(content, geo, (int)geo.start, match.length(), content_length);
                 }
 
             } else if (params.tag_coordinates

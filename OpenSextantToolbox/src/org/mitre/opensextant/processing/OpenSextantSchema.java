@@ -57,8 +57,14 @@ public final class OpenSextantSchema {
     /** the name in the Gazetteer entry; which aligns with the MATCH TEXT
      */
     public final static SimpleField PLACE_NAME = new SimpleField("placename", SimpleField.Type.STRING);
+
+    /** Field names: filepath */
+    public final static String FILEPATH_FLD = "filepath";
+    
     /** Optionally the File path for the text */
-    public final static SimpleField FILEPATH = new SimpleField("filepath", SimpleField.Type.STRING);
+    public final static SimpleField FILEPATH = new SimpleField(FILEPATH_FLD, SimpleField.Type.STRING);
+    public final static SimpleField FILENAME = new SimpleField("filename", SimpleField.Type.STRING);
+    public final static SimpleField TEXTPATH = new SimpleField("textpath", SimpleField.Type.STRING);
     //private static SimpleField prematchField = new SimpleField("prematch", SimpleField.Type.STRING);
     //private static SimpleField postmatchField = new SimpleField("postmatch", SimpleField.Type.STRING);
     /** A text window around the MATCH TEXT delineated by START/END offsets.  Default window size is +/- 150 characters
@@ -82,7 +88,9 @@ public final class OpenSextantSchema {
         fields.put("confidence", CONFIDENCE);
         fields.put("precision", PRECISION);
         fields.put("placename", PLACE_NAME);
-        fields.put("filepath", FILEPATH);
+        fields.put(FILEPATH_FLD, FILEPATH);
+        fields.put("filename", FILENAME);
+        fields.put("textpath", TEXTPATH);
         fields.put("context", CONTEXT);
         fields.put("start", START_OFFSET);
         fields.put("end", END_OFFSET);

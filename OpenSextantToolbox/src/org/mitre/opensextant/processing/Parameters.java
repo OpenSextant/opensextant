@@ -71,7 +71,7 @@ public class Parameters extends java.util.Properties {
     public final static int FLAG_ALLOW_LOWERCASE_ABBREV = 0x40;
     
     /* DEFAULT RUNTIME FLAGS: */
-    public static int RUNTIME_FLAGS = FLAG_EXTRACT_CONTEXT & FLAG_ALLOW_LOWERCASE_ABBREV;
+    public static int RUNTIME_FLAGS = FLAG_EXTRACT_CONTEXT | FLAG_ALLOW_LOWERCASE_ABBREV;
 
     /** Processing will support multiple output formats 
      */

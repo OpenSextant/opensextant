@@ -78,7 +78,7 @@ public class Config {
          <jvmArg value="-Dgate.user.config=${gate_home}/user-gate.xml"/>
          <jvmArg value="-Dgate.plugins.home=${gate_home}/plugins"/>        
          */
-        SOLR_HOME = OPENSEXTANT_HOME + File.separator + "solr";
+        SOLR_HOME = OPENSEXTANT_HOME + File.separator + ".." + File.separator + "opensextant-solr";
         System.setProperty("solr.solr.home", SOLR_HOME);
 
         GATE_HOME = OPENSEXTANT_HOME + File.separator + "gate";

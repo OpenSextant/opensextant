@@ -23,6 +23,7 @@
     <pathelement location="${release.dir}/lib/giscore-1.8.jar" />
     <pathelement location="${release.dir}/lib/solr-text-tagger-1.1.jar" />
 
+    <pathelement location="${release.dir}/lib/JITAR.jar" />
     <pathelement location="${release.dir}/lib/solr-core-4.2.1.jar" />
     <pathelement location="${release.dir}/lib/solr-solrj-4.2.1.jar" />
 

@@ -29,13 +29,11 @@ package org.mitre.opensextant.apps;
 import gate.CorpusController;
 import gate.Document;
 import gate.Factory;
-import gate.Gate;
 import gate.util.persistence.PersistenceManager;
 import java.io.File;
 import java.io.IOException;
 import org.mitre.opensextant.processing.*;
 import org.mitre.opensextant.processing.output.AbstractFormatter;
-//import org.mitre.opensextant.processing.output.FormatterFactory;
 import org.slf4j.LoggerFactory;
 import org.apache.commons.io.FilenameUtils;
 
@@ -46,12 +44,9 @@ import org.mitre.xtext.ConversionListener;
 import java.util.*;
 
 /**
- * Runs OpenSextant as a standalone application. Requires
- *  the GATE home directory to be set. This can done from the command line with 
- *  <code>-Dgate.home=</code><i>path to GATE home directory</i>
- *  or the directory can be passed in as a constructor argument.
- *  </p>
- * @author Rich Markeloff, MITRE Corp. 
+ * Runs OpenSextant as a standalone application or as an API.
+ * 
+ * @author Marc Ubaldino, MITRE Corp. 
  * Initial version created on Apr 20, 2012
  */
 public class OpenSextantRunner extends AppBase implements ConversionListener {
@@ -75,6 +70,7 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
     private int batch_count = 0;
     /* # of documents */
     private int total_docs = 0;
+    private long total_rawbytes = 0;
     private long batch_signal_size = 0;
     private long total_size = 0;
     private static long BATCH_THRESHOLD = 0x80000;
@@ -92,6 +88,21 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
         super(gapp);
         this.gappFile = gapp;
         log = LoggerFactory.getLogger(OpenSextantRunner.class);
+    }
+    
+    /** Statusing metrics:  # of documents processed so far. */
+    public int getCurrentDocCount(){
+        return total_docs;
+    }
+    
+    /** Statusing metrics:  # of raw bytes processed so far. */
+    public long getCurrentByteCount(){
+        return total_rawbytes;
+    }
+    
+    /** Statusing metrics:  # of plain text characters processed so far. */
+    public long getCurrentTextCharCount(){
+        return total_size;
     }
 
     /** The "Start Button".  Initialize GATE, Solr, etc. 
@@ -135,9 +146,6 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
         } catch (Exception rie) {
             throw new ProcessingException("Unable to setup corpus.", rie);
         }
-
-
-
     }
 
     /**
@@ -256,6 +264,8 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
     public void handleConversion(ConvertedDocument txtdoc) {
         try {
             Document doc;
+            total_rawbytes += txtdoc.filesize;
+            
             // Get File path to text version of document.
             if (txtdoc.textpath != null) {
                 doc = Factory.newDocument(new File(txtdoc.textpath).toURI().toURL());
@@ -269,6 +279,9 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
                 }
                 doc = Factory.newDocument(txtdoc.payload);
             }
+            
+            // Preserve original document file path in final output.
+            doc.getFeatures().put(OpenSextantSchema.FILEPATH_FLD, txtdoc.filepath);
 
             this.corpus.add(doc);   // _docs.add(doc);
             batch_signal_size += txtdoc.payload.length();
@@ -313,7 +326,7 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
             corpus = Factory.newCorpus(CORPUS_NAME);
         }
 
-        reportMemory();
+        //reportMemory();
     }
 
     public String getMessages() {

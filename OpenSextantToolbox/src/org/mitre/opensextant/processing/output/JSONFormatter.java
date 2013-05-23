@@ -133,14 +133,14 @@ public class JSONFormatter extends AbstractFormatter {
         } catch (ProcessingException err) {
             throw new IOException(err);
         }
-        writeGeocodingResult(annotations, doc.getSourceUrl().getPath());
+        writeGeocodingResult(annotations);
     }
 
     /** TODO: re-write this outputter.
      * this output does not obide by the OpenSextant Schema
      */
     @Override
-    public void writeGeocodingResult(GeocodingResult rowdata, String link) {
+    public void writeGeocodingResult(GeocodingResult rowdata) {
         try {
             for (Geocoding g : rowdata.geocodes) {
                 if (g.is_coordinate) {

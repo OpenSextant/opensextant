@@ -110,7 +110,6 @@ abstract public class AbstractFormatter implements ResultsFormatter {
     @Override
     public void setOutputFilename(String fname) {
         this.filename = fname;
-        //FilenameUtils.getBaseName(fname.replace(' ', '_'));
     }
 
     /**
@@ -225,7 +224,7 @@ abstract public class AbstractFormatter implements ResultsFormatter {
      * @param corpusList 
      * @throws Exception 
      */
-    abstract public void writeOutput(Corpus corpusList) throws Exception;
+    abstract public void writeOutput(Corpus corpus) throws Exception;
 
     /**
      *
@@ -235,9 +234,9 @@ abstract public class AbstractFormatter implements ResultsFormatter {
     abstract public void writeRowsFor(Document doc) throws IOException;
 
     /** Write your geocoding result directly to output, instead of passing GATE objects.
-     *  
-     * @param link  a link or file name pointer to the original
+     * Result should carry GeocodingResult.recordFile as a URI for original. 
+     * 
      * @param rowdata the data to write out
      */
-    abstract public void writeGeocodingResult(GeocodingResult rowdata, String link);
+    abstract public void writeGeocodingResult(GeocodingResult rowdata);
 }

@@ -132,7 +132,7 @@ public class SolrProxy {
      * solr instance.  If you just have the one core, this setup still relies on the presence of 
      * solr.xml 
      */    
-    public void setupCore(String solr_home, String corename) throws IOException {
+    public final void setupCore(String solr_home, String corename) throws IOException {
         this.solrServer = SolrProxy.initialize_embedded(solr_home, corename);
     }
     

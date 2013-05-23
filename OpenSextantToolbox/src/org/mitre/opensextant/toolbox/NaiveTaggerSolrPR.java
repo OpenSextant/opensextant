@@ -43,7 +43,7 @@ import gate.util.InvalidOffsetException;
 import java.io.IOException;
 import java.util.List;
 
-import org.mitre.opensextant.extraction.SolrMatcher;
+import org.mitre.opensextant.extraction.PlacenameMatcher;
 import org.mitre.opensextant.placedata.PlaceCandidate;
 import org.mitre.opensextant.processing.Parameters;
 import org.slf4j.Logger;
@@ -67,7 +67,7 @@ public class NaiveTaggerSolrPR
     private static final long serialVersionUID = -6167312014577862928L;
     // Log object
     static Logger log = LoggerFactory.getLogger(NaiveTaggerSolrPR.class);
-    private SolrMatcher matcher;
+    private PlacenameMatcher matcher;
     private String outputASName;
     private String annotationType;
     // The parameters passed in by the user
@@ -89,10 +89,10 @@ public class NaiveTaggerSolrPR
     public Resource init() throws ResourceInstantiationException {
         super.init();
         try {
-            matcher = new SolrMatcher();
+            matcher = new PlacenameMatcher();
             
             // Is static runtime flag set?
-           // matcher.setAllowLowerCaseAbbreviations((Parameters.RUNTIME_FLAGS & Parameters.FLAG_ALLOW_LOWERCASE_ABBREV) > 0);
+            // matcher.setAllowLowerCaseAbbreviations((Parameters.RUNTIME_FLAGS & Parameters.FLAG_ALLOW_LOWERCASE_ABBREV) > 0);
             matcher.setAllowLowerCaseAbbreviations(tagAbbreviations);
             
 
@@ -107,14 +107,7 @@ public class NaiveTaggerSolrPR
      */
     @Override
     public void cleanup() {
-        try {
-            if (matcher != null) {
-                matcher.cleanup();
-               // matcher.shutdown(); don't do this here
-            }
-        } finally {
-            super.cleanup();
-        }
+        super.cleanup();
     }
 
     /**
@@ -165,7 +158,7 @@ public class NaiveTaggerSolrPR
             }
         }
     }
-
+    
     /**
      *
      * @return

@@ -313,6 +313,7 @@ public class SolrGazetteer {
             err.printStackTrace();
         }
         gaz.solr.close();
+        System.exit(0);
 
     }
 }

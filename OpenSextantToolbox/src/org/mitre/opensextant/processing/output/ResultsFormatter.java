@@ -79,7 +79,7 @@ public interface ResultsFormatter {
      * @return A message for the user
      * @throws Exception  
      */
-    public String formatResults(Corpus corpusList) throws Exception;
+    public String formatResults(Corpus corpus) throws Exception;
 
     public void start(String nm) throws ProcessingException;
 

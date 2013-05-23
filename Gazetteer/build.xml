@@ -2,12 +2,11 @@
 
 <project name="OpenSextant-Gazetteer" default="build">
 
-	<!-- where to deploy the Solr Gazetteer -->
+	<!-- where to deploy the Solr Gazetteer 
+             Please configure "build.local.properties" and rename to "build.properties"
+         -->
+        <property file="${basedir}/build.properties" />
 	
-    <property file="${basedir}/build.properties" />
-	
-	<property name="solr_home" value="${opensextant.home}/solr" />
-
 	<!--NOTE the source gazetteer data files distributed by NGA and USGS have the date of release appended-->
 	<!--You must changes these values to the dates desired and actually available at the time of download -->
 	<!-- Tou can find these dates available by looking at:
