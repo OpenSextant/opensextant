@@ -30,3 +30,5 @@ haemorrhage
 haemorrhages
 brain damage
 brain damages
+insect bite
+insect bites

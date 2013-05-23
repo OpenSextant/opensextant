@@ -80,3 +80,8 @@ criminal history checks
 bail hearing
 bail hearings
 hearings
+incarceration
+incarcerations
+imprisonment
+imprisonments
+jail time

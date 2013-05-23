@@ -11,162 +11,6 @@
     <collectionType>java.util.ArrayList</collectionType>
   </urlList>
   <application class="gate.util.persistence.ConditionalSerialAnalyserControllerPersistence">
-    <corpus class="gate.util.persistence.CorpusPersistence">
-      <docList>
-        <gate.util.persistence.LRPersistence>
-          <resourceType>gate.corpora.DocumentImpl</resourceType>
-          <resourceName>CNN_IP_20030403.1600.00-3.sgm.xml_000EB</resourceName>
-          <initParams class="gate.util.persistence.MapPersistence">
-            <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-            <localMap>
-              <entry>
-                <string>markupAware</string>
-                <boolean>true</boolean>
-              </entry>
-              <entry>
-                <string>stringContent</string>
-                <string></string>
-              </entry>
-              <entry>
-                <string>encoding</string>
-                <string>UTF-8</string>
-              </entry>
-              <entry>
-                <string>sourceUrlStartOffset</string>
-                <null/>
-              </entry>
-              <entry>
-                <string>preserveOriginalContent</string>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <string>collectRepositioningInfo</string>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <string>sourceUrl</string>
-                <gate.util.persistence.PersistenceManager-URLHolder>
-                  <urlString>$relpath$../../../../Desktop/OpenSextant%20Test%20data/COPY_GATE%20Corpus%20Cleaned/CNN_IP_20030403.1600.00-3.sgm.xml</urlString>
-                </gate.util.persistence.PersistenceManager-URLHolder>
-              </entry>
-              <entry>
-                <string>sourceUrlEndOffset</string>
-                <null/>
-              </entry>
-              <entry>
-                <string>mimeType</string>
-                <null/>
-              </entry>
-            </localMap>
-          </initParams>
-        </gate.util.persistence.LRPersistence>
-        <gate.util.persistence.LRPersistence>
-          <resourceType>gate.corpora.DocumentImpl</resourceType>
-          <resourceName>CNN_IP_20030403.1600.00-2.sgm.xml_000EA</resourceName>
-          <initParams class="gate.util.persistence.MapPersistence">
-            <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-            <localMap>
-              <entry>
-                <string>markupAware</string>
-                <boolean>true</boolean>
-              </entry>
-              <entry>
-                <string>stringContent</string>
-                <string></string>
-              </entry>
-              <entry>
-                <string>encoding</string>
-                <string>UTF-8</string>
-              </entry>
-              <entry>
-                <string>sourceUrlStartOffset</string>
-                <null/>
-              </entry>
-              <entry>
-                <string>preserveOriginalContent</string>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <string>collectRepositioningInfo</string>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <string>sourceUrl</string>
-                <gate.util.persistence.PersistenceManager-URLHolder>
-                  <urlString>$relpath$../../../../Desktop/OpenSextant%20Test%20data/COPY_GATE%20Corpus%20Cleaned/CNN_IP_20030403.1600.00-2.sgm.xml</urlString>
-                </gate.util.persistence.PersistenceManager-URLHolder>
-              </entry>
-              <entry>
-                <string>sourceUrlEndOffset</string>
-                <null/>
-              </entry>
-              <entry>
-                <string>mimeType</string>
-                <null/>
-              </entry>
-            </localMap>
-          </initParams>
-        </gate.util.persistence.LRPersistence>
-        <gate.util.persistence.LRPersistence>
-          <resourceType>gate.corpora.DocumentImpl</resourceType>
-          <resourceName>CNN_IP_20030403.1600.00-1.sgm.xml_000E9</resourceName>
-          <initParams class="gate.util.persistence.MapPersistence">
-            <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-            <localMap>
-              <entry>
-                <string>markupAware</string>
-                <boolean>true</boolean>
-              </entry>
-              <entry>
-                <string>stringContent</string>
-                <string></string>
-              </entry>
-              <entry>
-                <string>encoding</string>
-                <string>UTF-8</string>
-              </entry>
-              <entry>
-                <string>sourceUrlStartOffset</string>
-                <null/>
-              </entry>
-              <entry>
-                <string>preserveOriginalContent</string>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <string>collectRepositioningInfo</string>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <string>sourceUrl</string>
-                <gate.util.persistence.PersistenceManager-URLHolder>
-                  <urlString>$relpath$../../../../Desktop/OpenSextant%20Test%20data/COPY_GATE%20Corpus%20Cleaned/CNN_IP_20030403.1600.00-1.sgm.xml</urlString>
-                </gate.util.persistence.PersistenceManager-URLHolder>
-              </entry>
-              <entry>
-                <string>sourceUrlEndOffset</string>
-                <null/>
-              </entry>
-              <entry>
-                <string>mimeType</string>
-                <null/>
-              </entry>
-            </localMap>
-          </initParams>
-        </gate.util.persistence.LRPersistence>
-      </docList>
-      <resourceType>gate.corpora.CorpusImpl</resourceType>
-      <resourceName>tiny</resourceName>
-      <initParams class="gate.util.persistence.MapPersistence">
-        <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-        <localMap>
-          <entry>
-            <string>documentsList</string>
-            <null/>
-          </entry>
-        </localMap>
-      </initParams>
-    </corpus>
     <strategiesList class="gate.util.persistence.CollectionPersistence">
       <localList>
         <gate.util.persistence.AnalyserRunningStrategyPersistence>
@@ -347,7 +191,7 @@
               </localMap>
             </runtimeParams>
             <resourceType>org.mitre.opensextant.toolbox.POSTagger</resourceType>
-            <resourceName>OpenSextant_POS_Tagger_00022</resourceName>
+            <resourceName>PartOfSpeech Tagger</resourceName>
             <initParams class="gate.util.persistence.MapPersistence">
               <mapType>gate.util.SimpleFeatureMapImpl</mapType>
               <localMap>
@@ -525,7 +369,7 @@
               </localMap>
             </runtimeParams>
             <resourceType>gate.creole.Transducer</resourceType>
-            <resourceName>Chunking</resourceName>
+            <resourceName>Vocabulary Promotion</resourceName>
             <initParams class="gate.util.persistence.MapPersistence">
               <mapType>gate.util.SimpleFeatureMapImpl</mapType>
               <localMap>
@@ -544,7 +388,7 @@
                 <entry>
                   <string>grammarURL</string>
                   <gate.util.persistence.PersistenceManager-URLHolder>
-                    <urlString>$relpath$../resources/Chunking/main.jape</urlString>
+                    <urlString>$relpath$../resources/Vocabularies/VocabularyPromotion.jape</urlString>
                   </gate.util.persistence.PersistenceManager-URLHolder>
                 </entry>
                 <entry>
@@ -590,7 +434,7 @@
               </localMap>
             </runtimeParams>
             <resourceType>gate.creole.Transducer</resourceType>
-            <resourceName>Vocabulary Promotion</resourceName>
+            <resourceName>Chunking</resourceName>
             <initParams class="gate.util.persistence.MapPersistence">
               <mapType>gate.util.SimpleFeatureMapImpl</mapType>
               <localMap>
@@ -609,7 +453,7 @@
                 <entry>
                   <string>grammarURL</string>
                   <gate.util.persistence.PersistenceManager-URLHolder>
-                    <urlString>$relpath$../resources/Vocabularies/VocabularyPromotion.jape</urlString>
+                    <urlString>$relpath$../resources/Chunking/main.jape</urlString>
                   </gate.util.persistence.PersistenceManager-URLHolder>
                 </entry>
                 <entry>
@@ -1157,115 +1001,10 @@
               </localMap>
             </runtimeParams>
             <resourceType>org.mitre.opensextant.toolbox.ChunkCategorizerPR</resourceType>
-            <resourceName>OpenSextant Chunk Categorizer_00037</resourceName>
+            <resourceName>Chunk Categorizer</resourceName>
             <initParams class="gate.util.persistence.MapPersistence">
               <mapType>gate.util.SimpleFeatureMapImpl</mapType>
               <localMap/>
-            </initParams>
-            <features class="gate.util.persistence.MapPersistence">
-              <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-              <localMap/>
-            </features>
-          </pr>
-        </gate.util.persistence.AnalyserRunningStrategyPersistence>
-        <gate.util.persistence.AnalyserRunningStrategyPersistence>
-          <runMode>1</runMode>
-          <featureName></featureName>
-          <featureValue></featureValue>
-          <pr class="gate.util.persistence.PRPersistence">
-            <runtimeParams class="gate.util.persistence.MapPersistence">
-              <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-              <localMap>
-                <entry>
-                  <string>featureName</string>
-                  <string>HEAD</string>
-                </entry>
-                <entry>
-                  <string>annotationName</string>
-                  <string>NOT_CATEGORIZED</string>
-                </entry>
-                <entry>
-                  <string>document</string>
-                  <null/>
-                </entry>
-                <entry>
-                  <string>lower</string>
-                  <boolean>true</boolean>
-                </entry>
-                <entry>
-                  <string>corpus</string>
-                  <null/>
-                </entry>
-              </localMap>
-            </runtimeParams>
-            <resourceType>org.mitre.opensextant.toolbox.HistogramPR</resourceType>
-            <resourceName>OpenSextant HistogramPR_00057</resourceName>
-            <initParams class="gate.util.persistence.MapPersistence">
-              <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-              <localMap>
-                <entry>
-                  <string>outputDir</string>
-                  <file>C:\dump\vocab</file>
-                </entry>
-                <entry>
-                  <string>outFileName</string>
-                  <string>vocabStats.txt</string>
-                </entry>
-              </localMap>
-            </initParams>
-            <features class="gate.util.persistence.MapPersistence">
-              <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-              <localMap/>
-            </features>
-          </pr>
-        </gate.util.persistence.AnalyserRunningStrategyPersistence>
-        <gate.util.persistence.AnalyserRunningStrategyPersistence>
-          <runMode>1</runMode>
-          <featureName></featureName>
-          <featureValue></featureValue>
-          <pr class="gate.util.persistence.PRPersistence">
-            <runtimeParams class="gate.util.persistence.MapPersistence">
-              <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-              <localMap>
-                <entry>
-                  <string>featureNames</string>
-                  <gate.util.persistence.CollectionPersistence>
-                    <localList>
-                      <string>NP</string>
-                      <string>HEAD</string>
-                      <string>EntityType</string>
-                    </localList>
-                    <collectionType>java.util.Arrays$ArrayList</collectionType>
-                  </gate.util.persistence.CollectionPersistence>
-                </entry>
-                <entry>
-                  <string>annotationName</string>
-                  <string>NounPhrase</string>
-                </entry>
-                <entry>
-                  <string>document</string>
-                  <null/>
-                </entry>
-                <entry>
-                  <string>corpus</string>
-                  <null/>
-                </entry>
-              </localMap>
-            </runtimeParams>
-            <resourceType>org.mitre.opensextant.toolbox.AnnotationDumpPR</resourceType>
-            <resourceName>OpenSextant AnnotationDumpPR_0001A</resourceName>
-            <initParams class="gate.util.persistence.MapPersistence">
-              <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-              <localMap>
-                <entry>
-                  <string>outputDir</string>
-                  <file>C:\dump\vocab</file>
-                </entry>
-                <entry>
-                  <string>outFileName</string>
-                  <string>annotations.txt</string>
-                </entry>
-              </localMap>
             </initParams>
             <features class="gate.util.persistence.MapPersistence">
               <mapType>gate.util.SimpleFeatureMapImpl</mapType>
@@ -1296,8 +1035,6 @@
         <gate.util.persistence.PRPersistence reference="../../../strategiesList/localList/gate.util.persistence.AnalyserRunningStrategyPersistence[16]/pr"/>
         <gate.util.persistence.LanguageAnalyserPersistence reference="../../../strategiesList/localList/gate.util.persistence.AnalyserRunningStrategyPersistence[17]/pr"/>
         <gate.util.persistence.PRPersistence reference="../../../strategiesList/localList/gate.util.persistence.AnalyserRunningStrategyPersistence[18]/pr"/>
-        <gate.util.persistence.PRPersistence reference="../../../strategiesList/localList/gate.util.persistence.AnalyserRunningStrategyPersistence[19]/pr"/>
-        <gate.util.persistence.PRPersistence reference="../../../strategiesList/localList/gate.util.persistence.AnalyserRunningStrategyPersistence[20]/pr"/>
       </localList>
       <collectionType>java.util.ArrayList</collectionType>
     </prList>

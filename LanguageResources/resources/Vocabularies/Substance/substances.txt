@@ -68,3 +68,5 @@ toxin
 toxins
 radioactive waste
 radioactive wastes
+insecticide
+insecticides

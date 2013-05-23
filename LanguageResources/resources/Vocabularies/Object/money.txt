@@ -123,3 +123,7 @@ balance sheet
 balance sheets
 cash withdrawal
 cash withdrawals
+stock market
+stock markets
+tax return
+tax returns
