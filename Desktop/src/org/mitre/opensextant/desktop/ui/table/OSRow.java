@@ -312,6 +312,10 @@ public class OSRow implements Comparable<OSRow> {
                 this.lastRun = new Date();
                 this.updateOutputFileName();
                 this.deleteFile();
+                this.setProgress(0, OSRow.STATUS.QUEUED);
+                for(OSRow r : this.children){
+                  r.setProgress(0, OSRow.STATUS.QUEUED); 
+                }
 		tableHelper.getMainFrame().getApiHelper().reRun(this);
 	}
 
