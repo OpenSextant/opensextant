@@ -103,9 +103,14 @@ public class OSRow implements Comparable<OSRow> {
 		Parameters p = new Parameters();
                 
                 String dateStr = new SimpleDateFormat("_yyyyMMdd_hhmmss").format(this.lastRun);
-
+         
 		p.setJobName(title + dateStr);
-		this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
+                this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
+                
+                File f = new File(this.outputLocation);
+                if(f.exists()) 
+		  this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "(" + counter + ")." + outputTypePrime;
+                
 		this.buttonContainer = new RowButtonsImpl(this);
 
 	}
