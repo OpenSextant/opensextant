@@ -4,8 +4,7 @@
 
 MultiPhase:	Chunking
 Phases: 
-./Pieces/POSRepair
-./Misc/combineNumbers	
+./Pieces/POSRepair	
 ./Pieces/NounPhrasePieces
 ./Pieces/VerbPhrasePieces
 ./Phrases/NounPhrases
