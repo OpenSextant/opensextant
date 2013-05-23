@@ -153,7 +153,9 @@ public class OSTreeTable {
 			}
 		});
 
-		treeTable.getColumn(OSTreeTableModel.TIMING).setMinWidth(120);
+		treeTable.getColumn(OSTreeTableModel.TIMING).setMinWidth(110);
+		treeTable.getColumn(OSTreeTableModel.TIMING).setWidth(110);
+		
 		treeTable.getColumn(OSTreeTableModel.TIMING).setHeaderRenderer(new SortIconTableHeaderRenderer());
 		treeTable.getColumn(OSTreeTableModel.TIMING).setCellRenderer(new TableCellRenderer() {
 			@Override
