@@ -101,7 +101,10 @@ public class OSRow implements Comparable<OSRow> {
 		this.title = FilenameUtils.getBaseName(inputFile.getAbsolutePath());
 
 		Parameters p = new Parameters();
-		p.setJobName(title);
+                
+                String dateStr = new SimpleDateFormat("_yyyyMMdd_hhmmss").format(this.lastRun);
+
+		p.setJobName(title + dateStr);
 		this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
 		this.buttonContainer = new RowButtonsImpl(this);
 

@@ -26,8 +26,7 @@ public class OpenSextantWorker implements Runnable {
 			runner.initialize();
 			
 			row.setProgress(0, OSRow.STATUS.PROCESSING, 0);
-
-			runner.runOpenSextant(row.getInputFile().getAbsolutePath(), row.getOutputType(), row.getOutputLocation());
+                        runner.runOpenSextant(row.getInputFile().getAbsolutePath(), row.getOutputType(), row.getOutputLocation());
 
 			row.setProgress(100, OSRow.STATUS.COMPLETE);
 			
