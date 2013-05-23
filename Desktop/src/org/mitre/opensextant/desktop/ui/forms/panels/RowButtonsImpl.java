@@ -54,6 +54,7 @@ public class RowButtonsImpl extends RowButtons {
 			viewResultsButton.setVisible(false);
 			reRunButton.setVisible(false);
 		}
+                reRunButton.setToolTipText("UN Owen");
 	}
 
 	public javax.swing.JButton getCancelDeleteButton() {

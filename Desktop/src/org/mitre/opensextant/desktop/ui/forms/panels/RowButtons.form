@@ -31,6 +31,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/org/mitre/opensextant/desktop/icons/cancelCircle.png"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Stop current execution"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
@@ -41,6 +42,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/org/mitre/opensextant/desktop/icons/rerun.png"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Reprocess this job"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
@@ -52,6 +54,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/org/mitre/opensextant/desktop/icons/eye.png"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="View results"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>

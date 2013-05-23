@@ -38,13 +38,16 @@ public class RowButtons extends javax.swing.JPanel {
         setLayout(new java.awt.GridLayout(1, 0));
 
         cancelDeleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/cancelCircle.png"))); // NOI18N
+        cancelDeleteButton.setToolTipText("Stop current execution");
         add(cancelDeleteButton);
 
         reRunButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/rerun.png"))); // NOI18N
+        reRunButton.setToolTipText("Reprocess this job");
         reRunButton.setEnabled(false);
         add(reRunButton);
 
         viewResultsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/eye.png"))); // NOI18N
+        viewResultsButton.setToolTipText("View results");
         viewResultsButton.setEnabled(false);
         add(viewResultsButton);
     }// </editor-fold>//GEN-END:initComponents
