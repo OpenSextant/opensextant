@@ -7,8 +7,12 @@ This file defines the dependencies for the OpenSextantToolbox
     <JAR SCAN="False" >lib/opensextant-commons.jar</JAR>
     <JAR SCAN="False" >lib/opensextant-xponents-1.6.jar</JAR>
     
+    <!-- XCoord dep -->
     <JAR SCAN="False">lib/geodesy-1.9.24.jar</JAR>
+    <!-- XTemp dep -->
+    <JAR SCAN="False">lib/joda-time-2.2.jar</JAR>
     
+    <!-- General purpose tagger dep -->
     <JAR SCAN="False">lib/JITAR.jar</JAR>
     
     <JAR SCAN="False">lib/slf4j-api-1.7.4.jar</JAR>
@@ -20,7 +24,9 @@ This file defines the dependencies for the OpenSextantToolbox
     <JAR SCAN="False">lib/solr-text-tagger-1.1.jar</JAR>
     
     <!-- Solr Spatial - Lucene + add-ons -->
-    <!--JAR SCAN="False">lib/solr/jts-1.13.jar</JAR-->
+    <!--JTS not needed unless you need to search geospatially in a pipeline
+     JAR SCAN="False">lib/solr/jts-1.13.jar</JAR-->
+
     <JAR SCAN="False">lib/lucene-spatial-4.2.1.jar</JAR>
     <JAR SCAN="False">lib/spatial4j-0.3.jar</JAR>
 
