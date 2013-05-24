@@ -1,0 +1,10 @@
+<ivy-module version="2.0">
+    <info organisation="org.mitre" module="tweetgeo"/>
+    <dependencies>
+        <dependency org="org.apache.hadoop" name="hadoop-core" rev="1.0.4" conf="default->master"/>
+        <dependency org="commons-cli" name="commons-cli" rev="1.2" conf="default->master"/>
+        <dependency org="org.apache.commons" name="commons-math3" rev="3.2" conf="default->master"/>
+        <dependency org="junit" name="junit" rev="4.11" conf="default->master"/>
+        <dependency	org="nz.ac.waikato.cms.weka" name="weka-dev" rev="3.7.9" conf="default->master"/>
+    </dependencies>
+</ivy-module>

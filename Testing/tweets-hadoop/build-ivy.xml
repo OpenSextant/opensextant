@@ -1,0 +1,40 @@
+ <project name="ivy-build" basedir="." default="resolve-ivy" xmlns:ivy="antlib:org.apache.ivy.ant">
+ 
+    <property name="proxy.host" value="gatekeeper.mitre.org" />
+    <property name="proxy.port" value="80" />
+    <property name="ivy.lib.dir" value="lib" />
+ 
+    <target name="resolve-ivy" depends="install-ivy,check-ivy-lib" >
+  	  <path id="ivy.lib.path">
+        <fileset dir=".ant/lib" includes="*.jar"/>
+	  </path>
+	  <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+
+      <ivy:retrieve pattern="${ivy.lib.dir}/[artifact]-[revision].[ext]"/>
+    </target>
+	
+	<target name="check-ivy-lib">
+		<condition property="ivy.jar.missing">
+			<not><available file=".ant/lib/ivy.jar"/></not>
+        </condition>
+		<condition property="ivy.lib.missing">
+			<not><available file="${ivy.lib.dir}"/></not>
+        </condition>
+	</target>
+	
+	<target name="install-ivy" depends="setup-proxy,check-ivy-lib" description="Used to install the ivy task jar" if="ivy.jar.missing" >
+		<setproxy proxyhost="gatekeeper.mitre.org" proxyport="80"/>
+	    <mkdir dir=".ant/lib"/>
+	    <get dest=".ant/lib/ivy.jar" src="http://search.maven.org/remotecontent?filepath=org/apache/ivy/ivy/2.2.0/ivy-2.2.0.jar"/>
+	</target>
+	
+	<target name="setup-proxy">
+      <setproxy proxyhost="${proxy.host}" proxyport="${proxy.port}"/>
+	</target>
+	
+	<target name="ivy-publish">
+	   <ivy:publish pubrevision="${project.version}" resolver="local" overwrite="true">
+	     <artifacts pattern="${basedir}/dist/[artifact]-[revision].[ext]"/>
+	   </ivy:publish>
+	</target>
+</project>
