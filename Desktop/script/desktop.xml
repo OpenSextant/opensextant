@@ -19,7 +19,7 @@
     <pathelement location="${basedir}/../etc" />  
     <pathelement location="${release}/OpenSextantDesktop-${version}.jar" />
 
-    <pathelement location="${opensextant.home}/etc" />  
+    <pathelement location="${opensextant.home}/resources" />  
     <fileset dir="${release}/lib" includes="**/*.jar" />
 
   </path>

@@ -1,61 +1,107 @@
 <project name="OpenSextant" basedir="." default="release">
 
-	<property name="version" value="1.3" />
+    <property name="version" value="1.3" />
 
-	<!-- include the user settings -->
-	<property file="build.properties" />
+    <!-- include the user settings -->
+    <property file="build.properties" />
 
-	<!-- all of the component homes -->
-	<property name="commons.home" location="./Commons" />
-	<property name="gazetteer.home" location="./Gazetteer" />
-	<property name="lang.home" location="./LanguageResources" />
-	<property name="toolbox.home" location="./OpenSextantToolbox" />
-	<property name="xponents.home" location="./Xponents" />
-	<property name="desktop.home" location="./Desktop" />
+    <!-- all of the component homes -->
+    <property name="commons.home" location="./Commons" />
+    <property name="gazetteer.home" location="./Gazetteer" />
+    <property name="lang.home" location="./LanguageResources" />
+    <property name="toolbox.home" location="./OpenSextantToolbox" />
+    <property name="xponents.home" location="./Xponents" />
+    <property name="desktop.home" location="./Desktop" />
 
-	<!-- the release dir -->
-	<property name="release.dir" location="./Release" />
+    <!-- the release dir -->
+    <property name="release.dir" location="./Release" />
+    <property name="release.target" value="${release.dir}/OpenSextant-v${version}" />
 
 
     <!--====================== Targets ============================-->
 
-	<!-- clean all of the components -->
-	<target name="clean" depends="">
-		<subant target="clean">
-			<fileset dir="${commons.home}" includes="build.xml" />
-			<fileset dir="${xponents.home}" includes="build.xml" />
-			<fileset dir="${toolbox.home}" includes="build.xml" />
-			<!-- fileset dir="${gazetteer.home}" includes="build.xml" /-->
-			<fileset dir="${lang.home}" includes="build.xml" />
-		</subant>
-	</target>
+    <target name="setup" >
+        <mkdir dir="${basedir}/Release" />
+    </target>
+    
+    <!-- clean all of the components -->
+    <target name="clean" depends="setup">
+        <delete>
+            <fileset dir="${release.dir}" includes="**/*" />
+        </delete>
+        
+        <subant target="clean">
+            <fileset dir="${commons.home}" includes="build.xml" />
+            <fileset dir="${xponents.home}" includes="build.xml" />
+            <fileset dir="${toolbox.home}" includes="build.xml" />
+            <!-- fileset dir="${gazetteer.home}" includes="build.xml" /-->
+            <fileset dir="${lang.home}" includes="build.xml" />
+            <fileset dir="${desktop.home}" includes="build.xml" />
+        </subant>
+    </target>
 
-	<!--  build all of the components -->
-	<target name="build" depends="">
-		<subant target="build">
-			<fileset dir="${commons.home}" includes="build.xml" />
-			<fileset dir="${xponents.home}" includes="build.xml" />
-			<fileset dir="${toolbox.home}" includes="build.xml" />
-			<!-- fileset dir="${gazetteer.home}" includes="build.xml" /-->
-			<fileset dir="${lang.home}" includes="build.xml" />
-		</subant>
-	</target>
+    <!--  build all of the components -->
+    <target name="build" depends="">
+        <subant target="build">
+            <fileset dir="${commons.home}" includes="build.xml" />
+            <fileset dir="${xponents.home}" includes="build.xml" />
+            <fileset dir="${toolbox.home}" includes="build.xml" />
+            <!-- fileset dir="${gazetteer.home}" includes="build.xml" /-->
+            <fileset dir="${lang.home}" includes="build.xml" />
+        </subant>
+                
+    </target>
 
 
 
-	<!-- Build the release -->
-	<target name="release" depends="build">
+    <!-- Build the release, then package it -->
+    <target name="release" depends="clean,build">
 
-		<!-- For now use the existing "release" target inside Toolbox and copy the result up -->
-		<subant target="release">
-			<fileset dir="${toolbox.home}" includes="build.xml" />
-		</subant>
-		<copy todir="${release.dir}">
-			<fileset dir="${toolbox.home}/build">
-				<filename name="OpenSextant-build-*.zip" />
-			</fileset>
-		</copy>
+        <!-- For now use the existing "release" target inside Toolbox and copy the result up -->
+        <subant target="release">
+            <fileset dir="${toolbox.home}" includes="build.xml" />
+        </subant>
 
-	</target>
+        <copy todir="${release.dir}/OpenSextant-v${version}">
+            <fileset dir="${toolbox.home}/release">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+
+        <!-- NOTE: compmiling OSD depends on a built release of OpenSextant Toolbox 
+        -->
+        <subant target="compile">
+            <fileset dir="${desktop.home}" includes="build.xml" />
+        </subant>
+                
+        <subant target="release">
+            <fileset dir="${desktop.home}" includes="build.xml" />
+        </subant>
+                
+        <copy todir="${release.target}">
+            <fileset dir="${desktop.home}/dist">
+                <include name="help/*" />
+            </fileset>
+        </copy>
+                
+        <!-- Grab OSD dependencies and build files TODO: Ivy or make use of dependencies.xml list of files-->
+        <copy todir="${release.target}/lib">
+            <fileset dir="${desktop.home}/lib">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${release.target}/lib" file="${desktop.home}/dist/OpenSextantDesktop-${version}.jar"/>
+
+        <copy todir="${release.target}/script">
+            <fileset dir="${desktop.home}/script">
+                <include name="*.*" />
+            </fileset>
+        </copy>
+                
+                
+        <zip destfile="${release.dir}/OpenSextant-Release-v${version}.zip">
+            <zipfileset dir="${release.target}" />
+        </zip>
+    </target>
 
 </project>
