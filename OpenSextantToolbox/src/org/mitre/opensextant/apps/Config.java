@@ -89,29 +89,23 @@ public class Config {
         // 
         GATE_USER = GATE_HOME + File.separator + "user-gate.xml";
         GATE_SESSION = "x";
-        SELECTED_GAPP = DEFAULT_GAPP;
 
         initializePlatform();
+
+        SELECTED_GAPP = DEFAULT_GAPP;
+        RUNTIME_GAPP_PATH = GATE_HOME + File.separator + SELECTED_GAPP /*DEFAULT_GAPP*/;
     }
 
     /** Default configuration given OPSXT_HOME , overridden by using a different GAPP file;
      * a different GAPP (GATE app pipeline) is effectively the only thing here that would change
      */
     public Config(String myGapp) throws ProcessingException {
-        SOLR_HOME = OPENSEXTANT_HOME + File.separator + "solr";
-        System.setProperty("solr.solr.home", SOLR_HOME);
-
-        GATE_HOME = OPENSEXTANT_HOME + File.separator + "gate";
-
-        GATE_PLUGINS = GATE_HOME + File.separator + "plugins";
-
-        //  We set some silly null user session info here. This prevents GATE from reading your ~/.gate/ settings.
-        // 
-        GATE_USER = GATE_HOME + File.separator + "user-gate.xml";
-        GATE_SESSION = "x";
-        SELECTED_GAPP = myGapp;
-
+        this();
         initializePlatform();
+
+        SELECTED_GAPP = myGapp;
+        File gateHome = new File(GATE_HOME);
+        RUNTIME_GAPP_PATH = gateHome.getAbsolutePath() + File.separator + SELECTED_GAPP /* User defined GAPP */;
     }
     
     
@@ -143,8 +137,6 @@ public class Config {
         gate.Gate.setPluginsHome(pluginsHome);
         gate.Gate.setUserConfigFile(new File(GATE_USER));
         gate.Gate.setUserSessionFile(null);
-
-        RUNTIME_GAPP_PATH = gateHome.getAbsolutePath() + File.separator + SELECTED_GAPP /*DEFAULT_GAPP*/;
 
         try {
             // initialize GATE
