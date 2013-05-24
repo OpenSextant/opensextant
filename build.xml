@@ -11,6 +11,7 @@
 	<property name="lang.home" location="./LanguageResources" />
 	<property name="toolbox.home" location="./OpenSextantToolbox" />
 	<property name="xponents.home" location="./Xponents" />
+	<property name="desktop.home" location="./Desktop" />
 
 	<!-- the release dir -->
 	<property name="release.dir" location="./Release" />

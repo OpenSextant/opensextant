@@ -18,7 +18,7 @@
   <property name="os.name" value="linux" />  <!--  OS = win, osx, linux -->
   
   <path id="runtime.classpath">
-    <pathelement location="${opensextant.home}/etc" />  
+    <pathelement location="${opensextant.home}/resources" />  
     <fileset dir="${opensextant.home}/lib" includes="**/*.jar" />
   </path>
 

@@ -375,9 +375,8 @@ The core library is contained in this jar.
         <copy todir="${release.dir}/test">
             <fileset dir="${basedir}/test"> <filename name="*.*"/> </fileset>
         </copy>
-        <copy todir="${release.dir}/etc">
-            <fileset dir="${basedir}/etc"> <filename name="*.*"/> </fileset>
-        </copy>
+
+        <copy todir="${release.dir}/resources" file="log4j.properties" />
     </target>
 	
     <!-- copy over everything to the release directory -->
