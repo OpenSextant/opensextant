@@ -59,13 +59,12 @@ import org.slf4j.LoggerFactory;
  */
 public class PlacenameMatcher {
 
-    /** 
-     Generic Solr Matcher stuff:
+    /**
+     * Generic Solr Matcher stuff:
      */
     protected final static String requestHandler = "/tag";
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
     protected final boolean debug = log.isDebugEnabled();
-    
     /**
      * In the interest of optimization we made the Solr instance a static class
      * attribute that should be thread safe and shareable across instances of
@@ -73,15 +72,12 @@ public class PlacenameMatcher {
      */
     protected static SolrParams params = null;
     protected static SolrProxy solr = null;
-    
-    
-    
-    /**  Gazetteer specific stuff: 
+    /**
+     * Gazetteer specific stuff:
      */
     private final String APRIORI_NAME_RULE = "AprioriNameBias";
     private SolrTaggerRequest tag_request = null;
     private Map<Integer, Place> beanMap = new HashMap<>(100); // initial size
-
     /**
      * In the interest of optimization we made the Solr instance a static class
      * attribute that should be thread safe and shareable across instances of
@@ -89,8 +85,6 @@ public class PlacenameMatcher {
      */
     private MatchFilter filter = null;
     private boolean allow_lowercase_abbrev = false;
-
-    
 
     /**
      *
@@ -114,12 +108,12 @@ public class PlacenameMatcher {
         }
     }
 
-    /** allow_lowercase_abbrev is a flag that will allow us to tag "in"  or "in."
-     * as a possible abbreviation.  By default such things are not abbreviations, e.g., 
-     * Indiana is typically IN or In. or Ind., for example.
-     * Oregon, OR or Ore.
-     * etc.
-     * 
+    /**
+     * allow_lowercase_abbrev is a flag that will allow us to tag "in" or "in."
+     * as a possible abbreviation. By default such things are not abbreviations,
+     * e.g., Indiana is typically IN or In. or Ind., for example. Oregon, OR or
+     * Ore. etc.
+     *
      * but almost never in or or for those cases.
      */
     public void setAllowLowerCaseAbbreviations(boolean b) {
@@ -142,7 +136,7 @@ public class PlacenameMatcher {
         if (solr != null) {
             return;
         }
-        
+
         // NOTE: This is set via opensextant.apps.Config or by some other means
         // But it is required to intialize.  "gazetteer" is the core name of interest.
         // Being explicit here about the core name allows integrator to field multiple cores 
@@ -175,12 +169,38 @@ public class PlacenameMatcher {
 
         params = _params;
     }
+    // 
+    private int tagNamesTime = 0;
+    private int getNamesTime = 0;
+    private int totalTime = 0;
 
+    /** Emphemeral metric for the current tagText() call.  Caller must get these numbers immediately after call.
+     * @return time to tag
+     */
+    public int getTaggingNamesTime() {
+        return tagNamesTime;
+    }
+
+    /**
+     * @return time to get gazetteer records.
+     */
+    public int getRetrievingNamesTime() {
+        return getNamesTime;
+    }
+    
+    /**
+     * @return time to get gazetteer records.
+     */
+    public int getTotalTime() {
+        return totalTime;
+    }
+    
 
     /**
      * Tag a document, returning PlaceCandidates for the mentions in document.
      * Converts a GATE document to a string and passes it to the Solr server via
      * HTTP POST. The tokens and featureName parameters are not used.
+     *
      * @param buffer
      * @param docid
      *
@@ -196,6 +216,7 @@ public class PlacenameMatcher {
         // "place_id":"USGS1992921", "name":"Monterrey", "cc":"PR"}, {
         //"place_id":"USGS1991763", "name":"Monterrey", "cc":"PR"}, ]   
 
+        long t0 = System.currentTimeMillis();
         if (debug) {
             log.debug("TEXT SIZE = " + buffer.length());
         }
@@ -215,6 +236,8 @@ public class PlacenameMatcher {
 
         //List<GeoBean> geoBeans = response.getBeans(GeoBean.class); maybe works but probably slow
         SolrDocumentList docList = (SolrDocumentList) response.getResponse().get("matchingDocs");
+
+        long t1 = System.currentTimeMillis();
         beanMap.clear();
         String name = null;
         for (SolrDocument solrDoc : docList) {
@@ -250,6 +273,8 @@ public class PlacenameMatcher {
             Integer id = (Integer) solrDoc.getFirstValue("id");
             beanMap.put(id, bean);
         }
+
+        long t2 = System.currentTimeMillis();
 
         @SuppressWarnings("unchecked")
         List<NamedList<?>> tags = (List<NamedList<?>>) response.getResponse().get("tags");
@@ -375,11 +400,16 @@ public class PlacenameMatcher {
 
             candidates.add(pc);
         }
+        long t3 = System.currentTimeMillis();
 
         if (debug) {
             summarizeExtraction(candidates, docid);
         }
 
+        this.tagNamesTime = (int)(t1 - t0);
+        this.getNamesTime = (int)(t2 - t1);
+        this.totalTime = (int)(t3 - t0);
+        
         return candidates;
     }
 
