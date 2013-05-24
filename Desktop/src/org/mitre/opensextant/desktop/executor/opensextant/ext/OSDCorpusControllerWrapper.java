@@ -13,6 +13,8 @@ import gate.event.StatusListener;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.slf4j.Logger;
@@ -37,7 +39,7 @@ public class OSDCorpusControllerWrapper implements CorpusController {
 				if (row.hasChildren()) {
 					File docFile = new File((String)wrapped.getDocument().getFeatures().get(OSDOpenSextantRunner.ORIGINAL_FILE));
 					OSRow child = row.getChildForInputFile(docFile);
-
+					
 					if (child.getPercent() != progress) {
 						calculatedProgress = row.getPercent() - child.getPercent()/wrapped.getCorpus().size();
 						child.setProgress(progress, OSRow.STATUS.PROCESSING);
@@ -65,9 +67,13 @@ public class OSDCorpusControllerWrapper implements CorpusController {
 
 	@Override
 	public void execute() throws ExecutionException {
-		for (int i = 0; i < getCorpus().size() && !canceled; i++) {
-			Document doc = getCorpus().get(i);
+		
+		Corpus corpus = wrapped.getCorpus();
+		
+		for (int indexx = 0; (indexx < corpus.size()) && !canceled; indexx++) {
+			Document doc = corpus.get(indexx);
 			wrapped.setDocument(doc);
+			log.info("Executing: " + doc.getSourceUrl());
 			wrapped.execute();
 			
 			if (row.hasChildren()) {

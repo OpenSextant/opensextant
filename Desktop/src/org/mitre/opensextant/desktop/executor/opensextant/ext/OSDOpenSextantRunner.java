@@ -1,5 +1,10 @@
 package org.mitre.opensextant.desktop.executor.opensextant.ext;
 
+import java.io.File;
+import java.io.IOException;
+
+import gate.Document;
+import gate.Factory;
 import gate.creole.ConditionalSerialAnalyserController;
 
 import org.mitre.opensextant.apps.OpenSextantRunner;
@@ -31,7 +36,30 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
 
 	@Override
 	public void handleConversion(ConvertedDocument txtdoc) {
-		super.handleConversion(txtdoc);
+
+        try {
+            Document doc;
+            // Get File path to text version of document.
+            if (txtdoc.textpath != null) {
+                doc = Factory.newDocument(new File(txtdoc.textpath).toURI().toURL());
+            } else {
+                if (log.isDebugEnabled()) {
+                    log.debug("Found binary file, but textpath is null FILE=" + txtdoc.filepath);
+                }
+                if (txtdoc.payload == null) {
+                    log.error("Both payload and textpath URL are null. FILE=" + txtdoc.filepath);
+                    return;
+                }
+                doc = Factory.newDocument(txtdoc.payload);
+            }
+
+            this.corpus.add(doc);   // _docs.add(doc);
+
+        } catch (Exception rie) {
+            //throw new ProcessingException("Unable to load file", rie)
+            log.error("Unable to ingest file FILE=" + txtdoc.textpath, rie);
+        }
+
 		corpus.get(corpus.size()-1).getFeatures().put(ORIGINAL_FILE, txtdoc.filepath);
 	}
 

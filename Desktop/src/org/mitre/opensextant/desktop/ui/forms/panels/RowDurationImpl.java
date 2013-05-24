@@ -47,7 +47,7 @@ public class RowDurationImpl extends RowDuration {
 				
 				durationString += seconds + " sec";
 				
-				if (estimatedDuration > 0 && updatedDuration > 10*1000) {
+				if (estimatedDuration > 0 && updatedDuration > 10*1000 && row.getPercent() > 1) {
 					long estMinutes = TimeUnit.MILLISECONDS.toMinutes(estimatedDuration);
 					long estSeconds = TimeUnit.MILLISECONDS.toSeconds(estimatedDuration) - TimeUnit.MINUTES.toSeconds(estMinutes);
 					durationString += " of ";
