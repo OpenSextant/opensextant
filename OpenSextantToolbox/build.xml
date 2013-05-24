@@ -110,8 +110,8 @@ The core library is contained in this jar.
     </target>
 	
 	
-    <!-- compile the source -->
-    <target name="compile" depends="clean,dependencies">
+    <!-- compile the source  NOTE: dependencies should be built ahead of time by master build ../build.xml NOT by this module. -->
+    <target name="compile" depends="dependencies.update">
         <javac classpathref="compile.classpath" srcdir="${src.dir}" destdir="${build.dir}" 
             debug="true" debuglevel="lines,source" source="${java_level}" encoding="utf-8" />
     </target>
@@ -173,8 +173,20 @@ The core library is contained in this jar.
         </javadoc>
     </target>
 
-    <target name="dependencies" depends="commons.update,xponents.update" />
+    <!--  Latest Dependency issues have been minimized to copy available builds;   
+          Actual builds are done by ../build.xml master
+      -->
+    <target name="dependencies.update">
+        <copy todir="${lib.dir}" file="${commons_jar.location}" />
+        <copy todir="${lib.dir}" file="${flexpat_jar.location}" />
+        <copy todir="${lib.dir}" file="${xtext.home}/build/xtext-1.0.jar" />
+        <copy todir="${lib.dir}" file="${xponents.home}/opensextant-xponents-1.6.jar" />
+        <copy file="${xtemp.home}/src/main/resources/datetime_patterns.cfg" todir="${resources.home}/resources/patterns" />
+        <copy file="${xcoord.home}/src/main/resources/geocoord_regex.cfg" todir="${resources.home}/resources/patterns" />
+    </target>
 
+    <!-- 
+    <target name="dependencies" depends="commons.update,xponents.update" />
     <target name="commons.update">
         <subant target="all">
             <fileset dir="${commons.home}" includes="build.xml"/>
@@ -182,7 +194,6 @@ The core library is contained in this jar.
         <copy tofile="${lib.dir}/opensextant-commons.jar" file="${commons_jar.location}" />
     </target>
 	
-    <!-- Copy over FlexPat jar -->
     <target name="flexpat.update">
     
         <subant target="all">
@@ -205,9 +216,7 @@ The core library is contained in this jar.
         </subant>
         <copy todir="${lib.dir}" file="${xponents.home}/opensextant-xponents-1.6.jar" />
     </target>
-  
 
-    <!-- Copy over XCoord jar -->
     <target name="xcoord.update" >
         <subant target="all">
             <fileset dir="${xcoord.home}" includes="build.xml"/>
@@ -216,7 +225,6 @@ The core library is contained in this jar.
         <copy file="${xcoord.home}/src/main/resources/geocoord_regex.cfg" todir="${resources.home}/resources/patterns" />
     </target>
 
-    <!-- Copy over XTemp jar and datetime patterns config file -->
     <target name="xtemp.update">
         <subant target="all">
             <fileset dir="${xtemp.home}" includes="build.xml"/>
@@ -224,6 +232,7 @@ The core library is contained in this jar.
         <copy todir="${lib.dir}" file="${xtemp.home}/build/xtemporal-1.0.jar" />
         <copy file="${xtemp.home}/src/main/resources/datetime_patterns.cfg" todir="${resources.home}/resources/patterns" />
     </target>
+    -->
 		
     <!-- Build the jars and jar dependencies. Note that the FlexPat build should precede the XCoord and Xtemporal builds -->
     <target name="build" depends="jar"/>
