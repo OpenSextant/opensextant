@@ -43,3 +43,5 @@ thunder
 thunderstorm
 thunder storm
 climate
+sandstorm
+sandstorms

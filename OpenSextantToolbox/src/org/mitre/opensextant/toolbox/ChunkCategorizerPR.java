@@ -29,6 +29,7 @@ import gate.creole.metadata.RunTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -48,7 +49,7 @@ public class ChunkCategorizerPR extends AbstractLanguageAnalyser implements
 
 	// the name of the noun phrase annotation to categorize
 	String nounPhraseAnnoName;
-	
+
 	// the feature name which identifies a vocabulary entity
 	String vocabFeatureName = "hierarchy";
 
@@ -94,20 +95,25 @@ public class ChunkCategorizerPR extends AbstractLanguageAnalyser implements
 		AnnotationSet npSet = document.getAnnotations().get(nounPhraseAnnoName);
 
 		// get all of the vocabulary annotations.
-		//All vocab annotations have a feature named "hierarchy"
+		// All vocab annotations have a feature named "hierarchy"
 		Set<String> featureNameSet = new HashSet<String>();
 		featureNameSet.add("hierarchy");
-		AnnotationSet vocabSet = document.getAnnotations().get(null,featureNameSet);
+		AnnotationSet vocabSet = document.getAnnotations().get(null,
+				featureNameSet);
 
+		// thin out the vocab
+		AnnotationSet thinnedVocabSet = thinAnnotations(vocabSet);
+		
 		// loop over all noun phrases annotations and categorize each one
 		for (Annotation a : npSet) {
-			categorize(a,vocabSet);
-			
-			// DEBUG
-			if( ((String)a.getFeatures().get("EntityType")) == null ){
-				document.getAnnotations().add(a.getStartNode(), a.getEndNode(), "NOT_CATEGORIZED", a.getFeatures());
+			categorize(a, thinnedVocabSet);
+
+			// TODO DEBUG remove for production
+			if (((String) a.getFeatures().get("EntityType")) == null) {
+				document.getAnnotations().add(a.getStartNode(), a.getEndNode(),
+						"NOT_CATEGORIZED", a.getFeatures());
 			}
-			
+
 		}// end annotation loop
 
 	}// end execute
@@ -156,65 +162,93 @@ public class ChunkCategorizerPR extends AbstractLanguageAnalyser implements
 		this.nounPhraseAnnoName = annotationName;
 	}
 
-	
-	private void categorize(Annotation np, AnnotationSet vocab){
-	
+	private void categorize(Annotation np, AnnotationSet vocab) {
+
 		// get this NPs features
 		FeatureMap npFeatures = np.getFeatures();
-		Node npStartNode = np.getStartNode(); 
-		Node npEndNode   = np.getEndNode();
-		
+		Node npStartNode = np.getStartNode();
+		Node npEndNode = np.getEndNode();
 
-		
 		// get the head annotation which is a feature of the NP
-		AnnotationSet head = (AnnotationSet)npFeatures.get("headSetAnnotation");
-		Node headStartNode = head.firstNode(); 
-		Node headEndNode   = head.lastNode(); 	
-		
+		AnnotationSet head = (AnnotationSet) npFeatures
+				.get("headSetAnnotation");
+		Node headStartNode = head.firstNode();
+		Node headEndNode = head.lastNode();
+
 		// get the vocabulary for the whole NP and just the head
-		List<Annotation> vocabSetNP =  gate.Utils.inDocumentOrder( vocab.get(npStartNode.getOffset(),  npEndNode.getOffset()));
-		List<Annotation> vocabSetHead = gate.Utils.inDocumentOrder(vocab.get(headStartNode.getOffset(),headEndNode.getOffset()));
-		
-		// reverse the order of the vocab list so the right most (head side) comes first
+		List<Annotation> vocabSetNP = gate.Utils.inDocumentOrder(vocab.get(
+				npStartNode.getOffset(), npEndNode.getOffset()));
+		List<Annotation> vocabSetHead = gate.Utils.inDocumentOrder(vocab.get(
+				headStartNode.getOffset(), headEndNode.getOffset()));
+
+		// reverse the order of the vocab list so the right most (head side)
+		// comes first
 		Collections.reverse(vocabSetNP);
 		Collections.reverse(vocabSetHead);
-		
-	    // two sorted sets to keep the list of types found:
-	    // hierachy type anywhere in NP
-	    // hierachy type in HEAD
+
+		// two sorted sets to keep the list of types found:
+		// hierachy type anywhere in NP
+		// hierachy type in HEAD
 		List<String> npTypeList = new ArrayList<String>();
 		List<String> headTypeList = new ArrayList<String>();
-		
-		
-		for(Annotation a : vocabSetNP){
-		 String tmp =(String)a.getFeatures().get(vocabFeatureName);
-		 npTypeList.add(tmp);
+
+		for (Annotation a : vocabSetNP) {
+			String tmp = (String) a.getFeatures().get(vocabFeatureName);
+			npTypeList.add(tmp);
 		}
-		
-		for(Annotation a : vocabSetHead){
-			 String tmp =(String)a.getFeatures().get(vocabFeatureName);
-			 headTypeList.add(tmp);
-			}
-		
-		//TEMP add lists of vocab seen
+
+		for (Annotation a : vocabSetHead) {
+			String tmp = (String) a.getFeatures().get(vocabFeatureName);
+			headTypeList.add(tmp);
+		}
+
+		// TEMP add lists of vocab seen
 		npFeatures.put("VocabSeenPhrase", npTypeList);
 		npFeatures.put("VocabSeenHead", headTypeList);
-		
-		
+
 		// now pick the "best" category
-		
-		if(headTypeList.size() > 0){
+
+		if (headTypeList.size() > 0) {
 			npFeatures.put("EntityType", headTypeList.get(0));
 			return;
 		}
-		
-		if(npTypeList.size() > 0){
+
+		if (npTypeList.size() > 0) {
 			npFeatures.put("EntityType", npTypeList.get(0));
 			return;
 		}
-		
-		
+
 	}
-	
-	
+
+	// thin out the annotation set by removing
+	// a) any annotation which is completely within but not identical to another
+	private AnnotationSet thinAnnotations(AnnotationSet annoSet) {
+		
+		List<Annotation> survivorList = new ArrayList<Annotation>();
+		survivorList.addAll(annoSet);
+		
+		for (Annotation currentAnno : annoSet) {
+
+			// get all annotations that "cover" the current.
+			AnnotationSet coverSet = gate.Utils.getCoveringAnnotations(annoSet,currentAnno);
+			
+			for (Annotation a : coverSet) {
+				// if the current is smaller than something in the cover set remove if from survivor list
+				if ( gate.Utils.length(currentAnno) < gate.Utils.length(a)  ){
+					survivorList.remove(currentAnno);
+				}
+			}
+		}
+		
+		// add all of the survivors to the "Thinned" annotation set
+		AnnotationSet thinnedSet = document.getAnnotations("Thinned");
+		
+		for (Annotation a : survivorList) {
+				thinnedSet.add(a);
+		}
+		
+		return thinnedSet;
+
+	}
+
 }

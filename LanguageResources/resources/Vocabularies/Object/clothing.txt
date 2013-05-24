@@ -46,3 +46,5 @@ suits
 gown
 gowns
 body armor
+garment
+garments

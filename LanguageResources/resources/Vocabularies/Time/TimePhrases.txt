@@ -13,6 +13,7 @@ daybreak
 dusk
 end of the day
 evening
+eve
 every day
 every week
 every month

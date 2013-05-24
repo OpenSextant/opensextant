@@ -2,6 +2,8 @@ new year
 new years
 new years eve
 new years day
+new year's eve
+new year's day
 martin luther king day
 martin luther king birthday
 washington's birthday
@@ -22,6 +24,7 @@ easter
 easter sunday
 christmas
 christmas day
+christmas eve
 mothers day
 mother's day
 fathers day

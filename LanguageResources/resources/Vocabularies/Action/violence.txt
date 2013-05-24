@@ -26,6 +26,8 @@ detonations
 discord
 execution
 executions
+fight
+fights
 fighting
 gun fire
 gunfight
@@ -70,3 +72,4 @@ violent act
 violent acts
 rebellion
 rebellion
+fisticuffs
