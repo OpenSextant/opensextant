@@ -99,9 +99,9 @@
         </copy>
                 
                 
-        <zip destfile="${release.dir}/OpenSextant-Release-v${version}.zip">
-            <zipfileset dir="${release.target}" />
-        </zip>
+        <zip destfile="${release.dir}/OpenSextant-Release-v${version}.zip" 
+            basedir="${release.dir}" 
+            includes="OpenSextant-v${version}/**" />
     </target>
 
 </project>

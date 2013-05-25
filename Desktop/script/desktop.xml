@@ -13,14 +13,12 @@
   -->
  
   <property file="${basedir}/../build.properties" />
-  <property name="release" value="${basedir}/../dist" />
+  <property file="${basedir}/runtime.cfg" />
   
   <path id="runtime.classpath">
-    <pathelement location="${basedir}/../etc" />  
-    <pathelement location="${release}/OpenSextantDesktop-${version}.jar" />
 
     <pathelement location="${opensextant.home}/resources" />  
-    <fileset dir="${release}/lib" includes="**/*.jar" />
+    <fileset dir="${opensextant.home}/lib" includes="**/*.jar" />
 
   </path>
 
