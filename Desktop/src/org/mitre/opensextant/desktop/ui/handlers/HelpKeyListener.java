@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 public class HelpKeyListener implements KeyListener {
 
     private static Logger log = LoggerFactory.getLogger(HelpKeyListener.class);
-	public static final String HELP_FILE = "/help-pages/main.htm";
+	public static final String HELP_FILE = "/help/OpenSextant_Desktop.html";
 
 	@Override
 	public void keyPressed(KeyEvent e) {

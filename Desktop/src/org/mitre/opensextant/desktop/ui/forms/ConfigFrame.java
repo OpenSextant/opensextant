@@ -4,16 +4,11 @@
  */
 package org.mitre.opensextant.desktop.ui.forms;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,55 +16,10 @@ import org.slf4j.LoggerFactory;
  * 
  * @author GBLACK
  */
+@SuppressWarnings("serial")
 public class ConfigFrame extends javax.swing.JFrame {
 
-	private static Logger log = LoggerFactory.getLogger(ConfigFrame.class);
-
-	private static final String CONFIG_FILE = "./conf.properties";
-	private static PropertiesConfiguration config = null;
-
-	static {
-		try {
-			File settingsFile = new File(CONFIG_FILE);
-			if (!settingsFile.exists()) {
-				settingsFile.createNewFile();
-			}
-			config = new PropertiesConfiguration(CONFIG_FILE);
-		} catch (ConfigurationException ex) {
-			log.error(ex.getMessage());
-		} catch (IOException e) {
-			log.error(e.getMessage());
-		}
-	}
-
-	private static String outType = "";
-	private static String outLocation = "";
-	private static String inLocation = "";
-	private static String osHome = "";
-
-	public static String getOutType() {
-		return outType;
-	}
-
-	public static String getOutLocation() {
-		return outLocation;
-	}
-
-	public static String getInLocation() {
-		return inLocation;
-	}
-
-	public static String getOsHome() {
-		return osHome;
-	}
-
-	public static void setInLocation(String loc) {
-		inLocation = loc;
-	}
-
-	public static void setOsHome(String osHomeProp) {
-		osHome = osHomeProp;
-	}
+    private static Logger log = LoggerFactory.getLogger(ConfigFrame.class);
 
 	/**
 	 * Creates new form LoadForm
@@ -81,36 +31,9 @@ public class ConfigFrame extends javax.swing.JFrame {
 		if (imgURL != null) {
 			this.setIconImage(new ImageIcon(imgURL, "Icon").getImage());
 		}
-		outputText.setText(outLocation);
-		for (String t : outType.split(",")) {
-			if ("CSV".equals(t))
-				csvCheck.setSelected(true);
-			else if ("KML".equals(t))
-				kmlCheck.setSelected(true);
-			else if ("WKT".equals(t))
-				wktCheck.setSelected(true);
-			else if ("JSON".equals(t))
-				jsonCheck.setSelected(true);
-			else if ("SHAPEFILE".equals(t))
-				shapefileCheck.setSelected(true);
-		}
-
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 	}
 
-	public static void loadConfig() {
-
-		outType = config.getString("outType", "CSV");
-		outLocation = config.getString("outLocation", new File("output").getAbsolutePath());
-		if (!(new File(outLocation).exists())) {
-			(new File(outLocation)).mkdir();
-		}
-		inLocation = config.getString("inLocation", "");
-		osHome = config.getString("osHome", null);
-
-	}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -130,12 +53,15 @@ public class ConfigFrame extends javax.swing.JFrame {
         outputText = new javax.swing.JTextField();
         outputLabel = new javax.swing.JLabel();
         pathLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        formatLabel = new javax.swing.JLabel();
         csvCheck = new javax.swing.JCheckBox();
         jsonCheck = new javax.swing.JCheckBox();
         kmlCheck = new javax.swing.JCheckBox();
         wktCheck = new javax.swing.JCheckBox();
         shapefileCheck = new javax.swing.JCheckBox();
+        threadsLabel = new javax.swing.JLabel();
+        threadCount = new javax.swing.JSpinner();
+        processingLabel = new javax.swing.JLabel();
 
         jCheckBox3.setText("JSON");
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -156,19 +82,16 @@ public class ConfigFrame extends javax.swing.JFrame {
         setResizable(false);
 
         doneButton.setText("Done");
-        doneButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doneButtonActionPerformed(evt);
-            }
-        });
 
         browseOutButton.setText("Browse...");
+        browseOutButton.setToolTipText("Navigate filesystem for output directory location");
         browseOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 browseOutButtonActionPerformed(evt);
             }
         });
 
+        outputText.setToolTipText("Directly enter output directory location");
         outputText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 outputTextActionPerformed(evt);
@@ -177,12 +100,16 @@ public class ConfigFrame extends javax.swing.JFrame {
 
         outputLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         outputLabel.setText("Output");
+        outputLabel.setToolTipText("");
 
         pathLabel.setText("Path:");
+        pathLabel.setToolTipText("The location of the directory to place output files");
 
-        jLabel2.setText("Format:");
+        formatLabel.setText("Format:");
+        formatLabel.setToolTipText("The type of file to output the results into");
 
         csvCheck.setText("CSV");
+        csvCheck.setToolTipText("Comma-Separated Values");
         csvCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 csvCheckActionPerformed(evt);
@@ -190,6 +117,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
 
         jsonCheck.setText("JSON");
+        jsonCheck.setToolTipText("JavaScript Object Notation");
         jsonCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jsonCheckActionPerformed(evt);
@@ -197,6 +125,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
 
         kmlCheck.setText("KML");
+        kmlCheck.setToolTipText("Keyhole Markup Language");
         kmlCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kmlCheckActionPerformed(evt);
@@ -204,6 +133,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
 
         wktCheck.setText("WKT");
+        wktCheck.setToolTipText("Well-Known Text");
         wktCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 wktCheckActionPerformed(evt);
@@ -211,11 +141,22 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
 
         shapefileCheck.setText("Shapefile");
+        shapefileCheck.setToolTipText("Esri Shapefile");
         shapefileCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 shapefileCheckActionPerformed(evt);
             }
         });
+
+        threadsLabel.setText("Threads:");
+        threadsLabel.setToolTipText("The number of simultaneous jobs that can be run");
+
+        threadCount.setModel(new javax.swing.SpinnerNumberModel(1, 1, 25, 1));
+        threadCount.setToolTipText("Each additional thread allows an additional job to run concurrently");
+
+        processingLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        processingLabel.setText("Processing");
+        processingLabel.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -230,8 +171,9 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(pathLabel))
+                            .addComponent(formatLabel)
+                            .addComponent(pathLabel)
+                            .addComponent(threadsLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -243,13 +185,20 @@ public class ConfigFrame extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(shapefileCheck)
                                     .addComponent(wktCheck))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                                 .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(outputText)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(browseOutButton)))))
+                                .addComponent(browseOutButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(processingLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +212,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addComponent(pathLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(formatLabel)
                     .addComponent(csvCheck)
                     .addComponent(wktCheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -272,51 +221,19 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addComponent(shapefileCheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(kmlCheck)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(processingLabel)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(threadsLabel)
+                    .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
                 .addComponent(doneButton)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-	public static void saveSettings() {
-
-		try {
-			config.setProperty("outType", outType);
-			config.setProperty("outLocation", outLocation);
-			config.setProperty("inLocation", inLocation);
-			config.setProperty("osHome", osHome);
-			config.save();
-		} catch (ConfigurationException e) {
-			log.error("Error saving settings", e);
-		}
-
-	}
-
-	private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_doneButtonActionPerformed
-		outLocation = outputText.getText();
-
-		// Somewhat ugly due to netbeans lack of arrays in the GUI designer
-		outType = "";
-		if (csvCheck.isSelected())
-			outType += "CSV,";
-		if (kmlCheck.isSelected())
-			outType += "KML,";
-		if (jsonCheck.isSelected())
-			outType += "JSON,";
-		if (shapefileCheck.isSelected())
-			outType += "SHAPEFILE,";
-		if (wktCheck.isSelected())
-			outType += "WKT,";
-
-		if (outType.length() > 1)
-			outType = outType.substring(0, outType.length() - 1);
-
-		saveSettings();
-
-		this.dispose();
-	}// GEN-LAST:event_doneButtonActionPerformed
 
 	private void outputTextActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_outputTextActionPerformed
 		// TODO add your handling code here:
@@ -422,19 +339,22 @@ public class ConfigFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseOutButton;
-    private javax.swing.JCheckBox csvCheck;
-    private javax.swing.JButton doneButton;
+    protected javax.swing.JCheckBox csvCheck;
+    protected javax.swing.JButton doneButton;
+    private javax.swing.JLabel formatLabel;
     private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JCheckBox jsonCheck;
-    private javax.swing.JCheckBox kmlCheck;
+    protected javax.swing.JCheckBox jsonCheck;
+    protected javax.swing.JCheckBox kmlCheck;
     private javax.swing.JLabel outputLabel;
-    private javax.swing.JTextField outputText;
+    protected javax.swing.JTextField outputText;
     private javax.swing.JLabel pathLabel;
-    private javax.swing.JCheckBox shapefileCheck;
-    private javax.swing.JCheckBox wktCheck;
+    private javax.swing.JLabel processingLabel;
+    protected javax.swing.JCheckBox shapefileCheck;
+    protected javax.swing.JSpinner threadCount;
+    private javax.swing.JLabel threadsLabel;
+    protected javax.swing.JCheckBox wktCheck;
     // End of variables declaration//GEN-END:variables
 
 }

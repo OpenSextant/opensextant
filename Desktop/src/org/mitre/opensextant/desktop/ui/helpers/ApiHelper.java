@@ -4,6 +4,8 @@
  */
 package org.mitre.opensextant.desktop.ui.helpers;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -11,19 +13,17 @@ import org.apache.commons.io.FileUtils;
 import org.mitre.opensextant.desktop.executor.OpenSextantExecutor;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
+import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ApiHelper {
 	public static final long HALF_GIGABYTE = 536870912L;
 
-	// TODO: this probably should be set via some form of intelligence... memory, or cores
-	private static final int MAXIMUM_THREADS = 2;
-
 	private static Logger log = LoggerFactory.getLogger(ApiHelper.class);
 
 	// Need to keep track of memory usage of the JVM
-	private static Runtime runtime = Runtime.getRuntime();
+//	private static Runtime runtime = Runtime.getRuntime();
 
 	// Keep track of the number of raw text entries to avoid overwriting each
 	private static int textCount = 0;
@@ -34,7 +34,7 @@ public class ApiHelper {
 	public ApiHelper(OpenSextantMainFrameImpl parent) {
 		this.parent = parent;
 		try {
-			this.executor = new OpenSextantExecutor(MAXIMUM_THREADS);
+			this.executor = new OpenSextantExecutor(ConfigHelper.getInstance().getNumThreads());
 		} catch (Exception e) {
 			log.error("Error setting up executor", e);
 		}
@@ -53,9 +53,15 @@ public class ApiHelper {
 
 	public void processFile(String file) {
 		
-		String outType = ConfigFrame.getOutType();
-		String outLoc = ConfigFrame.getOutLocation();
+		String outType = ConfigHelper.getInstance().getOutType();
+		String baseOutputLocation = ConfigHelper.getInstance().getOutLocation();
 		
-		executor.execute(parent, file, outType, outLoc);
+		OSRow row = new OSRow(file, baseOutputLocation, outType, parent.getTableHelper());
+		
+		executor.execute(parent, row, true);
+	}
+
+	public void reRun(OSRow row) {
+		executor.execute(parent, row, false);//.duplicate());
 	}
 }

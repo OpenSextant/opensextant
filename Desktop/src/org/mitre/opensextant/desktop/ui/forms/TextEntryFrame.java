@@ -10,15 +10,13 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 
  * @author GBLACK
  */
+@SuppressWarnings("serial")
 public class TextEntryFrame extends javax.swing.JFrame {
-	private static Logger log = LoggerFactory.getLogger(TextEntryFrame.class);
 	private ApiHelper apiHelper;
 
 	/**

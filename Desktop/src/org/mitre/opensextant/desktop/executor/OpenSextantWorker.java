@@ -1,72 +1,55 @@
 package org.mitre.opensextant.desktop.executor;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import org.apache.commons.io.FilenameUtils;
-import org.mitre.opensextant.apps.OpenSextantRunner;
+import org.mitre.opensextant.desktop.executor.opensextant.ext.OSDOpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
-import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.mitre.opensextant.desktop.ui.table.OSRow;
 
 public class OpenSextantWorker implements Runnable {
 
-	public static final int NOT_ON_LIST = -1;
-	private static Logger log = LoggerFactory.getLogger(ApiHelper.class);
-
-	private String inputFile;
-	private String outputType;
-	private String outputLocation;
+	private OSRow row;
 	private OpenSextantMainFrameImpl parent;
-	// Keep track of the ordering on the gui list
-	private int guiEntry = NOT_ON_LIST;
-	private String dateStr;
 
-	public OpenSextantWorker(OpenSextantMainFrameImpl parent, String inputFile, String outputType, String outputLocation) {
-		this.inputFile = inputFile;
-		this.outputType = outputType;
-		this.outputLocation = outputLocation;
+	public OpenSextantWorker(OpenSextantMainFrameImpl parent, OSRow row, boolean addToTable) {
 		this.parent = parent;
-		dateStr = "_" + (new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss")).format(new Date());
-		addTableRow();
-	}
-	
-	private void addTableRow() {
-		String outName = FilenameUtils.getBaseName(inputFile);
-
-		// Put in the table gui table
-		String outputTypePrime = outputType;
-		if ("KML".equals(outputType))
-			outputTypePrime = "KMZ";
-		
-		String linkLocation = outputLocation + File.separator + (outName + dateStr) + "." + outputTypePrime;
-
-		String inType = "FILE";
-		guiEntry = parent.getTableHelper().addRow("Initializing...", linkLocation, outName, inType, inputFile);
-
-		parent.getTableHelper().updateProgress(guiEntry, "Processing...", 0);
-
-	}
+                
+		if(addToTable) this.row = parent.getTableHelper().addRow(row);
+                else this.row = row;
+        }
 
 	@Override
 	public void run() {
-		String outName = FilenameUtils.getBaseName(inputFile);
-
+		
+		OSDOpenSextantRunner runner = null;
 		try {
 			
+			row.setProgress(0, OSRow.STATUS.INITIALIZING, 0);
+			
 			// this can potentially be moved up into the executor, but currently you get an array index out of bounds exception if you re-use a runner.
-			OpenSextantRunner runner = new OpenSextantRunner();
+			runner = new OSDOpenSextantRunner(row);
 			runner.initialize();
+			
+			row.setRunner(runner);
+			
+			row.setProgress(0, OSRow.STATUS.PROCESSING, 0);
+                        runner.runOpenSextant(row.getInputFile().getAbsolutePath(), row.getOutputType(), row.getOutputLocation());
 
-			runner.runOpenSextant(inputFile, outputType, outputLocation + File.separator + outName+dateStr);
-
+			row.setProgress(100, OSRow.STATUS.COMPLETE);
+			
+			for (OSRow child : row.getChildren()) {
+				// everything should be finished at this point... if anything did not finish, then there was an error with that file.
+				if (child.isRunning()) {
+					child.setProgress(-1, OSRow.STATUS.ERROR);
+				}
+			}
+			
+		} catch (InterruptedException ie) {
+			if (runner != null) runner.cancelExecution();
+			row.setProgress(-1, OSRow.STATUS.CANCELED);
 		} catch (Exception e) {
+			row.setProgress(-1, OSRow.STATUS.ERROR);
 			e.printStackTrace();
 		}
 
-		parent.getTableHelper().updateProgress(guiEntry, "Finished", 100);
 	}
 
 }

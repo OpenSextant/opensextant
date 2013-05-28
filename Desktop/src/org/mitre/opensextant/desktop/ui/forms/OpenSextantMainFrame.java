@@ -29,108 +29,23 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
 
         mainPanel = new javax.swing.JPanel();
         configButton = new javax.swing.JButton();
-        sortCombo = new javax.swing.JComboBox();
         topSep = new javax.swing.JSeparator();
-        allCheck = new javax.swing.JCheckBox();
-        titleLabel = new javax.swing.JLabel();
-        progressLabel = new javax.swing.JLabel();
-        lastRunLabel = new javax.swing.JLabel();
         tableTopSep = new javax.swing.JSeparator();
-        tableScrollPane = new javax.swing.JScrollPane();
-        tablePanel = new javax.swing.JPanel();
-        rerunButton = new javax.swing.JButton();
-        filterButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
-        viewButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         addTextButton = new javax.swing.JButton();
+        bodyPanel = new javax.swing.JPanel();
+        treePanel = new javax.swing.JPanel();
+        statusLabel = new javax.swing.JLabel();
         helpButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("OpenSextant Desktop");
 
         configButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/cog.png"))); // NOI18N
         configButton.setToolTipText("Configuration");
         configButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 configButtonActionPerformed(evt);
-            }
-        });
-
-        sortCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sort" }));
-        sortCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sortComboActionPerformed(evt);
-            }
-        });
-
-        allCheck.setToolTipText("");
-        allCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allCheckActionPerformed(evt);
-            }
-        });
-
-        titleLabel.setText("TITLE");
-
-        progressLabel.setText("PROGRESS");
-
-        lastRunLabel.setText("LAST RUN");
-
-        tableScrollPane.setBorder(null);
-
-        tablePanel.setPreferredSize(new java.awt.Dimension(500, 100));
-
-        org.jdesktop.layout.GroupLayout tablePanelLayout = new org.jdesktop.layout.GroupLayout(tablePanel);
-        tablePanel.setLayout(tablePanelLayout);
-        tablePanelLayout.setHorizontalGroup(
-            tablePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 903, Short.MAX_VALUE)
-        );
-        tablePanelLayout.setVerticalGroup(
-            tablePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 349, Short.MAX_VALUE)
-        );
-
-        tableScrollPane.setViewportView(tablePanel);
-
-        rerunButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/rerun.png"))); // NOI18N
-        rerunButton.setToolTipText("Re-run job");
-        rerunButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rerunButtonActionPerformed(evt);
-            }
-        });
-
-        filterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/filter.png"))); // NOI18N
-        filterButton.setToolTipText("Filter job");
-        filterButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filterButtonActionPerformed(evt);
-            }
-        });
-
-        cancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/lineCircle.png"))); // NOI18N
-        cancelButton.setToolTipText("Duplicate job");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
-
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/trash.png"))); // NOI18N
-        deleteButton.setToolTipText("Delete job");
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
-
-        viewButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/eye.png"))); // NOI18N
-        viewButton.setToolTipText("View results");
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
             }
         });
 
@@ -150,6 +65,10 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
             }
         });
 
+        treePanel.setLayout(new java.awt.GridLayout(1, 0));
+
+        statusLabel.setText(" ");
+
         helpButton.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
         helpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/questionSmall.png"))); // NOI18N
         helpButton.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +77,31 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
             }
         });
 
+        org.jdesktop.layout.GroupLayout bodyPanelLayout = new org.jdesktop.layout.GroupLayout(bodyPanel);
+        bodyPanel.setLayout(bodyPanelLayout);
+        bodyPanelLayout.setHorizontalGroup(
+            bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(bodyPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(bodyPanelLayout.createSequentialGroup()
+                        .add(statusLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                        .add(18, 18, 18)
+                        .add(helpButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(treePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        bodyPanelLayout.setVerticalGroup(
+            bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(bodyPanelLayout.createSequentialGroup()
+                .add(treePanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(statusLabel)
+                    .add(helpButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -165,70 +109,39 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
             .add(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, topSep)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .add(allCheck)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(titleLabel)
-                        .add(126, 126, 126)
-                        .add(progressLabel)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(lastRunLabel))
-                    .add(tableTopSep)
                     .add(mainPanelLayout.createSequentialGroup()
                         .add(addButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 0, 0)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(addTextButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(rerunButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 0, 0)
-                        .add(filterButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(18, 18, 18)
-                        .add(cancelButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 0, 0)
-                        .add(deleteButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(18, 18, 18)
-                        .add(viewButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(sortCombo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(configButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(helpButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(bodyPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(34, 34, 34)
+                        .add(tableTopSep)
+                        .add(907, 907, 907))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(topSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 903, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(0, 0, Short.MAX_VALUE))))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, rerunButton)
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, filterButton)
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, cancelButton)
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, deleteButton)
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, viewButton)
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, addButton)
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, addTextButton)
-                        .add(mainPanelLayout.createSequentialGroup()
-                            .add(11, 11, 11)
-                            .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                .add(configButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(sortCombo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                    .add(helpButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(18, 18, 18)
-                .add(topSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
+                    .add(addButton)
+                    .add(addTextButton)
+                    .add(configButton))
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(allCheck, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(progressLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(lastRunLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(titleLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(0, 0, 0)
-                .add(tableTopSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(105, 105, 105)
+                        .add(tableTopSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(topSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(2, 2, 2)
+                        .add(bodyPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -236,11 +149,13 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 906, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -249,34 +164,6 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     private void configButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_configButtonActionPerformed
-
-    private void sortComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sortComboActionPerformed
-
-    private void allCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_allCheckActionPerformed
-
-    private void rerunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rerunButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rerunButtonActionPerformed
-
-    private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_filterButtonActionPerformed
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelButtonActionPerformed
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteButtonActionPerformed
-
-    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
@@ -334,23 +221,14 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton addButton;
     protected javax.swing.JButton addTextButton;
-    protected javax.swing.JCheckBox allCheck;
-    protected javax.swing.JButton cancelButton;
+    private javax.swing.JPanel bodyPanel;
     protected javax.swing.JButton configButton;
-    protected javax.swing.JButton deleteButton;
-    protected javax.swing.JButton filterButton;
     protected javax.swing.JButton helpButton;
-    protected javax.swing.JLabel lastRunLabel;
     protected javax.swing.JPanel mainPanel;
-    protected javax.swing.JLabel progressLabel;
-    protected javax.swing.JButton rerunButton;
-    protected javax.swing.JComboBox sortCombo;
-    protected javax.swing.JPanel tablePanel;
-    protected javax.swing.JScrollPane tableScrollPane;
+    private javax.swing.JLabel statusLabel;
     protected javax.swing.JSeparator tableTopSep;
-    protected javax.swing.JLabel titleLabel;
     protected javax.swing.JSeparator topSep;
-    protected javax.swing.JButton viewButton;
+    protected javax.swing.JPanel treePanel;
     // End of variables declaration//GEN-END:variables
 	
     
