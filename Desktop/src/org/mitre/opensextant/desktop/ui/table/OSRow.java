@@ -289,6 +289,10 @@ public class OSRow implements Comparable<OSRow> {
 	public String getOutputType() {
 		return outputType;
 	}
+	public void setOutputType(String outType) {
+		this.outputType = outType;
+	}
+
 
 	public String getId() {
 		return id;
@@ -364,6 +368,9 @@ public class OSRow implements Comparable<OSRow> {
 		cancelDeleteButton.setToolTipText("Stop current execution");
 		cancelDeleteButton.setIcon(OpenSextantMainFrameImpl.getIcon(OpenSextantMainFrameImpl.IconType.CANCEL));
 
+		// update output type
+		this.setOutputType(ConfigHelper.getInstance().getOutType());
+		
 		this.startTime = new Date();
 
 		this.updateOutputFileName();
@@ -387,6 +394,7 @@ public class OSRow implements Comparable<OSRow> {
 
 		tableHelper.getMainFrame().getApiHelper().reRun(this);
 	}
+
 
 	@Override
 	public int hashCode() {
