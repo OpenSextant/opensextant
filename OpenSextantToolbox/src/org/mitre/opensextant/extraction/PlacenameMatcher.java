@@ -232,6 +232,8 @@ public class PlacenameMatcher {
             throw new MatcherException("Failed to tag document=" + docid, err);
         }
 
+        this.tagNamesTime = response.getQTime();
+        
         // -- Process Solr Response
 
         //List<GeoBean> geoBeans = response.getBeans(GeoBean.class); maybe works but probably slow
@@ -406,7 +408,7 @@ public class PlacenameMatcher {
             summarizeExtraction(candidates, docid);
         }
 
-        this.tagNamesTime = (int)(t1 - t0);
+        //this.tagNamesTime = (int)(t1 - t0);
         this.getNamesTime = (int)(t2 - t1);
         this.totalTime = (int)(t3 - t0);
         
