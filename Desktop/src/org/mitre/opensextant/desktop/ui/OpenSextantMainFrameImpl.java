@@ -18,8 +18,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
-import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.OpenSextantMainFrame;
@@ -286,20 +287,13 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 	public static ImageIcon getIcon(IconType type) {
 		return new ImageIcon(getIconUrl(type.toString().toLowerCase()));
 	}
-	private static Map<String, ImageIcon> extIcons = new HashMap<String, ImageIcon>();
+	private static Map<String, Icon> extIcons = new HashMap<String, Icon>();
 
-	public static ImageIcon getIconForExtension(String extension) {
-		ImageIcon icon = extIcons.get(extension);
+	public static Icon getIconForExtension(File file) {
+		Icon icon = extIcons.get(FilenameUtils.getExtension(file.getAbsolutePath()));
 		if (icon == null) {
-			URL iconUrl = getIconUrl("file_ext/"+extension);
-			if (iconUrl == null) iconUrl = getIconUrl("file_ext/_blank");
-			icon = new ImageIcon(iconUrl);
-			Image img = icon.getImage();
- 			BufferedImage bi = new BufferedImage(20, 20, BufferedImage.TYPE_INT_ARGB);
-			Graphics g = bi.createGraphics();
-			g.drawImage(img, 0, 0, 20, 20, null);
-			ImageIcon newIcon = new ImageIcon(bi);
-			extIcons.put(extension, newIcon);
+			icon = (new JFileChooser()).getIcon(file);
+			extIcons.put(FilenameUtils.getExtension(file.getAbsolutePath()), icon);
 		}
 		return icon;
 	}

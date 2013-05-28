@@ -219,7 +219,7 @@ public class OSTreeTable {
 					setText(thisRow.getTitle());
 					
 					if (thisRow.getInputFile() != null && thisRow.isChild()) {
-						setIcon(OpenSextantMainFrameImpl.getIconForExtension(FilenameUtils.getExtension(thisRow.getInputFile().getAbsolutePath())));
+						setIcon(OpenSextantMainFrameImpl.getIconForExtension(thisRow.getInputFile()));
 					}
 				}
 
