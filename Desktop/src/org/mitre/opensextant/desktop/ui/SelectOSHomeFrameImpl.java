@@ -94,7 +94,7 @@ public class SelectOSHomeFrameImpl extends SelectOSHomeFrame {
 	}
 
 	private static String getSolrHome(String osHome) {
-		return osHome + File.separator + "solr";
+		return osHome + File.separator + ".." + File.separator + "opensextant-solr";
 	}
 
 	public static boolean validateOSHome(String osHome) {
