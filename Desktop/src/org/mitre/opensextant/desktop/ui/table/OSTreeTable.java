@@ -103,14 +103,18 @@ public class OSTreeTable {
                         component.doLayout();
                         p.translate(-cellRect.x, -cellRect.y);
                         Component comp = component.getComponentAt(p);
-                        if (comp instanceof JComponent) 
-                            return ((JComponent) comp).getToolTipText();
+                        if (comp instanceof JComponent) {
+                            String txt = ((JComponent) comp).getToolTipText();
+                            if(txt != null) return txt;
+                        }
                     }
-                
-                    if (tip == null) tip = getToolTipText();
-                
-                    return tip;
-                    }
+                    if(hitRowIndex >= 0) {
+                      TreePath path = treeTable.getPathForRow(hitRowIndex);
+                      DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) path.getLastPathComponent();
+                      OSRow row = (OSRow) node.getUserObject();
+                      return row.getInfo();
+                    } else return getToolTipText();
+                  }
                 }
 		treeTable = new TooltipJXTreeTable(treeTableModel);
 
