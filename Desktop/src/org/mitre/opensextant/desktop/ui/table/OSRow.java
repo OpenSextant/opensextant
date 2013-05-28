@@ -204,6 +204,10 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	public void setProgress(int percent, OSRow.STATUS status, int childrenCompleted) {
+		setProgress(percent, status, childrenCompleted, false);
+	}
+
+	public void setProgress(int percent, OSRow.STATUS status, int childrenCompleted, boolean force) {
 		String percentString = ": " + percent + "%";
 		if (hasChildren() && childrenCompleted >= 0) {
 			percentString += " (" + childrenCompleted + "/" + getChildren().size() + ")";
@@ -212,7 +216,7 @@ public class OSRow implements Comparable<OSRow> {
 			percentString = "";
 
 
-		if (this.status != STATUS.ERROR && this.status != STATUS.CANCELED) {
+		if ((this.status != STATUS.ERROR && this.status != STATUS.CANCELED) || force) {
 			this.percent = percent;
 			
 			if (this.status != STATUS.PROCESSING && status == STATUS.PROCESSING) {
@@ -243,8 +247,8 @@ public class OSRow implements Comparable<OSRow> {
 			cancelDeleteButton.setToolTipText("Delete job from list");
 			cancelDeleteButton.setIcon(OpenSextantMainFrameImpl.getIcon(OpenSextantMainFrameImpl.IconType.TRASH));
 
-			if (status == STATUS.COMPLETE) {
-				buttonContainer.getReRunButton().setEnabled(true);
+			buttonContainer.getReRunButton().setEnabled(true);
+			if (this.status == STATUS.COMPLETE) {
 				buttonContainer.getViewResultsButton().setEnabled(true);
 			}
 			saveConfig();
@@ -254,7 +258,7 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	public void setProgress(int percent, OSRow.STATUS status) {
-		setProgress(percent, status, -1);
+		setProgress(percent, status, -1, false);
 	}
 
 	@Override
@@ -369,9 +373,9 @@ public class OSRow implements Comparable<OSRow> {
 		this.endTime = null;
 		this.durationContainer.reset();
 
-		this.setProgress(0, OSRow.STATUS.QUEUED);
+		this.setProgress(0, OSRow.STATUS.QUEUED, -1, true);
 		for (OSRow r : this.children) {
-			r.setProgress(0, OSRow.STATUS.QUEUED);
+			r.setProgress(0, OSRow.STATUS.QUEUED, -1, true);
 			r.executionStartTime = null;
 			r.endTime = null;
 			r.durationContainer.reset();
