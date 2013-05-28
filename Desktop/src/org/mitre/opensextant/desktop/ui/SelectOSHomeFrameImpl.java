@@ -32,8 +32,8 @@ public class SelectOSHomeFrameImpl extends SelectOSHomeFrame {
 	private static List<String> osHomes = new ArrayList<String>() {
 		private static final long serialVersionUID = 2733142560232972138L;
 		{
-			add("opensextant");
 			add("..");
+			add(".."+ File.separator+"opensextant");
 			add((new File("")).getAbsolutePath() + File.separator + "opensextant");
 		}
 	};

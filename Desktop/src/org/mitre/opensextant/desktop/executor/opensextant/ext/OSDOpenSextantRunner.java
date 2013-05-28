@@ -22,13 +22,16 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
 
 	private OSRow row;
 	private String tmpRoot = (new File("." + File.separator + "tmp")).getAbsolutePath();
-	private String archiveTmpRoot = tmpRoot + File.separator + "archives";
-	private String tmpTmpRoot = tmpRoot + File.separator + "txt";
+	private String archiveTmpRoot;
+	private String tmpTmpRoot;
 
 	public OSDOpenSextantRunner(OSRow row) throws Exception {
 		super(); 
 		this.row = row;
 		log.info("Created ODS Desktop runner");
+		tmpRoot += File.separator + (new File(row.getOutputLocation())).getName();
+		archiveTmpRoot = tmpRoot + File.separator + "archives";
+		tmpTmpRoot = tmpRoot + File.separator + "tmp";
 	}
 
 	@Override
@@ -36,19 +39,22 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
 		log.info("initializing OSDOpenSextantRunner");
 		super.initialize();
 		controller = new OSDCorpusControllerWrapper((ConditionalSerialAnalyserController)controller, row);
+		
 		converter.archiveRoot= archiveTmpRoot;
 		converter.tempRoot=tmpTmpRoot;
-		log.info("SET TMP DIR TO: " + converter.archiveRoot);
+		params.tempDir = tmpTmpRoot;
 	}
 
 	
 	
 	@Override
 	public void runOpenSextant(String inFile, String outFormat, String outFile, String tempDir) throws Exception {
-		super.runOpenSextant(inFile, outFormat, outFile, this.tmpRoot);
-		// remove the tmp directory once done
-		FileUtils.deleteDirectory(new File(archiveTmpRoot));
-		FileUtils.deleteDirectory(new File(tmpTmpRoot));
+		try {
+			super.runOpenSextant(inFile, outFormat, outFile, this.tmpRoot);
+		} finally {
+			// remove the tmp directory once done
+			FileUtils.deleteDirectory(new File(tmpRoot));
+		}
 	}
 
 	@Override
