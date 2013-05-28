@@ -65,7 +65,7 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
     //private static String outputFile;
     // the temporary storage directory
     private static String tempDir = null;
-    private XText converter;
+    protected XText converter;
     /* # of batches */
     private int batch_count = 0;
     /* # of documents */
