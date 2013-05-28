@@ -167,6 +167,10 @@ public class OSRow implements Comparable<OSRow> {
 		this.outputLocation += "." + outputTypePrime;
 	}
 
+        public String getInfo(){
+            return "<html>Original file: "+ this.inputFile.getAbsolutePath() + "<BR/>Output file: " + this.outputLocation + "</html>";
+        }
+        
 	public String getTitle() {
 		return title;
 	}

@@ -103,14 +103,18 @@ public class OSTreeTable {
                         component.doLayout();
                         p.translate(-cellRect.x, -cellRect.y);
                         Component comp = component.getComponentAt(p);
-                        if (comp instanceof JComponent) 
-                            return ((JComponent) comp).getToolTipText();
+                        if (comp instanceof JComponent) {
+                            String txt = ((JComponent) comp).getToolTipText();
+                            if(txt != null) return txt;
+                        }
                     }
-                
-                    if (tip == null) tip = getToolTipText();
-                
-                    return tip;
-                    }
+                    if(hitRowIndex >= 0) {
+                      TreePath path = treeTable.getPathForRow(hitRowIndex);
+                      DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) path.getLastPathComponent();
+                      OSRow row = (OSRow) node.getUserObject();
+                      return row.getInfo();
+                    } else return getToolTipText();
+                  }
                 }
 		treeTable = new TooltipJXTreeTable(treeTableModel);
 
@@ -236,7 +240,6 @@ public class OSTreeTable {
 					popup.add(new DeleteNodeAction());
 					popup.add(new ReRunAction());
 					popup.add(new ViewResultsAction());
-					popup.add(new InfoAction());
 					popup.show(e.getComponent(), e.getX(), e.getY());
 				}
 			}
@@ -379,23 +382,6 @@ public class OSTreeTable {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
 				OSRow row = (OSRow) p.getUserObject();
 				row.rerun();
-			}
-			treeTable.repaint();
-		}
-	}
-
-	@SuppressWarnings("serial")
-	class InfoAction extends AbstractAction {
-		InfoAction() {
-			super("Details");
-		}
-
-		public void actionPerformed(ActionEvent e) {
-			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
-			for (TreePath selp : paths) {
-				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
-				OSRow row = (OSRow) p.getUserObject();
-				JOptionPane.showMessageDialog(treeTable, row.getInputFile().getAbsolutePath(), "Info", JOptionPane.INFORMATION_MESSAGE);
 			}
 			treeTable.repaint();
 		}
