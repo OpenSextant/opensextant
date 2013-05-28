@@ -240,7 +240,6 @@ public class OSTreeTable {
 					popup.add(new DeleteNodeAction());
 					popup.add(new ReRunAction());
 					popup.add(new ViewResultsAction());
-					popup.add(new InfoAction());
 					popup.show(e.getComponent(), e.getX(), e.getY());
 				}
 			}
@@ -383,23 +382,6 @@ public class OSTreeTable {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
 				OSRow row = (OSRow) p.getUserObject();
 				row.rerun();
-			}
-			treeTable.repaint();
-		}
-	}
-
-	@SuppressWarnings("serial")
-	class InfoAction extends AbstractAction {
-		InfoAction() {
-			super("Details");
-		}
-
-		public void actionPerformed(ActionEvent e) {
-			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
-			for (TreePath selp : paths) {
-				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
-				OSRow row = (OSRow) p.getUserObject();
-				JOptionPane.showMessageDialog(treeTable, row.getInputFile().getAbsolutePath(), "Info", JOptionPane.INFORMATION_MESSAGE);
 			}
 			treeTable.repaint();
 		}
