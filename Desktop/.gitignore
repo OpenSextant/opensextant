@@ -1,3 +1,6 @@
-build.properties
+bin
+build
+conf.properties
 dist
 output
+OpenSextantDesktop.log
