@@ -2,16 +2,24 @@ package org.mitre.opensextant.desktop.ui;
 
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.OpenSextantMainFrame;
@@ -271,8 +279,29 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		return apiHelper;
 	}
 
+	private static URL getIconUrl(String path) {
+		return OpenSextantMainFrameImpl.class.getResource("/org/mitre/opensextant/desktop/icons/" + path + ".png");
+	}
+
 	public static ImageIcon getIcon(IconType type) {
-		return new javax.swing.ImageIcon(OpenSextantMainFrameImpl.class.getResource("/org/mitre/opensextant/desktop/icons/" + type.toString().toLowerCase() + ".png"));
+		return new ImageIcon(getIconUrl(type.toString().toLowerCase()));
+	}
+	private static Map<String, ImageIcon> extIcons = new HashMap<String, ImageIcon>();
+
+	public static ImageIcon getIconForExtension(String extension) {
+		ImageIcon icon = extIcons.get(extension);
+		if (icon == null) {
+			URL iconUrl = getIconUrl("file_ext/"+extension);
+			if (iconUrl == null) iconUrl = getIconUrl("file_ext/_blank");
+			icon = new ImageIcon(iconUrl);
+			Image img = icon.getImage();
+ 			BufferedImage bi = new BufferedImage(20, 20, BufferedImage.TYPE_INT_ARGB);
+			Graphics g = bi.createGraphics();
+			g.drawImage(img, 0, 0, 20, 20, null);
+			ImageIcon newIcon = new ImageIcon(bi);
+			extIcons.put(extension, newIcon);
+		}
+		return icon;
 	}
 
 

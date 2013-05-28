@@ -34,10 +34,12 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
+import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowDurationImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
@@ -213,8 +215,12 @@ public class OSTreeTable {
 
 				if (value instanceof DefaultMutableTreeTableNode) {
 					DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) value;
-					setText(((OSRow) node.getUserObject()).getTitle());
-					// setIcon();
+					OSRow thisRow = (OSRow) node.getUserObject();
+					setText(thisRow.getTitle());
+					
+					if (thisRow.getInputFile() != null && thisRow.isChild()) {
+						setIcon(OpenSextantMainFrameImpl.getIconForExtension(FilenameUtils.getExtension(thisRow.getInputFile().getAbsolutePath())));
+					}
 				}
 
 				return this;
