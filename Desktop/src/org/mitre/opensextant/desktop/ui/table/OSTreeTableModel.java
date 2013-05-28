@@ -83,9 +83,9 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 			case TIMING:
 				return "Time";
 			case ACTIONS:
-				return "";
+				return "Actions";
 			case FILE_INFO:
-				return "Info";
+				return "File Size";
 			case LAST_RUN:
 				return "Last Run";
 		}
