@@ -22,6 +22,7 @@ import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
 import org.mitre.opensextant.processing.Parameters;
+import org.mitre.xtext.XText;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -94,7 +95,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.tableHelper = tableHelper;
 
 		if (inputFile.isDirectory()) {
-			List<File> childInputFiles = new ArrayList<File>(FileUtils.listFiles(inputFile, null, true));
+			List<File> childInputFiles = new ArrayList<File>(FileUtils.listFiles(inputFile, XText.FILE_FILTER, true));
 			for (File childInputFile : childInputFiles) {
 				if (childInputFile.exists()) {
 					// ignore files that start with '.'
@@ -108,7 +109,7 @@ public class OSRow implements Comparable<OSRow> {
 			}
 		}
 
-		this.title = FilenameUtils.getBaseName(inputFile.getAbsolutePath());
+		this.title = inputFile.getAbsoluteFile().getName();
 
 		this.updateOutputFileName();
 
@@ -158,11 +159,12 @@ public class OSRow implements Comparable<OSRow> {
 		if ("KML".equals(outputType))
 			outputTypePrime = "KMZ";
 		p.setJobName(title + dateStr);
-		this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "." + outputTypePrime;
+		this.outputLocation = baseOutputLocation + File.separator + p.getJobName();
 
-		File f = new File(this.outputLocation);
-		if (f.exists())
-			this.outputLocation = baseOutputLocation + File.separator + p.getJobName() + "(" + counter + ")." + outputTypePrime;
+		if ((new File(this.outputLocation)).exists())
+			this.outputLocation += "(" + counter + ")" ;
+		
+		this.outputLocation += "." + outputTypePrime;
 	}
 
 	public String getTitle() {

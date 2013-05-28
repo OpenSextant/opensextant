@@ -56,7 +56,7 @@
 	<classpathentry kind="lib" path="/Volumes/HD2/data/workspaces/osd/opensextant/OpenSextantToolbox/release/lib/objenesis-1.2.jar"/>
 	<classpathentry kind="lib" path="/Volumes/HD2/data/workspaces/osd/opensextant/OpenSextantToolbox/release/lib/opensextant-apps.jar" sourcepath="/Volumes/HD2/data/workspaces/osd/opensextant/OpenSextantToolbox/src"/>
 	<classpathentry kind="lib" path="/Volumes/HD2/data/workspaces/osd/opensextant/OpenSextantToolbox/release/lib/opensextant-commons.jar"/>
-	<classpathentry kind="lib" path="/Volumes/HD2/data/workspaces/osd/opensextant/OpenSextantToolbox/release/lib/opensextant-xponents-1.6.jar"/>
+	<classpathentry kind="lib" path="/Volumes/HD2/data/workspaces/osd/opensextant/OpenSextantToolbox/release/lib/opensextant-xponents-1.6.jar" sourcepath="/opensextant/Xponents/XText"/>
 	<classpathentry kind="lib" path="/Volumes/HD2/data/workspaces/osd/opensextant/OpenSextantToolbox/release/lib/OpenSextantToolbox.jar" sourcepath="/Volumes/HD2/data/workspaces/osd/opensextant/OpenSextantToolbox/src"/>
 	<classpathentry kind="lib" path="/Volumes/HD2/data/workspaces/osd/opensextant/OpenSextantToolbox/release/lib/slf4j-api-1.7.4.jar"/>
 	<classpathentry kind="lib" path="/Volumes/HD2/data/workspaces/osd/opensextant/OpenSextantToolbox/release/lib/slf4j-log4j12-1.7.4.jar"/>
