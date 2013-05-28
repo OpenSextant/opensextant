@@ -110,14 +110,8 @@ Build file for OpenSextant Desktop
 				<include name="**" />
 			</fileset>
 		</copy>
-	</target>
+        <copy todir="${dist.dir}" file="releaseNotes.txt"/>
 
-	<target name="release-full" depends="release">
-		<copy todir="${dist.dir}/opensextant">
-			<fileset dir="${opensextant.home}">
-				<include name="**" />
-			</fileset>
-		</copy>
 	</target>
 
 </project>
