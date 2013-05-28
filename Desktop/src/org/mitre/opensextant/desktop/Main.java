@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Properties;
 
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
@@ -24,8 +25,16 @@ public class Main {
 	public static void main(String[] args) {
 
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		
+                    // Nimbus look and feel
+                    /* for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                        if ("Nimbus".equals(info.getName())) {
+                            UIManager.setLookAndFeel(info.getClassName());
+                            break;
+                        }
+                    }*/
+                } catch (Exception e) {
 			e.printStackTrace();
 		}
 		
