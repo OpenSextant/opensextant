@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -25,6 +28,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.event.CellEditorListener;
@@ -251,6 +255,14 @@ public class OSTreeTable {
 			}
 		});
 
+                // Catch Delete 
+                int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
+                InputMap inputMap = treeTable.getInputMap(condition);
+                ActionMap actionMap = treeTable.getActionMap();
+                  
+                inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Delete");
+                actionMap.put("Delete", new DeleteNodeAction());
+                
 		JTableHeader header = treeTable.getTableHeader();
 
 		header.addMouseListener(new MouseAdapter() {
