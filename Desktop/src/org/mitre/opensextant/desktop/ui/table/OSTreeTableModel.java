@@ -15,6 +15,7 @@ import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import org.jdesktop.swingx.treetable.TreeTableNode;
+import org.mitre.opensextant.desktop.util.FileSize;
 
 class OSTreeTableModel extends DefaultTreeTableModel {
 	public static final int TITLE = 0;
@@ -57,10 +58,10 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 					for (OSRow child : row.getChildren()) {
 						size += FileUtils.sizeOf(child.getInputFile());
 					}
-					info += FileUtils.byteCountToDisplaySize(size);
+					info += FileSize.byteCountToDisplaySize(size);
 					info += " (" + row.getChildren().size() + " files)";
 				} else {
-					info += FileUtils.byteCountToDisplaySize(FileUtils.sizeOf(row.getInputFile()));
+					info += FileSize.byteCountToDisplaySize(FileUtils.sizeOf(row.getInputFile()));
 					
 				}
 				return info;
