@@ -7,6 +7,7 @@ import gate.Document;
 import gate.Factory;
 import gate.creole.ConditionalSerialAnalyserController;
 
+import org.apache.commons.io.FileUtils;
 import org.mitre.opensextant.apps.OpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.processing.ProcessingException;
@@ -20,9 +21,12 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
 	private static Logger log = LoggerFactory.getLogger(OSDOpenSextantRunner.class);
 
 	private OSRow row;
+	private String tmpRoot = (new File("." + File.separator + "tmp")).getAbsolutePath();
+	private String archiveTmpRoot = tmpRoot + File.separator + "archives";
+	private String tmpTmpRoot = tmpRoot + File.separator + "txt";
 
 	public OSDOpenSextantRunner(OSRow row) throws Exception {
-		super();
+		super(); 
 		this.row = row;
 		log.info("Created ODS Desktop runner");
 	}
@@ -32,6 +36,19 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
 		log.info("initializing OSDOpenSextantRunner");
 		super.initialize();
 		controller = new OSDCorpusControllerWrapper((ConditionalSerialAnalyserController)controller, row);
+		converter.archiveRoot= archiveTmpRoot;
+		converter.tempRoot=tmpTmpRoot;
+		log.info("SET TMP DIR TO: " + converter.archiveRoot);
+	}
+
+	
+	
+	@Override
+	public void runOpenSextant(String inFile, String outFormat, String outFile, String tempDir) throws Exception {
+		super.runOpenSextant(inFile, outFormat, outFile, this.tmpRoot);
+		// remove the tmp directory once done
+		FileUtils.deleteDirectory(new File(archiveTmpRoot));
+		FileUtils.deleteDirectory(new File(tmpTmpRoot));
 	}
 
 	@Override
