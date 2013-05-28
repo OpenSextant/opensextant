@@ -77,7 +77,7 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	public String getColumnName(int column) {
 		switch (column) {
 			case TITLE:
-				return "Title";
+				return "Filename";
 			case PROGRESS:
 				return "Progress";
 			case TIMING:
