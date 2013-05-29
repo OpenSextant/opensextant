@@ -1,7 +1,10 @@
 package org.mitre.opensextant.desktop.ui.table;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -18,6 +21,7 @@ import java.util.Set;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
+import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
@@ -85,43 +89,76 @@ public class OSTreeTable {
 	}
 
 	public JXTreeTable create() {
-                // Must override the tooltip renderer for the entire table to get at individual component tips
-                class TooltipJXTreeTable extends JXTreeTable {
-                    TooltipJXTreeTable(OSTreeTableModel model) { 
-                    super(model); 
-                }
+		// Must override the tooltip renderer for the entire table to get at
+		// individual component tips
+		class TooltipJXTreeTable extends JXTreeTable {
+			TooltipJXTreeTable(OSTreeTableModel model) {
+				super(model);
+				setOpaque(false);
+			}
 
-                @Override
-                public String getToolTipText(MouseEvent event) {
-                    String tip = null;
-                    Point p = event.getPoint();
-                
-                    // Locate the renderer under the event location
-                    int hitColumnIndex = columnAtPoint(p);
-                    int hitRowIndex = rowAtPoint(p);
-                
-                    if (hitColumnIndex != -1 && hitRowIndex != -1) {
-                        TableCellRenderer renderer = getCellRenderer(hitRowIndex, hitColumnIndex);
-                        Component component = prepareRenderer(renderer, hitRowIndex, hitColumnIndex);
-                        Rectangle cellRect = getCellRect(hitRowIndex, hitColumnIndex, false);
-                        component.setBounds(cellRect);
-                        component.validate();
-                        component.doLayout();
-                        p.translate(-cellRect.x, -cellRect.y);
-                        Component comp = component.getComponentAt(p);
-                        if (comp instanceof JComponent) {
-                            String txt = ((JComponent) comp).getToolTipText();
-                            if(txt != null) return txt;
-                        }
-                    }
-                    if(hitRowIndex >= 0) {
-                      TreePath path = treeTable.getPathForRow(hitRowIndex);
-                      DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) path.getLastPathComponent();
-                      OSRow row = (OSRow) node.getUserObject();
-                      return row.getInfo();
-                    } else return getToolTipText();
-                  }
+			@Override
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+				final Component c = super.prepareRenderer(renderer, row, column);
+				if (!isRowSelected(row)) {
+					if (c instanceof JComponent) {
+						((JComponent) c).setOpaque(false);
+					}
+                } else {
+					if (c instanceof JComponent) {
+						((JComponent) c).setOpaque(true);
+					}
                 }
+				return c;
+			}
+
+			private final ImageIcon image = new ImageIcon(OpenSextantMainFrameImpl.class.getResource("/org/mitre/opensextant/desktop/icons/OpenSextantLogoBigWatermark.png"));
+			
+			@Override
+			public void paint(Graphics g) {
+				// draw image in centre
+				final int imageWidth = image.getIconWidth();
+				final int imageHeight = image.getIconHeight();
+				final Dimension d = getSize();
+				final int x = (d.width - imageWidth) / 2;
+				final int y = (d.height - imageHeight) / 2;
+				g.drawImage(image.getImage(), x, y, null, null);
+				super.paint(g);
+			}
+
+			@Override
+			public String getToolTipText(MouseEvent event) {
+				String tip = null;
+				Point p = event.getPoint();
+
+				// Locate the renderer under the event location
+				int hitColumnIndex = columnAtPoint(p);
+				int hitRowIndex = rowAtPoint(p);
+
+				if (hitColumnIndex != -1 && hitRowIndex != -1) {
+					TableCellRenderer renderer = getCellRenderer(hitRowIndex, hitColumnIndex);
+					Component component = prepareRenderer(renderer, hitRowIndex, hitColumnIndex);
+					Rectangle cellRect = getCellRect(hitRowIndex, hitColumnIndex, false);
+					component.setBounds(cellRect);
+					component.validate();
+					component.doLayout();
+					p.translate(-cellRect.x, -cellRect.y);
+					Component comp = component.getComponentAt(p);
+					if (comp instanceof JComponent) {
+						String txt = ((JComponent) comp).getToolTipText();
+						if (txt != null)
+							return txt;
+					}
+				}
+				if (hitRowIndex >= 0) {
+					TreePath path = treeTable.getPathForRow(hitRowIndex);
+					DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) path.getLastPathComponent();
+					OSRow row = (OSRow) node.getUserObject();
+					return row.getInfo();
+				} else
+					return getToolTipText();
+			}
+		}
 		treeTable = new TooltipJXTreeTable(treeTableModel);
 
 		class SortIconTableHeaderRenderer extends JLabel implements TableCellRenderer {
@@ -165,13 +202,14 @@ public class OSTreeTable {
 
 		treeTable.getColumn(OSTreeTableModel.TIMING).setMinWidth(110);
 		treeTable.getColumn(OSTreeTableModel.TIMING).setWidth(110);
-		
+
 		treeTable.getColumn(OSTreeTableModel.TIMING).setHeaderRenderer(new SortIconTableHeaderRenderer());
 		treeTable.getColumn(OSTreeTableModel.TIMING).setCellRenderer(new TableCellRenderer() {
 			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,
+					int column) {
 				OSRow osRow = (OSRow) value;
-				
+
 				RowDurationImpl panel = osRow.getDurationPanel();
 				panel.updateDuration(osRow);
 
@@ -203,9 +241,8 @@ public class OSTreeTable {
 		});
 
 		treeTable.getColumn(OSTreeTableModel.FILE_INFO).setHeaderRenderer(new SortIconTableHeaderRenderer());
-                treeTable.getColumn(OSTreeTableModel.OUT_TYPES).setHeaderRenderer(new SortIconTableHeaderRenderer());
+		treeTable.getColumn(OSTreeTableModel.OUT_TYPES).setHeaderRenderer(new SortIconTableHeaderRenderer());
 		treeTable.getColumn(OSTreeTableModel.LAST_RUN).setHeaderRenderer(new SortIconTableHeaderRenderer());
-
 
 		treeTable.setEditable(true);
 		treeTable.setRowHeight(30);
@@ -222,7 +259,7 @@ public class OSTreeTable {
 					DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) value;
 					OSRow thisRow = (OSRow) node.getUserObject();
 					setText(thisRow.getTitle());
-					
+
 					if (thisRow.getInputFile() != null && thisRow.isChild()) {
 						setIcon(OpenSextantMainFrameImpl.getIconForExtension(thisRow.getInputFile()));
 					}
@@ -256,14 +293,14 @@ public class OSTreeTable {
 			}
 		});
 
-                // Catch Delete 
-                int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
-                InputMap inputMap = treeTable.getInputMap(condition);
-                ActionMap actionMap = treeTable.getActionMap();
-                  
-                inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Delete");
-                actionMap.put("Delete", new DeleteNodeAction());
-                
+		// Catch Delete
+		int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
+		InputMap inputMap = treeTable.getInputMap(condition);
+		ActionMap actionMap = treeTable.getActionMap();
+
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "Delete");
+		actionMap.put("Delete", new DeleteNodeAction());
+
 		JTableHeader header = treeTable.getTableHeader();
 
 		header.addMouseListener(new MouseAdapter() {
@@ -346,17 +383,19 @@ public class OSTreeTable {
 		public void actionPerformed(ActionEvent e) {
 			TreePath[] paths = treeTable.getTreeSelectionModel().getSelectionPaths();
 
-			if (!MainFrameTableHelper.confirmationPrompt("Remove all selected jobs? WARNING: Removing children will remove the entire job.", "Confirm removing jobs", treeTable))
+			if (!MainFrameTableHelper.confirmationPrompt(
+					"Remove all selected jobs? WARNING: Removing children will remove the entire job.", "Confirm removing jobs", treeTable))
 				return;
 
 			Set<OSRow> rows = new HashSet<OSRow>();
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
 				OSRow row = (OSRow) p.getUserObject();
-				if (row.isChild()) row = row.getParent();
+				if (row.isChild())
+					row = row.getParent();
 				rows.add(row);
 			}
-			
+
 			for (OSRow row : rows) {
 				row.cancelExecution(false);
 				row.deleteFile();
@@ -379,7 +418,8 @@ public class OSTreeTable {
 			for (TreePath selp : paths) {
 				DefaultMutableTreeTableNode p = (DefaultMutableTreeTableNode) selp.getLastPathComponent();
 				OSRow row = (OSRow) p.getUserObject();
-				if (row.isChild()) row = row.getParent();
+				if (row.isChild())
+					row = row.getParent();
 				rows.add(row);
 			}
 			for (OSRow row : rows) {

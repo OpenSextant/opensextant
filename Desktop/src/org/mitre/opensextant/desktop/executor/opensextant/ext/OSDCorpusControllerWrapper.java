@@ -73,7 +73,6 @@ public class OSDCorpusControllerWrapper implements CorpusController {
 		for (int indexx = 0; (indexx < corpus.size()) && !canceled; indexx++) {
 			Document doc = corpus.get(indexx);
 			wrapped.setDocument(doc);
-			log.info("Executing: " + doc.getSourceUrl());
 			wrapped.execute();
 			
 			if (row.hasChildren()) {
