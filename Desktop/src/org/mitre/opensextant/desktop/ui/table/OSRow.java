@@ -359,8 +359,8 @@ public class OSRow implements Comparable<OSRow> {
 			return;
 
 		if (!isChild()) {
-			executor.cancel(true);
-			runner.cancelExecution();
+			if (executor != null) executor.cancel(true);
+			if (runner != null) runner.cancelExecution();
 			setProgress(-1, OSRow.STATUS.CANCELED);
 			for (OSRow child : getChildren()) {
 				child.setProgress(-1, OSRow.STATUS.CANCELED);
@@ -368,7 +368,6 @@ public class OSRow implements Comparable<OSRow> {
 		} else {
 			// TODO: NEED TO IMPLEMENT CANCELING CHILD
 			setProgress(-1, OSRow.STATUS.CANCELED);
-			log.warn("NEED TO IMPLEMENT CANCELING CHILD");
 		}
 	}
 
