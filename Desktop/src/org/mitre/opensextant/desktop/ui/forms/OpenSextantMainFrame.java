@@ -119,13 +119,11 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_helpMenuItemActionPerformed
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-       System.exit(0);
+      
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        JFrame about = new AboutFrame();
-        about.setLocationByPlatform(true);
-        about.setVisible(true);
+
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     /**
