@@ -95,7 +95,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.tableHelper = tableHelper;
 
 		if (inputFile.isDirectory()) {
-			List<File> childInputFiles = new ArrayList<File>(FileUtils.listFiles(inputFile, XText.FILE_FILTER, true));
+			List<File> childInputFiles = new ArrayList<File>(FileUtils.listFiles(inputFile, runner.getConverter().getFileTypes().toArray(new String[runner.getConverter().getFileTypes().size()]), true));
 			for (File childInputFile : childInputFiles) {
 				if (childInputFile.exists()) {
 					// ignore files that start with '.'

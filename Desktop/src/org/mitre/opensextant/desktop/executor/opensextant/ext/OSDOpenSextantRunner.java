@@ -12,6 +12,7 @@ import org.mitre.opensextant.apps.OpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.processing.ProcessingException;
 import org.mitre.xtext.ConvertedDocument;
+import org.mitre.xtext.XText;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -90,5 +91,7 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
 		((OSDCorpusControllerWrapper)controller).cancelExecution();
 	}
 	
-
+	public XText getConverter() {
+		return this.converter;
+	}
 }
