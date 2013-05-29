@@ -347,7 +347,13 @@ public abstract class GISDataFormatter extends AbstractFormatter {
             if (rowdata.recordFile != null) {
                 addColumn(row, OpenSextantSchema.FILENAME, FilenameUtils.getBaseName(rowdata.recordFile));
                 addColumn(row, OpenSextantSchema.FILEPATH, rowdata.recordFile);
-                addColumn(row, OpenSextantSchema.TEXTPATH, rowdata.recordTextFile);
+                // Only add text path:
+                //   if original is not plaintext or
+                //   if original has not been converted
+                //
+                if (rowdata.recordTextFile != null && !rowdata.recordFile.equals(rowdata.recordTextFile)) {
+                    addColumn(row, OpenSextantSchema.TEXTPATH, rowdata.recordTextFile);
+                }
             } else {
                 log.info("No File path given");
             }
