@@ -23,7 +23,8 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	public static final int TIMING = 2;
 	public static final int ACTIONS = 3;
 	public static final int FILE_INFO = 4;
-	public static final int LAST_RUN = 5;
+        public static final int OUT_TYPES = 5;
+	public static final int LAST_RUN = 6;
 	private SimpleDateFormat dateFormat;
 
 	private boolean[] ascSort = new boolean[LAST_RUN + 1];
@@ -34,7 +35,7 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	}
 
 	public int getColumnCount() {
-		return 6;
+		return LAST_RUN + 1;
 	}
 
 	/**
@@ -65,6 +66,8 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 					
 				}
 				return info;
+                        case OUT_TYPES:
+                                return row.getOutputType();
 			case LAST_RUN:
 				return dateFormat.format(row.getStartTime());
 		}
@@ -86,6 +89,8 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 				return "Actions";
 			case FILE_INFO:
 				return "File Size";
+                        case OUT_TYPES:
+                                return "Output Type";
 			case LAST_RUN:
 				return "Last Run";
 		}
@@ -146,7 +151,11 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 					if (asc)
 						return r.getTitle().compareToIgnoreCase(l.getTitle());
 					return l.getTitle().compareToIgnoreCase(r.getTitle());
-				case PROGRESS:
+				case OUT_TYPES:
+					if (asc)
+						return r.getOutputType().compareToIgnoreCase(l.getOutputType());
+					return l.getOutputType().compareToIgnoreCase(r.getOutputType());
+                                case PROGRESS:
 					if (asc)
 						return ((Integer) r.getPercent()).compareTo(l.getPercent());
 					else
