@@ -17,24 +17,25 @@ Build file for OpenSextant Desktop
 
 	<!-- directory to contain the jar -->
 	<property name="build.dir" location="${basedir}/build" />
-	<property name="dist.dir" location="${basedir}/dist" />
+    <property name="dist.dir" location="${release.target}/desktop" />
+    <property name="opensextant.libs" location="${release.target}/lib" />
 
 	<path id="compile.classpath">
 
 		<!-- project level libraries -->
-		<pathelement location="${basedir}/${opensextant.home}/lib/OpenSextantToolbox.jar" />
-		<pathelement location="${basedir}/${opensextant.home}/lib/opensextant-apps.jar" />
-		<pathelement location="${basedir}/${opensextant.home}/lib/opensextant-commons.jar" />
-		<pathelement location="${basedir}/${opensextant.home}/lib/opensextant-xponents-1.6.jar" />
-		<pathelement location="${basedir}/${opensextant.home}/lib/commons-lang-2.6.jar" />
+		<pathelement location="${opensextant.libs}/OpenSextantToolbox.jar" />
+		<pathelement location="${opensextant.libs}/opensextant-apps.jar" />
+		<pathelement location="${opensextant.libs}/opensextant-commons.jar" />
+		<pathelement location="${opensextant.libs}/opensextant-xponents-1.6.jar" />
+		<pathelement location="${opensextant.libs}/commons-lang-2.6.jar" />
 
-		<pathelement location="${basedir}/${opensextant.home}/lib/slf4j-api-1.7.4.jar" />
-		<pathelement location="${basedir}/${opensextant.home}/lib/slf4j-log4j12-1.7.4.jar" />
+		<pathelement location="${opensextant.libs}/slf4j-api-1.7.4.jar" />
+		<pathelement location="${opensextant.libs}/slf4j-log4j12-1.7.4.jar" />
 
-		<pathelement location="${basedir}/${opensextant.home}/lib/log4j-1.2.17.jar" />
+		<pathelement location="${opensextant.libs}/log4j-1.2.17.jar" />
 
-		<pathelement location="${basedir}/${opensextant.home}/lib/commons-io-2.1.jar" />
-		<pathelement location="${basedir}/${opensextant.home}/lib/gate.jar" />
+		<pathelement location="${opensextant.libs}/commons-io-2.1.jar" />
+		<pathelement location="${opensextant.libs}/gate.jar" />
 
 		<pathelement location="${basedir}/lib/appframework-1.0.3.jar" />
 		<pathelement location="${basedir}/lib/commons-configuration-1.9.jar" />
@@ -67,20 +68,14 @@ Build file for OpenSextant Desktop
 		<delete dir="${build.dir}" />
 	</target>
 
-	<target name="release" depends="compile">
-		<delete dir="${dist.dir}" />
-		<mkdir dir="${dist.dir}" />
+    <target name="release-local" depends="compile">
+    	
+    </target>
 
-        <copy todir="${dist.dir}/lib">
-	      <fileset dir="${opensextant.home}/lib">
-	         <include name="*.jar" />
-	      </fileset>
-        </copy>
-        <copy todir="${dist.dir}/lib">
-          <fileset dir="${opensextant.home}/../lib">
-             <include name="*.jar" />
-          </fileset>
-        </copy>
+	<target name="release" depends="compile">
+		<mkdir dir="${dist.dir}" />
+		<echo message="${opensextant.libs}"/>
+
         <copy todir="${dist.dir}/lib">
             <fileset dir="lib">
                 <include name="*.jar" />
@@ -88,9 +83,12 @@ Build file for OpenSextant Desktop
         </copy>
 
 		<path id="jar.classpath">
-		    <fileset dir="${dist.dir}/lib">
+		    <fileset dir="${opensextant.libs}">
 		        <include name="*.jar"/>
 		    </fileset>
+            <fileset dir="${dist.dir}/lib/">
+                <include name="*.jar"/>
+            </fileset>
 		</path>
 		
 		<manifestclasspath property="manifest_cp" jarfile="${dist.dir}/${project.name}-${version}.jar">
