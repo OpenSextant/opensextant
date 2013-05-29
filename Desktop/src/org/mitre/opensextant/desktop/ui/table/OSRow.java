@@ -1,10 +1,12 @@
 package org.mitre.opensextant.desktop.ui.table;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Future;
@@ -45,6 +47,17 @@ public class OSRow implements Comparable<OSRow> {
 	private static Logger log = LoggerFactory.getLogger(OSRow.class);
 
 	private static int counter = 0;
+
+	private static String[] fileTypes;
+	static {
+		try {
+			getAllowedFileTypes();
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Error getting allowed file types, OpenSextant cannot continue.", "Error", JOptionPane.ERROR_MESSAGE);
+			System.exit(1);
+		}
+	}
+
 
 	private String title;
 	private String id;
@@ -95,7 +108,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.tableHelper = tableHelper;
 
 		if (inputFile.isDirectory()) {
-			List<File> childInputFiles = new ArrayList<File>(FileUtils.listFiles(inputFile, runner.getConverter().getFileTypes().toArray(new String[runner.getConverter().getFileTypes().size()]), true));
+			List<File> childInputFiles = new ArrayList<File>(FileUtils.listFiles(inputFile, fileTypes, true));
 			for (File childInputFile : childInputFiles) {
 				if (childInputFile.exists()) {
 					// ignore files that start with '.'
@@ -138,6 +151,16 @@ public class OSRow implements Comparable<OSRow> {
 		this.buttonContainer = new RowButtonsImpl(this);
 
 		this.tableHelper = tableHelper;
+	}
+	
+	private static String[] getAllowedFileTypes() throws IOException {
+		if (fileTypes == null) {
+			XText converter = new XText();
+			converter.setup();
+			Set<String> fileTypeSet = converter.getFileTypes(); 
+			fileTypes = fileTypeSet.toArray(new String[fileTypeSet.size()]);
+		}
+		return fileTypes;
 	}
 
 	private void saveConfig() {
