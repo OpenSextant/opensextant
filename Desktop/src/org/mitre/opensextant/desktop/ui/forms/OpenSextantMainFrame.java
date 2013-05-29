@@ -29,17 +29,8 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
-        configButton = new javax.swing.JButton();
-        topSep = new javax.swing.JSeparator();
-        tableTopSep = new javax.swing.JSeparator();
-        addButton = new javax.swing.JButton();
-        addTextButton = new javax.swing.JButton();
-        bodyPanel = new javax.swing.JPanel();
         treePanel = new javax.swing.JPanel();
-        statusLabel = new javax.swing.JLabel();
-        aboutButton = new javax.swing.JButton();
-        helpButton = new javax.swing.JButton();
+        tableScrollPane = new javax.swing.JScrollPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         addFileMenuItem = new javax.swing.JMenuItem();
@@ -54,122 +45,15 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OpenSextant Desktop");
 
-        configButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/cog.png"))); // NOI18N
-        configButton.setToolTipText("Configuration");
-        configButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                configButtonActionPerformed(evt);
-            }
-        });
-
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/plusCircle.png"))); // NOI18N
-        addButton.setToolTipText("Process files/folders");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
-            }
-        });
-
-        addTextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/lines.png"))); // NOI18N
-        addTextButton.setToolTipText("Process text entry");
-        addTextButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addTextButtonActionPerformed(evt);
-            }
-        });
-
-        treePanel.setLayout(new java.awt.GridLayout(1, 0));
-
-        statusLabel.setText(" ");
-
-        org.jdesktop.layout.GroupLayout bodyPanelLayout = new org.jdesktop.layout.GroupLayout(bodyPanel);
-        bodyPanel.setLayout(bodyPanelLayout);
-        bodyPanelLayout.setHorizontalGroup(
-            bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(bodyPanelLayout.createSequentialGroup()
-                .add(treePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(statusLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-                .add(55, 55, 55))
+        org.jdesktop.layout.GroupLayout treePanelLayout = new org.jdesktop.layout.GroupLayout(treePanel);
+        treePanel.setLayout(treePanelLayout);
+        treePanelLayout.setHorizontalGroup(
+            treePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
         );
-        bodyPanelLayout.setVerticalGroup(
-            bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(bodyPanelLayout.createSequentialGroup()
-                .add(23, 23, 23)
-                .add(bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(treePanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(statusLabel))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        aboutButton.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        aboutButton.setText("About");
-        aboutButton.setToolTipText("");
-        aboutButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutButtonActionPerformed(evt);
-            }
-        });
-
-        helpButton.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        helpButton.setText("Help");
-        helpButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                helpButtonActionPerformed(evt);
-            }
-        });
-
-        org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .add(addButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(addTextButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(configButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(710, 710, 710)
-                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(aboutButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(helpButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .add(bodyPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(34, 34, 34)
-                        .add(tableTopSep)
-                        .add(907, 907, 907))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .add(topSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 903, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 0, Short.MAX_VALUE))))
-        );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainPanelLayout.createSequentialGroup()
-                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                            .add(addButton)
-                            .add(addTextButton)
-                            .add(configButton)))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .add(helpButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(aboutButton)))
-                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .add(105, 105, 105)
-                        .add(tableTopSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(topSep, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(2, 2, 2)
-                        .add(bodyPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+        treePanelLayout.setVerticalGroup(
+            treePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
         );
 
         jMenu1.setText("File");
@@ -220,40 +104,15 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 906, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .add(treePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+            .add(treePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void configButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_configButtonActionPerformed
-
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addButtonActionPerformed
-
-    private void addTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTextButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addTextButtonActionPerformed
-
-    private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_helpButtonActionPerformed
-
-    private void aboutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutButtonActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_aboutButtonActionPerformed
 
     private void helpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpMenuItemActionPerformed
         // TODO add your handling code here:
@@ -311,26 +170,17 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton aboutButton;
     protected javax.swing.JMenuItem aboutMenuItem;
-    protected javax.swing.JButton addButton;
     protected javax.swing.JMenuItem addFileMenuItem;
-    protected javax.swing.JButton addTextButton;
-    private javax.swing.JPanel bodyPanel;
-    protected javax.swing.JButton configButton;
     protected javax.swing.JMenuItem configMenuItem;
     protected javax.swing.JMenuItem exitMenuItem;
-    protected javax.swing.JButton helpButton;
     protected javax.swing.JMenu helpMenu;
     protected javax.swing.JMenuItem helpMenuItem;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    protected javax.swing.JPanel mainPanel;
-    private javax.swing.JLabel statusLabel;
-    protected javax.swing.JSeparator tableTopSep;
+    protected javax.swing.JScrollPane tableScrollPane;
     protected javax.swing.JMenuItem textMenuItem;
-    protected javax.swing.JSeparator topSep;
     protected javax.swing.JPanel treePanel;
     // End of variables declaration//GEN-END:variables
 	

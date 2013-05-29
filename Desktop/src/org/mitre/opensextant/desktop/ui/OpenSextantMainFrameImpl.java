@@ -1,5 +1,6 @@
 package org.mitre.opensextant.desktop.ui;
 
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -71,10 +72,10 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		// TODO: Probably key mnemonics after I add a button
 		this.addKeyListener(helpListen);
                
-		addButton.addKeyListener(helpListen);
-		addTextButton.addKeyListener(helpListen);
+//		addButton.addKeyListener(helpListen);
+//		addTextButton.addKeyListener(helpListen);
 //		this.cancelButton.addKeyListener(helpListen);
-		this.configButton.addKeyListener(helpListen);
+//		this.configButton.addKeyListener(helpListen);
 //		this.deleteButton.addKeyListener(helpListen);
 //		this.filterButton.addKeyListener(helpListen);
 //		this.rerunButton.addKeyListener(helpListen);
@@ -82,12 +83,18 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 //		this.sortCombo.addKeyListener(helpListen);
 
 		
-		mainPanel.setTransferHandler(new FileDropTransferHandler(apiHelper));
+		treePanel.setTransferHandler(new FileDropTransferHandler(apiHelper));
 		
 		table = new OSTreeTable();
-		JScrollPane scrollPane = new JScrollPane(table.create());
-		treePanel.add(scrollPane);
-
+                this.tableScrollPane.setViewportView(table.create());
+               // this.mainTreeTable = table.create();
+             //   this.tableScrollPane.add(table.create());
+             //   table = mainTable;
+                //tableScrollPane. table.create();
+//		JScrollPane scrollPane = new JScrollPane(table.create());
+//                scrollPane.setBackground(Color.red);
+//		treePanel.add(scrollPane);
+//                treePanel.revalidate();
 		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
