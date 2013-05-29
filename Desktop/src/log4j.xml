@@ -3,7 +3,7 @@
 <log4j:configuration debug="false">
 
     <appender name="default.file" class="org.apache.log4j.FileAppender">
-        <param name="file" value="OpenSextantDesktop.log" />
+        <param name="file" value="${user.home}/Documents/OpenSextant/OpenSextantDesktop.log" />
         <param name="append" value="false" />
         <param name="threshold" value="info" />
         <layout class="org.apache.log4j.PatternLayout">
