@@ -2,33 +2,63 @@
 ###### OpenSextant Desktop release 31May2013
 ######################################################
 URL                 Issue Type      Summary
-OPENSEXTANT-185     Improvement     Start SolrTextTagger first  -   When a user launches OSD, automatically start the SolrTextTagger as a background thread to minimize the time a user must wait for this to initialize
-OPENSEXTANT-187     Improvement     Drag/Drop files/folders to start OSD processing -   allow user to drag/drop files/folders onto the OSD GUI to start data processing
-OPENSEXTANT-188     Improvement     Implement Vertical Scrollbar    -   show a vertical scrollbar when the number of jobs is greater than the GUI size.
-OPENSEXTANT-190     Improvement     Output file add document name column    -   add the name of the document as an additional column in the output file
-OPENSEXTANT-192     Improvement     Remember last used folder location  -   In my previous job, I pointed to C:\users\hayt\desktop\files. When I click the + button to add a new job I’d like to start the file browser in that same folder
-OPENSEXTANT-193     Improvement     Remove CMD window   -   don't want a user to ever see this
-OPENSEXTANT-194     Improvement     Turn off debugging  -   self-explanatory. You're pushing a ton of information out to the DEBUG window. I understand that this is helpful for testing, but let's start removing this as areas stabilize.
-OPENSEXTANT-195     Improvement     Start ANNIE / Plugins as background threads (initialization/performance improvements)   -   self-explanatory, will need support from Dave.
-OPENSEXTANT-196     New Feature     Folder of Files Expanded Row Display    -   "Right now we provide a single row entry per job. modify to a folder that contains files
-OPENSEXTANT-197     Improvement     Progress Bar – Improve Updates  -   right now, it is rather useless as it never partially populates, but only fills in when the whole job is complete. We need to make this an accurate representation of the status. This might require modifications from Marc/Dave as well.
-OPENSEXTANT-198     Improvement     Click Anywhere on row entry to check/uncheck the job    -   "Currently one has to click right on the check box to check/uncheck, would like to be able to click anywhere on the row entry (other than the delete button obviously) to check/uncheck the row item 
-OPENSEXTANT-221     Improvement     Remove Sort Drop Down Menu  -   not needed once http://jira.mitre.org/browse/OPENSEXTANT-200 is implemented (sort by clicking on column names)
-OPENSEXTANT-223     Improvement     Fix OSD so it works
-OPENSEXTANT-226     Bug             Add Desktop build.xml to parent build as part of relase target  -   The OSD build needs to be tied into the main build.
-OPENSEXTANT-230     Bug             Allow configuring the number of threads used to execute OS jobs.        
-OPENSEXTANT-231     Bug             Remove inline buttons from children     
-OPENSEXTANT-233     Bug             Failed documents should be caught properly.     
-OPENSEXTANT-234     Bug             Right click on children needs to act against parent.        
-OPENSEXTANT-237     Bug             All cells are editable  -   Double clicking any cell on the new table allows them to be edited. This may make sense for parent titles, but not much else.
-OPENSEXTANT-240     Improvement     Select Multiple Files via Shift or Ctrl Key -   When in the open files dialogue box, allow the user to be able to select multiple files by selecting & holding the shift key or the ctrl key and clicking on the file selections
-OPENSEXTANT-247     Improvement     Add timing information for each job -   Please add timing information for the status bar. You might already be rolling this in via the bigger roll up/tree view effort, I don't know. But I would like to see time elapsed and estimate time remaining, similiar to the iTunes UI.
-OPENSEXTANT-251     Improvement     Main Table Add Duration Column  -   Add another column on the main window, call it something like Duration, that shows how long it took in MM:SS to process the document during the last run.
-OPENSEXTANT-257     Bug             Dragging a folder to OSD causes endless running -   I just dragged a folder of documents to OSD and I was surprised when out of 8 documents, it started reprocessing all of the documents and before I knew it it was on document 17 of 8 and just continuing to run.
-OPENSEXTANT-265     Improvement     Replace circles with file format icons in main panel    -   currently there are small circles next to the title of the file. Replace these with icons of the appropriate file format such as one finds in windows explorer for pdf, doc, docx, txt, etc file types
-OPENSEXTANT-266     Improvement     Change document file name to include filename extension (.pdf, .docx, ...)      
-OPENSEXTANT-267     Bug             Emply tmp folder (temp files + outputs) when done processing        
-OPENSEXTANT-273     Improvement     Improve level of precision for "Info" column    -   For the "Info" column, need to increase the level of precision for files > 1MB. For example, a 2,843KB file appears as 2 MB, I would rather see it as: 2.776 MB
-OPENSEXTANT-278     Improvement     Run job as shp output, change output format to csv, rerun job - still produces shp output   -   should rerun job and output new format
-OPENSEXTANT-281     Improvement     After cancelling a job, re-run is grayed    -   when I start a job, then cancel it mid-stream, the re-run button is grayed out such that I can't rerun the job.
-OPENSEXTANT-282     Improvement     Cancelling job with shapefile output gives error (see desc) -   "2013-05-27 12:29:10,653 ERROR [ShapefileOutputStream] - Problem reifying data from stream 
+OPENSEXTANT-185		Improvement		Start SolrTextTagger first	-	When a user launches OSD, automatically start the SolrTextTagger as a background thread to minimize the time a user must wait for this to initialize
+OPENSEXTANT-187		Improvement		Drag/Drop files/folders to start OSD processing	-	allow user to drag/drop files/folders onto the OSD GUI to start data processing
+OPENSEXTANT-188		Improvement		Implement Vertical Scrollbar	-	show a vertical scrollbar when the number of jobs is greater than the GUI size.
+OPENSEXTANT-190		Improvement		Output file add document name column	-	add the name of the document as an additional column in the output file
+OPENSEXTANT-192		Improvement		Remember last used folder location	-	In my previous job, I pointed to C:\users\hayt\desktop\files. When I click the + button to add a new job I’d like to start the file browser in that same folder
+OPENSEXTANT-193		Improvement		Remove CMD window	-	don't want a user to ever see this
+OPENSEXTANT-194		Improvement		Turn off debugging	-	self-explanatory. You're pushing a ton of information out to the DEBUG window. I understand that this is helpful for testing, but let's start removing this as areas stabilize.
+OPENSEXTANT-195		Improvement		Start ANNIE / Plugins as background threads (initialization/performance improvements)	-	self-explanatory, will need support from Dave.
+OPENSEXTANT-196		New Feature		Folder of Files Expanded Row Display	-	"Right now we provide a single row entry per job. I would like to modify this such that if I give the client a folder that contains files 
+OPENSEXTANT-197		Improvement		Progress Bar – Improve Updates	-	right now, it is rather useless as it never partially populates, but only fills in when the whole job is complete. We need to make this an accurate representation of the status. This might require modifications from Marc/Dave as well.
+OPENSEXTANT-198		Improvement		Click Anywhere on row entry to check/uncheck the job	-	"Currently one has to click right on the check box to check/uncheck, would like to be able to click anywhere on the row entry (other than the delete button obviously) to check/uncheck the row item 
+OPENSEXTANT-200		Improvement		Sort rows by clicking on Column Title	-	hopefully obvious, sort by progress/etc. by clicking on that column title
+OPENSEXTANT-201		Improvement		Embeddable	-	This should be a no brainer and already done, but I want to ensure that we can call this whole UI from bigger java application.
+OPENSEXTANT-203		Improvement		Specify Solr data directory in config	-	"In config, specify directory of the Solr data.  I want to be able to specify a directory where just the gazetteer lives and then a separate directory where everything else lives. 
+OPENSEXTANT-221		Improvement		Remove Sort Drop Down Menu	-	not needed once http://jira.mitre.org/browse/OPENSEXTANT-200 is implemented (sort by clicking on column names)
+OPENSEXTANT-223		Improvement		Fix OSD so it works	
+OPENSEXTANT-226		Bug				Add Desktop build.xml to parent build as part of relase target	-	The OSD build needs to be tied into the main build.
+OPENSEXTANT-227		Bug				Make JFrame children resize with window resize.		
+OPENSEXTANT-228		Improvement		Have delete remove associated files		
+OPENSEXTANT-229		Bug				Use common file output naming function		
+OPENSEXTANT-230		Bug				Allow configuring the number of threads used to execute OS jobs.		
+OPENSEXTANT-231		Bug				Remove inline buttons from children		
+OPENSEXTANT-232		Bug				Re-add prompts to cancel and delete buttons		
+OPENSEXTANT-233		Bug				Failed documents should be caught properly.		
+OPENSEXTANT-234		Bug				Right click on children needs to act against parent.		
+OPENSEXTANT-237		Bug				All cells are editable	-	Double clicking any cell on the new table allows them to be edited. This may make sense for parent titles, but not much else.
+OPENSEXTANT-240		improvements	Select Multiple Files via Shift or Ctrl Key	-	When in the open files dialogue box, allow the user to be able to select multiple files by selecting & holding the shift key or the ctrl key and clicking on the file selections
+OPENSEXTANT-242		improvements	Add matching before/after text as column	-	add an additional column in the output formats that includes the before/after text, say 100 characters before and 100 characters after. I thought we already had this in place, but it appears to be missing at least from the csv output
+OPENSEXTANT-244		improvements	fix output filepath value	-	"the output filepath value is: /C:/tmp/opensextant/files/nk4.pdf.txt  however the input file is located at: c:\users\hayt\desktop\files\nk4.pdf
+OPENSEXTANT-245		improvements	Reorder output columns (minor nit pick...)	-	"Let's reorder these columns to be more useful to analysts.
+OPENSEXTANT-246		improvements	Recolor progress bar from blue to green	-	right now the progress bar is the same color as the row highlighting color which doesn't look good aesthetically. Let's change the progress bar to green.
+OPENSEXTANT-247		improvements	Add timing information for each job	-	Please add timing information for the status bar. You might already be rolling this in via the bigger roll up/tree view effort, I don't know. But I would like to see time elapsed and estimate time remaining, similiar to the iTunes UI.
+OPENSEXTANT-248		improvements	Add date/time stamp to output filename	-	"right now, if I process a document twice, the second output just overwrites the first output. 
+OPENSEXTANT-249		Bug				Opening same file consecutively throws an error	-	"When I re-open and run the same file twice, an error is thrown, see the enclosed screen shot. However the log does not show any error. The log is enclosed as well. 
+OPENSEXTANT-250		improvements	Tooltip display for Configuration Settings	-	"For each of the configuration settings (Path, Format, Threads), can we add a tooltip when a user hovers over the name that gives a description as to what this setting does.
+OPENSEXTANT-251		improvements	Main Table Add Duration Column	-	Add another column on the main window, call it something like Duration, that shows how long it took in MM:SS to process the document during the last run.
+OPENSEXTANT-252		improvements	Tooltips for Delete, Reprocess, View Results Buttons per job	-	Add tooltips for the delete, reprocess, and view results buttons on each job row.
+OPENSEXTANT-253		Bug				Clicking ? help button doesn't do anything	-	what happened to the help web pages...please bring them back and make sure that they're accurate.
+OPENSEXTANT-254		improvements	Job Runs v. Document Runs	-	So I'm not sure about the Reprocess button and how it adds a new row entry. I guess I'm half expecting it to reprocess the same row entry and to see the older Complete: 100% progress bar reset to 0% and start processing again. Instead we create a new row. I guess we're showing a Runs view versus a Documents view. Is that the most intuitive I wonder?
+OPENSEXTANT-255		improvements	NullPointerException Error	-	still receiving an NPE error on nk5.pdf. Enclosed is the source document + log file.
+OPENSEXTANT-256		improvements	Re-add name to titlebar for application	-	Application titlebar is now blank except for the icon. Re-add and double check other windows have visible names
+OPENSEXTANT-257		Bug				Dragging a folder to OSD causes endless running	-	I just dragged a folder of documents to OSD and I was surprised when out of 8 documents, it started reprocessing all of the documents and before I knew it it was on document 17 of 8 and just continuing to run.
+OPENSEXTANT-259		improvements	Highlight Row, Click Delete button to delete job	-	self-explanatory, adding Delete button as shortcut for deleting a highlighted job (or jobs)
+OPENSEXTANT-265		improvements	Replace circles with file format icons in main panel	-	currently there are small circles next to the title of the file. Replace these with icons of the appropriate file format such as one finds in windows explorer for pdf, doc, docx, txt, etc file types
+OPENSEXTANT-266		improvements	Change document file name to include filename extension (.pdf, .docx, ...)		
+OPENSEXTANT-267		Bug				Emply tmp folder (temp files + outputs) when done processing		
+OPENSEXTANT-268		Bug				Main table does not expand vertically when window is stretched		
+OPENSEXTANT-269		improvements	Add output format(s) column	-	add another column called output formats that shows, in a comma-separated list, the output file formats (shp, csv, xls, gdb, ...)
+OPENSEXTANT-273		improvements	Improve level of precision for "Info" column	-	For the "Info" column, need to increase the level of precision for files > 1MB. For example, a 2,843KB file appears as 2 MB, I would rather see it as: 2.776 MB
+OPENSEXTANT-274		improvements	Change column "Info" to "File Size"	-	
+OPENSEXTANT-275		improvements	For the delete, re-run, view column, name it "Actions"	-	
+OPENSEXTANT-277		improvements	View results for shapefile gives error	-	"Error opening file: <PATH TO OUTPUT FOLDER>\nk3_20130527_123256.SHAPEFILE 
+OPENSEXTANT-278		improvements	Run job as shp output, change output format to csv, rerun job - still produces shp output	-	should rerun job and output new format
+OPENSEXTANT-280		improvements	Add About Button	-	Add an About Button, that gives name/version of software, short description, and a link to the github.com site
+OPENSEXTANT-281		improvements	After cancelling a job, re-run is grayed	-	when I start a job, then cancel it mid-stream, the re-run button is grayed out such that I can't rerun the job.
+OPENSEXTANT-282		improvements	Cancelling job with shapefile output gives error (see desc)	-	"2013-05-27 12:29:10,653 ERROR [ShapefileOutputStream] - Problem reifying data from stream 
+OPENSEXTANT-288		improvements	On Hover Job Row - Show Tooltip with Details	-	"the tooltip should show: Original file: full path + file name , Output result: full path + file name 
+OPENSEXTANT-289		improvements	Remove "Details" from Job Context Menu	-	this information should show up as a tooltip per a separate jira ticket (288)
+OPENSEXTANT-290		improvements	Change the column "Title" to "Filename"		
+OPENSEXTANT-294		improvements	Create a menu to replace top buttons	-	Top buttons are starting to seem cluttered, and additional functionality will probably make sense to have a general menu. Original design was geared towards web, but now it makes sense to follow some traditional desktop application UI standards.
