@@ -1,7 +1,6 @@
 /**
  * **************************************************************************
- *                          NOTICE
- * This software was produced for the U. S. Government under Contract No.
+ * NOTICE This software was produced for the U. S. Government under Contract No.
  * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
  * Software and Noncommercial Computer Software Documentation Clause
  * 252.227-7014 (JUN 1995)
@@ -15,32 +14,32 @@ import gate.Gate;
 import java.io.File;
 import org.mitre.opensextant.processing.ProcessingException;
 
-/** 
-Copyright 2009-2013 The MITRE Corporation.
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-
-
-* **************************************************************************
-*                          NOTICE
-* This software was produced for the U. S. Government under Contract No.
-* W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
-* Software and Noncommercial Computer Software Documentation Clause
-* 252.227-7014 (JUN 1995)
-*
+/**
+ * Copyright 2009-2013 The MITRE Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ *
+ * **************************************************************************
+ * NOTICE This software was produced for the U. S. Government under Contract No.
+ * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
+ * Software and Noncommercial Computer Software Documentation Clause
+ * 252.227-7014 (JUN 1995)
+ * 
 * (c) 2012 The MITRE Corporation. All Rights Reserved.
-* **************************************************************************
-**/
+ * **************************************************************************
+ *
+ */
 /**
  *
  * @author Marc C. Ubaldino, MITRE <ubaldino at mitre dot org>
@@ -56,7 +55,9 @@ public class Config {
     public static String DEFAULT_GAPP = "OpenSextant_Solr.gapp";
     public static String SELECTED_GAPP = null;
     public static String DEFAULT_TEMP = "/tmp";
-    /** */
+    /**
+     *
+     */
     public static String RUNTIME_GAPP_PATH = null;
 
     public Config(boolean notdefault) throws ProcessingException {
@@ -68,20 +69,34 @@ public class Config {
                 + "\n\n You can have only one 'GATE' configuration per JVM -- it is global in nature");
     }
 
-    /** Default configuration given OPSXT_HOME 
+    /**
+     * Default configuration given OPSXT_HOME
      */
     public Config() throws ProcessingException {
-        /**  As of Feb 2013, this is what worked:
-         <jvmArg value="-Dsolr.solr.home=${solr_home}"/>
-         <!-- GATE user config, plugins, etc.  -->
-         <jvmArg value="-Dgate.home=${gate_home}"/>
-         <jvmArg value="-Dgate.user.config=${gate_home}/user-gate.xml"/>
-         <jvmArg value="-Dgate.plugins.home=${gate_home}/plugins"/>        
+        /**
+         * As of Feb 2013, this is what worked:
+         * <jvmArg value="-Dsolr.solr.home=${solr_home}"/>
+         * <!-- GATE user config, plugins, etc. -->
+         * <jvmArg value="-Dgate.home=${gate_home}"/>
+         * <jvmArg value="-Dgate.user.config=${gate_home}/user-gate.xml"/>
+         * <jvmArg value="-Dgate.plugins.home=${gate_home}/plugins"/>
          */
-    	if (SOLR_HOME == null) SOLR_HOME = OPENSEXTANT_HOME + File.separator + ".." + File.separator + "opensextant-solr";
-        System.setProperty("solr.solr.home", SOLR_HOME);
+        if (SOLR_HOME == null) {
+            SOLR_HOME = System.getProperty("solr.solr.home");
+            if (SOLR_HOME == null) {
+                SOLR_HOME = OPENSEXTANT_HOME + File.separator + ".." + File.separator + "opensextant-solr";
+                try {
+                    SOLR_HOME = new File(SOLR_HOME).getCanonicalPath();
+                    System.setProperty("solr.solr.home", SOLR_HOME);
+                } catch (Exception ioerr) {
+                    throw new ProcessingException("Solr Home is erroneous", ioerr);
+                }
+            }
+        }
 
-        if (GATE_HOME == null) GATE_HOME = OPENSEXTANT_HOME + File.separator + "gate";
+        if (GATE_HOME == null) {
+            GATE_HOME = OPENSEXTANT_HOME + File.separator + "gate";
+        }
 
         GATE_PLUGINS = GATE_HOME + File.separator + "plugins";
 
@@ -96,8 +111,10 @@ public class Config {
         RUNTIME_GAPP_PATH = GATE_HOME + File.separator + SELECTED_GAPP /*DEFAULT_GAPP*/;
     }
 
-    /** Default configuration given OPSXT_HOME , overridden by using a different GAPP file;
-     * a different GAPP (GATE app pipeline) is effectively the only thing here that would change
+    /**
+     * Default configuration given OPSXT_HOME , overridden by using a different
+     * GAPP file; a different GAPP (GATE app pipeline) is effectively the only
+     * thing here that would change
      */
     public Config(String myGapp) throws ProcessingException {
         this();
@@ -107,15 +124,14 @@ public class Config {
         File gateHome = new File(GATE_HOME);
         RUNTIME_GAPP_PATH = gateHome.getAbsolutePath() + File.separator + SELECTED_GAPP /* User defined GAPP */;
     }
-    
-    
     public static boolean platform_initialized = false;
 
-    /** Initialize your JVM once with this call.
-     *  subsequent calls should be shunted as the platform_initialized flag 
-     * should prevent Gate from being re-init'd.
-     * Other global resources should also be added here if they are one-time init.
-     * 
+    /**
+     * Initialize your JVM once with this call. subsequent calls should be
+     * shunted as the platform_initialized flag should prevent Gate from being
+     * re-init'd. Other global resources should also be added here if they are
+     * one-time init.
+     *
      */
     public static synchronized void initializePlatform() throws ProcessingException {
         if (platform_initialized) {
