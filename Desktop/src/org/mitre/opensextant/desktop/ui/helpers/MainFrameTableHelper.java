@@ -3,6 +3,7 @@ package org.mitre.opensextant.desktop.ui.helpers;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
@@ -48,10 +49,16 @@ public class MainFrameTableHelper {
 		File file = new File(row.getOutputLocation());
 		try {
 			Desktop.getDesktop().open(file);
-		} catch (Exception ex) {
-			log.error(ex.getMessage());
-			JOptionPane.showMessageDialog(frame, "Error opening file: " + row.getOutputLocation(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (IOException e) {
+			log.error(e.getMessage());
+			JOptionPane.showMessageDialog(frame, "Error opening file: " + row.getOutputLocation() + "\nYou may need to associate the file type with an application in your operating system.  Opening parent directory.", "Error", JOptionPane.ERROR_MESSAGE);
+			try {
+				Desktop.getDesktop().open(file.getParentFile());
+			} catch (IOException e1) {
+				JOptionPane.showMessageDialog(frame, "Error opening parent directory: " + file.getParentFile().getAbsolutePath() + ". Check the permissions of this directory.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
+
 	}
 	
 	public OpenSextantMainFrameImpl getMainFrame() {
