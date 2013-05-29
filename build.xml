@@ -16,6 +16,7 @@
     <!-- the release dir -->
     <property name="release.dir" location="./Release" />
     <property name="release.target" value="${release.dir}/OpenSextant-v${version}" />
+	<property name="release.zip.file" value="${release.dir}/OpenSextant-Release-v${version}.zip"/>
 
 
     <!--====================== Targets ============================-->
@@ -26,9 +27,8 @@
     
     <!-- clean all of the components -->
     <target name="clean" depends="setup">
-        <delete>
-            <fileset dir="${release.dir}" includes="**/*" />
-        </delete>
+        <delete dir="${release.target}"/>
+        <delete file="${release.zip.file}"/>
         
         <subant target="clean">
             <fileset dir="${commons.home}" includes="build.xml" />
@@ -70,36 +70,11 @@
 
         <!-- NOTE: compmiling OSD depends on a built release of OpenSextant Toolbox 
         -->
-        <subant target="compile">
+        <subant target="release" inheritall="true">
             <fileset dir="${desktop.home}" includes="build.xml" />
         </subant>
                 
-        <subant target="release">
-            <fileset dir="${desktop.home}" includes="build.xml" />
-        </subant>
-                
-        <copy todir="${release.target}">
-            <fileset dir="${desktop.home}/dist">
-                <include name="help/*" />
-            </fileset>
-        </copy>
-                
-        <!-- Grab OSD dependencies and build files TODO: Ivy or make use of dependencies.xml list of files-->
-        <copy todir="${release.target}/lib">
-            <fileset dir="${desktop.home}/lib">
-                <include name="*.jar" />
-            </fileset>
-        </copy>
-        <copy todir="${release.target}/lib" file="${desktop.home}/dist/OpenSextantDesktop-${version}.jar"/>
-
-        <copy todir="${release.target}/script">
-            <fileset dir="${desktop.home}/script">
-                <include name="*.*" />
-            </fileset>
-        </copy>
-                
-                
-        <zip destfile="${release.dir}/OpenSextant-Release-v${version}.zip" 
+        <zip destfile="${release.zip.file}" 
             basedir="${release.dir}" 
             includes="OpenSextant-v${version}/**" />
     </target>

@@ -11,6 +11,8 @@ import java.util.List;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
@@ -20,15 +22,20 @@ import org.slf4j.LoggerFactory;
 public class ConfigHelper {
 
 	private static Logger log = LoggerFactory.getLogger(ConfigFrame.class);
+	private static final String DATA_HOME = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "OpenSextant";
+	private static final String OUTPUT_HOME = DATA_HOME + File.separator + "output";
+	private static final String CONFIG_FILE = DATA_HOME + File.separator + "conf.properties";
+	private static final int CONFIG_VERSION = 1;
 
-	private static final String CONFIG_FILE = "./conf.properties";
 	private PropertiesConfiguration config = null;
+	
 
 	private String outType = "";
 	private String outLocation = "";
 	private String inLocation = "";
 	private String osHome = "";
 	private int numThreads = 1;
+	private int configVersion;
 
 	private List<PropertyChangeListener> listeners = new ArrayList<PropertyChangeListener>();
 
@@ -45,6 +52,9 @@ public class ConfigHelper {
 	
 	private ConfigHelper() {
 		try {
+			File dataHome = new File(OUTPUT_HOME);
+			if (!dataHome.exists()) dataHome.mkdirs();
+			
 			File settingsFile = new File(CONFIG_FILE);
 			if (!settingsFile.exists()) {
 				settingsFile.createNewFile();
@@ -74,6 +84,7 @@ public class ConfigHelper {
 			config.setProperty("gateHome", gateHome);
 			config.setProperty("solrHome", solrHome);
 			config.setProperty("numThreads", numThreads);
+			config.setProperty("configVersion", configVersion);
 			config.save();
 			fireUpdate();
 		} catch (ConfigurationException e) {
@@ -85,7 +96,7 @@ public class ConfigHelper {
 	
 	private void loadConfig() {
 		outType = config.getString("outType", "CSV");
-		outLocation = config.getString("outLocation", new File("output").getAbsolutePath());
+		outLocation = config.getString("outLocation", OUTPUT_HOME);
 		if (!(new File(outLocation).exists())) {
 			(new File(outLocation)).mkdir();
 		}
@@ -94,6 +105,7 @@ public class ConfigHelper {
 		gateHome = config.getString("gateHome", null);
 		solrHome = config.getString("solrHome", null);
 		numThreads = config.getInt("numThreads", 1);
+		configVersion = config.getInt("configVersion", CONFIG_VERSION);
         }
         
         public void loadRows(ApiHelper apiHelper, MainFrameTableHelper tableHelper) {
