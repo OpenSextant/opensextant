@@ -122,6 +122,8 @@ public class OSTreeTable {
 				final Dimension d = getSize();
 				final int x = (d.width - imageWidth) / 2;
 				final int y = (d.height - imageHeight) / 2;
+				g.setColor(Color.WHITE);
+				g.fillRect(0, 0, (int)d.getWidth(), (int)d.getHeight());
 				g.drawImage(image.getImage(), x, y, null, null);
 				super.paint(g);
 			}
@@ -260,7 +262,7 @@ public class OSTreeTable {
 					OSRow thisRow = (OSRow) node.getUserObject();
 					setText(thisRow.getTitle());
 
-					if (thisRow.getInputFile() != null && thisRow.isChild()) {
+					if (thisRow.getInputFile() != null && !thisRow.hasChildren()) {
 						setIcon(OpenSextantMainFrameImpl.getIconForExtension(thisRow.getInputFile()));
 					}
 				}
