@@ -5,3 +5,5 @@ build.properties
 /lib/opensextant-commons.jar
 /lib/opensextant-xponents-1.6.jar
 /lib/xtext-1.0.jar
+classes
+doc/javadoc
