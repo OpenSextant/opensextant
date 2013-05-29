@@ -53,11 +53,11 @@ public class OSRow implements Comparable<OSRow> {
 		try {
 			getAllowedFileTypes();
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Error getting allowed file types, OpenSextant cannot continue.", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Error getting allowed file types, OpenSextant cannot continue.", "Error",
+					JOptionPane.ERROR_MESSAGE);
 			System.exit(1);
 		}
 	}
-
 
 	private String title;
 	private String id;
@@ -152,12 +152,12 @@ public class OSRow implements Comparable<OSRow> {
 
 		this.tableHelper = tableHelper;
 	}
-	
+
 	private static String[] getAllowedFileTypes() throws IOException {
 		if (fileTypes == null) {
 			XText converter = new XText();
 			converter.setup();
-			Set<String> fileTypeSet = converter.getFileTypes(); 
+			Set<String> fileTypeSet = converter.getFileTypes();
 			fileTypes = fileTypeSet.toArray(new String[fileTypeSet.size()]);
 		}
 		return fileTypes;
@@ -178,22 +178,27 @@ public class OSRow implements Comparable<OSRow> {
 	private void updateOutputFileName() {
 		String dateStr = new SimpleDateFormat("_yyyyMMdd_hhmmss").format(this.startTime);
 		Parameters p = new Parameters();
-		String outputTypePrime = outputType;
-		if ("KML".equals(outputType))
-			outputTypePrime = "KMZ";
+
 		p.setJobName(title + dateStr);
 		this.outputLocation = baseOutputLocation + File.separator + p.getJobName();
 
 		if ((new File(this.outputLocation)).exists())
-			this.outputLocation += "(" + counter + ")" ;
-		
-		this.outputLocation += "." + outputTypePrime;
+			this.outputLocation += "(" + counter + ")";
+
+		if ("KML".equals(outputType))
+			this.outputLocation += ".kmz";
+		else if ("SHAPEFILE".equals(outputType)) {
+			this.outputLocation += "_shp";
+		} else {
+			this.outputLocation += "." + outputType.toLowerCase();
+		}
+
 	}
 
-        public String getInfo(){
-            return "<html>Original file: "+ this.inputFile.getAbsolutePath() + "<BR/>Output file: " + this.outputLocation + "</html>";
-        }
-        
+	public String getInfo() {
+		return "<html>Original file: " + this.inputFile.getAbsolutePath() + "<BR/>Output file: " + this.outputLocation + "</html>";
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -242,10 +247,9 @@ public class OSRow implements Comparable<OSRow> {
 		if (percent < 0)
 			percentString = "";
 
-
 		if ((this.status != STATUS.ERROR && this.status != STATUS.CANCELED) || force) {
 			this.percent = percent;
-			
+
 			if (this.status != STATUS.PROCESSING && status == STATUS.PROCESSING) {
 				executionStartTime = new Date();
 				class DurationUpdateTask extends TimerTask {
@@ -264,7 +268,6 @@ public class OSRow implements Comparable<OSRow> {
 			progressBarContainer.getProgressBar().setValue(percent);
 			progressBarContainer.getProgressBar().setString(status.getTitle() + percentString);
 		}
-		
 
 		if (!isRunning()) {
 
@@ -316,10 +319,10 @@ public class OSRow implements Comparable<OSRow> {
 	public String getOutputType() {
 		return outputType;
 	}
+
 	public void setOutputType(String outType) {
 		this.outputType = outType;
 	}
-
 
 	public String getId() {
 		return id;
@@ -397,12 +400,12 @@ public class OSRow implements Comparable<OSRow> {
 
 		// update output type
 		this.setOutputType(ConfigHelper.getInstance().getOutType());
-		
+
 		this.startTime = new Date();
 
 		this.updateOutputFileName();
 		this.deleteFile();
-		
+
 		this.executionStartTime = null;
 		this.endTime = null;
 		this.durationContainer.reset();
@@ -413,15 +416,14 @@ public class OSRow implements Comparable<OSRow> {
 			r.executionStartTime = null;
 			r.endTime = null;
 			r.durationContainer.reset();
-			
+
 		}
-		
+
 		buttonContainer.getReRunButton().setEnabled(false);
 		buttonContainer.getViewResultsButton().setEnabled(false);
 
 		tableHelper.getMainFrame().getApiHelper().reRun(this);
 	}
-
 
 	@Override
 	public int hashCode() {
