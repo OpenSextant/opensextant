@@ -40,6 +40,16 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         statusLabel = new javax.swing.JLabel();
         aboutButton = new javax.swing.JButton();
         helpButton = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        addFileMenuItem = new javax.swing.JMenuItem();
+        textMenuItem = new javax.swing.JMenuItem();
+        configMenuItem = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        exitMenuItem = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        helpMenuItem = new javax.swing.JMenuItem();
+        aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OpenSextant Desktop");
@@ -77,20 +87,18 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         bodyPanelLayout.setHorizontalGroup(
             bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(bodyPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(bodyPanelLayout.createSequentialGroup()
-                        .add(statusLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-                        .add(43, 43, 43))
-                    .add(treePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .add(treePanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(statusLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                .add(55, 55, 55))
         );
         bodyPanelLayout.setVerticalGroup(
             bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(bodyPanelLayout.createSequentialGroup()
-                .add(treePanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(statusLabel)
+                .add(23, 23, 23)
+                .add(bodyPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(treePanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 330, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(statusLabel))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -164,6 +172,50 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jMenu1.setText("File");
+
+        addFileMenuItem.setText("Add File(s)");
+        jMenu1.add(addFileMenuItem);
+
+        textMenuItem.setText("Text Entry");
+        jMenu1.add(textMenuItem);
+
+        configMenuItem.setText("Configuration");
+        jMenu1.add(configMenuItem);
+        jMenu1.add(jSeparator1);
+
+        exitMenuItem.setText("Exit");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(exitMenuItem);
+
+        jMenuBar1.add(jMenu1);
+
+        helpMenu.setText("Help");
+
+        helpMenuItem.setText("Help");
+        helpMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(helpMenuItem);
+
+        aboutMenuItem.setText("About");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(aboutMenuItem);
+
+        jMenuBar1.add(helpMenu);
+
+        setJMenuBar(jMenuBar1);
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,7 +228,7 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(mainPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,10 +252,22 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
 
     private void aboutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutButtonActionPerformed
         // TODO add your handling code here:
+
+    }//GEN-LAST:event_aboutButtonActionPerformed
+
+    private void helpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpMenuItemActionPerformed
+
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         JFrame about = new AboutFrame();
         about.setLocationByPlatform(true);
         about.setVisible(true);
-    }//GEN-LAST:event_aboutButtonActionPerformed
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,14 +312,24 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton aboutButton;
+    protected javax.swing.JMenuItem aboutMenuItem;
     protected javax.swing.JButton addButton;
+    protected javax.swing.JMenuItem addFileMenuItem;
     protected javax.swing.JButton addTextButton;
     private javax.swing.JPanel bodyPanel;
     protected javax.swing.JButton configButton;
+    protected javax.swing.JMenuItem configMenuItem;
+    protected javax.swing.JMenuItem exitMenuItem;
     protected javax.swing.JButton helpButton;
+    protected javax.swing.JMenu helpMenu;
+    protected javax.swing.JMenuItem helpMenuItem;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     protected javax.swing.JPanel mainPanel;
     private javax.swing.JLabel statusLabel;
     protected javax.swing.JSeparator tableTopSep;
+    protected javax.swing.JMenuItem textMenuItem;
     protected javax.swing.JSeparator topSep;
     protected javax.swing.JPanel treePanel;
     // End of variables declaration//GEN-END:variables

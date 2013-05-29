@@ -70,6 +70,7 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		// TODO: Is there really no better way to do this?
 		// TODO: Probably key mnemonics after I add a button
 		this.addKeyListener(helpListen);
+               
 		addButton.addKeyListener(helpListen);
 		addTextButton.addKeyListener(helpListen);
 //		this.cancelButton.addKeyListener(helpListen);
@@ -105,9 +106,9 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 //            }
 //        });
 //
-        configButton.addActionListener(new java.awt.event.ActionListener() {
+        configMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                configButtonActionPerformed(evt);
+                configMenuItemActionPerformed(evt);
             }
         });
 //
@@ -141,21 +142,21 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 //            }
 //        });
 
-        addButton.addActionListener(new java.awt.event.ActionListener() {
+        this.addFileMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	parent.addButtonActionPerformed(evt);
+            	parent.addFileMenuItemActionPerformed(evt);
             }
         });
 
-        addTextButton.addActionListener(new java.awt.event.ActionListener() {
+        textMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	parent.addTextButtonActionPerformed(evt);
+            	parent.textMenuItemActionPerformed(evt);
             }
         });
 
-        helpButton.addActionListener(new java.awt.event.ActionListener() {
+        this.helpMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	parent.helpButtonActionPerformed(evt);
+            	parent.helpMenuItemActionPerformed(evt);
             }
         });
 		
@@ -183,14 +184,14 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 //		tableHelper.updateActionVisibility();
 //	}
 
-	private void configButtonActionPerformed(java.awt.event.ActionEvent evt) {
+	private void configMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JFrame frame = new ConfigFrameImpl();
 		frame.pack();
 		frame.setVisible(true);
 	}
 
-	private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {
+	private void addFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = TikaMimeTypes.makeFileBrowser();
 		chooser.setFileFilter(filter);
@@ -217,13 +218,13 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 	
 
 
-	private void addTextButtonActionPerformed(java.awt.event.ActionEvent evt) {
+	private void textMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JFrame frame = new TextEntryFrame(apiHelper);
 		frame.setVisible(true);
 	}
 
-	private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+	private void helpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		String path = System.getProperty("user.dir") + HelpKeyListener.HELP_FILE;
 
 		try {
@@ -237,24 +238,24 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 //		tableHelper.viewResult();
 //	}
 	
-	public javax.swing.JButton getAddTextButton() {
+/*	public javax.swing.JButton getAddTextButton() {
 		return addTextButton;
-	}
+	}*/
 //	public javax.swing.JButton getCancelButton() {
 //		return cancelButton;
 //	}
-	public javax.swing.JButton getConfigButton() {
+/*	public javax.swing.JButton getConfigButton() {
 		return configButton;
-	}
+	}*/
 //	public javax.swing.JButton getDeleteButton() {
 //		return deleteButton;
 //	}
 //	public javax.swing.JButton getFilterButton() {
 //		return filterButton;
 //	}
-	public javax.swing.JButton getHelpButton() {
+/*	public javax.swing.JButton getHelpButton() {
 		return helpButton;
-	}
+	}*/
 //	public javax.swing.JButton getRerunButton() {
 //		return rerunButton;
 //	}
