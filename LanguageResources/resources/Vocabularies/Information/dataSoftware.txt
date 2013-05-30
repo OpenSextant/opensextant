@@ -2,8 +2,6 @@ audio tape
 audio clip
 audio tapes
 audio clips
-blog
-blogs
 chat room
 chat rooms
 compact disc

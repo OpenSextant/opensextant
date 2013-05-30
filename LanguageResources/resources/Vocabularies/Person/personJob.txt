@@ -1180,8 +1180,6 @@ molvis
 molawis
 mourner
 mourners
-mr
-mr.
 mud digger
 mugwump
 mule driver
@@ -2299,3 +2297,16 @@ holidaymaker
 holidaymakers
 portfolio manager
 portfolio managers
+owner
+owners
+resident
+residents
+sherriff
+sheriff
+sherrif
+sherriffs
+sheriffs
+sherrifs
+shareholder
+shareholders
+

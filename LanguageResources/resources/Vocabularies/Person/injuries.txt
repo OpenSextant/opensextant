@@ -10,7 +10,6 @@ fracture
 fractures
 broken limb
 broken limbs
-heart attack
 hemorrhage
 scarring
 blindness

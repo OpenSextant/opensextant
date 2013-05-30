@@ -22,3 +22,5 @@ infant
 infants
 guy
 guys
+citizen
+citizens
