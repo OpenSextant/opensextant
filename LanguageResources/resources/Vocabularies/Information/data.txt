@@ -118,7 +118,5 @@ word
 words
 sentence
 sentences
-paragraph
-paragraphs
 clue
 clues

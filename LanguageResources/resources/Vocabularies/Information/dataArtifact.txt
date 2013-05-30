@@ -6,7 +6,6 @@ affidavit
 affidavits
 article
 articles
-artifact
 atm card
 atm cards
 blueprint
@@ -17,6 +16,10 @@ bulletin
 bulletins
 certificate
 certificates
+catalog
+catalogue
+catalogs
+catalogues
 chart
 charts
 copyrighted material
@@ -125,8 +128,6 @@ thesis
 theses
 transcript
 transcripts
-url
-urls
 video
 video footage
 videos
@@ -136,12 +137,8 @@ visa
 visas
 web page
 web pages
-web site
-web sites
 webpage
 webpages
-website
-websites
 weekly report
 weekly reports
 white paper

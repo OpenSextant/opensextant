@@ -21,7 +21,6 @@ fuel
 electricity
 metal
 metals
-steel
 propellant
 pollutant
 pollutants

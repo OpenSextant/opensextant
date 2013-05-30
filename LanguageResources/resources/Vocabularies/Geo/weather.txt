@@ -31,8 +31,6 @@ droughts
 snowpack
 waves
 surf
-tsnaumi
-tsunami
 precipitation
 blizzard
 heatwave
