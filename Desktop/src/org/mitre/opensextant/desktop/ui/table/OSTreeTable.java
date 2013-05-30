@@ -422,7 +422,12 @@ public class OSTreeTable {
 				removeRow(row);
 			}
 
-			treeTable.repaint();
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					treeTable.repaint();
+				}
+			});			
 		}
 	}
 
