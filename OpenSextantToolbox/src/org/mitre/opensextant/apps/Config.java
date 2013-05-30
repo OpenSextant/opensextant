@@ -70,7 +70,15 @@ public class Config {
     }
 
     /**
-     * Default configuration given OPSXT_HOME
+     * Default configuration given OPSXT_HOME. SOLR_HOME behavior:
+     * <pre>
+     * * if JVM arg solr.solr.home is set, assume caller wants to use that path
+     * * if SOLR_HOME var is set by caller, use it.
+     * * if SOLR_HOME is null, prepare a relative path $opensextant.home/../opensextant-solr/  as the path,
+     *       set the resulting path as the JVM arg,
+     * 
+     * In all cases the JVM arg solr.solr.home should be set to a valid path.
+     * </pre>
      */
     public Config() throws ProcessingException {
         /**
@@ -92,6 +100,8 @@ public class Config {
                     throw new ProcessingException("Solr Home is erroneous", ioerr);
                 }
             }
+        } else {
+            System.setProperty("solr.solr.home", SOLR_HOME);
         }
 
         if (GATE_HOME == null) {

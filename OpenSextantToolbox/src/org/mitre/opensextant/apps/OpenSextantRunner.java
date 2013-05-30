@@ -259,6 +259,10 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
      * as buffers (not URLs).   This will certainly result in memory bloat, although
      * it might be faster.
      * 
+     * Tips:
+     *     Add features to the GATE Document object, e.g., paths, IDs, etc. 
+     *        that are givens or things that GATE/Opsx pipeline cannot determine
+     *     Such features will be consumed by downstream processing
      */
     @Override
     public void handleConversion(ConvertedDocument txtdoc) {
@@ -281,6 +285,8 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
             }
             
             // Preserve original document file path in final output.
+            /** GATE pipeline:  "filepath" feature records path to original 
+             */
             doc.getFeatures().put(OpenSextantSchema.FILEPATH_FLD, txtdoc.filepath);
 
             this.corpus.add(doc);   // _docs.add(doc);

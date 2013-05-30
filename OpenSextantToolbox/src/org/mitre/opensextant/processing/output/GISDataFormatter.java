@@ -370,22 +370,29 @@ public abstract class GISDataFormatter extends AbstractFormatter {
     /**
      * Returns a list of Features corresponding to place and geocoord
      * annotations. The name of each Feature is the text mention.
-     *
+     *  <pre>
+     * Result/output processing includes 
+     * (a) digesting all Annotations from Document
+     *     which are consumed here by GeocodingResult. 
+     *     (GeocodingResult geoAnnotations).retrieveGeocodes(doc);
+     * 
+     * (b) digesting all optional Features provided on the Document
+     *     val = (Object) doc.getFeatures().get("key")
+     * 
+     * </pre>
      * @param doc
      */
     @Override
     public void writeRowsFor(Document doc) {
 
-
-
         // Is there a doc ID?
-        GeocodingResult annotations = new GeocodingResult(doc.getName());
-        annotations.recordFile = (String) doc.getFeatures().get(OpenSextantSchema.FILEPATH_FLD);
-        annotations.recordTextFile = doc.getSourceUrl().getPath();
-        log.info("Writing output for " + annotations.recordFile);
+        GeocodingResult geoAnnotations = new GeocodingResult(doc.getName());
+        geoAnnotations.recordFile = (String) doc.getFeatures().get(OpenSextantSchema.FILEPATH_FLD);
+        geoAnnotations.recordTextFile = doc.getSourceUrl().getPath();
+        log.info("Writing output for " + geoAnnotations.recordFile);
 
         try {
-            annotations.retrieveGeocodes(doc);
+            geoAnnotations.retrieveGeocodes(doc);
 
             // Support for foldered output -- KML, KMZ, others?
             if (this.groupByDocument) {
@@ -400,7 +407,7 @@ public abstract class GISDataFormatter extends AbstractFormatter {
                 this.os.write(containerStart);
             }
 
-            writeGeocodingResult(annotations);
+            writeGeocodingResult(geoAnnotations);
 
             if (this.groupByDocument) {
                 ContainerEnd end = new ContainerEnd();
