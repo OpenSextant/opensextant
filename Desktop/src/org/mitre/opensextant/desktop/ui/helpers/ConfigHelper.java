@@ -25,9 +25,11 @@ public class ConfigHelper {
 	private static final String DATA_HOME = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "OpenSextant";
 	private static final String OUTPUT_HOME = DATA_HOME + File.separator + "output";
 	private static final String CONFIG_FILE = DATA_HOME + File.separator + "conf.properties";
+        private static final String JOBS_FILE = DATA_HOME + File.separator + "jobs.properties";
 	private static final int CONFIG_VERSION = 1;
 
 	private PropertiesConfiguration config = null;
+	private PropertiesConfiguration jobs = null;
 	
 
 	private String outType = "";
@@ -60,6 +62,10 @@ public class ConfigHelper {
 				settingsFile.createNewFile();
 			}
 			config = new PropertiesConfiguration(CONFIG_FILE);
+                        
+                        settingsFile = new File(JOBS_FILE);
+			if (!settingsFile.exists()) settingsFile.createNewFile();
+			jobs = new PropertiesConfiguration(JOBS_FILE);
 		} catch (ConfigurationException ex) {
 			log.error(ex.getMessage());
 		} catch (IOException e) {
@@ -70,7 +76,7 @@ public class ConfigHelper {
 	}
         
         public synchronized void updateRow(String id, String[] rowValues) {
-           config.setProperty("rows." + id, rowValues);
+           jobs.setProperty("rows." + id, rowValues);
            saveSettings();
         }
         
@@ -112,7 +118,7 @@ public class ConfigHelper {
              /*   Iterator<String> i = config.getKeys("rows");
                 String rowName = "";
                 while( i.hasNext()) {
-                    String[] rowValues = config.getStringArray(i.next());
+                    String[] rowValues = jobs.getStringArray(i.next());
                     String status = rowValues[4];
                     
                     // If we were waiting to run or hadn't run yet, redo the job from the start
