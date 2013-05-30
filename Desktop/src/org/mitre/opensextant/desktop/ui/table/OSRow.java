@@ -142,7 +142,7 @@ public class OSRow implements Comparable<OSRow> {
 			this.status = STATUS.CANCELED;
 		else
 			this.status = STATUS.ERROR;
-
+		
 		this.baseOutputLocation = rowValues[3];
 		this.outputType = rowValues[4];
 		this.inputFile = new File(rowValues[2]);
@@ -181,9 +181,10 @@ public class OSRow implements Comparable<OSRow> {
 
 		p.setJobName(title + dateStr);
 		this.outputLocation = baseOutputLocation + File.separator + p.getJobName();
-
-		if ((new File(this.outputLocation)).exists())
-			this.outputLocation += "(" + counter + ")";
+		
+//		if multiple files are processing at the same time the output location may not be there yet
+//		if ((new File(this.outputLocation)).exists())
+		this.outputLocation += "_" + counter;
 
 		if ("KML".equals(outputType))
 			this.outputLocation += ".kmz";

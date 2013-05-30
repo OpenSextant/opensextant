@@ -3,8 +3,12 @@ package org.mitre.opensextant.desktop.executor;
 import org.mitre.opensextant.desktop.executor.opensextant.ext.OSDOpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OpenSextantWorker implements Runnable {
+
+	private static Logger log = LoggerFactory.getLogger(OSRow.class);
 
 	private OSRow row;
 	private OpenSextantMainFrameImpl parent;
@@ -56,8 +60,8 @@ public class OpenSextantWorker implements Runnable {
 				runner.cancelExecution();
 			row.setProgress(-1, OSRow.STATUS.CANCELED);
 		} catch (Exception e) {
+			log.error("error processing file", e);
 			row.setProgress(-1, OSRow.STATUS.ERROR);
-			e.printStackTrace();
 		}
 
 	}

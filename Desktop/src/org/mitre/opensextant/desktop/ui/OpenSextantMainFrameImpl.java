@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.desktop.ui.forms.AboutFrame;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
@@ -71,12 +74,24 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		
 		treePanel.setTransferHandler(new FileDropTransferHandler(apiHelper));
 		
-		table = new OSTreeTable();
+		table = new OSTreeTable(this);
                 this.tableScrollPane.setViewportView(table.create());
 	
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
                 ConfigHelper.getInstance().loadRows(apiHelper, getTableHelper());
+                
+        this.addWindowListener(new WindowListener() {
+			@Override public void windowOpened(WindowEvent e) {}
+			@Override public void windowIconified(WindowEvent e) {}
+			@Override public void windowDeiconified(WindowEvent e) {}
+			@Override public void windowDeactivated(WindowEvent e) {}
+			@Override public void windowClosing(WindowEvent e) {}
+			@Override public void windowClosed(WindowEvent e) {
+				FileUtils.deleteQuietly(new File("." + File.separator + "tmp"));
+			}
+			@Override public void windowActivated(WindowEvent e) {}
+		});
 	}
 
 	public OSTreeTable getTable() {

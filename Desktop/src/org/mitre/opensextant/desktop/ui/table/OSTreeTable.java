@@ -62,32 +62,11 @@ public class OSTreeTable {
 	private static final String ICON_LOCATION = "/org/mitre/opensextant/desktop/icons/";
 	private JXTreeTable treeTable;
 	private final OSTreeTableModel treeTableModel = generateTestModel();
+	private OpenSextantMainFrameImpl frame;
 	private static Logger log = LoggerFactory.getLogger(OSTreeTable.class);
 
-	public OSTreeTable() {
-	}
-
-	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		JFrame f = new JFrame("Example of an editable JXTreeTable");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JToolBar tb = new JToolBar();
-		f.add(tb, BorderLayout.NORTH);
-		// tb.add(new InsertNodeAction());
-		// tb.add(new DeleteNodeAction());
-
-		OSTreeTable test = new OSTreeTable();
-		JXTreeTable table = test.create();
-
-		f.add(new JScrollPane(table));
-		f.setSize(600, 300);
-		f.setVisible(true);
-
+	public OSTreeTable(OpenSextantMainFrameImpl frame) {
+		this.frame = frame;
 	}
 
 	public JXTreeTable create() {
@@ -422,10 +401,15 @@ public class OSTreeTable {
 				removeRow(row);
 			}
 
+			treeTable.repaint();
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					treeTable.repaint();
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) { }
+					frame.revalidate();
+					frame.repaint();
 				}
 			});			
 		}
