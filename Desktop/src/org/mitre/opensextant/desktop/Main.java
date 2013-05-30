@@ -15,6 +15,7 @@ import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.SelectOSHomeFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
+import org.mitre.opensextant.desktop.ui.helpers.LookAndFeelHelper;
 import org.mitre.opensextant.desktop.util.Initialize;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,15 +27,16 @@ public class Main {
 	public static void main(String[] args) {
 
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
-			// Nimbus look and feel
-			/*
-			 * for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
-			 * { if ("Nimbus".equals(info.getName())) {
-			 * UIManager.setLookAndFeel(info.getClassName()); break; } }
-			 */
-		} catch (Exception e) {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		    LookAndFeelHelper.configureOptionPane();
+                    // Nimbus look and feel
+                    /* for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                        if ("Nimbus".equals(info.getName())) {
+                            UIManager.setLookAndFeel(info.getClassName());
+                            break;
+                        }
+                    }*/
+                } catch (Exception e) {
 			e.printStackTrace();
 		}
 
