@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.mitre.opensextant.desktop.ui.table.OSRow;
+import org.mitre.opensextant.processing.OpenSextantSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +38,7 @@ public class OSDCorpusControllerWrapper implements CorpusController {
 			public void progressChanged(int progress) {
 				int calculatedProgress = progress;
 				if (row.hasChildren()) {
-					File docFile = new File((String)wrapped.getDocument().getFeatures().get(OSDOpenSextantRunner.ORIGINAL_FILE));
+					File docFile = new File((String)wrapped.getDocument().getFeatures().get(OpenSextantSchema.FILEPATH_FLD));
 					OSRow child = row.getChildForInputFile(docFile);
 					
 					if (child.getPercent() != progress) {
@@ -76,7 +77,7 @@ public class OSDCorpusControllerWrapper implements CorpusController {
 			wrapped.execute();
 			
 			if (row.hasChildren()) {
-				File docFile = new File((String)doc.getFeatures().get(OSDOpenSextantRunner.ORIGINAL_FILE));
+				File docFile = new File((String)doc.getFeatures().get(OpenSextantSchema.FILEPATH_FLD));
 				OSRow child = row.getChildForInputFile(docFile);
 				child.setProgress(100, OSRow.STATUS.COMPLETE);
 			}

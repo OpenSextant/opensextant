@@ -11,6 +11,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.apps.OpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
+import org.mitre.opensextant.processing.OpenSextantSchema;
 import org.mitre.opensextant.processing.ProcessingException;
 import org.mitre.xtext.ConvertedDocument;
 import org.mitre.xtext.XText;
@@ -19,7 +20,6 @@ import org.slf4j.LoggerFactory;
 
 public class OSDOpenSextantRunner extends OpenSextantRunner {
 
-	public static final String ORIGINAL_FILE="originalFile";
 	private static Logger log = LoggerFactory.getLogger(OSDOpenSextantRunner.class);
 
 	private OSRow row;
@@ -84,6 +84,8 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
                 doc = Factory.newDocument(txtdoc.payload);
             }
 
+            doc.getFeatures().put(OpenSextantSchema.FILEPATH_FLD, txtdoc.filepath);
+            
             this.corpus.add(doc);   // _docs.add(doc);
 
         } catch (Exception rie) {
@@ -91,7 +93,6 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
             log.error("Unable to ingest file FILE=" + txtdoc.textpath, rie);
         }
 
-		corpus.get(corpus.size()-1).getFeatures().put(ORIGINAL_FILE, txtdoc.filepath);
 	}
 
 	public void cancelExecution() {
