@@ -204,7 +204,6 @@ hydrostatics
 hypnology
 ichnology
 ichthyology
-ideology
 immunology
 indology
 iranology
@@ -315,7 +314,6 @@ philosophy
 phlebology
 phonetics
 phonology
-photography
 photolithography
 phrenology
 phycology
@@ -389,7 +387,6 @@ syphilology
 tasseography
 taxology
 taxonomy
-technology
 teleology
 teratology
 terminology

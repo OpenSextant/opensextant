@@ -36,6 +36,8 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.event.CellEditorListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
@@ -163,6 +165,22 @@ public class OSTreeTable {
 		}
 		treeTable = new TooltipJXTreeTable(treeTableModel);
 
+                treeTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+                    public void valueChanged(ListSelectionEvent event) {
+                        for(int i = 0; i < treeTable.getRowCount(); i ++) {
+                            OSRow r = (OSRow)treeTable.getValueAt(i, OSTreeTableModel.TIMING);
+                            r.toggleDurationColor(false);    
+                        }
+                        int[] rows = treeTable.getSelectedRows();
+                        for(int rowId : rows) {
+                            OSRow r = (OSRow)treeTable.getValueAt(rowId, OSTreeTableModel.TIMING);
+                            r.toggleDurationColor(true);
+                        }
+                        OSRow r = (OSRow)treeTable.getValueAt(treeTable.getSelectedRow(), OSTreeTableModel.TIMING);
+                        
+                    }
+                });
+                
 		class SortIconTableHeaderRenderer extends JLabel implements TableCellRenderer {
 
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,
@@ -404,7 +422,12 @@ public class OSTreeTable {
 				removeRow(row);
 			}
 
-			treeTable.repaint();
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					treeTable.repaint();
+				}
+			});			
 		}
 	}
 

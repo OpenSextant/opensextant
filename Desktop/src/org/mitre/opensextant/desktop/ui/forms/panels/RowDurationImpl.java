@@ -1,5 +1,6 @@
 package org.mitre.opensextant.desktop.ui.forms.panels;
 
+import java.awt.Color;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +19,11 @@ public class RowDurationImpl extends RowDuration {
 		durationLabel.setText(" --");
 	}
 	
+        public void toggleColor(boolean isSelected){
+            if(isSelected) this.durationLabel.setForeground(Color.white);
+            else this.durationLabel.setForeground(Color.black);
+        }
+        
 	public void updateDuration(OSRow row) {
 		long updatedDuration = -1;
 		long estimatedDuration = -1;

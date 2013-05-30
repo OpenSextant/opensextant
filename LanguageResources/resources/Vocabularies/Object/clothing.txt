@@ -18,7 +18,6 @@ shoe
 shoes
 boots
 rubber boots
-handbag
 head gear
 robe
 robes

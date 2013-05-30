@@ -30,10 +30,6 @@ grand jury
 grievance
 grievances
 guilty plea
-immigration offense
-immigration offenses
-immigration violation
-immigration violations
 indictment
 indictments
 interrogation
@@ -85,3 +81,16 @@ incarcerations
 imprisonment
 imprisonments
 jail time
+prison sentence
+jail sentence
+prison sentences
+jail sentences
+sentencing
+life sentence
+life sentences
+suspended sentence
+suspended sentences
+criminal count
+criminal counts
+judicial hearing
+judicial hearings

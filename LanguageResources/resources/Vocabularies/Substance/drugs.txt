@@ -50,3 +50,5 @@ medication
 medications
 antidote
 antidotes
+ointment
+ointments

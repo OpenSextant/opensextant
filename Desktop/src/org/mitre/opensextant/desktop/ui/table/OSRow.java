@@ -238,6 +238,10 @@ public class OSRow implements Comparable<OSRow> {
 	public void setProgress(int percent, OSRow.STATUS status, int childrenCompleted) {
 		setProgress(percent, status, childrenCompleted, false);
 	}
+        
+        public void toggleDurationColor(boolean isSelected){
+            durationContainer.toggleColor(isSelected);
+        }
 
 	public void setProgress(int percent, OSRow.STATUS status, int childrenCompleted, boolean force) {
 		String percentString = ": " + percent + "%";
