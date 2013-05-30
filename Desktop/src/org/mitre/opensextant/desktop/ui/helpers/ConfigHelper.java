@@ -92,6 +92,7 @@ public class ConfigHelper {
 			config.setProperty("numThreads", numThreads);
 			config.setProperty("configVersion", configVersion);
 			config.save();
+                        jobs.save();
 			fireUpdate();
 		} catch (ConfigurationException e) {
 			log.error("Error saving settings", e);
@@ -115,7 +116,8 @@ public class ConfigHelper {
         }
         
         public void loadRows(ApiHelper apiHelper, MainFrameTableHelper tableHelper) {
-             /*   Iterator<String> i = config.getKeys("rows");
+             if(true) return;  
+             Iterator<String> i = jobs.getKeys("rows");
                 String rowName = "";
                 while( i.hasNext()) {
                     String[] rowValues = jobs.getStringArray(i.next());
@@ -125,10 +127,14 @@ public class ConfigHelper {
                     if("INITIALIZING".equals(status) || "QUEUED".equals(status) || "PROCESSING".equals(status)) {
                       apiHelper.processFile(rowValues[1]);
                     } else {
-                        OSRow row = new OSRow(rowValues, tableHelper);
-                        tableHelper.addRow(row);
+                      System.out.println(">>>>>>>>>>>>>>row: " + rowValues[0] + " -- " + rowValues[8]);
+                      if(!(rowValues[8]).contains("null")) continue; // Has parent
+                      OSRow row = new OSRow(rowValues, tableHelper);
+                      tableHelper.addRow(row);
+                      System.out.println("HERE>>>");
+                      
                     }
-                }*/
+                }
         }
 
 	
