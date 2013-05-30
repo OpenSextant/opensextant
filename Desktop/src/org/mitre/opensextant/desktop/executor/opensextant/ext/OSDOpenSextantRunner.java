@@ -8,6 +8,7 @@ import gate.Factory;
 import gate.creole.ConditionalSerialAnalyserController;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.apps.OpenSextantRunner;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.processing.ProcessingException;
@@ -30,11 +31,11 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
 		super(); 
 		this.row = row;
 		log.info("Created ODS Desktop runner");
-		tmpRoot += File.separator + (new File(row.getOutputLocation())).getName();
+		tmpRoot += File.separator + FilenameUtils.getBaseName(row.getOutputLocation());
 		archiveTmpRoot = tmpRoot + File.separator + "archives";
 		tmpTmpRoot = tmpRoot + File.separator + "tmp";
 	}
-
+	
 	@Override
 	public void initialize() throws ProcessingException {
 		log.info("initializing OSDOpenSextantRunner");
@@ -54,7 +55,13 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
 			super.runOpenSextant(inFile, outFormat, outFile, this.tmpRoot);
 		} finally {
 			// remove the tmp directory once done
-			FileUtils.deleteDirectory(new File(tmpRoot));
+			File tmp = new File(this.tmpRoot);
+			try {
+				FileUtils.deleteDirectory(tmp);
+			} catch (IOException e) {
+				log.warn("File could not be deleted, attempt will be made on JVM shutdown: " + tmp.getAbsolutePath());
+				tmp.deleteOnExit();
+			}
 		}
 	}
 

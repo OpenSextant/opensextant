@@ -9,6 +9,7 @@ import java.util.Properties;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import org.apache.commons.io.FileUtils;
 import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.SelectOSHomeFrameImpl;
@@ -38,26 +39,29 @@ public class Main {
                 } catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
+		FileUtils.deleteQuietly(new File("." + File.separator + "tmp"));
+
 		SelectOSHomeFrameImpl.setupOpenSextantHome();
 
 		String osHome = ConfigHelper.getInstance().getOsHome();
 		String gateHome = ConfigHelper.getInstance().getGateHome();
 		String solrHome = ConfigHelper.getInstance().getSolrHome();
-		
-		if ((SelectOSHomeFrameImpl.validateOSHome(osHome) || (SelectOSHomeFrameImpl.validateHomeDir(gateHome) && SelectOSHomeFrameImpl.validateHomeDir(solrHome)))) {
+
+		if ((SelectOSHomeFrameImpl.validateOSHome(osHome) || (SelectOSHomeFrameImpl.validateHomeDir(gateHome) && SelectOSHomeFrameImpl
+				.validateHomeDir(solrHome)))) {
 			if (osHome != null) {
 				System.setProperty("opensextant.home", osHome);
 			}
-			
+
 			Config.GATE_HOME = gateHome;
-	        Config.SOLR_HOME = solrHome;
+			Config.SOLR_HOME = solrHome;
 
 			Initialize.init();
 			openMainWindow();
 		}
-                
-                UIManager.put("ProgressBar.foreground", new Color(133, 196, 17));
+
+		UIManager.put("ProgressBar.foreground", new Color(133, 196, 17));
 
 	}
 

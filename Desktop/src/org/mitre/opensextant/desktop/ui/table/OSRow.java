@@ -135,6 +135,8 @@ public class OSRow implements Comparable<OSRow> {
 		this.startTime = new Date(Long.parseLong(rowValues[6]));
 		this.id = rowValues[0];
 
+		this.durationContainer = new RowDurationImpl();
+                
 		String stat = rowValues[5];
 		if ("COMPLETE".equals(stat))
 			this.status = STATUS.COMPLETE;
@@ -142,7 +144,7 @@ public class OSRow implements Comparable<OSRow> {
 			this.status = STATUS.CANCELED;
 		else
 			this.status = STATUS.ERROR;
-
+		
 		this.baseOutputLocation = rowValues[3];
 		this.outputType = rowValues[4];
 		this.inputFile = new File(rowValues[2]);
@@ -164,7 +166,7 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	private void saveConfig() {
-		String[] rowValues = new String[7];
+		String[] rowValues = new String[9];
 		rowValues[0] = this.id;
 		rowValues[1] = this.title;
 		rowValues[2] = this.inputFile.getAbsolutePath();
@@ -172,6 +174,8 @@ public class OSRow implements Comparable<OSRow> {
 		rowValues[4] = this.outputType;
 		rowValues[5] = this.status.toString();
 		rowValues[6] = "" + this.startTime.getTime();
+                rowValues[7] = "";
+                rowValues[8] = "" + this.getParent();
 		ConfigHelper.getInstance().updateRow(this.id, rowValues);
 	}
 
@@ -181,9 +185,10 @@ public class OSRow implements Comparable<OSRow> {
 
 		p.setJobName(title + dateStr);
 		this.outputLocation = baseOutputLocation + File.separator + p.getJobName();
-
-		if ((new File(this.outputLocation)).exists())
-			this.outputLocation += "(" + counter + ")";
+		
+//		if multiple files are processing at the same time the output location may not be there yet
+//		if ((new File(this.outputLocation)).exists())
+		this.outputLocation += "_" + counter;
 
 		if ("KML".equals(outputType))
 			this.outputLocation += ".kmz";
