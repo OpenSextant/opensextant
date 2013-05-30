@@ -16,6 +16,10 @@ western
 northern
 southern
 central
+north east
+north west
+south east
+south west
 #
 # generic location references.
 city
