@@ -41,9 +41,9 @@ GEOCODE_OUT=$2
 FORMAT=$3
 
 if [ -n "$DATA_IN" -a -n "$GEOCODE_OUT" -a -n "$FORMAT" ] ; then 
-   ant -f ${install}/script/opensextant-ant.xml -Dinputfile=$DATA_IN -Doutputfile=$GEOCODE_OUT -Dformat=$FORMAT  geocode
+   ant -f ${install}/script/opensextant-ant.xml -Dinputfile="$DATA_IN" -Doutputfile="$GEOCODE_OUT" -Dformat=$FORMAT  geocode
 elif [ -n "$DATA_IN" ]; then 
-   ant -f ${install}/script/opensextant-ant.xml -Dinputfile=$DATA_IN  geocode-no-output
+   ant -f ${install}/script/opensextant-ant.xml -Dinputfile="$DATA_IN"  geocode-no-output
 else
   usage
 fi
