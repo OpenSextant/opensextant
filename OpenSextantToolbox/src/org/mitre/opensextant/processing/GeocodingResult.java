@@ -1,29 +1,29 @@
-/** 
- Copyright 2009-2013 The MITRE Corporation.
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-
+/**
+ * Copyright 2009-2013 The MITRE Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ *
  * **************************************************************************
- *                          NOTICE
- * This software was produced for the U. S. Government under Contract No.
+ * NOTICE This software was produced for the U. S. Government under Contract No.
  * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
  * Software and Noncommercial Computer Software Documentation Clause
  * 252.227-7014 (JUN 1995)
  *
  * (c) 2012 The MITRE Corporation. All Rights Reserved.
  * **************************************************************************
-**/
+ *
+ */
 package org.mitre.opensextant.processing;
 
 import gate.Annotation;
@@ -41,7 +41,6 @@ import org.mitre.xcoord.GeocoordMatch;
 
 import org.jgeohash.GeoHashUtils;
 
-
 /**
  *
  * @author Marc C. Ubaldino, MITRE <ubaldino at mitre dot org>
@@ -49,17 +48,23 @@ import org.jgeohash.GeoHashUtils;
 public class GeocodingResult {
 
     public List<Geocoding> geocodes = new ArrayList<>();
-    
-    /** short ID or name of file*/
+    /**
+     * short ID or name of file
+     */
     public String recordID = null;
-    /** Original file for record */
+    /**
+     * Original file for record
+     */
     public String recordFile = null;
-    /** Text version of file used for processing */
+    /**
+     * Text version of file used for processing
+     */
     public String recordTextFile = null;
     private final static Parameters DEFAULT_FILTERS = new Parameters();
     public Map<String, Object> attributes = null;
-    
-    /** Given a record ID, create a container for holding onto all the geocodes
+
+    /**
+     * Given a record ID, create a container for holding onto all the geocodes
      * for that particular data object.
      */
     public GeocodingResult(String rid) {
@@ -69,7 +74,9 @@ public class GeocodingResult {
         }
     }
 
-    /** Add some piece of amplifying metadata about the record which may be carried through to output format in some way
+    /**
+     * Add some piece of amplifying metadata about the record which may be
+     * carried through to output format in some way
      */
     public void addAttribute(String f, Object v) {
         if (attributes == null) {
@@ -90,20 +97,21 @@ public class GeocodingResult {
         retrieveGeocodes(doc, DEFAULT_FILTERS);
     }
 
-    /**<pre> Parse out geocodes into a more linear list of common objects.
-     * This is a complicated post-processing step. Which is why it is important to do 
+    /**
+     * <pre> Parse out geocodes into a more linear list of common objects.
+     * This is a complicated post-processing step. Which is why it is important to do
      * this in one place.
-     * 
+     *
      *  Geocoding is a TextEntity (aka a text span)
      *   + has place object
      *      +  ... the place object has a Geocoord
-     * 
-     * Methods attached to each result are: 
+     *
+     * Methods attached to each result are:
      * GAZ         - a gazetteer place record.
      * CTRY        - a country name variation
      * COORD+xxxx  - coordinates with pattern ID
      * </pre>
-     *  
+     *
      */
     public void retrieveGeocodes(gate.Document doc, Parameters params) throws ProcessingException {
         int incr = 0;
@@ -165,16 +173,11 @@ public class GeocodingResult {
                     //  While short terms or codes can be tagged as a place, it will help to have
                     //  a flag to indicate if this short name/code is a state or province code.
                     //
-                    
+
                     geo.precision = ResultsUtility.getFeaturePrecision(geo.place.getFeatureClass(), geo.place.getFeatureCode());
                 }
 
                 geo.confidence = placeMeta.getBestPlaceScore();
-
-                if ((Parameters.RUNTIME_FLAGS & Parameters.FLAG_EXTRACT_CONTEXT) > 0) {
-                    // TODO: Acquire "context" in a more consistent fashion for both Places and coords.
-                    ResultsUtility.setContextFor(content, geo, (int)geo.start, match.length(), content_length);
-                }
 
             } else if (params.tag_coordinates
                     && ResultsUtility.isCoordinate(a.getType())) {
@@ -187,12 +190,12 @@ public class GeocodingResult {
                 // Coordinates -- here there are a few place holders. 
                 //
                 Geocoord g = (Geocoord) fm.get("geo");
-                
+
                 // Filter out duplicate coordinates as you post-process you results
                 // E.g., caller may set output_coordinate_duplicates = false to omit dups from Output
                 // Allowing duplicate coordinates in JAPE rules should have little impact 
                 // 
-                if (g.is_duplicate && ! params.output_coordinate_duplicates){
+                if (g.is_duplicate && !params.output_coordinate_duplicates) {
                     continue;
                 }
                 String form = (String) fm.get("geoform");
@@ -202,13 +205,17 @@ public class GeocodingResult {
                 // that represents a found coordinate
                 // 
                 copy(g, geo);
-                
+
                 // TODO: fix this.  
                 geo.place.setPlaceName(placename);
             }
-            
+
+            // Enrich with context field.
+            if ((Parameters.RUNTIME_FLAGS & Parameters.FLAG_EXTRACT_CONTEXT) > 0) {
+                ResultsUtility.setContextFor(content, geo, (int) geo.start, match.length(), content_length);
+            }
+
             // Enrich with geohash.
-            
             // TODO:  incorporate Geohash as a core field for  enrichment.
             String gh = GeoHashUtils.encode(geo.place.getLatitude(), geo.place.getLatitude());
             geo.place.setGeohash(gh);
@@ -218,53 +225,48 @@ public class GeocodingResult {
 
     }
 
-    /** Since "Geocoords" are currently GATE-based annotations (from the GeocoordFinder PR)
-     *  the creation of m and g are performed outside of this and some attributes may 
-     * already be set.
-     * 
-     * currently:  Geocoding() ctr (id + matchtext), and start/end offsets are set prior.
+    /**
+     * Since "Geocoords" are currently GATE-based annotations (from the
+     * GeocoordFinder PR) the creation of m and g are performed outside of this
+     * and some attributes may already be set.
+     *
+     * currently: Geocoding() ctr (id + matchtext), and start/end offsets are
+     * set prior.
      */
     public static void copy(Geocoord m, Geocoding g) {
 
         g.is_coordinate = true;
-
         g.precision = m.precision;
         g.place = new Place();
         g.place.setGeocoord(m);
-        // Copying context from Geocoord up to instance.
-        g.setContext(m.getContextBefore(), m.getContextAfter());
+        defaultGeocoding(g);
+    }
 
+    /** This is a place holder for fixing missing metadata in coordinates
+     *  and offering some reasonable defaults
+     */
+    private static void defaultGeocoding(Geocoding g) {
         g.confidence = 0.90;
-        g.place.setCountryCode("TBD"); // TODO: reverse lookup
+        g.place.setCountryCode("*"); // TODO: reverse lookup
         g.place.setFeatureClass("S");
         g.place.setFeatureCode("SITE");
         g.place.setAdmin1("*"); // TODO:  use reverse lookkup 
     }
 
-    /** Add a coordinate match from XCoord directly 
-     *  Migrate these two things together...  
-     * 
-     *    copy(xcoord match, geocoding)
-     *    copy(geocoord, geocoding)
+    /**
+     * Add a coordinate match from XCoord directly Migrate these two things
+     * together...
+     *
+     * copy(xcoord match, geocoding) copy(geocoord, geocoding)
      */
     public static void copy(GeocoordMatch m, Geocoding g) {
         g.is_coordinate = true;
-
         g.precision = m.getPrecision();
         g.place = new Place();
         Geocoord loc = new Geocoord();
         loc.setLatitude(m.latitude);
         loc.setLongitude(m.longitude);
         g.place.setGeocoord(loc);
-
-        // Copying context from Geocoord up to instance.
-        g.setContext(m.getContextBefore(), m.getContextAfter());
-
-        g.confidence = 0.90;
-        g.place.setCountryCode("TBD"); // TODO: reverse lookup
-        g.place.setFeatureClass("S");
-        g.place.setFeatureCode("SITE");
-        g.place.setAdmin1("*"); // TODO:  use reverse lookkup 
-
+        defaultGeocoding(g);
     }
 }
