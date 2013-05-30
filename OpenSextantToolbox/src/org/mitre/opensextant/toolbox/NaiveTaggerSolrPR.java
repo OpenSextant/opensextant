@@ -89,13 +89,8 @@ public class NaiveTaggerSolrPR
     public Resource init() throws ResourceInstantiationException {
         super.init();
         try {
-            matcher = new PlacenameMatcher();
-            
-            // Is static runtime flag set?
-            // matcher.setAllowLowerCaseAbbreviations((Parameters.RUNTIME_FLAGS & Parameters.FLAG_ALLOW_LOWERCASE_ABBREV) > 0);
+            matcher = new PlacenameMatcher();            
             matcher.setAllowLowerCaseAbbreviations(tagAbbreviations);
-            
-
         } catch (IOException ioerr) {
             throw new ResourceInstantiationException("Failed to initialize Solr Matcher", ioerr);
         }
@@ -112,18 +107,19 @@ public class NaiveTaggerSolrPR
 
     /**
      * Uses a SolrMatcher object to tag place names.
-     * 
+     *     Key elements:
+     *
+     * <pre> 
+     * + SOLR_HOME -- see the Gazetteer/solr folder for the data index used here
+     * + Matcher -- PlaceNameMatcher has the logic for matching; SolrProxy
+     *    is used to broker interaction with the Solr server at SOLR_HOME. 
+     *    If Given a URL, SolrMatcher will attempt to use a solr server via http -- this is not common
+     * + PlaceNameMatcher -- wraps SolrProxy, which brokers access 
+     * + MatcherException -- error to throw for low level matching implementation
+     * </pre>
      * @throws ExecutionException
      */
-//    Key elements:
-//  
-//      + SOLR_HOME -- see the Gazetteer/solr  folder for the data index used here 
-//      + Matcher --  SolrMatcher has the logic for matching; SolrHelper is used to broker
-//                    interaction with the Solr server at SOLR_HOME.
-//                    If Given a URL, SolrMatcher will attempt to use a solr server via http
-//  
-//    	 + PlaceNameMatcher interface -- see tagDocument();  Matcher implements this
-//    	 + MatcherException -- error to throw for low level matching implementation
+
     @Override
     public void execute() throws ExecutionException {
         if (matcher == null) {
@@ -258,13 +254,13 @@ public class NaiveTaggerSolrPR
         this.tokenFeatureName = tokenFeature;
     }
 
-	public Boolean getTagAbbreviations() {
-		return tagAbbreviations;
-	}
+    public Boolean getTagAbbreviations() {
+        return tagAbbreviations;
+    }
 
     @Optional
     @CreoleParameter(defaultValue = "false")
-	public void setTagAbbreviations(Boolean tagAbbreviations) {
-		this.tagAbbreviations = tagAbbreviations;
-	}
+    public void setTagAbbreviations(Boolean tagAbbreviations) {
+        this.tagAbbreviations = tagAbbreviations;
+    }
 }
