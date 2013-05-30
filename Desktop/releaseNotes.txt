@@ -62,3 +62,6 @@ OPENSEXTANT-288		improvements	On Hover Job Row - Show Tooltip with Details	-	"th
 OPENSEXTANT-289		improvements	Remove "Details" from Job Context Menu	-	this information should show up as a tooltip per a separate jira ticket (288)
 OPENSEXTANT-290		improvements	Change the column "Title" to "Filename"		
 OPENSEXTANT-294		improvements	Create a menu to replace top buttons	-	Top buttons are starting to seem cluttered, and additional functionality will probably make sense to have a general menu. Original design was geared towards web, but now it makes sense to follow some traditional desktop application UI standards.
+OPENSEXTANT-297     improvements    Highlight Row, Change Time Column Text Color to White
+OPENSEXTANT-301     improvements    Delete Confirmation Box, Enable Left/Right Arrow keys to change between Yes & No
+OPENSEXTANT-302     Bug             Error Processing Document in Rapid Succession
