@@ -181,8 +181,6 @@ The core library is contained in this jar.
         <copy todir="${lib.dir}" file="${flexpat_jar.location}" />
         <copy todir="${lib.dir}" file="${xtext.home}/build/xtext-1.0.jar" />
         <copy todir="${lib.dir}" file="${xponents.home}/opensextant-xponents-1.6.jar" />
-        <copy file="${xtemp.home}/src/main/resources/datetime_patterns.cfg" todir="${resources.home}/resources/patterns" />
-        <copy file="${xcoord.home}/src/main/resources/geocoord_regex.cfg" todir="${resources.home}/resources/patterns" />
     </target>
 
     <!-- 
@@ -222,7 +220,6 @@ The core library is contained in this jar.
             <fileset dir="${xcoord.home}" includes="build.xml"/>
         </subant>
         <copy todir="${lib.dir}" file="${xcoord.home}/build/xcoord-1.6.jar" />
-        <copy file="${xcoord.home}/src/main/resources/geocoord_regex.cfg" todir="${resources.home}/resources/patterns" />
     </target>
 
     <target name="xtemp.update">
@@ -230,7 +227,6 @@ The core library is contained in this jar.
             <fileset dir="${xtemp.home}" includes="build.xml"/>
         </subant>
         <copy todir="${lib.dir}" file="${xtemp.home}/build/xtemporal-1.0.jar" />
-        <copy file="${xtemp.home}/src/main/resources/datetime_patterns.cfg" todir="${resources.home}/resources/patterns" />
     </target>
     -->
 		
