@@ -419,9 +419,14 @@
               <localMap>
                 <entry>
                   <string>patternFile</string>
+                  <null/>
+
+                  <!--   Provide a valid absolute path to an XCoord patterns file to override the default
                   <gate.util.persistence.PersistenceManager-URLHolder>
                     <urlString>$relpath$../resources/patterns/geocoord_regex.cfg</urlString>
                   </gate.util.persistence.PersistenceManager-URLHolder>
+                  -->
+
                 </entry>
               </localMap>
             </initParams>
