@@ -96,7 +96,7 @@ public class OSTreeTable {
 			private final ImageIcon image = new ImageIcon(OpenSextantMainFrameImpl.class.getResource("/org/mitre/opensextant/desktop/icons/OpenSextantLogoBigWatermark.png"));
 			
 			@Override
-			public void paint(Graphics g) {
+			public void paintComponent(Graphics g) {
 				// draw image in centre
 				final int imageWidth = image.getIconWidth();
 				final int imageHeight = image.getIconHeight();
@@ -106,7 +106,7 @@ public class OSTreeTable {
 				g.setColor(Color.WHITE);
 				g.fillRect(0, 0, (int)d.getWidth(), (int)d.getHeight());
 				g.drawImage(image.getImage(), x, y, null, null);
-				super.paint(g);
+				super.paintComponent(g);
 			}
 
 			@Override
@@ -410,6 +410,7 @@ public class OSTreeTable {
 					} catch (InterruptedException e) { }
 					frame.revalidate();
 					frame.repaint();
+					frame.repaint(0, 0, frame.getSize().width, frame.getSize().height);
 				}
 			});			
 		}
