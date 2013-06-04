@@ -143,7 +143,7 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 				switch (nColumn) {
 				case LAST_RUN:
 					Date rd = r.getStartTime();
-					Date ld = l.getStartTime();
+					Date ld = l.getStartTime(); 
 					if (rd == null)
 						rd = new Date(0);
 					if (ld == null)
@@ -156,6 +156,13 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 					if (asc)
 						return r.getTitle().compareToIgnoreCase(l.getTitle());
 					return l.getTitle().compareToIgnoreCase(r.getTitle());
+                                case TIMING:
+                                        Long rDur = new Long(r.getDurationPanel().getDuration());
+                                        Long lDur = new Long(l.getDurationPanel().getDuration());
+
+                                        if (asc)
+						return rDur.compareTo(lDur);
+					return lDur.compareTo(rDur);
                                 case FILE_INFO:
                                         if(asc) return r.getInfo().compareTo(l.getInfo());
                                         else return l.getInfo().compareTo(r.getInfo());

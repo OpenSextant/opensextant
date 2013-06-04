@@ -24,6 +24,10 @@ public class RowDurationImpl extends RowDuration {
             else this.durationLabel.setForeground(Color.black);
         }
         
+        public long getDuration(){
+            return this.duration;
+        }
+        
 	public void updateDuration(OSRow row) {
 		long updatedDuration = -1;
 		long estimatedDuration = -1;
