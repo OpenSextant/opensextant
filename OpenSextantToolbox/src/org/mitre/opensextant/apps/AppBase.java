@@ -26,7 +26,6 @@
 **/
 package org.mitre.opensextant.apps;
 
-import gate.Gate;
 import gate.CorpusController;
 import gate.Corpus;
 import java.io.IOException;

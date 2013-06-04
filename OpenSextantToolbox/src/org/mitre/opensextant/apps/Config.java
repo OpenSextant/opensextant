@@ -76,7 +76,7 @@ public class Config {
      * * if SOLR_HOME var is set by caller, use it.
      * * if SOLR_HOME is null, prepare a relative path $opensextant.home/../opensextant-solr/  as the path,
      *       set the resulting path as the JVM arg,
-     * 
+     *
      * In all cases the JVM arg solr.solr.home should be set to a valid path.
      * </pre>
      */
@@ -89,6 +89,36 @@ public class Config {
          * <jvmArg value="-Dgate.user.config=${gate_home}/user-gate.xml"/>
          * <jvmArg value="-Dgate.plugins.home=${gate_home}/plugins"/>
          */
+        Config.setDefaultSolrHome();
+        Config.setDefaultGATEHome();
+
+        initializePlatform();
+
+        SELECTED_GAPP = DEFAULT_GAPP;
+        RUNTIME_GAPP_PATH = GATE_HOME + File.separator + SELECTED_GAPP /*DEFAULT_GAPP*/;
+    }
+
+    /** Arrange the GATE system paths in a pleasing manner
+     */
+    public static void setDefaultGATEHome() {
+        if (GATE_HOME == null) {
+            GATE_HOME = OPENSEXTANT_HOME + File.separator + "gate";
+        }
+
+        GATE_PLUGINS = GATE_HOME + File.separator + "plugins";
+
+        //  We set some silly null user session info here. This prevents GATE from reading your ~/.gate/ settings.
+        // 
+        GATE_USER = GATE_HOME + File.separator + "user-gate.xml";
+        GATE_SESSION = "x";
+    }
+
+    /** Choose the Solr Home from different approaches 
+     *   if SOLR_HOME has been set by caller programtically, then force that into the JVM arg solr.solr.home
+     *   Otherwise if JVM arg has been specified, use it.
+     *   Otherwise infer the default as a folder named  located at ${opensextant.home}/../opensextant-solr
+     */
+    public static void setDefaultSolrHome() throws ProcessingException {
         if (SOLR_HOME == null) {
             SOLR_HOME = System.getProperty("solr.solr.home");
             if (SOLR_HOME == null) {
@@ -103,22 +133,6 @@ public class Config {
         } else {
             System.setProperty("solr.solr.home", SOLR_HOME);
         }
-
-        if (GATE_HOME == null) {
-            GATE_HOME = OPENSEXTANT_HOME + File.separator + "gate";
-        }
-
-        GATE_PLUGINS = GATE_HOME + File.separator + "plugins";
-
-        //  We set some silly null user session info here. This prevents GATE from reading your ~/.gate/ settings.
-        // 
-        GATE_USER = GATE_HOME + File.separator + "user-gate.xml";
-        GATE_SESSION = "x";
-
-        initializePlatform();
-
-        SELECTED_GAPP = DEFAULT_GAPP;
-        RUNTIME_GAPP_PATH = GATE_HOME + File.separator + SELECTED_GAPP /*DEFAULT_GAPP*/;
     }
 
     /**
