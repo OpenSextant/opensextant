@@ -40,6 +40,14 @@ public class RowButtonsImpl extends RowButtons {
 				row.viewResults();
 			}
 		});
+                
+                viewDirButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				row.viewDir();
+			}
+		});
 		
 		reRunButton.addActionListener(new ActionListener() {
 			
@@ -68,6 +76,11 @@ public class RowButtonsImpl extends RowButtons {
 		return viewResultsButton;
 	}
 
+        public javax.swing.JButton getViewDirButton() {
+		return viewDirButton;
+	}
+
+        
 	public void setCellEditor(RowButtonsEditor rowButtonsEditor) {
 		this.rowButtonsEditor = rowButtonsEditor;
 		

@@ -31,6 +31,7 @@ public class RowButtons extends javax.swing.JPanel {
         cancelDeleteButton = new javax.swing.JButton();
         reRunButton = new javax.swing.JButton();
         viewResultsButton = new javax.swing.JButton();
+        viewDirButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAlignmentX(0.0F);
@@ -50,10 +51,17 @@ public class RowButtons extends javax.swing.JPanel {
         viewResultsButton.setToolTipText("View results");
         viewResultsButton.setEnabled(false);
         add(viewResultsButton);
+
+        viewDirButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/folder.png"))); // NOI18N
+        viewDirButton.setToolTipText("Open output folder");
+        viewDirButton.setEnabled(false);
+        add(viewDirButton);
+        viewDirButton.getAccessibleContext().setAccessibleDescription("Open output folder");
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton cancelDeleteButton;
     protected javax.swing.JButton reRunButton;
+    protected javax.swing.JButton viewDirButton;
     protected javax.swing.JButton viewResultsButton;
     // End of variables declaration//GEN-END:variables
     

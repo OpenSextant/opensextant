@@ -289,6 +289,7 @@ public class OSRow implements Comparable<OSRow> {
 			buttonContainer.getReRunButton().setEnabled(true);
 			if (this.status == STATUS.COMPLETE) {
 				buttonContainer.getViewResultsButton().setEnabled(true);
+                                buttonContainer.getViewDirButton().setEnabled(true);
 			}
 			saveConfig();
 
@@ -399,6 +400,11 @@ public class OSRow implements Comparable<OSRow> {
 	public void viewResults() {
 		tableHelper.viewResults(this);
 	}
+        
+        public void viewDir() {
+		tableHelper.viewDir(this);
+	}
+
 
 	public void rerun() {
 		JButton cancelDeleteButton = buttonContainer.getCancelDeleteButton();

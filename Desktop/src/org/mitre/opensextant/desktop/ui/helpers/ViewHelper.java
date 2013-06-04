@@ -68,6 +68,7 @@ public class ViewHelper {
             TableColumn c = table.getColumn(name);
             ViewHelper v = ViewHelper.getInstance();
             if (visible) {
+                v.colWidth.put(name, c.getWidth());
                 c.setMinWidth(0);
                 c.setMaxWidth(0);
                 c.setPreferredWidth(0);
