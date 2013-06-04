@@ -131,7 +131,7 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	 */
 	public void sortRows(ArrayList<DefaultMutableTreeTableNode> nodes, final int nColumn, JXTreeTable caller) {
 		final boolean asc = ascSort[nColumn];
-		ascSort[nColumn] = !asc;
+		ascSort[nColumn] = !asc;               
 		caller.getTableHeader().repaint();
 
 		Collections.sort(nodes, new Comparator<DefaultMutableTreeTableNode>() {
