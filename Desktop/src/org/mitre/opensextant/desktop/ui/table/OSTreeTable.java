@@ -328,8 +328,8 @@ public class OSTreeTable {
 				}
 			}
 		});
-
-		// treeTable.setRowSorter(
+                treeTable.getTableHeader().setReorderingAllowed(true);
+                
 		return treeTable;
 	}
 
