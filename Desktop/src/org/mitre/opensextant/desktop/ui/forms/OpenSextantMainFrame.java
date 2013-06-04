@@ -49,7 +49,7 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         treePanel.setLayout(treePanelLayout);
         treePanelLayout.setHorizontalGroup(
             treePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
+            .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
         );
         treePanelLayout.setVerticalGroup(
             treePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

@@ -25,7 +25,7 @@ public class ViewHelper {
     private static ViewHelper instance = new ViewHelper();
     private Map<String, Boolean> visibleCols = new HashMap<String, Boolean>();
     private Map<String, Integer> colWidth = new HashMap<String, Integer>();
-    private String[] colOrder = {"Filename", "Progress", "Time", "Actions", "File Size", "Output Type", "Last Run"
+    private String[] colOrder = {"File Name", "File Size", "File Path", "Progress", "Time", "Actions", "Output Type", "Last Run"
     };
 
     public static ViewHelper getInstance() {

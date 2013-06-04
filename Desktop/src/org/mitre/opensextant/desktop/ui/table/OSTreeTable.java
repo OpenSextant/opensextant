@@ -242,6 +242,7 @@ public class OSTreeTable {
 		});
 
 		treeTable.getColumn(OSTreeTableModel.FILE_INFO).setHeaderRenderer(new SortIconTableHeaderRenderer());
+		treeTable.getColumn(OSTreeTableModel.FILE_LOC).setHeaderRenderer(new SortIconTableHeaderRenderer());
 		treeTable.getColumn(OSTreeTableModel.OUT_TYPES).setHeaderRenderer(new SortIconTableHeaderRenderer());
 		treeTable.getColumn(OSTreeTableModel.LAST_RUN).setHeaderRenderer(new SortIconTableHeaderRenderer());
 

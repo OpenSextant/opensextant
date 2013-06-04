@@ -19,12 +19,13 @@ import org.mitre.opensextant.desktop.util.FileSize;
 
 class OSTreeTableModel extends DefaultTreeTableModel {
 	public static final int TITLE = 0;
-	public static final int PROGRESS = 1;
-	public static final int TIMING = 2;
-	public static final int ACTIONS = 3;
-	public static final int FILE_INFO = 4;
-        public static final int OUT_TYPES = 5;
-	public static final int LAST_RUN = 6;
+	public static final int FILE_INFO = 1;
+        public static final int FILE_LOC = 2;
+	public static final int PROGRESS = 3;
+	public static final int TIMING = 4;
+	public static final int ACTIONS = 5;
+        public static final int OUT_TYPES = 6;
+	public static final int LAST_RUN = 7;
 	private SimpleDateFormat dateFormat;
 
 	private boolean[] ascSort = new boolean[LAST_RUN + 1];
@@ -52,6 +53,8 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 				return row;
 			case ACTIONS:
 				return row;
+                        case FILE_LOC:
+                                return row.getInputFile().getAbsoluteFile();
 			case FILE_INFO:
 				String info = "";
 				if (row.hasChildren()) {
@@ -80,13 +83,15 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 	public String getColumnName(int column) {
 		switch (column) {
 			case TITLE:
-				return "Filename";
+				return "File Name";
 			case PROGRESS:
 				return "Progress";
 			case TIMING:
 				return "Time";
 			case ACTIONS:
 				return "Actions";
+                        case FILE_LOC:
+                                return "File Path";
 			case FILE_INFO:
 				return "File Size";
                         case OUT_TYPES:
@@ -151,6 +156,12 @@ class OSTreeTableModel extends DefaultTreeTableModel {
 					if (asc)
 						return r.getTitle().compareToIgnoreCase(l.getTitle());
 					return l.getTitle().compareToIgnoreCase(r.getTitle());
+                                case FILE_INFO:
+                                        if(asc) return r.getInfo().compareTo(l.getInfo());
+                                        else return l.getInfo().compareTo(r.getInfo());
+                                case FILE_LOC:
+                                        if (asc) return (r.getInputFile().getAbsoluteFile().toString()).compareTo(l.getInputFile().getAbsoluteFile().toString());
+                                        else return (l.getInputFile().getAbsoluteFile().toString()).compareTo(r.getInputFile().getAbsoluteFile().toString());
 				case OUT_TYPES:
 					if (asc)
 						return r.getOutputType().compareToIgnoreCase(l.getOutputType());
