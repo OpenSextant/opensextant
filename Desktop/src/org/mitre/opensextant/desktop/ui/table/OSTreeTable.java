@@ -320,7 +320,6 @@ public class OSTreeTable {
                         for (int i = 0; i < treeTable.getRowCount(); i++) {
                             OSRow r = (OSRow) treeTable.getValueAt(i, OSTreeTableModel.TIMING);
                             r.toggleDurationColor(false);
-                            System.out.println("H: " + i);
                         }
                     }
                 } else if (SwingUtilities.isRightMouseButton(e)) {
