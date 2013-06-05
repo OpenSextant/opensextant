@@ -25,9 +25,12 @@ public class ExtractionMetrics {
     }
 
     @Override
-    public String toString(){
-        return "Metric " + this.name + " Calls:"+ this.getCallCount() + " Average time(ms):"+ this.getAverageTime();
+    public String toString() {
+        return "Metric " + this.name + " Calls:" + this.getCallCount()
+                + " Average time(ms):" + this.getAverageTime() 
+                + " with Total time(ms):" + this.getTotalTime();
     }
+
     /**
      * avg time spent for this metric in milliseconds
      */
