@@ -163,6 +163,7 @@ public class GeocoordFinderPR extends AbstractLanguageAnalyser implements
             feats.put("geoform", g.pattern_id);
             feats.put("mgrs", g.toMGRS());
             feats.put("geo", geo);
+            feats.put("hierarchy", "Geo.place.geocoordinate");
 
             // create a "geocoord" annotation
             try {
