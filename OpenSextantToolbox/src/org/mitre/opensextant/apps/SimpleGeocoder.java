@@ -1,29 +1,29 @@
-/** 
- Copyright 2009-2013 The MITRE Corporation.
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-
+/**
+ * Copyright 2009-2013 The MITRE Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ *
  * **************************************************************************
- *                          NOTICE
- * This software was produced for the U. S. Government under Contract No.
+ * NOTICE This software was produced for the U. S. Government under Contract No.
  * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
  * Software and Noncommercial Computer Software Documentation Clause
  * 252.227-7014 (JUN 1995)
  *
  * (c) 2012 The MITRE Corporation. All Rights Reserved.
  * **************************************************************************
-**/
+*
+ */
 package org.mitre.opensextant.apps;
 
 import gate.Corpus;
@@ -35,6 +35,7 @@ import gate.util.persistence.PersistenceManager;
 import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
+import org.mitre.opensextant.extraction.ExtractionMetrics;
 import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.TextInput;
 import org.mitre.opensextant.processing.ProcessingException;
@@ -42,18 +43,18 @@ import org.slf4j.LoggerFactory;
 import org.mitre.opensextant.util.TextUtils;
 
 /**
- * This is the simplest geocoding API we could devise to support embedding OpenSextant
- * into your Java applications directly.  You instantiate it and 
- * can geocode text rapidly and repeatedly.  You, the caller is responsible for managing
- * storage of results and formatting of results.   
- * 
- * Our other API classes demonstrate how to format results, and eventually how to
- * store them.
- * 
- * In no way does this SimpleGeocoder compromise on the quality or thoroughness of
- * the geocoding processing.  It is the same processing, just a lighter weight method
- * than say using the WS or GATE Runner versions.
- * 
+ * This is the simplest geocoding API we could devise to support embedding
+ * OpenSextant into your Java applications directly. You instantiate it and can
+ * geocode text rapidly and repeatedly. You, the caller is responsible for
+ * managing storage of results and formatting of results.
+ *
+ * Our other API classes demonstrate how to format results, and eventually how
+ * to store them.
+ *
+ * In no way does this SimpleGeocoder compromise on the quality or thoroughness
+ * of the geocoding processing. It is the same processing, just a lighter weight
+ * method than say using the WS or GATE Runner versions.
+ *
  * @author Marc C. Ubaldino, MITRE <ubaldino at mitre dot org>
  */
 public class SimpleGeocoder extends AppBase {
@@ -64,10 +65,13 @@ public class SimpleGeocoder extends AppBase {
     public static String GATE_APP = "OpenSextant_Solr.gapp";
     private Corpus feeder = null;
     private final TextUtils utility = new TextUtils();
+    private ExtractionMetrics processingMetric = new ExtractionMetrics("processing");
 
-    /** Demonstration main program -- demonstrates using OpenSextant from cmd line
-     * 
-     * @throws Exception 
+    /**
+     * Demonstration main program -- demonstrates using OpenSextant from cmd
+     * line
+     *
+     * @throws Exception
      */
     public SimpleGeocoder() throws ProcessingException {
         super();
@@ -79,9 +83,11 @@ public class SimpleGeocoder extends AppBase {
      * @throws ProcessingException
      */
     @Override
-    /** We do whatever is needed to init resources... that varies depending on the use case.
-     * 
-     * Guidelines: this class is custodian of the app controller, Corpus feeder, 
+    /**
+     * We do whatever is needed to init resources... that varies depending on
+     * the use case.
+     *
+     * Guidelines: this class is custodian of the app controller, Corpus feeder,
      * and any Document instances passed into/out of the feeder.
      */
     public void initialize() throws ProcessingException {
@@ -105,16 +111,18 @@ public class SimpleGeocoder extends AppBase {
         }
     }
 
-    /** 
-     * Geocode an input buffer 
+    /**
+     * Geocode an input buffer
+     *
      * @return result GeocodingResult has an array of Geocoding annotations.
-     * @throws Exception 
+     * @throws Exception
      * @param text TextInput is a simple record that has an ID and a buffer.
-     * @see geocode(List&lt;TextInput&gt; texts)  - its not clear if there are benefits
-     * in batching larger #'s of smaller records 
-     *   
+     * @see geocode(List&lt;TextInput&gt; texts) - its not clear if there are
+     * benefits in batching larger #'s of smaller records
+     *
      */
     public GeocodingResult geocode(TextInput text) throws Exception {
+        long t1 = System.currentTimeMillis();
         // create 
         Document doc = Factory.newDocument(text.buffer);
         feeder.add(doc);
@@ -134,18 +142,24 @@ public class SimpleGeocoder extends AppBase {
         feeder.remove(doc);
         Factory.deleteResource(doc);
 
+        long t2 = System.currentTimeMillis();
+        processingMetric.addTime(t2 - t1);
+
         return annotations;
     }
 
-    /** Process a list of TextInputs, generating a text-id if for each item, if none exists.
-     * This is an optimization over the simpler geocode(one) for geocoding one input buffer.
-     * 
-     * Batching is not determined by this API. The caller should decide for the amount and size
-     * of their own records how to organize the list of inputs and call this.
-     * 
+    /**
+     * Process a list of TextInputs, generating a text-id if for each item, if
+     * none exists. This is an optimization over the simpler geocode(one) for
+     * geocoding one input buffer.
+     *
+     * Batching is not determined by this API. The caller should decide for the
+     * amount and size of their own records how to organize the list of inputs
+     * and call this.
+     *
      * @param texts
-     * @return 
-     * @throws Exception  
+     * @return
+     * @throws Exception
      */
     public List<GeocodingResult> geocode(List<TextInput> texts) throws Exception {
 
@@ -186,9 +200,20 @@ public class SimpleGeocoder extends AppBase {
         return results;
     }
 
-    /** Please shutdown the application cleanly when done. 
+    @Override
+    public void reportMetrics() {
+        super.reportMetrics();
+        log.info("=================\nSimple Geocoder");
+        log.info(this.processingMetric.toString());
+    }
+
+    /**
+     * Please shutdown the application cleanly when done.
      */
     public void shutdown() {
+
+        reportMetrics();
+
         if (controller != null) {
             controller.interrupt();
             controller.cleanup();

@@ -44,8 +44,8 @@ import java.io.IOException;
 import java.util.List;
 
 import org.mitre.opensextant.extraction.PlacenameMatcher;
+import org.mitre.opensextant.extraction.ExtractionMetrics;
 import org.mitre.opensextant.placedata.PlaceCandidate;
-import org.mitre.opensextant.processing.Parameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,6 +79,9 @@ public class NaiveTaggerSolrPR
     // to force all confidences to CALIBRATE_SCORE for calibration
     boolean CALIBRATE = false;
     Double CALIBRATE_SCORE = 0.0;
+    
+    private static ExtractionMetrics taggingTimes = new  ExtractionMetrics("tagging");
+    private static ExtractionMetrics retrievalTimes = new  ExtractionMetrics("retrieval");
 
     /**
      *
@@ -95,6 +98,13 @@ public class NaiveTaggerSolrPR
             throw new ResourceInstantiationException("Failed to initialize Solr Matcher", ioerr);
         }
         return this;//weird
+    }
+    
+    public static ExtractionMetrics getTaggingMetric(){
+        return taggingTimes;
+    }
+    public static ExtractionMetrics getRetrievalMetric(){
+        return retrievalTimes;
     }
 
     /**
@@ -129,6 +139,9 @@ public class NaiveTaggerSolrPR
         List<PlaceCandidate> matches = null;
         try {
             matches = matcher.tagText(document.getContent().toString(), document.getName());
+            retrievalTimes.addTime( matcher.getRetrievingNamesTime() );
+            taggingTimes.addTime( matcher.getTaggingNamesTime() );
+            
         } catch (Exception err) {
             log.error("Error when tagging document " + document.getName(), err);
             return;

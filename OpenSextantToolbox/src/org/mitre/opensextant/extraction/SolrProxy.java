@@ -251,6 +251,7 @@ public class SolrProxy {
 
         if (solrServer != null) {
             solrServer.shutdown();
+            solrServer = null;
         }
     }
 

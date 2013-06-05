@@ -29,6 +29,7 @@ package org.mitre.opensextant.processing;
 import gate.Corpus;
 import gate.CorpusController;
 import org.mitre.opensextant.processing.output.ResultsFormatter;
+import org.mitre.opensextant.extraction.ExtractionMetrics;
 
 
 
@@ -69,8 +70,13 @@ public interface CorpusProcessor {
 	/**
 	 * Process a single GATE corpus.
 	 */
-	public String processCorpus(Corpus corpus) throws Exception;
-    
+	public void processCorpus(Corpus corpus) throws Exception;
+
+        /** TODO: method for tracking processing metrics. "Metrics" is plural
+         *  as this may expand in scope.
+         */
+        public ExtractionMetrics getProcessingMetric();
+        
     /** What you do when you want it all to end. */
     public void shutdown();
 }

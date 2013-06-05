@@ -1,29 +1,29 @@
-/** 
- Copyright 2009-2013 The MITRE Corporation.
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-
+/**
+ * Copyright 2009-2013 The MITRE Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ *
  * **************************************************************************
- *                          NOTICE
- * This software was produced for the U. S. Government under Contract No.
+ * NOTICE This software was produced for the U. S. Government under Contract No.
  * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
  * Software and Noncommercial Computer Software Documentation Clause
  * 252.227-7014 (JUN 1995)
  *
  * (c) 2012 The MITRE Corporation. All Rights Reserved.
  * **************************************************************************
-**/
+ *
+ */
 package org.mitre.opensextant.apps;
 
 import gate.CorpusController;
@@ -32,6 +32,7 @@ import gate.Factory;
 import gate.util.persistence.PersistenceManager;
 import java.io.File;
 import java.io.IOException;
+import org.mitre.opensextant.extraction.ExtractionMetrics;
 import org.mitre.opensextant.processing.*;
 import org.mitre.opensextant.processing.output.AbstractFormatter;
 import org.slf4j.LoggerFactory;
@@ -45,16 +46,15 @@ import java.util.*;
 
 /**
  * Runs OpenSextant as a standalone application or as an API.
- * 
- * @author Marc Ubaldino, MITRE Corp. 
- * Initial version created on Apr 20, 2012
+ *
+ * @author Marc Ubaldino, MITRE Corp. Initial version created on Apr 20, 2012
  */
 public class OpenSextantRunner extends AppBase implements ConversionListener {
 
     /**
      * Currently supported formats include CSV, JSON, KML, WKT and Shapefile.
      */
-    public final static String[] OUTPUT_FORMATS = {"CSV", "GDB", "JSON", "KML", "WKT", "Shapefile"};
+    public final static String[] OUTPUT_FORMATS = {"CSV", "GDB", "JSON", "KML", "WKT", "Shapefile", "SHP"};
     // path to the saved application file
     public String gappFile = null;
     // the input file or directory to be processed
@@ -75,37 +75,49 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
     private long total_size = 0;
     private static long BATCH_THRESHOLD = 0x80000;
     /* Process 4 MB of text content  800 x 5KB average documents */
-    protected CorpusProcessor processor = null;
+    protected OpenSextantCorpusProcessor processor = null;
+    private ExtractionMetrics conversionMetric = new ExtractionMetrics("doc-conversion");
+    private ExtractionMetrics processingMetric = new ExtractionMetrics("doc-processing");
 
-    /** Demonstration main program -- demonstrates using OpenSextant from cmd line
-     * 
+    /**
+     * Demonstration main program -- demonstrates using OpenSextant from cmd
+     * line
+     *
      */
     public OpenSextantRunner() throws Exception {
         super();
         log = LoggerFactory.getLogger(OpenSextantRunner.class);
     }
+
     public OpenSextantRunner(String gapp) throws Exception {
         super(gapp);
         this.gappFile = gapp;
         log = LoggerFactory.getLogger(OpenSextantRunner.class);
     }
-    
-    /** Statusing metrics:  # of documents processed so far. */
-    public int getCurrentDocCount(){
+
+    /**
+     * Statusing metrics: # of documents processed so far.
+     */
+    public int getCurrentDocCount() {
         return total_docs;
     }
-    
-    /** Statusing metrics:  # of raw bytes processed so far. */
-    public long getCurrentByteCount(){
+
+    /**
+     * Statusing metrics: # of raw bytes processed so far.
+     */
+    public long getCurrentByteCount() {
         return total_rawbytes;
     }
-    
-    /** Statusing metrics:  # of plain text characters processed so far. */
-    public long getCurrentTextCharCount(){
+
+    /**
+     * Statusing metrics: # of plain text characters processed so far.
+     */
+    public long getCurrentTextCharCount() {
         return total_size;
     }
 
-    /** The "Start Button".  Initialize GATE, Solr, etc. 
+    /**
+     * The "Start Button". Initialize GATE, Solr, etc.
      */
     @Override
     public void initialize() throws ProcessingException {
@@ -149,7 +161,8 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
     }
 
     /**
-     * Runs OpenSextant. See the <code>main</code> method for a description of the input parameters.
+     * Runs OpenSextant. See the
+     * <code>main</code> method for a description of the input parameters.
      */
     public void runOpenSextant(String inFile, String outFormat, String outFile) throws Exception {
         this.runOpenSextant(inFile, outFormat, outFile, Config.DEFAULT_TEMP);
@@ -157,9 +170,11 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
     private static String CORPUS_NAME = "default-geocoding-hopper";
 
     /**
-     * Runs OpenSextant. See the <code>main</code> method for a description of the input parameters.
-     * TODO:  outFile is not used.  It is only used as a part of global settings somewhere....
-     * 
+     * Runs OpenSextant. See the
+     * <code>main</code> method for a description of the input parameters. TODO:
+     * outFile is not used. It is only used as a part of global settings
+     * somewhere....
+     *
      */
     public void runOpenSextant(String inFile, String outFormat,
             String outFile, String tempDir) throws Exception {
@@ -217,14 +232,18 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
 
         log.info("Finished all processing");
         processor.shutdown();
+        processingMetric.addTime(processor.getProcessingMetric().getTotalTime(), processor.getProcessingMetric().getCallCount());
         processor = null;
     }
 
-    /** Shutdown all IO for the GATE app and release Corpus level resources
+    /**
+     * Shutdown all IO for the GATE app and release Corpus level resources
      */
     public void shutdown() {
 
-        /** */
+        /**
+         *
+         */
         if (corpus != null) {
             Factory.deleteResource(corpus);
             corpus = null;
@@ -236,40 +255,39 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
         }
         log.info("All done");
         reportMemory();
-
+        reportMetrics();
     }
-
-
     List<Document> _docs = new ArrayList<>();
 
-    /** Note -- a corpus will explode in memory if the job is too large.
-     * Processor design should account for how to partition the problem
-     * - ingest, conversion, geocoding, persistence, output format generation.
-     * 
-     * 
+    /**
+     * Note -- a corpus will explode in memory if the job is too large.
+     * Processor design should account for how to partition the problem -
+     * ingest, conversion, geocoding, persistence, output format generation.
+     *
+     *
      * This implements the XText conversion listener -- when a document is found
-     * it is reported here.  We add it to the corpus prior to executing the 
+     * it is reported here. We add it to the corpus prior to executing the
      * application on the corpus.
-     * 
+     *
      * The preferred mode is to take the list of document URLs and process them
      * as a batch.
-     * 
-     * Alternatively if XText was set in "do not save" mode, the Converted Documents
-     * could be processed by adding their payload to as Documents to the corpus
-     * as buffers (not URLs).   This will certainly result in memory bloat, although
-     * it might be faster.
-     * 
-     * Tips:
-     *     Add features to the GATE Document object, e.g., paths, IDs, etc. 
-     *        that are givens or things that GATE/Opsx pipeline cannot determine
-     *     Such features will be consumed by downstream processing
+     *
+     * Alternatively if XText was set in "do not save" mode, the Converted
+     * Documents could be processed by adding their payload to as Documents to
+     * the corpus as buffers (not URLs). This will certainly result in memory
+     * bloat, although it might be faster.
+     *
+     * Tips: Add features to the GATE Document object, e.g., paths, IDs, etc.
+     * that are givens or things that GATE/Opsx pipeline cannot determine Such
+     * features will be consumed by downstream processing
      */
     @Override
     public void handleConversion(ConvertedDocument txtdoc) {
         try {
             Document doc;
             total_rawbytes += txtdoc.filesize;
-            
+            long t1 = System.currentTimeMillis();
+            long t2 = t1;
             // Get File path to text version of document.
             if (txtdoc.textpath != null) {
                 doc = Factory.newDocument(new File(txtdoc.textpath).toURI().toURL());
@@ -279,19 +297,25 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
                 }
                 if (txtdoc.payload == null) {
                     log.error("Both payload and textpath URL are null. FILE=" + txtdoc.filepath);
+                    t2 = System.currentTimeMillis();
+                    conversionMetric.addTime(t2 - t1);
                     return;
                 }
                 doc = Factory.newDocument(txtdoc.payload);
             }
-            
+
             // Preserve original document file path in final output.
-            /** GATE pipeline:  "filepath" feature records path to original 
+            /**
+             * GATE pipeline: "filepath" feature records path to original
              */
             doc.getFeatures().put(OpenSextantSchema.FILEPATH_FLD, txtdoc.filepath);
 
             this.corpus.add(doc);   // _docs.add(doc);
             batch_signal_size += txtdoc.payload.length();
             ++total_docs;
+            t2 = System.currentTimeMillis();
+
+            conversionMetric.addTime(t2 - t1);
 
             if (batch_signal_size > BATCH_THRESHOLD) {
                 batchProcessCorpus();
@@ -311,14 +335,14 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
         batch_signal_size = 0;
         int _doccount = corpus.size();
 
-        log.info("Starting document geocoding BATCH=" + this.batch_count + " BATCH SIZE="+ _doccount +" TOTAL_SIZE=" + this.total_size);
+        log.info("Starting document geocoding BATCH=" + this.batch_count + " BATCH SIZE=" + _doccount + " TOTAL_SIZE=" + this.total_size);
         reportMemory();
 
         // GATE:  each time corpus is processed, documents are release from within the processor.
         //
         processor.processCorpus(corpus);
 
-        for (Iterator<Document> iter = corpus.iterator(); iter.hasNext(); ) {
+        for (Iterator<Document> iter = corpus.iterator(); iter.hasNext();) {
             Document doc = iter.next();
             iter.remove();
             Factory.deleteResource(doc);
@@ -335,17 +359,25 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
         //reportMemory();
     }
 
+    @Override
+    public void reportMetrics() {
+        super.reportMetrics();
+        log.info("===============\nDOCUMENT CONVERSION");
+        log.info("\t"+conversionMetric.toString());
+
+        log.info("===============\nDOCUMENT PROCESSING");
+        log.info("\t"+processingMetric.toString());
+    }
+
     public String getMessages() {
         return runnerMessage.toString();
     }
-
-
     private static String _gappFile = null;
     private static String _inFile = null;
     private static String _outFile = null;
     private static String _outFormat = null;
     private static String _tempDir = null;
-    
+
     /**
      * Parse command line options.
      */
@@ -422,6 +454,7 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
 
     /**
      * Check that the input parameters are valid and complete.
+     *
      * @return either <q>OK</q> or an error message
      */
     public boolean validateParameters(String gateApp, String inPath,
@@ -523,18 +556,20 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
      * <li>
      * <code>-g </code><i>gappFile</i> Path to the saved GATE application
      * </li><li>
-     * <code>-i </code><i>inputFile</i> Path to file or directory of files to be processed
+     * <code>-i </code><i>inputFile</i> Path to file or directory of files to be
+     * processed
      * </li><li>
      * <code>-f </code><i>outputFormat</i> The desired output format
      * </li><li>
      * <code>-o </code><i>outputDir</i> Path to output file
      * </li><li>
-     * <code>-t </code><i>tempDir</i> Path to the temporary storage directory, if one is required
+     * <code>-t </code><i>tempDir</i> Path to the temporary storage directory,
+     * if one is required
      * </li><li>
-     * <code>-d </code><i>descriptionType</i> Choice of text string used to fill description fields, if the output
-     * format has a description field. 
+     * <code>-d </code><i>descriptionType</i> Choice of text string used to fill
+     * description fields, if the output format has a description field.
      * </li>
-     * </ul><p> 
+     * </ul><p>
      */
     public static void main(String[] args) {
 
@@ -542,7 +577,7 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
         parseCommandLine(args);
         try {
             OpenSextantRunner runner = null;
-            if (_gappFile != null) { 
+            if (_gappFile != null) {
                 runner = new OpenSextantRunner(_gappFile);
             } else {
                 runner = new OpenSextantRunner();
