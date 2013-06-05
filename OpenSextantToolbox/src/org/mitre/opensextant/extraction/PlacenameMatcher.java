@@ -143,7 +143,10 @@ public class PlacenameMatcher {
         // in the same gazetteer.  
         // 
         String config_solr_home = System.getProperty("solr.solr.home");
-        solr = new SolrProxy(config_solr_home, "gazetteer");
+        if (config_solr_home != null)
+            solr = new SolrProxy(config_solr_home, "gazetteer");
+        else
+            solr = new SolrProxy(System.getProperty("solr.url"));//e.g. http://localhost:8983/solr/gazetteer/
 
         ModifiableSolrParams _params = new ModifiableSolrParams();
         _params.set(CommonParams.QT, requestHandler);

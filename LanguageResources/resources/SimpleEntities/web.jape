@@ -1,0 +1,197 @@
+/* 
+Patterns for Web entities
+ */
+
+Imports: {
+import static gate.Utils.*;
+}
+
+
+Phase:	Web
+Input:	Token SpaceToken
+Options: control = appelt
+
+
+// a token that is valid as a component of a domain name
+Macro: DOMAIN_TOKEN
+
+(	
+	{Token.string ==~ "[\\w]+"}({Token.string == "[0-9]+"} ({Token.string ==~ "[\\w]+"})? ({Token.string == "[0-9]+"})? )?
+)
+
+// a token that is valid as a component of a URL
+Macro: URL_TOKEN
+
+(	
+	{Token.string ==~ "[\\w0-9/\\#~:.?+=&%@!\\-\\\\]+"}  //| {SpaceToken.kind == "control"}
+)
+
+// a number from 0-255 includes optional leading zeros
+Macro: IP_NUMBER
+(	
+	 {Token.string ==~ "([0-1])?([0-9])?[0-9]"}|{Token.string ==~ "2[0-4][0-9]"}|{Token.string ==~ "25[0-5]"}
+)
+
+// an ip address
+Macro: IP_ADDRESS
+(
+	IP_NUMBER {Token.string =="."}
+	IP_NUMBER {Token.string =="."}
+	IP_NUMBER {Token.string =="."}
+	IP_NUMBER 
+)
+
+
+// the leading portion of a URL to include the scheme and punct
+Macro: URL_PREFIX
+
+(	  {Token.string ==~ "http|https|ftp" }
+      {Token.string == ":"}
+      {Token.string ==~ "/|\\\\"}({Token.string ==~ "/|\\\\"})?
+)
+
+
+// a few common top level domains 
+Macro: URL_TLD
+(	
+ {Token.string ==~ "com|edu|gov" }
+)
+
+// a fully specified domain name
+Macro: URL_DOMAIN
+(	
+	 DOMAIN_TOKEN
+	({Token.string == "."}DOMAIN_TOKEN)[1,5]
+	 {Token.string == "."}URL_TLD
+)
+
+// a two piece domain name (should only be used inside a larger context
+Macro: URL_DOMAIN_SHORT
+(	
+	 DOMAIN_TOKEN
+	({Token.string == "."}{Token.string ==~ "\\w+"})[0,5]
+	 {Token.string == "."}URL_TLD
+)
+
+
+// a sequence of valid tokens separated by "."
+Macro: EMAIL_NAME
+(	
+	 ({Token.string ==~ "[-\\w\\.]+"})[1,10]
+)
+
+// separator between email name and email domain
+Macro: EMAIL_DELIMITER
+(	
+	{Token.string == "@"} | 
+	{Token.string ==~ "at|At|AT"} |
+    ({Token.string == "["}{Token.string ==~ "at|At|AT"}{Token.string == "]"}) |
+    ({Token.string == "("}{Token.string ==~ "at|At|AT"}{Token.string == ")"}) 
+)
+
+
+
+
+
+// --------------------  The rules ------------------------
+// an email address
+Rule: EMAIL
+(	
+	EMAIL_NAME EMAIL_DELIMITER (URL_DOMAIN | URL_DOMAIN_SHORT)
+):address 
+-->
+{
+	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("address");
+	Node sentStartNode = sentSet.firstNode(); 
+	Node sentEndNode   = sentSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule","EMAIL");
+	 tempFeatures.put("string", stringFor(doc,sentSet).replaceAll("\\s"," "));
+	 tempFeatures.put("hierarchy","Information.web.emailAddress");
+	 
+	outputAS.add(sentStartNode, sentEndNode, "EMail",tempFeatures);
+}
+
+
+// a full URL
+Rule: URL
+(	
+   URL_PREFIX ({Token})[1,6] URL_TLD (URL_TOKEN)*
+):urlAddress 
+-->
+{
+	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("urlAddress");
+	Node sentStartNode = sentSet.firstNode(); 
+	Node sentEndNode   = sentSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule","URL");
+	 tempFeatures.put("string", stringFor(doc,sentSet).replaceAll("\\s"," "));
+	 tempFeatures.put("hierarchy","Information.web.url");
+
+	outputAS.add(sentStartNode, sentEndNode, "URL",tempFeatures);	
+}
+
+// a URL with no explicit scheme or prefix info
+Rule: URLNoScheme
+(		 
+	URL_DOMAIN
+	(URL_TOKEN)+
+):urlAddress 
+-->
+{
+	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("urlAddress");
+	Node sentStartNode = sentSet.firstNode(); 
+	Node sentEndNode   = sentSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule","URLNoScheme");
+	 tempFeatures.put("string", stringFor(doc,sentSet).replaceAll("\\s"," "));
+	 tempFeatures.put("hierarchy","Information.web.url");
+	 
+	outputAS.add(sentStartNode, sentEndNode, "URL",tempFeatures);	
+}
+
+
+
+
+// a standalone domain name (dont use SHORT form here)
+Rule: WebSite
+(	
+	URL_DOMAIN
+):site 
+-->
+{
+	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("site");
+	Node sentStartNode = sentSet.firstNode(); 
+	Node sentEndNode   = sentSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule","WebSite");
+	 tempFeatures.put("string", stringFor(doc,sentSet).replaceAll("\\s"," "));
+	 tempFeatures.put("hierarchy","Information.web.webSite");
+	 
+	outputAS.add(sentStartNode, sentEndNode, "WebSite",tempFeatures);
+}
+
+
+// a standalone IP address
+Rule: IPAddress
+(	
+	IP_ADDRESS
+):site 
+-->
+{
+	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("site");
+	Node sentStartNode = sentSet.firstNode(); 
+	Node sentEndNode   = sentSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule","IPAddress");
+	 tempFeatures.put("string", stringFor(doc,sentSet).replaceAll("\\s"," "));
+	 tempFeatures.put("hierarchy","Information.web.IPAddress");
+	 
+	outputAS.add(sentStartNode, sentEndNode, "IPAddress",tempFeatures);	
+}
+

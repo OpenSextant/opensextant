@@ -1,0 +1,46 @@
+/*
+
+  This phase finds  numerical phrases
+
+*/
+
+Imports: {
+import static gate.Utils.*;
+}
+ 
+
+Phase:	Numbers
+Input:	Token 
+Options: control = appelt
+
+
+Macro: NUM_TOKEN
+(	
+	{Token.string ==~ "[0-9]+"}
+)
+
+
+
+// -------------The rules -------------
+
+// 100 , 100.01
+Rule:Number1
+(
+  NUM_TOKEN ({Token.string == "."} NUM_TOKEN)?
+)
+:whole
+-->
+{
+	gate.AnnotationSet wholeSet = (gate.AnnotationSet)bindings.get("whole");
+	String phrase = gate.Utils.stringFor(doc,wholeSet);
+
+	gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	tempFeatures.put("rule","Number1");
+	tempFeatures.put("string",phrase);
+
+	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Number",tempFeatures);
+}
+
+
+
+

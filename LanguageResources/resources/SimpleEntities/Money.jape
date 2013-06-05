@@ -1,0 +1,68 @@
+/*
+
+  This phase finds references to amounts of money
+
+*/
+
+Imports: {
+import static gate.Utils.*;
+}
+ 
+
+Phase:	Money
+Input:	Token noun_proper Number
+Options: control = appelt
+
+MACRO: CURRENCY_NAME  //dollars, rubles....
+(
+ {noun_proper.hierarchy == "Object.finance.currencyName"}
+)
+
+MACRO: CURRENCY_SYMBOL  //$ ...
+(
+ {noun_proper.hierarchy == "Object.finance.currencySymbol"}
+)
+
+
+// -------------The rules -------------
+
+// $23.45
+Rule:Money1
+(
+ (CURRENCY_SYMBOL):sym ({Number}):amount 
+)
+:whole
+-->
+{
+	gate.AnnotationSet wholeSet = (gate.AnnotationSet)bindings.get("whole");
+	String moneyPhrase = gate.Utils.stringFor(doc,wholeSet);
+
+	gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	tempFeatures.put("rule","Money1");
+	tempFeatures.put("string",moneyPhrase);
+	tempFeatures.put("hierarchy","Object.finance.money");
+	tempFeatures.put("simpleEntityType","money");
+	
+	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Money",tempFeatures);
+}
+
+
+Rule:Money2
+(
+ ({Number}):amount {Token.string ==~ "of|Of|OF"} (CURRENCY_NAME):sym 
+)
+:whole
+-->
+{
+	gate.AnnotationSet wholeSet = (gate.AnnotationSet)bindings.get("whole");
+	String moneyPhrase = gate.Utils.stringFor(doc,wholeSet);
+
+	gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	tempFeatures.put("rule","Money2");
+	tempFeatures.put("string",moneyPhrase);
+	tempFeatures.put("hierarchy","Object.finance.money");
+	tempFeatures.put("simpleEntityType","money");
+	
+	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Money",tempFeatures);
+}
+

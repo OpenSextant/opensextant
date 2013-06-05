@@ -5,6 +5,7 @@
 MultiPhase:	Chunking
 Phases: 
 ./Pieces/POSRepair	
+./Pieces/EntityMarking
 ./Pieces/NounPhrasePieces
 ./Pieces/VerbPhrasePieces
 ./Phrases/NounPhrases

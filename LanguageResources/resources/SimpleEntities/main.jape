@@ -1,0 +1,12 @@
+/*
+ The phases to identify simple entities
+*/
+
+MultiPhase:SimpleEntities
+Phases: 
+./numbers
+./identifiers
+./time
+./web
+./Money
+

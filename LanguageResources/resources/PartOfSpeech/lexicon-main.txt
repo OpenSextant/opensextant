@@ -1,6 +1,8 @@
 ! PERIOD 1596
 " DQUOTE 8789
-# NN 10
+# DASH 10
+^ DASH 10
+| DASH 10
 $ NN 10
 % NN 10
 & CC 162
@@ -16,7 +18,7 @@ $ NN 10
 've HV 10
 ( OPENPAREN 2425
 ) CLOSEPAREN 2456
-* NN 10
+* DASH 10
 + DASH 1
 , COMMA 58333
 - DASH 3431
@@ -27080,6 +27082,7 @@ knots NNS 1
 knott NN 1
 knotted VBN 3 VBD 1
 knotty JJ 2
+dunno VB 680
 know VB 680 NN 3
 know-how NN 4
 knowed VBN 1

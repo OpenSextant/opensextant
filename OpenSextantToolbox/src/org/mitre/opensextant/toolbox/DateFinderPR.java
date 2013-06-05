@@ -156,10 +156,12 @@ public class DateFinderPR extends AbstractLanguageAnalyser implements
 			feats.put("string", d.getText());
 			feats.put("normedDateText", d.datenorm_text);
 			feats.put("normedDate", d.datenorm);
+			feats.put("datePattern", d.pattern_id);
+			feats.put("hierarchy", "Time.date");
 
 			// create a "date" annotation
 			try {
-				annotSet.add((long) d.start, (long) d.end, "date", feats);
+				annotSet.add((long) d.start, (long) d.end, "Date", feats);
 			} catch (InvalidOffsetException e) {
 				log.error("DateFinderPR: Invalid Offset exception when creating date annotation" + e.getMessage());
 			}
