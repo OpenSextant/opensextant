@@ -161,10 +161,10 @@ public class ConfigFrame extends javax.swing.JFrame {
         processingLabel.setText("Processing");
         processingLabel.setToolTipText("");
 
-        tmpLabel.setText("Path tmp:");
-        tmpLabel.setToolTipText("The number of simultaneous jobs that can be run");
+        tmpLabel.setText("Temp Path:");
+        tmpLabel.setToolTipText("The location to place temporary files used during job execution");
 
-        tmpText.setToolTipText("Directly enter output directory location");
+        tmpText.setToolTipText("Directly enter temporary directory location");
         tmpText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tmpTextActionPerformed(evt);
@@ -172,7 +172,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
 
         browseTmpButton.setText("Browse...");
-        browseTmpButton.setToolTipText("Navigate filesystem for output directory location");
+        browseTmpButton.setToolTipText("Navigate filesystem for temporary directory location");
         browseTmpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 browseTmpButtonActionPerformed(evt);
@@ -224,7 +224,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                                     .addComponent(tmpLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tmpText, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                                    .addComponent(tmpText, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                                     .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(browseTmpButton)))

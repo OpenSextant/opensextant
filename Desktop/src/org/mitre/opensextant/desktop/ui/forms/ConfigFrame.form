@@ -109,7 +109,7 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tmpText" pref="196" max="32767" attributes="0"/>
+                                  <Component id="tmpText" pref="185" max="32767" attributes="0"/>
                                   <Component id="threadCount" min="-2" pref="58" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -304,13 +304,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="tmpLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Path tmp:"/>
-        <Property name="toolTipText" type="java.lang.String" value="The number of simultaneous jobs that can be run"/>
+        <Property name="text" type="java.lang.String" value="Temp Path:"/>
+        <Property name="toolTipText" type="java.lang.String" value="The location to place temporary files used during job execution"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tmpText">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Directly enter output directory location"/>
+        <Property name="toolTipText" type="java.lang.String" value="Directly enter temporary directory location"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tmpTextActionPerformed"/>
@@ -322,7 +322,7 @@
     <Component class="javax.swing.JButton" name="browseTmpButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Browse..."/>
-        <Property name="toolTipText" type="java.lang.String" value="Navigate filesystem for output directory location"/>
+        <Property name="toolTipText" type="java.lang.String" value="Navigate filesystem for temporary directory location"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseTmpButtonActionPerformed"/>
