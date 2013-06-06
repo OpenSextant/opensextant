@@ -46,7 +46,7 @@ public class ResultsUtility {
     public final static String PLACE_ANNOTATION = "PLACE";
     public final static String PLACE_CANDIDATE_ANNOTATION = "placeCandidate";
     public final static String GEOCOORD_ANNOTATION = "geocoord";
-    public final static Set<String> GATE_GEOCODE_ANNOTATIONS = new HashSet<>();
+    public final static Set<String> GATE_GEOCODE_ANNOTATIONS = new HashSet<String>();
 
     static {
         // This annot set matches "isLocation(annotType)"
@@ -133,7 +133,7 @@ public class ResultsUtility {
      * city is 10km of error, etc.
      *
      */
-    public final static Map<String, Integer> FEATURE_PRECISION = new HashMap<>();
+    public final static Map<String, Integer> FEATURE_PRECISION = new HashMap<String, Integer>();
 
     static {
         FEATURE_PRECISION.put("P", 5000);

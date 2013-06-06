@@ -22,7 +22,7 @@ public class TaxonMatch extends org.mitre.flexpat.TextMatch {
         }
 
         if (taxons == null) {
-            taxons = new ArrayList<>();
+            taxons = new ArrayList<Taxon>();
         }
         taxons.add(t);
     }

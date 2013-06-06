@@ -165,7 +165,7 @@ public class SimpleGeocoder extends AppBase {
 
         // Add all documents first 
         // --------------------------
-        List<GeocodingResult> results = new ArrayList<>();
+        List<GeocodingResult> results = new ArrayList<GeocodingResult>();
         for (TextInput text : texts) {
             Document doc = Factory.newDocument(text.buffer);
             if (text.id == null) {

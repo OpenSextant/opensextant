@@ -77,7 +77,7 @@ public class PlacenameMatcher {
      */
     private final String APRIORI_NAME_RULE = "AprioriNameBias";
     private SolrTaggerRequest tag_request = null;
-    private Map<Integer, Place> beanMap = new HashMap<>(100); // initial size
+    private Map<Integer, Place> beanMap = new HashMap<Integer, Place>(100); // initial size
     /**
      * In the interest of optimization we made the Solr instance a static class
      * attribute that should be thread safe and shareable across instances of
@@ -224,7 +224,7 @@ public class PlacenameMatcher {
             log.debug("TEXT SIZE = " + buffer.length());
         }
 
-        List<PlaceCandidate> candidates = new ArrayList<>();
+        List<PlaceCandidate> candidates = new ArrayList<PlaceCandidate>();
 
         // Setup request to tag... 
         tag_request.input = buffer;
@@ -303,7 +303,7 @@ public class PlacenameMatcher {
         PlaceCandidate pc;
         Place Pgeo;
         int x1 = -1, x2 = -1;
-        Set<String> seenPlaces = new HashSet<>();
+        Set<String> seenPlaces = new HashSet<String>();
         Double name_bias = 0.0;
 
         String matchText = null;
@@ -427,7 +427,7 @@ public class PlacenameMatcher {
             return;
         }
         log.debug("DOC=" + docid + " PLACE CANDIDATES SIZE = " + candidates.size());
-        Map<String, Integer> countries = new HashMap<>();
+        Map<String, Integer> countries = new HashMap<String, Integer>();
 
         // This loops through findings and reports out just Country names for now.
         for (PlaceCandidate candidate : candidates) {

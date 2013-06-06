@@ -111,7 +111,7 @@ public class TaxonMatcher {
     /** Catalogs is a list of catalogs caller wants to tag for.
      * If set, only taxon matches with the catalog ID in this list will be returned by tagText()
      */
-    public Set<String> catalogs = new HashSet<>();
+    public Set<String> catalogs = new HashSet<String>();
 
     public void addCatalogFilters(String[] cats) {
         catalogs.addAll(Arrays.asList(cats));
@@ -153,7 +153,7 @@ public class TaxonMatcher {
      */
     public List<TaxonMatch> tagText(String buffer, String docid) throws MatcherException {
 
-        List<TaxonMatch> matches = new ArrayList<>();
+        List<TaxonMatch> matches = new ArrayList<TaxonMatch>();
 
         // Setup request to tag... 
         tag_request.input = buffer;
@@ -167,7 +167,7 @@ public class TaxonMatcher {
         // -- Process Solr Response
 
         SolrDocumentList docList = (SolrDocumentList) response.getResponse().get("matchingDocs");
-        Map<Integer, Taxon> labelMap = new HashMap<>(docList.size());
+        Map<Integer, Taxon> labelMap = new HashMap<Integer, Taxon>(docList.size());
         for (SolrDocument solrDoc : docList) {
 
             String _cat = SolrProxy.getString(solrDoc, "catalog");

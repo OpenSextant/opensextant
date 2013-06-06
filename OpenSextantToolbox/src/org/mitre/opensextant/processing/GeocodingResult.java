@@ -47,7 +47,7 @@ import org.jgeohash.GeoHashUtils;
  */
 public class GeocodingResult {
 
-    public List<Geocoding> geocodes = new ArrayList<>();
+    public List<Geocoding> geocodes = new ArrayList<Geocoding>();
     /**
      * short ID or name of file
      */
@@ -80,7 +80,7 @@ public class GeocodingResult {
      */
     public void addAttribute(String f, Object v) {
         if (attributes == null) {
-            attributes = new HashMap<>();
+            attributes = new HashMap<String, Object>();
         }
         attributes.put(f, v);
     }

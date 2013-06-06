@@ -82,8 +82,8 @@ public abstract class GISDataFormatter extends AbstractFormatter {
      *
      */
     protected boolean groupByDocument = false;
-    public List<String> field_order = new ArrayList<>();
-    public Set<String> field_set = new HashSet<>();
+    public List<String> field_order = new ArrayList<String>();
+    public Set<String> field_set = new HashSet<String>();
     private int id = 0;
 
     /**

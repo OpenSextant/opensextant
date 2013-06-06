@@ -61,7 +61,7 @@ public class Parameters extends java.util.Properties {
     public String inputFile = null;
     public String outputFile = null;
 
-    private Set<String> formats = new HashSet<>();
+    private Set<String> formats = new HashSet<String>();
     /**  You the caller must explicitly set isdefault = false;
      *   forcing you to actually look at these parameters.
      */

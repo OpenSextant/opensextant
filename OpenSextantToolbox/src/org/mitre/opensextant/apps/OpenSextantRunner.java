@@ -257,7 +257,7 @@ public class OpenSextantRunner extends AppBase implements ConversionListener {
         reportMemory();
         reportMetrics();
     }
-    List<Document> _docs = new ArrayList<>();
+    List<Document> _docs = new ArrayList<Document>();
 
     /**
      * Note -- a corpus will explode in memory if the job is too large.

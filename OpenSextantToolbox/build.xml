@@ -10,7 +10,7 @@ The core library is contained in this jar.
 
     <!-- Name of the project -->
     <property name="project.name" value="OpenSextantToolbox" />
-    <property name="java_level" value="1.7" />
+    <property name="java_level" value="1.6" />
 	
     <!-- Source directory - contains the Java source files for this project -->
     <property name="src.dir" location="src" />

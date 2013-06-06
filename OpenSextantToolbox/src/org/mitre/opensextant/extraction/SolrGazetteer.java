@@ -67,8 +67,8 @@ public class SolrGazetteer {
     private ModifiableSolrParams params = new ModifiableSolrParams();
     private SolrProxy solr = null;
     private Map<String, Country> country_lookup = null;
-    private Map<String, String> iso2fips = new HashMap<>();
-    private Map<String, String> fips2iso = new HashMap<>();
+    private Map<String, String> iso2fips = new HashMap<String, String>();
+    private Map<String, String> fips2iso = new HashMap<String, String>();
 
     /**
      *
@@ -77,7 +77,7 @@ public class SolrGazetteer {
     public SolrGazetteer() throws IOException {
         initialize();
     }
-    private Map<String, String> _default_country_names = new HashMap<>();
+    private Map<String, String> _default_country_names = new HashMap<String, String>();
 
     /** 
      */
@@ -161,7 +161,7 @@ public class SolrGazetteer {
      * TODO: allow caller to get all entries, including abbreviations.
      */
     protected void loadCountries() throws SolrServerException {
-        country_lookup = new HashMap<>();
+        country_lookup = new HashMap<String, Country>();
 
         ModifiableSolrParams ctryparams = new ModifiableSolrParams();
         ctryparams.set(CommonParams.FL, "id,name,cc,FIPS_cc,ISO3_cc,adm1,adm2,feat_class,feat_code,lat,lon,name_type");
@@ -245,7 +245,7 @@ public class SolrGazetteer {
      */
     public List<Place> search(String place, boolean as_solr) throws SolrServerException {
 
-        List<Place> places = new ArrayList<>();
+        List<Place> places = new ArrayList<Place>();
         if (as_solr) {
             params.set("q", place);
         } else {
