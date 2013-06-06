@@ -72,7 +72,7 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		HelpKeyListener helpListen = new HelpKeyListener();
 		
 		
-		treePanel.setTransferHandler(new FileDropTransferHandler(apiHelper));
+		this.treePanel.setTransferHandler(new FileDropTransferHandler(apiHelper));
 		
 		table = new OSTreeTable(this);
                 this.tableScrollPane.setViewportView(table.create());
@@ -106,9 +106,27 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
             }
         });
 
+        this.textButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	parent.textMenuItemActionPerformed(evt);
+            }
+        });
+        
+        this.configButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                configMenuItemActionPerformed(evt);
+            }
+        });
+        
         this.aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aboutMenuItemActionPerformed(evt);
+            }
+        });
+        
+        this.addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	parent.addFileMenuItemActionPerformed(evt);
             }
         });
         

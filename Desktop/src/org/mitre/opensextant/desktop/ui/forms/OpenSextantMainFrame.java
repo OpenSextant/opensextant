@@ -31,6 +31,11 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
 
         treePanel = new javax.swing.JPanel();
         tableScrollPane = new javax.swing.JScrollPane();
+        actionToolbar = new javax.swing.JToolBar();
+        addButton = new javax.swing.JButton();
+        textButton = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(15, 0), new java.awt.Dimension(15, 0), new java.awt.Dimension(15, 32767));
+        configButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         addFileMenuItem = new javax.swing.JMenuItem();
@@ -45,15 +50,53 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OpenSextant Desktop");
 
+        actionToolbar.setRollover(true);
+
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/plusLarge.png"))); // NOI18N
+        addButton.setToolTipText("Add File(s)");
+        addButton.setFocusable(false);
+        addButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        addButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        actionToolbar.add(addButton);
+
+        textButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/lines.png"))); // NOI18N
+        textButton.setToolTipText("Add Text");
+        textButton.setFocusable(false);
+        textButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        textButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        textButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textButtonActionPerformed(evt);
+            }
+        });
+        actionToolbar.add(textButton);
+        actionToolbar.add(filler1);
+
+        configButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/cog.png"))); // NOI18N
+        configButton.setToolTipText("Configuration");
+        configButton.setFocusable(false);
+        configButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        configButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        configButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                configButtonActionPerformed(evt);
+            }
+        });
+        actionToolbar.add(configButton);
+
         org.jdesktop.layout.GroupLayout treePanelLayout = new org.jdesktop.layout.GroupLayout(treePanel);
         treePanel.setLayout(treePanelLayout);
         treePanelLayout.setHorizontalGroup(
             treePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
+            .add(actionToolbar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         treePanelLayout.setVerticalGroup(
             treePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, treePanelLayout.createSequentialGroup()
+                .add(actionToolbar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -126,6 +169,14 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
+    private void configButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_configButtonActionPerformed
+
+    private void textButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -169,15 +220,20 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JMenuItem aboutMenuItem;
+    protected javax.swing.JToolBar actionToolbar;
+    protected javax.swing.JButton addButton;
     protected javax.swing.JMenuItem addFileMenuItem;
+    protected javax.swing.JButton configButton;
     protected javax.swing.JMenuItem configMenuItem;
     protected javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.Box.Filler filler1;
     protected javax.swing.JMenu helpMenu;
     protected javax.swing.JMenuItem helpMenuItem;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     protected javax.swing.JScrollPane tableScrollPane;
+    protected javax.swing.JButton textButton;
     protected javax.swing.JMenuItem textMenuItem;
     protected javax.swing.JPanel treePanel;
     // End of variables declaration//GEN-END:variables
