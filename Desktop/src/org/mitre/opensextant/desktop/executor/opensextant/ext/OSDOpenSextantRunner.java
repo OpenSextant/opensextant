@@ -31,6 +31,9 @@ public class OSDOpenSextantRunner extends OpenSextantRunner {
 		super(); 
 		this.row = row;
 		log.info("Created ODS Desktop runner");
+
+                String tmpLoc = row.getTmpLocation();
+                if(tmpLoc != null && !"".equals(tmpLoc)) this.tmpRoot = row.getTmpLocation();
 		tmpRoot += File.separator + FilenameUtils.getBaseName(row.getOutputLocation());
 		archiveTmpRoot = tmpRoot + File.separator + "archives";
 		tmpTmpRoot = tmpRoot + File.separator + "tmp";

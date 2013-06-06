@@ -16,6 +16,7 @@ public class ConfigFrameImpl extends ConfigFrame{
 		
 		this.configHelper = ConfigHelper.getInstance();
 		
+		tmpText.setText(configHelper.getTmpLocation());
 		outputText.setText(configHelper.getOutLocation());
 		threadCount.setValue(configHelper.getNumThreads());
 
@@ -64,6 +65,8 @@ public class ConfigFrameImpl extends ConfigFrame{
 			outType = outType.substring(0, outType.length() - 1);
 
 		configHelper.setOutLocation(outputText.getText());
+                configHelper.setTmpLocation(tmpText.getText());
+
 		configHelper.setOutType(outType);
 		configHelper.setNumThreads((Integer)threadCount.getValue());
 		

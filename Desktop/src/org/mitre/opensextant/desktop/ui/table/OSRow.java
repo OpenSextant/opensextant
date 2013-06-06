@@ -67,6 +67,7 @@ public class OSRow implements Comparable<OSRow> {
 	private RowButtonsImpl buttonContainer;
 	private RowDurationImpl durationContainer;
 	private String outputLocation;
+        private String tmpLocation;
 	private File inputFile;
 	private String outputType;
 	private String baseOutputLocation;
@@ -98,6 +99,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.id = (new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss")).format(startTime) + "_" + ++counter;
 		this.parent = parent;
 
+                this.tmpLocation = ConfigHelper.getInstance().getTmpLocation();
 		this.status = STATUS.QUEUED;
 		this.baseOutputLocation = baseOutputLocation;
 		this.outputType = outputType;
@@ -135,6 +137,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.startTime = new Date(Long.parseLong(rowValues[6]));
 		this.id = rowValues[0];
 
+                this.tmpLocation = ConfigHelper.getInstance().getTmpLocation();
 		this.durationContainer = new RowDurationImpl();
                 
 		String stat = rowValues[5];
@@ -320,6 +323,10 @@ public class OSRow implements Comparable<OSRow> {
 
 	public String getOutputLocation() {
 		return outputLocation;
+	}
+        
+        public String getTmpLocation() {
+		return tmpLocation;
 	}
 
 	public File getInputFile() {

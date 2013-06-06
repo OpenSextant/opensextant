@@ -32,6 +32,7 @@ public class ConfigHelper {
 	private PropertiesConfiguration jobs = null;
 	
 
+        private String tmpLocation = "";
 	private String outType = "";
 	private String outLocation = "";
 	private String inLocation = "";
@@ -86,6 +87,7 @@ public class ConfigHelper {
 			config.setProperty("outType", outType);
 			config.setProperty("outLocation", outLocation);
 			config.setProperty("inLocation", inLocation);
+			config.setProperty("tmpLocation", tmpLocation);
 			config.setProperty("osHome", osHome);
 			config.setProperty("gateHome", gateHome);
 			config.setProperty("solrHome", solrHome);
@@ -108,6 +110,7 @@ public class ConfigHelper {
 			(new File(outLocation)).mkdir();
 		}
 		inLocation = config.getString("inLocation", "");
+		tmpLocation = config.getString("tmpLocation", "");
 		osHome = config.getString("osHome", null);
 		gateHome = config.getString("gateHome", null);
 		solrHome = config.getString("solrHome", null);
@@ -146,6 +149,11 @@ public class ConfigHelper {
 		return outLocation;
 	}
 
+        public String getTmpLocation() {
+		return tmpLocation;
+	}
+
+        
 	public String getInLocation() {
 		return inLocation;
 	}
@@ -164,7 +172,11 @@ public class ConfigHelper {
 	public void setOutType(String outType) {
 		this.outType = outType;
 	}
-
+        
+	public void setTmpLocation(String tmpLocation) {
+		this.tmpLocation = tmpLocation;
+	}
+        
 	public void setOutLocation(String outLocation) {
 		this.outLocation = outLocation;
 	}

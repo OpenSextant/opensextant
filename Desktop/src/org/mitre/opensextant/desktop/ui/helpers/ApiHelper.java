@@ -56,6 +56,8 @@ public class ApiHelper {
 		String outType = ConfigHelper.getInstance().getOutType();
 		String baseOutputLocation = ConfigHelper.getInstance().getOutLocation();
 		
+                
+                
 		OSRow row = new OSRow(file, baseOutputLocation, outType, parent.getTableHelper());
 		
 		executor.execute(parent, row, true);
