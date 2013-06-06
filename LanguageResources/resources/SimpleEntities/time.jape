@@ -14,14 +14,14 @@ Options: control = appelt
 
 
 // 1234Z  12:34L
-Rule: MilTime
+Rule: BasicTime
 (
  (
   {Token.string ==~ "[0-9]{4}"}
     |
-  ({Token.string ==~ "[0-9]{2}"}{Token.string == ":"}{Token.string ==~ "[0-9]{2}"})
+  ({Token.string ==~ "[0-9]{1,2}"}{Token.string == ":"}{Token.string ==~ "[0-9]{2}"}({Token.string == ":"}{Token.string ==~ "[0-9]{2}"})?)
   )
-  {Token.string ==~ "[LZ]|local|Local|LOCAL|zulu|Zulu|ZULU|GMT|gmt|Gmt"}
+  {Token.string ==~ "[LZ]|local|Local|LOCAL|zulu|Zulu|ZULU|GMT|gmt|Gmt|am|AM|a.m.|A.M.|pm|PM|p.m.|P.M."}
 )
 :sent
 -->
@@ -31,7 +31,7 @@ Rule: MilTime
 	Node sentEndNode   = sentSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","MilTime");
+	 tempFeatures.put("rule","BasicTime");
 	 tempFeatures.put("string", stringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Time.time");
 	 

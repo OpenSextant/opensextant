@@ -54,7 +54,7 @@ Macro: URL_PREFIX
 // a few common top level domains 
 Macro: URL_TLD
 (	
- {Token.string ==~ "com|edu|gov" }
+ {Token.string ==~ "com|edu|gov|org|mil" }
 )
 
 // a fully specified domain name

@@ -47,7 +47,7 @@ Macro: CHAR_TOKEN
 
 Macro: CHAR_TOKEN_UPPER
 (	
-	{Token.string ==~ "[A-Z]{0,5}-"}
+	{Token.string ==~ "[A-Z]{1,5}-"}
 )
 
 
@@ -78,7 +78,6 @@ Rule: typeNumber
 	 tempFeatures.put("rule","typeNumber");
 	 tempFeatures.put("string", stringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
-	 tempFeatures.put("simpleEntityType","identifier");
 	 
 	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
 }
@@ -98,7 +97,6 @@ Rule: typeNumberRoman
 	 tempFeatures.put("rule","typeNumberRoman");
 	 tempFeatures.put("string", stringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
-	 tempFeatures.put("simpleEntityType","identifier");
 	 
 	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
 }
@@ -120,7 +118,6 @@ Rule: simpleID
 	 tempFeatures.put("rule","simpleID");
 	 tempFeatures.put("string", stringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
-	 tempFeatures.put("simpleEntityType","identifier");
 	 
 	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
 }
@@ -140,7 +137,7 @@ Rule: nameNumberID
 	 tempFeatures.put("rule","nameNumberID");
 	 tempFeatures.put("string", stringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
-	 tempFeatures.put("simpleEntityType","identifier");
+
 	 
 	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
 }
@@ -161,7 +158,6 @@ Rule: simpleIDMod
 	 tempFeatures.put("rule","simpleIDMod");
 	 tempFeatures.put("string", stringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
-	 tempFeatures.put("simpleEntityType","identifier");
 	 
 	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);	
 }
@@ -181,7 +177,6 @@ Rule: simpleIDMultiNum
 	 tempFeatures.put("rule","simpleIDMultiNum");
 	 tempFeatures.put("string", stringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
-	 tempFeatures.put("simpleEntityType","identifier");
 	
 	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);	
 }
@@ -203,7 +198,6 @@ Rule: compundID
 	 tempFeatures.put("rule","compoundID");
 	 tempFeatures.put("string", stringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
-	 tempFeatures.put("simpleEntityType","identifier");
 	 
 	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
 }
@@ -223,7 +217,6 @@ Rule: Abbrev
 	 tempFeatures.put("rule","Abbrev");
 	 tempFeatures.put("string", stringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
-	 tempFeatures.put("simpleEntityType","identifier");
 	 
 	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
 }

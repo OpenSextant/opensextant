@@ -10,18 +10,8 @@ import static gate.Utils.*;
  
 
 Phase:	Money
-Input:	Token noun_proper Number
+Input:	Token Number CurrencySymbol Currency
 Options: control = appelt
-
-MACRO: CURRENCY_NAME  //dollars, rubles....
-(
- {noun_proper.hierarchy == "Object.finance.currencyName"}
-)
-
-MACRO: CURRENCY_SYMBOL  //$ ...
-(
- {noun_proper.hierarchy == "Object.finance.currencySymbol"}
-)
 
 
 // -------------The rules -------------
@@ -29,7 +19,7 @@ MACRO: CURRENCY_SYMBOL  //$ ...
 // $23.45
 Rule:Money1
 (
- (CURRENCY_SYMBOL):sym ({Number}):amount 
+ ( {CurrencySymbol}):sym ({Number}):amount 
 )
 :whole
 -->
@@ -41,7 +31,6 @@ Rule:Money1
 	tempFeatures.put("rule","Money1");
 	tempFeatures.put("string",moneyPhrase);
 	tempFeatures.put("hierarchy","Object.finance.money");
-	tempFeatures.put("simpleEntityType","money");
 	
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Money",tempFeatures);
 }
@@ -49,7 +38,7 @@ Rule:Money1
 
 Rule:Money2
 (
- ({Number}):amount {Token.string ==~ "of|Of|OF"} (CURRENCY_NAME):sym 
+ ({Number}):amount {Token.string ==~ "of|Of|OF"} ({Currency}):sym 
 )
 :whole
 -->
@@ -61,7 +50,6 @@ Rule:Money2
 	tempFeatures.put("rule","Money2");
 	tempFeatures.put("string",moneyPhrase);
 	tempFeatures.put("hierarchy","Object.finance.money");
-	tempFeatures.put("simpleEntityType","money");
 	
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Money",tempFeatures);
 }

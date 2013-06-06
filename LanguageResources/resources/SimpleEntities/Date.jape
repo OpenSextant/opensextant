@@ -15,7 +15,7 @@ Options: control = appelt
 
 MACRO: MONTH_NAME  //Jan January Jan. ....
 (
- {noun_common.hierarchy == "Time.month"}
+ {Month}
 )
 
 MACRO: DAY_NUMBER  //13-31 unambigous day numbers
@@ -129,35 +129,6 @@ Rule: DTG2
 	tempFeatures.put("simpleEntityType","date");
 	
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
-}
-
-
-
-
-// 1234Z  12:34L
-Rule: MilTime
-(
- (
-  {Token.string ==~ "[0-9]{4}"}
-    |
-  ({Token.string ==~ "[0-9]{2}"}{Token.string == ":"}{Token.string ==~ "[0-9]{2}"})
-  )
-  {Token.string ==~ "[LZ]|local|Local|LOCAL|zulu|Zulu|ZULU"}
-)
-:sent
--->
-{
-	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("sent");
-	Node sentStartNode = sentSet.firstNode(); 
-	Node sentEndNode   = sentSet.lastNode();
- 
-	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","MilTime");
-	 tempFeatures.put("string", stringFor(doc,sentSet));
-	 tempFeatures.put("hierarchy","Time.time");
-	 tempFeatures.put("simpleEntityType","time");
-	 
-	outputAS.add(sentStartNode, sentEndNode, "Time",tempFeatures);	
 }
 
 
