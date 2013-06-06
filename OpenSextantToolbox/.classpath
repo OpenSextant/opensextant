@@ -10,7 +10,6 @@
 	<classpathentry kind="lib" path="lib/giscore-1.8.jar"/>
 	<classpathentry kind="lib" path="lib/java-getopt.jar"/>
 	<classpathentry kind="lib" path="lib/jgeohash-1.4.0.jar"/>
-	<classpathentry kind="lib" path="lib/SolrTextTagger.jar"/>
 	<classpathentry kind="lib" path="lib/xstream.jar"/>
 	<classpathentry kind="lib" path="lib/solr/cglib-nodep-2.2.jar"/>
 	<classpathentry kind="lib" path="lib/solr/commons-cli-1.2.jar"/>
@@ -53,9 +52,11 @@
 	<classpathentry kind="lib" path="lib/apps/tika-app-1.3-nologger.jar"/>
 	<classpathentry kind="lib" path="lib/flexpat-1.3.jar"/>
 	<classpathentry kind="lib" path="lib/opensextant-commons.jar"/>
-	<classpathentry kind="lib" path="lib/xcoord-1.6.jar"/>
-	<classpathentry kind="lib" path="lib/xtemporal-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/xtext-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/apps/super-csv-2.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/solr-text-tagger-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/JITAR.jar"/>
+	<classpathentry kind="lib" path="lib/joda-time-2.2.jar"/>
+	<classpathentry kind="lib" path="lib/opensextant-xponents-1.6.jar" sourcepath="/Xponents/XCoord/src"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
