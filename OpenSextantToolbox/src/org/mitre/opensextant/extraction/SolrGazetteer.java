@@ -355,7 +355,6 @@ public class SolrGazetteer {
 
 
         SolrGazetteer gaz = new SolrGazetteer();
-        gaz.initialize();
 
         try {
 
