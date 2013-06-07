@@ -1,29 +1,29 @@
-/** 
- Copyright 2009-2013 The MITRE Corporation.
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-
+/**
+ * Copyright 2009-2013 The MITRE Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ *
  * **************************************************************************
- *                          NOTICE
- * This software was produced for the U. S. Government under Contract No.
+ * NOTICE This software was produced for the U. S. Government under Contract No.
  * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
  * Software and Noncommercial Computer Software Documentation Clause
  * 252.227-7014 (JUN 1995)
  *
  * (c) 2012 The MITRE Corporation. All Rights Reserved.
  * **************************************************************************
-**/
+ *
+ */
 package org.mitre.opensextant.extraction;
 
 import java.io.File;
@@ -51,9 +51,10 @@ import org.supercsv.io.CsvMapReader;
 import org.supercsv.prefs.CsvPreference;
 
 /**
- * Connects to a Solr sever via HTTP and tags place names in document.
- * The <code>SOLR_HOME</code> environment variable must be set to the location of the Solr server.
- * 
+ * Connects to a Solr sever via HTTP and tags place names in document. The
+ * <code>SOLR_HOME</code> environment variable must be set to the location of
+ * the Solr server.
+ *
  * @author David Smiley - dsmiley@mitre.org
  * @author Marc Ubaldino - ubaldino@mitre.org
  */
@@ -61,14 +62,20 @@ public class SolrGazetteer {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final boolean debug = log.isDebugEnabled();
-    /** In the interest of optimization we made the Solr instance 
-     *  a static class attribute that should be thread safe and shareable across instances of SolrMatcher
+    /**
+     * In the interest of optimization we made the Solr instance a static class
+     * attribute that should be thread safe and shareable across instances of
+     * SolrMatcher
      */
     private ModifiableSolrParams params = new ModifiableSolrParams();
     private SolrProxy solr = null;
     private Map<String, Country> country_lookup = null;
     private Map<String, String> iso2fips = new HashMap<String, String>();
     private Map<String, String> fips2iso = new HashMap<String, String>();
+    /**
+     * Feature map is a fast lookup F/CODE ==> description or name
+     */
+    private Map<String, String> features = new HashMap<String, String>();
 
     /**
      *
@@ -79,16 +86,53 @@ public class SolrGazetteer {
     }
     private Map<String, String> _default_country_names = new HashMap<String, String>();
 
-    /** 
+    /**
      */
     public static String normalizeCountryName(String c) {
         return StringUtils.capitalize(c.toLowerCase());
     }
-
-    /** 
+    
+    /** Find a readable name or description of a class/code
+     * 
+     * @param cls  feature class, e.g., P
+     * @param code feature code, e.g., PPL
      */
-    private void initialize() throws IOException {
+    public String getFeatureName(String cls, String code){
+        String lookup = String.format("%s/%s", cls, code);
+        return features.get(lookup);
+    }
 
+    private void loadFeatureMetaMap() throws IOException {
+        java.io.InputStream io = SolrGazetteer.class.getResourceAsStream("/feature-metadata-2013.csv");
+        java.io.Reader featIO = new InputStreamReader(io);
+        CsvMapReader featreader = new CsvMapReader(featIO, CsvPreference.EXCEL_PREFERENCE);
+        String[] columns = featreader.getHeader(true);
+        Map<String, String> featMap = null;
+
+        // Feature Metadata is from Universal Gazetteer
+        //-----------------------------------
+        // Feature Designation Code,    CODE
+        // Feature Designation Name,    DESC
+        // Feature Designation Text,    -
+        // Feature Class                CLASS
+        // 
+        while ((featMap = featreader.read(columns)) != null) {
+            String feat_code = featMap.get("Feature Designation Code");
+            String desc = featMap.get("Feature Designation Name");
+            String feat_class = featMap.get("Feature Class");
+
+            if (feat_code == null) {
+                continue;
+            }
+
+            if (feat_code.startsWith("#")) {
+                continue;
+            }
+            features.put(String.format("%s/%s", feat_class, feat_code), desc);
+        }
+    }
+
+    private void loadCountryNameMap() throws IOException {
         java.io.InputStream io = SolrGazetteer.class.getResourceAsStream("/country-names-2013.csv");
         java.io.Reader countryIO = new InputStreamReader(io);
         CsvMapReader countryMap = new CsvMapReader(countryIO, CsvPreference.EXCEL_PREFERENCE);
@@ -115,9 +159,17 @@ public class SolrGazetteer {
             throw new IOException("No data found in country name map");
         }
 
+    }
+
+    /**
+     */
+    private void initialize() throws IOException {
+        loadCountryNameMap();
+        loadFeatureMetaMap();
+
         String config_solr_home = System.getProperty("solr.solr.home");
         solr = new SolrProxy(config_solr_home, "gazetteer");
-        
+
         params.set(CommonParams.Q, "*:*");
         params.set(CommonParams.FL, "id,name,cc,adm1,adm2,feat_class,feat_code,lat,lon,place_id,name_bias,id_bias,name_type");
         try {
@@ -127,17 +179,20 @@ public class SolrGazetteer {
         }
     }
 
-    /** List all country names, official and variant names.
+    /**
+     * List all country names, official and variant names.
      */
     public Map<String, Country> getCountries() {
         return country_lookup;
     }
     public final static Country UNK_Country = new Country("UNK", "invalid");
 
-    /** Get Country by the default ISO digraph
-     * returns the Unknown country if you are not using an ISO2 code.
-     * 
-     * TODO: throw a GazetteerException of some sort. for null query or invalid code.
+    /**
+     * Get Country by the default ISO digraph returns the Unknown country if you
+     * are not using an ISO2 code.
+     *
+     * TODO: throw a GazetteerException of some sort. for null query or invalid
+     * code.
      */
     public Country getCountry(String isocode) {
         if (isocode == null) {
@@ -149,15 +204,18 @@ public class SolrGazetteer {
         return UNK_Country;
     }
 
-    /** */
+    /**
+     *
+     */
     public Country getCountryByFIPS(String fips) {
         String isocode = fips2iso.get(fips);
         return getCountry(isocode);
     }
 
-    /** This only returns Country objects that are names;
-     *  It does not produce any abbreviation variants.
-     * 
+    /**
+     * This only returns Country objects that are names; It does not produce any
+     * abbreviation variants.
+     *
      * TODO: allow caller to get all entries, including abbreviations.
      */
     protected void loadCountries() throws SolrServerException {
@@ -196,7 +254,8 @@ public class SolrGazetteer {
             country_lookup.put(code, C);
         }
 
-        /** Finally choose default official names given the map of name:iso2
+        /**
+         * Finally choose default official names given the map of name:iso2
          */
         for (Country C : country_lookup.values()) {
             String n = _default_country_names.get(C.country_id);
@@ -212,17 +271,18 @@ public class SolrGazetteer {
 
     /**
      * <pre>
-     * Search the gazetteer using a phrase.  
+     * Search the gazetteer using a phrase.
      * The phrase will be quoted internally as it searches Solr
-     * 
+     *
      *  e.g., search( "\"Boston City\"" )
-     * 
+     *
      * Solr Gazetteer uses OR as default joiner for clauses.  Without quotes
-     * the above search would be "Boston" OR "City" effectively. 
-     * 
+     * the above search would be "Boston" OR "City" effectively.
+     *
      * </pre>
-     * @return places  List of place entries
-     * @throws MatcherException  
+     *
+     * @return places List of place entries
+     * @throws MatcherException
      */
     public List<Place> search(String place_string) throws SolrServerException {
         return search(place_string, false);
@@ -231,17 +291,18 @@ public class SolrGazetteer {
     /**
      * <pre>
      * Search the gazetteer using one of the following:
-     * 
+     *
      *   a name or keyword
      *   a Solr style fielded query, which by default includes bare keyword searches
-     * 
+     *
      *  search( "\"Boston City\"" )
-     * 
+     *
      * Solr Gazetteer uses OR as default joiner for clauses.
-     * 
+     *
      * </pre>
-     * @return places  List of place entries
-     * @throws MatcherException  
+     *
+     * @return places List of place entries
+     * @throws MatcherException
      */
     public List<Place> search(String place, boolean as_solr) throws SolrServerException {
 
@@ -289,8 +350,9 @@ public class SolrGazetteer {
     public static void main(String[] args) throws Exception {
         //String solrHome = args[0];
         String OPENSEXTANT_HOME = System.getProperty("opensextant.home");
-        String SOLR_HOME = OPENSEXTANT_HOME + File.separator + "solr";
+        String SOLR_HOME = OPENSEXTANT_HOME + File.separator + ".." + File.separator + "opensextant-solr";
         System.setProperty("solr.solr.home", SOLR_HOME);
+
 
         SolrGazetteer gaz = new SolrGazetteer();
         gaz.initialize();
@@ -303,11 +365,14 @@ public class SolrGazetteer {
                 System.out.println(c.getKey() + " = " + c.name + "\t  Aliases: " + c.getAliases().toString());
             }
 
+
             List<Place> matches = gaz.search("+Boston +City");
 
             for (Place pc : matches) {
-                System.out.println(pc.toString());
+                System.out.println(pc.toString() + " which is categorized as: " + gaz.getFeatureName(pc.getFeatureClass(), pc.getFeatureCode()));
             }
+
+
 
         } catch (Exception err) {
             err.printStackTrace();
