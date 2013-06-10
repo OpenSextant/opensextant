@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
 import java.util.logging.Level;
 
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ public class MainFrameTableHelper {
 
     private static Logger log = LoggerFactory.getLogger(OpenSextantMainFrameImpl.class);
     private OpenSextantMainFrameImpl frame;
+    private Timer timer = new Timer(true);
 
     public MainFrameTableHelper(OpenSextantMainFrameImpl frame) {
         this.frame = frame;
@@ -32,21 +34,22 @@ public class MainFrameTableHelper {
         }
     }
 
-    public OSRow addRow(OSRow row) {
-        return frame.getTable().createRow(row);
+    public void addRow(OSRow row) {
+        frame.getTable().createRow(row);
     }
 
     public void removeRow(OSRow row) {
         frame.getTable().removeRow(row);
     }
 
-    public void viewResults(OSRow row) {
-        File file = new File(row.getOutputLocation());
+    public void viewResults(OSRow row, String format) {
+    	String outputLocation = row.getOutputLocations().get(format);
+        File file = new File(outputLocation);
         try {
             Desktop.getDesktop().open(file);
         } catch (IOException e) {
             log.error(e.getMessage());
-            JOptionPane.showMessageDialog(frame, "Error opening file: " + row.getOutputLocation() + "\nYou may need to associate the file type with an application in your operating system.  Opening parent directory.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Error opening file: " + outputLocation + "\nYou may need to associate the file type with an application in your operating system.  Opening parent directory.", "Error", JOptionPane.ERROR_MESSAGE);
             try {
                 Desktop.getDesktop().open(file.getParentFile());
             } catch (IOException e1) {
@@ -58,9 +61,9 @@ public class MainFrameTableHelper {
 
     public void viewDir(OSRow row) {
         try { // Note: This is windows specific, if it fails we just open the folder
-            Process p = new ProcessBuilder("explorer.exe", "/select," + row.getOutputLocation()).start();
+            Process p = new ProcessBuilder("explorer.exe", "/select," + row.getOutputLocations().values().iterator().next()).start();
         } catch (IOException ex) { // Failing probably means we are on a different OS
-            File file = new File(row.getOutputLocation());
+            File file = new File(row.getOutputLocations().values().iterator().next());
             Desktop desktop = Desktop.getDesktop();
             try {
                 desktop.open(file.getParentFile());
@@ -73,4 +76,9 @@ public class MainFrameTableHelper {
     public OpenSextantMainFrameImpl getMainFrame() {
         return frame;
     }
+    
+    public Timer getTimer() {
+    	return this.timer;
+    }
+
 }

@@ -8,6 +8,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.mitre.opensextant.desktop.executor.OpenSextantExecutor;
@@ -53,12 +54,12 @@ public class ApiHelper {
 
 	public void processFile(String file) {
 		
-		String outType = ConfigHelper.getInstance().getOutType();
+		List<String> outTypes = ConfigHelper.getInstance().getOutTypes();
 		String baseOutputLocation = ConfigHelper.getInstance().getOutLocation();
 		
                 
                 
-		OSRow row = new OSRow(file, baseOutputLocation, outType, parent.getTableHelper());
+		OSRow row = new OSRow(file, baseOutputLocation, outTypes, parent.getTableHelper());
 		
 		executor.execute(parent, row, true);
 	}

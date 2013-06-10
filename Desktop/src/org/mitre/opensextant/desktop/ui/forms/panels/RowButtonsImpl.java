@@ -1,7 +1,13 @@
 package org.mitre.opensextant.desktop.ui.forms.panels;
 
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.AbstractAction;
+
+import javax.swing.JPopupMenu;
 
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.desktop.ui.table.RowButtonsEditor;
@@ -33,13 +39,27 @@ public class RowButtonsImpl extends RowButtons {
 			}
 		});
 		
-		viewResultsButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				row.viewResults();
-			}
-		});
+		
+
+		viewResultsButton.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+        		if (row.getOutputTypes().size() > 1) {
+                	JPopupMenu popup = new JPopupMenu();
+                	for (final String format : row.getOutputTypes()) {
+                		popup.add(new AbstractAction(format) {
+    						@Override
+    						public void actionPerformed(ActionEvent e) {
+    							row.viewResults(format);
+    						}
+                		});
+                	}
+                    popup.show(e.getComponent(), e.getX(), e.getY());
+        		} else {
+   					row.viewResults(row.getOutputTypes().get(0));
+        		}
+            }
+        });
+		
                 
                 viewDirButton.addActionListener(new ActionListener() {
 			

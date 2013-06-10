@@ -4,6 +4,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.SpinnerNumberModel;
 
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 
@@ -16,11 +20,14 @@ public class ConfigFrameImpl extends ConfigFrame{
 		
 		this.configHelper = ConfigHelper.getInstance();
 		
-		tmpText.setText(configHelper.getTmpLocation());
+		tmpText.setText(configHelper.getTmpRoot());
 		outputText.setText(configHelper.getOutLocation());
 		threadCount.setValue(configHelper.getNumThreads());
+		int maxThreads = Runtime.getRuntime().availableProcessors();
+		if (maxThreads > 1) maxThreads -= 1;
+		((SpinnerNumberModel)threadCount.getModel()).setMaximum(maxThreads);
 
-		for (String t : configHelper.getOutType().split(",")) {
+		for (String t : configHelper.getOutTypes()) {
 			if ("CSV".equals(t))
 				csvCheck.setSelected(true);
 			else if ("KML".equals(t))
@@ -48,26 +55,24 @@ public class ConfigFrameImpl extends ConfigFrame{
 	
 	private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_doneButtonActionPerformed
 
-		// Somewhat ugly due to netbeans lack of arrays in the GUI designer
-		String outType = "";
+		List<String> outTypes = new ArrayList<String>();
 		if (csvCheck.isSelected())
-			outType += "CSV,";
+			outTypes.add("CSV");
 		if (kmlCheck.isSelected())
-			outType += "KML,";
+			outTypes.add("KML");
 		if (jsonCheck.isSelected())
-			outType += "JSON,";
+			outTypes.add("JSON");
 		if (shapefileCheck.isSelected())
-			outType += "SHAPEFILE,";
+			outTypes.add("SHAPEFILE");
 		if (wktCheck.isSelected())
-			outType += "WKT,";
-
-		if (outType.length() > 1)
-			outType = outType.substring(0, outType.length() - 1);
+			outTypes.add("WKT");
+		if (gdbCheck.isSelected())
+			outTypes.add("GDB");
 
 		configHelper.setOutLocation(outputText.getText());
-                configHelper.setTmpLocation(tmpText.getText());
+        configHelper.setTmpLocation(tmpText.getText());
 
-		configHelper.setOutType(outType);
+		configHelper.setOutTypes(outTypes);
 		configHelper.setNumThreads((Integer)threadCount.getValue());
 		
 		configHelper.saveSettings();

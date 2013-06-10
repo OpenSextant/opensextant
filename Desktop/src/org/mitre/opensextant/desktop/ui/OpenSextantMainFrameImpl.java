@@ -88,7 +88,7 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 			@Override public void windowDeactivated(WindowEvent e) {}
 			@Override public void windowClosing(WindowEvent e) {}
 			@Override public void windowClosed(WindowEvent e) {
-				FileUtils.deleteQuietly(new File("." + File.separator + "tmp"));
+				FileUtils.deleteQuietly(new File(ConfigHelper.getInstance().getTmpLocation()));
 			}
 			@Override public void windowActivated(WindowEvent e) {}
 		});

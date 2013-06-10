@@ -65,6 +65,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         tmpLabel = new javax.swing.JLabel();
         tmpText = new javax.swing.JTextField();
         browseTmpButton = new javax.swing.JButton();
+        gdbCheck = new javax.swing.JCheckBox();
 
         jCheckBox3.setText("JSON");
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +180,14 @@ public class ConfigFrame extends javax.swing.JFrame {
             }
         });
 
+        gdbCheck.setText("GDB");
+        gdbCheck.setToolTipText("Esri Shapefile");
+        gdbCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gdbCheckActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,10 +214,15 @@ public class ConfigFrame extends javax.swing.JFrame {
                                             .addComponent(kmlCheck))
                                         .addGap(34, 34, 34)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(shapefileCheck)
-                                            .addComponent(wktCheck))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                                        .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(shapefileCheck)
+                                                    .addComponent(wktCheck))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                                .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(gdbCheck)
+                                                .addGap(0, 0, Short.MAX_VALUE))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(outputText)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -250,7 +264,9 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addComponent(jsonCheck)
                     .addComponent(shapefileCheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(kmlCheck)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(kmlCheck)
+                    .addComponent(gdbCheck))
                 .addGap(18, 18, 18)
                 .addComponent(processingLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -282,17 +298,15 @@ public class ConfigFrame extends javax.swing.JFrame {
 		if (returnVal == JFileChooser.APPROVE_OPTION)
 			tmpText.setText(chooser.getSelectedFile().toString());    }//GEN-LAST:event_browseTmpButtonActionPerformed
 
+    private void gdbCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gdbCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gdbCheckActionPerformed
+
 	private void outputTextActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_outputTextActionPerformed
 		// TODO add your handling code here:
 	}// GEN-LAST:event_outputTextActionPerformed
 
 	private void jsonCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jsonCheckActionPerformed
-		// TODO: Kludgey, should be rewriten when we can output multiple formats
-		csvCheck.setSelected(false);
-		kmlCheck.setSelected(false);
-		wktCheck.setSelected(false);
-		shapefileCheck.setSelected(false);
-		// jsonCheck.setSelected(false);
 	}// GEN-LAST:event_jsonCheckActionPerformed
 
 	private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCheckBox3ActionPerformed
@@ -300,30 +314,12 @@ public class ConfigFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_jCheckBox3ActionPerformed
 
 	private void kmlCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_kmlCheckActionPerformed
-		// TODO: Kludgey, should be rewriten when we can output multiple formats
-		csvCheck.setSelected(false);
-		// kmlCheck.setSelected(false);
-		wktCheck.setSelected(false);
-		shapefileCheck.setSelected(false);
-		jsonCheck.setSelected(false);
 	}// GEN-LAST:event_kmlCheckActionPerformed
 
 	private void wktCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_wktCheckActionPerformed
-		// TODO: Kludgey, should be rewriten when we can output multiple formats
-		csvCheck.setSelected(false);
-		kmlCheck.setSelected(false);
-		// wktCheck.setSelected(false);
-		shapefileCheck.setSelected(false);
-		jsonCheck.setSelected(false);
 	}// GEN-LAST:event_wktCheckActionPerformed
 
 	private void shapefileCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_shapefileCheckActionPerformed
-		// TODO: Kludgey, should be rewriten when we can output multiple formats
-		csvCheck.setSelected(false);
-		kmlCheck.setSelected(false);
-		wktCheck.setSelected(false);
-		// shapefileCheck.setSelected(false);
-		jsonCheck.setSelected(false);
 	}// GEN-LAST:event_shapefileCheckActionPerformed
 
 	private void browseOutButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_browseOutButtonActionPerformed
@@ -336,12 +332,6 @@ public class ConfigFrame extends javax.swing.JFrame {
 	}// GEN-LAST:event_browseOutButtonActionPerformed
 
 	private void csvCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_csvCheckActionPerformed
-		// TODO: Kludgey, should be rewriten when we can output multiple formats
-		// csvCheck.setSelected(false);
-		kmlCheck.setSelected(false);
-		wktCheck.setSelected(false);
-		shapefileCheck.setSelected(false);
-		jsonCheck.setSelected(false);
 	}// GEN-LAST:event_csvCheckActionPerformed
 
 	/**
@@ -390,6 +380,7 @@ public class ConfigFrame extends javax.swing.JFrame {
     protected javax.swing.JCheckBox csvCheck;
     protected javax.swing.JButton doneButton;
     private javax.swing.JLabel formatLabel;
+    protected javax.swing.JCheckBox gdbCheck;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;

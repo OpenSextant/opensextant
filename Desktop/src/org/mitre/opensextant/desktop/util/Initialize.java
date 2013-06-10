@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.apps.OpenSextantRunner;
 import org.mitre.opensextant.desktop.Main;
-import org.mitre.opensextant.desktop.executor.opensextant.ext.OSDOpenSextantRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

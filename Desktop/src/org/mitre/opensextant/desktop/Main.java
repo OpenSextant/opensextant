@@ -10,6 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import org.apache.commons.io.FileUtils;
+import org.mitre.opensextant.apps.AppBase;
 import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.SelectOSHomeFrameImpl;
@@ -39,8 +40,13 @@ public class Main {
                 } catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		Runtime.getRuntime().addShutdownHook(new Thread() { public void run() {
+			log.info("*** Shutting down Solr");
+			AppBase.globalShutdown();
+		}});
 
-		FileUtils.deleteQuietly(new File("." + File.separator + "tmp"));
+		FileUtils.deleteQuietly(new File(ConfigHelper.getInstance().getTmpLocation()));
 
 		SelectOSHomeFrameImpl.setupOpenSextantHome();
 

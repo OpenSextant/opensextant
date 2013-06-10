@@ -5,10 +5,12 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.collections.ListUtils;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.io.FileUtils;
@@ -27,13 +29,18 @@ public class ConfigHelper {
 	private static final String CONFIG_FILE = DATA_HOME + File.separator + "conf.properties";
         private static final String JOBS_FILE = DATA_HOME + File.separator + "jobs.properties";
 	private static final int CONFIG_VERSION = 1;
+	public static final String OSD_TMP_BASE = "osd-tmp";
+	
+	private static final List<String> DEFAULT_OUT_TYPE = new ArrayList<String>() {{
+		add("CSV");
+	}};
 
 	private PropertiesConfiguration config = null;
 	private PropertiesConfiguration jobs = null;
 	
 
-        private String tmpLocation = "";
-	private String outType = "";
+        private String tmpRoot = "";
+	private List<String> outTypes = new ArrayList<String>();
 	private String outLocation = "";
 	private String inLocation = "";
 	private String osHome = "";
@@ -84,17 +91,17 @@ public class ConfigHelper {
 	public synchronized void saveSettings() {
 
 		try {
-			config.setProperty("outType", outType);
+			config.setProperty("outType", outTypes);
 			config.setProperty("outLocation", outLocation);
 			config.setProperty("inLocation", inLocation);
-			config.setProperty("tmpLocation", tmpLocation);
+			config.setProperty("tmpLocation", tmpRoot);
 			config.setProperty("osHome", osHome);
 			config.setProperty("gateHome", gateHome);
 			config.setProperty("solrHome", solrHome);
 			config.setProperty("numThreads", numThreads);
 			config.setProperty("configVersion", configVersion);
 			config.save();
-                        jobs.save();
+            jobs.save();
 			fireUpdate();
 		} catch (ConfigurationException e) {
 			log.error("Error saving settings", e);
@@ -104,13 +111,15 @@ public class ConfigHelper {
 
 	
 	private void loadConfig() {
-		outType = config.getString("outType", "CSV");
+		
+		outTypes = (List<String>)(List<?>)config.getList("outType", (List<Object>)(List<?>)DEFAULT_OUT_TYPE);
 		outLocation = config.getString("outLocation", OUTPUT_HOME);
 		if (!(new File(outLocation).exists())) {
 			(new File(outLocation)).mkdir();
 		}
 		inLocation = config.getString("inLocation", "");
-		tmpLocation = config.getString("tmpLocation", "");
+		tmpRoot = config.getString("tmpLocation", System.getProperty("java.io.tmpdir"));
+		if (tmpRoot == null || tmpRoot.isEmpty()) tmpRoot = System.getProperty("java.io.tmpdir");
 		osHome = config.getString("osHome", null);
 		gateHome = config.getString("gateHome", null);
 		solrHome = config.getString("solrHome", null);
@@ -141,16 +150,32 @@ public class ConfigHelper {
         }
 
 	
-	public String getOutType() {
-		return outType;
+	public List<String> getOutTypes() {
+		return outTypes;
+	}
+	
+	public static String getOutTypesString(List<String> outTypes) {
+		String out = "";
+		for (int i = 0; i < outTypes.size(); i++) {
+			if (i > 0) out += ",";
+			out += outTypes.get(i);
+		}
+		return out;
+	}
+	
+	public static List<String> parseOutTypesString(String outTypesString) {
+		return Arrays.asList(outTypesString.split(","));
 	}
 
 	public String getOutLocation() {
 		return outLocation;
 	}
 
-        public String getTmpLocation() {
-		return tmpLocation;
+    public String getTmpLocation() {
+		return tmpRoot + File.separator + OSD_TMP_BASE;
+	}
+    public String getTmpRoot() {
+		return tmpRoot;
 	}
 
         
@@ -169,12 +194,13 @@ public class ConfigHelper {
 	}
 
 	
-	public void setOutType(String outType) {
-		this.outType = outType;
+	public void setOutTypes(List<String> outTypes) {
+		this.outTypes = outTypes;
 	}
+	
         
 	public void setTmpLocation(String tmpLocation) {
-		this.tmpLocation = tmpLocation;
+		this.tmpRoot = tmpLocation;
 	}
         
 	public void setOutLocation(String outLocation) {
@@ -214,6 +240,7 @@ public class ConfigHelper {
 			listener.propertyChange(null);
 		}
 	}
+
         
         
 
