@@ -39,8 +39,9 @@ public class ConfigHelper {
         public static final int ROW_STATUS = 6;
         public static final int ROW_START = 7;
         public static final int ROW_DURATION = 8;
-        public static final int ROW_CHILDREN = 9;
-        public static final int ROW_PARENT = 10;
+        public static final int ROW_DURATION_STRING = 9;
+        public static final int ROW_CHILDREN = 10;
+        public static final int ROW_PARENT = 11;
         
         public static final String OSD_TMP_BASE = "osd-tmp";
 	
@@ -148,7 +149,6 @@ public class ConfigHelper {
             String[] rowValues = jobs.getStringArray(i.next());
             String status = rowValues[ROW_STATUS];
 
-            System.out.println("###########" + rowValues[ROW_TITLE] + " --- " + rowValues[ROW_PARENT]);
             // Has a parent, add it later
             if (!(rowValues[ROW_PARENT]).contains("null")) {
                 continue; 
@@ -159,7 +159,6 @@ public class ConfigHelper {
                 apiHelper.processFile(rowValues[ROW_INPUT]);
                 continue;
             }
-            System.out.println("  CHILDREN: " + rowValues[ROW_CHILDREN]);
             OSRow row = new OSRow(rowValues, tableHelper, null);
             String[] children = rowValues[ROW_CHILDREN].split(":");
             
