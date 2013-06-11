@@ -144,7 +144,6 @@ public class OSRow implements Comparable<OSRow> {
 		this.startTime = new Date(Long.parseLong(rowValues[ConfigHelper.ROW_START]));
 		this.id = rowValues[ConfigHelper.ROW_ID];
 
-		this.durationContainer = new RowDurationImpl();
 
 		String stat = rowValues[ConfigHelper.ROW_STATUS];
                 this.percent = 10;
@@ -156,7 +155,12 @@ public class OSRow implements Comparable<OSRow> {
 		else
 			this.status = STATUS.ERROR;
 
-		this.baseOutputLocation = rowValues[ConfigHelper.ROW_BASELOC];
+                long duration = 0;
+               
+                try{ duration = Long.parseLong(rowValues[ConfigHelper.ROW_DURATION]);}
+                catch(Exception e) {duration = 0;}
+		this.durationContainer = new RowDurationImpl(duration, rowValues[ConfigHelper.ROW_DURATION_STRING]);
+                this.baseOutputLocation = rowValues[ConfigHelper.ROW_BASELOC];
                 String tmpRowTypes = rowValues[ConfigHelper.ROW_TYPES].replaceAll(":", ",");
 		this.outputTypes = ConfigHelper.parseOutTypesString(tmpRowTypes);
                 this.inputFile = new File(rowValues[ConfigHelper.ROW_INPUT]);
@@ -185,7 +189,8 @@ public class OSRow implements Comparable<OSRow> {
 		rowValues[ConfigHelper.ROW_INPUT] = this.inputFile.getAbsolutePath();
 		rowValues[ConfigHelper.ROW_BASELOC] = this.baseOutputLocation;
                 rowValues[ConfigHelper.ROW_OUTPUT] = ""; // this.outputLocations;
-                rowValues[ConfigHelper.ROW_DURATION] = "";
+                rowValues[ConfigHelper.ROW_DURATION] = "" + this.durationContainer.getDuration();
+                rowValues[ConfigHelper.ROW_DURATION_STRING] = this.durationContainer.getDurationString();
                 String tmpTypes = ConfigHelper.getOutTypesString(this.outputTypes);
                 tmpTypes = tmpTypes.replaceAll(",", ":");
 		rowValues[ConfigHelper.ROW_TYPES] = tmpTypes;
@@ -588,6 +593,7 @@ public class OSRow implements Comparable<OSRow> {
         }
         
         public void updateProgress(){
-            this.setProgress(this.percent, this.status);
+	    tableHelper.getMainFrame().getTable().repaint(OSRow.this);
+        //    this.setProgress(this.percent, this.status);
         }
 }

@@ -14,6 +14,13 @@ public class RowDurationImpl extends RowDuration {
 		super();
 	}
 
+        public RowDurationImpl(long duration, String durationString) {
+		super();
+                this.duration = duration;
+                this.durationLabel.setText(durationString);
+	}
+
+        
 	public void reset() {
 		duration = 0;
 		durationLabel.setText(" --");
@@ -72,5 +79,8 @@ public class RowDurationImpl extends RowDuration {
 
 	}
 	
+        public String getDurationString(){
+            return durationLabel.getText();
+        }
 	
 }
