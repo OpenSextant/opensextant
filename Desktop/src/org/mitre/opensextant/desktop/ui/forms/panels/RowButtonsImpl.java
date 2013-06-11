@@ -81,6 +81,7 @@ public class RowButtonsImpl extends RowButtons {
 			cancelDeleteButton.setVisible(false);
 			viewResultsButton.setVisible(false);
 			reRunButton.setVisible(false);
+                        viewDirButton.setVisible(false);
 		}
 	}
 

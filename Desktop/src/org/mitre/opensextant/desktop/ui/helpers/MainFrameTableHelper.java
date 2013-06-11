@@ -36,6 +36,8 @@ public class MainFrameTableHelper {
 
     public void addRow(OSRow row) {
         frame.getTable().createRow(row);
+        row.updateProgress();
+        for(OSRow c : row.getChildren()) c.updateProgress();
     }
 
     public void removeRow(OSRow row) {
