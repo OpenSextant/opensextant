@@ -10,10 +10,10 @@
 	<!--NOTE the source gazetteer data files distributed by NGA and USGS have the date of release appended-->
 	<!--You must changes these values to the dates desired and actually available at the time of download -->
 	<!-- Tou can find these dates available by looking at:
-	    USGS - http://geonames.usgs.gov/domestic/download_data.htm 
-		NGA - http://earth-info.nga.mil/gns/html/namefiles.htm
+	        !!! USGS - http://geonames.usgs.gov/domestic/download_data.htm  !!!
+		!!! NGA - http://earth-info.nga.mil/gns/html/namefiles.htm - this updates weekly. !!!
 	-->
-	<property name="NGA_date" value="20130513" />
+	<property name="NGA_date" value="20130610" />
 	<property name="USGS_date" value="20130404" />
 
 	<!-- where did you install Pentaho Data Integration aka Kettle? -->
@@ -57,7 +57,8 @@
 		<!--NGA world Gazetteer -->
 		<property name="NGA_basename_2012" value="geonames_dd_dms_date_${NGA_date}" />
 		<property name="NGA_basename" value="geonames_${NGA_date}" />
-		<get src="http://earth-info.nga.mil/gns/html/${NGA_basename}.zip" dest="${basedir}/GazetteerETL/GeoData/NGA" />
+		<!-- <get src="http://earth-info.nga.mil/gns/html/${NGA_basename}.zip" dest="${basedir}/GazetteerETL/GeoData/NGA" /> -->
+		<get src="ftp://ftp.nga.mil/pub2/gns_data/${NGA_basename}.zip" dest="${basedir}/GazetteerETL/GeoData/NGA" /> 
 		<unzip src="${basedir}/GazetteerETL/GeoData/NGA/${NGA_basename}.zip" dest="${basedir}/GazetteerETL/GeoData/NGA" />
 		<move file="${basedir}/GazetteerETL/GeoData/NGA/${NGA_basename}.txt" tofile="${basedir}/GazetteerETL/GeoData/NGA/geonames_dd_dms_date.txt" />
         </target>
