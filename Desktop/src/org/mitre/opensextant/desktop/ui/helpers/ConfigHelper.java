@@ -28,7 +28,21 @@ public class ConfigHelper {
 	private static final String CONFIG_FILE = DATA_HOME + File.separator + "conf.properties";
         private static final String JOBS_FILE = DATA_HOME + File.separator + "jobs.properties";
 	private static final int CONFIG_VERSION = 1;
-	public static final String OSD_TMP_BASE = "osd-tmp";
+        
+
+        public static final int ROW_ID = 0;
+        public static final int ROW_TITLE = 1;
+        public static final int ROW_INPUT = 2;
+        public static final int ROW_BASELOC = 3;
+        public static final int ROW_OUTPUT = 4;
+        public static final int ROW_TYPES = 5;
+        public static final int ROW_STATUS = 6;
+        public static final int ROW_START = 7;
+        public static final int ROW_DURATION = 8;
+        public static final int ROW_CHILDREN = 9;
+        public static final int ROW_PARENT = 10;
+        
+        public static final String OSD_TMP_BASE = "osd-tmp";
 	
 	private static final List<String> DEFAULT_OUT_TYPE = new ArrayList<String>() {{
 		add("CSV");
@@ -133,24 +147,24 @@ public class ConfigHelper {
         String rowName = "";
         while (i.hasNext()) {
             String[] rowValues = jobs.getStringArray(i.next());
-            String status = rowValues[4];
+            String status = rowValues[ROW_STATUS];
 
             // Has a parent, add it later
-            if (!(rowValues[8]).contains("null")) {
+            if (!(rowValues[ROW_PARENT]).contains("null")) {
                 continue; 
             }
             
             // Never finished running, start it again
             if ("INITIALIZING".equals(status) || "QUEUED".equals(status) || "PROCESSING".equals(status)) {
-                apiHelper.processFile(rowValues[1]);
+                apiHelper.processFile(rowValues[ROW_INPUT]);
                 continue;
             }
 
             OSRow row = new OSRow(rowValues, tableHelper, null);
-            String[] children = rowValues[7].split(":");
+            String[] children = rowValues[ROW_CHILDREN].split(":");
             
             // No children, add the row early
-            if (rowValues[7].length() == 0) {
+            if (rowValues[ROW_CHILDREN].length() == 0) {
                 tableHelper.addRow(row);
                 continue; 
             }

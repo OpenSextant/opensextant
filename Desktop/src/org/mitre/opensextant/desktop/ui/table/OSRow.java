@@ -141,12 +141,12 @@ public class OSRow implements Comparable<OSRow> {
 		super();
 
                 this.parent = parent;
-		this.startTime = new Date(Long.parseLong(rowValues[6]));
-		this.id = rowValues[0];
+		this.startTime = new Date(Long.parseLong(rowValues[ConfigHelper.ROW_START]));
+		this.id = rowValues[ConfigHelper.ROW_ID];
 
 		this.durationContainer = new RowDurationImpl();
 
-		String stat = rowValues[5];
+		String stat = rowValues[ConfigHelper.ROW_STATUS];
                 this.percent = -1;
 		if ("COMPLETE".equals(stat)) {
 			this.status = STATUS.COMPLETE;
@@ -156,11 +156,10 @@ public class OSRow implements Comparable<OSRow> {
 		else
 			this.status = STATUS.ERROR;
 
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>" + this.status);
-		this.baseOutputLocation = rowValues[3];
-		this.outputTypes = ConfigHelper.parseOutTypesString(rowValues[4]);
-		this.inputFile = new File(rowValues[2]);
-		this.title = rowValues[1];
+		this.baseOutputLocation = rowValues[ConfigHelper.ROW_BASELOC];
+		this.outputTypes = ConfigHelper.parseOutTypesString(rowValues[ConfigHelper.ROW_TYPES]);
+		this.inputFile = new File(rowValues[ConfigHelper.ROW_INPUT]);
+		this.title = rowValues[ConfigHelper.ROW_TITLE];
 		this.progressBarContainer = new RowProgressBarImpl();
 		this.buttonContainer = new RowButtonsImpl(this);
 
@@ -179,20 +178,24 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	private void saveConfig() {
-		String[] rowValues = new String[9];
-		rowValues[0] = this.id;
-		rowValues[1] = this.title;
-		rowValues[2] = this.inputFile.getAbsolutePath();
-		rowValues[3] = this.baseOutputLocation;
-		rowValues[4] = ConfigHelper.getOutTypesString(this.outputTypes);
-		rowValues[5] = this.status.toString();
-		rowValues[6] = "" + this.startTime.getTime();
-                rowValues[7] = "";
+		String[] rowValues = new String[ConfigHelper.ROW_PARENT + 1];
+		rowValues[ConfigHelper.ROW_ID] = this.id;
+		rowValues[ConfigHelper.ROW_TITLE] = this.title;
+		rowValues[ConfigHelper.ROW_INPUT] = this.inputFile.getAbsolutePath();
+		rowValues[ConfigHelper.ROW_BASELOC] = this.baseOutputLocation;
+                rowValues[ConfigHelper.ROW_OUTPUT] = ""; // this.outputLocations;
+                rowValues[ConfigHelper.ROW_DURATION] = "";
+		rowValues[ConfigHelper.ROW_TYPES] = ConfigHelper.getOutTypesString(this.outputTypes);
+		rowValues[ConfigHelper.ROW_STATUS] = this.status.toString();
+		rowValues[ConfigHelper.ROW_START] = "" + this.startTime.getTime();
+                
+                String childrenStr = "";
                 for(OSRow r : this.getChildren()){
-                    rowValues[7] += r + ":";
+                    childrenStr += r + ":";
                 }
-                if(rowValues[7].length() > 0) rowValues[7] = rowValues[7].substring(0, rowValues[7].length() - 1);
-                rowValues[8] = "" + this.getParent();
+                if(childrenStr.length() > 0) childrenStr = childrenStr.substring(0, childrenStr.length() - 1);
+                rowValues[ConfigHelper.ROW_CHILDREN] = childrenStr;
+                rowValues[ConfigHelper.ROW_PARENT] = "" + this.getParent();
 		ConfigHelper.getInstance().updateRow(this.id, rowValues);
 	}
 
@@ -338,7 +341,6 @@ public class OSRow implements Comparable<OSRow> {
 			saveConfig();
 
 		}
-                System.out.println(">>>>>" + status);
 		tableHelper.getMainFrame().getTable().repaint(this);
 	}
 
