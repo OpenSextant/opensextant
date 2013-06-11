@@ -50,7 +50,6 @@ public class ConfigHelper {
 
 	private PropertiesConfiguration config = null;
 	private PropertiesConfiguration jobs = null;
-	
 
         private String tmpRoot = "";
 	private List<String> outTypes = new ArrayList<String>();
@@ -149,6 +148,7 @@ public class ConfigHelper {
             String[] rowValues = jobs.getStringArray(i.next());
             String status = rowValues[ROW_STATUS];
 
+            System.out.println("###########" + rowValues[ROW_TITLE] + " --- " + rowValues[ROW_PARENT]);
             // Has a parent, add it later
             if (!(rowValues[ROW_PARENT]).contains("null")) {
                 continue; 
@@ -159,7 +159,7 @@ public class ConfigHelper {
                 apiHelper.processFile(rowValues[ROW_INPUT]);
                 continue;
             }
-
+            System.out.println("  CHILDREN: " + rowValues[ROW_CHILDREN]);
             OSRow row = new OSRow(rowValues, tableHelper, null);
             String[] children = rowValues[ROW_CHILDREN].split(":");
             

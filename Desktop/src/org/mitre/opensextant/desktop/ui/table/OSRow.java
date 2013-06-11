@@ -147,7 +147,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.durationContainer = new RowDurationImpl();
 
 		String stat = rowValues[ConfigHelper.ROW_STATUS];
-                this.percent = -1;
+                this.percent = 10;
 		if ("COMPLETE".equals(stat)) {
 			this.status = STATUS.COMPLETE;
                         this.percent = 100;
@@ -157,8 +157,9 @@ public class OSRow implements Comparable<OSRow> {
 			this.status = STATUS.ERROR;
 
 		this.baseOutputLocation = rowValues[ConfigHelper.ROW_BASELOC];
-		this.outputTypes = ConfigHelper.parseOutTypesString(rowValues[ConfigHelper.ROW_TYPES]);
-		this.inputFile = new File(rowValues[ConfigHelper.ROW_INPUT]);
+                String tmpRowTypes = rowValues[ConfigHelper.ROW_TYPES].replaceAll(":", ",");
+		this.outputTypes = ConfigHelper.parseOutTypesString(tmpRowTypes);
+                this.inputFile = new File(rowValues[ConfigHelper.ROW_INPUT]);
 		this.title = rowValues[ConfigHelper.ROW_TITLE];
 		this.progressBarContainer = new RowProgressBarImpl();
 		this.buttonContainer = new RowButtonsImpl(this);
@@ -185,7 +186,9 @@ public class OSRow implements Comparable<OSRow> {
 		rowValues[ConfigHelper.ROW_BASELOC] = this.baseOutputLocation;
                 rowValues[ConfigHelper.ROW_OUTPUT] = ""; // this.outputLocations;
                 rowValues[ConfigHelper.ROW_DURATION] = "";
-		rowValues[ConfigHelper.ROW_TYPES] = ConfigHelper.getOutTypesString(this.outputTypes);
+                String tmpTypes = ConfigHelper.getOutTypesString(this.outputTypes);
+                tmpTypes = tmpTypes.replaceAll(",", ":");
+		rowValues[ConfigHelper.ROW_TYPES] = tmpTypes;
 		rowValues[ConfigHelper.ROW_STATUS] = this.status.toString();
 		rowValues[ConfigHelper.ROW_START] = "" + this.startTime.getTime();
                 
