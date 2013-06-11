@@ -126,29 +126,43 @@ public class ConfigHelper {
 		configVersion = config.getInt("configVersion", CONFIG_VERSION);
         }
         
-        public void loadRows(ApiHelper apiHelper, MainFrameTableHelper tableHelper) {
-             if(true) return;  
-             Iterator<String> i = jobs.getKeys("rows");
-                String rowName = "";
-                while( i.hasNext()) {
-                    String[] rowValues = jobs.getStringArray(i.next());
-                    String status = rowValues[4];
-                    
-                    // If we were waiting to run or hadn't run yet, redo the job from the start
-                    if("INITIALIZING".equals(status) || "QUEUED".equals(status) || "PROCESSING".equals(status)) {
-                      apiHelper.processFile(rowValues[1]);
-                    } else {
-                      System.out.println(">>>>>>>>>>>>>>row: " + rowValues[0] + " -- " + rowValues[8]);
-                      if(!(rowValues[8]).contains("null")) continue; // Has parent
-                      OSRow row = new OSRow(rowValues, tableHelper);
-                      tableHelper.addRow(row);
-                      System.out.println("HERE>>>");
-                      
-                    }
-                }
-        }
+    public void loadRows(ApiHelper apiHelper, MainFrameTableHelper tableHelper) {
+        Iterator<String> i = jobs.getKeys("rows");
+        String rowName = "";
+        while (i.hasNext()) {
+            String[] rowValues = jobs.getStringArray(i.next());
+            String status = rowValues[4];
 
-	
+            // Has a parent, add it later
+            if (!(rowValues[8]).contains("null")) {
+                continue; 
+            }
+            
+            // Never finished running, start it again
+            if ("INITIALIZING".equals(status) || "QUEUED".equals(status) || "PROCESSING".equals(status)) {
+                apiHelper.processFile(rowValues[1]);
+                continue;
+            }
+
+            OSRow row = new OSRow(rowValues, tableHelper, null);
+            String[] children = rowValues[7].split(":");
+            
+            // No children, add the row early
+            if (rowValues[7].length() == 0) {
+                tableHelper.addRow(row);
+                continue; 
+            }
+            
+            // Go through and add all children
+            for (String c : children) {
+                String[] rowValsChild = jobs.getStringArray("rows." + c);
+                OSRow child = new OSRow(rowValsChild, tableHelper, row);
+                row.addChild(child);
+            }
+            tableHelper.addRow(row);
+        }
+    }
+
 	public List<String> getOutTypes() {
 		return outTypes;
 	}

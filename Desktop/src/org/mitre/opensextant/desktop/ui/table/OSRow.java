@@ -133,18 +133,25 @@ public class OSRow implements Comparable<OSRow> {
 		saveConfig();
 	}
 
-	public OSRow(String[] rowValues, MainFrameTableHelper tableHelper) {
+        public void addChild(OSRow child){
+            children.add(child);
+        }
+        
+	public OSRow(String[] rowValues, MainFrameTableHelper tableHelper, OSRow parent) {
 		super();
 
+                this.parent = parent;
 		this.startTime = new Date(Long.parseLong(rowValues[6]));
 		this.id = rowValues[0];
 
 		this.durationContainer = new RowDurationImpl();
 
 		String stat = rowValues[5];
-		if ("COMPLETE".equals(stat))
+                this.percent = 0;
+		if ("COMPLETE".equals(stat)) {
 			this.status = STATUS.COMPLETE;
-		else if ("CANCELED".equals(stat))
+                        this.percent = 100;
+                } else if ("CANCELED".equals(stat))
 			this.status = STATUS.CANCELED;
 		else
 			this.status = STATUS.ERROR;
@@ -156,6 +163,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.progressBarContainer = new RowProgressBarImpl();
 		this.buttonContainer = new RowButtonsImpl(this);
 
+            //    this.setProgress(this.percent, this.status);
 		this.tableHelper = tableHelper;
 	}
 
@@ -178,8 +186,12 @@ public class OSRow implements Comparable<OSRow> {
 		rowValues[4] = ConfigHelper.getOutTypesString(this.outputTypes);
 		rowValues[5] = this.status.toString();
 		rowValues[6] = "" + this.startTime.getTime();
-		rowValues[7] = "";
-		rowValues[8] = "" + this.getParent();
+                rowValues[7] = "";
+                for(OSRow r : this.getChildren()){
+                    rowValues[7] += r + ":";
+                }
+                if(rowValues[7].length() > 0) rowValues[7] = rowValues[7].substring(0, rowValues[7].length() - 1);
+                rowValues[8] = "" + this.getParent();
 		ConfigHelper.getInstance().updateRow(this.id, rowValues);
 	}
 
@@ -564,5 +576,11 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	
-
+        public String toString(){
+            return getId();
+        }
+        
+        public void updateProgress(){
+            this.setProgress(this.percent, this.status);
+        }
 }
