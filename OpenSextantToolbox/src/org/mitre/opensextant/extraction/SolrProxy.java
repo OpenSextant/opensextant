@@ -1,29 +1,29 @@
-/** 
- Copyright 2009-2013 The MITRE Corporation.
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-
+/**
+ * Copyright 2009-2013 The MITRE Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ *
  * **************************************************************************
- *                          NOTICE
- * This software was produced for the U. S. Government under Contract No.
+ * NOTICE This software was produced for the U. S. Government under Contract No.
  * W15P7T-12-C-F600, and is subject to the Rights in Noncommercial Computer
  * Software and Noncommercial Computer Software Documentation Clause
  * 252.227-7014 (JUN 1995)
  *
  * (c) 2012 The MITRE Corporation. All Rights Reserved.
  * **************************************************************************
-**/
+*
+ */
 package org.mitre.opensextant.extraction;
 
 import java.io.FileNotFoundException;
@@ -45,13 +45,15 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class creates a read-only instance of Solr for querying.
+ *
  * @author ubaldino
  */
 public class SolrProxy {
 
     /**
      * Initializes a Solr server from a URL
-     * @throws IOException  
+     *
+     * @throws IOException
      */
     public SolrProxy(String url) throws IOException {
         this.server_url = url;
@@ -60,6 +62,7 @@ public class SolrProxy {
 
     /**
      * Initializes a Solr server from the SOLR_HOME environment variable
+     *
      * @throws IOException
      */
     public SolrProxy() throws IOException {
@@ -68,21 +71,20 @@ public class SolrProxy {
         // This produces a local EmbeddedSolrServer
         initialize();
     }
-    
-        /**
+
+    /**
      * Initializes a Solr server from the SOLR_HOME environment variable
+     *
      * @throws IOException
      */
     public SolrProxy(String solr_home, String core) throws IOException {
         this.server_url = null;
         setupCore(solr_home, core);
     }
-
     protected Logger logger = LoggerFactory.getLogger(SolrProxy.class);
     private SolrServer solrServer = null;
     private UpdateRequest solrUpdate = null;
     private String server_url = null;
-
     private boolean writable = false;
 
     public void setWritable(boolean b) {
@@ -114,9 +116,10 @@ public class SolrProxy {
 
     /**
      * Get an HTTP server for Solr.
+     *
      * @param url
-     * @return  Instance of a Solr server
-     * @throws MalformedURLException  
+     * @return Instance of a Solr server
+     * @throws MalformedURLException
      */
     public static SolrServer initialize_http(String url)
             throws MalformedURLException {
@@ -127,16 +130,17 @@ public class SolrProxy {
         return server;
 
     }
-    
-    /** An improved, supported method for creating an EmbeddedSolr from a single or multi-core
-     * solr instance.  If you just have the one core, this setup still relies on the presence of 
-     * solr.xml 
-     */    
+
+    /**
+     * An improved, supported method for creating an EmbeddedSolr from a single
+     * or multi-core solr instance. If you just have the one core, this setup
+     * still relies on the presence of solr.xml
+     */
     public final void setupCore(String solr_home, String corename) throws IOException {
         this.solrServer = SolrProxy.initialize_embedded(solr_home, corename);
     }
-    
-    /** 
+
+    /**
      */
     public static SolrServer initialize_embedded(String solr_home, String corename)
             throws IOException {
@@ -153,8 +157,8 @@ public class SolrProxy {
 
     /**
      * Much simplified EmbeddedSolr setup.
-     * 
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     public static SolrServer initialize_embedded()
             throws IOException {
@@ -171,8 +175,8 @@ public class SolrProxy {
     /**
      * This is the service call to the indexer.
      *
-     * @param solrRecord 
-     * @throws Exception 
+     * @param solrRecord
+     * @throws Exception
      */
     public void add(SolrInputDocument solrRecord)
             throws Exception {
@@ -200,20 +204,28 @@ public class SolrProxy {
     }
 
     /**
-     *  Optimizes the Solr server
+     * Optimizes the Solr server
      */
     public void optimize() throws IOException, SolrServerException {
         solrServer.optimize(true, false); // Don't wait'
     }
 
     /**
-     * Invokes <code>saveIndex(false)</code>
+     * Invokes
+     * <code>saveIndex(false)</code>
      */
     public void saveIndex() {
         saveIndex(false);
     }
 
-   public void saveIndex(boolean commit) {
+    /**
+     * Save and optionally records to server or index
+     * On failure, current accumulating request is cleared and nullified
+     * to avoid retransmitting bad data.
+     * 
+     * In the event of a failure all records since last "saveIndex" would be lost and should be resubmitted.
+     */
+    public void saveIndex(boolean commit) {
         if (solrUpdate == null) {
             return;
         }
@@ -224,9 +236,12 @@ public class SolrProxy {
             if (commit) {
                 solrServer.commit();
             }
+            solrUpdate.clear();
             solrUpdate = null;
         } catch (Exception filex) {
             logger.error("Index failed during indexing", filex);
+            solrUpdate.clear();
+            solrUpdate = null;
         }
     }
 
@@ -290,6 +305,7 @@ public class SolrProxy {
 
     /**
      * Get a Date object from a record
+     *
      * @throws java.text.ParseException
      */
     public static Date getDate(SolrDocument d, String f)
@@ -311,18 +327,19 @@ public class SolrProxy {
         return null;
     }
 
-    /** */
-    public static char getChar(SolrDocument solrDoc, String name){
+    /**
+     *      */
+    public static char getChar(SolrDocument solrDoc, String name) {
         String result = getString(solrDoc, name);
-        if (result == null){
+        if (result == null) {
             return 0;
         }
-        if (result.isEmpty()){
+        if (result.isEmpty()) {
             return 0;
         }
         return result.charAt(0);
     }
-    
+
     /**
      * Get a String object from a record
      */
@@ -352,7 +369,8 @@ public class SolrProxy {
     }
 
     /**
-     * A simple test for verifying that a SolrProxy can be created and initialized.
+     * A simple test for verifying that a SolrProxy can be created and
+     * initialized.
      */
     public static void main(String[] args) {
 
