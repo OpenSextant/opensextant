@@ -100,7 +100,7 @@ public class ConfigHelper {
 			config.setProperty("numThreads", numThreads);
 			config.setProperty("configVersion", configVersion);
 			config.save();
-            jobs.save();
+                        jobs.save();
 			fireUpdate();
 		} catch (ConfigurationException e) {
 			log.error("Error saving settings", e);
@@ -108,7 +108,9 @@ public class ConfigHelper {
 
 	}
 
-	
+	public void removeRow (OSRow r){
+            jobs.clearProperty("rows." + r);
+        }
 	private void loadConfig() {
 		
 		outTypes = (List<String>)(List<?>)config.getList("outType", (List<Object>)(List<?>)DEFAULT_OUT_TYPE);

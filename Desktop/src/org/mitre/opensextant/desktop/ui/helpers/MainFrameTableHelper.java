@@ -42,6 +42,7 @@ public class MainFrameTableHelper {
 
     public void removeRow(OSRow row) {
         frame.getTable().removeRow(row);
+        ConfigHelper.getInstance().saveSettings();
     }
 
     public void viewResults(OSRow row, String format) {

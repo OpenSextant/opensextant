@@ -37,6 +37,7 @@ import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowDurationImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
+import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -302,6 +303,7 @@ public class OSTreeTable {
 
 	public void removeRow(OSRow row) {
 		((DefaultTreeTableModel) treeTable.getTreeTableModel()).removeNodeFromParent(getNodeForRow(row));
+                ConfigHelper.getInstance().removeRow(row);
 	}
 
 	@SuppressWarnings("serial")
@@ -331,6 +333,8 @@ public class OSTreeTable {
 				row.deleteFile();
 				removeRow(row);
 			}
+                        ConfigHelper.getInstance().saveSettings();
+
 
 			treeTable.repaint();
 			SwingUtilities.invokeLater(new Runnable() {

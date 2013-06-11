@@ -147,7 +147,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.durationContainer = new RowDurationImpl();
 
 		String stat = rowValues[5];
-                this.percent = 0;
+                this.percent = -1;
 		if ("COMPLETE".equals(stat)) {
 			this.status = STATUS.COMPLETE;
                         this.percent = 100;
@@ -156,6 +156,7 @@ public class OSRow implements Comparable<OSRow> {
 		else
 			this.status = STATUS.ERROR;
 
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>" + this.status);
 		this.baseOutputLocation = rowValues[3];
 		this.outputTypes = ConfigHelper.parseOutTypesString(rowValues[4]);
 		this.inputFile = new File(rowValues[2]);
@@ -337,6 +338,7 @@ public class OSRow implements Comparable<OSRow> {
 			saveConfig();
 
 		}
+                System.out.println(">>>>>" + status);
 		tableHelper.getMainFrame().getTable().repaint(this);
 	}
 
