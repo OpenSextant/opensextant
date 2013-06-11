@@ -11,7 +11,7 @@
 	<!--You must changes these values to the dates desired and actually available at the time of download -->
 	<!-- Tou can find these dates available by looking at:
 	        !!! USGS - http://geonames.usgs.gov/domestic/download_data.htm  !!!
-		!!! NGA - http://earth-info.nga.mil/gns/html/namefiles.htm -- this updates weekly. !!!
+		!!! NGA - http://earth-info.nga.mil/gns/html/namefiles.htm - this updates weekly. !!!
 	-->
 	<property name="NGA_date" value="20130610" />
 	<property name="USGS_date" value="20130404" />
