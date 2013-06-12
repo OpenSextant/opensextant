@@ -49,8 +49,12 @@ public class OutputUtil {
 		return formatter;
 	}
 
-	public static synchronized void writeResults(AbstractFormatter formatter, Corpus corpus) throws Exception {
-		formatter.formatResults(corpus);	
+	public static synchronized void writeResults(AbstractFormatter formatter, Corpus corpus) throws ProcessingException {
+		try {
+			formatter.formatResults(corpus);
+		} catch (Exception e) {
+			throw new ProcessingException(e);
+		}	
 	}
 
 }

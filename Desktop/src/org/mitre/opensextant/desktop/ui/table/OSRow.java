@@ -129,46 +129,47 @@ public class OSRow implements Comparable<OSRow> {
 			}
 		}
 
-
 		saveConfig();
 	}
 
-        public void addChild(OSRow child){
-            children.add(child);
-        }
-        
+	public void addChild(OSRow child) {
+		children.add(child);
+	}
+
 	public OSRow(String[] rowValues, MainFrameTableHelper tableHelper, OSRow parent) {
 		super();
 
-                this.parent = parent;
+		this.parent = parent;
 		this.startTime = new Date(Long.parseLong(rowValues[ConfigHelper.ROW_START]));
 		this.id = rowValues[ConfigHelper.ROW_ID];
 
-
 		String stat = rowValues[ConfigHelper.ROW_STATUS];
-                this.percent = 10;
+		this.percent = 10;
 		if ("COMPLETE".equals(stat)) {
 			this.status = STATUS.COMPLETE;
-                        this.percent = 100;
-                } else if ("CANCELED".equals(stat))
+			this.percent = 100;
+		} else if ("CANCELED".equals(stat))
 			this.status = STATUS.CANCELED;
 		else
 			this.status = STATUS.ERROR;
 
-                long duration = 0;
-               
-                try{ duration = Long.parseLong(rowValues[ConfigHelper.ROW_DURATION]);}
-                catch(Exception e) {duration = 0;}
+		long duration = 0;
+
+		try {
+			duration = Long.parseLong(rowValues[ConfigHelper.ROW_DURATION]);
+		} catch (Exception e) {
+			duration = 0;
+		}
 		this.durationContainer = new RowDurationImpl(duration, rowValues[ConfigHelper.ROW_DURATION_STRING]);
-                this.baseOutputLocation = rowValues[ConfigHelper.ROW_BASELOC];
-                String tmpRowTypes = rowValues[ConfigHelper.ROW_TYPES].replaceAll(":", ",");
+		this.baseOutputLocation = rowValues[ConfigHelper.ROW_BASELOC];
+		String tmpRowTypes = rowValues[ConfigHelper.ROW_TYPES].replaceAll(":", ",");
 		this.outputTypes = ConfigHelper.parseOutTypesString(tmpRowTypes);
-                this.inputFile = new File(rowValues[ConfigHelper.ROW_INPUT]);
+		this.inputFile = new File(rowValues[ConfigHelper.ROW_INPUT]);
 		this.title = rowValues[ConfigHelper.ROW_TITLE];
 		this.progressBarContainer = new RowProgressBarImpl();
 		this.buttonContainer = new RowButtonsImpl(this);
 
-            //    this.setProgress(this.percent, this.status);
+		// this.setProgress(this.percent, this.status);
 		this.tableHelper = tableHelper;
 	}
 
@@ -188,39 +189,40 @@ public class OSRow implements Comparable<OSRow> {
 		rowValues[ConfigHelper.ROW_TITLE] = this.title;
 		rowValues[ConfigHelper.ROW_INPUT] = this.inputFile.getAbsolutePath();
 		rowValues[ConfigHelper.ROW_BASELOC] = this.baseOutputLocation;
-                rowValues[ConfigHelper.ROW_OUTPUT] = ""; // this.outputLocations;
-                rowValues[ConfigHelper.ROW_DURATION] = "" + this.durationContainer.getDuration();
-                rowValues[ConfigHelper.ROW_DURATION_STRING] = this.durationContainer.getDurationString();
-                String tmpTypes = ConfigHelper.getOutTypesString(this.outputTypes);
-                tmpTypes = tmpTypes.replaceAll(",", ":");
+		rowValues[ConfigHelper.ROW_OUTPUT] = ""; // this.outputLocations;
+		rowValues[ConfigHelper.ROW_DURATION] = "" + this.durationContainer.getDuration();
+		rowValues[ConfigHelper.ROW_DURATION_STRING] = this.durationContainer.getDurationString();
+		String tmpTypes = ConfigHelper.getOutTypesString(this.outputTypes);
+		tmpTypes = tmpTypes.replaceAll(",", ":");
 		rowValues[ConfigHelper.ROW_TYPES] = tmpTypes;
 		rowValues[ConfigHelper.ROW_STATUS] = this.status.toString();
 		rowValues[ConfigHelper.ROW_START] = "" + this.startTime.getTime();
-                
-                String childrenStr = "";
-                for(OSRow r : this.getChildren()){
-                    childrenStr += r + ":";
-                }
-                if(childrenStr.length() > 0) childrenStr = childrenStr.substring(0, childrenStr.length() - 1);
-                rowValues[ConfigHelper.ROW_CHILDREN] = childrenStr;
-                rowValues[ConfigHelper.ROW_PARENT] = "" + this.getParent();
+
+		String childrenStr = "";
+		for (OSRow r : this.getChildren()) {
+			childrenStr += r + ":";
+		}
+		if (childrenStr.length() > 0)
+			childrenStr = childrenStr.substring(0, childrenStr.length() - 1);
+		rowValues[ConfigHelper.ROW_CHILDREN] = childrenStr;
+		rowValues[ConfigHelper.ROW_PARENT] = "" + this.getParent();
 		ConfigHelper.getInstance().updateRow(this.id, rowValues);
 	}
 
 	private void updateOutputFileName() {
-		
+
 		if (isChild()) {
 			outputLocations = parent.outputLocations;
 		} else {
 			String dateStr = new SimpleDateFormat("_yyyyMMdd_hhmmss").format(this.startTime);
 			Parameters p = new Parameters();
 			p.setJobName(title + dateStr);
-			
-			
+
 			for (String outputType : outputTypes) {
 				String outputLocation = baseOutputLocation + File.separator + p.getJobName();
 
-				// if multiple files are processing at the same time the output location
+				// if multiple files are processing at the same time the output
+				// location
 				// may not be there yet
 				// if ((new File(this.outputLocation)).exists())
 				outputLocation += "_" + counter;
@@ -240,12 +242,13 @@ public class OSRow implements Comparable<OSRow> {
 
 	public String getInfo() {
 		String info = "<html>Original file: " + this.inputFile.getAbsolutePath() + "<BR/>";
-	
+
 		for (int i = 0; i < outputTypes.size(); i++) {
-			if (i > 0) info += "<BR/>";
+			if (i > 0)
+				info += "<BR/>";
 			info += "Output file: " + this.outputLocations.get(outputTypes.get(i));
 		}
-				
+
 		info += "</html>";
 		return info;
 	}
@@ -286,7 +289,6 @@ public class OSRow implements Comparable<OSRow> {
 		return parent;
 	}
 
-
 	public void toggleDurationColor(boolean isSelected) {
 		durationContainer.toggleColor(isSelected);
 	}
@@ -311,7 +313,7 @@ public class OSRow implements Comparable<OSRow> {
 						if (!OSRow.this.isRunning()) {
 							cancel();
 						}
-						
+
 					}
 				}
 				tableHelper.getTimer().schedule(new DurationUpdateTask(), 1000, 1000);
@@ -334,18 +336,19 @@ public class OSRow implements Comparable<OSRow> {
 			buttonContainer.getReRunButton().setEnabled(true);
 			if (this.status == STATUS.COMPLETE) {
 				buttonContainer.getViewResultsButton().setEnabled(true);
-                                buttonContainer.getViewDirButton().setEnabled(true);
+				buttonContainer.getViewDirButton().setEnabled(true);
 			}
-			
+
 			if (formatter != null) {
 				log.info("closing formatter");
 				formatter.finish();
 				formatter = null;
 			}
 			worker = null;
-			
-			if (isChild()) parent.incrementCompletedChildren();
-			
+
+			if (isChild())
+				parent.incrementCompletedChildren();
+
 			saveConfig();
 
 		}
@@ -380,10 +383,10 @@ public class OSRow implements Comparable<OSRow> {
 		return buttonContainer;
 	}
 
-	public Map<String,String> getOutputLocations() {
+	public Map<String, String> getOutputLocations() {
 		return outputLocations;
 	}
-        
+
 	public File getInputFile() {
 		return inputFile;
 	}
@@ -436,7 +439,8 @@ public class OSRow implements Comparable<OSRow> {
 			}
 			setProgress(-1, OSRow.STATUS.CANCELED);
 		} else {
-			if (worker != null) worker.cancelExecution();
+			if (worker != null)
+				worker.cancelExecution();
 			setProgress(-1, OSRow.STATUS.CANCELED);
 		}
 	}
@@ -462,11 +466,10 @@ public class OSRow implements Comparable<OSRow> {
 	public void viewResults(String format) {
 		tableHelper.viewResults(this, format);
 	}
-        
-        public void viewDir() {
+
+	public void viewDir() {
 		tableHelper.viewDir(this);
 	}
-
 
 	public void rerun() {
 		JButton cancelDeleteButton = buttonContainer.getCancelDeleteButton();
@@ -568,7 +571,6 @@ public class OSRow implements Comparable<OSRow> {
 		return executionStartTime;
 	}
 
-
 	public int completedChildCount() {
 		int completed = 0;
 		for (OSRow child : getChildren()) {
@@ -587,13 +589,16 @@ public class OSRow implements Comparable<OSRow> {
 		return formatter;
 	}
 
+	public String toString() {
+		return getId();
+	}
+
+	public void updateProgress() {
+		tableHelper.getMainFrame().getTable().repaint(OSRow.this);
+		// this.setProgress(this.percent, this.status);
+	}
 	
-        public String toString(){
-            return getId();
-        }
-        
-        public void updateProgress(){
-	    tableHelper.getMainFrame().getTable().repaint(OSRow.this);
-        //    this.setProgress(this.percent, this.status);
-        }
+	public OpenSextantWorker getWorker() {
+		return this.worker;
+	}
 }

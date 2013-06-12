@@ -3,7 +3,9 @@ package org.mitre.opensextant.desktop.executor;
 import gate.Corpus;
 import gate.Document;
 import gate.Factory;
+import gate.creole.ResourceInstantiationException;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -13,6 +15,7 @@ import org.mitre.opensextant.desktop.executor.progresslisteners.ChildProgressLis
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.desktop.util.OutputUtil;
+import org.mitre.opensextant.processing.ProcessingException;
 import org.mitre.opensextant.processing.output.AbstractFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,12 +76,7 @@ public class OpenSextantWorker implements Runnable {
 			geoCoder.removeProgressListener(listener);
 			geoCoder.shutdown();
 
-
-//		} catch (InterruptedException ie) {
-//			if (runner != null)
-//				runner.cancelExecution();
-//			row.setProgress(-1, OSRow.STATUS.CANCELED);
-		} catch (Exception e) {
+		} catch (ProcessingException | ResourceInstantiationException | IOException e) {
 			log.error("error processing file", e);
 			row.setProgress(-1, OSRow.STATUS.ERROR);
 		}
@@ -92,6 +90,10 @@ public class OpenSextantWorker implements Runnable {
 	
 	public void setExecutor(Future<?> executor) {
 		this.executor = executor;
+	}
+
+	public boolean isCanceled() {
+		return canceled;
 	}
 
 }

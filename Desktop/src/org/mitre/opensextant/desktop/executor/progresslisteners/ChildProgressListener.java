@@ -20,6 +20,7 @@ public class ChildProgressListener implements ProgressListener {
 			row.setProgress(calculatedProgress, OSRow.STATUS.PROCESSING);
 			if (row.isChild()) updateParentProgress(row.getParent(), calculatedProgress, previousProgress);
 		}
+		if (row.getWorker().isCanceled()) throw new RuntimeException(new InterruptedException());
 	}
 	
 	public synchronized static void updateParentProgress(OSRow parent, int childProgress, int previousChildProgress) {
