@@ -28,6 +28,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.desktop.ui.forms.AboutFrame;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrameImpl;
+import org.mitre.opensextant.desktop.ui.forms.LogFrame;
 import org.mitre.opensextant.desktop.ui.forms.OpenSextantMainFrame;
 import org.mitre.opensextant.desktop.ui.forms.TextEntryFrame;
 import org.mitre.opensextant.desktop.ui.handlers.FileDropTransferHandler;
@@ -154,6 +155,18 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
             	parent.helpMenuItemActionPerformed(evt);
             }
         });
+        
+        this.logButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	logMenuItemActionPerformed(evt);
+            }
+        });
+        
+        this.logMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	logMenuItemActionPerformed(evt);
+            }
+        });
 		
 	}
 
@@ -217,6 +230,12 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 			log.error(ex.getMessage());
 		}
 	}
+        
+        private void logMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
+            JFrame.setDefaultLookAndFeelDecorated(true);
+            JFrame frame = new LogFrame();
+            frame.setVisible(true);
+        }
 	
 	public MainFrameTableHelper getTableHelper() {
 		return tableHelper;

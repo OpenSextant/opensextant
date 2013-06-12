@@ -5,6 +5,7 @@
 package org.mitre.opensextant.desktop.ui.forms;
 
 import javax.swing.JFrame;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -29,6 +30,7 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         treePanel = new javax.swing.JPanel();
         tableScrollPane = new javax.swing.JScrollPane();
         actionToolbar = new javax.swing.JToolBar();
@@ -36,16 +38,20 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         textButton = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(15, 0), new java.awt.Dimension(15, 0), new java.awt.Dimension(15, 32767));
         configButton = new javax.swing.JButton();
+        logButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         addFileMenuItem = new javax.swing.JMenuItem();
         textMenuItem = new javax.swing.JMenuItem();
         configMenuItem = new javax.swing.JMenuItem();
+        logMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         helpMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OpenSextant Desktop");
@@ -84,6 +90,18 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         });
         actionToolbar.add(configButton);
 
+        logButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/log.png"))); // NOI18N
+        logButton.setToolTipText("View Log Entries");
+        logButton.setFocusable(false);
+        logButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        logButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        logButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logButtonActionPerformed(evt);
+            }
+        });
+        actionToolbar.add(logButton);
+
         org.jdesktop.layout.GroupLayout treePanelLayout = new org.jdesktop.layout.GroupLayout(treePanel);
         treePanel.setLayout(treePanelLayout);
         treePanelLayout.setHorizontalGroup(
@@ -109,6 +127,9 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
 
         configMenuItem.setText("Configuration");
         jMenu1.add(configMenuItem);
+
+        logMenuItem.setText("View Log");
+        jMenu1.add(logMenuItem);
         jMenu1.add(jSeparator1);
 
         exitMenuItem.setText("Exit");
@@ -177,6 +198,10 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textButtonActionPerformed
 
+    private void logButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -231,7 +256,10 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     protected javax.swing.JMenuItem helpMenuItem;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    protected javax.swing.JButton logButton;
+    protected javax.swing.JMenuItem logMenuItem;
     protected javax.swing.JScrollPane tableScrollPane;
     protected javax.swing.JButton textButton;
     protected javax.swing.JMenuItem textMenuItem;
