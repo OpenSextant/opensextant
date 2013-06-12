@@ -20,7 +20,8 @@ public class ConfigFrameImpl extends ConfigFrame{
 		
 		this.configHelper = ConfigHelper.getInstance();
 		
-		tmpText.setText(configHelper.getTmpRoot());
+		cacheText.setText(configHelper.getCacheRoot());
+		tempText.setText(configHelper.getTmpRoot());
 		outputText.setText(configHelper.getOutLocation());
 		threadCount.setValue(configHelper.getNumThreads());
 		int maxThreads = Runtime.getRuntime().availableProcessors();
@@ -70,7 +71,7 @@ public class ConfigFrameImpl extends ConfigFrame{
 			outTypes.add("GDB");
 
 		configHelper.setOutLocation(outputText.getText());
-        configHelper.setTmpLocation(tmpText.getText());
+        configHelper.setCacheRoot(cacheText.getText());
 
 		configHelper.setOutTypes(outTypes);
 		configHelper.setNumThreads((Integer)threadCount.getValue());

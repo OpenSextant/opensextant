@@ -46,7 +46,8 @@ public class Main {
 			AppBase.globalShutdown();
 		}});
 
-		FileUtils.deleteQuietly(new File(ConfigHelper.getInstance().getTmpLocation()));
+
+		FileUtils.deleteQuietly(new File(ConfigHelper.getInstance().getOSTmpRoot()));
 
 		SelectOSHomeFrameImpl.setupOpenSextantHome();
 

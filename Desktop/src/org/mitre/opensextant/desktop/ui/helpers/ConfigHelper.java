@@ -26,7 +26,8 @@ public class ConfigHelper {
 	private static final String DATA_HOME = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "OpenSextant";
 	private static final String OUTPUT_HOME = DATA_HOME + File.separator + "output";
 	private static final String CONFIG_FILE = DATA_HOME + File.separator + "conf.properties";
-        private static final String JOBS_FILE = DATA_HOME + File.separator + "jobs.properties";
+    private static final String JOBS_FILE = DATA_HOME + File.separator + "jobs.properties";
+	private static final String DEFAULT_CACHE_ROOT = DATA_HOME + File.separator + "cache";
 	private static final int CONFIG_VERSION = 1;
         
 
@@ -52,7 +53,8 @@ public class ConfigHelper {
 	private PropertiesConfiguration config = null;
 	private PropertiesConfiguration jobs = null;
 
-        private String tmpRoot = "";
+    private String cacheRoot = "";
+    private String tmpRoot = "";
 	private List<String> outTypes = new ArrayList<String>();
 	private String outLocation = "";
 	private String inLocation = "";
@@ -107,7 +109,8 @@ public class ConfigHelper {
 			config.setProperty("outType", outTypes);
 			config.setProperty("outLocation", outLocation);
 			config.setProperty("inLocation", inLocation);
-			config.setProperty("tmpLocation", tmpRoot);
+			config.setProperty("cacheRoot", cacheRoot);
+			config.setProperty("tmpRoot", tmpRoot);
 			config.setProperty("osHome", osHome);
 			config.setProperty("gateHome", gateHome);
 			config.setProperty("solrHome", solrHome);
@@ -133,8 +136,8 @@ public class ConfigHelper {
 			(new File(outLocation)).mkdir();
 		}
 		inLocation = config.getString("inLocation", "");
-		tmpRoot = config.getString("tmpLocation", System.getProperty("java.io.tmpdir"));
-		if (tmpRoot == null || tmpRoot.isEmpty()) tmpRoot = System.getProperty("java.io.tmpdir");
+		cacheRoot = config.getString("cacheRoot", DEFAULT_CACHE_ROOT);
+		tmpRoot = config.getString("tmpRoot", System.getProperty("java.io.tmpdir"));
 		osHome = config.getString("osHome", null);
 		gateHome = config.getString("gateHome", null);
 		solrHome = config.getString("solrHome", null);
@@ -199,11 +202,17 @@ public class ConfigHelper {
 		return outLocation;
 	}
 
-    public String getTmpLocation() {
-		return tmpRoot + File.separator + OSD_TMP_BASE;
+    public String getCacheRoot() {
+		return cacheRoot;
 	}
     public String getTmpRoot() {
 		return tmpRoot;
+	}
+    public String getXTextCacheRoot() {
+		return getCacheRoot() + File.separator + "xtext";
+	}
+	public String getOSTmpRoot() {
+		return getTmpRoot() + File.separator + "opensextant";
 	}
 
         
@@ -227,8 +236,11 @@ public class ConfigHelper {
 	}
 	
         
-	public void setTmpLocation(String tmpLocation) {
-		this.tmpRoot = tmpLocation;
+	public void setCacheRoot(String cacheRoot) {
+		this.cacheRoot = cacheRoot;
+	}
+	public void setTmpRoot(String tmpRoot) {
+		this.tmpRoot = tmpRoot;
 	}
         
 	public void setOutLocation(String outLocation) {
@@ -268,8 +280,5 @@ public class ConfigHelper {
 			listener.propertyChange(null);
 		}
 	}
-
-        
-        
 
 }

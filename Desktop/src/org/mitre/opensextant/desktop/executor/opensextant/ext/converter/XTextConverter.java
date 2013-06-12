@@ -27,8 +27,8 @@ public class XTextConverter {
 
         // TOOD: Rework application setup. 
         //     all inputs here should be user settable.
-        converter.archiveRoot = tmpRoot+File.separator + "opensextant";
-        converter.tempRoot = tmpRoot+File.separator+ "opensextant.tmp";
+        converter.archiveRoot = tmpRoot+File.separator + "archives";
+        converter.tempRoot = tmpRoot+File.separator+ "files";
         
         converter.zone_web_content = false;
         converter.save = true;

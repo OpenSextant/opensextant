@@ -62,10 +62,13 @@ public class ConfigFrame extends javax.swing.JFrame {
         threadsLabel = new javax.swing.JLabel();
         threadCount = new javax.swing.JSpinner();
         processingLabel = new javax.swing.JLabel();
-        tmpLabel = new javax.swing.JLabel();
-        tmpText = new javax.swing.JTextField();
-        browseTmpButton = new javax.swing.JButton();
+        cacheLabel = new javax.swing.JLabel();
+        cacheText = new javax.swing.JTextField();
+        browseCacheButton = new javax.swing.JButton();
         gdbCheck = new javax.swing.JCheckBox();
+        tempText = new javax.swing.JTextField();
+        browseTempButton = new javax.swing.JButton();
+        tempLabel = new javax.swing.JLabel();
 
         jCheckBox3.setText("JSON");
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -162,21 +165,21 @@ public class ConfigFrame extends javax.swing.JFrame {
         processingLabel.setText("Processing");
         processingLabel.setToolTipText("");
 
-        tmpLabel.setText("Temp Path:");
-        tmpLabel.setToolTipText("The location to place temporary files used during job execution");
+        cacheLabel.setText("Cache Path:");
+        cacheLabel.setToolTipText("The location to place temporary files used during job execution");
 
-        tmpText.setToolTipText("Directly enter temporary directory location");
-        tmpText.addActionListener(new java.awt.event.ActionListener() {
+        cacheText.setToolTipText("Directly enter temporary directory location");
+        cacheText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tmpTextActionPerformed(evt);
+                cacheTextActionPerformed(evt);
             }
         });
 
-        browseTmpButton.setText("Browse...");
-        browseTmpButton.setToolTipText("Navigate filesystem for temporary directory location");
-        browseTmpButton.addActionListener(new java.awt.event.ActionListener() {
+        browseCacheButton.setText("Browse...");
+        browseCacheButton.setToolTipText("Navigate filesystem for temporary directory location");
+        browseCacheButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browseTmpButtonActionPerformed(evt);
+                browseCacheButtonActionPerformed(evt);
             }
         });
 
@@ -187,6 +190,24 @@ public class ConfigFrame extends javax.swing.JFrame {
                 gdbCheckActionPerformed(evt);
             }
         });
+
+        tempText.setToolTipText("Directly enter temporary directory location");
+        tempText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tempTextActionPerformed(evt);
+            }
+        });
+
+        browseTempButton.setText("Browse...");
+        browseTempButton.setToolTipText("Navigate filesystem for temporary directory location");
+        browseTempButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browseTempButtonActionPerformed(evt);
+            }
+        });
+
+        tempLabel.setText("Temp Path:");
+        tempLabel.setToolTipText("The location to place temporary files used during job execution");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -235,13 +256,20 @@ public class ConfigFrame extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(threadsLabel)
-                                    .addComponent(tmpLabel))
+                                    .addComponent(cacheLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tmpText, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                    .addComponent(cacheText, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                                     .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(browseTmpButton)))
+                        .addComponent(browseCacheButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(tempLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tempText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(browseTempButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -275,10 +303,15 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tmpLabel)
-                    .addComponent(tmpText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(browseTmpButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                    .addComponent(cacheLabel)
+                    .addComponent(cacheText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(browseCacheButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tempLabel)
+                    .addComponent(tempText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(browseTempButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(doneButton)
                 .addContainerGap())
         );
@@ -286,21 +319,34 @@ public class ConfigFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tmpTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tmpTextActionPerformed
+    private void cacheTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cacheTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tmpTextActionPerformed
+    }//GEN-LAST:event_cacheTextActionPerformed
 
-    private void browseTmpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseTmpButtonActionPerformed
+    private void browseCacheButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCacheButtonActionPerformed
 		JFileChooser chooser = new JFileChooser();
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		chooser.setCurrentDirectory(new File(tmpText.getText()));
+		chooser.setCurrentDirectory(new File(cacheText.getText()));
 		int returnVal = chooser.showOpenDialog(this);
 		if (returnVal == JFileChooser.APPROVE_OPTION)
-			tmpText.setText(chooser.getSelectedFile().toString());    }//GEN-LAST:event_browseTmpButtonActionPerformed
+			cacheText.setText(chooser.getSelectedFile().toString());    }//GEN-LAST:event_browseCacheButtonActionPerformed
 
     private void gdbCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gdbCheckActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gdbCheckActionPerformed
+
+    private void tempTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tempTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tempTextActionPerformed
+
+    private void browseTempButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseTempButtonActionPerformed
+		JFileChooser chooser = new JFileChooser();
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		chooser.setCurrentDirectory(new File(tempText.getText()));
+		int returnVal = chooser.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION)
+			tempText.setText(chooser.getSelectedFile().toString());                                                 
+    }//GEN-LAST:event_browseTempButtonActionPerformed
 
 	private void outputTextActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_outputTextActionPerformed
 		// TODO add your handling code here:
@@ -375,8 +421,11 @@ public class ConfigFrame extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton browseCacheButton;
     private javax.swing.JButton browseOutButton;
-    private javax.swing.JButton browseTmpButton;
+    private javax.swing.JButton browseTempButton;
+    private javax.swing.JLabel cacheLabel;
+    protected javax.swing.JTextField cacheText;
     protected javax.swing.JCheckBox csvCheck;
     protected javax.swing.JButton doneButton;
     private javax.swing.JLabel formatLabel;
@@ -391,10 +440,10 @@ public class ConfigFrame extends javax.swing.JFrame {
     private javax.swing.JLabel pathLabel;
     private javax.swing.JLabel processingLabel;
     protected javax.swing.JCheckBox shapefileCheck;
+    private javax.swing.JLabel tempLabel;
+    protected javax.swing.JTextField tempText;
     protected javax.swing.JSpinner threadCount;
     private javax.swing.JLabel threadsLabel;
-    private javax.swing.JLabel tmpLabel;
-    protected javax.swing.JTextField tmpText;
     protected javax.swing.JCheckBox wktCheck;
     // End of variables declaration//GEN-END:variables
 

@@ -66,7 +66,7 @@ public class OSGeoCoder extends AppBase {
         }
         
         params.isdefault = false;
-        params.tempDir = ConfigHelper.getInstance().getTmpLocation() + File.separator + "tmp";
+        params.tempDir = ConfigHelper.getInstance().getOSTmpRoot();
 
     }
     
