@@ -83,6 +83,7 @@
 ./Organization/OrganizationNames_corporations.txt:CorporateOrganization:Organization.corporateOrganization
 ./Organization/OrganizationNames_criminalOrgs.txt:CriminalOrganization:Organization.criminalOrganization
 ./Organization/OrganizationNames_internationalOrgs.txt:Organization:Organization.internationalOrganization
+./Organization/OrganizationNames_media.txt:Newspaper:Organization.media.newspaper
 ./Organization/OrganizationNames_militantGroups.txt:Organization:Organization.militantGroup
 ./Organization/OrganizationNames_politicalParties.txt:PoliticalParty:Organization.governmentOrganization.politicalParty
 ./Organization/OrganizationNames_religions.txt:Religion:Organization.religion

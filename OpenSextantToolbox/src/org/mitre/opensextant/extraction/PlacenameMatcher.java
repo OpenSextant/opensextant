@@ -83,7 +83,7 @@ public class PlacenameMatcher {
      * attribute that should be thread safe and shareable across instances of
      * SolrMatcher
      */
-    private MatchFilter filter = null;
+    //private MatchFilter filter = null;
     private boolean allow_lowercase_abbrev = false;
 
     /**
