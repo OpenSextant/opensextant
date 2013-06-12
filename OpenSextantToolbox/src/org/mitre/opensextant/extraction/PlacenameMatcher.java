@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
@@ -42,10 +43,9 @@ import org.apache.solr.common.params.CommonParams;
 import org.apache.solr.common.params.ModifiableSolrParams;
 import org.apache.solr.common.params.SolrParams;
 import org.apache.solr.common.util.NamedList;
-import org.mitre.opensextant.util.TextUtils;
 import org.mitre.opensextant.placedata.Place;
 import org.mitre.opensextant.placedata.PlaceCandidate;
-import org.apache.commons.lang.StringUtils;
+import org.mitre.opensextant.util.TextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -93,7 +93,7 @@ public class PlacenameMatcher {
     public PlacenameMatcher() throws IOException {
         PlacenameMatcher.initialize();
 
-        filter = new MatchFilter("/filters/tagging-filters.txt");
+       // filter = new MatchFilter("/filters/tagging-filters.txt");
 
         // Instance variable that will have the transient payload to tag
         // this is not thread safe and is not static:
@@ -248,9 +248,9 @@ public class PlacenameMatcher {
         for (SolrDocument solrDoc : docList) {
 
             name = SolrProxy.getString(solrDoc, "name");
-            if (filter.filterOut(name.toLowerCase())) {
-                continue;
-            }
+           // if (filter.filterOut(name.toLowerCase())) {
+           //     continue;
+          //  }
 
             Place bean = new Place();
 
@@ -320,9 +320,9 @@ public class PlacenameMatcher {
              * filter out only text we know to be false positives regardless of
              * case.
              */
-            if (filter.filterOut(matchText.toLowerCase())) {
-                continue;
-            }
+           // if (filter.filterOut(matchText.toLowerCase())) {
+           //     continue;
+           // }
 
             pc = new PlaceCandidate();
             pc.setStart(x1);
@@ -469,7 +469,7 @@ public class PlacenameMatcher {
         PlacenameMatcher sm = new PlacenameMatcher();
 
         try {
-            String docContent = "I want to go to New York City some day.";
+            String docContent = "We drove to Sin City. The we drove to -$IN ĆITŸ .";
 
             System.out.println(docContent);
 
