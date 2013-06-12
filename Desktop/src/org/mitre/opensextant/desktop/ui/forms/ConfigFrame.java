@@ -55,7 +55,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         pathLabel = new javax.swing.JLabel();
         formatLabel = new javax.swing.JLabel();
         csvCheck = new javax.swing.JCheckBox();
-        jsonCheck = new javax.swing.JCheckBox();
+        xlsCheck = new javax.swing.JCheckBox();
         kmlCheck = new javax.swing.JCheckBox();
         wktCheck = new javax.swing.JCheckBox();
         shapefileCheck = new javax.swing.JCheckBox();
@@ -69,6 +69,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         tempText = new javax.swing.JTextField();
         browseTempButton = new javax.swing.JButton();
         tempLabel = new javax.swing.JLabel();
+        jsonCheck = new javax.swing.JCheckBox();
 
         jCheckBox3.setText("JSON");
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -123,11 +124,11 @@ public class ConfigFrame extends javax.swing.JFrame {
             }
         });
 
-        jsonCheck.setText("JSON");
-        jsonCheck.setToolTipText("JavaScript Object Notation");
-        jsonCheck.addActionListener(new java.awt.event.ActionListener() {
+        xlsCheck.setText("XLS");
+        xlsCheck.setToolTipText("JavaScript Object Notation");
+        xlsCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jsonCheckActionPerformed(evt);
+                xlsCheckActionPerformed(evt);
             }
         });
 
@@ -209,6 +210,14 @@ public class ConfigFrame extends javax.swing.JFrame {
         tempLabel.setText("Temp Path:");
         tempLabel.setToolTipText("The location to place temporary files used during job execution");
 
+        jsonCheck.setText("JSON");
+        jsonCheck.setToolTipText("JavaScript Object Notation");
+        jsonCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jsonCheckActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -231,7 +240,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(csvCheck)
-                                            .addComponent(jsonCheck)
+                                            .addComponent(xlsCheck)
                                             .addComponent(kmlCheck))
                                         .addGap(34, 34, 34)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,15 +248,16 @@ public class ConfigFrame extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(shapefileCheck)
                                                     .addComponent(wktCheck))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                                                 .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(gdbCheck)
                                                 .addGap(0, 0, Short.MAX_VALUE))))
-                                    .addGroup(layout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(outputText)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(browseOutButton))))))
+                                        .addComponent(browseOutButton))
+                                    .addComponent(jsonCheck)))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,13 +299,15 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addComponent(wktCheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jsonCheck)
+                    .addComponent(xlsCheck)
                     .addComponent(shapefileCheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(kmlCheck)
                     .addComponent(gdbCheck))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jsonCheck)
+                .addGap(7, 7, 7)
                 .addComponent(processingLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -311,7 +323,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addComponent(tempLabel)
                     .addComponent(tempText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(browseTempButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(doneButton)
                 .addContainerGap())
         );
@@ -348,13 +360,18 @@ public class ConfigFrame extends javax.swing.JFrame {
 			tempText.setText(chooser.getSelectedFile().toString());                                                 
     }//GEN-LAST:event_browseTempButtonActionPerformed
 
+    private void jsonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsonCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jsonCheckActionPerformed
+
 	private void outputTextActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_outputTextActionPerformed
 		// TODO add your handling code here:
 	}// GEN-LAST:event_outputTextActionPerformed
 
-	private void jsonCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jsonCheckActionPerformed
+	private void xlsCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jsonCheckActionPerformed
 	}// GEN-LAST:event_jsonCheckActionPerformed
 
+        
 	private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCheckBox3ActionPerformed
 		// TODO add your handling code here:
 	}// GEN-LAST:event_jCheckBox3ActionPerformed
@@ -445,6 +462,7 @@ public class ConfigFrame extends javax.swing.JFrame {
     protected javax.swing.JSpinner threadCount;
     private javax.swing.JLabel threadsLabel;
     protected javax.swing.JCheckBox wktCheck;
+    protected javax.swing.JCheckBox xlsCheck;
     // End of variables declaration//GEN-END:variables
 
 }

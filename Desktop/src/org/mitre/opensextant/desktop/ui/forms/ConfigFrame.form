@@ -76,7 +76,7 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="csvCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jsonCheck" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="xlsCheck" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="kmlCheck" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -86,7 +86,7 @@
                                                   <Component id="shapefileCheck" min="-2" max="-2" attributes="0"/>
                                                   <Component id="wktCheck" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace pref="49" max="32767" attributes="0"/>
+                                              <EmptySpace pref="54" max="32767" attributes="0"/>
                                               <Component id="doneButton" min="-2" pref="71" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
@@ -95,11 +95,12 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <Component id="outputText" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="browseOutButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jsonCheck" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -156,7 +157,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jsonCheck" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="xlsCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="shapefileCheck" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -164,7 +165,9 @@
                   <Component id="kmlCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="gdbCheck" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jsonCheck" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Component id="processingLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -183,7 +186,7 @@
                   <Component id="tempText" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="browseTempButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Component id="doneButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -252,13 +255,13 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jsonCheck">
+    <Component class="javax.swing.JCheckBox" name="xlsCheck">
       <Properties>
-        <Property name="text" type="java.lang.String" value="JSON"/>
+        <Property name="text" type="java.lang.String" value="XLS"/>
         <Property name="toolTipText" type="java.lang.String" value="JavaScript Object Notation"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jsonCheckActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xlsCheckActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
@@ -389,6 +392,18 @@
         <Property name="text" type="java.lang.String" value="Temp Path:"/>
         <Property name="toolTipText" type="java.lang.String" value="The location to place temporary files used during job execution"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jsonCheck">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="JSON"/>
+        <Property name="toolTipText" type="java.lang.String" value="JavaScript Object Notation"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jsonCheckActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

@@ -5,14 +5,12 @@ import gate.Corpus;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.apps.AppBase;
-import org.mitre.opensextant.desktop.executor.opensextant.ext.formatters.MultiFormatter;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.processing.Parameters;
 import org.mitre.opensextant.processing.ProcessingException;
 import org.mitre.opensextant.processing.output.AbstractFormatter;
+import org.mitre.opensextant.processing.output.MultiFormatter;
 
 public class OutputUtil {
 
@@ -31,7 +29,6 @@ public class OutputUtil {
 			}
 
 			File outputFile = new File(outputLocation);
-
 			
 			String filename = outputFile.getName();
 			
@@ -42,13 +39,13 @@ public class OutputUtil {
 	        params.outputDir = outputFile.getParent();
 	        params.setJobName(filename);
 
-			AbstractFormatter childFormatter = AppBase.createFormatter(outputType, params);
+	        AbstractFormatter childFormatter = AppBase.createFormatter(outputType, params);
 			childFormatter.setOutputFilename(filename);
 			childFormatter.start((String) params.getJobName());
 			formatter.addChild(childFormatter);
 
 		}
-
+		
 		return formatter;
 	}
 

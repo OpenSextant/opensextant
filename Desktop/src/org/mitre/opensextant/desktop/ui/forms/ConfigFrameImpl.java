@@ -37,6 +37,8 @@ public class ConfigFrameImpl extends ConfigFrame{
 				wktCheck.setSelected(true);
 			else if ("JSON".equals(t))
 				jsonCheck.setSelected(true);
+			else if ("XLS".equals(t))
+				xlsCheck.setSelected(true);
 			else if ("SHAPEFILE".equals(t))
 				shapefileCheck.setSelected(true);
 		}
@@ -63,6 +65,8 @@ public class ConfigFrameImpl extends ConfigFrame{
 			outTypes.add("KML");
 		if (jsonCheck.isSelected())
 			outTypes.add("JSON");
+		if (xlsCheck.isSelected())
+			outTypes.add("XLS");
 		if (shapefileCheck.isSelected())
 			outTypes.add("SHAPEFILE");
 		if (wktCheck.isSelected())

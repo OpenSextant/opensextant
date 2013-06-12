@@ -1,4 +1,4 @@
-package org.mitre.opensextant.desktop.executor.opensextant.ext.formatters;
+package org.mitre.opensextant.processing.output;
 
 import gate.Corpus;
 import gate.Document;
