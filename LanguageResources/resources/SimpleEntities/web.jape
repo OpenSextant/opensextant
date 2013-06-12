@@ -106,8 +106,8 @@ Rule: EMAIL
 	Node sentEndNode   = sentSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","EMAIL");
-	 tempFeatures.put("string", stringFor(doc,sentSet).replaceAll("\\s"," "));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", cleanStringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.web.emailAddress");
 	 
 	outputAS.add(sentStartNode, sentEndNode, "EMail",tempFeatures);
@@ -126,8 +126,8 @@ Rule: URL
 	Node sentEndNode   = sentSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","URL");
-	 tempFeatures.put("string", stringFor(doc,sentSet).replaceAll("\\s"," "));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", cleanStringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.web.url");
 
 	outputAS.add(sentStartNode, sentEndNode, "URL",tempFeatures);	
@@ -146,8 +146,8 @@ Rule: URLNoScheme
 	Node sentEndNode   = sentSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","URLNoScheme");
-	 tempFeatures.put("string", stringFor(doc,sentSet).replaceAll("\\s"," "));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", cleanStringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.web.url");
 	 
 	outputAS.add(sentStartNode, sentEndNode, "URL",tempFeatures);	
@@ -168,8 +168,8 @@ Rule: WebSite
 	Node sentEndNode   = sentSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","WebSite");
-	 tempFeatures.put("string", stringFor(doc,sentSet).replaceAll("\\s"," "));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", cleanStringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.web.webSite");
 	 
 	outputAS.add(sentStartNode, sentEndNode, "WebSite",tempFeatures);
@@ -188,8 +188,8 @@ Rule: IPAddress
 	Node sentEndNode   = sentSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","IPAddress");
-	 tempFeatures.put("string", stringFor(doc,sentSet).replaceAll("\\s"," "));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", cleanStringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.web.IPAddress");
 	 
 	outputAS.add(sentStartNode, sentEndNode, "IPAddress",tempFeatures);	

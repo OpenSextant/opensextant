@@ -81,7 +81,7 @@ Rule: DTG
 	tempFeatures.put("month",month);
 	tempFeatures.put("year",year);
 	tempFeatures.put("hierarchy","Time.date");
-	tempFeatures.put("simpleEntityType","date");
+
 	
 	outputAS.add(dtgSet.firstNode(), dtgSet.lastNode(), "Date",tempFeatures);
 }
@@ -126,7 +126,7 @@ Rule: DTG2
 	
 	tempFeatures.put("string",wholeString);
 	tempFeatures.put("hierarchy","Time.dateTime");
-	tempFeatures.put("simpleEntityType","date");
+
 	
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
 }
@@ -161,7 +161,7 @@ Rule: AllNumeric
 	tempFeatures.put("month",month);
 	tempFeatures.put("year",year);
 	tempFeatures.put("hierarchy","Time.date");
-	tempFeatures.put("simpleEntityType","date");
+
 
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
 	}
@@ -206,7 +206,7 @@ Rule: Date1
 	tempFeatures.put("month",month);
 	tempFeatures.put("year",year);
 	tempFeatures.put("hierarchy","Time.date");
-	tempFeatures.put("simpleEntityType","date");
+
 
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
 }
@@ -244,7 +244,7 @@ Rule: Date2
 	tempFeatures.put("month",month);
 	tempFeatures.put("year",year);
 	tempFeatures.put("hierarchy","Time.date");
-	tempFeatures.put("simpleEntityType","date");
+
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
 }
 
@@ -281,7 +281,7 @@ Rule: Date3
 	tempFeatures.put("month",month);
 	tempFeatures.put("year",year);
 	tempFeatures.put("hierarchy","Time.date");
-	tempFeatures.put("simpleEntityType","date");
+
 
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
 }
@@ -321,7 +321,7 @@ Rule: Date4
 	tempFeatures.put("month",month);
 	tempFeatures.put("year",year);
 	tempFeatures.put("hierarchy","Time.date");
-	tempFeatures.put("simpleEntityType","date");
+
 
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
 }
@@ -360,7 +360,7 @@ Rule: Date4
 	tempFeatures.put("month",month);
 	tempFeatures.put("year",year);
 	tempFeatures.put("hierarchy","Time.date");
-	tempFeatures.put("simpleEntityType","date");
+
 
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
 }
@@ -400,7 +400,7 @@ Rule: Date5
 	tempFeatures.put("month",month);
 	tempFeatures.put("year",year);
 	tempFeatures.put("hierarchy","Time.date");
-	tempFeatures.put("simpleEntityType","date");
+
 
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
 }
@@ -439,7 +439,7 @@ Rule: Date6
 	tempFeatures.put("month",month);
 	tempFeatures.put("year",year);
 	tempFeatures.put("hierarchy","Time.date");
-	tempFeatures.put("simpleEntityType","date");
+
 
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
 }
@@ -479,7 +479,7 @@ Rule: Date7
 	tempFeatures.put("month",month);
 	tempFeatures.put("year",year);
 	tempFeatures.put("hierarchy","Time.date");
-	tempFeatures.put("simpleEntityType","date");
+
 
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
 }
@@ -519,7 +519,7 @@ Rule: Date8
 	tempFeatures.put("month",month);
 	tempFeatures.put("year",year);
 	tempFeatures.put("hierarchy","Time.date");
-	tempFeatures.put("simpleEntityType","date");
+
 
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
 }

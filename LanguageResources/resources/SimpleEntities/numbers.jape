@@ -10,7 +10,7 @@ import static gate.Utils.*;
  
 
 Phase:	Numbers
-Input:	Token 
+Input:	Token NumberWord
 Options: control = appelt
 
 
@@ -19,28 +19,112 @@ Macro: NUM_TOKEN
 	{Token.string ==~ "[0-9]+"}
 )
 
+Macro: NUM_TOKEN3
+(	
+	{Token.string ==~ "[0-9]{3}"}
+)
+
+
+Macro: BASIC_NUMBER
+(	
+   NUM_TOKEN ({Token.string == ","} NUM_TOKEN3)[0,3] ({Token.string == "."} NUM_TOKEN)?
+)
+
 
 
 // -------------The rules -------------
 
 // 100 , 100.01
-Rule:Number1
+Rule:BasicNumber
 (
-  NUM_TOKEN ({Token.string == "."} NUM_TOKEN)?
+  BASIC_NUMBER
 )
-:whole
+:num
 -->
 {
-	gate.AnnotationSet wholeSet = (gate.AnnotationSet)bindings.get("whole");
-	String phrase = gate.Utils.stringFor(doc,wholeSet);
+	gate.AnnotationSet numSet = (gate.AnnotationSet)bindings.get("num");
+	Node numStartNode = numSet.firstNode(); 
+	Node numEndNode   = numSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,numSet));
 
-	gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	tempFeatures.put("rule","Number1");
-	tempFeatures.put("string",phrase);
-
-	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Number",tempFeatures);
+	outputAS.add(numStartNode, numEndNode, "Number",tempFeatures);
 }
 
+// 17.2 million 
+Rule:DigitsAndWord
+(
+  BASIC_NUMBER ({Token.string ==~ "-"})? {NumberWord}
+)
+:num
+-->
+{
+	gate.AnnotationSet numSet = (gate.AnnotationSet)bindings.get("num");
+	Node numStartNode = numSet.firstNode(); 
+	Node numEndNode   = numSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,numSet));
 
+	outputAS.add(numStartNode, numEndNode, "Number",tempFeatures);
+}
 
+// three million,  
+Rule:NumberWords
+(
+  {NumberWord} ({Token.string ==~ "-"})? ({NumberWord})[0,3]
+)
+:num
+-->
+{
+	gate.AnnotationSet numSet = (gate.AnnotationSet)bindings.get("num");
+	Node numStartNode = numSet.firstNode(); 
+	Node numEndNode   = numSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,numSet));
 
+	outputAS.add(numStartNode, numEndNode, "Number",tempFeatures);
+}
+
+// a hundred and forty  
+Rule:NumberAndNumber
+(
+  {NumberWord} {Token.string ==~ "and|And|AND"} {NumberWord}
+)
+:num
+-->
+{
+	gate.AnnotationSet numSet = (gate.AnnotationSet)bindings.get("num");
+	Node numStartNode = numSet.firstNode(); 
+	Node numEndNode   = numSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,numSet));
+
+	outputAS.add(numStartNode, numEndNode, "Number",tempFeatures);
+}
+
+// a hundreds of thousands  
+Rule:NumberOfNumber
+(
+  {NumberWord} {Token.string ==~ "of|Of|OF"} {NumberWord}
+)
+:num
+-->
+{
+	gate.AnnotationSet numSet = (gate.AnnotationSet)bindings.get("num");
+	Node numStartNode = numSet.firstNode(); 
+	Node numEndNode   = numSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,numSet));
+
+	outputAS.add(numStartNode, numEndNode, "Number",tempFeatures);
+}

@@ -21,36 +21,60 @@ Rule:Money1
 (
  ( {CurrencySymbol}):sym ({Number}):amount 
 )
-:whole
+:money
 -->
 {
-	gate.AnnotationSet wholeSet = (gate.AnnotationSet)bindings.get("whole");
-	String moneyPhrase = gate.Utils.stringFor(doc,wholeSet);
+	gate.AnnotationSet moneySet = (gate.AnnotationSet)bindings.get("money");
+	Node moneyStartNode = moneySet.firstNode(); 
+	Node moneyEndNode   = moneySet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,moneySet));
+	 tempFeatures.put("hierarchy","Object.finance.money");
+	 
+	outputAS.add(moneyStartNode, moneyEndNode, "Money",tempFeatures);
+}
 
-	gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	tempFeatures.put("rule","Money1");
-	tempFeatures.put("string",moneyPhrase);
-	tempFeatures.put("hierarchy","Object.finance.money");
-	
-	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Money",tempFeatures);
+// 100 dollars
+Rule:Money2
+(
+  ({Number}):amount ({Currency} ):sym 
+)
+:money
+-->
+{
+	gate.AnnotationSet moneySet = (gate.AnnotationSet)bindings.get("money");
+	Node moneyStartNode = moneySet.firstNode(); 
+	Node moneyEndNode   = moneySet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,moneySet));
+	 tempFeatures.put("hierarchy","Object.finance.money");
+	 
+	outputAS.add(moneyStartNode, moneyEndNode, "Money",tempFeatures);
 }
 
 
-Rule:Money2
+
+// hundreds of dollars
+Rule:Money3
 (
  ({Number}):amount {Token.string ==~ "of|Of|OF"} ({Currency}):sym 
 )
-:whole
+:money
 -->
 {
-	gate.AnnotationSet wholeSet = (gate.AnnotationSet)bindings.get("whole");
-	String moneyPhrase = gate.Utils.stringFor(doc,wholeSet);
-
-	gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	tempFeatures.put("rule","Money2");
-	tempFeatures.put("string",moneyPhrase);
-	tempFeatures.put("hierarchy","Object.finance.money");
-	
-	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Money",tempFeatures);
+	gate.AnnotationSet moneySet = (gate.AnnotationSet)bindings.get("money");
+	Node moneyStartNode = moneySet.firstNode(); 
+	Node moneyEndNode   = moneySet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,moneySet));
+	 tempFeatures.put("hierarchy","Object.finance.money");
+	 
+	outputAS.add(moneyStartNode, moneyEndNode, "Money",tempFeatures);
 }
 

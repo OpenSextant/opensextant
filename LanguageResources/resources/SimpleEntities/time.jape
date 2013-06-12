@@ -8,7 +8,7 @@ import static gate.Utils.*;
 
 
 Phase:	Time
-Input:	Token
+Input:	Token Number TimeUnit
 Options: control = appelt
 
 
@@ -31,13 +31,32 @@ Rule: BasicTime
 	Node sentEndNode   = sentSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","BasicTime");
+	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Time.time");
 	 
-	outputAS.add(sentStartNode, sentEndNode, "Time",tempFeatures);	
+	outputAS.add(sentStartNode, sentEndNode, "Time",tempFeatures);		
 }
 
 
+// 12 minutes, 34 years
+Rule: LengthOfTime
+(
+		{Number} {TimeUnit}
+)
+:sent
+-->
+{
+	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("sent");
+	Node sentStartNode = sentSet.firstNode(); 
+	Node sentEndNode   = sentSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,sentSet));
+	 tempFeatures.put("hierarchy","Time.lengthOfTime");
+	 
+	outputAS.add(sentStartNode, sentEndNode, "TimePeriod",tempFeatures);		
+}
 
 
