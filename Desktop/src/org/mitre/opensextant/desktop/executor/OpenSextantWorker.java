@@ -38,7 +38,7 @@ public class OpenSextantWorker implements Runnable {
 			
 			row.setProgress(0, OSRow.STATUS.INITIALIZING);
 
-			XTextConverter converter = new XTextConverter(ConfigHelper.getInstance().getTmpLocation());
+			XTextConverter converter = new XTextConverter(ConfigHelper.getInstance().getXTextCacheRoot());
 			OSGeoCoder geoCoder = new OSGeoCoder();
 			geoCoder.initialize();
 

@@ -112,17 +112,25 @@
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="threadsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tmpLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cacheLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tmpText" pref="185" max="32767" attributes="0"/>
+                                  <Component id="cacheText" pref="187" max="32767" attributes="0"/>
                                   <Component id="threadCount" min="-2" pref="58" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="browseTmpButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="browseCacheButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="tempLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="tempText" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="browseTempButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -165,11 +173,17 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tmpLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tmpText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="browseTmpButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cacheLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cacheText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="browseCacheButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tempLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tempText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="browseTempButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
               <Component id="doneButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -312,30 +326,30 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="tmpLabel">
+    <Component class="javax.swing.JLabel" name="cacheLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Temp Path:"/>
+        <Property name="text" type="java.lang.String" value="Cache Path:"/>
         <Property name="toolTipText" type="java.lang.String" value="The location to place temporary files used during job execution"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tmpText">
+    <Component class="javax.swing.JTextField" name="cacheText">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Directly enter temporary directory location"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tmpTextActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cacheTextActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="browseTmpButton">
+    <Component class="javax.swing.JButton" name="browseCacheButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Browse..."/>
         <Property name="toolTipText" type="java.lang.String" value="Navigate filesystem for temporary directory location"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseTmpButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseCacheButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="gdbCheck">
@@ -349,6 +363,32 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tempText">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Directly enter temporary directory location"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tempTextActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="browseTempButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Browse..."/>
+        <Property name="toolTipText" type="java.lang.String" value="Navigate filesystem for temporary directory location"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseTempButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="tempLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Temp Path:"/>
+        <Property name="toolTipText" type="java.lang.String" value="The location to place temporary files used during job execution"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
