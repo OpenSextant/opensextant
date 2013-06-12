@@ -1,7 +1,7 @@
-bin
-build
-conf.properties
-dist
-output
-OpenSextantDesktop.log
-.settings
+/bin
+/build
+/conf.properties
+/dist
+/output
+/OpenSextantDesktop.log
+/.settings
