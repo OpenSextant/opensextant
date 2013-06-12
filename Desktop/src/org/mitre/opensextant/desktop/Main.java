@@ -2,19 +2,15 @@ package org.mitre.opensextant.desktop;
 
 import java.awt.Color;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 
 import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.mitre.opensextant.apps.AppBase;
 import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.SelectOSHomeFrameImpl;
-import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.LookAndFeelHelper;
 import org.mitre.opensextant.desktop.util.Initialize;
@@ -22,11 +18,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Main {
+	
+	// OPENSEXTANT-334: due to a bug in java we cannot simply use user.home... we need to set it up properly using USERPROFILE if that exists.
+	static {
+		System.setProperty("osd.log.root", ConfigHelper.DATA_HOME);
+	}
 
-	private static Logger log = LoggerFactory.getLogger(Main.class);
+	private static Logger log;
 
 	public static void main(String[] args) {
 
+		DOMConfigurator.configure(Main.class.getResource("/log4j_config.xml"));
+		log = LoggerFactory.getLogger(Main.class);
+		
 		try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		    LookAndFeelHelper.configureOptionPane();

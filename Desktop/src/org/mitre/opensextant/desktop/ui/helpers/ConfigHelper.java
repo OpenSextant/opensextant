@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 public class ConfigHelper {
 
 	private static Logger log = LoggerFactory.getLogger(ConfigFrame.class);
-	private static final String DATA_HOME = getUserHome() + File.separator + "Documents" + File.separator + "OpenSextant";
+	public static final String DATA_HOME = getUserHome() + File.separator + "Documents" + File.separator + "OpenSextant";
 	private static final String OUTPUT_HOME = DATA_HOME + File.separator + "output";
 	private static final String CONFIG_FILE = DATA_HOME + File.separator + "conf.properties";
 	private static final String JOBS_FILE = DATA_HOME + File.separator + "jobs.properties";
