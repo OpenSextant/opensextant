@@ -78,6 +78,10 @@ chilean peso
 chilean pesos
 chinese renminbi
 chinese renminbis
+chinese yuan
+chinese yuans
+yuan
+yuans
 colombian peso
 colombian pesos
 colon

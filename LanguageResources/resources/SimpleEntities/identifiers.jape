@@ -14,13 +14,13 @@ Options: control = appelt
 
 Macro: START_GAP_TOKEN
 (	
-	{SpaceToken}|{Token.string ==~ "[|:;(),]"}
+	{SpaceToken}|{Token.string ==~ "[|:;(),\"]"}
 )
 
 
 Macro: END_GAP_TOKEN
 (	
-	{SpaceToken}|{Token.string ==~ "[|:;(),s]"}
+	{SpaceToken}|{Token.string ==~ "[|:;(),s\"]"}
 )
 
 
@@ -58,7 +58,7 @@ Macro: PUNCT_TOKEN
 
 Macro: TYPE_WORDS
 (	
-	{Token.string ==~ "type-|Type-|TYPE-|mk-|Mk-|MK-"}
+	{Token.string ==~ "type|Type|TYPE|mk|Mk|MK|mark|Mark|Mark|model|Model|MODEL"}
 )
 
 
@@ -66,20 +66,20 @@ Macro: TYPE_WORDS
 // type-4
 Rule: typeNumber
 (	
-	(TYPE_WORDS NUM_TOKEN ):id
+	(TYPE_WORDS ({Token.string ==~ "-"})? NUM_TOKEN ):id
 ):whole
 -->
 {
-	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("id");
-	Node sentStartNode = sentSet.firstNode(); 
-	Node sentEndNode   = sentSet.lastNode();
+	gate.AnnotationSet idSet = (gate.AnnotationSet)bindings.get("id");
+	Node idStartNode = idSet.firstNode(); 
+	Node idEndNode   = idSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","typeNumber");
-	 tempFeatures.put("string", stringFor(doc,sentSet));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
 	 
-	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
+	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
 
 // Mk-III
@@ -89,16 +89,16 @@ Rule: typeNumberRoman
 ):whole
 -->
 {
-	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("id");
-	Node sentStartNode = sentSet.firstNode(); 
-	Node sentEndNode   = sentSet.lastNode();
+	gate.AnnotationSet idSet = (gate.AnnotationSet)bindings.get("id");
+	Node idStartNode = idSet.firstNode(); 
+	Node idEndNode   = idSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","typeNumberRoman");
-	 tempFeatures.put("string", stringFor(doc,sentSet));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
 	 
-	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
+	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
 
 
@@ -110,16 +110,16 @@ Rule: simpleID
 ):whole
 -->
 {
-	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("id");
-	Node sentStartNode = sentSet.firstNode(); 
-	Node sentEndNode   = sentSet.lastNode();
+	gate.AnnotationSet idSet = (gate.AnnotationSet)bindings.get("id");
+	Node idStartNode = idSet.firstNode(); 
+	Node idEndNode   = idSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","simpleID");
-	 tempFeatures.put("string", stringFor(doc,sentSet));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
 	 
-	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
+	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
 
 // simple BOSCO-7
@@ -129,17 +129,16 @@ Rule: nameNumberID
 ):whole
 -->
 {
-	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("id");
-	Node sentStartNode = sentSet.firstNode(); 
-	Node sentEndNode   = sentSet.lastNode();
+	gate.AnnotationSet idSet = (gate.AnnotationSet)bindings.get("id");
+	Node idStartNode = idSet.firstNode(); 
+	Node idEndNode   = idSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","nameNumberID");
-	 tempFeatures.put("string", stringFor(doc,sentSet));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
-
 	 
-	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
+	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
 
 
@@ -150,16 +149,16 @@ Rule: simpleIDMod
 ):whole
 -->
 {
-	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("id");
-	Node sentStartNode = sentSet.firstNode(); 
-	Node sentEndNode   = sentSet.lastNode();
+	gate.AnnotationSet idSet = (gate.AnnotationSet)bindings.get("id");
+	Node idStartNode = idSet.firstNode(); 
+	Node idEndNode   = idSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","simpleIDMod");
-	 tempFeatures.put("string", stringFor(doc,sentSet));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
 	 
-	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);	
+	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);	
 }
 
 // simple with multi nums XYZ-123/45, ZZ1234.4
@@ -169,16 +168,16 @@ Rule: simpleIDMultiNum
 ):whole
 -->
 {
-	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("id");
-	Node sentStartNode = sentSet.firstNode(); 
-	Node sentEndNode   = sentSet.lastNode();
+	gate.AnnotationSet idSet = (gate.AnnotationSet)bindings.get("id");
+	Node idStartNode = idSet.firstNode(); 
+	Node idEndNode   = idSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","simpleIDMultiNum");
-	 tempFeatures.put("string", stringFor(doc,sentSet));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
-	
-	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);	
+	 
+	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);	
 }
 
 
@@ -190,16 +189,16 @@ Rule: compundID
 ):whole
 -->
 {
-	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("id");
-	Node sentStartNode = sentSet.firstNode(); 
-	Node sentEndNode   = sentSet.lastNode();
+	gate.AnnotationSet idSet = (gate.AnnotationSet)bindings.get("id");
+	Node idStartNode = idSet.firstNode(); 
+	Node idEndNode   = idSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","compoundID");
-	 tempFeatures.put("string", stringFor(doc,sentSet));
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
 	 
-	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
+	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
 
 // all consonants
@@ -209,16 +208,16 @@ Rule: Abbrev
 ):whole
 -->
 {
-	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("id");
-	Node sentStartNode = sentSet.firstNode(); 
-	Node sentEndNode   = sentSet.lastNode();
+	gate.AnnotationSet idSet = (gate.AnnotationSet)bindings.get("id");
+	Node idStartNode = idSet.firstNode(); 
+	Node idEndNode   = idSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","Abbrev");
-	 tempFeatures.put("string", stringFor(doc,sentSet));
-	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,idSet));
+	 tempFeatures.put("hierarchy","Information.identifier.abbreviation");
 	 
-	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
+	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
 
 
@@ -235,16 +234,15 @@ Rule: catchallID
 ):whole
 -->
 {
-	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("id");
-	Node sentStartNode = sentSet.firstNode(); 
-	Node sentEndNode   = sentSet.lastNode();
+	gate.AnnotationSet idSet = (gate.AnnotationSet)bindings.get("id");
+	Node idStartNode = idSet.firstNode(); 
+	Node idEndNode   = idSet.lastNode();
  
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	 tempFeatures.put("rule","catchallID");
-	 tempFeatures.put("string", stringFor(doc,sentSet));
-	  tempFeatures.put("entityType", "Identifier");
-	  tempFeatures.put("hierarchy","Information.identifier");
-	
-	outputAS.add(sentStartNode, sentEndNode, "Identifier",tempFeatures);
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,idSet));
+	 tempFeatures.put("hierarchy","Information.identifier");
+	 
+	outputAS.add(idStartNode, idEndNode, "Identifier_CATCHALL",tempFeatures);
 }
 */

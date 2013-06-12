@@ -1,5 +1,5 @@
 Phase: EntityMarking
-Input: Token Date geocoord Email URL WebSite IPAddress Identifier
+Input: Token Date geocoord Money Time TimePeriod Email URL WebSite IPAddress Identifier PLACE
 Options: control = appelt
 
 // Mark the various type of simple entities as "Entity" so that the chunker
@@ -8,6 +8,10 @@ Rule: MarkEntity
 (
 		{Date}|
 		{geocoord}|
+		{PLACE}|
+		{Money}|
+		{Time}|
+		{TimePeriod}|
 		{Email}|
 		{URL}|
 		{WebSite}|
@@ -19,7 +23,7 @@ Rule: MarkEntity
 {
 	gate.AnnotationSet entSet = (gate.AnnotationSet)bindings.get("ent");
 	Node entStartNode = entSet.firstNode(); 
-	Node entEndNode   = entSet.lastNode();
+	Node entEndNode = entSet.lastNode();
  
  	Annotation ent = (gate.Annotation)entSet.iterator().next();
  

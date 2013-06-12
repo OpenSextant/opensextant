@@ -127,3 +127,17 @@ stock market
 stock markets
 tax return
 tax returns
+coin
+coins
+gold
+gold bar
+gold coin
+gold ingot
+gold bullion
+gold bars
+gold coins
+gold ingots
+precious metal
+precious metals
+capital gain
+capital gains
