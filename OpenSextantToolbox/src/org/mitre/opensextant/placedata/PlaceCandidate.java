@@ -361,7 +361,7 @@ public class PlaceCandidate extends TextEntity implements Serializable {
     
     /** Convenience method for determining the state of a PlaceCandidate*/
     public boolean hasPlaces(){
-        return ! this.rankedPlaces.isEmpty();
+        return ! this.scoredPlaces.isEmpty();
     }
 
     private void sort() {
