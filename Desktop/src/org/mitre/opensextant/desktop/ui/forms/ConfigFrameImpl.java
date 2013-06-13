@@ -10,6 +10,9 @@ import java.util.List;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 
@@ -96,6 +99,32 @@ public class ConfigFrameImpl extends ConfigFrame{
 		configHelper.setNumThreads((Integer)threadCount.getValue());
 		
 		configHelper.saveSettings();
+                
+                FileAppender loggingFileAppender = (FileAppender)Logger.getRootLogger().getAppender("default.file");
+                
+                switch(loggingSlider.getValue())
+                {
+                    case 0:
+                        loggingFileAppender.setThreshold(Level.FATAL);
+                        System.out.println("FATAL");
+                        break;
+                    case 1:
+                        loggingFileAppender.setThreshold(Level.ERROR);
+                        System.out.println("ERROR");
+                        break;
+                    case 2:
+                        loggingFileAppender.setThreshold(Level.WARN);
+                        System.out.println("WARN");
+                        break;
+                    case 3:
+                        loggingFileAppender.setThreshold(Level.INFO);
+                        System.out.println("INFO");
+                        break;
+                    case 4:
+                        loggingFileAppender.setThreshold(Level.DEBUG);
+                        System.out.println("DEBUG");
+                        break;
+                }
 
 		this.dispose();
 	}// GEN-LAST:event_doneButtonActionPerformed

@@ -5,9 +5,13 @@
 package org.mitre.opensextant.desktop.ui.forms;
 
 import java.io.File;
+import java.util.Hashtable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +31,31 @@ public class ConfigFrame extends javax.swing.JFrame {
 	public ConfigFrame() {
 
 		initComponents();
+                
+                Hashtable sliderLabels = new Hashtable();
+                sliderLabels.put(0, new JLabel("Fatal"));
+                sliderLabels.put(1, new JLabel("Error"));
+                sliderLabels.put(2, new JLabel("Warn"));
+                sliderLabels.put(3, new JLabel("Info"));
+                sliderLabels.put(4, new JLabel("Debug"));
+               
+                loggingSlider.setLabelTable(sliderLabels);
+                
+                
+                FileAppender loggingFileAppender = (FileAppender)org.apache.log4j.Logger.getRootLogger().getAppender("default.file");
+                
+                if(loggingFileAppender.getThreshold().equals(Level.FATAL))
+                    loggingSlider.setValue(0);
+                else if(loggingFileAppender.getThreshold().equals(Level.ERROR))
+                    loggingSlider.setValue(1);
+                else if(loggingFileAppender.getThreshold().equals(Level.WARN))
+                    loggingSlider.setValue(2);
+                else if(loggingFileAppender.getThreshold().equals(Level.INFO))
+                    loggingSlider.setValue(3);
+                else if(loggingFileAppender.getThreshold().equals(Level.DEBUG))
+                    loggingSlider.setValue(4);
+                
+                
 		java.net.URL imgURL = ConfigFrame.class.getResource("/org/mitre/opensextant/desktop/icons/logo.png");
 		if (imgURL != null) {
 			this.setIconImage(new ImageIcon(imgURL, "Icon").getImage());
@@ -71,6 +100,8 @@ public class ConfigFrame extends javax.swing.JFrame {
         tempLabel = new javax.swing.JLabel();
         jsonCheck = new javax.swing.JCheckBox();
         warnLabel = new javax.swing.JLabel();
+        loggingLabel = new javax.swing.JLabel();
+        loggingSlider = new javax.swing.JSlider();
 
         jCheckBox3.setText("JSON");
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +119,7 @@ public class ConfigFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Configuration");
-        setPreferredSize(new java.awt.Dimension(600, 375));
+        setPreferredSize(new java.awt.Dimension(550, 475));
         setResizable(false);
 
         doneButton.setText("Done");
@@ -224,6 +255,15 @@ public class ConfigFrame extends javax.swing.JFrame {
         warnLabel.setText("Warning: Exceeding number of cores may cause slowdown");
         warnLabel.setToolTipText("");
 
+        loggingLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        loggingLabel.setText("Logging");
+        loggingLabel.setToolTipText("");
+
+        loggingSlider.setMaximum(4);
+        loggingSlider.setPaintLabels(true);
+        loggingSlider.setPaintTicks(true);
+        loggingSlider.setSnapToTicks(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,7 +294,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(shapefileCheck)
                                                     .addComponent(wktCheck))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
                                                 .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(gdbCheck)
@@ -290,8 +330,16 @@ public class ConfigFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tempText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(browseTempButton)))
+                        .addComponent(browseTempButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(loggingLabel)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addComponent(loggingSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,7 +383,11 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addComponent(tempText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(browseTempButton)
                     .addComponent(tempLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(loggingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(loggingSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(doneButton)
                 .addContainerGap())
         );
@@ -464,6 +516,8 @@ public class ConfigFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     protected javax.swing.JCheckBox jsonCheck;
     protected javax.swing.JCheckBox kmlCheck;
+    private javax.swing.JLabel loggingLabel;
+    protected javax.swing.JSlider loggingSlider;
     private javax.swing.JLabel outputLabel;
     protected javax.swing.JTextField outputText;
     private javax.swing.JLabel pathLabel;
