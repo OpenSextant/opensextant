@@ -63,7 +63,6 @@ public class RowDurationImpl extends RowDuration {
 				if (minutes > 0) durationString += minutes + " min ";
 				
 				durationString += seconds + " sec";
-				System.out.println("PROGRESS:" + row.getPercent());
 				if (estimatedDuration > 0 && updatedDuration > 10*1000 && row.getPercent() > 1) {
 					long estMinutes = TimeUnit.MILLISECONDS.toMinutes(estimatedDuration);
 					long estSeconds = TimeUnit.MILLISECONDS.toSeconds(estimatedDuration) - TimeUnit.MINUTES.toSeconds(estMinutes);
