@@ -1,36 +1,29 @@
-package org.mitre.opensextant.desktop.executor.opensextant.ext.geocode;
+package org.mitre.opensextant.desktop.executor.opensextant.ext.extract;
 
 import gate.Corpus;
 import gate.CorpusController;
 import gate.Document;
 import gate.Factory;
 import gate.creole.ConditionalSerialAnalyserController;
-import gate.creole.ExecutionException;
-import gate.creole.ResourceInstantiationException;
 import gate.event.ProgressListener;
 import gate.util.GateException;
 import gate.util.persistence.PersistenceManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import org.mitre.opensextant.apps.AppBase;
 import org.mitre.opensextant.apps.Config;
-import org.mitre.opensextant.desktop.Main;
-import org.mitre.opensextant.desktop.executor.progresslisteners.ChildProgressListener;
+import org.mitre.opensextant.desktop.executor.opensextant.ext.geocode.OSGeoCoder;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
-import org.mitre.opensextant.processing.OpenSextantSchema;
 import org.mitre.opensextant.processing.ProcessingException;
-import org.mitre.opensextant.processing.output.AbstractFormatter;
 import org.slf4j.LoggerFactory;
 
-public class OSGeoCoder extends AppBase {
+public class OSExtractor extends AppBase{
     private static String CORPUS_NAME = "default-geocoding-hopper";
 
-    public OSGeoCoder() throws ProcessingException {
+    public OSExtractor() throws ProcessingException {
 		super();
 	}
 
@@ -43,19 +36,18 @@ public class OSGeoCoder extends AppBase {
      */
     @Override
     public void initialize() throws ProcessingException {
-    	log = LoggerFactory.getLogger(OSGeoCoder.class);
+    	log = LoggerFactory.getLogger(OSExtractor.class);
         printConfig();
 
+        if (gappFile == null) gappFile = Config.RUNTIME_GAPP_PATH;
+
         // load the GATE application
-        log.info("Loading GAPP");
-        if (gappFile == null && Config.RUNTIME_GAPP_PATH == null) {
+        log.info("Loading GAPP: " + gappFile);
+        if (gappFile == null) {
             throw new ProcessingException("AppBase default GAPP file is not in place");
         }
 
 
-        if (gappFile == null) {
-            gappFile = Config.RUNTIME_GAPP_PATH;
-        }
 
         try {
             controller = (CorpusController) PersistenceManager.loadObjectFromFile(new File(gappFile));
@@ -97,7 +89,7 @@ public class OSGeoCoder extends AppBase {
     	serialController.removeProgressListener(listener);
     }
 
-    public Corpus geoCodeText(Document document) throws ProcessingException {
+    public Corpus extractEntity(Document document) throws ProcessingException {
     	try {
         	ConditionalSerialAnalyserController serialController = (ConditionalSerialAnalyserController) controller;
             corpus = Factory.newCorpus(CORPUS_NAME);

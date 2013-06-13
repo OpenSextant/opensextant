@@ -70,6 +70,17 @@ public class ConfigFrame extends javax.swing.JFrame {
         browseTempButton = new javax.swing.JButton();
         tempLabel = new javax.swing.JLabel();
         jsonCheck = new javax.swing.JCheckBox();
+        extractActionCheck = new javax.swing.JCheckBox();
+        extractIdeaCheck = new javax.swing.JCheckBox();
+        extractLabel = new javax.swing.JLabel();
+        extractPersonCheck = new javax.swing.JCheckBox();
+        extractAttributeCheck = new javax.swing.JCheckBox();
+        extractGeoCheck = new javax.swing.JCheckBox();
+        extractObjectCheck = new javax.swing.JCheckBox();
+        extractOrganizationCheck = new javax.swing.JCheckBox();
+        extractInformationCheck = new javax.swing.JCheckBox();
+        extractSubstanceCheck = new javax.swing.JCheckBox();
+        extractTimeCheck = new javax.swing.JCheckBox();
 
         jCheckBox3.setText("JSON");
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -218,46 +229,95 @@ public class ConfigFrame extends javax.swing.JFrame {
             }
         });
 
+        extractActionCheck.setText("Action");
+        extractActionCheck.setToolTipText("Action Patterns");
+        extractActionCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractActionCheckActionPerformed(evt);
+            }
+        });
+
+        extractIdeaCheck.setText("Idea");
+        extractIdeaCheck.setToolTipText("Idea Patterns");
+        extractIdeaCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractIdeaCheckActionPerformed(evt);
+            }
+        });
+
+        extractLabel.setText("Extract:");
+        extractLabel.setToolTipText("The types of data elements to extract from a file.");
+
+        extractPersonCheck.setText("Person");
+        extractPersonCheck.setToolTipText("Person Patterns");
+        extractPersonCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractPersonCheckActionPerformed(evt);
+            }
+        });
+
+        extractAttributeCheck.setText("Attribute");
+        extractAttributeCheck.setToolTipText("Attribute Patterns");
+        extractAttributeCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractAttributeCheckActionPerformed(evt);
+            }
+        });
+
+        extractGeoCheck.setText("Geo");
+        extractGeoCheck.setToolTipText("Geographic Coordinate and place name patterns");
+        extractGeoCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractGeoCheckActionPerformed(evt);
+            }
+        });
+
+        extractObjectCheck.setText("Object");
+        extractObjectCheck.setToolTipText("Object Patterns");
+        extractObjectCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractObjectCheckActionPerformed(evt);
+            }
+        });
+
+        extractOrganizationCheck.setText("Organization");
+        extractOrganizationCheck.setToolTipText("Organization Patterns");
+        extractOrganizationCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractOrganizationCheckActionPerformed(evt);
+            }
+        });
+
+        extractInformationCheck.setText("Information");
+        extractInformationCheck.setToolTipText("Information Patterns");
+        extractInformationCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractInformationCheckActionPerformed(evt);
+            }
+        });
+
+        extractSubstanceCheck.setText("Substance");
+        extractSubstanceCheck.setToolTipText("Substance Patterns");
+        extractSubstanceCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractSubstanceCheckActionPerformed(evt);
+            }
+        });
+
+        extractTimeCheck.setText("Time");
+        extractTimeCheck.setToolTipText("Date/Time Patterns");
+        extractTimeCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractTimeCheckActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(outputLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(formatLabel)
-                                    .addComponent(pathLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(csvCheck)
-                                            .addComponent(xlsCheck)
-                                            .addComponent(kmlCheck))
-                                        .addGap(34, 34, 34)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(shapefileCheck)
-                                                    .addComponent(wktCheck))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                                                .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(gdbCheck)
-                                                .addGap(0, 0, Short.MAX_VALUE))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(outputText)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(browseOutButton))
-                                    .addComponent(jsonCheck)))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +329,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                                     .addComponent(cacheLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cacheText, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                                    .addComponent(cacheText)
                                     .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(browseCacheButton))
@@ -279,7 +339,56 @@ public class ConfigFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tempText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(browseTempButton)))
+                        .addComponent(browseTempButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formatLabel)
+                            .addComponent(pathLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(csvCheck)
+                                    .addComponent(xlsCheck)
+                                    .addComponent(kmlCheck))
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(shapefileCheck)
+                                            .addComponent(wktCheck))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                                        .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(gdbCheck)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(outputText)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(browseOutButton))
+                            .addComponent(jsonCheck)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(extractLabel)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(extractActionCheck)
+                                    .addComponent(extractAttributeCheck)
+                                    .addComponent(extractGeoCheck)
+                                    .addComponent(extractIdeaCheck)
+                                    .addComponent(extractInformationCheck))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(extractSubstanceCheck)
+                                    .addComponent(extractTimeCheck)
+                                    .addComponent(extractOrganizationCheck)
+                                    .addComponent(extractObjectCheck)
+                                    .addComponent(extractPersonCheck)))
+                            .addComponent(outputLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -305,14 +414,40 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(kmlCheck)
                     .addComponent(gdbCheck))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jsonCheck)
                 .addGap(7, 7, 7)
-                .addComponent(processingLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jsonCheck)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(threadsLabel)
-                    .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(extractLabel)
+                    .addComponent(extractActionCheck)
+                    .addComponent(extractObjectCheck))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(extractAttributeCheck)
+                    .addComponent(extractOrganizationCheck))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(extractGeoCheck)
+                    .addComponent(extractPersonCheck))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(extractIdeaCheck)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(processingLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(extractInformationCheck)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(threadsLabel)
+                            .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(extractSubstanceCheck)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(extractTimeCheck)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cacheLabel)
@@ -323,7 +458,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addComponent(tempLabel)
                     .addComponent(tempText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(browseTempButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(doneButton)
                 .addContainerGap())
         );
@@ -363,6 +498,46 @@ public class ConfigFrame extends javax.swing.JFrame {
     private void jsonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsonCheckActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jsonCheckActionPerformed
+
+    private void extractActionCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractActionCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_extractActionCheckActionPerformed
+
+    private void jsonCheck1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsonCheck1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jsonCheck1ActionPerformed
+
+    private void gdbCheck1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gdbCheck1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gdbCheck1ActionPerformed
+
+    private void xlsCheck1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xlsCheck1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_xlsCheck1ActionPerformed
+
+    private void kmlCheck1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kmlCheck1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kmlCheck1ActionPerformed
+
+    private void wktCheck1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wktCheck1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wktCheck1ActionPerformed
+
+    private void shapefileCheck1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shapefileCheck1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_shapefileCheck1ActionPerformed
+
+    private void jsonCheck2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsonCheck2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jsonCheck2ActionPerformed
+
+    private void jsonCheck3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsonCheck3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jsonCheck3ActionPerformed
+
+    private void jsonCheck4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsonCheck4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jsonCheck4ActionPerformed
 
 	private void outputTextActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_outputTextActionPerformed
 		// TODO add your handling code here:
@@ -445,6 +620,17 @@ public class ConfigFrame extends javax.swing.JFrame {
     protected javax.swing.JTextField cacheText;
     protected javax.swing.JCheckBox csvCheck;
     protected javax.swing.JButton doneButton;
+    protected javax.swing.JCheckBox extractActionCheck;
+    protected javax.swing.JCheckBox extractAttributeCheck;
+    protected javax.swing.JCheckBox extractGeoCheck;
+    protected javax.swing.JCheckBox extractIdeaCheck;
+    protected javax.swing.JCheckBox extractInformationCheck;
+    private javax.swing.JLabel extractLabel;
+    protected javax.swing.JCheckBox extractObjectCheck;
+    protected javax.swing.JCheckBox extractOrganizationCheck;
+    protected javax.swing.JCheckBox extractPersonCheck;
+    protected javax.swing.JCheckBox extractSubstanceCheck;
+    protected javax.swing.JCheckBox extractTimeCheck;
     private javax.swing.JLabel formatLabel;
     protected javax.swing.JCheckBox gdbCheck;
     private javax.swing.JCheckBox jCheckBox3;
