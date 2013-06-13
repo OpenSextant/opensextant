@@ -63,13 +63,16 @@ public class RowDurationImpl extends RowDuration {
 				if (minutes > 0) durationString += minutes + " min ";
 				
 				durationString += seconds + " sec";
-				
 				if (estimatedDuration > 0 && updatedDuration > 10*1000 && row.getPercent() > 1) {
 					long estMinutes = TimeUnit.MILLISECONDS.toMinutes(estimatedDuration);
 					long estSeconds = TimeUnit.MILLISECONDS.toSeconds(estimatedDuration) - TimeUnit.MINUTES.toSeconds(estMinutes);
-					durationString += " of ";
-					if (estMinutes > 0) durationString += estMinutes + " min ";
-					durationString += estSeconds + " sec";
+                                        if(row.getPercent() < 100) {
+                                            durationString += " of ";
+                                            if(estMinutes < 100*60) { // If it's a really large number the estimate is probably off
+                                                if (estMinutes > 0) durationString += estMinutes + " min ";
+                                                durationString += estSeconds + " sec";
+                                            } else durationString += "unknown";
+                                        }
 				}
 				
 				durationLabel.setText(durationString);

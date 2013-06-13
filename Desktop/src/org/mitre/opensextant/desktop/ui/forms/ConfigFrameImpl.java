@@ -8,10 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 
-public class ConfigFrameImpl extends ConfigFrame{
+public class ConfigFrameImpl extends ConfigFrame {
 
 	private ConfigHelper configHelper;
 
@@ -24,8 +29,13 @@ public class ConfigFrameImpl extends ConfigFrame{
 		tempText.setText(configHelper.getTmpRoot());
 		outputText.setText(configHelper.getOutLocation());
 		threadCount.setValue(configHelper.getNumThreads());
-		int maxThreads = Runtime.getRuntime().availableProcessors();
-		if (maxThreads > 1) maxThreads -= 1;
+                
+		final int maxThreads = 2*Runtime.getRuntime().availableProcessors();
+                if(maxThreads > 1 && configHelper.getNumThreads() > maxThreads/2)
+                    warnLabel.setVisible(true);
+                else 
+                    warnLabel.setVisible(false);
+                
 		((SpinnerNumberModel)threadCount.getModel()).setMaximum(maxThreads);
 
 		for (String t : configHelper.getOutTypes()) {
@@ -47,6 +57,14 @@ public class ConfigFrameImpl extends ConfigFrame{
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 		
+                threadCount.addChangeListener(new ChangeListener() {
+                        @Override
+                        public void stateChanged(ChangeEvent e) {
+                            if(maxThreads > 1 && (Integer)threadCount.getValue() > maxThreads/2) warnLabel.setVisible(true);
+                            else warnLabel.setVisible(false);
+                        }
+                });
+                
 		doneButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -81,6 +99,27 @@ public class ConfigFrameImpl extends ConfigFrame{
 		configHelper.setNumThreads((Integer)threadCount.getValue());
 		
 		configHelper.saveSettings();
+                
+                FileAppender loggingFileAppender = (FileAppender)Logger.getRootLogger().getAppender("default.file");
+                
+                switch(loggingSlider.getValue())
+                {
+                    case 0:
+                        loggingFileAppender.setThreshold(Level.FATAL);
+                        break;
+                    case 1:
+                        loggingFileAppender.setThreshold(Level.ERROR);
+                        break;
+                    case 2:
+                        loggingFileAppender.setThreshold(Level.WARN);
+                        break;
+                    case 3:
+                        loggingFileAppender.setThreshold(Level.INFO);
+                        break;
+                    case 4:
+                        loggingFileAppender.setThreshold(Level.DEBUG);
+                        break;
+                }
 
 		this.dispose();
 	}// GEN-LAST:event_doneButtonActionPerformed

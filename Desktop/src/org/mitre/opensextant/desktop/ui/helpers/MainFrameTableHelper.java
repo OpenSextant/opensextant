@@ -58,14 +58,27 @@ public class MainFrameTableHelper {
             } catch (IOException e1) {
                 JOptionPane.showMessageDialog(frame, "Error opening parent directory: " + file.getParentFile().getAbsolutePath() + ". Check the permissions of this directory.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        } catch (IllegalArgumentException e) {
+            log.error(e.getMessage());
+            JOptionPane.showMessageDialog(frame, "The file: " + outputLocation + " is in accessible\nThe file may have been deleted or moved.", "Error", JOptionPane.ERROR_MESSAGE);          
         }
 
     }
 
     public void viewDir(OSRow row) {
-        try { // Note: This is windows specific, if it fails we just open the folder
-            Process p = new ProcessBuilder("explorer.exe", "/select," + row.getOutputLocations().values().iterator().next()).start();
-        } catch (IOException ex) { // Failing probably means we are on a different OS
+        String fileLocation = row.getOutputLocations().values().iterator().next();
+        File f = new File(fileLocation);
+        boolean openDirOnly = !f.exists();
+        
+        if(!openDirOnly) {
+            try { // Note: This is windows specific, if it fails we just open the folder
+                Process p = new ProcessBuilder("explorer.exe", "/select," + fileLocation).start();
+            } catch (IOException ex) { // Failing probably means we are on a different OS
+                openDirOnly = true;
+            }
+        }
+        
+        if(openDirOnly) {
             File file = new File(row.getOutputLocations().values().iterator().next());
             Desktop desktop = Desktop.getDesktop();
             try {
