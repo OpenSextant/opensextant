@@ -83,7 +83,7 @@ public class PlacenameMatcher {
      * attribute that should be thread safe and shareable across instances of
      * SolrMatcher
      */
-    //private MatchFilter filter = null;
+    private MatchFilter filter = null;
     private boolean allow_lowercase_abbrev = false;
 
     /**
@@ -93,7 +93,7 @@ public class PlacenameMatcher {
     public PlacenameMatcher() throws IOException {
         PlacenameMatcher.initialize();
 
-       // filter = new MatchFilter("/filters/tagging-filters.txt");
+        filter = new MatchFilter("/filters/tagging-filters.txt");
 
         // Instance variable that will have the transient payload to tag
         // this is not thread safe and is not static:
@@ -248,9 +248,9 @@ public class PlacenameMatcher {
         for (SolrDocument solrDoc : docList) {
 
             name = SolrProxy.getString(solrDoc, "name");
-           // if (filter.filterOut(name.toLowerCase())) {
-           //     continue;
-          //  }
+            if (filter.filterOut(name.toLowerCase())) {
+                continue;
+            }
 
             Place bean = new Place();
 
@@ -320,9 +320,9 @@ public class PlacenameMatcher {
              * filter out only text we know to be false positives regardless of
              * case.
              */
-           // if (filter.filterOut(matchText.toLowerCase())) {
-           //     continue;
-           // }
+             if (filter.filterOut(matchText.toLowerCase())) {
+                continue;
+             }
 
             pc = new PlaceCandidate();
             pc.setStart(x1);
@@ -344,9 +344,6 @@ public class PlacenameMatcher {
             for (Integer solrId : placeRecordIds) {
                 Pgeo = beanMap.get(solrId);
                 if (Pgeo == null) {
-                    if (debug) {
-                        log.debug("Logic error. Did not find place object for Solr ID=" + solrId);
-                    }
                     continue;
                 }
 
@@ -384,9 +381,6 @@ public class PlacenameMatcher {
                         name_bias = n_bias;
                     }
                 }
-
-                // Indeed this does happen.
-                // else { log.info("Does this ever happen -- ? " + pc.getText() + " " + Pgeo.getPlaceName()); }
             }
 
             /**
@@ -394,7 +388,7 @@ public class PlacenameMatcher {
              * token/place/name is not valid.
              *
              */
-            if (!_is_valid) {
+            if (!_is_valid  || ! pc.hasPlaces()) {
                 continue;
             }
 
