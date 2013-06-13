@@ -26,8 +26,6 @@
  */
 package org.mitre.opensextant.processing;
 
-import gate.Annotation;
-import gate.Utils;
 import java.text.DecimalFormat;
 import org.mitre.opensextant.util.TextUtils;
 import org.mitre.opensextant.extraction.TextEntity;
@@ -134,34 +132,46 @@ public class ResultsUtility {
      *
      */
     public final static Map<String, Integer> FEATURE_PRECISION = new HashMap<String, Integer>();
-
+    public final static Map<String, Integer> FEATURE_GEOHASH_PRECISION = new HashMap<String, Integer>();
+    public final static int DEFAULT_PRECISION = 50000; // +/- 50KM
+    public final static int DEFAULT_GEOHASH_PRECISION = 5;
+    
     static {
         FEATURE_PRECISION.put("P", 5000);
-        FEATURE_PRECISION.put("A", 50000);
+        FEATURE_PRECISION.put("A", DEFAULT_PRECISION);
         FEATURE_PRECISION.put("S", 1000);
 
-        FEATURE_PRECISION.put("A/ADM1", 50000);
+        FEATURE_PRECISION.put("A/ADM1", DEFAULT_PRECISION);
         FEATURE_PRECISION.put("A/ADM2", 20000);
         FEATURE_PRECISION.put("P/PPL", 5000);
         FEATURE_PRECISION.put("P/PPLC", 10000);
-    }
-    public final static int DEFAULT_PRECISION = 50000; // +/- 50KM
 
-    /**  For a given feature type and code, determine what sort of 
-     * resolution or precision should be considered for that place, approximately.
-     * 
-     * @return precision approx error in meters for a given feature. -1 if no feature type given.
+        // This helps guage how long should a geohash be for a given feature.
+        FEATURE_GEOHASH_PRECISION.put("A/PCLI", 3);
+        FEATURE_GEOHASH_PRECISION.put("CTRY", 3);
+        FEATURE_GEOHASH_PRECISION.put("P", 6);
+        FEATURE_GEOHASH_PRECISION.put("A", 4);
+        FEATURE_GEOHASH_PRECISION.put("S", 8);
+        FEATURE_GEOHASH_PRECISION.put("A/ADM2", 5);
+    }
+
+    /**
+     * For a given feature type and code, determine what sort of resolution or
+     * precision should be considered for that place, approximately.
+     *
+     * @return precision approx error in meters for a given feature. -1 if no
+     * feature type given.
      */
     public static int getFeaturePrecision(String feat_type, String feat_code) {
 
-        if (feat_type == null && feat_code == null){
+        if (feat_type == null && feat_code == null) {
             // Unknown, uncategorized feature
-            return -1;
+            return DEFAULT_PRECISION;
         }
-        
-        String lookup = (feat_code != null ? 
-                feat_type + "/" + feat_code : feat_type);
-        
+
+        String lookup = (feat_code != null
+                ? feat_type + "/" + feat_code : feat_type);
+
         Integer prec = FEATURE_PRECISION.get(lookup);
 
         if (prec != null) {
@@ -174,5 +184,31 @@ public class ResultsUtility {
         }
 
         return DEFAULT_PRECISION;
+    }
+
+    /** For a given Geonames feature class/designation provide a guess about how long
+     * geohash should be.
+     */
+    public static int getGeohashPrecision(String feat_type, String feat_code) {
+        if (feat_type == null && feat_code == null) {
+            // Unknown, uncategorized feature
+            return DEFAULT_GEOHASH_PRECISION;
+        }
+
+        String lookup = (feat_code != null
+                ? feat_type + "/" + feat_code : feat_type);
+
+        Integer prec = FEATURE_GEOHASH_PRECISION.get(lookup);
+
+        if (prec != null) {
+            return prec.intValue();
+        }
+
+        prec = FEATURE_GEOHASH_PRECISION.get(feat_type);
+        if (prec != null) {
+            return prec.intValue();
+        }
+
+        return DEFAULT_GEOHASH_PRECISION;
     }
 }

@@ -36,10 +36,8 @@ import java.util.ArrayList;
 import org.mitre.opensextant.placedata.Geocoord;
 import org.mitre.opensextant.placedata.Place;
 import org.mitre.opensextant.placedata.PlaceCandidate;
-//import org.mitre.opensextant.processing.Parameters;
 import org.mitre.xcoord.GeocoordMatch;
-
-import org.jgeohash.GeoHashUtils;
+import com.spatial4j.core.io.GeohashUtils;
 
 /**
  *
@@ -217,7 +215,9 @@ public class GeocodingResult {
 
             // Enrich with geohash.
             // TODO:  incorporate Geohash as a core field for  enrichment.
-            String gh = GeoHashUtils.encode(geo.place.getLatitude(), geo.place.getLatitude());
+            int ghlen = ResultsUtility.getGeohashPrecision(geo.place.getFeatureClass(), geo.place.getFeatureCode());
+            String gh = GeohashUtils.encodeLatLon(geo.place.getLatitude().doubleValue(), geo.place.getLatitude().doubleValue(), ghlen);
+            
             geo.place.setGeohash(gh);
 
             geocodes.add(geo);

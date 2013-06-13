@@ -1,6 +1,5 @@
 /build/
 /target/
-/*.pom
 /build.properties
 /lib/flexpat-1.3.jar
 /lib/opensextant-commons.jar
