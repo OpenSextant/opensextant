@@ -58,6 +58,8 @@ public class MainFrameTableHelper {
             } catch (IOException e1) {
                 JOptionPane.showMessageDialog(frame, "Error opening parent directory: " + file.getParentFile().getAbsolutePath() + ". Check the permissions of this directory.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(frame, "The file: " + outputLocation + " is in accessible\nThe file may have been deleted or moved.", "Error", JOptionPane.ERROR_MESSAGE);          
         }
 
     }
