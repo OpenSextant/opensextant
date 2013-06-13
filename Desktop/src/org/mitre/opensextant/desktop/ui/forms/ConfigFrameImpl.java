@@ -106,23 +106,18 @@ public class ConfigFrameImpl extends ConfigFrame{
                 {
                     case 0:
                         loggingFileAppender.setThreshold(Level.FATAL);
-                        System.out.println("FATAL");
                         break;
                     case 1:
                         loggingFileAppender.setThreshold(Level.ERROR);
-                        System.out.println("ERROR");
                         break;
                     case 2:
                         loggingFileAppender.setThreshold(Level.WARN);
-                        System.out.println("WARN");
                         break;
                     case 3:
                         loggingFileAppender.setThreshold(Level.INFO);
-                        System.out.println("INFO");
                         break;
                     case 4:
                         loggingFileAppender.setThreshold(Level.DEBUG);
-                        System.out.println("DEBUG");
                         break;
                 }
 
