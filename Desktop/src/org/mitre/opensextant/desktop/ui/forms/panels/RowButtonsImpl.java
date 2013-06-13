@@ -41,25 +41,28 @@ public class RowButtonsImpl extends RowButtons {
 		
 		
 
-		viewResultsButton.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
-        		if (row.getOutputTypes().size() > 1) {
-                	JPopupMenu popup = new JPopupMenu();
-                	for (final String format : row.getOutputTypes()) {
-                		popup.add(new AbstractAction(format) {
-    						@Override
-    						public void actionPerformed(ActionEvent e) {
-    							row.viewResults(format);
-    						}
-                		});
-                	}
-                    popup.show(e.getComponent(), e.getX(), e.getY());
-        		} else {
-   					row.viewResults(row.getOutputTypes().get(0));
-        		}
-            }
-        });
-		
+            viewResultsButton.addMouseListener(new MouseAdapter() {
+                public void mousePressed(MouseEvent e) {
+                    if (!viewResultsButton.isEnabled()) {
+                        return;
+                    }
+                    if (row.getOutputTypes().size() > 1) {
+                        JPopupMenu popup = new JPopupMenu();
+                        for (final String format : row.getOutputTypes()) {
+                            popup.add(new AbstractAction(format) {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    row.viewResults(format);
+                                }
+                            });
+                        }
+                        popup.show(e.getComponent(), e.getX(), e.getY());
+                    } else {
+                        row.viewResults(row.getOutputTypes().get(0));
+                    }
+                }
+            });
+
                 
                 viewDirButton.addActionListener(new ActionListener() {
 			
