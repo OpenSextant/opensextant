@@ -70,6 +70,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         browseTempButton = new javax.swing.JButton();
         tempLabel = new javax.swing.JLabel();
         jsonCheck = new javax.swing.JCheckBox();
+        warnLabel = new javax.swing.JLabel();
 
         jCheckBox3.setText("JSON");
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -218,6 +219,10 @@ public class ConfigFrame extends javax.swing.JFrame {
             }
         });
 
+        warnLabel.setForeground(new java.awt.Color(255, 0, 0));
+        warnLabel.setText("Warning: Exceeding number of cores may cause slowdown");
+        warnLabel.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -248,7 +253,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(shapefileCheck)
                                                     .addComponent(wktCheck))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(gdbCheck)
@@ -269,12 +274,16 @@ public class ConfigFrame extends javax.swing.JFrame {
                                     .addComponent(cacheLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cacheText, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                                    .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(browseCacheButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cacheText)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(browseCacheButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(warnLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                        .addGap(24, 24, 24)
                         .addComponent(tempLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tempText)
@@ -312,7 +321,8 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(threadsLabel)
-                    .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(threadCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(warnLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cacheLabel)
@@ -320,10 +330,10 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .addComponent(browseCacheButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tempLabel)
                     .addComponent(tempText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(browseTempButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                    .addComponent(browseTempButton)
+                    .addComponent(tempLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(doneButton)
                 .addContainerGap())
         );
@@ -461,6 +471,7 @@ public class ConfigFrame extends javax.swing.JFrame {
     protected javax.swing.JTextField tempText;
     protected javax.swing.JSpinner threadCount;
     private javax.swing.JLabel threadsLabel;
+    protected javax.swing.JLabel warnLabel;
     protected javax.swing.JCheckBox wktCheck;
     protected javax.swing.JCheckBox xlsCheck;
     // End of variables declaration//GEN-END:variables

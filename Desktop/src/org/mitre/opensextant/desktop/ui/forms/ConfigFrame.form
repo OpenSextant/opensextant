@@ -40,6 +40,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -86,7 +87,7 @@
                                                   <Component id="shapefileCheck" min="-2" max="-2" attributes="0"/>
                                                   <Component id="wktCheck" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace pref="54" max="32767" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Component id="doneButton" min="-2" pref="71" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
@@ -109,7 +110,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="processingLabel" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="threadsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -117,16 +118,22 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cacheText" pref="187" max="32767" attributes="0"/>
-                                  <Component id="threadCount" min="-2" pref="58" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="cacheText" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="browseCacheButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="threadCount" min="-2" pref="58" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="warnLabel" pref="348" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="browseCacheButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="tempLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="tempText" max="32767" attributes="0"/>
@@ -173,6 +180,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="threadsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="threadCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="warnLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -182,11 +190,11 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tempLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tempText" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="browseTempButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tempLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
               <Component id="doneButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -401,6 +409,18 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jsonCheckActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="warnLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Warning: Exceeding number of cores may cause slowdown"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
       </AuxValues>
