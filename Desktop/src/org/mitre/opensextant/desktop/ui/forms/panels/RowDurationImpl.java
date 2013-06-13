@@ -69,8 +69,10 @@ public class RowDurationImpl extends RowDuration {
 					long estSeconds = TimeUnit.MILLISECONDS.toSeconds(estimatedDuration) - TimeUnit.MINUTES.toSeconds(estMinutes);
                                         if(row.getPercent() < 100) {
                                             durationString += " of ";
-                                            if (estMinutes > 0) durationString += estMinutes + " min ";
-                                            durationString += estSeconds + " sec";
+                                            if(estMinutes < 100*60) { // If it's a really large number the estimate is probably off
+                                                if (estMinutes > 0) durationString += estMinutes + " min ";
+                                                durationString += estSeconds + " sec";
+                                            } else durationString += "unknown";
                                         }
 				}
 				

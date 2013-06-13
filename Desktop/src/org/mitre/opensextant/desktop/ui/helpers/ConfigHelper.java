@@ -161,11 +161,10 @@ public class ConfigHelper {
 				continue;
 			}
 
-			// Never finished running, start it again
-			if ("INITIALIZING".equals(status) || "QUEUED".equals(status) || "PROCESSING".equals(status)) {
-				apiHelper.processFile(rowValues[ROW_INPUT]);
-				continue;
-			}
+			// Never finished running, consider it cancelled
+			if ("INITIALIZING".equals(status) || "QUEUED".equals(status) || "PROCESSING".equals(status)){
+                            status = "CANCELLED";
+                        }
 			OSRow row = new OSRow(rowValues, tableHelper, null);
 			String[] children = rowValues[ROW_CHILDREN].split(":");
 
