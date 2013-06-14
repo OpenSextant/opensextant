@@ -161,6 +161,7 @@ public class OSRow implements Comparable<OSRow> {
 			duration = 0;
 		}
 		this.durationContainer = new RowDurationImpl(duration, rowValues[ConfigHelper.ROW_DURATION_STRING]);
+
 		this.baseOutputLocation = rowValues[ConfigHelper.ROW_BASELOC];
 		String tmpRowTypes = rowValues[ConfigHelper.ROW_TYPES].replaceAll(":", ",");
 		this.outputTypes = ConfigHelper.parseOutTypesString(tmpRowTypes);
@@ -596,7 +597,6 @@ public class OSRow implements Comparable<OSRow> {
 	public void updateProgress() {
             this.getProgressBarPanel().getProgressBar().setString(this.status.getTitle());
             this.setProgress(this.percent, this.status);
-
 	}
 	
 	public OpenSextantWorker getWorker() {

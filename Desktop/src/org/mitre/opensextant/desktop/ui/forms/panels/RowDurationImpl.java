@@ -9,7 +9,8 @@ import org.mitre.opensextant.desktop.ui.table.OSRow;
 public class RowDurationImpl extends RowDuration {
 
 	private long duration = 0;
-	
+	private boolean forceUpdate = false;
+        
 	public RowDurationImpl() {
 		super();
 	}
@@ -18,11 +19,12 @@ public class RowDurationImpl extends RowDuration {
 		super();
                 this.duration = duration;
                 this.durationLabel.setText(durationString);
+                this.forceUpdate = true;
 	}
-
         
 	public void reset() {
-		duration = 0;
+                forceUpdate = false;
+        	duration = 0;
 		durationLabel.setText(" --");
 	}
 	
@@ -45,7 +47,10 @@ public class RowDurationImpl extends RowDuration {
 				updatedDuration = now.getTime() - startTime.getTime();
 				estimatedDuration = (long)(updatedDuration / (row.getPercent()/100.0)); 
 			}
-		} else {
+		} else if (forceUpdate) {
+                    updatedDuration = this.duration;
+                } else {
+                    System.out.println(">>>>>>>>>>>>>>>>>>>NOT RUNNING");
 			if (row.getExecutionStartTime() != null) {
 				Date startTime = row.getExecutionStartTime();
 				Date endTime = row.getEndTime();
@@ -54,6 +59,8 @@ public class RowDurationImpl extends RowDuration {
 		}
 		if (updatedDuration != duration) {
 			if (updatedDuration < 0) {
+                            
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>SMALL");
 				durationLabel.setText(" --");
 			} else {
 				long minutes = TimeUnit.MILLISECONDS.toMinutes(updatedDuration);
