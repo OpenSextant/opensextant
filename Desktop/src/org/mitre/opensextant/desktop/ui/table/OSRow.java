@@ -594,8 +594,9 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	public void updateProgress() {
-		tableHelper.getMainFrame().getTable().repaint(OSRow.this);
-		// this.setProgress(this.percent, this.status);
+            this.getProgressBarPanel().getProgressBar().setString(this.status.getTitle());
+            this.setProgress(this.percent, this.status);
+
 	}
 	
 	public OpenSextantWorker getWorker() {

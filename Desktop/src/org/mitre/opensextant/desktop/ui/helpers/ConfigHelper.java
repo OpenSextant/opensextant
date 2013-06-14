@@ -161,9 +161,9 @@ public class ConfigHelper {
 				continue;
 			}
 
-			// Never finished running, consider it cancelled
+			// Never finished running, consider it canceled
 			if ("INITIALIZING".equals(status) || "QUEUED".equals(status) || "PROCESSING".equals(status)){
-                            status = "CANCELLED";
+                            status = "CANCELED";
                         }
 			OSRow row = new OSRow(rowValues, tableHelper, null);
 			String[] children = rowValues[ROW_CHILDREN].split(":");
