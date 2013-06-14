@@ -57,6 +57,7 @@ public class ConfigHelper {
 	private String osHome = "";
 	private int numThreads = 1;
 	private int configVersion;
+        private int loggingLevel = 3;
 
 	private List<PropertyChangeListener> listeners = new ArrayList<PropertyChangeListener>();
 
@@ -119,6 +120,7 @@ public class ConfigHelper {
 			config.setProperty("solrHome", solrHome);
 			config.setProperty("numThreads", numThreads);
 			config.setProperty("configVersion", configVersion);
+                        config.setProperty("loggingLevel", loggingLevel);
 			config.save();
 			jobs.save();
 			fireUpdate();
@@ -147,6 +149,7 @@ public class ConfigHelper {
 		solrHome = config.getString("solrHome", null);
 		numThreads = config.getInt("numThreads", 1);
 		configVersion = config.getInt("configVersion", CONFIG_VERSION);
+                loggingLevel = config.getInt("loggingLevel", 3);
 	}
 
 	public void loadRows(ApiHelper apiHelper, MainFrameTableHelper tableHelper) {
@@ -244,6 +247,10 @@ public class ConfigHelper {
 	public String getSolrHome() {
 		return solrHome;
 	}
+        
+        public int getLoggingLevel() {
+            return loggingLevel;
+        }
 
 	public void setOutTypes(List<String> outTypes) {
 		this.outTypes = outTypes;
@@ -276,6 +283,10 @@ public class ConfigHelper {
 	public void setSolrHome(String solrHomeProp) {
 		solrHome = solrHomeProp;
 	}
+        
+        public void setLoggingLevel(int newLevel){
+                this.loggingLevel = newLevel;
+        }
 
 	public int getNumThreads() {
 		return numThreads;

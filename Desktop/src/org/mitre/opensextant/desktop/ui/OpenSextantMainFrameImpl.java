@@ -25,6 +25,8 @@ import javax.swing.filechooser.FileSystemView;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
 import org.mitre.opensextant.desktop.ui.forms.AboutFrame;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrameImpl;
@@ -82,17 +84,37 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
                 ConfigHelper.getInstance().loadRows(apiHelper, getTableHelper());
                 
-        this.addWindowListener(new WindowListener() {
-			@Override public void windowOpened(WindowEvent e) {}
-			@Override public void windowIconified(WindowEvent e) {}
-			@Override public void windowDeiconified(WindowEvent e) {}
-			@Override public void windowDeactivated(WindowEvent e) {}
-			@Override public void windowClosing(WindowEvent e) {}
-			@Override public void windowClosed(WindowEvent e) {
-				FileUtils.deleteQuietly(new File(ConfigHelper.getInstance().getOSTmpRoot()));
-			}
-			@Override public void windowActivated(WindowEvent e) {}
-		});
+                this.addWindowListener(new WindowListener() {
+                                @Override public void windowOpened(WindowEvent e) {}
+                                @Override public void windowIconified(WindowEvent e) {}
+                                @Override public void windowDeiconified(WindowEvent e) {}
+                                @Override public void windowDeactivated(WindowEvent e) {}
+                                @Override public void windowClosing(WindowEvent e) {}
+                                @Override public void windowClosed(WindowEvent e) {
+                                        FileUtils.deleteQuietly(new File(ConfigHelper.getInstance().getOSTmpRoot()));
+                                }
+                                @Override public void windowActivated(WindowEvent e) {}
+                        });
+                
+                FileAppender loggingFileAppender = (FileAppender)org.apache.log4j.Logger.getRootLogger().getAppender("default.file");
+                switch(ConfigHelper.getInstance().getLoggingLevel())
+                {
+                    case 0:
+                        loggingFileAppender.setThreshold(Level.FATAL);
+                        break;
+                    case 1:
+                        loggingFileAppender.setThreshold(Level.ERROR);
+                        break;
+                    case 2:
+                        loggingFileAppender.setThreshold(Level.WARN);
+                        break;
+                    case 3:
+                        loggingFileAppender.setThreshold(Level.INFO);
+                        break;
+                    case 4:
+                        loggingFileAppender.setThreshold(Level.DEBUG);
+                        break;
+                }
 	}
 
 	public OSTreeTable getTable() {

@@ -69,22 +69,9 @@ public class ConfigFrameImpl extends ConfigFrame {
                 sliderLabels.put(4, new JLabel("Debug"));
 
                 loggingSlider.setLabelTable(sliderLabels);
-
-
-                FileAppender loggingFileAppender = (FileAppender)org.apache.log4j.Logger.getRootLogger().getAppender("default.file");
-
-                if(loggingFileAppender.getThreshold().equals(Level.FATAL))
-                    loggingSlider.setValue(0);
-                else if(loggingFileAppender.getThreshold().equals(Level.ERROR))
-                    loggingSlider.setValue(1);
-                else if(loggingFileAppender.getThreshold().equals(Level.WARN))
-                    loggingSlider.setValue(2);
-                else if(loggingFileAppender.getThreshold().equals(Level.INFO))
-                    loggingSlider.setValue(3);
-                else if(loggingFileAppender.getThreshold().equals(Level.DEBUG))
-                    loggingSlider.setValue(4);
                 
-		
+                loggingSlider.setValue(configHelper.getLoggingLevel());                
+                
                 threadCount.addChangeListener(new ChangeListener() {
                         @Override
                         public void stateChanged(ChangeEvent e) {
@@ -125,9 +112,8 @@ public class ConfigFrameImpl extends ConfigFrame {
 
 		configHelper.setOutTypes(outTypes);
 		configHelper.setNumThreads((Integer)threadCount.getValue());
-		
-		configHelper.saveSettings();
                 
+                               
                 FileAppender loggingFileAppender = (FileAppender)Logger.getRootLogger().getAppender("default.file");
                 
                 switch(loggingSlider.getValue())
@@ -148,7 +134,11 @@ public class ConfigFrameImpl extends ConfigFrame {
                         loggingFileAppender.setThreshold(Level.DEBUG);
                         break;
                 }
-
+                
+                configHelper.setLoggingLevel(loggingSlider.getValue());
+                
+		configHelper.saveSettings();
+                
 		this.dispose();
 	}// GEN-LAST:event_doneButtonActionPerformed
 
