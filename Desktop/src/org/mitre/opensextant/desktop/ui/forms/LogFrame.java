@@ -6,10 +6,12 @@ package org.mitre.opensextant.desktop.ui.forms;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
 import javax.swing.text.DefaultCaret;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 
 /**
  *
@@ -29,6 +31,10 @@ public class LogFrame extends javax.swing.JFrame {
         DefaultCaret logTextCaret = (DefaultCaret)logJTextArea.getCaret();
         logTextCaret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         new populateLog().execute();
+        java.net.URL imgURL = LogFrame.class.getResource("/org/mitre/opensextant/desktop/icons/logo.png");
+        if (imgURL != null) {
+            this.setIconImage(new ImageIcon(imgURL, "Icon").getImage());
+        }
     }
 
     /**

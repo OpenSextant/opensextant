@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import static org.mitre.opensextant.desktop.ui.handlers.HelpKeyListener.HELP_FILE;
 
 /**
@@ -23,7 +24,7 @@ public class AboutFrame extends javax.swing.JFrame {
      */
     public AboutFrame() {
         initComponents();
-        java.net.URL imgURL = TextEntryFrame.class.getResource("/org/mitre/opensextant/desktop/icons/logo.png");
+        java.net.URL imgURL = AboutFrame.class.getResource("/org/mitre/opensextant/desktop/icons/logo.png");
         if (imgURL != null) {
 		this.setIconImage(new ImageIcon(imgURL, "Icon").getImage());
 	}

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import javax.swing.SpinnerNumberModel;
@@ -15,6 +16,7 @@ import javax.swing.event.ChangeListener;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 
@@ -86,7 +88,10 @@ public class ConfigFrameImpl extends ConfigFrame {
 				doneButtonActionPerformed(e);
 			}
 		});
-
+		java.net.URL imgURL = ConfigFrameImpl.class.getResource("/org/mitre/opensextant/desktop/icons/logo.png");
+		if (imgURL != null) {
+			this.setIconImage(new ImageIcon(imgURL, "Icon").getImage());
+		}
 	}
 	
 	private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_doneButtonActionPerformed

@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import javax.swing.ImageIcon;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -44,7 +45,10 @@ public class SelectOSHomeFrameImpl extends SelectOSHomeFrame {
 		setVisible(true);
 
 		initialize(this);
-
+		java.net.URL imgURL = OpenSextantMainFrameImpl.class.getResource("/org/mitre/opensextant/desktop/icons/logo.png");
+		if (imgURL != null) {
+			this.setIconImage(new ImageIcon(imgURL, "Icon").getImage());
+		}
 	}
 
 	public static void setupOpenSextantHome() {

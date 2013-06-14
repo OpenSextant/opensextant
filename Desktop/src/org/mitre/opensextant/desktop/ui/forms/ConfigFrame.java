@@ -88,6 +88,8 @@ public class ConfigFrame extends javax.swing.JFrame {
             .add(0, 177, Short.MAX_VALUE)
         );
 
+        setTitle("Configuration");
+
         outputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Output", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
 
         pathLabel.setText("Path:");
@@ -423,7 +425,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                         .add(threadCount, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(warnLabel)
-                        .add(0, 0, Short.MAX_VALUE))
+                        .add(0, 140, Short.MAX_VALUE))
                     .add(processingPanelLayout.createSequentialGroup()
                         .add(processingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(tempText)
