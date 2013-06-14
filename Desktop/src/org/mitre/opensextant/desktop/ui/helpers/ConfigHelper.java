@@ -152,7 +152,9 @@ public class ConfigHelper {
 	public void loadRows(ApiHelper apiHelper, MainFrameTableHelper tableHelper) {
 		Iterator<String> i = jobs.getKeys("rows");
 		String rowName = "";
+                
 		while (i.hasNext()) {
+                    try{
 			String[] rowValues = jobs.getStringArray(i.next());
 			String status = rowValues[ROW_STATUS];
 
@@ -181,6 +183,11 @@ public class ConfigHelper {
 				row.addChild(child);
 			}
 			tableHelper.addRow(row);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        log.debug("Deleting old version of jobs file");
+			jobs.clear();
+                        break;
+                    }
 		}
 	}
 
