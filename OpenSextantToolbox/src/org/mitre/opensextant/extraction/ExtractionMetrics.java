@@ -35,6 +35,7 @@ public class ExtractionMetrics {
      * avg time spent for this metric in milliseconds
      */
     public int getAverageTime() {
+        if (callCount == 0) return 0;
         return (int) (totalTime / callCount);
     }
 
