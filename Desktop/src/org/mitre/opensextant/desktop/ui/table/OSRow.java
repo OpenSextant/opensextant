@@ -351,6 +351,7 @@ public class OSRow implements Comparable<OSRow> {
 			if (isChild())
 				parent.incrementCompletedChildren();
 
+                        this.durationContainer.updateDuration(this);
 			saveConfig();
 
 		}

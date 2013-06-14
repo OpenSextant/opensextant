@@ -52,7 +52,6 @@ public class RowDurationImpl extends RowDuration {
         } else if (forceUpdate) {
             updatedDuration = this.duration;
         } else {
-            System.out.println(">>>>>>>>>>>>>>>>>>>NOT RUNNING");
             if (row.getExecutionStartTime() != null) {
                 Date startTime = row.getExecutionStartTime();
                 Date endTime = row.getEndTime();
@@ -61,8 +60,6 @@ public class RowDurationImpl extends RowDuration {
         }
         if (updatedDuration != duration) {
             if (updatedDuration < 0) {
-
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>SMALL");
                 durationLabel.setText(" --");
             } else {
                 long minutes = TimeUnit.MILLISECONDS.toMinutes(updatedDuration);
