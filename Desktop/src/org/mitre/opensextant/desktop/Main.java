@@ -65,6 +65,9 @@ public class Main {
 				System.setProperty("opensextant.home", osHome);
 			}
 
+			// set the GATE app to be the General Purpose Extractor.  This is instead of the OpenSextant_Solr.gapp extractor which is currently the default.
+			Config.DEFAULT_GAPP = "OpenSextant_GeneralPurpose.gapp";
+			
 			Config.GATE_HOME = gateHome;
 			Config.SOLR_HOME = solrHome;
 

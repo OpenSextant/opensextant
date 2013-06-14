@@ -5,26 +5,18 @@ import gate.CorpusController;
 import gate.Document;
 import gate.Factory;
 import gate.creole.ConditionalSerialAnalyserController;
-import gate.creole.ExecutionException;
-import gate.creole.ResourceInstantiationException;
 import gate.event.ProgressListener;
 import gate.util.GateException;
 import gate.util.persistence.PersistenceManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import org.mitre.opensextant.apps.AppBase;
 import org.mitre.opensextant.apps.Config;
-import org.mitre.opensextant.desktop.Main;
-import org.mitre.opensextant.desktop.executor.progresslisteners.ChildProgressListener;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
-import org.mitre.opensextant.processing.OpenSextantSchema;
 import org.mitre.opensextant.processing.ProcessingException;
-import org.mitre.opensextant.processing.output.AbstractFormatter;
 import org.slf4j.LoggerFactory;
 
 public class OSGeoCoder extends AppBase {
@@ -46,16 +38,14 @@ public class OSGeoCoder extends AppBase {
     	log = LoggerFactory.getLogger(OSGeoCoder.class);
         printConfig();
 
+        if (gappFile == null) gappFile = Config.RUNTIME_GAPP_PATH;
+
         // load the GATE application
-        log.info("Loading GAPP");
-        if (gappFile == null && Config.RUNTIME_GAPP_PATH == null) {
+        log.info("Loading GAPP: " + gappFile);
+        if (gappFile == null) {
             throw new ProcessingException("AppBase default GAPP file is not in place");
         }
 
-
-        if (gappFile == null) {
-            gappFile = Config.RUNTIME_GAPP_PATH;
-        }
 
         try {
             controller = (CorpusController) PersistenceManager.loadObjectFromFile(new File(gappFile));
@@ -108,7 +98,7 @@ public class OSGeoCoder extends AppBase {
             Factory.deleteResource(corpus);
             // Create anew.
         	return corpus;
-    	} catch (GateException e) {
+    	} catch (Exception e) {
     		throw new ProcessingException(e);
     	} 
     }

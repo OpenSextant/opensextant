@@ -309,8 +309,8 @@ public class OSRow implements Comparable<OSRow> {
 				executionStartTime = new Date();
 				class DurationUpdateTask extends TimerTask {
 					public void run() {
-						durationContainer.updateDuration(OSRow.this);
-						tableHelper.getMainFrame().getTable().repaint(OSRow.this);
+						boolean updated = durationContainer.updateDuration(OSRow.this);
+						if (updated) tableHelper.getMainFrame().getTable().repaint(OSRow.this);
 						if (!OSRow.this.isRunning()) {
 							cancel();
 						}
@@ -318,7 +318,8 @@ public class OSRow implements Comparable<OSRow> {
 					}
 				}
 				tableHelper.getTimer().schedule(new DurationUpdateTask(), 1000, 1000);
-
+				getDurationPanel().updateDuration(this);
+				tableHelper.getMainFrame().getTable().repaint(OSRow.this);
 			}
 
 			this.status = status;

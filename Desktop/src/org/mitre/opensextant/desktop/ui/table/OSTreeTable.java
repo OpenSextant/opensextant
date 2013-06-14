@@ -122,7 +122,7 @@ public class OSTreeTable {
 				OSRow osRow = (OSRow) value;
 
 				RowDurationImpl panel = osRow.getDurationPanel();
-				panel.updateDuration(osRow);
+//				panel.updateDuration(osRow);
 
 				if (isSelected) {
 					panel.setBackground(table.getSelectionBackground());

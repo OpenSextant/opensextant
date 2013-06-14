@@ -14,7 +14,6 @@ import java.io.IOException;
 
 import org.mitre.opensextant.apps.AppBase;
 import org.mitre.opensextant.apps.Config;
-import org.mitre.opensextant.desktop.executor.opensextant.ext.geocode.OSGeoCoder;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.processing.ProcessingException;
@@ -46,7 +45,6 @@ public class OSExtractor extends AppBase{
         if (gappFile == null) {
             throw new ProcessingException("AppBase default GAPP file is not in place");
         }
-
 
 
         try {
@@ -89,7 +87,7 @@ public class OSExtractor extends AppBase{
     	serialController.removeProgressListener(listener);
     }
 
-    public Corpus extractEntity(Document document) throws ProcessingException {
+    public Corpus extractEntities(Document document) throws ProcessingException {
     	try {
         	ConditionalSerialAnalyserController serialController = (ConditionalSerialAnalyserController) controller;
             corpus = Factory.newCorpus(CORPUS_NAME);

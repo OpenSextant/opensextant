@@ -79,6 +79,10 @@ public class OpenSextantWorker implements Runnable {
 		} catch (ProcessingException | ResourceInstantiationException | IOException e) {
 			log.error("error processing file", e);
 			row.setProgress(-1, OSRow.STATUS.ERROR);
+		} catch (Throwable t) {
+			// things like class loader exceptions
+			log.error("error processing file", t);
+			row.setProgress(-1, OSRow.STATUS.ERROR);
 		}
 
 	}
