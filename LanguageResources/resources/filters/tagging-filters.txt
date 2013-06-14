@@ -22,6 +22,8 @@ south east
 south west
 #
 # generic location references.
+geo
+world
 city
 town
 base
