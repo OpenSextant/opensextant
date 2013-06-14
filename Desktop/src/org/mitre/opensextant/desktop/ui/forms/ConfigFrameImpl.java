@@ -5,7 +5,9 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+import javax.swing.JLabel;
 
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
@@ -52,10 +54,36 @@ public class ConfigFrameImpl extends ConfigFrame {
 			else if ("SHAPEFILE".equals(t))
 				shapefileCheck.setSelected(true);
 		}
-
+                
 		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+                
+                
+                
+                Hashtable sliderLabels = new Hashtable();
+                sliderLabels.put(0, new JLabel("Fatal"));
+                sliderLabels.put(1, new JLabel("Error"));
+                sliderLabels.put(2, new JLabel("Warn"));
+                sliderLabels.put(3, new JLabel("Info"));
+                sliderLabels.put(4, new JLabel("Debug"));
+
+                loggingSlider.setLabelTable(sliderLabels);
+
+
+                FileAppender loggingFileAppender = (FileAppender)org.apache.log4j.Logger.getRootLogger().getAppender("default.file");
+
+                if(loggingFileAppender.getThreshold().equals(Level.FATAL))
+                    loggingSlider.setValue(0);
+                else if(loggingFileAppender.getThreshold().equals(Level.ERROR))
+                    loggingSlider.setValue(1);
+                else if(loggingFileAppender.getThreshold().equals(Level.WARN))
+                    loggingSlider.setValue(2);
+                else if(loggingFileAppender.getThreshold().equals(Level.INFO))
+                    loggingSlider.setValue(3);
+                else if(loggingFileAppender.getThreshold().equals(Level.DEBUG))
+                    loggingSlider.setValue(4);
+                
 		
                 threadCount.addChangeListener(new ChangeListener() {
                         @Override
@@ -93,7 +121,7 @@ public class ConfigFrameImpl extends ConfigFrame {
 			outTypes.add("GDB");
 
 		configHelper.setOutLocation(outputText.getText());
-        configHelper.setCacheRoot(cacheText.getText());
+                configHelper.setCacheRoot(cacheText.getText());
 
 		configHelper.setOutTypes(outTypes);
 		configHelper.setNumThreads((Integer)threadCount.getValue());

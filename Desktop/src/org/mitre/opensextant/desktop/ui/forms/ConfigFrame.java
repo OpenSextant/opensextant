@@ -5,8 +5,12 @@
 package org.mitre.opensextant.desktop.ui.forms;
 
 import java.io.File;
+import java.util.Hashtable;
 
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
 
 /**
  *
@@ -18,7 +22,8 @@ public class ConfigFrame extends javax.swing.JFrame {
      * Creates new form ConfigFrameNew
      */
     public ConfigFrame() {
-        initComponents();
+        initComponents();       
+        
     }
 
     /**
@@ -467,16 +472,16 @@ public class ConfigFrame extends javax.swing.JFrame {
             .add(loggingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(logLevelLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(26, 26, 26)
                 .add(loggingSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 445, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         loggingPanelLayout.setVerticalGroup(
             loggingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(loggingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(logLevelLabel)
-                .addContainerGap())
+                .addContainerGap(24, Short.MAX_VALUE))
             .add(loggingPanelLayout.createSequentialGroup()
                 .add(loggingSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(0, 0, Short.MAX_VALUE))
