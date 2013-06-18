@@ -24,7 +24,7 @@ public class ConfigHelper {
     private static final String JOBS_FILE = DATA_HOME + File.separator + "jobs.properties";
     private static final String DEFAULT_CACHE_ROOT = DATA_HOME + File.separator + "cache";
     private static final int CONFIG_VERSION = 1;
-    private static enum TimeAssociation {
+    public static enum TimeAssociation {
         CSV, CROSS
     }
 
@@ -273,8 +273,20 @@ public class ConfigHelper {
         return extractIdentifiers;
     }
 
+    public void setExtractTime(boolean extractTime) {
+        this.extractTime = extractTime;
+    }
+
+    public void setExtractIdentifiers(boolean extractIdentifiers) {
+        this.extractIdentifiers = extractIdentifiers;
+    }
+
     public TimeAssociation getTimeAssociation() {
         return timeAssociation;
+    }
+    
+    public void setTimeAssociation(TimeAssociation timeAssociation) {
+        this.timeAssociation = timeAssociation;
     }
 
     public void setOutTypes(List<String> outTypes) {
