@@ -5,8 +5,11 @@ import gate.Document;
 import gate.Factory;
 import gate.creole.ResourceInstantiationException;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Future;
 
 import org.mitre.opensextant.desktop.executor.opensextant.ext.converter.XTextConverter;
@@ -15,6 +18,7 @@ import org.mitre.opensextant.desktop.executor.progresslisteners.ChildProgressLis
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.desktop.util.OutputUtil;
+import org.mitre.opensextant.processing.OpenSextantSchema;
 import org.mitre.opensextant.processing.ProcessingException;
 import org.mitre.opensextant.processing.output.AbstractFormatter;
 import org.slf4j.Logger;
@@ -46,6 +50,15 @@ public class OpenSextantWorker implements Runnable {
 			geoCoder.initialize();
 
 			List<Document> contents = converter.convert(row.getInputFile());
+			
+			boolean isArchive = contents.size() > 1;
+			if (isArchive) {
+			    for(Document content : contents) {
+                    String filePath = (String)content.getFeatures().get(OpenSextantSchema.FILEPATH_FLD);
+			        row.addArchiveChild(filePath);
+			    }
+			    row.rebuildRow();
+			}
 
 			ChildProgressListener listener = new ChildProgressListener(row);
 			geoCoder.addProgressListener(listener);
@@ -53,13 +66,24 @@ public class OpenSextantWorker implements Runnable {
 			row.setProgress(0, OSRow.STATUS.PROCESSING);
 			
 			for (int i = 0; i < contents.size() && !canceled; i++) {
-				Document content = contents.get(i);
+			    Document content = contents.get(i);
+
+			    if (isArchive) {
+	                String filePath = (String)content.getFeatures().get(OpenSextantSchema.FILEPATH_FLD);
+			        listener.setRow(row.getChildForInputFile(new File(filePath)));
+			    }
+			    
 				Corpus corpus = geoCoder.geoCodeText(content);
 				AbstractFormatter formatter = row.getOutputFormatter();
 				if (row.isChild()) formatter = row.getParent().getOutputFormatter();
 				OutputUtil.writeResults(formatter, corpus);
 				Factory.deleteResource(corpus);
 				Factory.deleteResource(content);
+				
+                if (isArchive) {
+                    listener.processFinished();
+                }
+
 			}
 			
 

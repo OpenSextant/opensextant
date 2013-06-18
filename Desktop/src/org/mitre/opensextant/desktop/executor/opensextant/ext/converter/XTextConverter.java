@@ -33,6 +33,7 @@ public class XTextConverter {
         converter.zone_web_content = false;
         converter.save = true;
         converter.save_in_folder = true;
+        converter.save_in_archive_root = true;
         ConvertedDocument.overwrite = false;
         
 

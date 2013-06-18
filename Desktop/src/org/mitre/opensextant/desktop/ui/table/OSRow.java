@@ -604,4 +604,15 @@ public class OSRow implements Comparable<OSRow> {
 	public OpenSextantWorker getWorker() {
 		return this.worker;
 	}
+
+    public void addArchiveChild(String filePath) {
+        OSRow child = new OSRow(this, filePath, baseOutputLocation, outputTypes, tableHelper);
+        child.setWorker(worker);
+        addChild(child);
+    }
+    
+    public void rebuildRow() {
+        tableHelper.removeRow(this);
+        tableHelper.addRow(this);
+    }
 }

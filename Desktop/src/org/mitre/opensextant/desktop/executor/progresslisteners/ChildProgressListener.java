@@ -39,5 +39,9 @@ public class ChildProgressListener implements ProgressListener {
 		if (row.isChild()) updateParentProgress(row.getParent(), 100, previousProgress);
 		row.setProgress(100, OSRow.STATUS.COMPLETE);
 	}
+	
+	public void setRow(OSRow row) {
+	    this.row = row;
+	}
 
 }
