@@ -2,37 +2,17 @@
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JPanel" name="jPanel4">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Processing">
-              <Font PropertyName="font" name="Lucida Grande" size="18" style="0"/>
-            </TitledBorder>
-          </Border>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="678" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="177" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
+    <Component class="javax.swing.ButtonGroup" name="timeExtractionRadioButtonGroup">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+      </AuxValues>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="title" type="java.lang.String" value="Configuration"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -81,7 +61,7 @@
               <Component id="processingPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="loggingPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
               <Component id="doneButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -305,24 +285,23 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="extractLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="extractActionCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractAttributeCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractGeoCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractIdeaCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractInformationCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="extractSubstanceCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractTimeCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractOrganizationCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractObjectCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractPersonCheck" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="extractTimeCheck" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="cartProdTimeRadioButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="csvTimeRadioButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="extractIdentifiersCheck" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -331,145 +310,23 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="extractLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractActionCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractObjectCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="extractTimeCheck" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="extractAttributeCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractOrganizationCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="csvTimeRadioButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="extractGeoCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="extractPersonCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="extractIdeaCheck" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="extractInformationCheck" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="extractSubstanceCheck" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="extractTimeCheck" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="cartProdTimeRadioButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="extractIdentifiersCheck" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JCheckBox" name="extractOrganizationCheck">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Organization"/>
-            <Property name="toolTipText" type="java.lang.String" value="Organization Patterns"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractOrganizationCheckActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="extractInformationCheck">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Information"/>
-            <Property name="toolTipText" type="java.lang.String" value="Information Patterns"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractInformationCheckActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="extractObjectCheck">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Object"/>
-            <Property name="toolTipText" type="java.lang.String" value="Object Patterns"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractObjectCheckActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="extractGeoCheck">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Geo"/>
-            <Property name="toolTipText" type="java.lang.String" value="Geographic Coordinate and place name patterns"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractGeoCheckActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="extractAttributeCheck">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Attribute"/>
-            <Property name="toolTipText" type="java.lang.String" value="Attribute Patterns"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractAttributeCheckActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="extractPersonCheck">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Person"/>
-            <Property name="toolTipText" type="java.lang.String" value="Person Patterns"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractPersonCheckActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="extractLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Entities:"/>
-            <Property name="toolTipText" type="java.lang.String" value="The types of data elements to extract from a file."/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="extractIdeaCheck">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Idea"/>
-            <Property name="toolTipText" type="java.lang.String" value="Idea Patterns"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractIdeaCheckActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="extractActionCheck">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Action"/>
-            <Property name="toolTipText" type="java.lang.String" value="Action Patterns"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractActionCheckActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JCheckBox" name="extractTimeCheck">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Time"/>
-            <Property name="toolTipText" type="java.lang.String" value="Date/Time Patterns"/>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Extract Time"/>
+            <Property name="toolTipText" type="java.lang.String" value="Extract time patterns when processing documents"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractTimeCheckActionPerformed"/>
@@ -478,14 +335,43 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="extractSubstanceCheck">
+        <Component class="javax.swing.JCheckBox" name="extractIdentifiersCheck">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Substance"/>
-            <Property name="toolTipText" type="java.lang.String" value="Substance Patterns"/>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Extract Identifiers"/>
+            <Property name="toolTipText" type="java.lang.String" value="Extract unique identifier patterns when processing documents"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractSubstanceCheckActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractIdentifiersCheckActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="csvTimeRadioButton">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="timeExtractionRadioButtonGroup"/>
+            </Property>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Collapse extracted times to comma separated column"/>
+            <Property name="toolTipText" type="java.lang.String" value="All extracted time elements will be attached to each extracted Geo element as a comma separated list in the output"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="csvTimeRadioButtonActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="cartProdTimeRadioButton">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="timeExtractionRadioButtonGroup"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Create a copy of each Geo row per Time extracted (G x T)"/>
+            <Property name="toolTipText" type="java.lang.String" value="Each extracted Geo element will appear with each time element associated with it.  This will produce a copied Geo element for each time element resulting in (Geo Elements) x (Time Elements) number of rows."/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
           </AuxValues>

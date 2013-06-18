@@ -17,6 +17,7 @@ import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.processing.ProcessingException;
+import org.mitre.opensextant.processing.ResultsUtility;
 import org.slf4j.LoggerFactory;
 
 public class OSGeoCoder extends AppBase {
@@ -36,7 +37,6 @@ public class OSGeoCoder extends AppBase {
     @Override
     public void initialize() throws ProcessingException {
     	log = LoggerFactory.getLogger(OSGeoCoder.class);
-        printConfig();
 
         if (gappFile == null) gappFile = Config.RUNTIME_GAPP_PATH;
 
@@ -46,6 +46,7 @@ public class OSGeoCoder extends AppBase {
             throw new ProcessingException("AppBase default GAPP file is not in place");
         }
 
+        printConfig();
 
         try {
             controller = (CorpusController) PersistenceManager.loadObjectFromFile(new File(gappFile));
@@ -98,7 +99,7 @@ public class OSGeoCoder extends AppBase {
             Factory.deleteResource(corpus);
             // Create anew.
         	return corpus;
-    	} catch (Exception e) {
+    	} catch (GateException e) {
     		throw new ProcessingException(e);
     	} 
     }

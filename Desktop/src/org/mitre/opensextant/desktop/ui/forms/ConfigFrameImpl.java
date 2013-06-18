@@ -88,6 +88,20 @@ public class ConfigFrameImpl extends ConfigFrame {
 				doneButtonActionPerformed(e);
 			}
 		});
+		
+		extractTimeCheck.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (extractTimeCheck.isSelected()) {
+                    csvTimeRadioButton.setEnabled(true);
+                    cartProdTimeRadioButton.setEnabled(true);
+                } else {
+                    csvTimeRadioButton.setEnabled(false);
+                    cartProdTimeRadioButton.setEnabled(false);
+                }
+            }
+        });
+		
 		java.net.URL imgURL = ConfigFrameImpl.class.getResource("/org/mitre/opensextant/desktop/icons/logo.png");
 		if (imgURL != null) {
 			this.setIconImage(new ImageIcon(imgURL, "Icon").getImage());

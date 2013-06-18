@@ -35,7 +35,7 @@ public class ConfigFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel4 = new javax.swing.JPanel();
+        timeExtractionRadioButtonGroup = new javax.swing.ButtonGroup();
         outputPanel = new javax.swing.JPanel();
         pathLabel = new javax.swing.JLabel();
         outputText = new javax.swing.JTextField();
@@ -49,17 +49,10 @@ public class ConfigFrame extends javax.swing.JFrame {
         xlsCheck = new javax.swing.JCheckBox();
         csvCheck = new javax.swing.JCheckBox();
         extractPanel = new javax.swing.JPanel();
-        extractOrganizationCheck = new javax.swing.JCheckBox();
-        extractInformationCheck = new javax.swing.JCheckBox();
-        extractObjectCheck = new javax.swing.JCheckBox();
-        extractGeoCheck = new javax.swing.JCheckBox();
-        extractAttributeCheck = new javax.swing.JCheckBox();
-        extractPersonCheck = new javax.swing.JCheckBox();
-        extractLabel = new javax.swing.JLabel();
-        extractIdeaCheck = new javax.swing.JCheckBox();
-        extractActionCheck = new javax.swing.JCheckBox();
         extractTimeCheck = new javax.swing.JCheckBox();
-        extractSubstanceCheck = new javax.swing.JCheckBox();
+        extractIdentifiersCheck = new javax.swing.JCheckBox();
+        csvTimeRadioButton = new javax.swing.JRadioButton();
+        cartProdTimeRadioButton = new javax.swing.JRadioButton();
         processingPanel = new javax.swing.JPanel();
         tempLabel = new javax.swing.JLabel();
         browseTempButton = new javax.swing.JButton();
@@ -74,19 +67,6 @@ public class ConfigFrame extends javax.swing.JFrame {
         loggingSlider = new javax.swing.JSlider();
         logLevelLabel = new javax.swing.JLabel();
         doneButton = new javax.swing.JButton();
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Processing", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
-
-        org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 678, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 177, Short.MAX_VALUE)
-        );
 
         setTitle("Configuration");
 
@@ -228,137 +208,67 @@ public class ConfigFrame extends javax.swing.JFrame {
 
         extractPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Extract", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
 
-        extractOrganizationCheck.setText("Organization");
-        extractOrganizationCheck.setToolTipText("Organization Patterns");
-        extractOrganizationCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                extractOrganizationCheckActionPerformed(evt);
-            }
-        });
-
-        extractInformationCheck.setText("Information");
-        extractInformationCheck.setToolTipText("Information Patterns");
-        extractInformationCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                extractInformationCheckActionPerformed(evt);
-            }
-        });
-
-        extractObjectCheck.setText("Object");
-        extractObjectCheck.setToolTipText("Object Patterns");
-        extractObjectCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                extractObjectCheckActionPerformed(evt);
-            }
-        });
-
-        extractGeoCheck.setText("Geo");
-        extractGeoCheck.setToolTipText("Geographic Coordinate and place name patterns");
-        extractGeoCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                extractGeoCheckActionPerformed(evt);
-            }
-        });
-
-        extractAttributeCheck.setText("Attribute");
-        extractAttributeCheck.setToolTipText("Attribute Patterns");
-        extractAttributeCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                extractAttributeCheckActionPerformed(evt);
-            }
-        });
-
-        extractPersonCheck.setText("Person");
-        extractPersonCheck.setToolTipText("Person Patterns");
-        extractPersonCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                extractPersonCheckActionPerformed(evt);
-            }
-        });
-
-        extractLabel.setText("Entities:");
-        extractLabel.setToolTipText("The types of data elements to extract from a file.");
-
-        extractIdeaCheck.setText("Idea");
-        extractIdeaCheck.setToolTipText("Idea Patterns");
-        extractIdeaCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                extractIdeaCheckActionPerformed(evt);
-            }
-        });
-
-        extractActionCheck.setText("Action");
-        extractActionCheck.setToolTipText("Action Patterns");
-        extractActionCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                extractActionCheckActionPerformed(evt);
-            }
-        });
-
-        extractTimeCheck.setText("Time");
-        extractTimeCheck.setToolTipText("Date/Time Patterns");
+        extractTimeCheck.setSelected(true);
+        extractTimeCheck.setText("Extract Time");
+        extractTimeCheck.setToolTipText("Extract time patterns when processing documents");
         extractTimeCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 extractTimeCheckActionPerformed(evt);
             }
         });
 
-        extractSubstanceCheck.setText("Substance");
-        extractSubstanceCheck.setToolTipText("Substance Patterns");
-        extractSubstanceCheck.addActionListener(new java.awt.event.ActionListener() {
+        extractIdentifiersCheck.setSelected(true);
+        extractIdentifiersCheck.setText("Extract Identifiers");
+        extractIdentifiersCheck.setToolTipText("Extract unique identifier patterns when processing documents");
+        extractIdentifiersCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                extractSubstanceCheckActionPerformed(evt);
+                extractIdentifiersCheckActionPerformed(evt);
             }
         });
+
+        timeExtractionRadioButtonGroup.add(csvTimeRadioButton);
+        csvTimeRadioButton.setSelected(true);
+        csvTimeRadioButton.setText("Collapse extracted times to comma separated column");
+        csvTimeRadioButton.setToolTipText("All extracted time elements will be attached to each extracted Geo element as a comma separated list in the output");
+        csvTimeRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                csvTimeRadioButtonActionPerformed(evt);
+            }
+        });
+
+        timeExtractionRadioButtonGroup.add(cartProdTimeRadioButton);
+        cartProdTimeRadioButton.setText("Create a copy of each Geo row per Time extracted (G x T)");
+        cartProdTimeRadioButton.setToolTipText("Each extracted Geo element will appear with each time element associated with it.  This will produce a copied Geo element for each time element resulting in (Geo Elements) x (Time Elements) number of rows.");
 
         org.jdesktop.layout.GroupLayout extractPanelLayout = new org.jdesktop.layout.GroupLayout(extractPanel);
         extractPanel.setLayout(extractPanelLayout);
         extractPanelLayout.setHorizontalGroup(
             extractPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(extractPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(extractLabel)
-                .add(18, 18, 18)
                 .add(extractPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(extractActionCheck)
-                    .add(extractAttributeCheck)
-                    .add(extractGeoCheck)
-                    .add(extractIdeaCheck)
-                    .add(extractInformationCheck))
-                .add(29, 29, 29)
-                .add(extractPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(extractSubstanceCheck)
-                    .add(extractTimeCheck)
-                    .add(extractOrganizationCheck)
-                    .add(extractObjectCheck)
-                    .add(extractPersonCheck))
+                    .add(extractPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(extractTimeCheck))
+                    .add(extractPanelLayout.createSequentialGroup()
+                        .add(74, 74, 74)
+                        .add(extractPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(cartProdTimeRadioButton)
+                            .add(csvTimeRadioButton)))
+                    .add(extractPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(extractIdentifiersCheck)))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         extractPanelLayout.setVerticalGroup(
             extractPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(extractPanelLayout.createSequentialGroup()
-                .add(extractPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(extractLabel)
-                    .add(extractActionCheck)
-                    .add(extractObjectCheck))
+                .add(extractTimeCheck)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(extractPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(extractAttributeCheck)
-                    .add(extractOrganizationCheck))
+                .add(csvTimeRadioButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(extractPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(extractGeoCheck)
-                    .add(extractPersonCheck))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(extractPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(extractPanelLayout.createSequentialGroup()
-                        .add(extractIdeaCheck)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(extractInformationCheck))
-                    .add(extractPanelLayout.createSequentialGroup()
-                        .add(extractSubstanceCheck)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(extractTimeCheck))))
+                .add(cartProdTimeRadioButton)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(extractIdentifiersCheck))
         );
 
         processingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Processing", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
@@ -521,7 +431,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .add(processingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(loggingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 35, Short.MAX_VALUE)
                 .add(doneButton)
                 .addContainerGap())
         );
@@ -565,45 +475,9 @@ public class ConfigFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_csvCheckActionPerformed
 
-    private void extractOrganizationCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractOrganizationCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_extractOrganizationCheckActionPerformed
-
-    private void extractInformationCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractInformationCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_extractInformationCheckActionPerformed
-
-    private void extractObjectCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractObjectCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_extractObjectCheckActionPerformed
-
-    private void extractGeoCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractGeoCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_extractGeoCheckActionPerformed
-
-    private void extractAttributeCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractAttributeCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_extractAttributeCheckActionPerformed
-
-    private void extractPersonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractPersonCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_extractPersonCheckActionPerformed
-
-    private void extractIdeaCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractIdeaCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_extractIdeaCheckActionPerformed
-
-    private void extractActionCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractActionCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_extractActionCheckActionPerformed
-
     private void extractTimeCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractTimeCheckActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_extractTimeCheckActionPerformed
-
-    private void extractSubstanceCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractSubstanceCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_extractSubstanceCheckActionPerformed
 
     private void browseTempButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseTempButtonActionPerformed
         JFileChooser chooser = new JFileChooser();
@@ -630,6 +504,14 @@ public class ConfigFrame extends javax.swing.JFrame {
     private void cacheTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cacheTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cacheTextActionPerformed
+
+    private void extractIdentifiersCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractIdentifiersCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_extractIdentifiersCheckActionPerformed
+
+    private void csvTimeRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_csvTimeRadioButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_csvTimeRadioButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -678,23 +560,15 @@ public class ConfigFrame extends javax.swing.JFrame {
     private javax.swing.JButton browseTempButton;
     private javax.swing.JLabel cacheLabel;
     protected javax.swing.JTextField cacheText;
+    protected javax.swing.JRadioButton cartProdTimeRadioButton;
     protected javax.swing.JCheckBox csvCheck;
+    protected javax.swing.JRadioButton csvTimeRadioButton;
     protected javax.swing.JButton doneButton;
-    protected javax.swing.JCheckBox extractActionCheck;
-    protected javax.swing.JCheckBox extractAttributeCheck;
-    protected javax.swing.JCheckBox extractGeoCheck;
-    protected javax.swing.JCheckBox extractIdeaCheck;
-    protected javax.swing.JCheckBox extractInformationCheck;
-    private javax.swing.JLabel extractLabel;
-    protected javax.swing.JCheckBox extractObjectCheck;
-    protected javax.swing.JCheckBox extractOrganizationCheck;
+    protected javax.swing.JCheckBox extractIdentifiersCheck;
     private javax.swing.JPanel extractPanel;
-    protected javax.swing.JCheckBox extractPersonCheck;
-    protected javax.swing.JCheckBox extractSubstanceCheck;
     protected javax.swing.JCheckBox extractTimeCheck;
     private javax.swing.JLabel formatLabel;
     protected javax.swing.JCheckBox gdbCheck;
-    private javax.swing.JPanel jPanel4;
     protected javax.swing.JCheckBox jsonCheck;
     protected javax.swing.JCheckBox kmlCheck;
     private javax.swing.JLabel logLevelLabel;
@@ -709,6 +583,7 @@ public class ConfigFrame extends javax.swing.JFrame {
     protected javax.swing.JTextField tempText;
     protected javax.swing.JSpinner threadCount;
     private javax.swing.JLabel threadsLabel;
+    protected javax.swing.ButtonGroup timeExtractionRadioButtonGroup;
     protected javax.swing.JLabel warnLabel;
     protected javax.swing.JCheckBox wktCheck;
     protected javax.swing.JCheckBox xlsCheck;

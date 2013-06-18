@@ -87,6 +87,8 @@ public class OSRow implements Comparable<OSRow> {
 
 	private AbstractFormatter formatter;
 
+    private String identitifiersOutputLocation;
+
 	public OSRow() {
 
 	}
@@ -109,6 +111,7 @@ public class OSRow implements Comparable<OSRow> {
 		this.durationContainer = new RowDurationImpl();
 		this.buttonContainer = new RowButtonsImpl(this);
 		this.tableHelper = tableHelper;
+		
 
 		this.title = inputFile.getAbsoluteFile().getName();
 		this.updateOutputFileName();
@@ -219,14 +222,14 @@ public class OSRow implements Comparable<OSRow> {
 			Parameters p = new Parameters();
 			p.setJobName(title + dateStr);
 
+            String rootOutputLocation = baseOutputLocation + File.separator + p.getJobName();
+            // if multiple files are processing at the same time the output
+            // location
+            // may not be there yet
+            // if ((new File(this.outputLocation)).exists())
+            rootOutputLocation += "_" + counter;
 			for (String outputType : outputTypes) {
-				String outputLocation = baseOutputLocation + File.separator + p.getJobName();
-
-				// if multiple files are processing at the same time the output
-				// location
-				// may not be there yet
-				// if ((new File(this.outputLocation)).exists())
-				outputLocation += "_" + counter;
+			    String outputLocation = rootOutputLocation;
 
 				if ("KML".equals(outputType))
 					outputLocation += ".kmz";
@@ -237,6 +240,7 @@ public class OSRow implements Comparable<OSRow> {
 				}
 				outputLocations.put(outputType, outputLocation);
 			}
+            identitifiersOutputLocation = rootOutputLocation + "_identifiers.xls";
 		}
 
 	}
@@ -390,6 +394,10 @@ public class OSRow implements Comparable<OSRow> {
 		return outputLocations;
 	}
 
+    public String getIdentitifiersOutputLocation() {
+        return identitifiersOutputLocation;
+    }
+    
 	public File getInputFile() {
 		return inputFile;
 	}

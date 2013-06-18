@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.mitre.opensextant.apps.AppBase;
+import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.processing.Parameters;
 import org.mitre.opensextant.processing.ProcessingException;
@@ -46,8 +47,27 @@ public class OutputUtil {
 
 		}
 		
+		if (ConfigHelper.getInstance().isExtractIdentifiers()) {
+            String outputLocation = row.getIdentitifiersOutputLocation();
+            File outputFile = new File(outputLocation);
+            String filename = outputFile.getName();
+            
+            Parameters params = new Parameters();
+            params.isdefault = false;
+            params.inputFile = row.getInputFile().getAbsolutePath();
+            params.addOutputFormat("XLS");
+            params.outputDir = outputFile.getParent();
+            params.setJobName(filename);
+
+            AbstractFormatter childFormatter = AppBase.createFormatter("XLSID", params);
+            childFormatter.setOutputFilename(filename);
+            childFormatter.start((String) params.getJobName());
+            formatter.addChild(childFormatter);
+		}
+		
 		return formatter;
 	}
+	
 
 	public static synchronized void writeResults(AbstractFormatter formatter, Corpus corpus) throws ProcessingException {
 		try {

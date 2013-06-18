@@ -8,7 +8,8 @@ import org.mitre.opensextant.processing.output.os.ExcelGISOutputStream;
 
 public class XLSFormatter extends GISDataFormatter {
 
-	
+	protected boolean isIdentifiers = false;
+    
     /**
     *
     * @throws ProcessingException
@@ -33,7 +34,7 @@ public class XLSFormatter extends GISDataFormatter {
 
        checkOverwrite(xls);
        
-       this.os = new ExcelGISOutputStream(xls, "data");
+       this.os = new ExcelGISOutputStream(xls, "data", isIdentifiers);
    }
 	
 }

@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.ss.usermodel.Cell;
@@ -28,17 +30,32 @@ public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutpu
     private static final String ISO_DATE_FMT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     private SafeDateFormat dateFormatter;
     
+    public static List<String> IDENTIFIER_FIELDS = new ArrayList<String>() {{
+        add("id");
+        add("matchtext");
+        add("context");
+        add("filename");
+        add("filepath");
+        add("textpath");
+        add("feat_class");
+        add("feat_code");
+        add("start");
+        add("end");
+    }};
+    
 	private SXSSFWorkbook workbook;
 	private int rowNum = 0;
 	private Sheet sheet;
 	private File file;
 	private Schema schema; 
 	private boolean writtenRow = false;
+    private boolean isIdentifiers;
 
-	public ExcelGISOutputStream(File xls, String worksheet) {
+	public ExcelGISOutputStream(File xls, String worksheet, boolean isIdentifiers) {
 
 		this.file = xls;
 		this.workbook = new SXSSFWorkbook(); 
+		this.isIdentifiers = isIdentifiers;
 		this.sheet = workbook.createSheet(worksheet); 
 		
 	}
@@ -76,9 +93,11 @@ public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutpu
             try {
             	int index = 0;
                 for (String fieldname : schema.getKeys()) {
-                    SimpleField field = schema.get(fieldname);
-                    addCell(index, row, field, xlsRow);
-                    index ++;
+                    if (!isIdentifiers || IDENTIFIER_FIELDS.contains(fieldname)) {
+                        SimpleField field = schema.get(fieldname);
+                        addCell(index, row, field, xlsRow);
+                        index ++;
+                    }
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -206,14 +225,16 @@ public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutpu
         }
         schema = s;
         
-        boolean first = true;
 		// Create the column headings 
 		org.apache.poi.ss.usermodel.Row headerRow = sheet.createRow(rowNum);
 
 		int index = 0;
+		
         for (String field : schema.getKeys()) {
-    		headerRow.createCell(index).setCellValue(new HSSFRichTextString(field));
-    		index++;
+            if (!isIdentifiers || IDENTIFIER_FIELDS.contains(field)) {
+                headerRow.createCell(index).setCellValue(new HSSFRichTextString(field));
+                index++;
+            }
         }
 	}
 
