@@ -64,7 +64,11 @@ public class OutputUtil {
             childFormatter.start((String) params.getJobName());
             formatter.addChild(childFormatter);
 		}
-		
+
+        Parameters params = new Parameters();
+        params.isdefault = false;
+        AbstractFormatter statsFormatter = AppBase.createFormatter("STAT", params);
+        formatter.addChild(statsFormatter);
 		return formatter;
 	}
 	
