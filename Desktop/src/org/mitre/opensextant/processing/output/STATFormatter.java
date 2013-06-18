@@ -19,13 +19,13 @@ public class STATFormatter extends GISDataFormatter {
 
     public STATFormatter() throws ProcessingException {
         super();
-     //   isIdentifiers = true;
     }
 
     @Override
     public void writeRowsFor(Document doc) {
         // Is there a doc ID?
-    /*    IdentifierResult identityAnnotations = new IdentifierResult(doc.getName());
+        
+        IdentifierResult identityAnnotations = new IdentifierResult(doc.getName());
         identityAnnotations.recordFile = (String) doc.getFeatures().get(OpenSextantSchema.FILEPATH_FLD);
         identityAnnotations.recordTextFile = doc.getSourceUrl().getPath();
         log.info("Writing identifiers for " + identityAnnotations.recordFile);
@@ -37,73 +37,54 @@ public class STATFormatter extends GISDataFormatter {
 
         } catch (Exception err) {
             log.error("Error writing out row ROW=" + doc.getName(), err);
-        }*/
+        }
     }
     
     
     @Override
-    public void writeGeocodingResult(GeocodingResult rowdata) {
-/*        Feature row;
+    public void writeGeocodingResult(GeocodingResult rowdata) {        
+        Feature row;
         boolean error = false;
 
         if (log.isDebugEnabled()) {
             log.debug("Adding data for File " + rowdata.recordFile + " Count=" + rowdata.geocodes.size());
         }
 
+        int coords = 0;
+        int places = 0;
+        int objs = 0;
+        int admin = 0;
+        int countries = 0;
+        int dups = 0;
+        int overlaps = 0;
+        int subs = 0;
+        
         for (Geocoding g : rowdata.geocodes) {
 
             if (filterOut(g)) {
-                continue;
+           //     continue;
             }
             // Increment ID
-            id ++;
-
-            row = new Feature();
-            row.setSchema(schema.getId());
-            row.putData(OpenSextantSchema.SCHEMA_OID, id);
-
-            if (includeOffsets) {
-                addColumn(row, OpenSextantSchema.START_OFFSET, (int) g.start);
-                addColumn(row, OpenSextantSchema.END_OFFSET, (int) g.end);
-            }
-
-            addColumn(row, OpenSextantSchema.FEATURE_CLASS, ((Identifier)g).getFeatureType());
-            addColumn(row, OpenSextantSchema.FEATURE_CODE, ((Identifier)g).getEntityType());
-
-            addColumn(row, OpenSextantSchema.CONTEXT, g.getContext());
-
-            addColumn(row, OpenSextantSchema.MATCH_TEXT, g.getText());
-            addColumn(row, OpenSextantSchema.MATCH_METHOD, g.method);
-
-
-            if (rowdata.attributes != null) {
-
-                try {
-                    for (String field : rowdata.attributes.keySet()) {
-                        addColumn(row, OpenSextantSchema.getField(field), rowdata.attributes.get(field));
-                    }
-                } catch (ProcessingException fieldErr) {
-                    if (!error) {
-                        log.error("OUTPUTTER, ERR=" + fieldErr);
-                        error = true;
-                    }
-                }
-            }
-
-            // TOOD: HPATH goes here.
-            if (rowdata.recordFile != null) {
-                addColumn(row, OpenSextantSchema.FILENAME, FilenameUtils.getBaseName(rowdata.recordFile));
-                addColumn(row, OpenSextantSchema.FILEPATH, rowdata.recordFile);
-                if (rowdata.recordTextFile != null && !rowdata.recordFile.equals(rowdata.recordTextFile)) {
-                    addColumn(row, OpenSextantSchema.TEXTPATH, rowdata.recordTextFile);
-                }
-            } else {
-                log.info("No File path given");
-            }
-
-            this.os.write(row);
-        }*/
-
+            if(g.is_coordinate) coords ++;
+            if(g.is_place) places ++;
+            if(g.is_administrative) admin ++;
+            if(g.is_country) countries ++;
+            if(g.is_duplicate) dups ++;
+            if(g.is_overlap) overlaps ++;
+            if(g.is_submatch) subs ++;
+            objs ++;
+            
+       //     System.out.println("    GEO: " + g.toString() + " -- " + g.getContext() + " -- " + g.is_country );
+   
+        }
+        System.out.println("  Objs: " + objs);
+        System.out.println("  Coords: " + coords);
+        System.out.println("  Place: " + places);
+        System.out.println("  Admin: " + admin);
+        System.out.println("  Country: " + countries);
+        System.out.println("  Duplicate: " + dups);
+        System.out.println("  Overlap: " + overlaps);
+        System.out.println("  Subs: " + subs);
     }
 
     @Override
