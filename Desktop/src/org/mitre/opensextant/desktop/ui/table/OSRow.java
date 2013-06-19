@@ -343,6 +343,7 @@ public class OSRow implements Comparable<OSRow> {
 			if (this.status == STATUS.COMPLETE) {
 				buttonContainer.getViewResultsButton().setEnabled(true);
 				buttonContainer.getViewDirButton().setEnabled(true);
+                                buttonContainer.getResultStatisticsButton().setEnabled(true);
 			}
 
 			if (formatter != null) {

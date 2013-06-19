@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.AbstractAction;
+import javax.swing.JFrame;
 
 import javax.swing.JPopupMenu;
+import org.mitre.opensextant.desktop.ui.forms.StatisticsFrame;
 
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.desktop.ui.table.RowButtonsEditor;
@@ -79,12 +81,23 @@ public class RowButtonsImpl extends RowButtons {
 				row.rerun();
 			}
 		});
+                
+                resultStatisticsButton.addActionListener(new ActionListener() {
+                   
+                        @Override
+                        public void actionPerformed(ActionEvent e){
+                            JFrame.setDefaultLookAndFeelDecorated(true);
+                            JFrame frame = new StatisticsFrame();
+                            frame.setVisible(true);
+                        }
+                });
 		
 		if (row.isChild()) {
 			cancelDeleteButton.setVisible(false);
 			viewResultsButton.setVisible(false);
 			reRunButton.setVisible(false);
                         viewDirButton.setVisible(false);
+                        resultStatisticsButton.setVisible(false);
 		}
 	}
 
@@ -103,6 +116,10 @@ public class RowButtonsImpl extends RowButtons {
         public javax.swing.JButton getViewDirButton() {
 		return viewDirButton;
 	}
+        
+        public javax.swing.JButton getResultStatisticsButton() {
+                return resultStatisticsButton;
+        }
 
         
 	public void setCellEditor(RowButtonsEditor rowButtonsEditor) {

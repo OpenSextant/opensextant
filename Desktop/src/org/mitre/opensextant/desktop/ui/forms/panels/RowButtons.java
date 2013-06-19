@@ -32,6 +32,7 @@ public class RowButtons extends javax.swing.JPanel {
         reRunButton = new javax.swing.JButton();
         viewResultsButton = new javax.swing.JButton();
         viewDirButton = new javax.swing.JButton();
+        resultStatisticsButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAlignmentX(0.0F);
@@ -56,11 +57,17 @@ public class RowButtons extends javax.swing.JPanel {
         viewDirButton.setToolTipText("Open output folder");
         viewDirButton.setEnabled(false);
         add(viewDirButton);
-        viewDirButton.getAccessibleContext().setAccessibleDescription("Open output folder");
+
+        resultStatisticsButton.setText("S");
+        resultStatisticsButton.setToolTipText("Show statistics for results");
+        resultStatisticsButton.setEnabled(false);
+        add(resultStatisticsButton);
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton cancelDeleteButton;
     protected javax.swing.JButton reRunButton;
+    protected javax.swing.JButton resultStatisticsButton;
     protected javax.swing.JButton viewDirButton;
     protected javax.swing.JButton viewResultsButton;
     // End of variables declaration//GEN-END:variables
