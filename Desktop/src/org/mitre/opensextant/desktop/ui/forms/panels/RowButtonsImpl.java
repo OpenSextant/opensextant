@@ -87,7 +87,7 @@ public class RowButtonsImpl extends RowButtons {
                         @Override
                         public void actionPerformed(ActionEvent e){
                             JFrame.setDefaultLookAndFeelDecorated(true);
-                            JFrame frame = new StatisticsFrame();
+                            JFrame frame = new StatisticsFrame(row);
                             frame.setVisible(true);
                         }
                 });

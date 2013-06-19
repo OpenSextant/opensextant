@@ -4,6 +4,12 @@
  */
 package org.mitre.opensextant.desktop.ui.forms;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.apache.commons.io.FileUtils;
+import org.mitre.opensextant.desktop.ui.table.OSRow;
+import org.mitre.opensextant.desktop.util.FileSize;
+
 /**
  *
  * @author RTWARNER
@@ -13,8 +19,12 @@ public class StatisticsFrame extends javax.swing.JFrame {
     /**
      * Creates new form StatisticsFrame
      */
-    public StatisticsFrame() {
+    private static OSRow currentRow;
+    
+    public StatisticsFrame(OSRow row) {
         initComponents();
+        this.currentRow = row;
+        addRowInformation();
     }
 
     /**
@@ -26,15 +36,84 @@ public class StatisticsFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        countriesTable = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        fileSizeLabel = new javax.swing.JLabel();
+        processingTimeLabel = new javax.swing.JLabel();
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("File Size:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Processing Time:");
+
+        countriesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(countriesTable);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Countries Found");
+
+        fileSizeLabel.setText("filesize");
+        fileSizeLabel.setToolTipText("");
+
+        processingTimeLabel.setText("processing time");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(fileSizeLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(processingTimeLabel)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 95, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(101, 101, 101))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(294, 294, 294)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(fileSizeLabel))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(processingTimeLabel))
+                .addGap(80, 80, 80)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(179, Short.MAX_VALUE))
         );
 
         pack();
@@ -70,10 +149,48 @@ public class StatisticsFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StatisticsFrame().setVisible(true);
+                new StatisticsFrame(currentRow).setVisible(true);
             }
         });
     }
+    
+    public void addRowInformation()
+    {
+        this.setTitle("Job: " + currentRow.getTitle());
+        
+        String fileSizeString = "";
+        if (currentRow.hasChildren()) {
+                long size = 0;
+                for (OSRow child : currentRow.getChildren()) {
+                        size += FileUtils.sizeOf(child.getInputFile());
+                }
+                fileSizeString += FileSize.byteCountToDisplaySize(size);
+                fileSizeString += " (" + currentRow.getChildren().size() + " files)";
+        } else {
+                fileSizeString += FileSize.byteCountToDisplaySize(FileUtils.sizeOf(currentRow.getInputFile()));
+
+        }
+        
+        fileSizeLabel.setText(fileSizeString);
+        processingTimeLabel.setText(currentRow.getDurationPanel().getDurationString());
+        /*
+        try
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+            Date elapsed = new Date(sdf.parse(currentRow.getEndTime().toString()).getTime() - sdf.parse(currentRow.getStartTime().toString()).getTime());
+            processingTimeLabel.setText(sdf.format(elapsed));
+        }
+        catch(Exception e){ }*/
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable countriesTable;
+    private javax.swing.JLabel fileSizeLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel processingTimeLabel;
     // End of variables declaration//GEN-END:variables
 }
