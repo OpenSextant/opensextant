@@ -7,10 +7,8 @@ Phases:
 ./Pieces/POSRepair	
 ./Pieces/EntityMarking
 ./Pieces/NounPhrasePieces
-./Pieces/VerbPhrasePieces
+//./Pieces/VerbPhrasePieces
 ./Phrases/NounPhrases
-//./Phrases/ProperNounPhrase
-//./Phrases/CompoundNounPhrases
-./Phrases/VerbPhrases
+//./Phrases/VerbPhrases
 ./Misc/ChunkingCleanup
 

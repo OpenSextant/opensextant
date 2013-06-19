@@ -99,7 +99,6 @@ Rule: INF
 				infFeatures.put("HEAD","");
 			}
 	
-			infFeatures.put("code","INF");
     outputAS.add( infStartNode,infEndNode, "InfinitivePhrase", infFeatures );
 }
 
@@ -201,7 +200,7 @@ Rule: INF
 						infFeatures.put("HEAD","");
 					}
 			
-					infFeatures.put("code","INF");
+
 		    outputAS.add( infStartNode,infEndNode, "InfinitivePhrase", infFeatures );
 		}		
 		
@@ -305,7 +304,7 @@ Rule: VP
 			}
 	
 
-			vpFeatures.put("code","VP");
+
     outputAS.add( vpStartNode,vpEndNode, "VerbPhrase", vpFeatures );
 }
 	
@@ -405,8 +404,6 @@ Rule: VP
 						vpFeatures.put("HEAD","");
 					}
 			
-
-					vpFeatures.put("code","VP");
 		    outputAS.add( vpStartNode,vpEndNode, "VerbPhrase", vpFeatures );
 		}		
 		

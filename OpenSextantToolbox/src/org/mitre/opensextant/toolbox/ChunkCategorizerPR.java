@@ -94,24 +94,23 @@ public class ChunkCategorizerPR extends AbstractLanguageAnalyser implements
 		// get all of the noun phrase chunks annotations
 		AnnotationSet npSet = document.getAnnotations().get(nounPhraseAnnoName);
 
-		// get all of the vocabulary annotations.
-		// All vocab annotations have a feature named "hierarchy"
+		// get all of the vocabulary and simple entity annotations.
+		// All vocab and simple entities annotations have a feature named "hierarchy"
 		Set<String> featureNameSet = new HashSet<String>();
 		featureNameSet.add("hierarchy");
-		AnnotationSet vocabSet = document.getAnnotations().get(null,
-				featureNameSet);
+		AnnotationSet vocabSet = document.getAnnotations().get(null,featureNameSet);
+		AnnotationSet entitySet = document.getAnnotations().get("Entity");
 
 		// thin out the vocab
 		AnnotationSet thinnedVocabSet = thinAnnotations(vocabSet);
 		
 		// loop over all noun phrases annotations and categorize each one
 		for (Annotation a : npSet) {
-			categorize(a, thinnedVocabSet);
+			categorize(a, thinnedVocabSet,entitySet);
 
 			// TODO DEBUG remove for production
 			if (((String) a.getFeatures().get("EntityType")) == null) {
-				document.getAnnotations().add(a.getStartNode(), a.getEndNode(),
-						"NOT_CATEGORIZED", a.getFeatures());
+				document.getAnnotations().add(a.getStartNode(), a.getEndNode(),"NOT_CATEGORIZED", a.getFeatures());
 			}
 
 		}// end annotation loop
@@ -162,7 +161,7 @@ public class ChunkCategorizerPR extends AbstractLanguageAnalyser implements
 		this.nounPhraseAnnoName = annotationName;
 	}
 
-	private void categorize(Annotation np, AnnotationSet vocab) {
+	private void categorize(Annotation np, AnnotationSet vocab, AnnotationSet entities) {
 
 		// get this NPs features
 		FeatureMap npFeatures = np.getFeatures();
@@ -170,21 +169,26 @@ public class ChunkCategorizerPR extends AbstractLanguageAnalyser implements
 		Node npEndNode = np.getEndNode();
 
 		// get the head annotation which is a feature of the NP
-		AnnotationSet head = (AnnotationSet) npFeatures
-				.get("headSetAnnotation");
+		AnnotationSet head = (AnnotationSet) npFeatures.get("headSetAnnotation");
 		Node headStartNode = head.firstNode();
 		Node headEndNode = head.lastNode();
 
 		// get the vocabulary for the whole NP and just the head
-		List<Annotation> vocabSetNP = gate.Utils.inDocumentOrder(vocab.get(
-				npStartNode.getOffset(), npEndNode.getOffset()));
-		List<Annotation> vocabSetHead = gate.Utils.inDocumentOrder(vocab.get(
-				headStartNode.getOffset(), headEndNode.getOffset()));
+		List<Annotation> vocabSetNP = gate.Utils.inDocumentOrder(vocab.get(npStartNode.getOffset(), npEndNode.getOffset()));
+		List<Annotation> vocabSetHead = gate.Utils.inDocumentOrder(vocab.get(headStartNode.getOffset(), headEndNode.getOffset()));
 
-		// reverse the order of the vocab list so the right most (head side)
+		// get the entities for the whole NP and just the head
+		//List<Annotation> entitySetNP = gate.Utils.inDocumentOrder(entities.get(npStartNode.getOffset(), npEndNode.getOffset()));
+		List<Annotation> entitySetHead = gate.Utils.inDocumentOrder(entities.get(headStartNode.getOffset(), headEndNode.getOffset()));
+
+		// reverse the order of the vocab and entity lists so the right most (head side)
 		// comes first
 		Collections.reverse(vocabSetNP);
 		Collections.reverse(vocabSetHead);
+		//Collections.reverse(entitySetNP);
+		Collections.reverse(entitySetHead);
+		
+		
 
 		// two sorted sets to keep the list of types found:
 		// hierachy type anywhere in NP
@@ -208,13 +212,23 @@ public class ChunkCategorizerPR extends AbstractLanguageAnalyser implements
 
 		// now pick the "best" category
 
+		// if there is an entity matching the head
+		if(entitySetHead.size() >0){
+			npFeatures.put("EntityType", entitySetHead.get(0).getFeatures().get("hierarchy"));
+			npFeatures.putAll(entitySetHead.get(0).getFeatures());
+			return;
+		}
+		
+		
 		if (headTypeList.size() > 0) {
 			npFeatures.put("EntityType", headTypeList.get(0));
+			npFeatures.putAll(vocabSetHead.get(0).getFeatures());
 			return;
 		}
 
 		if (npTypeList.size() > 0) {
 			npFeatures.put("EntityType", npTypeList.get(0));
+			npFeatures.putAll(vocabSetNP.get(0).getFeatures());
 			return;
 		}
 

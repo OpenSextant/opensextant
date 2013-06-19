@@ -1,15 +1,6 @@
 Phase: NounPhraseParts
-Input: Token Number Entity noun_common noun_proper Identifier
+Input: Token Number Entity
 Options: control = appelt
-
-
-Rule: Prep
-(
-		{Token.pos ==IN }
-)
-:det
--->
-	:det.tempPrep = {}
 
 
 Rule: Determiner
@@ -28,48 +19,41 @@ Rule: Determiner
 )
 :det
 -->
-	:det.tempNP_DET = {kind = "DET"}
-
-Rule: HeadCompoundParticiple
-(
-		({Token.pos ==~"NP|NPS|NN|NS"}|{noun_common}|{noun_proper})
-		{Token.pos == VBN}
-		({Token.pos ==~"NP|NPS|NN|NS"}|{noun_common}|{noun_proper})
-):head
--->
-	:head.tempNP_HEAD = {kind = "HEAD_Simple",nounType = "compound"}
+	:det.tempNP_DET = {}
 
 
 Rule: HeadSimpleCommon
 (
 		{Token.pos ==NN }|  // singular common
 		{Token.pos ==NNS }| // plural common
-		{noun_common}
+		{Entity}
 ):head
 -->
-	:head.tempNP_HEAD = {kind = "HEAD_Simple", nounType = "common"}
-
-Rule: HeadSimpleProperEntity
-(
-		{Entity}|
-		{noun_proper}|
-		({Identifier})[1,3]
-):head
--->
-	:head.tempNP_HEAD = {kind = "HEAD_Simple",nounType = "proper"}
+	:head.tempNP_HEAD = {nounType = "common"}
 
 
-Rule: HeadSimpleProperPOS
+Rule: HeadSimpleProper
 (
 		 {Token.pos ==NP }|  // singular proper		
-		 {Token.pos ==NPS }| // plural proper
-		({Token.pos ==TIC }{Token.pos ==NP }) // hack to handle arabic names
+		 {Token.pos ==NPS } // plural proper
+):head
+-->
+	:head.tempNP_HEAD = {nounType = "proper"}
+
+Rule: HeadPronoun
+(
+		{Token.pos == DTS}| // "these"
+		{Token.pos ==PN }|
+		{Token.pos =="PN$" }|
+		{Token.pos ==PPO }|
+		{Token.pos ==PPS }|
+		{Token.pos ==PPSS }|
+		{Token.pos ==PPLS }|
+		{Token.pos ==PPL }
 
 ):head
 -->
-	:head.tempNP_HEAD = {kind = "HEAD_Simple",nounType = "proper"}
-
-
+	:head.tempNP_HEAD = {nounType = "pronoun"}
 
 Rule: Modifier
 (
@@ -90,60 +74,14 @@ Rule: Modifier
 		{Token.pos == NPS}|
 		({Token.pos == JJ}{Token.pos == ","}{Token.pos == JJ})|
 		{Token.pos == VBN}|
+		({Token.pos == NN}{Token.pos ==POSS })|
+		({Token.pos == NNS}{Token.pos ==POSS })|
+		({Token.pos == NP}{Token.pos ==POSS })|
+		({Token.pos == NPS}{Token.pos ==POSS })|
 		{Number}|
-		{Entity}|
-		{noun_common}|
-		{noun_proper}|
-		{Identifier}
+		{Entity}
 ):mod
 -->
-		:mod.tempNP_MOD = {kind = "MOD"}
-
-
-
-Rule: PureModifier
-(
-		{Token.pos ==JJ }|
-		{Token.pos ==JJR }|
-		{Token.pos ==JJS }|
-		{Token.pos ==JJT }|
-		{Token.pos ==CD }|
-		{Token.pos ==OD }|
-		{Token.pos =="PP$$" }|
-		({Token.pos == JJ}{Token.pos == ","}{Token.pos == JJ})|
-		{Number}
-):mod
--->
-		:mod.tempADJ_MOD = {kind = "MOD"}
-
-
-
-
-
-
-Rule: HeadPronoun
-(
-		{Token.pos == DTS}| // "these"
-		{Token.pos ==PN }|
-		{Token.pos =="PN$" }|
-		{Token.pos ==PPO }|
-		{Token.pos ==PPS }|
-		{Token.pos ==PPSS }|
-		{Token.pos ==PPLS }|
-		{Token.pos ==PPL }
-
-):head
--->
-	:head.tempNP_HEAD = {kind = "HEAD_Pronoun",nounType = "pronoun"}
-
-
-Rule: Conj
-(
-		{Token.pos == "CC" }|
-		{Token.pos == "CS" }
-
-):head
--->
-	:head.tempConjunction = {kind = "Conjunction"}
+		:mod.tempNP_MOD = {}
 
 
