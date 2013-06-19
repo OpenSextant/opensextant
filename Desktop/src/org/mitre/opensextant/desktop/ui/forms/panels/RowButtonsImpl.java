@@ -9,6 +9,7 @@ import javax.swing.AbstractAction;
 
 import javax.swing.JPopupMenu;
 
+import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.desktop.ui.table.RowButtonsEditor;
 
@@ -46,7 +47,7 @@ public class RowButtonsImpl extends RowButtons {
                     if (!viewResultsButton.isEnabled()) {
                         return;
                     }
-                    if (row.getOutputTypes().size() > 1) {
+                    if (row.getOutputTypes().size() > 1 || ConfigHelper.getInstance().isExtractIdentifiers()) {
                         JPopupMenu popup = new JPopupMenu();
                         for (final String format : row.getOutputTypes()) {
                             popup.add(new AbstractAction(format) {
@@ -55,6 +56,14 @@ public class RowButtonsImpl extends RowButtons {
                                     row.viewResults(format);
                                 }
                             });
+                        }
+                        if (ConfigHelper.getInstance().isExtractIdentifiers()) {
+                        	popup.add(new AbstractAction("Identifiers") {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									row.viewIdentifiers();
+								}
+                        	});
                         }
                         popup.show(e.getComponent(), e.getX(), e.getY());
                     } else {

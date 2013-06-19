@@ -212,11 +212,15 @@ public class OSTreeTable {
 					JPopupMenu popup = new JPopupMenu();
 					popup.add(new DeleteNodeAction());
 					popup.add(new ReRunAction());
-					if (formats.size() > 1) {
+					if (formats.size() > 1 || ConfigHelper.getInstance().isExtractIdentifiers()) {
 						JMenu formatsMenu = new JMenu("View Results");
 						for (String format : formats) {
 							formatsMenu.add(new ViewResultsAction(format));
 						}
+                        if (ConfigHelper.getInstance().isExtractIdentifiers()) {
+                        	formatsMenu.add(new ViewResultsAction("Identifiers"));
+                        }
+
 						popup.add(formatsMenu);
 					} else if (formats.size() > 0) {
 						popup.add(new ViewResultsAction(formats.iterator().next()));
@@ -371,7 +375,11 @@ public class OSTreeTable {
 				rows.add(row);
 			}
 			for (OSRow row : rows) {
-				row.viewResults(format);
+				if ("Identifiers".equals(format)) {
+					row.viewIdentifiers();
+				} else {
+					row.viewResults(format);
+				}
 			}
 			treeTable.repaint();
 		}

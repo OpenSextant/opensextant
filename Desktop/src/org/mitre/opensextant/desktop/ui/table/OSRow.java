@@ -112,7 +112,6 @@ public class OSRow implements Comparable<OSRow> {
 		this.buttonContainer = new RowButtonsImpl(this);
 		this.tableHelper = tableHelper;
 		
-
 		this.title = inputFile.getAbsoluteFile().getName();
 		this.updateOutputFileName();
 
@@ -477,6 +476,11 @@ public class OSRow implements Comparable<OSRow> {
 	public void viewResults(String format) {
 		tableHelper.viewResults(this, format);
 	}
+	
+	public void viewIdentifiers() {
+		tableHelper.viewIdentifiers(this);
+	}
+
 
 	public void viewDir() {
 		tableHelper.viewDir(this);
@@ -623,4 +627,5 @@ public class OSRow implements Comparable<OSRow> {
         tableHelper.removeRow(this);
         tableHelper.addRow(this);
     }
+
 }

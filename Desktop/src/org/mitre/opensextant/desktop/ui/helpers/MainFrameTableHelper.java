@@ -44,6 +44,15 @@ public class MainFrameTableHelper {
         frame.getTable().removeRow(row);
         ConfigHelper.getInstance().saveSettings();
     }
+    
+    public void viewIdentifiers(OSRow row) {
+        try {
+            Desktop.getDesktop().open(new File(row.getIdentitifiersOutputLocation()));
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            JOptionPane.showMessageDialog(frame, "Error opening file: " + row.getIdentitifiersOutputLocation() + "\nYou may need to associate the file type with an application in your operating system.  Opening parent directory.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     public void viewResults(OSRow row, String format) {
     	String outputLocation = row.getOutputLocations().get(format);
