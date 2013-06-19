@@ -45,6 +45,7 @@ public final class CSVFormatter extends GISDataFormatter {
      * @throws ProcessingException
      */
     public CSVFormatter() throws ProcessingException {
+        super();
         this.outputExtension = ".csv";
         this.doc_type = DocumentType.CSV;
         this.outputType = "CSV";

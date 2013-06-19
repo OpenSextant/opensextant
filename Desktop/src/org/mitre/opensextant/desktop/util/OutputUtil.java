@@ -11,7 +11,10 @@ import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.processing.Parameters;
 import org.mitre.opensextant.processing.ProcessingException;
 import org.mitre.opensextant.processing.output.AbstractFormatter;
+import org.mitre.opensextant.processing.output.GISDataFormatter;
+import org.mitre.opensextant.processing.output.IdentifierDataModel;
 import org.mitre.opensextant.processing.output.MultiFormatter;
+import org.mitre.opensextant.processing.output.TimeGISDataModel;
 
 public class OutputUtil {
 
@@ -42,6 +45,9 @@ public class OutputUtil {
 
 	        AbstractFormatter childFormatter = AppBase.createFormatter(outputType, params);
 			childFormatter.setOutputFilename(filename);
+            if (childFormatter instanceof GISDataFormatter && ConfigHelper.getInstance().isExtractTime()) {
+                ((GISDataFormatter)childFormatter).setGisDataModel(new TimeGISDataModel(childFormatter.getJobName(), childFormatter.includeOffsets, childFormatter.includeCoordinate, ConfigHelper.getInstance().getTimeAssociation()));
+            }
 			childFormatter.start((String) params.getJobName());
 			formatter.addChild(childFormatter);
 
@@ -59,8 +65,9 @@ public class OutputUtil {
             params.outputDir = outputFile.getParent();
             params.setJobName(filename);
 
-            AbstractFormatter childFormatter = AppBase.createFormatter("XLSID", params);
+            AbstractFormatter childFormatter = AppBase.createFormatter("XLS", params);
             childFormatter.setOutputFilename(filename);
+            ((GISDataFormatter)childFormatter).setGisDataModel(new IdentifierDataModel(filename, true, false));
             childFormatter.start((String) params.getJobName());
             formatter.addChild(childFormatter);
 		}

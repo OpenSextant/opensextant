@@ -58,7 +58,7 @@ public class IdentifierResult extends GeocodingResult {
                 
                 geo.setEntityType(a.getFeatures().get("EntityType").toString());
                 geo.setFeatureType(a.getType());
-
+                
                 // Enrich with context field.
                 if ((Parameters.RUNTIME_FLAGS & Parameters.FLAG_EXTRACT_CONTEXT) > 0) {
                     ResultsUtility.setContextFor(content, geo, (int) geo.start, match.length(), content_length);

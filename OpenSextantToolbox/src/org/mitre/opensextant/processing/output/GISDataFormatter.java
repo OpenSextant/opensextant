@@ -28,29 +28,21 @@ package org.mitre.opensextant.processing.output;
 
 import gate.Corpus;
 import gate.Document;
+
 import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
-//import java.util.List;
+
 import org.mitre.giscore.DocumentType;
 import org.mitre.giscore.events.ContainerEnd;
 import org.mitre.giscore.events.ContainerStart;
 import org.mitre.giscore.events.DocumentStart;
 import org.mitre.giscore.events.Feature;
-import org.mitre.giscore.events.Schema;
-import org.mitre.giscore.events.SimpleField;
-import org.mitre.giscore.geometry.Point;
 import org.mitre.giscore.output.IGISOutputStream;
-import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.Geocoding;
-import org.mitre.opensextant.processing.ProcessingException;
+import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.OpenSextantSchema;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
-import org.apache.commons.io.FilenameUtils;
+import org.mitre.opensextant.processing.ProcessingException;
+import org.mitre.opensextant.processing.output.GISDataModel;
+//import java.util.List;
 
 /**
  * This is the base class for classes that convert document annotations to
@@ -73,56 +65,24 @@ public abstract class GISDataFormatter extends AbstractFormatter {
     /**
      *
      */
-    protected Schema schema = null;
-    /**
-     *
-     */
     protected IGISOutputStream os = null;
     /**
      *
      */
     protected boolean groupByDocument = false;
-    public List<String> field_order = new ArrayList<String>();
-    public Set<String> field_set = new HashSet<String>();
     private int id = 0;
+    private GISDataModel gisDataModel;
 
     /**
      *
      */
     public GISDataFormatter() {
-        defaultFields();
+    }
+    
+    public void setGisDataModel(GISDataModel gisDataModel) {
+        this.gisDataModel = gisDataModel;
     }
 
-    public final void defaultFields() {
-        // ID occurs in all output.
-        // id.
-
-        // Matching data
-        field_order.add("placename");
-
-        // Geographic
-        field_order.add("province");
-        field_order.add("iso_cc");
-        field_order.add("lat");
-        field_order.add("lon");
-
-        // Textual context.
-        field_order.add("matchtext");
-        field_order.add("context");
-        field_order.add("filename");
-        field_order.add("filepath");
-        field_order.add("textpath");
-
-        // File mechanics
-        field_order.add("method");
-        field_order.add("feat_class");
-        field_order.add("feat_code");
-        field_order.add("confidence");
-        field_order.add("precision");
-        field_order.add("start");
-        field_order.add("end");
-
-    }
 
     /**
      * Start output.
@@ -130,16 +90,18 @@ public abstract class GISDataFormatter extends AbstractFormatter {
     @Override
     public void start(String containerName) throws ProcessingException {
 
+        if (this.gisDataModel == null) this.gisDataModel = new GISDataModel(getJobName(), includeOffsets, includeCoordinate);
+        
         try {
             createOutputStreams();
         } catch (Exception create_err) {
             throw new ProcessingException(create_err);
         }
 
-        getSchema();
+        
         DocumentStart ds = new DocumentStart(doc_type);
         this.os.write(ds);
-        this.os.write(this.schema);
+        this.os.write(gisDataModel.getSchema());
 
         ContainerStart containerStart = new ContainerStart();
         containerStart.setType("Folder");
@@ -214,45 +176,6 @@ public abstract class GISDataFormatter extends AbstractFormatter {
         return false;
     }
 
-    /**
-     */
-    protected boolean canAdd(SimpleField f) {
-        if (f == null) {
-            return false;
-        }
-        return field_set.contains(f.getName()) && (schema.get(f.getName()) != null);
-    }
-
-    /**
-     * Add a column of data to output; Field is validated ; value is not added
-     * if null
-     */
-    protected void addColumn(Feature row, SimpleField f, Object d) {
-        if (d == null) {
-            return;
-        }
-        if (canAdd(f)) {
-            row.putData(f, d);
-        }
-    }
-
-    /**
-     * Add a column of data to output; Field is validated
-     */
-    protected void addColumn(Feature row, SimpleField f, int d) {
-        if (canAdd(f)) {
-            row.putData(f, d);
-        }
-    }
-
-    /**
-     * Add a column of data to output; Field is validated
-     */
-    protected void addColumn(Feature row, SimpleField f, double d) {
-        if (canAdd(f)) {
-            row.putData(f, d);
-        }
-    }
 
     /**
      * This allows you to add either output of a Corpus processor
@@ -261,7 +184,6 @@ public abstract class GISDataFormatter extends AbstractFormatter {
      */
     @Override
     public void writeGeocodingResult(GeocodingResult rowdata) {
-        Feature row;
         boolean error = false;
 
         if (log.isDebugEnabled()) {
@@ -280,89 +202,25 @@ public abstract class GISDataFormatter extends AbstractFormatter {
                 log.debug("Add " + id + "#" + g.toString());
             }
 
-            row = new Feature();
-            // Administrative settings:
-            // row.setName(getJobName());            
-            row.setSchema(schema.getId());
-            row.putData(OpenSextantSchema.SCHEMA_OID, id);
-
-            // 
-            if (includeOffsets) {
-                addColumn(row, OpenSextantSchema.START_OFFSET, (int) g.start);
-                addColumn(row, OpenSextantSchema.END_OFFSET, (int) g.end);
-            }
-
-            addColumn(row, OpenSextantSchema.ISO_COUNTRY, g.place.getCountryCode());
-            addColumn(row, OpenSextantSchema.PROVINCE, g.place.getAdmin1());
-            addColumn(row, OpenSextantSchema.FEATURE_CLASS, g.place.getFeatureClass());
-            addColumn(row, OpenSextantSchema.FEATURE_CODE, g.place.getFeatureCode());
-            addColumn(row, OpenSextantSchema.PRECISION, g.precision);
-            addColumn(row, OpenSextantSchema.CONFIDENCE, formatConfidence(g.confidence));
-
-            addColumn(row, OpenSextantSchema.CONTEXT, g.getContext());
-
-            if (includeCoordinate) {
-                addColumn(row, OpenSextantSchema.LAT, g.place.getLatitude());
-                addColumn(row, OpenSextantSchema.LON, g.place.getLongitude());
-            }
-
-            addColumn(row, OpenSextantSchema.MATCH_TEXT, g.getText());
-            addColumn(row, OpenSextantSchema.PLACE_NAME, g.place.getPlaceName());
-            addColumn(row, OpenSextantSchema.MATCH_METHOD, g.method);
-
-            // Set the name and coordinates
-            // row.setName(g.getText());
-
-
-            /**
-             * If the caller has additional data to attach to records, allow
-             * them to add fields to schema at runtime and map their data to
-             * keys on GeocodingResult
-             *
-             * Similarly, you could have Geocoding row-level attributes unique
-             * to the geocoding whereas attrs on GeocodingResult are global for
-             * all geocodings in that result set
-             */
-            if (rowdata.attributes != null) {
-
-                try {
-                    for (String field : rowdata.attributes.keySet()) {
-                        if (log.isDebugEnabled()) {
-                            log.debug("FIELD=" + field + " = " + rowdata.attributes.get(field));
-                        }
-                        addColumn(row, OpenSextantSchema.getField(field), rowdata.attributes.get(field));
-                    }
-                } catch (ProcessingException fieldErr) {
-                    if (!error) {
-                        log.error("OUTPUTTER, ERR=" + fieldErr);
-                        error = true;
-                    }
+            Feature row;
+            try {
+                row = gisDataModel.buildRow(id, g, rowdata.attributes, rowdata.recordFile, rowdata.recordTextFile);
+                
+                if (log.isDebugEnabled()) {
+                    log.debug("FEATURE: " + row.toString());
                 }
+                
+                this.os.write(row);
+
+            } catch (ProcessingException fieldErr) {
+                
+                if (!error) log.error("OUTPUTTER, ERR=" + fieldErr);
+                error = true;
+                
             }
 
-            // Set the geometry to be a point, and add the feature to the list
-            row.setGeometry(new Point(g.place.getLatitude(), g.place.getLongitude()));
+            
 
-            // TOOD: HPATH goes here.
-            if (rowdata.recordFile != null) {
-                addColumn(row, OpenSextantSchema.FILENAME, FilenameUtils.getBaseName(rowdata.recordFile));
-                addColumn(row, OpenSextantSchema.FILEPATH, rowdata.recordFile);
-                // Only add text path:
-                //   if original is not plaintext or
-                //   if original has not been converted
-                //
-                if (rowdata.recordTextFile != null && !rowdata.recordFile.equals(rowdata.recordTextFile)) {
-                    addColumn(row, OpenSextantSchema.TEXTPATH, rowdata.recordTextFile);
-                }
-            } else {
-                log.info("No File path given");
-            }
-
-            if (log.isDebugEnabled()) {
-                log.debug("FEATURE: " + row.toString());
-            }
-
-            this.os.write(row);
         }
 
     }
@@ -386,7 +244,7 @@ public abstract class GISDataFormatter extends AbstractFormatter {
     public void writeRowsFor(Document doc) {
 
         // Is there a doc ID?
-        GeocodingResult geoAnnotations = new GeocodingResult(doc.getName());
+        GeocodingResult geoAnnotations = gisDataModel.buildGeocodingResults(doc.getName());
         geoAnnotations.recordFile = (String) doc.getFeatures().get(OpenSextantSchema.FILEPATH_FLD);
         geoAnnotations.recordTextFile = doc.getSourceUrl().getPath();
         log.info("Writing output for " + geoAnnotations.recordFile);
@@ -418,46 +276,4 @@ public abstract class GISDataFormatter extends AbstractFormatter {
         }
     }
 
-    /**
-     * Create a schema instance with the fields properly typed and ordered
-     *
-     * @return
-     * @throws ProcessingException
-     */
-    public Schema getSchema() throws ProcessingException {
-
-        if (this.schema != null) {
-            return this.schema;
-        }
-
-        URI uri = null;
-        try {
-            uri = new URI("urn:OpenSextant");
-        } catch (URISyntaxException e) {
-            //e.printStackTrace();
-        }
-
-        this.schema = new Schema(uri);
-        // Add ID field to the schema
-        this.schema.put(OpenSextantSchema.SCHEMA_OID);
-        this.schema.setName(getJobName());
-
-        for (String field : field_order) {
-
-            if (!this.includeOffsets && (field.equals("start") | field.equals("end"))) {
-                continue;
-            }
-
-            if (!this.includeCoordinate && (field.equals("lat") | field.equals("lon"))) {
-                continue;
-            }
-
-            SimpleField F = OpenSextantSchema.getField(field);
-            this.schema.put(F);
-        }
-
-        this.field_set.addAll(field_order);
-
-        return this.schema;
-    }
 }

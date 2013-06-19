@@ -186,15 +186,6 @@ abstract public class AbstractFormatter implements ResultsFormatter {
     }
     
     
-    private static final DecimalFormat confFmt = new DecimalFormat("0.000");    
-    /** Convenience method for managing how confidence number is reported in output.
-     */
-    protected String formatConfidence(double conf){
-        return confFmt.format(conf);
-    }
-
-    
-
     @Override
     abstract public void start(String nm) throws ProcessingException;
 

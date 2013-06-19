@@ -54,4 +54,27 @@ public class Geocoding extends TextEntity {
         this.id = id;
         this.text = match;
     }
+    
+    /*
+     * Copy constructor
+     */
+    public Geocoding(Geocoding other) {
+        super();
+        copy(other);
+    }
+
+    public void copy(Geocoding other) {
+        super.copy(other);
+        this.place = other.place;
+        this.id = other.id;
+        this.method = other.method;
+        this.confidence = other.confidence;
+        this.precision  = other.precision;
+        this.is_coordinate = other.is_coordinate;
+        this.is_country = other.is_country;
+        this.is_place = other.is_place;
+        this.is_administrative = other.is_administrative;
+    }
+    
+    
 }
