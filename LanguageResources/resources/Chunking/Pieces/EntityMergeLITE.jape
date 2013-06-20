@@ -1,0 +1,40 @@
+/* This phase creates a single annotation of type "Entity"
+ *  from all the annotation types in the LITE General Purpose extractor.
+ */
+
+Phase: EntityMerge
+Input: geocoord PLACE DocumentTitle MACAddress TelephoneNumber Money Date
+Options: control = all
+
+
+Macro: TYPES_TO_BE_MERGED
+(	
+	{geocoord}|
+	{PLACE}|
+	{DocumentTitle}|
+	{MACAddress}|
+	{TelephoneNumber}|
+	{Money}|
+	{Date}
+)
+
+
+// Merge all entity types into a single annotation of type "Entity"
+Rule: MergeEntity
+(
+	TYPES_TO_BE_MERGED
+)
+:ent
+-->
+{
+	gate.AnnotationSet entSet = (gate.AnnotationSet)bindings.get("ent");
+	Node entStartNode = entSet.firstNode(); 
+	Node entEndNode = entSet.lastNode();
+ 
+ 	Annotation ent = (gate.Annotation)entSet.iterator().next();
+ 
+	 FeatureMap tempFeatures = ent.getFeatures();
+	 tempFeatures.put("EntityType", ent.getType() );
+
+	outputAS.add(entStartNode, entEndNode, "Entity",tempFeatures);	
+}

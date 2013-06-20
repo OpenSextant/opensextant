@@ -16,6 +16,12 @@ Build file for OpenSextant Desktop
 	<property file="${basedir}/build.properties" />
 
 	<!-- directory to contain the jar -->
+	<path id="release.target.root"> 
+		<dirset dir="../Release" includes="OpenSextant-v*"  />
+	</path> 
+	
+	<property name="release.target" refid="release.target.root"/> 
+
 	<property name="build.dir" location="${basedir}/build" />
     <property name="dist.dir" location="${release.target}/desktop" />
     <property name="opensextant.libs" location="${release.target}/lib" />

@@ -518,6 +518,7 @@ public class OSRow implements Comparable<OSRow> {
 
 		buttonContainer.getReRunButton().setEnabled(false);
 		buttonContainer.getViewResultsButton().setEnabled(false);
+                buttonContainer.getResultStatisticsButton().setEnabled(false);
 
 		tableHelper.getMainFrame().getApiHelper().reRun(this);
 	}
