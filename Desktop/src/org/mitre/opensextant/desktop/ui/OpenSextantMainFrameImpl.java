@@ -1,14 +1,10 @@
 package org.mitre.opensextant.desktop.ui;
 
-import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -19,25 +15,22 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileSystemView;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.mitre.opensextant.desktop.ui.forms.AboutFrame;
-import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.LogFrame;
 import org.mitre.opensextant.desktop.ui.forms.OpenSextantMainFrame;
 import org.mitre.opensextant.desktop.ui.forms.TextEntryFrame;
 import org.mitre.opensextant.desktop.ui.handlers.FileDropTransferHandler;
-import org.mitre.opensextant.desktop.ui.handlers.HelpKeyListener;
 import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
+import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 import org.mitre.opensextant.desktop.ui.table.OSTreeTable;
 import org.mitre.opensextant.desktop.util.TikaMimeTypes;
 import org.slf4j.Logger;
@@ -46,6 +39,7 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("serial")
 public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 
+    private static final String HELP_FILE = "/help/OpenSextant_Desktop.html";
 
     private static Logger log = LoggerFactory.getLogger(OpenSextantMainFrameImpl.class);
     private MainFrameTableHelper tableHelper;
@@ -72,9 +66,6 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 			this.setIconImage(new ImageIcon(imgURL, "Icon").getImage());
 		}
 
-		HelpKeyListener helpListen = new HelpKeyListener();
-		
-		
 		this.treePanel.setTransferHandler(new FileDropTransferHandler(apiHelper));
 		
 		table = new OSTreeTable(this);
@@ -244,7 +235,7 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame{
 	}
 
 	private void helpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		String path = System.getProperty("user.dir") + HelpKeyListener.HELP_FILE;
+		String path = System.getProperty("user.dir") + HELP_FILE;
 
 		try {
 			Desktop.getDesktop().open(new File(path));
