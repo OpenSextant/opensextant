@@ -25,6 +25,7 @@ import org.mitre.opensextant.desktop.ui.forms.panels.RowDurationImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
+import org.mitre.opensextant.desktop.util.JobStatistics;
 import org.mitre.opensextant.processing.Parameters;
 import org.mitre.opensextant.processing.output.AbstractFormatter;
 import org.mitre.xtext.XText;
@@ -35,7 +36,7 @@ public class OSRow implements Comparable<OSRow> {
 
 	public static enum STATUS {
 		INITIALIZING("Initializing"), QUEUED("Queued"), PROCESSING("Processing"), COMPLETE("Complete"), CANCELED("Canceled"), ERROR("Error");
-
+        
 		private String title;
 
 		private STATUS(String title) {
@@ -50,7 +51,9 @@ public class OSRow implements Comparable<OSRow> {
 	private static Logger log = LoggerFactory.getLogger(OSRow.class);
 
 	private static int counter = 0;
-
+ 
+    private JobStatistics stats;
+   
 	private static String[] fileTypes;
 	static {
 		try {
@@ -134,6 +137,10 @@ public class OSRow implements Comparable<OSRow> {
 		saveConfig();
 	}
 
+    public JobStatistics getStatistics(){
+        return this.stats;
+    }
+    
 	public void addChild(OSRow child) {
 		children.add(child);
 	}
