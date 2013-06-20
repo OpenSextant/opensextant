@@ -66,6 +66,8 @@ public class ConfigFrameImpl extends ConfigFrame {
                 xlsCheck.setSelected(true);
             else if ("SHAPEFILE".equals(t))
                 shapefileCheck.setSelected(true);
+            else if (("GDB").equals(t))
+            	gdbCheck.setSelected(true);
         }
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
