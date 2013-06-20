@@ -43,3 +43,5 @@ yom kippur
 halloween
 hanukkah
 ramadan
+april fools day
+april fool's day

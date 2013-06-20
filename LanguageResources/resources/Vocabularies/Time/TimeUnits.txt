@@ -1,13 +1,10 @@
 secs
 second
 seconds
-seconds
 mins
 minute
 minutes
-minutes
 hour
-hours
 hours
 day
 days
@@ -28,9 +25,12 @@ century
 milleniums
 millenia
 fiscal year
+fiscal years
 financial year
 financial years
 fiscal half
+fiscal halves
 fiscal quarter
 fiscal quarters
 tax year
+tax years

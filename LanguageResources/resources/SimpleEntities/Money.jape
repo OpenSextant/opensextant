@@ -10,7 +10,7 @@ import static gate.Utils.*;
  
 
 Phase:	Money
-Input:	Token Number CurrencySymbol Currency
+Input:	Token Number CurrencySymbol CurrencyName
 Options: control = appelt
 
 
@@ -39,7 +39,7 @@ Rule:Money1
 // 100 dollars
 Rule:Money2
 (
-  ({Number}):amount ({Currency} ):sym 
+  ({Number}):amount ({CurrencyName} ):sym 
 )
 :money
 -->
@@ -61,7 +61,7 @@ Rule:Money2
 // hundreds of dollars
 Rule:Money3
 (
- ({Number}):amount {Token.string ==~ "of|Of|OF"} ({Currency}):sym 
+ ({Number}):amount {Token.string ==~ "of|Of|OF"} ({CurrencyName}):sym 
 )
 :money
 -->

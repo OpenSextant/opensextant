@@ -475,3 +475,6 @@ zimbabwean dollar
 zimbabwean dollars
 zloty
 zlotys
+pence
+buck
+bucks

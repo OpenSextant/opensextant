@@ -53,7 +53,7 @@
 ./Object/clothing.txt:Clothing:Object.clothing
 ./Object/constructionEquipment.txt:ConstructionEquipment:Object.equipment.constructionEquipment
 ./Object/containers.txt:Container:Object.container
-./Object/CurrencyNames.txt:Currency
+./Object/CurrencyNames.txt:CurrencyName
 ./Object/CurrencySymbols.txt:CurrencySymbol
 ./Object/debris.txt:Debris:Object.debris
 ./Object/electronics.txt:Electronics:Object.electronics

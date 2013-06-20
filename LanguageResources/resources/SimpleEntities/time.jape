@@ -8,7 +8,7 @@ import static gate.Utils.*;
 
 
 Phase:	Time
-Input:	Token Number TimeUnit
+Input:	Token Number TimeUnit Month Date
 Options: control = appelt
 
 
@@ -59,4 +59,22 @@ Rule: LengthOfTime
 	outputAS.add(sentStartNode, sentEndNode, "TimePeriod",tempFeatures);		
 }
 
-
+// Jan 23, December 17
+Rule: DayOfTheMonth
+(
+		{Month notWithin Date} {Token.string ==~ "[1-9]|[12][0-9]|[3][01]"}
+)
+:sent
+-->
+{
+	gate.AnnotationSet sentSet = (gate.AnnotationSet)bindings.get("sent");
+	Node sentStartNode = sentSet.firstNode(); 
+	Node sentEndNode   = sentSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,sentSet));
+	 tempFeatures.put("hierarchy","Time.dayOfTheMonth");
+	 
+	outputAS.add(sentStartNode, sentEndNode, "DayOfTheMonth",tempFeatures);		
+}
