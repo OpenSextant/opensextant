@@ -69,10 +69,9 @@ Rule: DTG
 	gate.AnnotationSet dtgSet = (gate.AnnotationSet)bindings.get("whole");
 
 	gate.FeatureMap tempFeatures = Factory.newFeatureMap();
-	tempFeatures.put("rule","DTG");
+	tempFeatures.put("rule",ruleName());
 	String tmpDTG = gate.Utils.stringFor(doc,dtgSet);
-	tempFeatures.put("string",tmpDTG);
-	
+
 	String day   = tmpDTG.substring(6,8);
 	String month = tmpDTG.substring(4,6);
 	String year  = tmpDTG.substring(0,4);
@@ -125,7 +124,8 @@ Rule: DTG2
 	
 	
 	tempFeatures.put("string",wholeString);
-	tempFeatures.put("hierarchy","Time.dateTime");
+	tempFeatures.put("rule",ruleName());
+	tempFeatures.put("hierarchy","Time.date");
 
 	
 	outputAS.add(wholeSet.firstNode(), wholeSet.lastNode(), "Date",tempFeatures);
