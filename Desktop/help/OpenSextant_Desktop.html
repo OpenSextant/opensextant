@@ -96,7 +96,35 @@ function from that file. -->
         </p></div>
         <img src="./resources/osd_images/complete.png" width="680px"/><br/>
 
+        <h1>GDB Output</h1>
         <div><p>
+        
+        In order to output GDB files, you need to install some additional packages that cannot be re-distributed with the source:
+        <br/><br/>
+        
+        You will need msvcr90.dll.  You can get this from Microsoft from the following Visual Studio DLLs package:<br/><br/>
+        <a href="http://www.microsoft.com/en-us/download/details.aspx?id=5582">http://www.microsoft.com/en-us/download/details.aspx?id=5582</a><br/>
+        <br/><br/>
+        Once you have downloaded this file, install it onto your system by double clicking on the executable and running through the installer.
+        <br/><br/>
+        You will also need to download ESRI GDB API DLLs.  You can get those from the following link.  You will need to sign up for an ESRI account but the API can be downloaded for free.<br/><br/>
+        <a href="http://resources.arcgis.com/content/geodatabases/10.0/file-gdb-download">http://resources.arcgis.com/content/geodatabases/10.0/file-gdb-download</a><br/>
+        <br/><br/>
+        The ESRI download is a zip file.  You need to unzip the zip file into a directory on your system.  Once unzipped you need to add the bin64 directory from the zip to your windows path.
+        <br/><br/>
+        
+        To add a path to the PATH environment variable <br>
+        1. On the Start menu, right-click Computer.<br>
+        2. On the context menu, click Properties.<br>
+        3. In the System dialog box, click Advanced system settings.<br>
+        4. On the Advanced tab of the System Properties dialog box, click Environment Variables.<br>
+        5. In the System Variables box of the Environment Variables dialog box, scroll to Path and select it.<br>
+        6. Click the lower of the two Edit buttons in the dialog box.<br>
+        7. In the Edit System Variable dialog box, scroll to the end of the string in the Variable value box and add a semicolon (;).<br>
+        8. Add the full path to bin64 directory from the unzipped ESRI package after the semicolon.<br>
+        9. Click OK in three successive dialog boxes, and then close the System dialog box.<br><br>
+        
+        Once you have added the ESRI DLLs to your path, you need to restart your system.  After the restart you should be able to output GDBs.
           
         </p></div>
 
