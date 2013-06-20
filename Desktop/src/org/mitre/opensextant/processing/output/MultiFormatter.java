@@ -57,6 +57,7 @@ public class MultiFormatter extends AbstractFormatter {
 		for (AbstractFormatter child : children) {
 			child.writeOutput(corpus);
 		}
+        
 	}
 
 	@Override
