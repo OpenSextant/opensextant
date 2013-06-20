@@ -160,7 +160,7 @@ public class PatternOfLifeFinderPR extends AbstractLanguageAnalyser implements
 				}
 
 				if (patID.startsWith("TITLE")) {
-					 tmpType = "Title";
+					 tmpType = "DocumentTitle";
 					 tmpHier = "Information.identifier.documentTitle";
 				}
 
