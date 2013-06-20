@@ -86,10 +86,10 @@ public class MultiFormatter extends AbstractFormatter {
 		}
         for (Geocoding g : rowdata.geocodes) {
             JobStatistics s = row.getStatistics();
-  /*          if(g.is_coordinate) s.addGeo(g, JobStatistics.COORDINATE);
+            if(g.is_coordinate) s.addGeo(g, JobStatistics.COORDINATE);
             if(g.is_place) s.addGeo(g, JobStatistics.PLACE);
             if(g.is_country) s.addGeo(g, JobStatistics.COUNTRY);;
-            s.incrementObjCount();*/
+            s.incrementObjCount();
         }
 	}
 
