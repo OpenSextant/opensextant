@@ -39,6 +39,7 @@ import org.mitre.opensextant.desktop.ui.forms.panels.RowDurationImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
+import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -242,12 +243,19 @@ public class OSTreeTable {
 
 		header.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				JTableHeader h = (JTableHeader) e.getSource();
-				int nColumn = h.columnAtPoint(e.getPoint());
+                if(SwingUtilities.isLeftMouseButton(e)) { 
+                    JTableHeader h = (JTableHeader) e.getSource();
+                    int nColumn = h.columnAtPoint(e.getPoint());
 
-				if (nColumn != -1)
-					sortColumn(nColumn);
-			}
+                    if (nColumn != -1)
+                        sortColumn(nColumn);
+                } else if (SwingUtilities.isRightMouseButton(e)) {
+
+                    JPopupMenu popup = ViewHelper.getInstance().makePopup(treeTable);
+
+                    popup.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
 
 			void sortColumn(final int nColumn) {
 				DefaultTreeTableModel model = ((DefaultTreeTableModel) treeTable.getTreeTableModel());
@@ -268,6 +276,8 @@ public class OSTreeTable {
 		});
 
 		// treeTable.setRowSorter(
+        treeTable.getTableHeader().setReorderingAllowed(true); 
+        ViewHelper.getInstance().initialize(treeTable);
 		return treeTable;
 	}
 

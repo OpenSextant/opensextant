@@ -56,7 +56,9 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OpenSextant Desktop");
 
+        actionToolbar.setFloatable(false);
         actionToolbar.setRollover(true);
+        actionToolbar.setToolTipText("");
 
         addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/mitre/opensextant/desktop/icons/plusLarge.png"))); // NOI18N
         addButton.setToolTipText("Add File(s)");

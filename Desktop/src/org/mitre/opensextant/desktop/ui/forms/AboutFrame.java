@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
-import static org.mitre.opensextant.desktop.ui.handlers.HelpKeyListener.HELP_FILE;
 
 /**
  *

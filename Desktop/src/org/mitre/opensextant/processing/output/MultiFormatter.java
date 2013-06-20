@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import org.mitre.opensextant.desktop.ui.table.OSRow;
+import org.mitre.opensextant.desktop.util.JobStatistics;
+import org.mitre.opensextant.processing.Geocoding;
 
 import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.ProcessingException;
@@ -15,7 +18,14 @@ import org.mitre.opensextant.processing.output.AbstractFormatter;
 public class MultiFormatter extends AbstractFormatter {
 
 	List<AbstractFormatter> children = new ArrayList<AbstractFormatter>();
-	
+	private OSRow row;
+    
+    public MultiFormatter(OSRow row) throws ProcessingException {
+        super();
+        this.row = row;
+    }
+
+    
 	public void addChild(AbstractFormatter child) {
 		children.add(child);
 	}
@@ -54,9 +64,12 @@ public class MultiFormatter extends AbstractFormatter {
 
 	@Override
 	public void writeOutput(Corpus corpus) throws Exception {
-		for (AbstractFormatter child : children) {
-			child.writeOutput(corpus);
-		}
+	//	for (AbstractFormatter child : children) {
+	//		child.writeOutput(corpus);
+	//	}
+        for(Document doc : corpus) {
+            writeRowsFor(doc);
+        }
 	}
 
 	@Override
@@ -71,6 +84,13 @@ public class MultiFormatter extends AbstractFormatter {
 		for (AbstractFormatter child : children) {
 			child.writeGeocodingResult(rowdata);
 		}
+        for (Geocoding g : rowdata.geocodes) {
+            JobStatistics s = row.getStatistics();
+            if(g.is_coordinate) s.addGeo(g, JobStatistics.COORDINATE);
+            if(g.is_place) s.addGeo(g, JobStatistics.PLACE);
+            if(g.is_country) s.addGeo(g, JobStatistics.COUNTRY);;
+            s.incrementObjCount();
+        }
 	}
 
 }

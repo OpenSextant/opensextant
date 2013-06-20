@@ -22,7 +22,7 @@ public class OutputUtil {
 		// params.inputFile = row.getInputFile().getAbsolutePath();
 		// params.addOutputFormat(row.getOutputType());
 		
-		MultiFormatter formatter = new MultiFormatter();
+		MultiFormatter formatter = new MultiFormatter(row);
 		
 		for (String outputType : row.getOutputTypes()) {
 
@@ -72,11 +72,7 @@ public class OutputUtil {
             formatter.addChild(childFormatter);
 		}
 
-        Parameters params = new Parameters();
-        params.isdefault = false;
-        AbstractFormatter statsFormatter = AppBase.createFormatter("STAT", params);
-        formatter.addChild(statsFormatter);
-		return formatter;
+        return formatter;
 	}
 	
 

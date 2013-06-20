@@ -117,6 +117,7 @@ public class ConfigHelper {
     public synchronized void saveSettings() {
 
         try {
+            if (outTypes == null || outTypes.size() == 0) outTypes = DEFAULT_OUT_TYPE;
             config.setProperty("outType", outTypes);
             config.setProperty("outLocation", outLocation);
             config.setProperty("inLocation", inLocation);
