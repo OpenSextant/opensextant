@@ -221,6 +221,7 @@ public class OSTreeTable {
                         if (ConfigHelper.getInstance().isExtractIdentifiers()) {
                         	formatsMenu.add(new ViewResultsAction("Identifiers"));
                         }
+                        formatsMenu.add(new ViewResultsAction("Statistics"));
 
 						popup.add(formatsMenu);
 					} else if (formats.size() > 0) {
@@ -387,6 +388,8 @@ public class OSTreeTable {
 			for (OSRow row : rows) {
 				if ("Identifiers".equals(format)) {
 					row.viewIdentifiers();
+                } else if ("Statistics".equals(format)) {
+                    row.viewStatistics();
 				} else {
 					row.viewResults(format);
 				}

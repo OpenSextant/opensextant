@@ -6,10 +6,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.logging.Level;
+import javax.swing.JFrame;
 
 import javax.swing.JOptionPane;
 
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
+import org.mitre.opensextant.desktop.ui.forms.StatisticsFrame;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +45,12 @@ public class MainFrameTableHelper {
     public void removeRow(OSRow row) {
         frame.getTable().removeRow(row);
         ConfigHelper.getInstance().saveSettings();
+    }
+
+    public void viewStatistics(OSRow row) {
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        JFrame frame = new StatisticsFrame(row);
+        frame.setVisible(true); 
     }
     
     public void viewIdentifiers(OSRow row) {

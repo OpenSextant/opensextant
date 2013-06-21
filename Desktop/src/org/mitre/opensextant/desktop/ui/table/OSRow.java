@@ -349,7 +349,6 @@ public class OSRow implements Comparable<OSRow> {
 			if (this.status == STATUS.COMPLETE) {
 				buttonContainer.getViewResultsButton().setEnabled(true);
 				buttonContainer.getViewDirButton().setEnabled(true);
-                                buttonContainer.getResultStatisticsButton().setEnabled(true);
 			}
 
 			if (formatter != null) {
@@ -489,6 +488,9 @@ public class OSRow implements Comparable<OSRow> {
 		tableHelper.viewIdentifiers(this);
 	}
 
+    public void viewStatistics() {
+		tableHelper.viewStatistics(this);
+	}
 
 	public void viewDir() {
 		tableHelper.viewDir(this);
@@ -525,7 +527,6 @@ public class OSRow implements Comparable<OSRow> {
 
 		buttonContainer.getReRunButton().setEnabled(false);
 		buttonContainer.getViewResultsButton().setEnabled(false);
-                buttonContainer.getResultStatisticsButton().setEnabled(false);
 
 		tableHelper.getMainFrame().getApiHelper().reRun(this);
 	}

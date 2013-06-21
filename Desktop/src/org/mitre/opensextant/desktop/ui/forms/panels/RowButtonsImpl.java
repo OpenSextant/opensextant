@@ -67,6 +67,13 @@ public class RowButtonsImpl extends RowButtons {
 								}
                         	});
                         }
+                        popup.add(new AbstractAction("Statistics") { 
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                               row.viewStatistics();
+                            }
+                        });
+                        
                         popup.show(e.getComponent(), e.getX(), e.getY());
                     } else {
                         row.viewResults(row.getOutputTypes().get(0));
@@ -91,22 +98,11 @@ public class RowButtonsImpl extends RowButtons {
 			}
 		});
                 
-                resultStatisticsButton.addActionListener(new ActionListener() {
-                   
-                        @Override
-                        public void actionPerformed(ActionEvent e){
-                            JFrame.setDefaultLookAndFeelDecorated(true);
-                            JFrame frame = new StatisticsFrame(row);
-                            frame.setVisible(true);
-                        }
-                });
-		
 		if (row.isChild()) {
 			cancelDeleteButton.setVisible(false);
 			viewResultsButton.setVisible(false);
 			reRunButton.setVisible(false);
-                        viewDirButton.setVisible(false);
-                        resultStatisticsButton.setVisible(false);
+            viewDirButton.setVisible(false);
 		}
 	}
 
@@ -125,11 +121,6 @@ public class RowButtonsImpl extends RowButtons {
         public javax.swing.JButton getViewDirButton() {
 		return viewDirButton;
 	}
-        
-        public javax.swing.JButton getResultStatisticsButton() {
-                return resultStatisticsButton;
-        }
-
         
 	public void setCellEditor(RowButtonsEditor rowButtonsEditor) {
 		this.rowButtonsEditor = rowButtonsEditor;
