@@ -48,6 +48,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         formatLabel = new javax.swing.JLabel();
         xlsCheck = new javax.swing.JCheckBox();
         csvCheck = new javax.swing.JCheckBox();
+        sqliteCheck = new javax.swing.JCheckBox();
         extractPanel = new javax.swing.JPanel();
         extractTimeCheck = new javax.swing.JCheckBox();
         extractIdentifiersCheck = new javax.swing.JCheckBox();
@@ -149,6 +150,14 @@ public class ConfigFrame extends javax.swing.JFrame {
             }
         });
 
+        sqliteCheck.setText("SQLite");
+        sqliteCheck.setToolTipText("Esri Shapefile");
+        sqliteCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sqliteCheckActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout outputPanelLayout = new org.jdesktop.layout.GroupLayout(outputPanel);
         outputPanel.setLayout(outputPanelLayout);
         outputPanelLayout.setHorizontalGroup(
@@ -167,18 +176,17 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .add(outputPanelLayout.createSequentialGroup()
                         .add(6, 6, 6)
                         .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(outputPanelLayout.createSequentialGroup()
-                                .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(csvCheck)
-                                    .add(xlsCheck)
-                                    .add(kmlCheck))
-                                .add(34, 34, 34)
-                                .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(shapefileCheck)
-                                    .add(wktCheck)
-                                    .add(gdbCheck)))
+                            .add(csvCheck)
+                            .add(xlsCheck)
+                            .add(kmlCheck)
                             .add(jsonCheck))
-                        .add(0, 0, Short.MAX_VALUE)))
+                        .add(29, 29, 29)
+                        .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(sqliteCheck)
+                            .add(shapefileCheck)
+                            .add(wktCheck)
+                            .add(gdbCheck))
+                        .add(0, 391, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         outputPanelLayout.setVerticalGroup(
@@ -202,7 +210,9 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .add(kmlCheck)
                     .add(gdbCheck))
                 .add(7, 7, 7)
-                .add(jsonCheck)
+                .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jsonCheck)
+                    .add(sqliteCheck))
                 .add(0, 3, Short.MAX_VALUE))
         );
 
@@ -513,6 +523,10 @@ public class ConfigFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_csvTimeRadioButtonActionPerformed
 
+    private void sqliteCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sqliteCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sqliteCheckActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -579,6 +593,7 @@ public class ConfigFrame extends javax.swing.JFrame {
     private javax.swing.JLabel pathLabel;
     private javax.swing.JPanel processingPanel;
     protected javax.swing.JCheckBox shapefileCheck;
+    protected javax.swing.JCheckBox sqliteCheck;
     private javax.swing.JLabel tempLabel;
     protected javax.swing.JTextField tempText;
     protected javax.swing.JSpinner threadCount;

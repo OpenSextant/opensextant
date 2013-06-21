@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 
 public class OpenSextantWorker implements Runnable {
 
-	private static Logger log = LoggerFactory.getLogger(OSRow.class);
+	private static Logger log = LoggerFactory.getLogger(OpenSextantWorker.class);
 
 	private OSRow row;
 

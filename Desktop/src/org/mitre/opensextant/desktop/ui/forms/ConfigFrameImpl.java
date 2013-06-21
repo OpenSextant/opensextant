@@ -16,7 +16,6 @@ import javax.swing.event.ChangeListener;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.TimeAssociation;
@@ -67,13 +66,15 @@ public class ConfigFrameImpl extends ConfigFrame {
             else if ("SHAPEFILE".equals(t))
                 shapefileCheck.setSelected(true);
             else if (("GDB").equals(t))
-            	gdbCheck.setSelected(true);
+                gdbCheck.setSelected(true);
+            else if (("SQLITE").equals(t))
+                sqliteCheck.setSelected(true);
         }
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
-        Hashtable sliderLabels = new Hashtable();
+        Hashtable<Integer, JLabel> sliderLabels = new Hashtable<Integer, JLabel>();
         sliderLabels.put(0, new JLabel("Fatal"));
         sliderLabels.put(1, new JLabel("Error"));
         sliderLabels.put(2, new JLabel("Warn"));
@@ -137,6 +138,8 @@ public class ConfigFrameImpl extends ConfigFrame {
             outTypes.add("WKT");
         if (gdbCheck.isSelected())
             outTypes.add("GDB");
+        if (sqliteCheck.isSelected())
+            outTypes.add("SQLITE");
 
         configHelper.setOutLocation(outputText.getText());
         configHelper.setCacheRoot(cacheText.getText());

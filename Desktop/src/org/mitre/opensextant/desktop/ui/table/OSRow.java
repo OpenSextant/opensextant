@@ -235,16 +235,26 @@ public class OSRow implements Comparable<OSRow> {
             // if ((new File(this.outputLocation)).exists())
             rootOutputLocation += "_" + counter;
 			for (String outputType : outputTypes) {
+			    
 			    String outputLocation = rootOutputLocation;
 
-				if ("KML".equals(outputType))
-					outputLocation += ".kmz";
-				else if ("SHAPEFILE".equals(outputType)) {
-					outputLocation += "_shp";
-				} else {
-					outputLocation += "." + outputType.toLowerCase();
-				}
+			    switch (outputType) {
+                    case "KML":
+                        outputLocation += ".kmz";
+                        break;
+                    case "SHAPEFILE":
+                        outputLocation += "_shp";
+                        break;
+                    case "SQLITE":
+                        outputLocation += ".db";
+                        break;
+                    default:
+                        outputLocation += "." + outputType.toLowerCase();
+                        break;
+                }
+			    
 				outputLocations.put(outputType, outputLocation);
+				
 			}
             identitifiersOutputLocation = rootOutputLocation + "_identifiers.xls";
 		}

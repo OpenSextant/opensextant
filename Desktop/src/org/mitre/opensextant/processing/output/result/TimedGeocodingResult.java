@@ -42,7 +42,6 @@ public class TimedGeocodingResult extends GeocodingResult {
             if (a.getFeatures().get("EntityType") != null && ((String)a.getFeatures().get("EntityType")).startsWith("Time.date")) {
                 String match = Utils.cleanStringFor(doc, a);
                 times.add(match);
-                log.info("TIMING: " + a.getFeatures().get("EntityType") + "-> " + match);
                 
             }
         }
