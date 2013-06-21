@@ -1,0 +1,30 @@
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\cygwin\home\gblack\github\opensextant\Release\OpenSextant-v1.3\desktop\OpenSextantDesktop-1.3.jar</jar>
+  <outfile>C:\cygwin\home\gblack\github\opensextant\Release\OpenSextant-v1.3\desktop\OpenSextantDesktop.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>high</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <customProcName>false</customProcName>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+  <icon>C:\cygwin\home\gblack\github\opensextant\Desktop\launch4j\logo.ico</icon>
+  <jre>
+    <path></path>
+    <minVersion>1.7.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <initialHeapPercent>75</initialHeapPercent>
+    <maxHeapPercent>75</maxHeapPercent>
+  </jre>
+  <splash>
+    <file>C:\cygwin\home\gblack\github\opensextant\Desktop\launch4j\splash.bmp</file>
+    <waitForWindow>true</waitForWindow>
+    <timeout>60</timeout>
+    <timeoutErr>true</timeoutErr>
+  </splash>
+</launch4jConfig>
