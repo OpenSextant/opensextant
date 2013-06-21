@@ -5,8 +5,15 @@
 package org.mitre.opensextant.desktop.ui.forms;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
 import org.apache.commons.io.FileUtils;
+import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.desktop.util.FileSize;
 
@@ -36,40 +43,12 @@ public class StatisticsFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        countriesTable = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        fileSizeLabel = new javax.swing.JLabel();
-        processingTimeLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        informationTree = new javax.swing.JTree();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("File Size:");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Processing Time:");
-
-        countriesTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(countriesTable);
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Countries Found");
-
-        fileSizeLabel.setText("filesize");
-        fileSizeLabel.setToolTipText("");
-
-        processingTimeLabel.setText("processing time");
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        informationTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane2.setViewportView(informationTree);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,43 +56,15 @@ public class StatisticsFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(fileSizeLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(processingTimeLabel)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 95, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(101, 101, 101))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(294, 294, 294)
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(fileSizeLabel))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(processingTimeLabel))
-                .addGap(80, 80, 80)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -156,13 +107,15 @@ public class StatisticsFrame extends javax.swing.JFrame {
     
     public void addRowInformation()
     {
-        this.setTitle("Job: " + currentRow.getTitle());
+        this.setTitle("Job Statistics");
         
         String fileSizeString = "";
+        ArrayList<String> fileSizes = new ArrayList<String>();
         if (currentRow.hasChildren()) {
                 long size = 0;
                 for (OSRow child : currentRow.getChildren()) {
                         size += FileUtils.sizeOf(child.getInputFile());
+                        fileSizes.add(FileSize.byteCountToDisplaySize(FileUtils.sizeOf(child.getInputFile())));
                 }
                 fileSizeString += FileSize.byteCountToDisplaySize(size);
                 fileSizeString += " (" + currentRow.getChildren().size() + " files)";
@@ -171,26 +124,39 @@ public class StatisticsFrame extends javax.swing.JFrame {
 
         }
         
-        fileSizeLabel.setText(fileSizeString);
-        processingTimeLabel.setText(currentRow.getDurationPanel().getDurationString());
-        /*
-        try
+        
+        /***Tree modification***/
+        DefaultTreeModel model = (DefaultTreeModel)informationTree.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+        //root.removeAllChildren();
+        model.setRoot(new DefaultMutableTreeNode(currentRow.getTitle()));
+        root = (DefaultMutableTreeNode)model.getRoot();
+        root.add(new DefaultMutableTreeNode("File Size: " + fileSizeString));
+        root.add(new DefaultMutableTreeNode("Processing Time: " + currentRow.getDurationPanel().getDurationString()));
+        
+        if(!fileSizes.isEmpty())
         {
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
-            Date elapsed = new Date(sdf.parse(currentRow.getEndTime().toString()).getTime() - sdf.parse(currentRow.getStartTime().toString()).getTime());
-            processingTimeLabel.setText(sdf.format(elapsed));
+            DefaultMutableTreeNode fileTree = (DefaultMutableTreeNode) root.getChildAt(0);
+            int i = 0;
+            
+            for(String string : fileSizes)
+            {
+                fileTree.add(new DefaultMutableTreeNode(currentRow.getChildren().get(i).getTitle() + " -- File Size: " + string));
+                i++;
+            }
         }
-        catch(Exception e){ }*/
+        
+        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) informationTree.getCellRenderer();
+        renderer.setLeafIcon(null);
+        //renderer.setOpenIcon(null);
+        //renderer.setClosedIcon(null);
+        
+        model.reload(root);
         
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable countriesTable;
-    private javax.swing.JLabel fileSizeLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel processingTimeLabel;
+    protected javax.swing.JTree informationTree;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
