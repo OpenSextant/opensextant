@@ -43,6 +43,7 @@ public class ConfigHelper {
 
     public static final String OSD_TMP_BASE = "osd-tmp";
 
+    @SuppressWarnings("serial")
     private static final List<String> DEFAULT_OUT_TYPE = new ArrayList<String>() {
         {
             add("CSV");
@@ -168,7 +169,6 @@ public class ConfigHelper {
 
     public void loadRows(ApiHelper apiHelper, MainFrameTableHelper tableHelper) {
         Iterator<String> i = jobs.getKeys("rows");
-        String rowName = "";
 
         while (i.hasNext()) {
             try {

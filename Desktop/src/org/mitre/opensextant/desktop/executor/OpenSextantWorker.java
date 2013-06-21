@@ -7,9 +7,7 @@ import gate.creole.ResourceInstantiationException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Future;
 
 import org.mitre.opensextant.desktop.executor.opensextant.ext.converter.XTextConverter;

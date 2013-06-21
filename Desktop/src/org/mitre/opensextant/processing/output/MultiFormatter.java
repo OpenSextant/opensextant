@@ -47,18 +47,18 @@ public class MultiFormatter extends AbstractFormatter {
 	@Override
 	protected void createOutputStreams() throws Exception {
 		for (AbstractFormatter child : children) {
-			Method m = child.getClass().getDeclaredMethod("createOutputStreams", null);
+			Method m = child.getClass().getDeclaredMethod("createOutputStreams", (Class<?>[])null);
 			m.setAccessible(true);
-			m.invoke(child, null);
+			m.invoke(child, (Object[])null);
 		}
 	}
 
 	@Override
 	protected void closeOutputStreams() throws Exception {
 		for (AbstractFormatter child : children) {
-			Method m = child.getClass().getDeclaredMethod("closeOutputStreams", null);
+			Method m = child.getClass().getDeclaredMethod("closeOutputStreams", (Class<?>[])null);
 			m.setAccessible(true);
-			m.invoke(child, null);
+            m.invoke(child, (Object[])null);
 		}
 	}
 

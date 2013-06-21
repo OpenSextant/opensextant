@@ -4,8 +4,6 @@
  */
 package org.mitre.opensextant.desktop.ui.helpers;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -13,7 +11,6 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.mitre.opensextant.desktop.executor.OpenSextantExecutor;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
-import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

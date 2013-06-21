@@ -14,14 +14,12 @@ import org.mitre.opensextant.processing.Geocoding;
 import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.Parameters;
 import org.mitre.opensextant.processing.ProcessingException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class TimedGeocodingResult extends GeocodingResult {
 
-    private static Logger log = LoggerFactory.getLogger(TimedGeocodingResult.class);
 
     public final static String NOUN_PHRASE = "NounPhrase";
+    @SuppressWarnings("serial")
     public final static Set<String> NOUN_ANNOTATIONS = new HashSet<String>() {{
         add(NOUN_PHRASE);
     }};

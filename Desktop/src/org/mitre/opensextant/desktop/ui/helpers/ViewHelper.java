@@ -7,14 +7,13 @@ package org.mitre.opensextant.desktop.ui.helpers;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.swing.AbstractAction;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.table.TableColumn;
-import javax.swing.tree.TreePath;
+
 import org.jdesktop.swingx.JXTreeTable;
-import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
-import org.mitre.opensextant.desktop.ui.table.OSRow;
 
 /**
  *

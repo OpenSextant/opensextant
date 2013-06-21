@@ -1,8 +1,6 @@
 package org.mitre.opensextant.processing.output;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,13 +11,13 @@ import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.TimeAssociation;
 import org.mitre.opensextant.processing.Geocoding;
 import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.ProcessingException;
-import org.mitre.opensextant.processing.output.GISDataModel;
-import org.mitre.opensextant.processing.output.result.TimedGeocodingResult;
 import org.mitre.opensextant.processing.output.result.TimedGeocoding;
+import org.mitre.opensextant.processing.output.result.TimedGeocodingResult;
 
 public class TimeGISDataModel extends GISDataModel{
 
     private static final String TIME_FIELD = "time";
+    @SuppressWarnings("serial")
     private static final Set<String> CUSTOM_FIELDS = new HashSet<String>() {{
        add(TIME_FIELD);
     }};

@@ -6,10 +6,7 @@ import java.lang.reflect.Method;
 import java.net.URI;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,7 +18,6 @@ import org.mitre.giscore.events.Schema;
 import org.mitre.giscore.events.SimpleField;
 import org.mitre.giscore.output.IGISOutputStream;
 import org.mitre.giscore.output.StreamVisitorBase;
-import org.mitre.opensextant.desktop.executor.OpenSextantWorker;
 import org.mitre.opensextant.desktop.persistence.model.Execution;
 import org.mitre.opensextant.desktop.persistence.model.Result;
 import org.mitre.opensextant.desktop.persistence.util.HibernateUtil;

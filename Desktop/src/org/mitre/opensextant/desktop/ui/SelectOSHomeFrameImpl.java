@@ -10,15 +10,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import javax.swing.ImageIcon;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.desktop.Main;
-import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.forms.SelectOSHomeFrame;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.util.Initialize;

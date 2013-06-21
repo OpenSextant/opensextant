@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="results")
+@SuppressWarnings("serial")
 public class Result implements Serializable{
 
 	private long id = 1L;

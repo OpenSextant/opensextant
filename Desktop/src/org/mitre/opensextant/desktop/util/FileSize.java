@@ -1,7 +1,5 @@
 package org.mitre.opensextant.desktop.util;
 
-import java.math.BigInteger;
-
 import org.apache.commons.io.FileUtils;
 
 public class FileSize {

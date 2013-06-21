@@ -17,7 +17,6 @@ import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.processing.ProcessingException;
-import org.mitre.opensextant.processing.ResultsUtility;
 import org.slf4j.LoggerFactory;
 
 public class OSGeoCoder extends AppBase {

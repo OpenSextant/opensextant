@@ -19,6 +19,7 @@ import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 
 // Must override the tooltip renderer for the entire table to get at
 // individual component tips
+@SuppressWarnings("serial")
 public class TooltipJXTreeTable extends JXTreeTable {
 
 	TooltipJXTreeTable(OSTreeTableModel model) {
@@ -59,7 +60,6 @@ public class TooltipJXTreeTable extends JXTreeTable {
 
 	@Override
 	public String getToolTipText(MouseEvent event) {
-		String tip = null;
 		Point p = event.getPoint();
 
 		// Locate the renderer under the event location

@@ -20,6 +20,7 @@ import org.apache.log4j.Logger;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.TimeAssociation;
 
+@SuppressWarnings("serial")
 public class ConfigFrameImpl extends ConfigFrame {
 
     private ConfigHelper configHelper;

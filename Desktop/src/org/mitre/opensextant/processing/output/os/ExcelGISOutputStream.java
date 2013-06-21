@@ -30,6 +30,7 @@ public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutpu
     private static final String ISO_DATE_FMT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     private SafeDateFormat dateFormatter;
     
+    @SuppressWarnings("serial")
     public static List<String> IDENTIFIER_FIELDS = new ArrayList<String>() {{
         add("id");
         add("matchtext");

@@ -1,26 +1,19 @@
 package org.mitre.opensextant.processing.output.result;
 
+import gate.Annotation;
+import gate.Document;
+import gate.Utils;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import gate.Annotation;
-import gate.Document;
-import gate.FeatureMap;
-import gate.Utils;
-
-import org.mitre.opensextant.placedata.Geocoord;
-import org.mitre.opensextant.placedata.PlaceCandidate;
-import org.mitre.opensextant.processing.Geocoding;
 import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.Parameters;
 import org.mitre.opensextant.processing.ProcessingException;
 import org.mitre.opensextant.processing.ResultsUtility;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class IdentifierResult extends GeocodingResult {
 
-    private static Logger log = LoggerFactory.getLogger(IdentifierResult.class);
 
     public final static String NOUN_PHRASE = "NounPhrase";
     public final static Set<String> NOUN_ANNOTATIONS = new HashSet<String>();

@@ -39,6 +39,7 @@ public class LookAndFeelHelper {
         }
     }
 
+    @SuppressWarnings("serial")
     private static class OptionPaneCloseAction extends AbstractAction {
 
         public void actionPerformed(ActionEvent e) {
@@ -47,6 +48,7 @@ public class LookAndFeelHelper {
         }
     }
 
+    @SuppressWarnings("serial")
     private static class OptionPaneArrowAction extends AbstractAction {
 
         private boolean myMoveRight;

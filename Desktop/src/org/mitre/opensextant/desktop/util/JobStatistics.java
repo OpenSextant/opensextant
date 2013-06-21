@@ -4,12 +4,9 @@
  */
 package org.mitre.opensextant.desktop.util;
 
-import gate.Document;
 import java.util.ArrayList;
-import org.mitre.giscore.events.Feature;
+
 import org.mitre.opensextant.processing.Geocoding;
-import org.mitre.opensextant.processing.OpenSextantSchema;
-import org.mitre.opensextant.processing.output.result.IdentifierResult;
 
 /**
  *

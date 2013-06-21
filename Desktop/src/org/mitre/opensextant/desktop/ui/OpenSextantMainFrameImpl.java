@@ -30,7 +30,6 @@ import org.mitre.opensextant.desktop.ui.handlers.FileDropTransferHandler;
 import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
-import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 import org.mitre.opensextant.desktop.ui.table.OSTreeTable;
 import org.mitre.opensextant.desktop.util.TikaMimeTypes;
 import org.slf4j.Logger;

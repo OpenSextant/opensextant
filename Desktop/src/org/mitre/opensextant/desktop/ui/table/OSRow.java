@@ -9,15 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.Future;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.mitre.opensextant.desktop.executor.OpenSextantWorker;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;

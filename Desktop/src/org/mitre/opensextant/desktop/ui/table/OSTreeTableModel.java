@@ -1,17 +1,15 @@
 package org.mitre.opensextant.desktop.ui.table;
 
 import java.text.SimpleDateFormat;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import javax.swing.tree.DefaultMutableTreeNode;
+
 import javax.swing.tree.TreePath;
 
 import org.apache.commons.io.FileUtils;
 import org.jdesktop.swingx.JXTreeTable;
-
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import org.jdesktop.swingx.treetable.TreeTableNode;

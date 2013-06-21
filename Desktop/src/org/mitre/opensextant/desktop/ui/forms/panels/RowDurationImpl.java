@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 
+@SuppressWarnings("serial")
 public class RowDurationImpl extends RowDuration {
 
     private long duration = 0;

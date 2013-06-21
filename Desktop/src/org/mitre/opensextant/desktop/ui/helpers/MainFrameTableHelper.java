@@ -5,9 +5,8 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
-import java.util.logging.Level;
-import javax.swing.JFrame;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
@@ -89,7 +88,7 @@ public class MainFrameTableHelper {
         
         if(!openDirOnly) {
             try { // Note: This is windows specific, if it fails we just open the folder
-                Process p = new ProcessBuilder("explorer.exe", "/select," + fileLocation).start();
+                new ProcessBuilder("explorer.exe", "/select," + fileLocation).start();
             } catch (IOException ex) { // Failing probably means we are on a different OS
                 openDirOnly = true;
             }

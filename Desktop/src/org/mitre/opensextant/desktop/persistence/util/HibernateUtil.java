@@ -1,7 +1,6 @@
 package org.mitre.opensextant.desktop.persistence.util;
 
 import java.io.File;
-import java.net.URL;
 import java.util.Properties;
 
 import org.hibernate.SessionFactory;

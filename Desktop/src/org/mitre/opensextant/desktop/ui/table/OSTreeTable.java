@@ -40,15 +40,12 @@ import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
 import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class OSTreeTable {
 	private static final String ICON_LOCATION = "/org/mitre/opensextant/desktop/icons/";
 	private JXTreeTable treeTable;
 	private final OSTreeTableModel treeTableModel = generateTestModel();
 	private OpenSextantMainFrameImpl frame;
-	private static Logger log = LoggerFactory.getLogger(OSTreeTable.class);
 
 	public OSTreeTable(OpenSextantMainFrameImpl frame) {
 		this.frame = frame;
@@ -68,11 +65,12 @@ public class OSTreeTable {
                             OSRow r = (OSRow)treeTable.getValueAt(rowId, OSTreeTableModel.TIMING);
                             r.toggleDurationColor(true);
                         }
-                        OSRow r = (OSRow)treeTable.getValueAt(treeTable.getSelectedRow(), OSTreeTableModel.TIMING);
+//                        OSRow r = (OSRow)treeTable.getValueAt(treeTable.getSelectedRow(), OSTreeTableModel.TIMING);
                         
                     }
                 });
                 
+        @SuppressWarnings("serial")
 		class SortIconTableHeaderRenderer extends JLabel implements TableCellRenderer {
 
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row,
@@ -161,8 +159,9 @@ public class OSTreeTable {
 		treeTable.getTableHeader().setReorderingAllowed(false);
 
 		treeTable.setTreeCellRenderer(new DefaultTreeCellRenderer() {
+            private static final long serialVersionUID = -5532638460304402889L;
 
-			public java.awt.Component getTreeCellRendererComponent(javax.swing.JTree tree, Object value, boolean sel, boolean expanded,
+            public java.awt.Component getTreeCellRendererComponent(javax.swing.JTree tree, Object value, boolean sel, boolean expanded,
 					boolean leaf, int row, boolean hasFocus) {
 
 				super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
