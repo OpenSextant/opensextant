@@ -1,20 +1,20 @@
 package org.mitre.opensextant.desktop;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import gate.Annotation;
 import gate.Corpus;
 import gate.Document;
 import gate.Factory;
 import gate.Utils;
 import gate.creole.ResourceInstantiationException;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import junit.framework.TestCase;
 
-import org.apache.commons.collections.ListUtils;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.junit.Before;
 import org.junit.Test;
