@@ -37,6 +37,10 @@ public class JobStatistics {
     public void incrementObjCount() {
         objCount ++;
     }
+    
+    public int getObjCount() {
+        return objCount;
+    }
 
     
 }
