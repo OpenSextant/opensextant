@@ -35,6 +35,13 @@ public class TextInput {
     public String buffer = null;
     public String id = null;
     
+    /** A simple input.  
+     * If this input is to be used with the normal OpenSextant pipelines, the caller
+     * must ensure the input text is UTF-8 encoded content.
+     * 
+     * @param id any identifier for the text buffer
+     * @param buf any textual content; any format or encoding.  
+     */
     public TextInput(String id, String buf){
         this.id = id;
         this.buffer = buf;
