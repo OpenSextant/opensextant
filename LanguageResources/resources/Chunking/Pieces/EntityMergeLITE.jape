@@ -25,7 +25,7 @@ Macro: TYPES_TO_BE_MERGED
 	{EMail}|
 	{URL}|
 	{WebSite}|
-	{IPAddress}|
+	{IPAddress}
 )
 
 
