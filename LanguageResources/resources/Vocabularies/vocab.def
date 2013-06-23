@@ -126,7 +126,6 @@
 ./Person/personTitle_Personal.txt:PersonTitle:Person.name.title.personalTitle
 ./Person/personTitle_Religion.txt:PersonTitle:Person.name.title.religiousTitle
 ./Person/personVerb.txt:PersonVerb
-./Substance/chemical_elements.txt:ChemicalElement:Substance.chemicalElement
 ./Substance/chemicals.txt:Chemical:Substance.chemical
 ./Substance/drugs.txt:Drug:Substance.drug
 ./Substance/materials.txt:Material:Substance.Material
