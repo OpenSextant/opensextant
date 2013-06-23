@@ -2,6 +2,8 @@ area
 areas
 border region
 border regions
+heartland
+heartlands
 land
 lands
 localities
@@ -14,10 +16,10 @@ sector
 sectors
 sub area
 sub areas
-subarea
 sub-area
-subareas
 sub-areas
+subarea
+subareas
 suburb
 suburbs
 tribal region
@@ -26,5 +28,3 @@ urban area
 urban areas
 zone
 zones
-heartland
-heartlands

@@ -13,11 +13,10 @@ agency for international development
 agency for toxic substances and disease registry
 agricultural marketing service
 agricultural research service
-agriculture department
 alcohol and tobacco tax and trade bureau
-alcohol, tobacco, firearms, and explosives bureau
-alcohol, tobacco, firearms, and explosives
 alcohol, tobacco and firearms
+alcohol, tobacco, firearms, and explosives
+alcohol, tobacco, firearms, and explosives bureau
 american battle monuments commission
 american forces information service
 americorps
@@ -55,12 +54,12 @@ bureau of transportation statistics
 capitol police
 capitol visitor center
 census bureau
-central command
 centcom
 center for food safety and applied nutrition
 centers for disease control
 centers for disease control and prevention
 centers for medicare & medicaid services
+central command
 central intelligence agency
 chemical safety and hazard investigation board
 chief acquisition officers council
@@ -69,7 +68,6 @@ chief human capital officers council
 chief information officers council
 citizens' stamp advisory committee
 citizenship and immigration services
-commerce department
 commission of fine arts
 commission on civil rights
 commission on international religious freedom
@@ -95,12 +93,12 @@ court of federal claims
 court of international trade
 court services and offender supervision agency for the district of columbia
 customs and border protection
+dea
 defense acquisition university
 defense advanced research projects agency
 defense commissary agency
 defense contract audit agency
 defense contract management agency
-defense department
 defense finance and accounting services
 defense human resources activity
 defense information systems agency
@@ -116,35 +114,21 @@ defense technical information center
 defense threat reduction agency
 delaware river basin commission
 denali commission
-department of agriculture
-department of defense
 department of defense inspector general
-department of education
-department of energy
-department of health and human services
 department of homeland security
 department of housing and urban development
-department of justice
-department of labor
-department of state
-department of the interior
-department of the treasury
-department of transportation
 department of veterans affairs
 domestic policy council
 drug enforcement administration
-dea
 economic adjustment office
 economic development administration
 economic research service
 economic, business and agricultural affairs
 economics and statistics administration
-education department
 election assistance commission
 employee benefits security administration
 employment and training administration
 endangered species program
-energy department
 energy information administration
 english language acquisition office
 environmental protection agency
@@ -208,7 +192,6 @@ government national mortgage association
 government printing office
 grain inspection, packers and stockyards administration
 harry s. truman scholarship foundation
-health and human services department
 health resources and services administration
 healthy homes and lead hazard control office
 helsinki commission
@@ -228,14 +211,12 @@ innovation and improvement office
 institute of education sciences
 institute of museum and library services
 institute of peace
+inter-american foundation
 interagency alternative dispute resolution working group
 interagency council on homelessness
-inter-american foundation
-interior department
 internal revenue service
 international trade administration
 international trade commission
-interpol
 james madison memorial fellowship foundation
 japan-united states friendship commission
 job corps
@@ -249,8 +230,6 @@ joint forces staff college
 joint military intelligence college
 judicial circuit courts of appeal
 judicial panel on multidistrict litigation
-justice department
-labor department
 legal services corporation
 library of congress
 marine mammal commission
@@ -313,7 +292,6 @@ national telecommunications and information administration
 national transportation safety board
 national war college
 national weather service
-national weather service
 natural resources conservation service
 northern command
 northwest power planning council
@@ -353,6 +331,7 @@ pension benefit guaranty corporation
 pentagon force protection agency
 pipeline and hazardous materials safety administration
 policy development and research
+postal inspection service
 postal regulatory commission
 postal service
 power administrations
@@ -386,7 +365,6 @@ southeastern power administration
 southern command
 southwestern power administration
 special forces operations command
-state department
 state justice institute
 stennis center for public service
 strategic command
@@ -398,62 +376,12 @@ tax court
 taxpayer advocacy panel
 tennessee valley authority
 trade and development agency
+transportation and security administration
 transportation command
-transportation department
 transportation security administration
-transportation and security administration 
-treasury department
 tricare management
 tricare management activity
 trustee program
-united states abilityone commission
-united states access board
-united states agency for international development
-united states air force
-united states arctic research commission
-united states army
-united states army corps of engineers
-united states botanic garden
-united states capitol police
-united states capitol visitor center
-united states central command
-united states citizenship and immigration services
-united states coast guard
-united states commission of fine arts
-united states commission on international religiounited states freedom
-united states commodity futures trading commission
-united states court of appeals for veterans claims
-united states customs and border protection
-united states department of agriculture
-united states department of commerce
-united states department of health and human services
-united states election assistance commission
-united states european command
-united states fleet forces command
-united states geological survey
-united states house of representatives
-united states immigration and customs enforcement
-united states international trade commission
-united states joint forces command
-united states marine corps
-united states military academy, west point
-united states mint
-united states mission to the united nations
-united states national central bureau - interpol
-united states navy
-united states northern command
-united states pacific command
-united states patent and trademark office
-united states postal service
-united states senate
-united states sentencing commission
-united states southern command
-united states special operations command
-united states strategic command
-united states trade and development agency
-united states trade representative
-united states transportation command
-united states trustee program
 u.s. abilityone commission
 u.s. access board
 u.s. agency for international development
@@ -492,6 +420,7 @@ u.s. navy
 u.s. northern command
 u.s. pacific command
 u.s. patent and trademark office
+u.s. postal inspection service
 u.s. postal service
 u.s. senate
 u.s. sentencing commission
@@ -503,8 +432,55 @@ u.s. trade representative
 u.s. transportation command
 u.s. trustee program
 uniformed services university of the health sciences
+united states abilityone commission
+united states access board
+united states agency for international development
+united states air force
+united states arctic research commission
+united states army
+united states army corps of engineers
+united states botanic garden
+united states capitol police
+united states capitol visitor center
+united states central command
+united states citizenship and immigration services
+united states coast guard
+united states commission of fine arts
+united states commission on international religiounited states freedom
+united states commodity futures trading commission
+united states court of appeals for veterans claims
+united states customs and border protection
+united states department of agriculture
+united states department of commerce
+united states department of health and human services
+united states election assistance commission
+united states european command
+united states fleet forces command
+united states geological survey
+united states house of representatives
+united states immigration and customs enforcement
+united states international trade commission
+united states joint forces command
+united states marine corps
+united states military academy, west point
 united states mint
+united states mission to the united nations
+united states national central bureau - interpol
+united states navy
+united states northern command
+united states pacific command
+united states patent and trademark office
 united states postal inspection service
+united states postal service
+united states senate
+united states sentencing commission
+united states southern command
+united states special operations command
+united states strategic command
+united states trade and development agency
+united states trade representative
+united states transportation command
+united states trustee program
 us abilityone commission
 us access board
 us agency for international development
@@ -546,6 +522,7 @@ us navy
 us northern command
 us pacific command
 us patent and trademark office
+us postal inspection service
 us postal service
 us senate
 us sentencing commission
@@ -570,6 +547,3 @@ western area power administration
 white house commission on presidential scholars
 white house office of administration
 woodrow wilson international center for scholars
-postal inspection service
-us postal inspection service
-u.s. postal inspection service

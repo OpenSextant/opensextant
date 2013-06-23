@@ -6,9 +6,13 @@ departure
 departures
 evacuation
 evacuations
+exploration
+explorations
 journey
 journeys
 journies
+maneuver
+maneuvers
 movement
 movements
 pilgrimage
@@ -23,7 +27,3 @@ visit
 visits
 voyage
 voyages
-maneuver
-maneuvers
-exploration
-explorations

@@ -1,19 +1,38 @@
-auto
-autos
-automobile
-automobiles
 ammunition carrier
 ammunition carriers
+auto
+automobile
+automobiles
+autos
+bicycle
+bicycles
 bike
+boxcar
+boxcars
 bus
 buses
 busses
-boxcar
-boxcars
 car
+cargo truck
+cargo trucks
 cars
+cart
+carts
+chassis
 firetruck
 firetrucks
+flat bed
+flat beds
+flat-bed
+flat-beds
+flatbed
+flatbed trailer
+flatbed trailers
+flatbeds
+flatcar
+flatcars
+glider
+gliders
 heavy equipment transport
 heavy equipment transporter
 heavy equipment transporters
@@ -22,127 +41,104 @@ heavy-equipment transport
 heavy-equipment transporter
 heavy-equipment transporters
 heavy-equipment transports
+house trailer
+house trailers
+housetrailer
+housetrailers
 jeep
 jeeps
+light utility vehicle
+light utility vehicles
 limousine
 limousines
 locomotive
 locomotives
-mini-bus
-mini-buses
 mini bus
 mini buses
+mini-bus
+mini-buses
 minibus
 minibuses
 minivan
 minivans
+motor scooter
+motor scooters
 motor vehicle
 motor vehicles
+motorbike
+motorbikes
+motorcycle
+motorcycles
+motorscooter
+motorscooters
 passenger vessel
 passenger vessels
-pickup
-pickups
-pickup truck
-pickup trucks
 pick-up
-pick-ups
 pick-up truck
 pick-up trucks
-rail car
-rail cars
-railcar
-railcars
-sedan
-sedans
-sport utility vehicle
-sport utility vehicles
-suv
-suvs
-taxi
-taxis
-train
-trains
-trainset
-trainsets
-transporter
-transporters
-truck
-trucks
-vehicle
-vehicles
-light utility vehicle
-light utility vehicles
-tanker truck
-tanker trucks
-utility vehicle
-utility vehicles
+pick-ups
+pickup
+pickup truck
+pickup trucks
+pickups
+pov
+povs
 prime mover
 prime movers
 prime-mover
 prime-movers
 primemover
 primemovers
-taxi
-taxis
-taxicab
-taxicabs
-trailer
-trailers
-flatbed trailer
-flatbed trailers
-cargo truck
-cargo trucks
-minibus
-minibuses
-van
-vans
-vessel
-vessels
-water tanker
-water tankers
-motorcycle
-bicycle
-motorcycles
-motorbike
-motorbikes
-motor scooter
-motor scooters
-motorscooter
-motorscooters
-bicycles
 privately owned vehicle
 privately owned vehicles
 privately-owned vehicle
 privately-owned vehicles
-pov
-povs
-chassis
-cart
-carts
-glider
-gliders
-transloader
-transloaders
-flatcar
-flatcars
+rail car
+rail cars
+railcar
+railcars
+sedan
+sedans
 spacecraft
+sport utility vehicle
+sport utility vehicles
+stake bed
+stake beds
+stake-bed
+stake-beds
+stakebed
+stakebeds
+suv
+suvs
+tanker truck
+tanker trucks
+taxi
+taxicab
+taxicabs
+taxis
 tractor trailer
 tractor trailers
 tractor-trailer
 tractor-trailers
-flatbed
-flatbeds
-flat-bed
-flat-beds
-flat bed
-flat beds
-stakebed
-stake bed
-stake-bed
-stakebeds
-stake beds
-stake-beds
-housetrailer
-housetrailers
-house trailer
-house trailers
+trailer
+trailers
+train
+trains
+trainset
+trainsets
+transloader
+transloaders
+transporter
+transporters
+truck
+trucks
+utility vehicle
+utility vehicles
+van
+vans
+vehicle
+vehicles
+vessel
+vessels
+water tanker
+water tankers

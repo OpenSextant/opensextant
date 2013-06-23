@@ -3,7 +3,6 @@ c.f.o.
 c.o.o.
 ceo
 cfo
-coo
 chairman
 chairman of the board
 chairperson
@@ -11,6 +10,7 @@ chairwoman
 comptroller
 comptroller general
 controller
+coo
 dean
 director
 doctor
@@ -30,7 +30,3 @@ regional general manager
 research director
 senior director
 treasurer
-v. p.
-vice president
-vice-president
-vp

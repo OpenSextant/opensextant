@@ -1,45 +1,44 @@
-cloud
-clouds
-cloud cover
-cyclone
-fog
-smog
-weather
-rain
-rains
-rainfall
-snow
-snowfall
-storm
-hurricane
-monsoon
-typhoon
-wind
-wind storm
-storms
-hurricanes
-monsoons
-typhoons
-winds
-wind storms
-wind pattern
-wind patterns
-winter condition
-winter conditions
-drought
-droughts
-snowpack
-waves
-surf
-precipitation
 blizzard
-heatwave
+climate
+cloud
+cloud cover
+clouds
 cold snap
 cold spell
-sandstorm
-thunder
-thunderstorm
-thunder storm
-climate
+cyclone
+drought
+droughts
+fog
+heatwave
+hurricane
+hurricanes
+monsoon
+monsoons
+precipitation
+rain
+rainfall
+rains
 sandstorm
 sandstorms
+smog
+snow
+snowfall
+snowpack
+storm
+storms
+surf
+thunder
+thunder storm
+thunderstorm
+typhoon
+typhoons
+waves
+weather
+wind
+wind pattern
+wind patterns
+wind storm
+wind storms
+winds
+winter condition
+winter conditions

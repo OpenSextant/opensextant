@@ -1,21 +1,21 @@
+blasting cap
+blasting caps
 bomb
 bombs
+detonator
+detonators
+explosive
+explosives
+fragmentation grenade
+fragmentation grenades
 grenade
 grenades
 hand grenade
 hand grenades
-fragmentation grenade
-fragmentation grenades
-improvised explosive device
-improvised explosive devices
 ied
 ieds
-explosives
-explosive
-detonator
-detonators
-blasting cap
-blasting caps
+improvised explosive device
+improvised explosive devices
 land mine
 land mines
 torpedo

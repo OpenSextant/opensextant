@@ -1,11 +1,11 @@
-conflict
-meeting
-fighting
 agreement
 collaboration
+communication
+competition
+conflict
 confrontation
 contact
 dispute
+fighting
+meeting
 relation
-communication
-competition

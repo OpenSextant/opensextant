@@ -3,19 +3,19 @@ airlines
 bank
 bank of
 banks of
+brokerage
+brokerages
 bureau
 bureaus
 business
 businesses
-companies
-company
+co. ltd.
 contractor
 contractors
 corp
 corp.
 corporation
 corporations
-co. ltd.
 department
 departments
 directorate
@@ -24,6 +24,8 @@ firm
 firms
 foundation
 foundations
+franchise
+franchises
 gmbh
 inc
 inc.
@@ -53,16 +55,18 @@ press agency
 presse
 sub contractor
 sub contractors
-subcontractor
 sub-contractor
-subcontractors
 sub-contractors
+subcontractor
+subcontractors
 subsidiaries
 subsidiary
+sweatshop
+sweatshops
 trading company
 trading firm
+travel agencies
+travel agency
+vendor
+vendors
 work force
-brokerage
-brokerages
-franchise
-franchises

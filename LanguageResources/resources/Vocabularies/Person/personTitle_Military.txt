@@ -1,11 +1,12 @@
+1st sgt
 adjutant
 adjutant general
 admiral
 air vice marshal
+bgen
 brig
 brig.
 brig. gen.
-bgen
 brigadier
 brigadier general
 capt
@@ -13,13 +14,13 @@ capt.
 captain
 chief
 chief petty officer
+cmdr
+cmdr.
 col
 col.
 colonel
 colonel general
 color sergeant
-cmdr
-cmdr.
 commander
 commander in chief
 commander-in-chief
@@ -31,7 +32,6 @@ field marshal
 first lieutenant
 first mate
 first sergeant
-1st sgt
 flag captain
 fleet admiral
 full admiral
@@ -42,23 +42,23 @@ group captain
 gunnery sergeant
 lance corporal
 lieutenant
-lt
-lt.
 lieutenant colonel
 lieutenant commander
 lieutenant general
 lieutenant jg
 lieutenant junior grade
 light colonel
-ltcol
+lt
 lt col
-lt. col.
 lt comdr
+lt.
+lt. col.
 lt. comdr.
+ltcol
 ltcol.
+maj gen
 maj.
 major
-maj gen
 major general
 major-general
 marshal
@@ -75,13 +75,13 @@ recruiting-sergeant
 seaman
 second lieutenant
 sergeant
-sgt
 sergeant at arms
 sergeant first class
+sgt
 staff sergeant
 sub commander
-subcommander
 sub-commander
+subcommander
 subcommanders
 sublieutenant
 supreme commander
@@ -89,4 +89,3 @@ technical sergeant
 vice admiral
 warrant officer
 wing commander
-

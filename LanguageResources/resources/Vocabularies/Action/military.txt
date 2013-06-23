@@ -18,20 +18,26 @@ cease fire
 cease fires
 ceasefire
 ceasefires
+combat
 counter attack
 counter attacks
-counterattack
 counter-attack
-counterattacks
 counter-attacks
+counterattack
+counterattacks
 deployment
 deployment drill
 deployment drills
 deployments
+disarmament
+disarmaments
 firefight
 firefights
 firing drill
 firing drills
+friendly fire
+friendly fire incident
+friendly fire incidents
 hostilities
 incursion
 incursions
@@ -39,6 +45,12 @@ invasion
 invasions
 live fire drill
 live fire drills
+military action
+military actions
+military activities
+military activity
+military campaign
+military campaigns
 missile attack
 missile attacks
 missile launch
@@ -49,11 +61,11 @@ mortar attacks
 nuclear exchange
 nuclear exchanges
 preemptive strike
+re-deployment
+re-deployments
 reconnaissance
 redeployment
-re-deployment
 redeployments
-re-deployments
 rocket attack
 rocket attacks
 sortie
@@ -67,15 +79,3 @@ weapon testing
 weapons testing
 withdrawal
 withdrawals
-disarmament
-disarmaments
-military action
-military activity
-military actions
-military activities
-military campaign
-military campaigns
-friendly fire
-friendly fire incident
-friendly fire incidents
-combat

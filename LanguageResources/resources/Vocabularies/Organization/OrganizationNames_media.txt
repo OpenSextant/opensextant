@@ -1,3 +1,4 @@
+Union-Tribune
 akron beacon journal
 albuquerque journal
 arizona daily star
@@ -129,6 +130,7 @@ pittsburgh tribune review
 pittsburgh tribune-review
 plain dealer
 post and courier
+press corps
 press enterprise
 press telegram
 press-enterprise
@@ -179,10 +181,9 @@ today evening news
 tokyo sports
 tulsa world
 u t san diego
-union tribune
-Union-Tribune 
-usa today
 u-t san diego
+union tribune
+usa today
 virginian pilot
 virginian-pilot
 wall street journal

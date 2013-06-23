@@ -19,6 +19,8 @@ air defense facilities
 air defense facility
 air force base
 air force bases
+air strip
+air strips
 airbase
 airbases
 airfield
@@ -29,8 +31,6 @@ airport
 airports
 airstrip
 airstrips
-air strip
-air strips
 alcohol plant
 alcohol plants
 ammunition storage area
@@ -91,11 +91,11 @@ bazaars
 beach
 beach head
 beach heads
+beach-head
+beach-heads
 beaches
 beachhead
-beach-head
 beachheads
-beach-heads
 beachs
 beacon
 beacons
@@ -116,6 +116,7 @@ bombing range
 bombing ranges
 bookstore
 bookstores
+bordello
 border crossing
 border crossing point
 border crossing points
@@ -126,7 +127,6 @@ border point of entry
 border points
 border post
 border posts
-bordello
 boundary marker
 boundary markers
 boys preparatory school
@@ -141,12 +141,16 @@ breweries
 brewery
 bridge
 bridges
+brothel
+brothels
 building
 buildings
 bunker
 bunkers
 burial cave
 burial caves
+cabin
+cabins
 cache
 cache site
 cache sites
@@ -157,6 +161,8 @@ cairn
 cairns
 camp
 camps
+campus
+campuses
 canneries
 cannery
 cantonment
@@ -204,6 +210,8 @@ coal-fired plants
 coast
 coast guard station
 coast guard stations
+coastline
+coastlines
 coasts
 college
 colleges
@@ -269,6 +277,8 @@ dairies
 dairy
 dam
 dams
+data center
+data centers
 defensive ring
 defensive rings
 deplotment areas
@@ -397,10 +407,10 @@ gasoline stations
 gate
 gate house
 gate houses
-gatehouse
 gate-house
-gatehouses
 gate-houses
+gatehouse
+gatehouses
 gates
 geographic coordinate
 geographic coordinates
@@ -520,8 +530,8 @@ leper colonies
 leper colony
 leprosarium
 leprosariums
-library
 libraries
+library
 lighthouse
 lighthouses
 limekiln
@@ -609,10 +619,10 @@ novitiate
 novitiates
 nuclear facilities
 nuclear facility
-nuclear power plant
-nuclear power plants
 nuclear plant
 nuclear plants
+nuclear power plant
+nuclear power plants
 nurseries
 nursery
 observation point
@@ -645,12 +655,12 @@ ore processing plant
 ore processing plants
 out station
 out stations
+out-station
+out-stations
 outpost
 outposts
 outstation
-out-station
 outstations
-out-stations
 pagoda
 pagodas
 palace
@@ -670,6 +680,8 @@ passenger terminal
 passenger terminals
 patrol post
 patrol posts
+pawnshop
+pawnshops
 perimeter
 perimeters
 pharmacies
@@ -792,8 +804,8 @@ retreat
 retreats
 revetment
 revetments
-rice paddy
 rice paddies
+rice paddy
 road intersection
 road intersections
 roadblock
@@ -882,15 +894,17 @@ sluice
 sluices
 small arms range
 small arms ranges
-smallarms range
 small-arms range
-smallarms ranges
 small-arms ranges
+smallarms range
+smallarms ranges
 smokeless powder plant
 smokeless powder plants
 soccer goal
 soccer goals
 spa
+space station
+space stations
 spas
 spillway
 spillways
@@ -990,9 +1004,6 @@ transportation hub
 transportation hubs
 tree line
 tree lines
-trenches
-trenching
-trenchs
 triangulation station
 triangulation stations
 twr
@@ -1030,11 +1041,11 @@ water pumping stations
 water tank
 water tanks
 water tower
-water tower
+water towers
 water treatment plant
 water treatment plants
 water twr
-water twr
+water twrs
 waterworks
 weapons cache
 weapons caches
@@ -1053,15 +1064,3 @@ yard
 yards
 zoo
 zoos
-brothel
-pawnshop
-brothels
-pawnshops
-cabin
-cabins
-campus
-campuses
-coastline
-coastlines
-data center
-data centers

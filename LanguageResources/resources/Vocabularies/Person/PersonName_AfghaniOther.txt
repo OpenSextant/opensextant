@@ -32,8 +32,8 @@ akmal
 akram
 ali
 ali ahmad
-alima
 ali-mohammad
+alima
 allahdad
 almar
 aman
@@ -159,16 +159,16 @@ gul chehra
 gul ghotai
 gul mir
 gul shaah
-gulaalaim
-gulab-sha
-gulbahar
 gul-bashra
 gul-chehra
-guljaan
-gulloo
 gul-madia
 gul-muhamad
 gul-shan
+gulaalaim
+gulab-sha
+gulbahar
+guljaan
+gulloo
 gulyar
 gulzar
 guzar
@@ -415,27 +415,26 @@ osmani
 pari
 parisa
 partamin
+parveez
 parviz
+parvēz
+parvīz
 parwaiz parwana
 parween
-parwin
-paryan
-pervez
-parvēz
-parveez
-parvīz
 parwez
+parwin
 parwiz
-pervaiz
-pervez
-perviz
-purvez
+paryan
 pashtun
 patra
 patris
 pazir
 pazira
+pervaiz
+pervez
+perviz
 pooria
+purvez
 qadir
 qais
 qamargull
@@ -528,8 +527,8 @@ shadgull
 shafi
 shafiq
 shafiqa
-shahir
 shah-jan
+shahir
 shahnaz
 shaiesta
 shakila
@@ -639,12 +638,12 @@ zakirya
 zakiya
 zalah
 zalaikah
+zam-zama
 zaman
 zamani
 zamarod
 zameer
 zamzama
-zam-zama
 zar dusht
 zar gull
 zareen

@@ -1,90 +1,87 @@
-footing
-foundation
-fence
-security fence
-roof
-flat roof
-flagpole
-flagpoles
-mast
-masts
-footer
-footers
-driveway
-driveways
-culvert
-headwall
-wingwall
-quaywall
-portal
-ventilation
-ventilation stack
-concrete slab
-ventilation shaft
-covered storage
-tunnel lining
-utility pole
-utility line
-power line
-footings
-foundations
-fences
-security fences
-roofs
-flat roofs
-headwalls
-wingwalls
-quaywalls
-portals
-portal openings
-ventilation
-ventilation stack
-tunnel linings
-utility lines
-power lines
-concrete slabs
-ventilation shafts
-boatlift
-boatlifts
-boatramp
-boatramps
-latrine
-latrines
-support beam
-support beams
-trench
-trenchs
-trenches
-driveway
-driveways
-dirt pile
-dirt piles
-gazebo
-door
-doors
-window
-windows
-classroom
-classrooms
 auditorium
-cafeteria
-piling
-pilings
-motorpool
-motor pool
-motor-pool
-motorpools
-motor pools
-motor-pools
-boiler room
-chimney
-mall
-graveyard
-courtroom
-morgue
-operating room
 balconies
 basement
 basements
 bathtub
 bathtubs
+boatlift
+boatlifts
+boatramp
+boatramps
+boiler room
+cafeteria
+chimney
+classroom
+classrooms
+concrete slab
+concrete slabs
+courtroom
+covered storage
+culvert
+dirt pile
+dirt piles
+door
+doors
+driveway
+driveways
+fence
+fences
+flagpole
+flagpoles
+flat roof
+flat roofs
+footer
+footers
+footing
+footings
+foundation
+foundations
+gazebo
+graveyard
+headwall
+headwalls
+latrine
+latrines
+mall
+mast
+masts
+morgue
+motor pool
+motor pools
+motor-pool
+motor-pools
+motorpool
+motorpools
+operating room
+piling
+pilings
+portal
+portal openings
+portals
+power line
+power lines
+quaywall
+quaywalls
+roof
+roofs
+security fence
+security fences
+support beam
+support beams
+trench
+trenches
+trenching
+trenchs
+tunnel lining
+tunnel linings
+utility line
+utility lines
+utility pole
+ventilation
+ventilation shaft
+ventilation shafts
+ventilation stack
+window
+windows
+wingwall
+wingwalls

@@ -1,13 +1,29 @@
+advisory board
+advisory boards
+alliance
 assembly
 association
-alliance
+audience
+audiences
+bureaucracies
+bureaucracy
+cartel
+cartels
+caucus
+caucuses
 cell
+commitee
+commitees
 committee
+companies
+company
+consortium
 contingent
 council
 crew
 delegation
 delegations
+dept
 element
 elements
 ethnic group
@@ -15,8 +31,6 @@ ethnic groups
 faction
 factions
 federation
-firm
-foundation
 gang
 general public
 group
@@ -29,36 +43,22 @@ network
 nomadic group
 organisation
 organization
-organization
 organizations
+partnership
 populace
-section
+religious group
+religious groups
+sect
+sects
 society
 team
+think tank
+think tanks
 townspeople
 tribal force
 tribal forces
 tribe
 tribes
-volunteers
-consortium
-partnership
-audience
-audiences
-bureaucracy
-bureaucracies
-cartel
-cartels
-commitee
-commitees
-sect
-sects
-dept
-caucus
-caucuses
-advisory board
-advisory boards
 tribunal
 tribunals
-think tank
-think tanks
+volunteers

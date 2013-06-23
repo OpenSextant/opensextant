@@ -1,7 +1,7 @@
-ayatollah
-ayatollahs
 archbishop
 archdeacon
+ayatollah
+ayatollahs
 bishop
 cardinal
 curate

@@ -1,23 +1,36 @@
+accounting
 acquisition
 acquisitions
 appropriation
-appropriations
 appropriation bill
 appropriation bills
+appropriations
 back pay
+balance sheet
+balance sheets
 bank account
 bank accounts
+benefit
+benefits
 black market
 black markets
 bribe
 bribes
-buy
-buys
 budget
 budgets
+buy
+buys
+capital gain
+capital gains
 cash
+cash withdrawal
+cash withdrawals
+checkbook
+checkbooks
 checking account
 checking accounts
+coin
+coins
 compensation
 contract
 contracts
@@ -30,67 +43,96 @@ credit line
 credit lines
 currencies
 currency
+customs duties
+customs duty
 customs tariff
 customs tariffs
-customs duty
-customs duties
 debt
 debts
 donation
 donations
+earnings
+economic
+economic gain
+economic gains
+economics
+economies
+economy
 exchange
 exchanges
 expense
 expenses
-earnings
-economic
-economics
-economic gain
-economic gains
 fee
 fees
-foreign aid
-foreign assistance
-financial gain
-financial support
 finance
 finances
+financial gain
+financial support
 financing
+foreign aid
+foreign assistance
 fund
-funds
 funding
+funds
+gold
+gold bar
+gold bars
+gold bullion
+gold coin
+gold coins
+gold ingot
+gold ingots
 gross domestic product
+import duties
+import duty
 income
 incomes
+insurance premium
+insurance premiums
 investment
 investments
 letter of credit
 letters of credit
-money
 monetary support
+money
 payment
 payments
 payroll
 payrolls
+pork barrel
+precious metal
+precious metals
 price
 prices
 procurement
 procurements
 profit
 profits
+promissory note
 purchase
 purchases
+reimbursement
+reimbursements
 rent
 rents
+resource management
 revenue
 revenues
 salaries
 salary
 sale
 sales
+savings account
+savings accounts
+social security
+stock market
+stock markets
+stocks
 tariff
 tariffs
 tax
+tax return
+tax returns
 taxes
 trade
 transaction
@@ -98,46 +140,5 @@ transactions
 wage
 wages
 wealth
-economy
-economies
-resource management
-checkbook
-checkbooks
-promissory note
-accounting
-import duty
-import duties
-insurance premium
-insurance premiums
-benefit
-benefits
-stocks
-pork barrel
-savings account
-savings accounts
-reimbursement
-reimbursements
 wire transfer
 wire transfers
-balance sheet
-balance sheets
-cash withdrawal
-cash withdrawals
-stock market
-stock markets
-tax return
-tax returns
-coin
-coins
-gold
-gold bar
-gold coin
-gold ingot
-gold bullion
-gold bars
-gold coins
-gold ingots
-precious metal
-precious metals
-capital gain
-capital gains

@@ -1,67 +1,53 @@
 antenna
-antennas
 antennae
 antennaes
+antennas
 avionics
+camcorder
+camcorders
+camera
+cameras
 cellphone
 cellphones
 circuit board
 circuit boards
-camera
-cameras
-camcorder
-camcorders
-computer
-computers
 communication channel
 communication channels
-communications net
-communications network
-computer network
-computer networks
-communication net
-communication network
 communication nets
 communication networks
 communications net
-communications network
 communications nets
+communications network
 communications networks
-telecommunication net
-telecommunication network
-telecommunication nets
-telecommunication networks
-telecommunications net
-telecommunications network
-telecommunications nets
-telecommunications networks
+computer
+computer network
+computer networks
+computers
 data link
 data links
-detector
-detectors
+demultiplexer
+demultiplexers
+demultiplexor
+demultiplexors
 detecter
 detecters
-demultiplexor
-demultiplexer
-demultiplexors
-demultiplexers
+detector
+detectors
 direction finder
 electronics
+ethernet router
+ethernet routers
 fiber network
+fiber networks
 fiber optic network
+fiber optic networks
 flat-screen television
 flight recorder
 flight recorders
-optic network
-fiber networks
-fiber optic networks
-optic networks
-jammer
-jammers
 gps
 gps reciever
-gps system
 gps recievers
+gps system
 gps systems
 gyroscope
 gyroscopes
@@ -69,6 +55,8 @@ handset
 handsets
 hard drive
 hard drives
+jammer
+jammers
 landline
 landlines
 laser pointer
@@ -84,80 +72,102 @@ mobile phone
 mobile phones
 mobile satellite phone
 mobile satellite phones
-multiplexor
+modem
+modems
 multiplexer
-multiplexors
 multiplexers
+multiplexor
+multiplexors
+night vision equipment
+night vision scope
+night vision scopes
+night-vision equipment
+night-vision scope
+night-vision scopes
+optic network
+optic networks
+parabolic dish
+parabolic dishes
 phone
+phone #
 phone card
 phone cards
-phones
-telephone number
-telephone numbers
-telephone #
-telephone num
-telephone nums
+phone num
 phone number
 phone numbers
-phone #
-phone num
 phone nums
-tel num
-tel no
-tel. no.
-tel. num.
+phones
 pstn
 public switched telehone network
 public switched telehone networks
 public switching telehone network
 public switching telehone networks
-telehone network
+radar
+radars
 radio
 radios
+radome
+radomes
 receiver
 receivers
 reciever
 recievers
 router
 routers
-ethernet router
-ethernet routers
 satcom dish
-satcom dishs
 satcom dishes
+satcom dishs
 satellite dish
-parabolic dish
-parabolic dishes
 satellite dishes
 satellite phone
 satellite phones
 satphone
 satphones
+secure voice over ip
+secure voice-over-ip
 sensor
 sensors
-service pole
-service poles
 server
 servers
+service pole
+service poles
 sim card
 sim cards
+sonar
+sonars
+svoip
 tape recorder
 tape recorders
+tel no
+tel num
+tel. no.
+tel. num.
+telecommunication net
+telecommunication nets
+telecommunication network
+telecommunication networks
+telecommunications net
+telecommunications nets
+telecommunications network
+telecommunications networks
+telehone network
+telemetry
 telephone
+telephone #
+telephone num
+telephone number
+telephone numbers
+telephone nums
 telephones
 transmitter
 transmitters
-svoip
-voip
-voice over ip
-voice-over-ip
-secure voice over ip
-secure voice-over-ip
-telemetry
 video camera
 video cameras
 video recorder
 video recorders
+voice over ip
+voice-over-ip
+voip
 walkie talkie
 walkie talkies
 walkie-talkie
@@ -174,11 +184,3 @@ xmitter
 xmitters
 xmtr
 xmtrs
-radome
-radomes
-modem
-modems
-radar
-radars
-sonar
-sonars

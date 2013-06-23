@@ -1,71 +1,71 @@
+aerosol
 alloy
 alloys
-solid
-solids
-liquid
-liquids
-gas
-gases
-glass
-powder
-powders
-fluid
-fluids
-gel
-gels
-slurry
-slurries
-crystal
-crystals
-fuel
-electricity
-metal
-metals
-propellant
-pollutant
-pollutants
-water
-drinking water
 chemical
 chemicals
-polymerase
-gunpowder
-gunpowders
-lubricant
-lubricants
-polymer
-polymers
+crystal
+crystals
+dirt
+drinking water
+electricity
+fluid
+fluids
+fuel
+fuel rod
+fuel rods
+gas
+gases
+gel
+gels
+glass
 glue
 glues
-oil
-oils
-toxic material
-toxic materials
-wax
-waxes
-aerosol
-nuclear waste
+gunpowder
+gunpowders
+ink
+inks
+insecticide
+insecticides
+liquid
+liquids
+lubricant
+lubricants
+metal
+metals
+mud
 nuclear fuel
 nuclear fuel rod
 nuclear fuel rods
-fuel rod
-fuel rods
 nuclear material
 nuclear materials
-pesticides
-petrochemicals
+nuclear waste
+oil
+oils
 pesticide
+pesticides
 petrochemical
-ink
-inks
-soil
-dirt
-mud
+petrochemicals
 poison
 poisons
-toxin
-toxins
+pollutant
+pollutants
+polymer
+polymerase
+polymers
+powder
+powders
+propellant
 radioactive waste
 radioactive wastes
-insecticide
-insecticides
+slurries
+slurry
+soil
+solid
+solids
+toxic material
+toxic materials
+toxin
+toxins
+water
+wax
+waxes

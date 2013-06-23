@@ -57,6 +57,7 @@
 ./Object/CurrencySymbols.txt:CurrencySymbol
 ./Object/debris.txt:Debris:Object.debris
 ./Object/electronics.txt:Electronics:Object.electronics
+./Object/emergencyVehicles.txt:EmergencyVehicle:Object.vehicle.emergencyVehicle
 ./Object/equipment.txt:Equipment:Object.equipment
 ./Object/food.txt:Food:Object.food
 ./Object/helicopters.txt:Helicopter:Object.vehicle.aircraft.helicopter
@@ -126,8 +127,7 @@
 ./Person/personTitle_Religion.txt:PersonTitle:Person.name.title.religiousTitle
 ./Person/personVerb.txt:PersonVerb
 ./Substance/chemical_elements.txt:ChemicalElement:Substance.chemicalElement
-./Substance/chemical_parts.txt:ChemicalPart:Substance.chemicalPart
-./Substance/chemicals_proper.txt:Chemical:Substance.chemical
+./Substance/chemicals.txt:Chemical:Substance.chemical
 ./Substance/drugs.txt:Drug:Substance.drug
 ./Substance/materials.txt:Material:Substance.Material
 ./Substance/substances.txt:Substance:Substance

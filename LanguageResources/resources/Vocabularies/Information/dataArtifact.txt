@@ -1,73 +1,104 @@
+advertisement
+advertisements
+advertising
+affidavit
+affidavits
 announcement
 announcements
 annual report
 annual reports
-affidavit
-affidavits
 article
 articles
 atm card
 atm cards
+audio
+audiotape
+autobiography
+bibliography
+biography
+blog
+blogs
+blue print
+blue prints
 blueprint
 blueprints
 book
+book jacket
+book jackets
 books
+broadcasts
+brochures
 bulletin
 bulletins
+catalog
+catalogs
+catalogue
+catalogues
 certificate
 certificates
-catalog
-catalogue
-catalogs
-catalogues
 chart
 charts
-copyrighted material
-copyrighted materials
-copywritten material
-copywritten materials
+compendium
 computer file
 computer files
 conversation
 conversations
+copyright
+copyrighted material
+copyrighted materials
+copyrights
+copywritten material
+copywritten materials
 credentials
 data file
 data files
 diagram
 diagrams
+discography
 document
 documentation
 documents
-email
 e-mail
-emails
+e-mail box
+e-mail boxes
 e-mails
+email
+email box
+email boxes
+emails
+encyclopedia
+encyclopedias
 fax
 faxes
+filmography
 footage
 footnote
 footnotes
 graphic
 graphics
+green card
+green cards
+handbook
+handbooks
 headline
 headlines
-identity card
-identity cards
 identification card
 identification cards
+identity card
+identity cards
 image
-images
 imagery
+images
 intelligence estimate
 intelligence estimates
 invoice
 invoices
 journal
 journals
-letter
-letters
 leaflet
 leaflets
+letter
+letters
 license
 licenses
 list
@@ -78,25 +109,30 @@ magazines
 media report
 media reports
 memo
+memoir
+memoirs
 memorandum
-memos
 memorandums
+memos
 message
 messages
 missive
 missives
 monthly report
 monthly reports
+movies
 news report
 news reports
+newsletter
+newsletters
 newspaper
 newspapers
 notebook
 notebooks
-passport
-passports
 paragraph
 paragraphs
+passport
+passports
 photo
 photograph
 photographs
@@ -108,24 +144,43 @@ post card
 post cards
 postcard
 postcards
+press release
+press releases
 press report
 press reporting
 press reports
+printed page
+printed pages
 publication
 publications
+questionnaire
+questionnaires
+registered trademark
+registered trademarks
 report
 reporting
 reports
+road map
+road maps
+roadmap
+roadmaps
 signal
 signals
 social security card
 social security cards
-study
+social security number
+social security numbers
 studies
+study
 subpoena
 subpoenas
-thesis
+television show
+textbook
+textbooks
 theses
+thesis
+trademark
+trademarks
 transcript
 transcripts
 video
@@ -135,64 +190,17 @@ videotape
 videotapes
 visa
 visas
+waybill
+waybills
 web page
 web pages
+webography
 webpage
 webpages
 weekly report
 weekly reports
 white paper
 white papers
-waybill
-waybills
-handbook
-handbooks
-newsletter
-newsletters
-questionnaire
-questionnaires
-television show
-press release
-press releases
-printed pages
-printed page
-memoir
-memoirs
-advertisement
-advertisements
-advertising
-autobiography
-bibliography
-biography
-discography
-filmography
-webography
-textbook
-textbooks
-audio
-audiotape
-broadcasts
-brochures
-compendium
-movies
 wiki
-wikis
-blog
-blogs
 wikipedia
-registered trademark
-registered trademarks
-trademark
-trademarks
-encyclopedia
-encyclopedias
-copyright
-copyrights
-green card
-green cards
-blue print
-blue prints
-roadmap
-road map
-roadmaps
-road maps
+wikis

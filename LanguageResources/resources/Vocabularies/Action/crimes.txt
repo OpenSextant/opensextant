@@ -1,10 +1,9 @@
-abduction
 abductions
 abuse
 abuses
 aggravated battery
-armed robery
 armed robberies
+armed robery
 arson
 arsons
 assassination
@@ -33,8 +32,8 @@ corruption
 counterfeiting
 crime
 crimes
-criminal activity
 criminal activities
+criminal activity
 cruelty to animals
 dangerous driving
 death threat
@@ -43,7 +42,6 @@ defamation
 disturbing the peace
 drug possession
 drug trafficking
-human trafficking
 embezzlement
 extortion
 felonies
@@ -62,8 +60,17 @@ hit and run
 home invasion
 homicide
 homicides
+human trafficking
 identity theft
+illegal action
+illegal actions
+illegal activities
+illegal activity
 illegal entry
+immigration offense
+immigration offenses
+immigration violation
+immigration violations
 indecent exposure
 insurance fraud
 jaywalking
@@ -89,9 +96,13 @@ mutinies
 mutiny
 obstruction of justice
 perjury
+piracy
 pornography
+possession of firearm by a felon
+possession of narcotics
 possession of stolen goods
 possession of stolen property
+possession with intent to distribute
 profiteering
 prostitution
 public intoxication
@@ -99,13 +110,18 @@ public nuisance
 racketeering
 rape
 reckless conduct
+reckless driving
 reckless endangerment
 robberies
 robbery
 sabotage
+scam
+scams
 sedition
+sex offense
 sex offenses
 sexual abuse
+sexual abuses
 sexual exploitation
 sexual misconduct
 sexual offense
@@ -130,6 +146,10 @@ trafficking
 treason
 tresspassing
 unlawful act
+unlawful action
+unlawful actions
+unlawful activities
+unlawful activity
 unlawful assembly
 usury
 vandalism
@@ -139,26 +159,3 @@ violations
 war crime
 wounding
 woundings
-sex offense
-sexual abuses
-piracy
-possession with intent to distribute
-possession of firearm by a felon
-possession of narcotics
-reckless driving
-scam
-scams
-illegal action
-illegal activity
-unlawful action
-unlawful activity
-illegal actions
-illegal activities
-unlawful actions
-unlawful activities
-assassination attempt
-assassination attempts
-immigration offense
-immigration offenses
-immigration violation
-immigration violations

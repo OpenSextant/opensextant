@@ -1,6 +1,6 @@
 actinium
-aluminum
 aluminium
+aluminum
 americium
 antimony
 argon

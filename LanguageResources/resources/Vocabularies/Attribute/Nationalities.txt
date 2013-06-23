@@ -1,4 +1,3 @@
-﻿abkhaz
 abkhazian
 abkhazians
 afghan
@@ -51,8 +50,8 @@ bamar
 bangladeshi
 bangladeshis
 barbadian
-barbadian 
 barbadians
+barbadian 
 barbudan
 barbudans
 basotho
@@ -81,11 +80,11 @@ botswanan
 botswanans
 brazilian
 brazilians
+brit
 british
 british virgin islanders
 briton
 britons
-brit
 brits
 bruneian
 bruneians
@@ -228,10 +227,10 @@ hongkongers
 hongkongese
 hungarian
 hungarians
+i-kiribati
 icelander
 icelanders
 icelandic
-i-kiribati
 indian
 indians
 indonesian
@@ -331,8 +330,6 @@ moldovans
 monacan
 monacans
 monegasque
-monégasque
-monégasques
 mongolian
 mongolians
 mongols
@@ -340,10 +337,11 @@ montenegrin
 montenegrins
 montserratian
 montserratians
+monégasque
+monégasques
 moroccan
 moroccans
 mosotho
-motswana
 motswana
 mozambican
 mozambicans
@@ -361,6 +359,7 @@ new caledonian
 new caledonians
 new zealander
 new zealanders
+ni-vanuatu
 nicaraguan
 nicaraguans
 nigerian
@@ -369,7 +368,6 @@ nigerien
 nigeriens
 niuean
 niueans
-ni-vanuatu
 north korean
 northern irish
 northern marianan
@@ -404,14 +402,14 @@ puerto rican
 puerto ricans
 qatari
 qataris
-réunionese
-réunionnais
 romanian
 romanians
 russian
 russians
 rwandan
 rwandans
+réunionese
+réunionnais
 sahraouian
 sahraouis
 sahraw
@@ -426,8 +424,6 @@ samoan
 samoans
 san marinese
 sao tomean
-são toméan
-são toméans
 saudi
 saudi arabian
 saudi arabians
@@ -484,6 +480,8 @@ swedish
 swiss
 syrian
 syrians
+são toméan
+são toméans
 tadzhik
 tahitians
 taiwanese
@@ -545,3 +543,4 @@ zambian
 zambians
 zimbabwean
 zimbabweans
+﻿abkhaz

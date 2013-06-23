@@ -1,13 +1,3 @@
-`a`isha
-`abla
-`afra`
-`atikah
-`azzah
-`ijliyah
-`ilm
-`inan
-`ulayyah
-`utbah
 'abd al aziz
 'abd al hamid
 'abd al malik
@@ -15,10 +5,10 @@
 'abd al zahir
 'abd al-aziz
 'abd al-hamid
-'abd allah
 'abd al-malik
 'abd al-rahman
 'abd al-zahir
+'abd allah
 'abdus
 'ablah
 'ali
@@ -43,7 +33,18 @@
 'urwah
 'utbah
 'uthman
+`a`isha
+`abla
+`afra`
+`atikah
+`azzah
+`ijliyah
+`ilm
+`inan
+`ulayyah
+`utbah
 a isha
+a'isha
 aaron
 aban
 abbad
@@ -55,15 +56,15 @@ abd al rahman
 abd al zahir
 abd al-aziz
 abd al-hamid
-abd allah
 abd al-malik
 abd al-rahman
 abd al-zahir
+abd allah
 abdah
 abdallah
-abdullah
-abdulaziz
 abdul aziz
+abdulaziz
+abdullah
 abdus
 abla
 ablah
@@ -71,7 +72,6 @@ abraham
 afra
 ahmad
 aisha
-a'isha
 al 'abarta'i
 al 'abbas
 al 'absi
@@ -475,7 +475,6 @@ al-hudhayl
 al-humayyir
 al-husayn
 al-husayni
-ali
 al-ifriqi
 al-ikhmimi
 al-isbahani
@@ -509,7 +508,6 @@ al-khwarizmi
 al-kindi
 al-kufi
 al-kumayt
-allan
 al-laqit
 al-layth
 al-lu'lu'i
@@ -558,7 +556,6 @@ al-naysaburi
 al-nu'man
 al-numan
 al-nushari
-alqamah
 al-qasim
 al-qattan
 al-qayrawani
@@ -652,6 +649,9 @@ al-zubayr
 al-zubayri
 al-zuhayr
 al-zuhri
+ali
+allan
+alqamah
 amimah
 amina
 aminah
@@ -757,8 +757,8 @@ hisham
 hujr
 hullah
 huma i
-humai
 huma'i
+humai
 humayd
 hunayn
 husayn
@@ -860,13 +860,13 @@ mu adh
 mu ammar
 mu awiyah
 mu'adh
+mu'allim
+mu'allima
 mu'ammar
 mu'awiyah
 muadh
 muallim
-mu'allim
 muallima
-mu'allima
 muammar
 muawiyah
 mughirah
@@ -899,9 +899,9 @@ naquiba
 nasr
 noah
 nu m
+nu'm
 nuh
 num
-nu'm
 nusayba
 nusayr
 nuwwar
@@ -918,10 +918,9 @@ rabab
 rabi a
 rabi ah
 rabi'a
-rabia
+rabi'ah
 rabia
 rabiah
-rabi'ah
 rachel
 rafi
 rafi'
@@ -967,7 +966,6 @@ sajah
 sakan
 salama
 salamah
-salamah
 salih
 salim
 salm
@@ -1004,8 +1002,8 @@ sinan
 solomon
 sophia
 su ad
-suad
 su'ad
+suad
 subh
 sufyan
 sulaiman

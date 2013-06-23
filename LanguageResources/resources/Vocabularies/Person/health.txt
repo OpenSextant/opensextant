@@ -1,21 +1,21 @@
 death
 deaths
-injured
-well being
-well-being
-health
-medicine
-medical treatment
-medical research
-hunger
-starvation
-therapy
-therapies
-surgery
-surgeries
-fatality
 fatalities
+fatality
+health
+hunger
+hygiene
+injured
+mastectomy
+medical research
+medical treatment
+medicine
+starvation
+surgeries
+surgery
+therapies
+therapy
 tumor
 tumour
-mastectomy
-hygiene
+well being
+well-being

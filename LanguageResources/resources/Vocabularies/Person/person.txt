@@ -1,26 +1,26 @@
-person
-people
-human
-humans
-human being
-human beings
-man
-men
-woman
-women
-girl
-girls
-boy
-boys
 adult
 adults
-baby
 babies
+baby
+boy
+boys
 child
 children
-infant
-infants
-guy
-guys
 citizen
 citizens
+girl
+girls
+guy
+guys
+human
+human being
+human beings
+humans
+infant
+infants
+man
+men
+people
+person
+woman
+women

@@ -11,30 +11,37 @@ belly
 blood
 blood vessel
 blood vessels
+body tissue
+brain tissue
 capillaries
 capillary
 cartilage
+central nervous system
 chest
 chests
+complexion
+dreadlocks
 ear
 ears
-eyebrow
-eyelid
-eyebrows
-eyelids
 elbow
 elbows
 eye
+eyebrow
+eyebrows
+eyelid
+eyelids
 eyes
 face
 faces
 feet
+finger
 fingernail
 fingernails
+fingers
 fingertip
 fingertips
-finger
-fingers
+fist
+fists
 foot
 forearm
 hair
@@ -42,48 +49,43 @@ hand
 hands
 head
 heads
+hips
 incisor
 incisors
-hips
+kidney
+kidneys
 knee
 knees
 leg
 legs
+liver
+livers
+lung
+lungs
 lymph node
 lymph nodes
 mouth
 mouths
+muscle tissue
 mustache
 mustaches
 neck
 necks
+nervous system
 nose
 noses
-stomach
-stomachs
 shoulder
 shoulders
-teeth
-tooth
-throat
-throats
-voice
-voices
-lung
-liver
-kidney
-lungs
-livers
-kidneys
 skin
-complexion
-brain tissue
-muscle tissue
-body tissue
 spleen
 spleens
-wrist
+stomach
+stomachs
+teeth
+throat
+throats
+tooth
+voice
+voices
 waist
-dreadlocks
-nervous system
-central nervous system
+wrist

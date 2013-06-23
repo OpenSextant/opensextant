@@ -1,22 +1,22 @@
-ship
-ships
-boat
-boats
-barge
-barges
-cruise ship
-speedboat
-canoe
-canoes
-kayak
-kayaks
-skiff
-skiffs
-warship
-warships
-frigate
-frigates
 aircraft carrier
 aircraft carriers
+barge
+barges
 battleship
 battleships
+boat
+boats
+canoe
+canoes
+cruise ship
+frigate
+frigates
+kayak
+kayaks
+ship
+ships
+skiff
+skiffs
+speedboat
+warship
+warships

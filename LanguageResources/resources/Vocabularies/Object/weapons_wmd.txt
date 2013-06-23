@@ -1,52 +1,60 @@
+atomic arms
+atomic bomb
+atomic bombs
+bio weapon
+bio weapons
+bio-weapon
+bio-weapons
+biological agent
+biological agents
+biological weapon
+biological weapons
+bioweapon
+bioweapons
+blister agent
+blister agents
+cbrn weapon
+cbrn weapons
+chemical agent
+chemical agents
+chemical warhead
+chemical warheads
+chemical weapon
+chemical weapons
+dirty bomb
+dirty bombs
+gas weapon
+gas weapons
+h bomb
+h bombs
+hydrogen bomb
+hydrogen bombs
+nbc weapon
+nbc weapons
+nerve agent
+nerve agents
+nerve gas
+nerve gases
+nuclear arms
+nuclear bomb
+nuclear bombs
+nuclear missile
+nuclear missiles
+nuclear warhead
+nuclear warheads
+nuclear weapon
+nuclear weapons
+nuke
+nukes
+radiation weapon
+radiation weapons
+radiological weapon
+radiological weapons
+riot agent
+riot agents
+warhead
+warheads
 weapon of mass destruction
 weapons of mass destruction
 wmd
 wmds
-chemical weapon
-chemical weapons
-nuclear weapon
-nuclear weapons
-biological weapon
-biological weapons
-radiological weapon
-radiological weapons
-radiation weapon
-radiation weapons
-nbc weapon
-nbc weapons
-cbrn weapon
-cbrn weapons
-warhead
-warheads
-chemical warhead
-chemical warheads
-nuclear warhead
-nuclear warheads
-nuclear missile
-nuclear missiles
-gas weapon
-gas weapons
-chemical agent
-chemical agents
-biological agent
-biological agents
-bioweapon
-bio-weapon
-bio weapon
-bioweapons
-bio-weapons
-bio weapons
-nuclear bomb
-atomic bomb
-hydrogen bomb
-h bomb
-nuclear bombs
-atomic bombs
-hydrogen bombs
-h bombs
-dirty bomb
-dirty bombs
-nuke
-nukes
-nerve gas
-nerve gases

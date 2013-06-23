@@ -1,26 +1,26 @@
 birthday
-funeral
-funerals
-wedding
-weddings
 celebration
 celebrations
-ceremony
 ceremonies
-parade
-parades
-marriage
-marriages
+ceremony
+childbirth
 divorce
 divorces
-game
-games
-tournament
-olympics
-winter olympics
-summer olympics
-hospitalization
-childbirth
 extramarital affair
 extramarital affairs
+funeral
+funerals
+game
+games
+hospitalization
+marriage
+marriages
+olympics
+parade
+parades
+summer olympics
 super bowl
+tournament
+wedding
+weddings
+winter olympics

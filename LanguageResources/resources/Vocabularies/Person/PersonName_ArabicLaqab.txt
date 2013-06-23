@@ -1,17 +1,17 @@
 ad darr
 ad-darr
+al 'afuww
 al adl
 al afuww
-al 'afuww
 al akhir
 al ali
 al alim
 al awwal
 al azim
 al aziz
+al ba'ith
 al badi
 al baith
-al ba'ith
 al baqi
 al bari
 al bari'
@@ -47,8 +47,11 @@ al malik
 al mani
 al mani'
 al matin
-al muakhkhir
 al mu'akhkhir
+al mu'id
+al mu'izz
+al mu'min
+al muakhkhir
 al mubdi
 al mubdi'
 al mudhill
@@ -57,12 +60,9 @@ al muhaymin
 al muhsi
 al muhyi
 al muid
-al mu'id
 al muizz
-al mu'izz
 al mujib
 al mumin
-al mu'min
 al mumit
 al muntaqim
 al muqaddim
@@ -70,8 +70,8 @@ al muqit
 al muqsit
 al muqtadir
 al musawwir
-al mutaali
 al muta'ali
+al mutaali
 al mutakabbir
 al qabid
 al qadir
@@ -88,18 +88,18 @@ al wali
 al waliyy
 al warith
 al wasi
+al-'afuww
 al-adl
 al-afuww
-al-'afuww
 al-akhir
 al-ali
 al-alim
 al-awwal
 al-azim
 al-aziz
+al-ba'ith
 al-badi
 al-baith
-al-ba'ith
 al-baqi
 al-bari
 al-bari'
@@ -135,8 +135,11 @@ al-malik
 al-mani
 al-mani'
 al-matin
-al-muakhkhir
 al-mu'akhkhir
+al-mu'id
+al-mu'izz
+al-mu'min
+al-muakhkhir
 al-mubdi
 al-mubdi'
 al-mudhill
@@ -145,12 +148,9 @@ al-muhaymin
 al-muhsi
 al-muhyi
 al-muid
-al-mu'id
 al-muizz
-al-mu'izz
 al-mujib
 al-mumin
-al-mu'min
 al-mumit
 al-muntaqim
 al-muqaddim
@@ -158,8 +158,8 @@ al-muqit
 al-muqsit
 al-muqtadir
 al-musawwir
-al-mutaali
 al-muta'ali
+al-mutaali
 al-mutakabbir
 al-qabid
 al-qadir
@@ -182,34 +182,34 @@ an nur
 an-nafi
 an-nafi'
 an-nur
+ar ra'uf
 ar rafi
 ar rahim
 ar rahman
 ar raqib
 ar rashid
 ar rauf
-ar ra'uf
 ar razzaq
+ar-ra'uf
 ar-rafi
 ar-rahim
 ar-rahman
 ar-raqib
 ar-rashid
 ar-rauf
-ar-ra'uf
 ar-razzaq
 as sabur
 as salam
 as samad
 as sami
-ash shahid
-ash shakur
-ash-shahid
-ash-shakur
 as-sabur
 as-salam
 as-samad
 as-sami
+ash shahid
+ash shakur
+ash-shahid
+ash-shakur
 at tawwab
 at-tawwab
 az zahir

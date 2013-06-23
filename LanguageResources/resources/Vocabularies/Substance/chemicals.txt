@@ -1,3 +1,7 @@
+acid
+acids
+alcohol
+alum
 aluminium antimonide
 aluminium arsenide
 aluminium chloride
@@ -8,7 +12,10 @@ aluminium nitride
 aluminium oxide
 aluminium phosphide
 aluminium sulfate
+amino acid
+amino acids
 ammonia
+ammonium
 ammonium bicarbonate
 ammonium cerium nitrate
 ammonium chloride
@@ -16,12 +23,15 @@ ammonium hydroxide
 ammonium nitrate
 ammonium sulfate
 ammonium tetrathiocyanatodiamminechromate
+antimonide
 antimony hydride
 antimony pentachloride
 antimony pentafluoride
 antimony trioxide
 arsenic oxide
 arsenic trioxide
+arsenide
+arsenous
 arsenous acid
 arsine
 baking soda
@@ -46,20 +56,28 @@ beryllium oxide
 beryllium sulfate
 beryllium sulfite
 beryllium telluride
+bicarbonate
 bismuth oxide
 bismuth telluride
 bleach
 borane
+borate
 borax
+boric
 boric acid
+boride
+borohydride
 boron carbide
 boron nitride
 boron oxide
 boron suboxide
 boron trichloride
 boron trifluoride
+bromate
+bromide
 bromine pentafluoride
 bromine trifluoride
+cacodylic
 cacodylic acid
 cadmium arsenide
 cadmium bromide
@@ -85,13 +103,17 @@ calcium fluoride
 calcium hydride
 calcium hydroxide
 calcium sulfate
+carbide
 carbon dioxide
 carbon disulfide
 carbon monoxide
 carbon tetrabromide
 carbon tetrachloride
 carbon tetraiodide
+carbonate
+carbonic
 carbonic acid
+carbonyl
 carbonyl fluoride
 carbonyl sulfide
 carboplatin
@@ -106,18 +128,20 @@ cerium silver
 cerium sulfate
 cerium thallium
 cerium zinc
+chlorate
+chloride
+chromate
 chrome-alum;
-chromic acid
+chromic
 chromic acid
 chromium chloride
-chromium chloride
-chromium oxide
 chromium oxide
 chromium sulfate
 chromium trioxide
+chromyl
 chromyl chloride
-cisplatin
 cis-platinum chloride diammine
+cisplatin
 coal
 cobalt bromide
 cobalt carbonate
@@ -126,26 +150,34 @@ cobalt sulfate
 columbite
 copper carbonate
 copper chloride
-copper chloride
 copper hydroxide
 copper nitrate
 copper oxide
-copper oxide
 copper sulfate
 copper sulfide
-copper sulfide
+cyanamide
+cyanide
 cyanogen
 cyanogen chloride
+cyanuric
 cyanuric chloride
 decaborane
+diammine
+diammonium
 diammonium phosphate
 diborane
-diborane
+dichloride
 dichlorosilane
+difluoride
 digallane
+dinitrogen
 dinitrogen pentoxide
+dioxide
 disilane
+disulfide
+disulfur
 disulfur dichloride
+ditelluride
 dysprosium chloride
 erbium chloride
 erbium-copper
@@ -153,6 +185,10 @@ erbium-gold
 erbium-iridium
 erbium-silver
 europium chloride
+ferrioxalate
+ferrocyanide
+fluoride
+fulminate
 gadolinium chloride
 gadolinium oxide
 gallium antimonide
@@ -160,48 +196,44 @@ gallium arsenide
 gallium nitride
 gallium phosphide
 gallium trichloride
+garnet
 germane
 germanium bromide
-germanium bromide
-germanium chloride
 germanium chloride
 germanium fluoride
-germanium fluoride
 germanium hydride
-germanium hydride
-germanium iodide
 germanium iodide
 germanium nitride
 germanium oxide
-germanium oxide
 germanium selenide
-germanium selenide
-germanium sulfide
 germanium sulfide
 germanium telluride
 gold bromide
-gold bromide
-gold chloride
-gold chloride
-gold chloride
 gold chloride
 gold ditelluride
 gold fluoride
-gold fluoride
-gold iodide
 gold iodide
 gold oxide
 gold selenide
-gold selenide
 gold sulfide
-gold sulfide
+graphite
 gypsum
 hafnium fluoride
 hafnium tetrachloride
+heptafluoride
+hexacarbonyl
+hexacyanoferrate
 hexadecacarbonylhexarhodium
+hexafluoride
+hexafluoroplatinate
+hydrate
 hydrazine
+hydrazoic
 hydrazoic acid
+hydride
+hydrobromic
 hydrobromic acid
+hydrochloric
 hydrochloric acid
 hydrogen bromide
 hydrogen chloride
@@ -210,29 +242,35 @@ hydrogen peroxide
 hydrogen selenide
 hydrogen sulfide
 hydrogen telluride
+hydrogencarbonate
+hydroiodic
 hydroiodic acid
+hydrosulfide
+hydroxide
 hydroxylamine
+hypochlorous
 hypochlorous acid
+hypophosphorous
 hypophosphorous acid
 indium antimonide
 indium arsenide
 indium chloride
 indium nitride
 indium phosphide
+iodic
 iodic acid
+iodide
 iodine heptafluoride
 iodine monochloride
 iodine pentafluoride
 iridium chloride
 iron chloride
-iron chloride
 iron hexacyanoferrate
 iron nitrate
 iron oxide
-iron oxide
-iron oxide
 iron thiocyanate
 iron-sulfur cluster
+isototope
 krypton difluoride
 lanthanum aluminium
 lanthanum cadmium
@@ -246,7 +284,6 @@ lead carbonate
 lead chloride
 lead iodide
 lead nitrate
-lead oxide
 lead oxide
 lead phosphate
 lead selenide
@@ -271,26 +308,32 @@ magnesium oxide
 magnesium phosphate
 magnesium sulfate
 manganese chloride
-manganese chloride
 manganese dioxide
 manganese fluoride
 manganese oxide
 manganese phosphate
 manganese sulfate monohydrate
 mercury chloride
-mercury chloride
 mercury fulminate
 mercury selenide
 mercury sulfate
-mercury sulfate
 mercury sulfide
 mercury telluride
+metaphosphoric
 metaphosphoric acid
+molecular
+molybdate
 molybdate orange
 molybdenum disulfide
 molybdenum hexacarbonyl
 molybdenum trioxide
+molybdic
 molybdic acid
+monochloride
+monofluorophosphate
+monohydrate
+monopersulfate
+monoxide
 neodymium chloride
 nessler's reagent
 nickel carbonate
@@ -300,35 +343,66 @@ nickel nitrate
 nickel oxide
 niobium oxychloride
 niobium pentachloride
+nitrate
+nitric
 nitric acid
+nitride
+nitrite
+nitro
 nitrogen dioxide
 nitrogen monoxide
 nitroglycerine
+nitronium
 nitronium nitrate
+nitrosylsulfuric
 nitrosylsulfuric acid
-osmium oxide
+octaoxide
+orthosilicate
 osmium oxide
 osmium tetroxide
 osmium trioxide
+oxide
 oxybis
+oxychloride
 oxygen difluoride
+oxytrichloride
 ozone
 palladium chloride
 palladium nitrate
 pentaborane
+pentabromide
+pentachloride
+pentafluoride
+pentasulfide
 pentasulfide antimony
+pentoxide
+perbromate
+percarbonate
+perchlorate
+perchloric
 perchloric acid
+perchloryl
 perchloryl fluoride
+permanganate
+peroxide
+persulfate
+persulfuric
 persulfuric acid
+perxenic
 perxenic acid
+phenylarsine
 phenylarsine oxide
 phenylphosphine
 phosgene
+phosphate
+phosphide
 phosphine
 phosphite
+phosphomolybdic
 phosphomolybdic acid
+phosphoric
 phosphoric acid
-phosphoric acid
+phosphorous
 phosphorous acid
 phosphorus pentabromide
 phosphorus pentafluoride
@@ -339,13 +413,14 @@ phosphorus tribromide
 phosphorus trichloride
 phosphorus trifluoride
 phosphorus triiodide
+phosphotungstic
 phosphotungstic acid
 pitchblende
-platinum chloride
 platinum chloride
 plutonium chloride
 plutonium dioxide
 plutonium oxide
+potash
 potash alum
 potassium aluminium fluoride
 potassium borate
@@ -369,13 +444,17 @@ potassium sulfide
 potassium titanyl phosphate
 potassium vanadate
 praseodymium chloride
+protonated
 protonated molecular hydrogen
+prussian
 prussian blue
+pyrosulfuric
 pyrosulfuric acid
 radium chloride
 radon difluoride
-red phosphorus
+reagent
 red phosphorous
+red phosphorus
 rhodium chloride
 rubidium bromide
 rubidium chloride
@@ -386,6 +465,7 @@ rubidium nitrate
 rubidium oxide
 rubidium telluride
 ruthenium oxide
+salt
 samarium chloride
 samarium iodide
 scandium chloride
@@ -393,22 +473,30 @@ scandium fluoride
 scandium nitrate
 scandium oxide
 scandium triflate
+selenic
 selenic acid
+selenide
+selenious
 selenious acid
 selenium dioxide
 selenium trioxide
+sesquisulfide
 silane
+silica
 silica gel
+silicate
+silicic
 silicic acid
 silicochloroform
+silicofluoric
 silicofluoric acid
 silicon dioxide
 silver chloride
 silver fluoride
-silver fluoride
 silver iodide
 silver nitrate
 silver sulfide
+soda
 soda lime
 sodamide
 sodium bicarbonate
@@ -436,107 +524,138 @@ sodium sulfate
 sodium sulfide
 sodium sulfite
 sodium tellurite
+stannous
 stannous chloride
 stibine
 strontium chloride
 strontium nitrate
 strontium titanate
+suboxide
+sulfamic
 sulfamic acid
 sulfane
+sulfate
+sulfide
+sulfite
 sulfur dioxide
+sulfuric
 sulfuric acid
+sulfurous
 sulfurous acid
+sulfuryl
 sulfuryl chloride
+tallium
 tantalum carbide
 tantalum oxide
+telluric
 telluric acid
+telluride
+tellurite
 tellurium dioxide
 tellurium tetrachloride
+tellurous
 tellurous acid
 terbium chloride
 tetraborane
+tetrabromide
+tetrachloride
+tetrachloroauric
 tetrachloroauric acid
+tetrafluoride
 tetrafluorohydrazine
+tetrahydroxide
+tetraiodide
+tetramminecopper
 tetramminecopper sulfate
+tetranitride
+tetrasulfur
 tetrasulfur tetranitride
+tetroxide
 thallium carbonate
 thallium fluoride
 thallium oxide
 thallium sulfate
+thiocyanate
+thionyl
 thionyl chloride
 thiophosgene
+thiophosphoryl
 thiophosphoryl chloride
 thorium dioxide
 thortveitite
 thulium chloride
 tin chloride
-tin chloride
-tin chloride
 tin fluoride
+titanate
 titanium boride
 titanium bromide
 titanium carbide
 titanium chloride
-titanium chloride
-titanium chloride
-titanium dioxide
 titanium dioxide
 titanium iodide
 titanium nitride
 titanium oxide
-titanium oxide
 titanium tetrabromide
 titanium tetrachloride
 titanium tetraiodide
+titanyl
+toluene
+tribromide
 tributyltin
+trichloride
+triflate
+trifluoride
+trifluoromethanesulfonic
 trifluoromethanesulfonic acid
 trifluoromethylisocyanide
+triiodide
 trimethylphosphine
 trioxidane
+trioxide
+tripotassium
 tripotassium phosphate
+trisodium
 trisodium phosphate
-trisodium phosphate
+triuranium
 triuranium octaoxide
+tungstate
 tungsten carbide
 tungsten chloride
 tungsten fluoride
 tungsten hexacarbonyl
+tungstic
 tungstic acid
 uranium hexafluoride
 uranium pentafluoride
 uranium tetrachloride
 uranium tetrafluoride
+uranyl
 uranyl carbonate
 uranyl chloride
 uranyl fluoride
 uranyl hydroxide
-uranyl hydroxide
 uranyl nitrate
 uranyl sulfate
+vanadate
 vanadium bromide
 vanadium carbide
 vanadium chloride
-vanadium chloride
-vanadium chloride
-vanadium fluoride
 vanadium fluoride
 vanadium nitride
-vanadium oxide
-vanadium oxide
-vanadium oxide
 vanadium oxide
 vanadium oxide trichloride
 vanadium oxytrichloride
 vanadium sulfate
-white phosphorus
 white phosphorous
+white phosphorus
+xenic
 xenic acid
 xenon difluoride
 xenon hexafluoroplatinate
 xenon tetrafluoride
 xenon tetroxide
-yellowcake
 yellow cake
+yellowcake
 ytterbium chloride
 ytterbium oxide
 yttrium aluminium garnet
@@ -567,6 +686,8 @@ zinc selenide
 zinc sulfate
 zinc sulfide
 zinc telluride
+zirconate
+zirconia
 zirconia hydrate
 zirconium carbide
 zirconium chloride

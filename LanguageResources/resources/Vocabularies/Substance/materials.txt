@@ -1,11 +1,11 @@
 brass
 bronze
-steel
-plaster
-wood
-plastic
+canvas
 cardboard
 cloth
-canvas
-fabric
 concrete
+fabric
+plaster
+plastic
+steel
+wood

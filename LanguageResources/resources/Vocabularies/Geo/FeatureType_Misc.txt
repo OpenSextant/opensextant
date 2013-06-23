@@ -6,6 +6,7 @@ boundaries
 boundary
 location
 locations
+outskirts
 place
 places
 position
@@ -14,4 +15,3 @@ section
 sections
 spot
 spots
-outskirts

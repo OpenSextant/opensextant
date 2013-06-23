@@ -8,10 +8,10 @@ municipalities
 municipality
 provincial capital
 provincial capitals
-state capital
-state capitals
 settlement
 settlements
+state capital
+state capitals
 town
 towns
 village

@@ -1,4 +1,3 @@
-﻿abe
 ai
 aiko
 aimi
@@ -58,8 +57,8 @@ ishida
 ishii
 ishikawa
 ito
-itō
 itsuki
+itō
 iwasaki
 kaito
 kan
@@ -67,8 +66,8 @@ kaneko
 kaori
 kasumi
 kato
-katō
 katsumi
+katō
 kawano
 kazuki
 kazuko
@@ -88,13 +87,13 @@ kojima
 kondo
 kondō
 kono
-kōno
 kotarou
 kouhei
 koyama
 kudo
 kudō
 kumiko
+kōno
 maeda
 mai
 makoto
@@ -145,12 +144,9 @@ ogawa
 okada
 okamoto
 ono
-ōno
 osamu
 ota
-ōta
 otsuka
-ōtsuka
 oyama
 reika
 ren
@@ -170,8 +166,8 @@ sakurai
 sano
 sasaki
 sato
-satō
 satsuki
+satō
 sayuri
 setsuko
 shibata
@@ -259,3 +255,7 @@ yuuma
 yuuna
 yuuta
 yuzuki
+ōno
+ōta
+ōtsuka
+﻿abe

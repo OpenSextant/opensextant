@@ -1,6 +1,6 @@
-based
-registered
-located
 -based
--registered
 -located
+-registered
+based
+located
+registered

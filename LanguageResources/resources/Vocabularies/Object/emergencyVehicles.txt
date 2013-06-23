@@ -1,0 +1,64 @@
+airport crash tender
+airport crash tenders
+ambulance
+ambulances
+brush truck
+brush trucks
+emergency vehicle
+emergency vehicles
+ems truck
+ems trucks
+ems vehicle
+ems vehicles
+fire apparatus
+fire apparatuses
+fire appliance
+fire appliances
+fire boat
+fire boats
+fire engine
+fire engines
+fire fighting truck
+fire fighting trucks
+fire fighting vehicle
+fire fighting vehicles
+fire truck
+fire trucks
+fireboat
+fireboats
+firefighting truck
+firefighting trucks
+firefighting vehicle
+firefighting vehicles
+hazmat truck
+hazmat trucks
+hazmat vehicle
+hazmat vehicles
+hook and ladder
+hook and ladders
+medical transport
+medical transports
+medical vehicle
+medical vehicles
+paramedic engine
+paramedic engines
+paramedic truck
+paramedic trucks
+paramedic vehicle
+paramedic vehicles
+police car
+police cars
+police cruiser
+police cruisers
+police interceptor
+police interceptors
+police vehicle
+police vehicles
+rescue engine
+rescue engines
+rescue squad
+rescue squads
+rescue truck
+rescue trucks
+rescue vehicle
+rescue vehicles

@@ -1,100 +1,98 @@
-device
-devices
-equipment
-gear
-engine
-engines
-machine
-machines
-motor
-motors
-system
-systems
-material
-materials
-hardware
-component
-components
-piece
-pieces
-optics
-lens
-lenses
-tool
-tools
-electro-optics
-scope
-scopes
-lathe
-lathes
-pump
-water pump
-pumps
-water pumps
-centrifuge
-centrifuges
-sprayer
-sprayers
-purifier
-purifiers
-generator
-generators
-cooler
-coolers
-turbine
-turbines
-gas turbine
-gas turbines
-tow bar
-tow bars
-dolly
-dollies
-module
-modules
-airstair
-airstairs
-air stair
-air stairs
-grease rack
-grease racks
-hatch
-hatches
-tray
-trays
-silo loader
-air conditioning unit
-air conditioning units
-air-conditioning unit
-air-conditioning units
-conveyor
-conveyors
-loading cradle
-loading cradles
-witness panel
-witness panels
-launch rail
-launch rails
 air conditioner
 air conditioners
 air conditioning unit
 air conditioning units
 air handler
 air handlers
+air stair
+air stairs
+air-conditioning unit
+air-conditioning units
+airstair
+airstairs
+burner
+burners
+centrifuge
+centrifuges
+clock
+clocks
+component
+components
+conveyor
+conveyors
+cooler
+coolers
 cooling deck
 cooling decks
-burner
-heater
-burners
-heaters
 decompression chamber
 decompression chambers
+device
+devices
+dollies
+dolly
+electro-optics
+engine
+engines
+equipment
+gas turbine
+gas turbines
+gear
+generator
+generators
+grease rack
+grease racks
+hardware
+hatch
+hatches
+heater
+heaters
+lathe
+lathes
+launch rail
+launch rails
+lens
+lenses
+loading cradle
+loading cradles
+machine
+machines
+material
+materials
 mechanism
 mechanisms
 microscope
 microscopes
-clock
-clocks
+module
+modules
+motor
+motors
 nuclear reactor
 nuclear reactors
+optics
+piece
+pieces
+pump
+pumps
+purifier
+purifiers
 reactor
 reactors
+scope
+scopes
+silo loader
+sprayer
+sprayers
+system
+systems
+tool
+tools
+tow bar
+tow bars
+tray
+trays
+turbine
+turbines
+water pump
+water pumps
+witness panel
+witness panels

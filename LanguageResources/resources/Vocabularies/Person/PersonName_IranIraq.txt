@@ -52,8 +52,6 @@ al-dujaili
 al-hachami
 al-hadithi
 al-husseini
-ali
-alizadeh
 al-kaabi
 al-khafaji
 al-khazraji
@@ -62,7 +60,6 @@ al-lami
 al-musawi
 al-nasiri
 al-obaidi
-alousi
 al-qaisi
 al-rawi
 al-rikabi
@@ -75,6 +72,9 @@ al-tikriti
 al-zahawi
 al-zubaidi
 al-zuhairi
+ali
+alizadeh
+alousi
 asadi
 badri
 baldawi
@@ -108,6 +108,7 @@ rawi
 rikabi
 rissafi
 saadi
+saddam
 shamari
 shirazi
 taein
@@ -117,4 +118,3 @@ zahawi
 zerjawi
 zubaidi
 zuhairi
-saddam

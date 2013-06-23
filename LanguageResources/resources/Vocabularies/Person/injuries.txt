@@ -1,33 +1,32 @@
-bruise
-bruises
-wound
-wounds
-lesion
-lesions
-scar
-scars
-fracture
-fractures
-broken limb
-broken limbs
-hemorrhage
-scarring
-blindness
-dog bite
-dog bites
 animal bite
 animal bites
+blindness
+brain damage
+brain damages
 broken bone
 broken bones
-injury
-injuries
+broken limb
+broken limbs
+bruise
+bruises
+dog bite
+dog bites
+fracture
+fractures
+haemorrhage
+haemorrhages
 hemorrhage
 hemorrhaging
 hæmorrhage
 hæmorrhaging
-haemorrhage
-haemorrhages
-brain damage
-brain damages
+injuries
+injury
 insect bite
 insect bites
+lesion
+lesions
+scar
+scarring
+scars
+wound
+wounds

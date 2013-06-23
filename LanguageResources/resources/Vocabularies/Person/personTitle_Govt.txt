@@ -24,8 +24,8 @@ detective
 diplomat
 diplomatic minister
 director general
-director-general
 director of operations
+director-general
 education secretary
 embassador
 emir
@@ -68,14 +68,14 @@ member of parliament
 members of parliament
 military governor
 minister
-minister of defence
-minister of defense
 minister for economic affairs
 minister for external affairs
 minister for finance
 minister for foreign affairs
 minister for interior
 minister for the interior
+minister of defence
+minister of defense
 minister of economic affairs
 minister of energy
 minister of external affairs
@@ -114,14 +114,14 @@ secretary of education
 secretary of energy
 secretary of health and human services
 secretary of housing and urban development
+secretary of interior
 secretary of labor
 secretary of state
 secretary of state for the home department
 secretary of the interior
-secretary of interior
 secretary of the treasury
-secretary of treasury
 secretary of transportation
+secretary of treasury
 secretary of veterans affairs
 secretary-generall
 security chief
@@ -140,7 +140,6 @@ sheikhs
 sheiks
 social secretary
 spokesman
-spokesman
 spokesmen
 spokesperson
 spokeswoman
@@ -152,10 +151,6 @@ treasury secretary
 trooper
 under secretary
 undersecretary
-v. p.
-vice president
-vice-president
-vp
 vice chairman
 vice chancellor
 vice-regent

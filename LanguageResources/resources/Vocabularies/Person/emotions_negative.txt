@@ -5,6 +5,7 @@ alarm
 alienation
 anger
 anguish
+animosity
 annoyance
 anxiety
 apprehension
@@ -41,6 +42,7 @@ grief
 grouchiness
 grumpiness
 guilt
+guilty conscience
 hate
 hatred
 helplessness
@@ -51,8 +53,8 @@ hostility
 humiliation
 hurt
 hysteria
-insecurity
 insecurities
+insecurity
 insult
 irritation
 isolation
@@ -67,6 +69,8 @@ neglect
 nervousness
 outrage
 panic
+paranoia
+paranoias
 pity
 powerlessness
 rage
@@ -93,10 +97,6 @@ uneasiness
 unhappiness
 vengefulness
 woe
-worry
 worries
+worry
 wrath
-guilty conscience
-animosity
-paranoia
-paranoias

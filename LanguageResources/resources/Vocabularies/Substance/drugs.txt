@@ -1,9 +1,13 @@
-controlled substance
-controlled substances
+antibiotic
+antibiotics
+antidote
+antidotes
 aspirin
 aspirins
 cannabis
 cocaine
+controlled substance
+controlled substances
 crack cocaine
 crystal heroin
 drug
@@ -14,8 +18,10 @@ heroin crystal
 heroin crystals
 heroin poppy
 heroine
-marijuana
 marihuana
+marijuana
+medication
+medications
 morphine
 morphine base
 morphine hydrochloride
@@ -23,6 +29,8 @@ morphine precipitate
 morphine precipitates
 narcotic
 narcotics
+ointment
+ointments
 opiate
 opiates
 opium
@@ -36,19 +44,11 @@ opium poppies
 opium poppy
 opium sap
 opium syrup
-poppy
-poppies
-pharmaceutical
-pharmaceuticals
-vaccine
-vaccines
-antibiotic
-antibiotics
 pain medication
 pain medications
-medication
-medications
-antidote
-antidotes
-ointment
-ointments
+pharmaceutical
+pharmaceuticals
+poppies
+poppy
+vaccine
+vaccines

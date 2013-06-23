@@ -5,22 +5,22 @@ centre party
 christian democratic party
 christian democratic union
 christian party
-christian peoples party
 christian people's party
+christian peoples party
 civic democratic party
 civic party
 colorado party
 communist league
 communist party
 conservative party
-conservative peoples party
 conservative people's party
+conservative peoples party
 conservatives
 democratic alliance
 democratic labour party
 democratic party
-democratic peoples party
 democratic people's party
+democratic peoples party
 democratic socialist party
 democrats
 equality party
@@ -36,8 +36,8 @@ left party
 left radical party
 liberal democratic party
 liberal party
-liberal peoples party
 liberal people's party
+liberal peoples party
 liberals
 libertarian party
 motherland party
@@ -55,10 +55,10 @@ new alliance party
 new democratic party
 new national party
 new party
-peoples action party
 people's action party
-peoples party
 people's party
+peoples action party
+peoples party
 pirate party
 popular alliance
 popular party
@@ -68,13 +68,15 @@ radical democratic party
 radical liberal party
 radical party
 reform party
+reformist party
 republican party
-republican peoples party
 republican people's party
+republican peoples party
 republicans
 revolutionary communist league
 revolutionary communist party
 revolutionary party
+sinn fein
 social democratic party
 social democratic union
 social liberal party
@@ -93,6 +95,6 @@ unity party
 worker communist party
 worker-communist party
 workers league
-workers' league
 workers party
+workers' league
 workers' party

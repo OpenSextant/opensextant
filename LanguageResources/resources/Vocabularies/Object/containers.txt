@@ -1,17 +1,21 @@
+POL storage tank
+POL storage tanks
+POL tank
+POL tanks
 backpack
 backpacks
-body bag
-body bags
 bag
-bags
 baggage
 baggages
+bags
 barrel
 barrels
 basin
 basins
 blanket
 blankets
+body bag
+body bags
 bottle
 bottles
 bowl
@@ -45,22 +49,30 @@ cassette
 cassettes
 chemical tank
 chemical tanks
+coffin
+coffins
 container
 containers
 crate
 crates
+cylindrical tank
+cylindrical tanks
 drum
 drums
+fuel bladder
 fuel tank
 fuel tanks
-fuel bladder
 fule bladders
 gas cylinder
 gas cylinders
-horizontal tank
-horizontal tanks
+gas tank
+gas tanks
+handbag
+handbags
 hood
 hoods
+horizontal tank
+horizontal tanks
 hose
 hoses
 jar
@@ -71,14 +83,16 @@ net
 nets
 netting
 nettings
+oxygen tank
+oxygen tanks
 pallet
 pallets
 pallett
 palletts
 pipe
-pipes
 pipe section
 pipe sections
+pipes
 pot
 pots
 retort
@@ -87,12 +101,6 @@ shipping container
 shipping containers
 storage tank
 storage tanks
-POL storage tank
-POL storage tanks
-POL tank
-POL tanks
-cylindrical tank
-cylindrical tanks
 suitcase
 suitcases
 tarp
@@ -108,14 +116,6 @@ vials
 water tank
 water tanks
 wood case
-wooden case
 wood cases
+wooden case
 wooden cases
-handbag
-handbags
-coffin
-coffins
-oxygen tank
-oxygen tanks
-gas tank
-gas tanks

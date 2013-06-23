@@ -1,116 +1,113 @@
-child
-children
-descendent
-descendents
-son
-sons
-daughter
-daughters
-sibling
-siblings
-brother
-brothers
-sister
-sisters
-parent
-parents
-mother
-mothers
-father
-fathers
-cousin
-cousins
-uncle
-uncles
-aunt
-aunts
-nephew
-nephews
-niece
-nieces
-grandparent
-grandfather
-grandmother
-grandson
-grandsons
-grand son
-grand sons
-granddaughter
-granddaughters
-grand daughter
-grand daughters
-grandchild
-grandchildren
-husband
-wife
-wives
-common law wife
-common-law wife
-common law wives
-common-law wives
-spouse
-inlaw
-inlaws
-father-in-law
-father-in-laws
-sister-in-law
-sister-in-laws
-brother-in-law
-brother-in-laws
-mother-in-law
-mother-in-laws
-son-in-law
-son-in-laws
-in-law
-in law
-family
-families
-family member
-family members
-family ties
-relative
-relatives
-kin
-kinship
-friend
-friends
-associate
-associates
-contact
-contacts
-partner
-partner
 accomplice
 accomplices
 acquaintance
 acquaintances
 associate
 associates
-colleague
-colleagues
-business colleague
-business colleagues
+aunt
+aunts
+boy friend
+boy friends
+boyfriend
+boyfriends
+brother
+brother-in-law
+brother-in-laws
+brothers
 business associate
 business associates
+business colleague
+business colleagues
+child
+children
 close associate
 close associates
-girlfriend
+colleague
+colleagues
+common law wife
+common law wives
+common-law wife
+common-law wives
+contact
+contacts
+cousin
+cousins
+daughter
+daughters
+descendent
+descendents
+families
+family
+family member
+family members
+family ties
+father
+father-in-law
+father-in-laws
+fathers
+friend
+friends
 girl friend
-girlfriends
 girl friends
-boyfriend
-boy friend
-boyfriends
-boy friends
-godfather
-godfathers
-godmother
-godmothers
-god-father
-god-fathers
-god-mother
-god-mothers
+girlfriend
+girlfriends
 god father
 god fathers
 god mother
 god mothers
+god-father
+god-fathers
+god-mother
+god-mothers
+godfather
+godfathers
+godmother
+godmothers
+grand daughter
+grand daughters
+grand son
+grand sons
+grandchild
+grandchildren
+granddaughter
+granddaughters
+grandfather
+grandmother
+grandparent
+grandson
+grandsons
+husband
+in law
+in-law
+inlaw
+inlaws
+kin
+kinship
+mother
+mother-in-law
+mother-in-laws
+mothers
+nephew
+nephews
+niece
+nieces
+parent
+parents
+partner
+relative
+relatives
+sibling
+siblings
+sister
+sister-in-law
+sister-in-laws
+sisters
+son
+son-in-law
+son-in-laws
+sons
+spouse
+uncle
+uncles
+wife
+wives

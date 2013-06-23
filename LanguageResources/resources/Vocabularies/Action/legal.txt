@@ -6,21 +6,33 @@ allegations
 amnesty
 appeal
 appeals
-arrest
-arrests
 arraignment
 arraignments
+arrest
+arrests
+background check
+background checks
 bail application
 bail applications
+bail hearing
+bail hearings
 bankruptcies
 bankruptcy
+capital punishment
+capital punishments
 conviction
 convictions
 criminal charge
+criminal count
+criminal counts
+criminal history check
+criminal history checks
 custody
 death penalty
 deportation
 deportation order
+divorce settlement
+divorce settlements
 drug bust
 drug busts
 extradition
@@ -30,25 +42,41 @@ grand jury
 grievance
 grievances
 guilty plea
+hearings
+imprisonment
+imprisonments
+incarceration
+incarcerations
 indictment
 indictments
 interrogation
 interrogations
 investigation
 investigations
+jail sentence
+jail sentences
+jail time
+judicial hearing
+judicial hearings
 jury duty
 jury trial
 lawsuit
 lawsuits
+life imprisonment
+life imprisonments
 life sentence
 life sentences
 maximum sentence
 mimimum sentence
+negotiation
+negotiations
 parole
 peremptory plea
 plea
 plea bargain
 preliminary hearing
+prison sentence
+prison sentences
 probation
 prosecution
 sanction
@@ -65,36 +93,3 @@ trial
 trials
 verdict
 year sentence
-negotiation
-negotiations
-life imprisonment
-life imprisonments
-background check
-background checks
-criminal history check
-criminal history checks
-bail hearing
-bail hearings
-hearings
-incarceration
-incarcerations
-imprisonment
-imprisonments
-jail time
-prison sentence
-jail sentence
-prison sentences
-jail sentences
-sentencing
-life sentence
-life sentences
-suspended sentence
-suspended sentences
-criminal count
-criminal counts
-judicial hearing
-judicial hearings
-capital punishment
-capital punishments
-divorce settlement
-divorce settlements

@@ -4,21 +4,23 @@ able seaman
 able-bodied seaman
 absolver
 academic administrator
+accountant
+accountants
 acolyte
-actor
-actors
 activist
 activists
+actor
+actors
 adjutant
 adjutant general
 administrative official
 administrator
 admiral
 admiralty
-advisor
-advisors
 adviser
 advisers
+advisor
+advisors
 aeronaut
 agent
 agents
@@ -30,8 +32,10 @@ agricultural labourer
 agriculture secretary
 aide
 aide-de-camp
+aides
 air hostess
 air marshal
+air marshals
 air vice marshal
 aircraftman
 aircraftsman
@@ -39,19 +43,23 @@ aircrewman
 airman
 airmen
 airwoman
+alien
+aliens
 almoner
 altar boy
+alumni
+alumnus
 amah
-amir
 amanuensis
 ambassador
 ambassadors
 ambassadress
+amir
 analyst
 analysts
-angler
 anesthesiologist
 anesthesiologists
+angler
 animal stuffer
 animal trainer
 anthologist
@@ -61,6 +69,9 @@ apotheosis
 applicant
 applicants
 appointee
+arbovirologist
+archaeologist
+archaeologists
 archbishop
 archdeacon
 archduchess
@@ -80,40 +91,53 @@ artificer
 artilleryman
 artisan
 artist's model
-assemblyman
-assemblymen
-assassin
-assassins
-assessor
-assistant
 assailant
 assailants
+assassin
+assassins
+assemblyman
+assemblymen
+assessor
+assistant
 assistant foreman
+astronaut
+astronauts
+athlete
+athletes
 attache
 attacker
 attackers
 attendant
+attendants
 attendee
 attendees
+attorney
 attorney general
 attorney generals
-attornies general
 attorney-general
 attorney-generala
+attorneys
+attornies
+attornies general
 attornies-general
+auctioneers
+auditors
 author
 authors
 auto-mechanic
+auxiliaries
 auxiliary
 auxiliary police
 auxiliary police officer
-auxiliaries
 auxiliary police officers
 aviator
+aviators
 aviatress
 aviatrix
 ayah
 baas
+babysitter
+babysitters
 bacchant
 bacchante
 bachelor
@@ -126,7 +150,10 @@ bailiff
 baker
 balloonist
 bank commissioner
+banker
+bankers
 banneret
+baptist
 barber
 bargee
 bargeman
@@ -139,6 +166,8 @@ baron
 baroness
 baronet
 barrel maker
+barrister
+barristers
 bart
 bartender
 baseball coach
@@ -157,29 +186,34 @@ bellman
 bellwether
 best man
 bey
+bidder
+bidders
 bill poster
 bill sticker
+bioanthropologist
 bishop
 bishops
 blackleg
 blacksmith
+blogger
+bloggers
 bluejacket
+bo'sun
 boater
 boatman
 boatswain
+body servant
 bodyguard
 bodyguards
-body servant
+bolshevik
+bolsheviks
 bombardier
 book agent
 bookbinder
 bos'n
 boss
 bosun
-bo'sun
 boxer
-boy
-boys
 brakeman
 brass hat
 bread maker
@@ -187,10 +221,11 @@ breadwinner
 breaker
 bricklayer
 bridesmaid
-brigadier
 brig.
 brig. gen.
+brigadier
 brigadier general
+broker
 bronco buster
 buck private
 buckaroo
@@ -200,18 +235,20 @@ burgomaster
 burgrave
 busboy
 bushwhacker
-businessman
-businessmen
-business man
-business men
-businesswoman
-businesswomen
-business woman
-business women
 business editor
 business executive
+business man
+business men
+business woman
+business women
+businessman
+businessmen
+businesswoman
+businesswomen
 butcher
 butler
+buyer
+buyers
 c.e.o.
 c.f.o.
 cabin boy
@@ -219,11 +256,13 @@ cabinet member
 cabinet minister
 cabinet ministers
 cabinetmaker
+caddie
 cadet
 cadets
-caddie
 calligrapher
 calligraphist
+cameraman
+cameramen
 campaigner
 candidate
 candidates
@@ -234,30 +273,39 @@ canoeist
 canon
 cantor
 canvasser
+capitalist
 captain
+captive
+captives
+captor
+captors
+car-mechanic
 carabineer
 carabinier
 cardinal
+caregivers
 caretaker
+caretakers
 carhop
-car-mechanic
 carpenter
 carpet knight
 carrier
 carter
-cartwright
 cartographer
 cartographers
+cartwright
 carver
 caseworker
-casualty
+casualities
 casualties
-catholic deacon
+casualty
 cat's-paw
+catholic deacon
 cattleman
 cavalier
 cavalryman
 celebrant
+celebrity
 censor
 census taker
 ceo
@@ -265,7 +313,6 @@ ceramicist
 ceramist
 cfo
 chair
-co-chairman
 chairman
 chairman of the board
 chairperson
@@ -285,10 +332,11 @@ chatelaine
 check girl
 checker
 cheerleader
+cheerleaders
 chef
+chemist
 chevalier
 chief
-chiefs
 chief assistant
 chief engineer
 chief executive
@@ -303,7 +351,10 @@ chief operating officer
 chief petty officer
 chief scientist
 chief secretary
+chiefs
 chieftain
+child predator
+child predators
 chimneysweep
 chimneysweeper
 choragus
@@ -311,8 +362,6 @@ church officer
 churchman
 churchwarden
 cicerone
-citizen
-citizens
 city editor
 city father
 city manager
@@ -326,17 +375,31 @@ cleaning lady
 cleaning woman
 clergyman
 cleric
+clerics
 clerk
 client
 clients
+clinicians
 clockmaker
 clocksmith
+clown
+clowns
+co-chairman
+co-conspirator
+co-conspirators
+co-defendant
+co-defendants
+co-editor
+co-founder
+co-host
 coach
 coachbuilder
 coachman
 coal miner
 coalman
 coastguardsman
+cohort
+cohorts
 coiffeur
 coiffeuse
 collaborator
@@ -344,22 +407,27 @@ collaborators
 colleague
 colleagues
 collectivist
+collector
 collector of internal revenue
+collectors
 collier
 colonel
 colonel general
 color bearer
 color guard
 color sergeant
+columnist
+columnists
 combatant
 combatants
 commandant
 commander
-commanders
 commander in chief
 commander-in-chief
+commanders
 commanding officer
 commando
+commandos
 commerce secretary
 commercial traveler
 commercial traveller
@@ -368,8 +436,8 @@ commissar
 commissioned officer
 commissioner
 commodore
-communist
 communicant
+communist
 companion
 company man
 compositor
@@ -379,11 +447,14 @@ comptroller of the currency
 computer scientist
 computer scientists
 comrade
+comrades
 comte de saxe
 conditioner
 confederate soldier
 confessor
+confidants
 congressman
+congressmen
 congresswoman
 conscript
 constable
@@ -391,9 +462,13 @@ constables
 consul
 consultant
 consultant paediatrician
-controller
+consultants
+contestant
+contestants
+contortionist
 contractor
 contractors
+controller
 convener
 cook
 cookie
@@ -413,7 +488,11 @@ corporate executive
 corporate financier
 corpse
 corpses
+correspondent
+correspondents
 cosmetician
+cosmonaut
+cosmonauts
 councilman
 counsel
 counsellor
@@ -421,8 +500,8 @@ counselor
 counselors
 counterman
 countess
-courier
 coureur de bois
+courier
 courtier
 cover girl
 coward
@@ -440,10 +519,12 @@ crackerjack
 craftsman
 crew member
 crew members
+crewman
 crewmember
 crewmembers
-crewman
 crewmen
+crime lord
+crime lords
 criminal
 criminals
 cropper
@@ -451,6 +532,8 @@ crossbencher
 crown prince
 crown princess
 cuirassier
+culprit
+culprits
 cupbearer
 curate
 customer
@@ -466,25 +549,17 @@ day labourer
 deacon
 deaconess
 dealer
-defector
-defectors
-dignitary
-dignitaries
-drug dealer
-opium dealer
-heroin dealer
-crime lord
-crime lords
-drug lord
-drug lords
 dealers
-drug dealers
-opium dealers
-heroin dealers
 dean
+debtor
+debtors
 decision maker
 deckhand
+defector
+defectors
 defence attache
+defendant
+defendants
 defense attache
 defense minister
 defense secretary
@@ -511,17 +586,21 @@ detainee
 detainees
 detective
 devil dog
+dictator
+dictators
 diemaker
 diesinker
 digger
+dignitaries
+dignitary
 dining-room attendant
 diocesan
 diplomat
-diplomats
 diplomatic minister
 diplomatic observer
 diplomatic observers
 diplomatist
+diplomats
 director
 director general
 director of communications
@@ -530,19 +609,19 @@ director of marketing
 director of public affairs
 director of research
 director-general
-displaced person
-displaced persons
 dishwasher
 disinfestation officer
 dispatcher
+displaced person
+displaced persons
 district manager
 ditch digger
 dock worker
-doctor
-doctors
+dock-walloper
 docker
 dockhand
-dock-walloper
+doctor
+doctors
 dog catcher
 doge
 dogsbody
@@ -568,9 +647,13 @@ driver
 drivers
 drover
 drudge
-druid
+drug dealer
+drug dealers
+drug lord
+drug lords
 drug trafficker
 drug traffickers
+druid
 drummer
 duchess
 duke
@@ -581,44 +664,53 @@ dyer
 earl
 earner
 ecclesiastic
+economist
 editor
 education secretary
 elder
-elders
 elder statesman
+elders
 elected official
 electrician
+elitist
 embalmer
 embassador
 emergency responder
 emergency responders
-first responder
-first responders
+emissaries
+emissary
 employee
 employees
 employer
-emissary
-emissaries
-enemy
 enemies
+enemy
 enforcer
 engineer
-engineers
 engineering manager
+engineers
 engraver
 enlisted man
 enlisted person
 enlisted woman
 ensign
+entomologists
+entrepreneur
+entrepreneurs
+environmentalist
+environmentalists
 envoy
 envoy extraordinary
+epidemiologist
 equerry
 escort
 esquire
-evangelist
-event planner
 evacuee
 evacuees
+evangelist
+event planner
+ex-mayor
+ex-president
+ex-serviceman
 excavator
 exciseman
 executive
@@ -632,9 +724,6 @@ executive vice-president, information technologies
 executive vp
 expert
 experts
-ex-mayor
-ex-president
-ex-serviceman
 extremist
 extremists
 facilitator
@@ -644,7 +733,9 @@ factotum
 falconer
 famulus
 farm worker
+farmer
 farmerette
+farmers
 farmhand
 farrier
 fashion arbiter
@@ -655,18 +746,24 @@ federal agent
 federal official
 federalist
 fellah
+felon
+felons
 female
-females
 female aristocrat
 female monarch
+females
 ferryman
 field marshal
 field officer
 field-grade officer
 fieldhand
+fifth grader
+fifth graders
+fifth-grader
+fifth-graders
 fighter
-fighters
 fighter pilot
+fighters
 figure
 figures
 file clerk
@@ -680,16 +777,20 @@ finance minister
 financier
 fire marshall
 fire warden
-fireman
 firefighter
 firefighters
+fireman
+first grader
+first graders
 first lieutenant
 first mate
+first responder
+first responders
 first sergeant
+first-grader
+first-graders
 fisher
 fisherman
-fighter
-fighters
 flag captain
 flag officer
 flamen
@@ -704,27 +805,35 @@ foot soldier
 football coach
 footman
 footslogger
-foreigner
-foreigners
-foreign minister
 foreign affairs minister
 foreign fighter
 foreign fighters
+foreign minister
 foreign official
 foreign worker
 foreign workers
+foreigner
+foreigners
 foreman
 forest fire fighter
 forewoman
 forger
 forty-niner
 founder
+fourth grader
+fourth graders
+fourth-grader
+fourth-graders
 fowler
 framer
 freelance
+freelancer
+freelancers
 fresh fish
 frontbencher
 fry cook
+fugitive
+fugitives
 full admiral
 full general
 functionary
@@ -744,10 +853,10 @@ garment cutter
 gas fitter
 gasman
 gaucho
-guard
-guards
 gem cutter
 gen.
+gendarme
+gendarmes
 general
 general director
 general manager
@@ -756,6 +865,7 @@ general secretary
 generalissimo
 gentleman
 gentleman's gentleman
+geologists
 gilder
 gillie
 girl friday
@@ -782,12 +892,12 @@ gospeller
 gov.
 government employee
 government employees
+government minister
 government official
 government officials
-government minister
 governor
-governors
 governor general
+governors
 grand duchess
 grand duke
 grandee
@@ -804,27 +914,29 @@ groundsman
 group captain
 grower
 growers
+guard
 guard of honor
+guards
 guardsman
 guerrilla
 guerrillas
 guest
 guests
-gunner
-gunnery sergeant
 gunman
 gunmen
+gunner
+gunnery sergeant
 gunsmith
 guvnor
 hack
 hairdresser
 hairstylist
 haji
-hajji
-hajiyah
-hajjiyah
 hajiya
+hajiyah
+hajji
 hajjiya
+hajjiyah
 handler
 handmaid
 handmaiden
@@ -837,34 +949,40 @@ hatchet man
 hawker
 hazan
 head of household
-heads of household
 head of state
 head waiter
 headman
+heads of household
 hearing examiner
 hearing officer
 helmsman
 helper
 herder
-herdsman
-herder
 herders
+herdsman
 hero
+heroin dealer
+heroin dealers
 hewer
 hierarch
 high commissioner
 high priest
 highlander
+hijacker
+hijackers
 hired hand
 hired man
 hireling
 hirer
+historians
 hockey coach
 hod carrier
 hodman
 holdover
-home secretary
+holidaymaker
+holidaymakers
 home secretaries
+home secretary
 honcho
 honor guard
 hoodoo
@@ -894,12 +1012,24 @@ hunter
 huntress
 huntsman
 hussar
+hypocrite
 iceman
+idealists
+idiot
+idiots
+illegal alien
+illegal aliens
 imam
 imaum
+immigrant
+immigrants
+immigration judge
+immigration judges
 incumbent
 indexer
 indian chief
+individual
+individuals
 industry and commerce minister
 infantryman
 informant
@@ -909,26 +1039,29 @@ inmate
 inmates
 insider
 inspector
-inspectors
 inspector general
+inspectors
 instigator
 insurgent
 insurgents
-islamic insurgent
-islamic insurgents
 interim vice president - operations
 interior minister
 interior secretary
+interlocutor
 internal revenue agent
 internationalist
+internet predator
+internet predators
 internuncio
 interpreter
-interlocutor
-investor
-investors
 investigator
 investigators
+investor
+investors
 invigilator
+islamic insurgent
+islamic insurgents
+islamists
 jack-tar
 janissary
 jd
@@ -936,13 +1069,15 @@ jihadist
 jihadists
 jobholder
 joiner
-journeyman
 journalist
 journalists
+journeyman
 judge
 judge advocate
 judge advocate general
 jurist
+juror
+jurors
 justice minister
 justice of the peace
 justiciar
@@ -963,8 +1098,8 @@ laborer
 labourer
 labourite
 lackey
-lady-in-waiting
 lady's maid
+lady-in-waiting
 lama
 lamplighter
 lance corporal
@@ -983,13 +1118,15 @@ lawmaker
 lawmakers
 lawyer
 lawyers
+lead role
+lead roles
 leader
 leaders
 leadership
 leatherneck
 ledgeman
-leftist
 left-winger
+leftist
 legal advisor
 legal advisors
 legal assistant
@@ -1023,10 +1160,15 @@ lion-hunter
 litter-bearer
 liveryman
 loader
+lobbyists
 lobsterback
 lobsterman
 local government officials
 local mayor
+local national
+local national advisor
+local national advisors
+local nationals
 local official
 local officials
 lockkeeper
@@ -1039,6 +1181,8 @@ lord chancellor
 lord high chancellor
 lord mayor
 lord privy seal
+loyalist
+loyalists
 lumper
 macebearer
 macer
@@ -1060,23 +1204,24 @@ mailman
 maintenance man
 maitre d'hotel
 major
+major general
 major-domo
 major-general
-major general
 majority leader
 male
-males
 male aristocrat
+males
 malik
 maliks
 man friday
 man of the cloth
+man-at-arms
 manager
 manageress
 managing director
+managing directors
 managing editor
 manakin
-man-at-arms
 mandarin
 manicurist
 manikin
@@ -1088,16 +1233,17 @@ mapper
 marcher
 marchioness
 margrave
-martyr
-martyrs
 marine
-marines
 mariner
+marines
 marquess
 marquis
 marquise
 marshal
 marshall
+marsupialogist
+martyr
+martyrs
 mason
 master
 master sergeant
@@ -1106,22 +1252,23 @@ mayor
 mayoress
 md
 mechanic
+mediator
 medical social worker
 medicine man
-mediator
-member of parliament
-members of parliament
 member
+member of parliament
 members
+members of parliament
 mender
-mercenary
 mercenaries
+mercenary
 merchant
 merchants
 mesne lord
 messenger
 messengers
 metalworker
+microbiologists
 midinette
 migrant
 migrants
@@ -1141,15 +1288,14 @@ military volunteer
 militiaman
 milkmaid
 milkman
-miller
 mill-girl
 mill-hand
+miller
 millwright
 milord
 miner
 mineworker
 minister
-ministers
 minister for economic affairs
 minister for external affairs
 minister for finance
@@ -1164,6 +1310,7 @@ minister of foreign affairs
 minister of interior
 minister of the interior
 minister plenipotentiary
+ministers
 ministrant
 minority leader
 minuteman
@@ -1171,44 +1318,49 @@ mistress
 mixologist
 model
 moderator
+molawi
+molawis
+molvi
+molvis
 monitor
 monsignor
 mortician
-molvi
-molawi
-molvis
-molawis
+motorcyclist
 mourner
 mourners
 mud digger
 mugwump
+mujahidin
 mule driver
 mule skinner
 muleteer
 mullah
 mullahs
+murderer
+murderers
+musicians
 musketeer
-mujahidin
+narco trafficker
+narco traffickers
+narco-trafficker
+narco-traffickers
 narcotics trafficker
 narcotics traffickers
 narcotrafficker
-narco-trafficker
-narco trafficker
 narcotraffickers
-narco-traffickers
-narco traffickers
 national
-nationals
 national leader
 national security advisor
+nationals
+native
+natives
 naval officer
 navigator
 navvy
 navy man
-native
-natives
 net controller
 net controllers
+neurosurgeon
 newsboy
 newspaper editor
 noble
@@ -1218,13 +1370,13 @@ nomad
 nomads
 nominee
 nominees
-noncandidate
 non-christian priest
+non-combatant
+non-combatants
+noncandidate
 noncom
 noncombatant
-non-combatant
 noncombatants
-non-combatants
 noncommissioned officer
 notary
 notary public
@@ -1236,6 +1388,7 @@ oarsman
 oarswoman
 observer
 observers
+obstetricians
 odd-job man
 office boy
 office-bearer
@@ -1249,6 +1402,8 @@ operative
 operatives
 operator
 operators
+opium dealer
+opium dealers
 optician
 orderly
 orderly sergeant
@@ -1257,6 +1412,8 @@ organization man
 organizer
 ostler
 overseer
+owner
+owners
 oyabun
 pacifist
 pacifists
@@ -1266,8 +1423,8 @@ padre
 padrone
 painter
 palatine
-panel chair
 palsgrave
+panel chair
 pantryman
 paperboy
 paperer
@@ -1276,6 +1433,7 @@ paralegal
 paramedic
 paraprofessional
 paratrooper
+paratroopers
 pardoner
 park commissioner
 parliamentarian
@@ -1283,6 +1441,8 @@ parlormaid
 parlourmaid
 parson
 part-timer
+participant
+particpants
 party boss
 party liner
 party man
@@ -1292,6 +1452,8 @@ passengers
 pastor
 pastry cook
 paterfamilias
+pathologist
+pathologists
 patient
 patients
 patriarch
@@ -1303,6 +1465,7 @@ peacekeepers
 peasant
 pedestrian
 pedestrians
+pediatrician
 peeler
 peer
 peer of the realm
@@ -1314,12 +1477,18 @@ pensionary
 peon
 perpetrator
 perpetrators
-person
-persons
 persona grata
 persona non grata
+personnel
+persons
+pessimist
 petty officer
+pharmacist
+pharmacists
+photographer
 photographer''s model
+physician
+physicians
 physicist
 physicists
 piano tuner
@@ -1329,8 +1498,8 @@ pilgrim
 pilgrims
 pilot
 pilots
-pinko
 pin-up
+pinko
 pipe fitter
 pirate
 pirates
@@ -1353,29 +1522,35 @@ plowwright
 plumber
 point man
 point woman
-police commissioner
 police chief
 police chiefs
-policeman
-policemen
-policewoman
-policewomen
+police commissioner
 police constable
 police constables
 police officer
 police officers
 police official
 police officials
+policeman
+policemen
+policewoman
+policewomen
 political boss
 political commissar
 political hack
 political leader
+political opponent
+political opponents
 politician
 politicians
 politico
 pontiff
 pope
+pornographer
+pornographers
 porter
+portfolio manager
+portfolio managers
 poser
 postal clerk
 postman
@@ -1391,19 +1566,22 @@ power worker
 power-station worker
 praetor
 preacher
-preachers
 preacher man
+preachers
 prebendary
 prefect
 prelate
 premier
 premier ministre
 presbyter
+preservationists
 preserver
 president
 president of the united states
 president-elect
 presiding officer
+press official
+press officials
 press secretary
 pressman
 pretor
@@ -1421,6 +1599,7 @@ prisoner
 prisoners
 privateer
 privateersman
+prize winner
 probation officer
 processor
 proconsul
@@ -1434,9 +1613,11 @@ promulgator
 proofreader
 property man
 property master
-propman
 prophet
 prophets
+propman
+prosecutor
+prosecutors
 prospector
 protestant deacon
 protester
@@ -1444,10 +1625,12 @@ protesters
 protestor
 protestors
 provost
+public defender
 public servant
 public servants
 publican
 pullman porter
+pulmonologists
 puncher
 punter
 purser
@@ -1461,10 +1644,14 @@ queen dowager
 queen mother
 queen regent
 queen regnant
+r-s.c.
 rabbi
+rabble rouser
+rabble rousers
+racist
+rail-splitter
 railroad man
 railroader
-rail-splitter
 railway man
 railwayman
 raja
@@ -1474,45 +1661,52 @@ ranee
 ranger
 rani
 ranker
+rapists
 rat-catcher
 raw recruit
 reaper
+rear admiral
 rebel
 rebels
-rear admiral
 receptionist
 record-keeper
 recruit
-recruits
 recruiting-sergeant
+recruits
 rector
 redactor
 redcap
 redcoat
 refiner
 refinisher
-refuse collector
+reformists
 refugee
 refugees
+refuse collector
 regional general manager
 registrar
 regulator
+religious leader
+religious leaders
 renovator
 rep
 rep.
 repairer
 repairman
 reporter
+reporters
 representative
+representatives
 republican
 republicans
 research director
+researcher
 reservist
-restaurant attendant
 resident
 residents
 respondent
 respondents
+restaurant attendant
 reverend
 reviser
 revisionist
@@ -1526,21 +1720,22 @@ riveter
 rivetter
 road mender
 roadman
+robber
+robbers
 role model
 roofer
 room clerk
 roundsman
 roustabout
 rower
-r-s.c.
 running mate
 sacristan
 sadar
 sadars
 sailing master
 sailor
-sailors
 sailor boy
+sailors
 saint
 sales demonstrator
 sales manager
@@ -1548,6 +1743,7 @@ salesclerk
 salesgirl
 saleslady
 salesman
+salesmen
 salesperson
 saleswoman
 sandwichman
@@ -1555,11 +1751,12 @@ satrap
 sawyer
 scene painter
 sceneshifter
-scientist
-scientists
 scholar
 scholars
 school superintendent
+schoolteacher
+scientist
+scientists
 scourer
 scoutmaster
 scribe
@@ -1572,7 +1769,11 @@ sea dog
 sea lawyer
 seafarer
 seaman
+second grader
+second graders
 second lieutenant
+second-grader
+second-graders
 second-in-command
 secretarial assistant
 secretary
@@ -1597,35 +1798,36 @@ security agent
 security agents
 security chief
 security director
-security-chief
 security guard
 security guards
 security officer
 security officers
-security officials
 security official
+security officials
 security personnel
+security-chief
 selectman
 selectwoman
 self-employed person
 seller
 sellers
 senator
+senators
 seneschal
-sentry
-sentries
+senior director of program management
+senior executive
 senior leader
 senior leadership
 senior officer
 senior officers
 senior official
 senior officials
-senior director of program management
-senior executive
 senior pilot
 senior vice president
 senior vice president of clinical operations
 senior vp
+sentries
+sentry
 sergeant
 sergeant at arms
 sergeant first class
@@ -1637,34 +1839,48 @@ serviceman
 servicemen
 serving girl
 servitor
+sex offender
+sex offenders
+sex predator
+sex predators
 sexton
+sexual predator
+sexual predators
 shadow governor
+shaikh
+shaikhs
 shaman
 sharecrop farmer
 sharecropper
-sharpshooter
+shareholder
+shareholders
 sharp shooter
-sharp-shooter
-sharpshooters
 sharp shooters
+sharp-shooter
 sharp-shooters
+sharpshooter
+sharpshooters
+shaykh
+shaykhs
 sheepherder
 sheepman
-shaykh
-sheikh
-shaikh
 sheik
-shaykhs
+sheikh
 sheikhs
-shaikhs
 sheiks
 shepherd
 shepherdess
-shipboard soldier
-shipping clerk
+sheriff
+sheriffs
+sherrif
+sherriff
+sherriffs
+sherrifs
 ship's officer
+shipboard soldier
 shipmaster
 shipmasters
+shipping clerk
 shipwright
 shop assistant
 shop boy
@@ -1677,6 +1893,10 @@ sidesman
 sign painter
 signalman
 sire
+sixth grader
+sixth graders
+sixth-grader
+sixth-graders
 skilled worker
 skipper
 skivvy
@@ -1684,8 +1904,11 @@ sky pilot
 slaughterer
 slave
 slave driver
+slaves
 slavey
 smith
+smuggler
+smugglers
 sniper
 snipers
 social secretary
@@ -1698,16 +1921,17 @@ soldiers
 solon
 sommelier
 soundman
-slave
-slaves
+speaker
 specialist
 specialists
-speaker
+spies
 spiritual leader
 spokesman
+spokesmen
 spokesperson
 spokeswoman
 sports editor
+spy
 squire
 stableboy
 stableman
@@ -1741,6 +1965,7 @@ stone breaker
 stone cutter
 stonecutter
 stonemason
+strategists
 straw boss
 street cleaner
 street sweeper
@@ -1754,33 +1979,40 @@ students
 stunt flier
 stunt pilot
 stylist
-subaltern
 sub commander
 sub-commander
+subaltern
 subcommander
 subcommanders
 subeditor
 sublieutenant
 submariner
-successor
+subscriber
+subscribers
 successer
-successors
 successers
+successor
+successors
 suffragan
 suffragan bishop
 suicide bomber
 suicide bombers
 superintendent
+superiors
 superman
 superordinate
 supervisor
 supply officer
-superiors
 supporter
+supporters
 supreme commander
+surgeon
 surgeon general
+surgeons
 sweep
 swineherd
+sympathizer
+sympathizers
 tally clerk
 tallyman
 tamer
@@ -1794,6 +2026,8 @@ tax assessor
 tax collector
 taxidermist
 taxman
+taxpayer
+taxpayers
 teacher
 teachers
 teamster
@@ -1815,9 +2049,14 @@ test pilot
 text editor
 thane
 thatcher
+theater prompter
+therapist
 thief
 thieves
-theater prompter
+third grader
+third graders
+third-grader
+third-graders
 throwster
 thurifer
 timekeeper
@@ -1848,6 +2087,8 @@ trainer
 trainers
 trainman
 trainmaster
+traitor
+traitors
 transportation secretary
 trapper
 travel agent
@@ -1861,15 +2102,15 @@ treasury
 treasury secretary
 trend-setter
 trial judge
-tribe elder
-tribe elders
-tribesman
-tribesmen
 tribal chief
 tribal elder
 tribal elders
 tribal leader
 tribal leaders
+tribe elder
+tribe elders
+tribesman
+tribesmen
 trier
 triumvir
 troller
@@ -1885,8 +2126,8 @@ typesetter
 typist
 typographer
 tzarina
-undersecretary
 under secretary
+undersecretary
 undertaker
 union member
 unionist
@@ -1912,10 +2153,12 @@ veteran
 veteran soldier
 veterinarian
 veterinarians
+vets
 vicar
 vicar apostolic
 vicar of christ
 vicar-general
+vice -president, marketing
 vice admiral
 vice chairman
 vice chancellor
@@ -1925,7 +2168,6 @@ vice president of business development
 vice president of business development and worldwide sales
 vice president of sales
 vice president, finance - operations
-vice -president, marketing
 vice-president
 vice-president, business development
 vice-president, human resources
@@ -1937,19 +2179,28 @@ victim
 victims
 vigilance man
 vigilante
-vip
-vips
-visual observer
-visual observers
-viscount
-viscountess
-vizier
 village elder
 village elders
+village idiot
+village idiots
+villager
+villagers
+violator
+violators
+vip
+vips
+virologist
+viscount
+viscountess
+visual observer
+visual observers
+vizier
 voluntary
 volunteer
 votary
 vote counter
+voter
+voters
 vp
 wage earner
 waggoner
@@ -1975,6 +2226,8 @@ washer
 washerman
 washerwoman
 washwoman
+watchman
+watchmen
 water boy
 water dog
 water rat
@@ -1994,6 +2247,8 @@ wine steward
 wine waiter
 wing commander
 wingman
+witness
+witnesses
 woodcarver
 woodcutter
 woodman
@@ -2010,303 +2265,9 @@ wrangler
 wrecker
 wright
 write-in candidate
+writer
+writers
 yachtsman
 yachtswoman
 yardmaster
-villager
-villagers
-man
-men
-woman
-women
-child
-children
-farmer
-farmers
-witness
-witnesses
-culprit
-culprits
-press official
-press officials
-spokesman
-spokesmen
-spy
-sympathizer
-spies
-sympathizers
-traitor
-traitors
-casualty
-casualities
-correspondent
-correspondents
-vet
-vets
-entrepreneur
-entrepreneurs
-male
-female
-native
-local national
-local nationals
-local national advisor
-local national advisors
-religious leader
-religious leaders
-smuggler
-smugglers
-supporter
-supporters
-individual
-individuals
-personnel
-people
-cohort
-cohorts
-supporter
-supporters
-representative
-representatives
-participant
-particpants
-adults
-contestant
-contestants
-murderer
-murderers
-subscriber
-subscribers
-alien
-aliens
-illegal alien
-illegal aliens
-sexual predator
-sexual predators
-sex offender
-sex offenders
-managing director
-managing directors
-defendant
-defendants
-senator
-senators
-immigrant
-immigrants
-congressmen
-congressman
-fugitive
-fugitives
-citizen
-citizens
-pharmacist
-pharmacists
-rabble rouser
-rabble rousers
-attorney
-attornies
-bioanthropologist
-archaeologist
-archaeologists
-writer
-writers
-dictator
-dictators
-cameraman
-cameramen
-prosecutor
-prosecutors
-celebrity
-surgeon
-surgeons
-columnist
-felon
-felons
-hypocrite
-physician
-motorcyclist
-neurosurgeon
-accountant
-researcher
-prize winner
-pediatrician
-photographer
-public defender
-schoolteacher
-virologist
-chemist
-air marshal
-air marshals
-reporters
-reporter
-citizen
-citizens
-political opponents
-political opponent
-babysitter
-babysitters
-barrister
-barristers
-freelancer
-freelancers
-juror
-jurors
-accountants
-arbovirologist
-cosmonaut
-cosmonauts
-debtor
-debtors
-physicians
-obstetricians
-clinicians
-musicians
-historians
-attorney
-attorneys
-therapist
-preservationists
-loyalist
-loyalists
-pathologist
-islamists
-economist
-environmentalist
 zionists
-entomologists
-pessimist
-reformists
-epidemiologist
-geologists
-microbiologists
-marsupialogist
-strategists
-idealists
-baptist
-environmentalists
-pathologists
-racist
-contortionist
-rapists
-environmentalists
-lobbyists
-pulmonologists
-elitist
-capitalist
-columnists
-hijacker
-hijackers
-astronaut
-astronauts
-athlete
-athletes
-attendants
-auctioneers
-auditors
-aviators
-banker
-bankers
-bidder
-bidders
-blogger
-bloggers
-bolshevik
-bolsheviks
-broker
-buyer
-buyers
-captive
-captives
-captor
-captors
-caregivers
-caretakers
-cheerleader
-cheerleaders
-cleric
-clerics
-clown
-clowns
-co-conspirator
-co-conspirators
-co-defendant
-co-defendants
-co-editor
-co-founder
-co-host
-collector
-collectors
-commando
-commandos
-comrade
-comrades
-confidants
-pornographer
-pornographers
-voter
-voters
-immigration judge
-immigration judges
-sexual predator
-child predator
-sex predator
-internet predator
-sexual predators
-child predators
-sex predators
-internet predators
-taxpayer
-taxpayers
-first-grader
-second-grader
-third-grader
-fourth-grader
-fifth-grader
-sixth-grader
-first grader
-second grader
-third grader
-fourth grader
-fifth grader
-sixth grader
-first-graders
-second-graders
-third-graders
-fourth-graders
-fifth-graders
-sixth-graders
-first graders
-second graders
-third graders
-fourth graders
-fifth graders
-sixth graders
-aide
-aides
-alumni
-alumnus
-robber
-robbers
-watchman
-watchmen
-gendarme
-gendarmes
-consultant
-consultants
-holidaymaker
-holidaymakers
-portfolio manager
-portfolio managers
-owner
-owners
-resident
-residents
-sherriff
-sheriff
-sherrif
-sherriffs
-sheriffs
-sherrifs
-shareholder
-shareholders
-

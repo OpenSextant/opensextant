@@ -1,12 +1,12 @@
+axe
 drill
 drills
-saws
 hammer
 hammers
+mattock
+pickaxe
 pipe cutter
 pipe cutters
+saws
 shovel
-axe
-pickaxe
-mattock
 trenching tool

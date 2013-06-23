@@ -1,100 +1,100 @@
-hiatus
-time
-anniversary
-anniversaries
-date
-dates
-afternoon
-afternoons
-break of day
-break of the day
-dawn
-daybreak
-dusk
-end of the day
-evening
-eve
-every day
-every week
-every month
-every year
-future
-first quarter
-second quarter
-third quarter
-fourth quarter
 1st quarter
 2nd quarter
 3rd quarter
 4th quarter
+afternoon
+afternoons
+anniversaries
+anniversary
+at last
+beginning
+beginnings
+break of day
+break of the day
+calendar
+calendars
+childhood
+date
+date of birth
+date of death
+dates
+dawn
+daybreak
+deadline
+deadlines
+duration
+dusk
+end of the day
+era
+eve
+evening
+every day
+every month
+every week
+every year
+first quarter
+fourth quarter
+future
 gloaming
-in the beginning
+hiatus
+holiday
+holidays
 in the afternoon
+in the beginning
 in the evening
 in the morning
+local time
 mid - day
+mid-day
 midafternoon
 midday
-mid-day
 middle of the day
 midnight
-morning
 moment
-nightfall
-night
+morning
+near term
 next day
-previous day
+night
+nightfall
 noon
 noonday
 noontide
 overnight
+pause
+pauses
+period
 pre-dawn
+previous day
+same day
+schedule
+schedules
 season
+second quarter
+session
+sessions
+short term
 start of the day
 sunrise
 sunset
+the future
+the past
+third quarter
 this afternoon
 this evening
 this morning
+time
+timeframe
+timeframes
+times a
+times per
 today
 tomorrow
 tonight
+until then
 weekday
 weekdays
 weekend
 weekends
 witching hour
 yesterday
-period
-local time
-times a
-times per
-date
-date of birth
-date of death
-at last
-until then
 zulu time
-duration
-deadline
-deadlines
-session
-sessions
-same day
-schedule
-schedules
-the past
-the future
-near term
-short term
-holiday
-holidays
-timeframe
-timeframes
-pause
-pauses
-beginning
-beginnings
-calendar
-calendars
-childhood

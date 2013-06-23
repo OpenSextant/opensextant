@@ -1,39 +1,39 @@
+aerial vehicle
+aerial vehicles
 aircraft
 airframe
 airframes
-airplane
-airplanes
-aerial vehicle
-aerial vehicles
-helicopter
-helicopters
-attack helicopter
-attack helicopters
-rotary wing aircraft
-helo
-plane
-planes
-tanker
-tankers
-ultralight
-ultralite
-ultra-light
-ultra-lite
-ultra light
-ultra lite
-ultralights
-ultralites
-ultra-lights
-ultra-lites
-ultra lights
-ultra lites
-jet
-jets
 airliner
 airliners
+airplane
+airplanes
+attack helicopter
+attack helicopters
+drone
+drones
+helicopter
+helicopters
+helo
+jet
+jets
+plane
+planes
+rotary wing aircraft
+tanker
+tankers
+target drone
+target drones
+ultra light
+ultra lights
+ultra lite
+ultra lites
+ultra-light
+ultra-lights
+ultra-lite
+ultra-lites
+ultralight
+ultralights
+ultralite
+ultralites
 warplane
 warplanes
-drone
-target drone
-drones
-target drones

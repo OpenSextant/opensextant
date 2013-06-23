@@ -24,7 +24,6 @@ eastern daily time
 eastern day time
 eastern standard time
 eastern time
-eastern time
 ect
 edt
 est
@@ -33,20 +32,16 @@ g.m.t.
 gmt
 greenwich mean time
 greenwich meantime
-greenwich meantime
 greenwich time
 m.e.t.
 met
 middle eastern time
 northern time
-northern time
 p.d.t.
 pacific daily time
 pacific day time
 pacific time
-pacific time
 pdt
-southern time
 southern time
 w.c.t.
 w.d.t.
@@ -61,10 +56,9 @@ western daily time
 western day time
 western standard time
 western time
-western time
 wst
 z.s.t.
 zone standard time
 zst
-zulu standard time
 zulu
+zulu standard time

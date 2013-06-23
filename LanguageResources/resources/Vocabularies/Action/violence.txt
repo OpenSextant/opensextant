@@ -5,8 +5,8 @@ ambush
 ambush attack
 ambush attacks
 ambushes
-atrocity
 atrocities
+atrocity
 attack
 attacks
 bloodshed
@@ -27,8 +27,9 @@ discord
 execution
 executions
 fight
-fights
 fighting
+fights
+fisticuffs
 gun fire
 gunfight
 gunfights
@@ -48,6 +49,8 @@ provocation
 provocations
 raid
 raids
+rebellion
+rebellions
 retaliation
 retaliations
 revenge
@@ -56,10 +59,13 @@ revolts
 revolution
 revolutions
 riot
-riots
 rioting
+riots
 siege
 sieges
+small arms fire
+small-arms fire
+smallarms fire
 strife
 struggle
 struggles
@@ -70,6 +76,3 @@ uprisings
 violence
 violent act
 violent acts
-rebellion
-rebellion
-fisticuffs

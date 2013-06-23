@@ -4,6 +4,8 @@ carbine
 carbines
 firearm
 firearms
+grenade launcher
+grenade launchers
 gun
 guns
 handgun
@@ -24,9 +26,9 @@ shotgun
 shotguns
 sidearm
 sidearms
+small arm
+small arms
 sniper rifle
 sniper rifles
 submachine gun
 submachine guns
-grenade launcher
-grenade launchers

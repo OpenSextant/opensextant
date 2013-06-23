@@ -1,7 +1,11 @@
-mafia
-organized crime
 crime inc
-drug cartel
-drug cartels
+crime ring
+crime rings
 crime syndicate
 crime syndicates
+drug cartel
+drug cartels
+drug ring
+drug rings
+mafia
+organized crime

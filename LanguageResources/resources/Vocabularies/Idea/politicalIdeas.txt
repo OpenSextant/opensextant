@@ -1,6 +1,6 @@
-antisemitism
-anti-semitism
 anarchism
+anti-semitism
+antisemitism
 artiguism
 authoritarianism
 autonomy
@@ -28,7 +28,6 @@ deng xiaoping theory
 despotism
 dictatorship
 dilasism
-đilasism
 extremism
 factionalism
 fascism
@@ -68,11 +67,12 @@ mccarthyism
 metaxism
 militancy
 mobutism
+monarchy
 nasserism
 nationalism
 nehruism
-neocolonialism
 neo-colonialism
+neocolonialism
 nomadism
 pacifism
 peronism
@@ -104,4 +104,4 @@ venizelism
 volunteerism
 yeltsinism
 zionism
-monarchy
+đilasism

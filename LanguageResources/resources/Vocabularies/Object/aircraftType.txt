@@ -1,29 +1,29 @@
 all weather
 all-weather
-autogyro
-autogyros
 antisubmarine warfare
 asw
 attack
+autogyro
+autogyros
 bomber
 cargo
 combat
 fighter
 fighter bomber
 fighter bombers
+fighter-bomber
+fighter-bombers
 fighter/bomber
 fighter/bombers
 fighterbomber
-fighter-bomber
 fighterbombers
-fighter-bombers
 fixed wing
 fixed-wing
 ground attack
-heavy lift
-heavy-lift
 heavy bomber
 heavy bombers
+heavy lift
+heavy-lift
 helicopter gunship
 helicopter gunships
 jet
@@ -34,12 +34,12 @@ light-lift
 maritime patrol
 medium lift
 medium-lift
-multirole
 multi-role
-multirole fighter
 multi-role fighter
-multirole fighters
 multi-role fighters
+multirole
+multirole fighter
+multirole fighters
 observation
 patrol
 recon

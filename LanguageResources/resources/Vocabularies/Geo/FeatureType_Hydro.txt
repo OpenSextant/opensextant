@@ -96,7 +96,6 @@ river
 riverbed
 riverbeds
 rivers
-rivers
 roadstead
 roadsteads
 sabkha

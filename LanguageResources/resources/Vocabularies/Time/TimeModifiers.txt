@@ -1,6 +1,8 @@
 after
+ago
 all of
 almost
+as of
 before
 coming
 during
@@ -12,15 +14,12 @@ last
 late
 late on
 later
-mid-
-mid -
 mid
+mid -
+mid-
 next
 past
-pre-
 pre -
+pre-
 previous
-this
-ago
 until
-as of

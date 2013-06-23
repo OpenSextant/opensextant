@@ -1,8 +1,9 @@
 air force
 air forces
+air national guard
 anti coalition militia
-anti- coalition militia
 anti coalition militias
+anti- coalition militia
 anti- coalition militias
 anti-coalition militia
 anti-coalition militias
@@ -15,6 +16,7 @@ armed services
 army
 army group
 army groups
+army national guard
 batallion
 batallions
 battalion
@@ -40,15 +42,9 @@ co.
 coast guard
 command
 commands
-companies
-company
-contingent
-contingents
 convoy
 convoys
 corps
-crew
-crews
 defense command
 defense commands
 det
@@ -60,8 +56,6 @@ div.
 division
 divisions
 divs
-element
-elements
 fire team
 fire teams
 fire unit
@@ -78,12 +72,8 @@ force
 forces
 formation
 formations
-group
 group armies
 group army
-groups
-headquarters
-hq
 legion
 legions
 marines
@@ -97,12 +87,8 @@ military unit
 military units
 militia
 militias
-air national guard
-army national guard
 national guard
 navy
-parties
-party
 patrol
 patrols
 platoon
@@ -113,11 +99,11 @@ regiment
 regiments
 regt
 regts
+republican guard
+republican guards
 rgmt
 rgt
 rgts
-section
-sections
 security force
 security forces
 special forces
@@ -133,15 +119,11 @@ task force
 task forces
 task group
 task groups
-team
-teams
 theater headquarters
 theater hq
 troop
 troop formation
 troop formations
 troops
-unit
-units
 wing
 wings

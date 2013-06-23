@@ -1,9 +1,9 @@
 acid
 acids
 alcohol
+alum
 amino acid
 amino acids
-alum
 ammonia
 ammonium
 antimonide
@@ -56,8 +56,8 @@ fluoride
 fulminate
 garnet
 germane
-gypsum
 graphite
+gypsum
 heptafluoride
 hexacarbonyl
 hexacyanoferrate
@@ -177,7 +177,6 @@ tetramminecopper
 tetranitride
 tetrasulfur
 tetroxide
-toluene
 thiocyanate
 thionyl
 thiophosgene
@@ -185,6 +184,7 @@ thiophosphoryl
 thortveitite
 titanate
 titanyl
+toluene
 tribromide
 tributyltin
 trichloride

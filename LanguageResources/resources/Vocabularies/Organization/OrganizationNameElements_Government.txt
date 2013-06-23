@@ -4,15 +4,16 @@ agriculture service
 agriculture services
 bloc
 blocs
+coast guard
+coastguard
 commerce department
 commerce ministry
 commission
 commissions
-committee
-committee
-committees
-council
-councils
+defence department
+defence ministry
+defense department
+defense ministry
 department of agriculture
 department of commerce
 department of defence
@@ -24,7 +25,6 @@ department of environment
 department of finance
 department of foreign affairs
 department of health
-department of health
 department of health and human services
 department of internal affairs
 department of justice
@@ -35,12 +35,6 @@ department of the treasury
 department of transportation
 department of treasury
 department of veteran affairs
-defence department
-defence ministry
-defense department
-defense ministry
-delegation
-delegations
 directorate of security
 economy department
 economy ministry
@@ -48,12 +42,15 @@ education department
 education ministry
 energy department
 energy ministry
-enforcement agency
 enforcement agencies
+enforcement agency
 environment department
 environment ministry
 executive council
-federation
+federal court
+federal courts
+federal juries
+federal jury
 finance department
 finance ministry
 foreign affairs department
@@ -70,20 +67,21 @@ governments
 health and human services department
 health and human services ministry
 health department
-health department
 health ministry
 highway patrol
 intelligence agencies
 intelligence agency
-intelligence service
-intelligence services
 intelligence organization
 intelligence organizations
+intelligence service
+intelligence services
 interior department
 interior ministry
+internal affairs
 internal affairs department
 internal affairs ministry
-internal affairs
+investigative arm
+investigative arms
 jerga
 jergas
 jirga
@@ -92,12 +90,14 @@ justice department
 justice ministry
 labor department
 labor ministry
-law enforcement agency
 law enforcement agencies
+law enforcement agency
 leadership council
+legislative bodies
+legislative body
 liaison office
-ministry
 ministries
+ministry
 ministry of
 ministry of agriculture
 ministry of commerce
@@ -110,7 +110,6 @@ ministry of environment
 ministry of finance
 ministry of foreign affairs
 ministry of foreign affairs and trade
-ministry of health
 ministry of health
 ministry of health and human services
 ministry of interior
@@ -125,8 +124,8 @@ ministry of transportation
 ministry of treasury
 ministry of veteran affairs
 oil ministry
-opposition party
 opposition parties
+opposition party
 panel
 panels
 parliament
@@ -139,34 +138,26 @@ political party
 public works ministry
 regime
 regimes
-regulatory body
-regulatory bodies
-regulatory authority
 regulatory authorities
-ruling party
+regulatory authority
+regulatory bodies
+regulatory body
 ruling parties
+ruling party
 security service
 security services
-supreme court
 shura
 shura council
 state department
 state ministry
+supreme court
+transit agencies
+transit agency
+transit authorities
+transit authority
 transportation department
 transportation ministry
 treasury department
 treasury ministry
 veteran affairs department
 veteran affairs ministry
-transit agency
-transit agencies
-transit authority
-transit authorities
-coast guard
-coastguard
-federal jury
-federal court
-federal juries
-federal courts
-legislative body
-legislative bodies

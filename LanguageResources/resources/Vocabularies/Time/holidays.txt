@@ -1,47 +1,47 @@
-new year
-new years
-new years eve
-new years day
-new year's eve
-new year's day
-martin luther king day
-martin luther king birthday
-washington's birthday
-washingtons birthday
-presidents day
-president's day
-memorial day
-independence day
-fourth of july
 4th of july
-labor day
-columbus day
-veterans day
-veteran's day
-thanksgiving
-thanksgiving day
-easter
-easter sunday
+april fool's day
+april fools day
+arbor day
 christmas
 christmas day
 christmas eve
-mothers day
-mother's day
-fathers day
-father's day
-valentines day
-valentine's day
-groundhog day
-passover
-palm sunday
-good friday
-arbor day
-may day
 cinco de mayo
-rosh hashanah
-yom kippur
+columbus day
+easter
+easter sunday
+father's day
+fathers day
+fourth of july
+good friday
+groundhog day
 halloween
 hanukkah
+independence day
+labor day
+martin luther king birthday
+martin luther king day
+may day
+memorial day
+mother's day
+mothers day
+new year
+new year's day
+new year's eve
+new years
+new years day
+new years eve
+palm sunday
+passover
+president's day
+presidents day
 ramadan
-april fools day
-april fool's day
+rosh hashanah
+thanksgiving
+thanksgiving day
+valentine's day
+valentines day
+veteran's day
+veterans day
+washington's birthday
+washingtons birthday
+yom kippur

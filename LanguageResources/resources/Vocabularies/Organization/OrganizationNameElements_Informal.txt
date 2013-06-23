@@ -1,7 +1,6 @@
 assemblage
 assemblages
-association
-associations
+authorities
 cadre
 cadres
 clan
@@ -26,22 +25,15 @@ families
 family
 flock
 flocks
-formation
-formations
 fraternities
 fraternity
-gang
-gangs
 gathering
 gathering of people
 gathering of personnel
 gatherings
 gatherings of people
 gatherings of personnel
-general public
-group
 group of people
-groups
 groups of people
 horde
 hordes
@@ -53,18 +45,18 @@ mob
 mobs
 multitude
 multitudes
-organisation
-organisations
-organization
-organizations
-populace
-populaces
+parties
+party
 population
-society
+section
+sections
+sport team
+sport teams
 the public
 throng
 throngs
 troika
+unit
+units
 youth league
 youth leagues
-authorities

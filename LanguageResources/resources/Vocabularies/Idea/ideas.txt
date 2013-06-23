@@ -1,16 +1,16 @@
-ideology
-ideologies
-thought
-thinking
-theory
-theories
-belief system
-system of belief
-belief systems
-systems of belief
 belief
+belief system
+belief systems
 beliefs
+hypotheses
+hypothesis
+ideologies
+ideology
 principles
 reasoning
-hypothesis
-hypotheses
+system of belief
+systems of belief
+theories
+theory
+thinking
+thought

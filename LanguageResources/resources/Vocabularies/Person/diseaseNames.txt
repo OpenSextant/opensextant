@@ -1,18 +1,17 @@
-bacteria
-bacterium
 acquired immunodeficiency syndrome
 acute poliomyelitis
 aids
-conjunctivitis
 amoebic dysentery
 anaplasmosis
 anthrax
 arbovirus infections
 arenavirus
 babesiosis
-bacillus
-bacilli
 bacillary dysentery
+bacilli
+bacillus
+bacteria
+bacterium
 barmah forest fever
 barmah forest virus
 botulism
@@ -27,29 +26,35 @@ chlamydia
 chlamydia trachomatis
 cholera
 coccidioidomycosis
-cough
 colitis
+conjunctivitis
+cough
+cramps
 creutzfeldt-jakob disease
 crimean-congo hemorrhagic fever
 cryptosporidiosis
 cyclosporiasis
 dengue fever
 dengue hemorraghic fever
+diabetes
+diabetes mellitus
+diarrhea
 diphtheria
 donovanosis
 dysentery
 e. coli
 eastern equine encephalitis virus
+ebola
 ebola virus
 ehrlichiosis
 encephalitis
 enterovirus
 escherichia coli
 food poisoning
-foodborne disease
 food-borne disease
-foodborne diseases
 food-borne diseases
+foodborne disease
+foodborne diseases
 giardiasis
 gonococcal infection
 gonorrhea
@@ -63,8 +68,8 @@ headache
 headaches
 heart attack
 heart attacks
-heart disease
 heart condition
+heart disease
 heart failure
 heart palpitations
 hemolytic uremic syndrome
@@ -88,8 +93,8 @@ leptospirosis
 listeriosis
 lyme disease
 lyssavirus
-malady
 maladies
+malady
 malaria
 marburg virus
 measles
@@ -101,6 +106,10 @@ methicillin-resistant staphylococcus aureus infection
 msra
 mumps
 murray valley encephalitis virus
+muscle cramp
+muscle cramps
+muscle spasm
+muscle spasms
 mycobacterium tuberculosis
 ophthalmia neonatorum
 parasite
@@ -110,24 +119,26 @@ pertussis
 pharyngeal plague
 plague
 pneumococcal disease
+pneumonia
 pneumonic plague
+poisoning
 polio
 poliomyelitis
-poisoning
 powassan virus
 psittacosis
 q fever
 rabies
-radiation sickness
 radiation poisoning
+radiation sickness
 relapsing fever
 rickettsiosis
 ross river virus
 rubella
 rubella and congenital rubella syndrome
-salmonellosis
 salmonella
+salmonellosis
 scarlet fever
+septicemia
 septicemic plague
 severe acute respiratory syndrome
 shiga-toxin producing escherichia coli
@@ -135,7 +146,6 @@ shigellosis
 silicosis
 smallpox
 spotted fever
-pneumonia
 st. louis encephalitis virus
 streptococcus pneumoniae
 streptococcus suis infection
@@ -157,13 +167,3 @@ west nile virus
 western equine encephalitis virus
 whooping cough
 yellow fever
-muscle spasm
-muscle spasms
-muscle cramp
-muscle cramps
-cramps
-septicemia
-ebola
-diabetes mellitus
-diabetes
-diarrhea

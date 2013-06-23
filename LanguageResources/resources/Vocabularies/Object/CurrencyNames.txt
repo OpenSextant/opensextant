@@ -58,6 +58,8 @@ british pound
 british pounds
 brunei dollar
 brunei dollars
+buck
+bucks
 bulgarian lev
 bulgarian levs
 burundi franc
@@ -80,8 +82,6 @@ chinese renminbi
 chinese renminbis
 chinese yuan
 chinese yuans
-yuan
-yuans
 colombian peso
 colombian pesos
 colon
@@ -91,9 +91,7 @@ comorian francs
 congolese franc
 congolese francs
 cordoba
-córdoba
 cordobas
-córdobas
 costa rican colon
 costa rican colons
 croatian kuna
@@ -102,6 +100,8 @@ cuban peso
 cuban pesos
 czech koruna
 czech korunas
+córdoba
+córdobas
 danish krone
 danish krones
 denar
@@ -176,8 +176,8 @@ hryvnias
 hungarian forint
 hungarian forints
 icelandic krona
-icelandic króna
 icelandic kronas
+icelandic króna
 icelandic krónas
 indian rupee
 indian rupees
@@ -304,8 +304,8 @@ new zealand dollars
 ngultrum
 ngultrums
 nicaraguan cordoba
-nicaraguan córdoba
 nicaraguan cordobas
+nicaraguan córdoba
 nicaraguan córdobas
 nigerian naira
 nigerian nairas
@@ -327,6 +327,7 @@ paraguayan guarani
 paraguayan guaranis
 pataca
 patacas
+pence
 peruvian nuevo sol
 peruvian nuevo sols
 peso
@@ -368,9 +369,7 @@ saint helena pounds
 samoan tala
 samoan talas
 sao tome and principe dobra
-são tomé and príncipe dobra
 sao tome and principe dobras
-são tomé and príncipe dobras
 saudi riyal
 saudi riyals
 serbian dinar
@@ -413,6 +412,8 @@ swiss franc
 swiss francs
 syrian pound
 syrian pounds
+são tomé and príncipe dobra
+são tomé and príncipe dobras
 tajikistani somoni
 tajikistani somonis
 taka
@@ -435,6 +436,10 @@ turkish new lira
 turkish new liras
 turkmen manat
 turkmen manats
+u . s . dollar
+u . s . dollars
+u.s. dollar
+u.s. dollars
 uae dirham
 uae dirhams
 ugandan shilling
@@ -447,10 +452,6 @@ uruguayan peso
 uruguayan pesos
 us dollar
 us dollars
-u.s. dollar
-u.s. dollars
-u . s . dollar
-u . s . dollars
 usd
 uzbekistani som
 uzbekistani soms
@@ -469,12 +470,11 @@ yemeni rial
 yemeni rials
 yen
 yens
+yuan
+yuans
 zambian kwacha
 zambian kwachas
 zimbabwean dollar
 zimbabwean dollars
 zloty
 zlotys
-pence
-buck
-bucks

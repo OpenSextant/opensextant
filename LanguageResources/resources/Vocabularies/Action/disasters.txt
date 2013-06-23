@@ -1,30 +1,44 @@
 accident
 accidents
+after shock
+after shocks
+aftershock
+aftershocks
 avalanche
 avalanches
 blast
 blasts
-bush fire
-bush fires
 brush fire
 brush fires
 building fire
+bush fire
+bush fires
 catastrophe
 catastrophes
+catastrophic event
+catastrophic events
 collision
 collisions
 crash
 crashes
+crop failure
+crop failures
 disaster
 disasters
+disastrous event
+disastrous events
 distress call
 distress calls
-earthquake
-earthquakes
 earth quake
 earth quakes
+earthquake
+earthquakes
+emergencies
+emergency
 explosion
 explosions
+famine
+famines
 flash flood
 flash flooding
 flash floods
@@ -41,35 +55,21 @@ nuclear disaster
 nuclear disasters
 plane crash
 plane crashes
+seismic event
+seismic events
 shipwreck
 shipwrecks
 tidal wave
 tidal waves
 traffic accident
 traffic accidents
-tsunami
-tsunamis
+tragedies
+tragedy
 tsnaumi
 tsnaumis
+tsunami
+tsunamis
 volcanic eruption
 volcanic eruptions
 wildfire
 wildfires
-famine
-famines
-crop failure
-crop failures
-tragedy
-tragedies
-after shock
-after shocks
-aftershock
-aftershocks
-seismic event
-seismic events
-emergency
-emergencies
-catastrophic event
-catastrophic events
-disastrous event
-disastrous events

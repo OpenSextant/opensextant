@@ -1,28 +1,33 @@
-weapon
-weapons
-weaponry
-armament
-armaments
-missile
-missiles
-laser blinder
-knife
-knives
-molotov cocktail
-molotov cocktails
 ammunition
 ammunitions
+armament
+armaments
+artillery
+artillery piece
+artillery pieces
 bullet
 bullets
 cannon
 cannons
-artillery
-artillery piece
-artillery pieces
 howitzer
 howitzers
+knife
+knives
+laser blinder
+missile
+missiles
+molotov cocktail
+molotov cocktails
 pepper spray
 pepper sprays
 tear gas
+weapon
+weapon stockpile
+weapon stockpiles
+weapon stocks
+weaponry
+weapons
+weapons stockpiles
+weapons stocks
 weapons system
 weapons systems

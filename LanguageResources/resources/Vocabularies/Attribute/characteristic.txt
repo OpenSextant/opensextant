@@ -1,5 +1,6 @@
-accuracy
 accuracies
+accuracy
+age
 altitude
 altitudes
 amount
@@ -9,30 +10,30 @@ angles
 attitude
 attitudes
 azimuth
-azimuths
 azimuthes
+azimuths
 bandwidth
 breadth
 breadths
 caliber
 calibers
-capacity
-capacities
-capability
 capabilities
+capability
+capacities
+capacity
 characterisation
 characteristics
 characterization
 count
 counts
-degrees celsius
-degrees centigrade
-degrees fahrenheit
-degrees kelvin
 degree celsius
 degree centigrade
 degree fahrenheit
 degree kelvin
+degrees celsius
+degrees centigrade
+degrees fahrenheit
+degrees kelvin
 diameter
 diameters
 dimension
@@ -45,17 +46,17 @@ factor
 factors
 force readiness
 forces readiness
-frequency
 frequencies
-halflife
+frequency
 half life
 half-life
+halflife
 height
 heights
-intensity
 intensities
+intensity
 length
-length
+lengths
 lethality
 mass
 masses
@@ -65,13 +66,13 @@ percentage
 percentages
 precision
 precisions
-quality
 qualities
-quantity
+quality
 quantities
+quantity
+radii
 radius
 radiuses
-radii
 rate
 rates
 readiness level
@@ -88,12 +89,11 @@ speeds
 status
 thickness
 thicknesses
-velocity
 velocities
+velocity
 volume
 volumes
 weight
 weights
 width
 widths
-age
