@@ -22,8 +22,6 @@ child
 children
 close associate
 close associates
-colleague
-colleagues
 common law wife
 common law wives
 common-law wife
@@ -36,8 +34,6 @@ daughter
 daughters
 descendent
 descendents
-families
-family
 family member
 family members
 family ties
@@ -72,13 +68,19 @@ grandchildren
 granddaughter
 granddaughters
 grandfather
+grandfathers
 grandmother
+grandmothers
 grandparent
+grandparents
 grandson
 grandsons
 husband
+husbands
 in law
+in laws
 in-law
+in-laws
 inlaw
 inlaws
 kin
@@ -94,6 +96,7 @@ nieces
 parent
 parents
 partner
+partners
 relative
 relatives
 sibling

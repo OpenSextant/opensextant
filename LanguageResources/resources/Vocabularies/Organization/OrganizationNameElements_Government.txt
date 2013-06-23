@@ -4,8 +4,6 @@ agriculture service
 agriculture services
 bloc
 blocs
-coast guard
-coastguard
 commerce department
 commerce ministry
 commission

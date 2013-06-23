@@ -80,6 +80,7 @@ reactors
 scope
 scopes
 silo loader
+silo loaders
 sprayer
 sprayers
 system

@@ -1,35 +1,52 @@
 blizzard
+blizzards
 climate
+climates
 cloud
 cloud cover
 clouds
 cold snap
+cold snaps
 cold spell
+cold spells
 cyclone
+cyclones
 drought
 droughts
 fog
+fogs
 heatwave
+heatwaves
 hurricane
 hurricanes
 monsoon
 monsoons
 precipitation
+precipitations
 rain
 rainfall
+rainfalls
 rains
 sandstorm
 sandstorms
 smog
+smogs
 snow
 snowfall
+snowfalls
 snowpack
+snowpacks
+snows
 storm
 storms
 surf
+surfs
 thunder
 thunder storm
+thunder storms
+thunders
 thunderstorm
+thunderstorms
 typhoon
 typhoons
 waves

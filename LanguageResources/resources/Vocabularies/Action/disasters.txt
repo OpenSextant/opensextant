@@ -11,6 +11,7 @@ blasts
 brush fire
 brush fires
 building fire
+building fires
 bush fire
 bush fires
 catastrophe

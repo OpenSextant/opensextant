@@ -14,6 +14,7 @@ howitzers
 knife
 knives
 laser blinder
+laser blinders
 missile
 missiles
 molotov cocktail
@@ -27,6 +28,7 @@ weapon stockpiles
 weapon stocks
 weaponry
 weapons
+weapons stockpile
 weapons stockpiles
 weapons stocks
 weapons system

@@ -109,6 +109,7 @@ procurements
 profit
 profits
 promissory note
+promissory notes
 purchase
 purchases
 reimbursement

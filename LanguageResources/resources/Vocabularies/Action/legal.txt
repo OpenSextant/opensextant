@@ -1,8 +1,10 @@
 acquittal
 acquittals
 adjournment
+adjournments
 allegation
 allegations
+amnesties
 amnesty
 appeal
 appeals
@@ -23,25 +25,32 @@ capital punishments
 conviction
 convictions
 criminal charge
+criminal charges
 criminal count
 criminal counts
 criminal history check
 criminal history checks
 custody
+death penalties
 death penalty
 deportation
 deportation order
+deportation orders
+deportations
 divorce settlement
 divorce settlements
 drug bust
 drug busts
 extradition
 extradition order
+extradition orders
+extraditions
 grand juries
 grand jury
 grievance
 grievances
 guilty plea
+guilty pleas
 hearings
 imprisonment
 imprisonments
@@ -56,10 +65,13 @@ investigations
 jail sentence
 jail sentences
 jail time
+jail times
 judicial hearing
 judicial hearings
+jury duties
 jury duty
 jury trial
+jury trials
 lawsuit
 lawsuits
 life imprisonment
@@ -67,18 +79,27 @@ life imprisonments
 life sentence
 life sentences
 maximum sentence
-mimimum sentence
+maximum sentences
+minimum sentence
+minimum sentences
 negotiation
 negotiations
 parole
+paroles
 peremptory plea
+peremptory pleas
 plea
 plea bargain
+plea bargains
+pleas
 preliminary hearing
+preliminary hearings
 prison sentence
 prison sentences
 probation
+probations
 prosecution
+prosecutions
 sanction
 sanctions
 search warrant
@@ -86,10 +107,14 @@ search warrants
 seizure
 seizures
 sentencing
+sentencings
 statutory sentence
+statutory sentences
 suspended sentence
 suspended sentences
 trial
 trials
 verdict
+verdicts
 year sentence
+year sentences

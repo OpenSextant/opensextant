@@ -1,8 +1,11 @@
 advisory board
 advisory boards
 alliance
+alliances
+assemblies
 assembly
 association
+associations
 audience
 audiences
 bureaucracies
@@ -12,15 +15,21 @@ cartels
 caucus
 caucuses
 cell
+cells
 commitee
 commitees
 committee
+committees
 companies
 company
 consortium
+consortiums
 contingent
+contingents
 council
+councils
 crew
+crews
 delegation
 delegations
 dept
@@ -31,20 +40,29 @@ ethnic groups
 faction
 factions
 federation
+federations
 gang
+gangs
 general public
 group
 groups
 headquarters
 hq
+hqs
 institution
+institutions
 movement
+movements
 network
+networks
 nomadic group
+nomadic groups
 organisation
+organisations
 organization
 organizations
 partnership
+partnerships
 populace
 religious group
 religious groups
@@ -52,9 +70,11 @@ sect
 sects
 society
 team
+teams
 think tank
 think tanks
 townspeople
+townspeoples
 tribal force
 tribal forces
 tribe

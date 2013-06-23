@@ -1,4 +1,5 @@
 apparatus
+apparatuses
 artefact
 artefacts
 artifact
@@ -11,7 +12,7 @@ bundle
 bundles
 commodities
 commodity
-consigment
+consignment
 consignments
 goods
 item

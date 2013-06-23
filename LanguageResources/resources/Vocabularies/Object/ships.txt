@@ -9,6 +9,7 @@ boats
 canoe
 canoes
 cruise ship
+cruise ships
 frigate
 frigates
 kayak
@@ -18,5 +19,6 @@ ships
 skiff
 skiffs
 speedboat
+speedboats
 warship
 warships

@@ -16,8 +16,10 @@ fractures
 haemorrhage
 haemorrhages
 hemorrhage
+hemorrhages
 hemorrhaging
 hæmorrhage
+hæmorrhages
 hæmorrhaging
 injuries
 injury

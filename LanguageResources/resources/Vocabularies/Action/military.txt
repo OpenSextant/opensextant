@@ -38,6 +38,7 @@ firing drills
 friendly fire
 friendly fire incident
 friendly fire incidents
+friendly fires
 hostilities
 incursion
 incursions
@@ -54,6 +55,7 @@ military campaigns
 missile attack
 missile attacks
 missile launch
+missile launches
 mobilization
 mobilizations
 mortar attack
@@ -61,6 +63,7 @@ mortar attacks
 nuclear exchange
 nuclear exchanges
 preemptive strike
+preemptive strikes
 re-deployment
 re-deployments
 reconnaissance
@@ -76,6 +79,8 @@ war
 warfare
 wars
 weapon testing
+weapon testings
 weapons testing
+weapons testings
 withdrawal
 withdrawals

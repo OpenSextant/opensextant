@@ -13,8 +13,12 @@ atm card
 atm cards
 audio
 audiotape
+audiotapes
+autobiographies
 autobiography
+bibliographies
 bibliography
+biographies
 biography
 blog
 blogs
@@ -175,6 +179,7 @@ study
 subpoena
 subpoenas
 television show
+television shows
 textbook
 textbooks
 theses
@@ -194,6 +199,7 @@ waybill
 waybills
 web page
 web pages
+webographies
 webography
 webpage
 webpages

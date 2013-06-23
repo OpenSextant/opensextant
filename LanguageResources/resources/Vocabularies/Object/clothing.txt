@@ -5,6 +5,7 @@ basketball jersey
 beret
 berets
 body armor
+boot
 boots
 clothes
 clothing

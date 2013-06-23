@@ -21,6 +21,8 @@ infants
 man
 men
 people
+peoples
 person
+persons
 woman
 women

@@ -1,9 +1,11 @@
 birthday
+birthdays
 celebration
 celebrations
 ceremonies
 ceremony
 childbirth
+childbirths
 divorce
 divorces
 extramarital affair
@@ -13,6 +15,7 @@ funerals
 game
 games
 hospitalization
+hospitalizations
 marriage
 marriages
 olympics
@@ -20,7 +23,9 @@ parade
 parades
 summer olympics
 super bowl
+super bowls
 tournament
+tournaments
 wedding
 weddings
 winter olympics

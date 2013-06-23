@@ -1,9 +1,11 @@
+abduction
 abductions
 abuse
 abuses
+aggravated batteries
 aggravated battery
 armed robberies
-armed robery
+armed robbery
 arson
 arsons
 assassination
@@ -17,62 +19,94 @@ assaults
 assaults and batteries
 assaults and battery
 attempted murder
+attempted murders
 blackmail
+blackmails
 bomb threat
+bomb threats
 breaking and entering
+breaking and enterings
+briberies
 bribery
 burglaries
 burglary
 child abuse
+child abuses
+child pornographies
 child pornography
 conspiracy to defraud
+conspiracy to defrauds
 conspiracy to murder
+conspiracy to murders
 copyright infringement
+copyright infringements
 corruption
+corruptions
 counterfeiting
+counterfeitings
 crime
 crimes
 criminal activities
 criminal activity
 cruelty to animals
 dangerous driving
+dangerous drivings
 death threat
 death threats
 defamation
+defamations
 disturbing the peace
 drug possession
+drug possessions
 drug trafficking
+drug traffickings
 embezzlement
+embezzlements
 extortion
+extortions
 felonies
 felony
+forced entries
 forced entry
+forcible entries
 forcible entry
+forgeries
 forgery
 fraud
+frauds
 genocide
+genocides
 grave robbing
 harassment
+harassments
 hate crime
+hate crimes
 hijacking
 hijackings
 hit and run
+hit and runs
 home invasion
+home invasions
 homicide
 homicides
 human trafficking
+human traffickings
 identity theft
+identity thefts
 illegal action
 illegal actions
 illegal activities
 illegal activity
+illegal entries
 illegal entry
 immigration offense
 immigration offenses
 immigration violation
 immigration violations
 indecent exposure
+indecent exposures
 insurance fraud
+insurance frauds
 jaywalking
 jury tampering
 kidnapping
@@ -81,11 +115,17 @@ killing
 killings
 lawlessness
 libel
+libels
 loitering
+loiterings
 looting
+lootings
 malfeasance
+malfeasances
 manslaughter
+manslaughters
 mass murder
+mass murders
 massacre
 massacres
 misdemeanor
@@ -95,35 +135,52 @@ murders
 mutinies
 mutiny
 obstruction of justice
+perjuries
 perjury
+piracies
 piracy
+pornographies
 pornography
 possession of firearm by a felon
 possession of narcotics
 possession of stolen goods
+possession of stolen properties
 possession of stolen property
 possession with intent to distribute
 profiteering
+profiteerings
 prostitution
+prostitutions
 public intoxication
+public intoxications
 public nuisance
+public nuisances
 racketeering
+racketeerings
 rape
+rapes
 reckless conduct
+reckless conducts
 reckless driving
+reckless drivings
 reckless endangerment
+reckless endangerments
 robberies
 robbery
 sabotage
+sabotages
 scam
 scams
 sedition
+seditions
 sex offense
 sex offenses
 sexual abuse
 sexual abuses
 sexual exploitation
+sexual exploitations
 sexual misconduct
+sexual misconducts
 sexual offense
 sexual offenses
 shooting
@@ -131,31 +188,45 @@ shooting spree
 shooting sprees
 shootings
 shoplifting
+shopliftings
 slander
+slanders
 smuggling
+smugglings
+sodomies
 sodomy
+suborning perjuries
 suborning perjury
 suicide
 suicide attack
 suicide attacks
+suicides
 terrorism
+terrorisms
 terrorist attack
 terrorist attacks
 theft
+thefts
 trafficking
 treason
+treasons
 tresspassing
+tresspassings
 unlawful act
 unlawful action
 unlawful actions
 unlawful activities
 unlawful activity
+unlawful acts
+unlawful assemblies
 unlawful assembly
+usuries
 usury
 vandalism
 vandalisms
 violation
 violations
 war crime
+war crimes
 wounding
 woundings

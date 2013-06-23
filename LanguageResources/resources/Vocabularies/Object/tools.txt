@@ -1,12 +1,17 @@
 axe
+axes
 drill
 drills
 hammer
 hammers
 mattock
+mattocks
 pickaxe
+pickaxes
 pipe cutter
 pipe cutters
 saws
 shovel
+shovels
 trenching tool
+trenching tools

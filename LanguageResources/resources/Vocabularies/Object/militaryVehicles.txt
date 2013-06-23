@@ -42,6 +42,7 @@ gunships
 hmmwv
 hmmwvs
 humvee
+humvees
 ifv
 ifv's
 ifvs

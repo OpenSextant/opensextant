@@ -60,9 +60,9 @@ cylindrical tanks
 drum
 drums
 fuel bladder
+fuel bladders
 fuel tank
 fuel tanks
-fule bladders
 gas cylinder
 gas cylinders
 gas tank

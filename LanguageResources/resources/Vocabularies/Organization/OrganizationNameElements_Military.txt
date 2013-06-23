@@ -121,6 +121,7 @@ task group
 task groups
 theater headquarters
 theater hq
+theater hqs
 troop
 troop formation
 troop formations

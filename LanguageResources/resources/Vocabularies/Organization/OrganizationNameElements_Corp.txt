@@ -2,6 +2,7 @@ airline
 airlines
 bank
 bank of
+banks
 banks of
 brokerage
 brokerages
@@ -63,10 +64,13 @@ subsidiaries
 subsidiary
 sweatshop
 sweatshops
+trading companies
 trading company
 trading firm
+trading firms
 travel agencies
 travel agency
 vendor
 vendors
 work force
+work forces

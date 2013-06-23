@@ -6,6 +6,7 @@ analysis
 assessment
 assessments
 blurb
+blurbs
 citation
 citations
 clarification

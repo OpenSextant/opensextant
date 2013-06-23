@@ -28,6 +28,7 @@ password
 passwords
 software
 software package
+software packages
 uniform resource locator
 uniform resource locators
 url

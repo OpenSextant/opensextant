@@ -7,6 +7,8 @@ election campaign
 election campaigns
 elections
 embargo
+embargoes
+embargos
 gubernatorial campaign
 gubernatorial campaigns
 nonaggression pact

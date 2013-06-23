@@ -13,7 +13,9 @@ circuit board
 circuit boards
 communication channel
 communication channels
+communication net
 communication nets
+communication network
 communication networks
 communications net
 communications nets
@@ -34,6 +36,7 @@ detecters
 detector
 detectors
 direction finder
+direction finders
 electronics
 ethernet router
 ethernet routers
@@ -42,6 +45,7 @@ fiber networks
 fiber optic network
 fiber optic networks
 flat-screen television
+flat-screen televisions
 flight recorder
 flight recorders
 gps
@@ -68,6 +72,7 @@ metal detectors
 microprocessor
 microprocessors
 microwave link
+microwave links
 mobile phone
 mobile phones
 mobile satellite phone
@@ -90,6 +95,7 @@ parabolic dish
 parabolic dishes
 phone
 phone #
+phone #s
 phone card
 phone cards
 phone num
@@ -139,7 +145,9 @@ svoip
 tape recorder
 tape recorders
 tel no
+tel nos
 tel num
+tel nums
 tel. no.
 tel. num.
 telecommunication net
@@ -151,9 +159,12 @@ telecommunications nets
 telecommunications network
 telecommunications networks
 telehone network
+telehone networks
+telemetries
 telemetry
 telephone
 telephone #
+telephone #s
 telephone num
 telephone number
 telephone numbers
