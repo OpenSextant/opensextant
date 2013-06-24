@@ -20,7 +20,6 @@ public class JobStatistics {
     private int objCount = 0;
     private ArrayList<Geocoding>[] geos = new ArrayList[COUNTRY + 1];
     
-    
     public void addGeo(Geocoding g, int arrayLoc) {
         ArrayList<Geocoding> x = geos[arrayLoc];
         if(x == null) x = new ArrayList<Geocoding>();
@@ -43,6 +42,4 @@ public class JobStatistics {
     public int getObjCount() {
         return objCount;
     }
-
-    
 }
