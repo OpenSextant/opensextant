@@ -49,7 +49,7 @@ public class OSRow implements Comparable<OSRow> {
 
 	private static int counter = 0;
  
-    private JobStatistics stats;
+    private JobStatistics stats = new JobStatistics();
    
 	private static String[] fileTypes;
 	static {
@@ -266,7 +266,13 @@ public class OSRow implements Comparable<OSRow> {
 				info += "<BR/>";
 			info += "Output file: " + this.outputLocations.get(outputTypes.get(i));
 		}
-
+        
+        if(this.stats != null) {
+          info += "<BR/><BR/>Statistics: " + this.stats.getObjCount() + " objects";
+          info += "<BR/>&nbsp;&nbsp;&nbsp;&nbsp;" + this.stats.getCount(this.stats.PLACE) + " place names";
+          info += "<BR/>&nbsp;&nbsp;&nbsp;&nbsp;" + this.stats.getCount(this.stats.COUNTRY) + " countries";
+          info += "<BR/>&nbsp;&nbsp;&nbsp;&nbsp;" + this.stats.getCount(this.stats.COORDINATE) + " coordinates";
+        }
 		info += "</html>";
 		return info;
 	}

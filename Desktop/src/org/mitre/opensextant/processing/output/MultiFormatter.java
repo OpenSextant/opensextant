@@ -12,8 +12,10 @@ import org.mitre.opensextant.desktop.util.JobStatistics;
 import org.mitre.opensextant.processing.Geocoding;
 
 import org.mitre.opensextant.processing.GeocodingResult;
+import org.mitre.opensextant.processing.OpenSextantSchema;
 import org.mitre.opensextant.processing.ProcessingException;
 import org.mitre.opensextant.processing.output.AbstractFormatter;
+import org.mitre.opensextant.processing.output.result.IdentifierResult;
 
 public class MultiFormatter extends AbstractFormatter {
 
@@ -64,9 +66,9 @@ public class MultiFormatter extends AbstractFormatter {
 
 	@Override
 	public void writeOutput(Corpus corpus) throws Exception {
-	//	for (AbstractFormatter child : children) {
-	//		child.writeOutput(corpus);
-	//	}
+		/*for (AbstractFormatter child : children) {
+			child.writeOutput(corpus);
+		}*/
         for(Document doc : corpus) {
             writeRowsFor(doc);
         }
@@ -74,16 +76,33 @@ public class MultiFormatter extends AbstractFormatter {
 
 	@Override
 	public void writeRowsFor(Document doc) throws IOException {
-		for (AbstractFormatter child : children) {
+/*		for (AbstractFormatter child : children) {
 			child.writeRowsFor(doc);
-		}
+		}*/
+        
+        // Added back in, since writeGeocodingResult was never firing
+        IdentifierResult identityAnnotations = new IdentifierResult(doc.getName());
+        identityAnnotations.recordFile = (String) doc.getFeatures().get(OpenSextantSchema.FILEPATH_FLD);
+        identityAnnotations.recordTextFile = doc.getSourceUrl().getPath();
+        log.info("Writing identifiers for " + identityAnnotations.recordFile);
+
+        try {
+            identityAnnotations.retrieveGeocodes(doc);
+
+            writeGeocodingResult(identityAnnotations);
+
+        } catch (Exception err) {
+            log.error("Error writing out row ROW=" + doc.getName(), err);
+        } 
 	}
 
 	@Override
 	public void writeGeocodingResult(GeocodingResult rowdata) {
+        
+        /* This errors out when actually called
 		for (AbstractFormatter child : children) {
 			child.writeGeocodingResult(rowdata);
-		}
+		}*/
         for (Geocoding g : rowdata.geocodes) {
             JobStatistics s = row.getStatistics();
             if(g.is_coordinate) s.addGeo(g, JobStatistics.COORDINATE);

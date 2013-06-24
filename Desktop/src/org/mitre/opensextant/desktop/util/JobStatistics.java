@@ -31,6 +31,11 @@ public class JobStatistics {
         return geos[arrayLoc];
     }
     
+    public int getCount(int arrayLoc){
+        if(geos[arrayLoc] == null) return 0;
+        return geos[arrayLoc].size();
+    }
+    
     public void incrementObjCount() {
         objCount ++;
     }
