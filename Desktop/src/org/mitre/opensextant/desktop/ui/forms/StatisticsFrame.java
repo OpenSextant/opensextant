@@ -11,6 +11,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 
 import org.apache.commons.io.FileUtils;
+import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.desktop.util.FileSize;
 
@@ -104,9 +105,12 @@ public class StatisticsFrame extends javax.swing.JFrame {
     
     public void addRowInformation()
     {
+        ViewHelper.centerTheWindow(this);
+        
         this.setTitle("Job Statistics");
         
         String fileSizeString = "";
+        long bytesPerSecond = 0;
         ArrayList<String> fileSizes = new ArrayList<String>();
         if (currentRow.hasChildren()) {
                 long size = 0;
@@ -114,11 +118,13 @@ public class StatisticsFrame extends javax.swing.JFrame {
                         size += FileUtils.sizeOf(child.getInputFile());
                         fileSizes.add(FileSize.byteCountToDisplaySize(FileUtils.sizeOf(child.getInputFile())));
                 }
+                bytesPerSecond = size/(currentRow.getDurationPanel().getDuration()/1000); 
                 fileSizeString += FileSize.byteCountToDisplaySize(size);
                 fileSizeString += " (" + currentRow.getChildren().size() + " files)";
         } else {
-                fileSizeString += FileSize.byteCountToDisplaySize(FileUtils.sizeOf(currentRow.getInputFile()));
-
+                long size = FileUtils.sizeOf(currentRow.getInputFile());
+                fileSizeString += FileSize.byteCountToDisplaySize(size);
+                bytesPerSecond = size/(currentRow.getDurationPanel().getDuration()/1000); 
         }
         
         
@@ -129,6 +135,7 @@ public class StatisticsFrame extends javax.swing.JFrame {
         model.setRoot(new DefaultMutableTreeNode(currentRow.getTitle()));
         root = (DefaultMutableTreeNode)model.getRoot();
         root.add(new DefaultMutableTreeNode("File Size: " + fileSizeString));
+        root.add(new DefaultMutableTreeNode("Processing Rate: " + FileSize.byteCountToDisplaySize(bytesPerSecond) + "/sec"));
         root.add(new DefaultMutableTreeNode("Processing Time: " + currentRow.getDurationPanel().getDurationString()));
         
         if(!fileSizes.isEmpty())

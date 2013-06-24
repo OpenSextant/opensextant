@@ -20,6 +20,7 @@ import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.desktop.Main;
 import org.mitre.opensextant.desktop.ui.forms.SelectOSHomeFrame;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
+import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 import org.mitre.opensextant.desktop.util.Initialize;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +40,7 @@ public class SelectOSHomeFrameImpl extends SelectOSHomeFrame {
 	public SelectOSHomeFrameImpl() {
 		super();
 
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+		ViewHelper.centerTheWindow(this);
 		setVisible(true);
 
 		initialize(this);

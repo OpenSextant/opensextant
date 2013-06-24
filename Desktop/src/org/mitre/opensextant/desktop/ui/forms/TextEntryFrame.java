@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
+import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 
 /**
  * 
@@ -30,8 +31,7 @@ public class TextEntryFrame extends javax.swing.JFrame {
 			this.setIconImage(new ImageIcon(imgURL, "Icon").getImage());
 		}
 		
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+		ViewHelper.centerTheWindow(this);
 
 	}
 

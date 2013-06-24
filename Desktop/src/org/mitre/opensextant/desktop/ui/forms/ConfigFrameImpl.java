@@ -18,6 +18,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
+import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.TimeAssociation;
 
 @SuppressWarnings("serial")
@@ -72,8 +73,7 @@ public class ConfigFrameImpl extends ConfigFrame {
                 sqliteCheck.setSelected(true);
         }
 
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        ViewHelper.centerTheWindow(this);
 
         Hashtable<Integer, JLabel> sliderLabels = new Hashtable<Integer, JLabel>();
         sliderLabels.put(0, new JLabel("Fatal"));

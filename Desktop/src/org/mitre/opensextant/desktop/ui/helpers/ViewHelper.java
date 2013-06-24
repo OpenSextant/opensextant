@@ -4,6 +4,9 @@
  */
 package org.mitre.opensextant.desktop.ui.helpers;
 
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
@@ -79,5 +82,10 @@ public class ViewHelper {
                 v.visibleCols.put(name, true);    
             }
         }
+    }
+
+    public static void centerTheWindow(Frame theWindow) {
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        theWindow.setLocation(dim.width / 2 - theWindow.getSize().width / 2, dim.height / 2 - theWindow.getSize().height / 2);
     }
 }
