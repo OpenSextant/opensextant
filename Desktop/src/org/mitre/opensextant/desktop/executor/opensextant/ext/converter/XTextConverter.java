@@ -32,8 +32,10 @@ public class XTextConverter {
         
         converter.zone_web_content = false;
         converter.save = true;
+        
         converter.save_in_folder = true;
         converter.save_in_archive_root = true;
+        
         ConvertedDocument.overwrite = false;
         
 
@@ -49,6 +51,14 @@ public class XTextConverter {
 	
 	public List<Document> convert(File input) throws IOException, ResourceInstantiationException {
 		
+	    // we only want to set the save in folder flags for archives
+        boolean originalSIF = converter.save_in_folder;
+        boolean originalSIAR = converter.save_in_archive_root;
+	    if (!converter.isArchive(input.getAbsolutePath())) {
+	        converter.save_in_folder = false;
+	        converter.save_in_archive_root = false;
+	    }
+	    
 		final List<ConvertedDocument> documents = new ArrayList<ConvertedDocument>();
 		converter.setConversionListener(new ConversionListener() {
 			
@@ -75,6 +85,9 @@ public class XTextConverter {
 	        extractions.add(document);
 		}
 		
+        converter.save_in_folder = originalSIF;
+        converter.save_in_archive_root =  originalSIAR;
+
 		return extractions;
 		
 	}
