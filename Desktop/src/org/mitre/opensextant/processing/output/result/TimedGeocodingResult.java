@@ -5,6 +5,7 @@ import gate.Document;
 import gate.Utils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,9 +15,12 @@ import org.mitre.opensextant.processing.Geocoding;
 import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.Parameters;
 import org.mitre.opensextant.processing.ProcessingException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TimedGeocodingResult extends GeocodingResult {
 
+    private static Logger log = LoggerFactory.getLogger(TimedGeocodingResult.class);
 
     public final static String NOUN_PHRASE = "NounPhrase";
     @SuppressWarnings("serial")
@@ -35,11 +39,12 @@ public class TimedGeocodingResult extends GeocodingResult {
     public void retrieveGeocodes(Document doc, Parameters params) throws ProcessingException {
         super.retrieveGeocodes(doc, params);
         
-        List<String> times = new ArrayList<String>();
+        List<ParsedTime> times = new ArrayList<ParsedTime>();
         for (Annotation a : doc.getAnnotations().get(NOUN_ANNOTATIONS)) {
-            if (a.getFeatures().get("EntityType") != null && ((String)a.getFeatures().get("EntityType")).startsWith("Time.date")) {
-                String match = Utils.cleanStringFor(doc, a);
-                times.add(match);
+            if (a.getFeatures().get("EntityType") != null && ((String)a.getFeatures().get("EntityType")).equals("Date")) {
+                String matchText = Utils.cleanStringFor(doc, a);
+                Date normalizedDate = (Date)a.getFeatures().get("normedDate");
+                times.add(new ParsedTime(matchText, normalizedDate));
                 
             }
         }
@@ -52,7 +57,7 @@ public class TimedGeocodingResult extends GeocodingResult {
                 timedGeocodings.add(new TimedGeocoding(String.valueOf(id++), geocoding, times));
                 break;
             case CROSS:
-                for (String time : times) {
+                for (ParsedTime time : times) {
                     timedGeocodings.add(new TimedGeocoding(String.valueOf(id++), geocoding, time));
                 }
                 break;

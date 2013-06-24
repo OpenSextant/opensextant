@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,62 +18,64 @@ import org.mitre.giscore.events.Row;
 import org.mitre.giscore.events.Schema;
 import org.mitre.giscore.events.SimpleField;
 import org.mitre.giscore.events.SimpleField.Type;
-import org.mitre.giscore.input.kml.KmlInputStream;
 import org.mitre.giscore.output.IGISOutputStream;
 import org.mitre.giscore.output.StreamVisitorBase;
 import org.mitre.giscore.utils.SafeDateFormat;
+
 //import org.apache.poi.ss.usermodel.Row;
 
 public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutputStream {
 
     private static final String ISO_DATE_FMT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     private SafeDateFormat dateFormatter;
-    
+
+
     @SuppressWarnings("serial")
-    public static List<String> IDENTIFIER_FIELDS = new ArrayList<String>() {{
-        add("id");
-        add("matchtext");
-        add("context");
-        add("filename");
-        add("filepath");
-        add("textpath");
-        add("feat_class");
-        add("feat_code");
-        add("start");
-        add("end");
-    }};
-    
-	private SXSSFWorkbook workbook;
-	private int rowNum = 0;
-	private Sheet sheet;
-	private File file;
-	private Schema schema; 
-	private boolean writtenRow = false;
+    public static List<String> IDENTIFIER_FIELDS = new ArrayList<String>() {
+        {
+            add("id");
+            add("matchtext");
+            add("context");
+            add("filename");
+            add("filepath");
+            add("textpath");
+            add("feat_class");
+            add("feat_code");
+            add("start");
+            add("end");
+        }
+    };
+
+    private SXSSFWorkbook workbook;
+    private int rowNum = 0;
+    private Sheet sheet;
+    private File file;
+    private Schema schema;
+    private boolean writtenRow = false;
     private boolean isIdentifiers;
 
-	public ExcelGISOutputStream(File xls, String worksheet, boolean isIdentifiers) {
+    public ExcelGISOutputStream(File xls, String worksheet, boolean isIdentifiers) {
+        this.file = xls;
+        this.workbook = new SXSSFWorkbook();
+        this.isIdentifiers = isIdentifiers;
+        this.sheet = workbook.createSheet(worksheet);
 
-		this.file = xls;
-		this.workbook = new SXSSFWorkbook(); 
-		this.isIdentifiers = isIdentifiers;
-		this.sheet = workbook.createSheet(worksheet); 
-		
-	}
+    }
 
-	@Override
-	public void close() throws IOException {
-		FileOutputStream out = new FileOutputStream(file);
-		workbook.write(out); 
-		out.flush(); 
-		out.close(); 
-	}
+    @Override
+    public void close() throws IOException {
+        FileOutputStream out = new FileOutputStream(file);
+        workbook.write(out);
+        out.flush();
+        out.close();
+    }
 
-	@Override
-	public void write(IGISObject gisData) {
-		
-		gisData.accept(this);
-		
-	}
+    @Override
+    public void write(IGISObject gisData) {
+
+        gisData.accept(this);
+
+    }
 
     @Override
     public void visit(Row row) {
@@ -83,8 +84,8 @@ public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutpu
         }
         writtenRow = true;
 
-		// Create a new row in the sheet: 
-		org.apache.poi.ss.usermodel.Row xlsRow = sheet.createRow((short) ++rowNum); 
+        // Create a new row in the sheet:
+        org.apache.poi.ss.usermodel.Row xlsRow = sheet.createRow((short) ++rowNum);
 
         if (schema != null && row.getSchema() != null) {
             URI schemauri = row.getSchema();
@@ -92,12 +93,12 @@ public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutpu
                 throw new RuntimeException("Row schema doesn't match schema given");
             }
             try {
-            	int index = 0;
+                int index = 0;
                 for (String fieldname : schema.getKeys()) {
                     if (!isIdentifiers || IDENTIFIER_FIELDS.contains(fieldname)) {
                         SimpleField field = schema.get(fieldname);
                         addCell(index, row, field, xlsRow);
-                        index ++;
+                        index++;
                     }
                 }
             } catch (IOException e) {
@@ -105,52 +106,47 @@ public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutpu
             }
         } else {
             try {
-            	int index = 0;
+                int index = 0;
                 for (SimpleField field : row.getFields()) {
                     addCell(index, row, field, xlsRow);
-                    index ++;
+                    index++;
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
     }
-    
+
     @Override
     public void visit(Feature feature) {
         visit((Row) feature);
     }
-    
+
     /**
      * Gets the string value for a field
-     * @param index 
-     *
-     * @param row Row containing field to be written
-     * @param first boolean indicating if this is the first field in row
-     * @param field SimpleField to be written
-     * @param xlsRow 
+     * 
+     * @param index
+     * 
+     * @param row
+     *            Row containing field to be written
+     * @param first
+     *            boolean indicating if this is the first field in row
+     * @param field
+     *            SimpleField to be written
+     * @param xlsRow
      * @return data object value for this field
-     * @throws IOException if an IO error occurs
+     * @throws IOException
+     *             if an IO error occurs
      */
     private void addCell(int index, Row row, SimpleField field, org.apache.poi.ss.usermodel.Row xlsRow) throws IOException {
 		Cell cell = xlsRow.createCell(index); 
         Object value = row.getData(field);
         String outputString = formatValue(field.getType(), value);
 
-        if (value instanceof Date) {
-            cell.setCellValue((Date)value); 
-        } else if (value instanceof Calendar) {
-        	cell.setCellValue((Calendar)value); 
-        } else if (value instanceof Boolean) {
-        	cell.setCellValue((Boolean)value); 
-        } else if (value instanceof Number) {
-        	cell.setCellValue(((Number)value).doubleValue()); 
-        } else {
-        	cell.setCellValue(outputString); 
-        }
+       	cell.setCellValue(outputString); 
 
     }
-    
+
     // Thread-safe date formatter helper method
     private SafeDateFormat getDateFormatter() {
         if (dateFormatter == null) {
@@ -161,27 +157,21 @@ public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutpu
 
     /**
      * Format a value according to the type, defaults to using toString.
-     *
-     * @param type the type, assumed not <code>null</code>
-     * @param data the data, may be a number of types, but must be coercible to
-     *             the given type
+     * 
+     * @param type
+     *            the type, assumed not <code>null</code>
+     * @param data
+     *            the data, may be a number of types, but must be coercible to
+     *            the given type
      * @return a formatted value
-     * @throws IllegalArgumentException if values cannot be formatted
-     *                                  using specified data type.
+     * @throws IllegalArgumentException
+     *             if values cannot be formatted using specified data type.
      */
     private String formatValue(Type type, Object data) {
         if (data == null) {
             return "";
         } else if (Type.DATE.equals(type)) {
             Object val = data;
-            if (val instanceof String) {
-                try {
-                    // Try converting to ISO?
-                    val = KmlInputStream.parseDate((String) data);
-                } catch (Exception e) {
-                    // Fall through
-                }
-            }
             if (val instanceof Date) {
                 return getDateFormatter().format((Date) val);
             } else {
@@ -197,8 +187,8 @@ public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutpu
             } else {
                 throw new IllegalArgumentException("Data that cannot be coerced to float: " + data);
             }
-        } else if (Type.INT.equals(type) || Type.SHORT.equals(type)
-                || Type.UINT.equals(type) || Type.USHORT.equals(type) || Type.LONG.equals(type)) {
+        } else if (Type.INT.equals(type) || Type.SHORT.equals(type) || Type.UINT.equals(type) || Type.USHORT.equals(type)
+                || Type.LONG.equals(type)) {
             if (data instanceof String) {
                 return (String) data;
             }
@@ -213,9 +203,13 @@ public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutpu
         }
     }
 
-    /* (non-Javadoc)
-      * @see org.mitre.giscore.output.StreamVisitorBase#visit(org.mitre.giscore.events.Schema)
-      */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.mitre.giscore.output.StreamVisitorBase#visit(org.mitre.giscore.events
+     * .Schema)
+     */
     @Override
     public void visit(Schema s) {
         if (writtenRow) {
@@ -225,18 +219,18 @@ public class ExcelGISOutputStream extends StreamVisitorBase implements IGISOutpu
             throw new RuntimeException("Can't set the schema after a schema has already been set");
         }
         schema = s;
-        
-		// Create the column headings 
-		org.apache.poi.ss.usermodel.Row headerRow = sheet.createRow(rowNum);
 
-		int index = 0;
-		
+        // Create the column headings
+        org.apache.poi.ss.usermodel.Row headerRow = sheet.createRow(rowNum);
+
+        int index = 0;
+
         for (String field : schema.getKeys()) {
             if (!isIdentifiers || IDENTIFIER_FIELDS.contains(field)) {
                 headerRow.createCell(index).setCellValue(new HSSFRichTextString(field));
                 index++;
             }
         }
-	}
+    }
 
 }

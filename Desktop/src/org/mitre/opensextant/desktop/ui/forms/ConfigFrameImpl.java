@@ -1,25 +1,23 @@
 package org.mitre.opensextant.desktop.ui.forms;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
-import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.TimeAssociation;
+import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 
 @SuppressWarnings("serial")
 public class ConfigFrameImpl extends ConfigFrame {

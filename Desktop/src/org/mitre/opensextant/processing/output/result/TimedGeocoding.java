@@ -7,13 +7,13 @@ import org.mitre.opensextant.processing.Geocoding;
 
 public class TimedGeocoding extends Geocoding {
 
-    public List<String> times;
+    public List<ParsedTime> times;
     
-    public TimedGeocoding(String id, Geocoding other, final String time) {
-        this(id, other, new ArrayList<String>() {{ add(time); }});
+    public TimedGeocoding(String id, Geocoding other, final ParsedTime time) {
+        this(id, other, new ArrayList<ParsedTime>() {{ add(time); }});
     }
     
-    public TimedGeocoding(String id, Geocoding other, List<String> times) {
+    public TimedGeocoding(String id, Geocoding other, List<ParsedTime> times) {
         super(other);
         this.times = times;
         this.id = id;

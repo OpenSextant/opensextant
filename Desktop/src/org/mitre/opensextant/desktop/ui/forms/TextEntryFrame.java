@@ -4,9 +4,6 @@
  */
 package org.mitre.opensextant.desktop.ui.forms;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
 import javax.swing.ImageIcon;
 
 import org.mitre.opensextant.desktop.ui.helpers.ApiHelper;
