@@ -74,6 +74,9 @@ Build file for OpenSextant Desktop
 		<copy todir="${build.dir}">
 			<fileset dir="src" includes="**/*.xml" />
 		</copy>
+        <copy todir="${build.dir}">
+            <fileset dir="src" includes="**/*.txt" />
+        </copy>
 	</target>
 
 

@@ -1,0 +1,487 @@
+This is used to prime the pump to get Solr and Gate files cached by the OS.
+
+World capitals
+Kabul, Afghanistan
+Tirana, Albania
+Algiers, Algeria
+Andorra la Vella, Andorra
+Luanda, Angola
+St. John's, Antigua and Barbuda
+Buenos Aires, Argentina
+Yerevan, Armenia
+Canberra, Australia
+Vienna, Austria
+Baku, Azerbaijan
+Nassau, Bahamas
+Manama, Bahrain
+Dhaka, Bangladesh
+Bridgetown, Barbados
+Minsk, Belarus
+Brussels, Belgium
+Belmopan, Belize
+Porto-Novo, Benin
+Thimphu, Bhutan
+Sucre, Bolivia
+Sarajevo, Bosnia and Herzegovina
+Gaborone, Botswana
+Brasília, Brazil
+Bandar Seri Begawan, Brunei
+Sofia, Bulgaria
+Ouagadougou, Burkina Faso
+Naypyidaw, Burma
+Bujumbura, Burundi
+Phnom Penh, Cambodia
+Yaoundé, Cameroon
+Ottawa, Canada
+Praia, Cape Verde
+Bangui, Central African Republic
+N'Djamena, Chad
+Santiago , Chile
+Beijing, China
+Bogotá, Colombia
+Moroni, Comoros
+Kinshasa, Congo, Democratic Republic of the
+Brazzaville, Congo, Republic of the
+San José, Costa Rica
+Zagreb, Croatia
+Havana, Cuba
+Nicosia, Cyprus
+Prague, Czech Republic
+Copenhagen, Denmark
+Djibouti, Djibouti
+Roseau, Dominica
+Santo Domingo, Dominican Republic
+Dili, East Timor
+Quito, Ecuador
+Cairo, Egypt
+San Salvador, El Salvador
+Malabo, Equatorial Guinea
+Asmara, Eritrea
+Tallinn, Estonia
+Addis Ababa, Ethiopia
+Suva, Fiji
+Helsinki, Finland
+Paris, France
+Libreville, Gabon
+Banjul, Gambia, The
+Tbilisi, Georgia
+Berlin, Germany
+Accra, Ghana
+Athens, Greece
+St. George's, Grenada
+Guatemala City, Guatemala
+Conakry, Guinea
+Bissau, Guinea-Bissau
+Georgetown, Guyana
+Port-au-Prince, Haiti
+Tegucigalpa, Honduras
+Budapest, Hungary
+Reykjavík, Iceland
+New Delhi, India
+Jakarta, Indonesia
+Tehran, Iran
+Baghdad, Iraq
+Dublin, Ireland, Republic of
+Jerusalem[1], Israel
+Rome, Italy
+Yamoussoukro, Ivory Coast
+Kingston, Jamaica
+Tokyo (de facto), Japan
+Amman, Jordan
+Astana, Kazakhstan
+Nairobi, Kenya
+South Tarawa, Kiribati
+Pyongyang, Korea, North
+Seoul, Korea, South
+Kuwait City, Kuwait
+Bishkek, Kyrgyzstan
+Vientiane, Laos
+Riga, Latvia
+Beirut, Lebanon
+Maseru, Lesotho
+Monrovia, Liberia
+Tripoli, Libya
+Vaduz, Liechtenstein
+Vilnius, Lithuania
+Luxembourg City, Luxembourg
+Skopje, Macedonia, Republic of
+Antananarivo, Madagascar
+Lilongwe, Malawi
+Kuala Lumpur, Malaysia
+Malé, Maldives
+Bamako, Mali
+Valletta, Malta
+Majuro, Marshall Islands
+Nouakchott, Mauritania
+Port Louis, Mauritius
+Mexico City, Mexico
+Palikir, Micronesia, Federated States of
+Chișinău, Moldova
+Monaco, Monaco
+Ulan Bator, Mongolia
+Podgorica, Montenegro
+Rabat, Morocco
+Maputo, Mozambique
+Windhoek, Namibia
+Denigomodu, Meneng, Aiwo, Nauru
+Kathmandu, Nepal
+Amsterdam, The Hague , Netherlands, Kingdom of the
+Wellington, New Zealand
+Managua, Nicaragua
+Niamey, Niger
+Oslo, Norway
+Muscat, Oman
+Islamabad, Pakistan
+Ngerulmud, Palau
+Jerusalem, Palestine, State of
+Panama City, Panama
+Port Moresby, Papua New Guinea
+Asunción, Paraguay
+Lima, Peru
+Manila, Philippines
+Warsaw, Poland
+Lisbon, Portugal
+Doha, Qatar
+Bucharest, Romania
+Moscow, Russia
+Kigali, Rwanda
+Basseterre, Saint Kitts and Nevis
+Castries, Saint Lucia
+Kingstown, Saint Vincent and the Grenadines
+Apia, Samoa
+San Marino, San Marino
+São Tomé, São Tomé and Príncipe
+Riyadh, Saudi Arabia
+Dakar, Senegal
+Belgrade, Serbia
+Victoria, Seychelles
+Freetown, Sierra Leone
+Singapore, Singapore
+Bratislava, Slovakia
+Ljubljana, Slovenia
+Honiara, Solomon Islands
+Mogadishu, Somalia
+Pretoria, South Africa
+Juba, South Sudan
+Madrid, Spain
+Sri Jayawardenapura Kotte, Sri Lanka
+Khartoum, Sudan
+Paramaribo, Suriname
+Mbabane , Swaziland
+Stockholm, Sweden
+Bern, Switzerland
+Damascus, Syria
+Dushanbe, Tajikistan
+Dodoma , Tanzania
+Bangkok, Thailand
+Lomé, Togo
+Nukuʻalofa, Tonga
+Port of Spain, Trinidad and Tobago
+Tunis, Tunisia
+Ankara, Turkey
+Ashgabat, Turkmenistan
+Funafuti, Tuvalu
+Kampala, Uganda
+Kiev, Ukraine
+Abu Dhabi, United Arab Emirates
+London, United Kingdom
+Washington, D.C., United States
+Montevideo, Uruguay
+Tashkent, Uzbekistan
+Port Vila, Vanuatu
+Vatican City, Vatican City
+Caracas, Venezuela
+Hanoi, Vietnam
+Sana'a, Yemen
+Lusaka, Zambia
+Harare, Zimbabwe
+US Cities
+New York, New York
+Los Angeles, California
+Chicago, Illinois
+Houston, Texas
+Philadelphia, Pennsylvania
+Phoenix, Arizona
+San Antonio, Texas
+San Diego, California
+Dallas, Texas
+San Jose, California
+Austin, Texas
+Jacksonville, Florida
+Indianapolis, Indiana
+San Francisco, California
+Columbus, Ohio
+Fort Worth, Texas
+Charlotte, North Carolina
+Detroit, Michigan
+El Paso, Texas
+Memphis, Tennessee
+Boston, Massachusetts
+Seattle, Washington
+Denver, Colorado
+Washington, District of Columbia
+Nashville, Tennessee
+Baltimore, Maryland
+Louisville, Kentucky
+Portland, Oregon
+Oklahoma City, Oklahoma
+Milwaukee, Wisconsin
+Las Vegas, Nevada
+Albuquerque, New Mexico
+Tucson, Arizona
+Fresno, California
+Sacramento, California
+Long Beach, California
+Kansas City, Missouri
+Mesa, Arizona
+Virginia Beach, Virginia
+Atlanta, Georgia
+Colorado Springs, Colorado
+Raleigh, North Carolina
+Omaha, Nebraska
+Miami, Florida
+Oakland, California
+Tulsa, Oklahoma
+Minneapolis, Minnesota
+Cleveland, Ohio
+Wichita, Kansas
+Arlington, Texas
+New Orleans, Louisiana
+Bakersfield, California
+Tampa, Florida
+Honolulu, Hawai'i
+Anaheim, California
+Aurora, Colorado
+Santa Ana, California
+St. Louis, Missouri
+Riverside, California
+Corpus Christi, Texas
+Pittsburgh, Pennsylvania
+Lexington, Kentucky
+Anchorage, Alaska
+Stockton, California
+Cincinnati, Ohio
+Saint Paul, Minnesota
+Toledo, Ohio
+Newark, New Jersey
+Greensboro, North Carolina
+Plano, Texas
+Henderson, Nevada
+Lincoln, Nebraska
+Buffalo, New York
+Fort Wayne, Indiana
+Jersey City, New Jersey
+Chula Vista, California
+Orlando, Florida
+St. Petersburg, Florida
+Norfolk, Virginia
+Chandler, Arizona
+Laredo, Texas
+Madison, Wisconsin
+Durham, North Carolina
+Lubbock, Texas
+Winston–Salem, North Carolina
+Garland, Texas
+Glendale, Arizona
+Hialeah, Florida
+Reno, Nevada
+Baton Rouge, Louisiana
+Irvine, California
+Chesapeake, Virginia
+Irving, Texas
+Scottsdale, Arizona
+North Las Vegas, Nevada
+Fremont, California
+Gilbert, Arizona
+San Bernardino, California
+Boise, Idaho
+Birmingham, Alabama
+Rochester, New York
+Richmond, Virginia
+Spokane, Washington
+Des Moines, Iowa
+Montgomery, Alabama
+Modesto, California
+Fayetteville, North Carolina
+Tacoma, Washington
+Shreveport, Louisiana
+Fontana, California
+Oxnard, California
+Aurora, Illinois
+Moreno Valley, California
+Akron, Ohio
+Yonkers, New York
+Columbus, Georgia
+Augusta, Georgia
+Little Rock, Arkansas
+Amarillo, Texas
+Mobile, Alabama
+Huntington Beach, California
+Glendale, California
+Grand Rapids, Michigan
+Salt Lake City, Utah
+Tallahassee, Florida
+Huntsville, Alabama
+Worcester, Massachusetts
+Knoxville, Tennessee
+Grand Prairie, Texas
+Newport News, Virginia
+Brownsville, Texas
+Santa Clarita, California
+Overland Park, Kansas
+Providence, Rhode Island
+Jackson, Mississippi
+Garden Grove, California
+Oceanside, California
+Chattanooga, Tennessee
+Fort Lauderdale, Florida
+Rancho Cucamonga, California
+Santa Rosa, California
+Port St. Lucie, Florida
+Ontario, California
+Tempe, Arizona
+Vancouver, Washington
+Springfield, Missouri
+Cape Coral, Florida
+Pembroke Pines, Florida
+Sioux Falls, South Dakota
+Peoria, Arizona
+Lancaster, California
+Elk Grove, California
+Corona, California
+Eugene, Oregon
+Salem, Oregon
+Palmdale, California
+Salinas, California
+Springfield, Massachusetts
+Pasadena, Texas
+Rockford, Illinois
+Pomona, California
+Hayward, California
+Fort Collins, Colorado
+Joliet, Illinois
+Escondido, California
+Kansas City, Kansas
+Torrance, California
+Bridgeport, Connecticut
+Alexandria, Virginia
+Sunnyvale, California
+Cary, North Carolina
+Lakewood, Colorado
+Hollywood, Florida
+Paterson, New Jersey
+Syracuse, New York
+Naperville, Illinois
+McKinney, Texas
+Mesquite, Texas
+Clarksville, Tennessee
+Savannah, Georgia
+Dayton, Ohio
+Orange, California
+Fullerton, California
+Pasadena, California
+Hampton, Virginia
+McAllen, Texas
+Killeen, Texas
+Warren, Michigan
+West Valley City, Utah
+Columbia, South Carolina
+New Haven, Connecticut
+Sterling Heights, Michigan
+Olathe, Kansas
+Miramar, Florida
+Thousand Oaks, California
+Frisco, Texas
+Cedar Rapids, Iowa
+Topeka, Kansas
+Visalia, California
+Waco, Texas
+Elizabeth, New Jersey
+Bellevue, Washington
+Gainesville, Florida
+Simi Valley, California
+Charleston, South Carolina
+Carrollton, Texas
+Coral Springs, Florida
+Stamford, Connecticut
+Hartford, Connecticut
+Concord, California
+Roseville, California
+Thornton, Colorado
+Kent, Washington
+Lafayette, Louisiana
+Surprise, Arizona
+Denton, Texas
+Victorville, California
+Evansville, Indiana
+Midland, Texas
+Santa Clara, California
+Athens, Georgia
+Allentown, Pennsylvania
+Abilene, Texas
+Beaumont, Texas
+Vallejo, California
+Independence, Missouri
+Springfield, Illinois
+Ann Arbor, Michigan
+Provo, Utah
+Peoria, Illinois
+Norman, Oklahoma
+Berkeley, California
+El Monte, California
+Murfreesboro, Tennessee
+Lansing, Michigan
+Columbia, Missouri
+Downey, California
+Costa Mesa, California
+Inglewood, California
+Miami Gardens, Florida
+Manchester, New Hampshire
+Elgin, Illinois
+Wilmington, North Carolina
+Waterbury, Connecticut
+Fargo, North Dakota
+Arvada, Colorado
+Carlsbad, California
+Westminster, Colorado
+Rochester, Minnesota
+Gresham, Oregon
+Clearwater, Florida
+Lowell, Massachusetts
+West Jordan, Utah
+Pueblo, Colorado
+San Buenaventura (Ventura), California
+Fairfield, California
+West Covina, California
+Billings, Montana
+Murrieta, California
+High Point, North Carolina
+Round Rock, Texas
+Richmond, California
+Cambridge, Massachusetts
+Norwalk, California
+Odessa, Texas
+Antioch, California
+Temecula, California
+Green Bay, Wisconsin
+Everett, Washington
+Wichita Falls, Texas
+Burbank, California
+Palm Bay, Florida
+Centennial, Colorado
+Daly City, California
+Richardson, Texas
+Pompano Beach, Florida
+Broken Arrow, Oklahoma
+North Charleston, South Carolina
+West Palm Beach, Florida
+Boulder, Colorado
+Rialto, California
+Santa Maria, California
+El Cajon, California
+Davenport, Iowa
+Erie, Pennsylvania
+Las Cruces, New Mexico
+South Bend, Indiana
+Flint, Michigan
+Kenosha, Wisconsin
