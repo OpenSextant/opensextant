@@ -56,7 +56,6 @@ public class Initialize implements Runnable {
             writer = new FileWriter(primer);
             reader = getClass().getResourceAsStream("/world_and_us_cities.txt");
             IOUtils.copy(reader, writer);
-            log.info(primer.getAbsolutePath());
             List<Document> documents = converter.convert(primer);
             for (int index = 0; index < PRIME_COUNT; index++) {
                 for (Document document : documents) {
