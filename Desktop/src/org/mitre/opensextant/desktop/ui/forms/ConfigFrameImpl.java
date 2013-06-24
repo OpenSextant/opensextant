@@ -22,8 +22,32 @@ import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 @SuppressWarnings("serial")
 public class ConfigFrameImpl extends ConfigFrame {
 
+    private static final long HALF_GB = 536870912;
     private ConfigHelper configHelper;
-
+    
+    private static final int memoryLimit = (int)(Runtime.getRuntime().maxMemory()/HALF_GB);
+    private static final int coreLimit = 2 * Runtime.getRuntime().availableProcessors();
+    
+    private void displayWarnings(){
+        int val = (int)threadCount.getValue();
+        boolean breaksMem = false;
+        boolean breaksCores = false;
+        String warning = null;
+        
+        if(memoryLimit < val) breaksMem = true;
+        if (coreLimit > 1 && val > coreLimit / 2) breaksCores = true;
+        
+        if(breaksMem && breaksCores) warning = "Warning: Available memory and processors may be insufficient";
+        else if(breaksMem) warning = "Warning: Available memory may be insufficient";
+        else if(breaksCores) warning = "Warning: Available processors may be insufficient";
+        
+        if(warning == null) warnLabel.setVisible(false);
+        else {
+            warnLabel.setText(warning);
+            warnLabel.setVisible(true);
+        }
+    }
+    
     public ConfigFrameImpl() {
         super();
 
@@ -44,13 +68,8 @@ public class ConfigFrameImpl extends ConfigFrame {
         }
         extractIdentifiersCheck.setSelected(configHelper.isExtractIdentifiers());
 
-        final int maxThreads = 2 * Runtime.getRuntime().availableProcessors();
-        if (maxThreads > 1 && configHelper.getNumThreads() > maxThreads / 2)
-            warnLabel.setVisible(true);
-        else
-            warnLabel.setVisible(false);
-
-        ((SpinnerNumberModel) threadCount.getModel()).setMaximum(maxThreads);
+        displayWarnings();
+        ((SpinnerNumberModel) threadCount.getModel()).setMaximum(coreLimit);
 
         for (String t : configHelper.getOutTypes()) {
             if ("CSV".equals(t))
@@ -87,10 +106,7 @@ public class ConfigFrameImpl extends ConfigFrame {
         threadCount.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if (maxThreads > 1 && (Integer) threadCount.getValue() > maxThreads / 2)
-                    warnLabel.setVisible(true);
-                else
-                    warnLabel.setVisible(false);
+                displayWarnings();
             }
         });
 

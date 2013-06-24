@@ -13,6 +13,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -416,12 +417,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="threadCount" min="-2" pref="58" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="warnLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="140" max="32767" attributes="0"/>
+                          <Component id="warnLabel" min="-2" pref="483" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tempText" max="32767" attributes="0"/>
+                              <Component id="tempText" pref="462" max="32767" attributes="0"/>
                               <Component id="cacheText" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -429,9 +430,9 @@
                               <Component id="browseCacheButton" min="-2" max="-2" attributes="0"/>
                               <Component id="browseTempButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -503,7 +504,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Warning: Exceeding number of cores may cause slowdown"/>
+            <Property name="text" type="java.lang.String" value="Warning: Available memory may be insufficient"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <AuxValues>

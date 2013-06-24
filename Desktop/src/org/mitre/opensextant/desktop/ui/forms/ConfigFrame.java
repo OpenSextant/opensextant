@@ -67,7 +67,7 @@ public class ConfigFrame extends javax.swing.JFrame {
 
         setTitle("Configuration");
 
-        outputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Output", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
+        outputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Output", 0, 0, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
 
         pathLabel.setText("Path:");
         pathLabel.setToolTipText("The location of the directory to place output files");
@@ -212,7 +212,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .add(0, 3, Short.MAX_VALUE))
         );
 
-        extractPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Extract", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
+        extractPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Extract", 0, 0, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
 
         extractTimeCheck.setSelected(true);
         extractTimeCheck.setText("Extract Time");
@@ -277,7 +277,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .add(extractIdentifiersCheck))
         );
 
-        processingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Processing", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
+        processingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Processing", 0, 0, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
 
         tempLabel.setText("Temp Path:");
         tempLabel.setToolTipText("The location to place temporary files used during job execution");
@@ -306,7 +306,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
 
         warnLabel.setForeground(new java.awt.Color(255, 0, 0));
-        warnLabel.setText("Warning: Exceeding number of cores may cause slowdown");
+        warnLabel.setText("Warning: Available memory may be insufficient");
         warnLabel.setToolTipText("");
 
         threadCount.setModel(new javax.swing.SpinnerNumberModel(1, 1, 25, 1));
@@ -340,17 +340,17 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .add(processingPanelLayout.createSequentialGroup()
                         .add(threadCount, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(warnLabel)
-                        .add(0, 140, Short.MAX_VALUE))
+                        .add(warnLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 483, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(0, 0, Short.MAX_VALUE))
                     .add(processingPanelLayout.createSequentialGroup()
                         .add(processingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(tempText)
+                            .add(tempText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                             .add(cacheText))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(processingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(browseCacheButton)
-                            .add(browseTempButton))
-                        .addContainerGap())))
+                            .add(browseTempButton))))
+                .addContainerGap())
         );
         processingPanelLayout.setVerticalGroup(
             processingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -373,7 +373,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .add(tempLabel)))
         );
 
-        loggingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Logging", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
+        loggingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Logging", 0, 0, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
 
         loggingSlider.setMaximum(4);
         loggingSlider.setPaintLabels(true);
