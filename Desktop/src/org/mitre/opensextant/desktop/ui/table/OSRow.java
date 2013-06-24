@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 
 import org.apache.commons.io.FileUtils;
 import org.mitre.opensextant.desktop.executor.OpenSextantWorker;
+import org.mitre.opensextant.desktop.executor.progresslisteners.ChildProgressListener;
 import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowButtonsImpl;
 import org.mitre.opensextant.desktop.ui.forms.panels.RowDurationImpl;
@@ -23,6 +24,7 @@ import org.mitre.opensextant.desktop.ui.forms.panels.RowProgressBarImpl;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
 import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
 import org.mitre.opensextant.desktop.util.JobStatistics;
+import org.mitre.opensextant.desktop.util.UpdateTask;
 import org.mitre.opensextant.processing.Parameters;
 import org.mitre.opensextant.processing.output.AbstractFormatter;
 import org.mitre.xtext.XText;
@@ -30,6 +32,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class OSRow implements Comparable<OSRow> {
+
+
 
 	public static enum STATUS {
 		INITIALIZING("Initializing"), QUEUED("Queued"), PROCESSING("Processing"), COMPLETE("Complete"), CANCELED("Canceled"), ERROR("Error");
@@ -50,7 +54,7 @@ public class OSRow implements Comparable<OSRow> {
 	private static int counter = 0;
  
     private JobStatistics stats = new JobStatistics();
-   
+    
 	private static String[] fileTypes;
 	static {
 		try {
@@ -317,37 +321,43 @@ public class OSRow implements Comparable<OSRow> {
 		durationContainer.toggleColor(isSelected);
 	}
 
+    /*
+    private float updatePercentView(boolean didChange, float lastDiffPercent, float curPercent, float curDisplayPercent, int sameCount){
+        float ret = curDisplayPercent;
+        if(curPercent >= 100) ret = 100;
+        else if(curPercent == curDisplayPercent) ret = curDisplayPercent;
+        else if(didChange) {
+            float logCalc = (float) Math.log((curPercent + 15) - lastDiffPercent);
+            if(logCalc < 0.02) logCalc = (float) 0.02;
+            ret += logCalc;
+        } else {
+            if(sameCount < 3) sameCount = 3;
+            float logCalc = (float) Math.log(((curPercent + 15) - lastDiffPercent)/sameCount);
+            if(logCalc < 0.02) logCalc = (float) 0.02;
+            ret += logCalc;
+        }
+        if( ret > curPercent + 14) ret = curPercent + 14;
+        if(ret >= 100) ret = 100;
+        return ret;
+    }
+    */
 	public void setProgress(int percent, OSRow.STATUS status, boolean force) {
-		String percentString = ": " + percent + "%";
-		if (hasChildren() && numCompletedChildren >= 0) {
-			percentString += " (" + numCompletedChildren + "/" + getChildren().size() + ")";
-		}
-		if (percent < 0)
-			percentString = "";
+
 
 		if ((this.status != STATUS.ERROR && this.status != STATUS.CANCELED) || force) {
 			this.percent = percent;
-
+            if(force) this.percent = percent;
 			if (this.status != STATUS.PROCESSING && status == STATUS.PROCESSING) {
 				executionStartTime = new Date();
-				class DurationUpdateTask extends TimerTask {
-					public void run() {
-						boolean updated = durationContainer.updateDuration(OSRow.this);
-						if (updated) tableHelper.getMainFrame().getTable().repaint(OSRow.this);
-						if (!OSRow.this.isRunning()) {
-							cancel();
-						}
 
-					}
-				}
-				tableHelper.getTimer().schedule(new DurationUpdateTask(), 1000, 1000);
+				tableHelper.getTimer().schedule(new UpdateTask(OSRow.this, tableHelper), 500, 500);
 				getDurationPanel().updateDuration(this);
 				tableHelper.getMainFrame().getTable().repaint(OSRow.this);
 			}
 
 			this.status = status;
-			progressBarContainer.getProgressBar().setValue(percent);
-			progressBarContainer.getProgressBar().setString(status.getTitle() + percentString);
+   		  //  progressBarContainer.getProgressBar().setValue(displayPercent);
+		//	progressBarContainer.getProgressBar().setString(status.getTitle() + percentString);
 		}
 
 		if (!isRunning()) {
@@ -388,6 +398,10 @@ public class OSRow implements Comparable<OSRow> {
 		}
 	}
 
+    public int getNumCompletedChildren(){
+        return numCompletedChildren;
+    }
+    
 	public void setProgress(int percent, OSRow.STATUS status) {
 		setProgress(percent, status, false);
 	}
