@@ -22,7 +22,7 @@
  *
  * (c) 2012 The MITRE Corporation. All Rights Reserved.
  * **************************************************************************
-*
+ *
  */
 package org.mitre.opensextant.extraction;
 
@@ -173,7 +173,7 @@ public class SolrProxy {
     }
 
     /**
-     * This is the service call to the indexer.
+     * Add one solr record.
      *
      * @param solrRecord
      * @throws Exception
@@ -194,6 +194,30 @@ public class SolrProxy {
         // .. add data to record
         //   .. add record to batch request
         solrUpdate.add(solrRecord);
+    }
+
+    /**
+     * Add many solr records.
+     *
+     * @param solrRecords
+     * @throws Exception
+     */
+    public void add(java.util.Collection<SolrInputDocument> solrRecords)
+            throws Exception {
+
+        if (!this.writable) {
+            throw new Exception("This instance is not configured for writing to index");
+        }
+
+        // Initialize per batch if nec.y
+        if (solrUpdate == null) {
+            solrUpdate = new UpdateRequest();
+        }
+
+        // Initialize per record
+        // .. add data to record
+        //   .. add record to batch request
+        solrUpdate.add(solrRecords);
     }
 
     public void openIndex()
@@ -219,11 +243,12 @@ public class SolrProxy {
     }
 
     /**
-     * Save and optionally records to server or index
-     * On failure, current accumulating request is cleared and nullified
-     * to avoid retransmitting bad data.
-     * 
-     * In the event of a failure all records since last "saveIndex" would be lost and should be resubmitted.
+     * Save and optionally records to server or index On failure, current
+     * accumulating request is cleared and nullified to avoid retransmitting bad
+     * data.
+     *
+     * In the event of a failure all records since last "saveIndex" would be
+     * lost and should be resubmitted.
      */
     public void saveIndex(boolean commit) {
         if (solrUpdate == null) {
@@ -328,7 +353,8 @@ public class SolrProxy {
     }
 
     /**
-     *      */
+     *
+     */
     public static char getChar(SolrDocument solrDoc, String name) {
         String result = getString(solrDoc, name);
         if (result == null) {
