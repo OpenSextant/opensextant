@@ -21,9 +21,8 @@ public class JobStatistics {
     private ArrayList<Geocoding>[] geos = new ArrayList[COUNTRY + 1];
     
     public void addGeo(Geocoding g, int arrayLoc) {
-        ArrayList<Geocoding> x = geos[arrayLoc];
-        if(x == null) x = new ArrayList<Geocoding>();
-        x.add(g);
+        if(geos[arrayLoc] == null) geos[arrayLoc] = new ArrayList<Geocoding>();
+        geos[arrayLoc].add(g);
     }
     
     public ArrayList<Geocoding> getGeo(int arrayLoc) {

@@ -15,6 +15,7 @@ import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.OpenSextantSchema;
 import org.mitre.opensextant.processing.ProcessingException;
 import org.mitre.opensextant.processing.output.AbstractFormatter;
+import static org.mitre.opensextant.processing.output.AbstractFormatter.log;
 import org.mitre.opensextant.processing.output.result.IdentifierResult;
 
 public class MultiFormatter extends AbstractFormatter {
@@ -81,15 +82,15 @@ public class MultiFormatter extends AbstractFormatter {
 		}*/
         
         // Added back in, since writeGeocodingResult was never firing
-        IdentifierResult identityAnnotations = new IdentifierResult(doc.getName());
-        identityAnnotations.recordFile = (String) doc.getFeatures().get(OpenSextantSchema.FILEPATH_FLD);
-        identityAnnotations.recordTextFile = doc.getSourceUrl().getPath();
-        log.info("Writing identifiers for " + identityAnnotations.recordFile);
+        GeocodingResult geoAnnotations = new GeocodingResult(doc.getName());
+        geoAnnotations.recordFile = (String) doc.getFeatures().get(OpenSextantSchema.FILEPATH_FLD);
+        geoAnnotations.recordTextFile = doc.getSourceUrl().getPath();
+        log.info("Writing identifiers for " + geoAnnotations.recordFile);
 
         try {
-            identityAnnotations.retrieveGeocodes(doc);
+            geoAnnotations.retrieveGeocodes(doc);
 
-            writeGeocodingResult(identityAnnotations);
+            writeGeocodingResult(geoAnnotations);
 
         } catch (Exception err) {
             log.error("Error writing out row ROW=" + doc.getName(), err);
@@ -103,12 +104,11 @@ public class MultiFormatter extends AbstractFormatter {
 		for (AbstractFormatter child : children) {
 			child.writeGeocodingResult(rowdata);
 		}*/
-        System.out.println("HERE>>>>>>>>>>>>>>>>>>>>>");
+        JobStatistics s = row.getStatistics();
         for (Geocoding g : rowdata.geocodes) {
-            JobStatistics s = row.getStatistics();
             if(g.is_coordinate) s.addGeo(g, JobStatistics.COORDINATE);
             if(g.is_place) s.addGeo(g, JobStatistics.PLACE);
-            if(g.is_country) s.addGeo(g, JobStatistics.COUNTRY);;
+            if(g.is_country) s.addGeo(g, JobStatistics.COUNTRY);
             s.incrementObjCount();
         }
 	}

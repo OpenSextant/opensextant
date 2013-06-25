@@ -271,6 +271,7 @@ public class OSRow implements Comparable<OSRow> {
 			info += "Output file: " + this.outputLocations.get(outputTypes.get(i));
 		}
         
+        System.out.println("HERE>>>>>STATS");
         if(this.stats != null) {
           info += "<BR/><BR/>Statistics: " + this.stats.getObjCount() + " objects";
           info += "<BR/>&nbsp;&nbsp;&nbsp;&nbsp;" + this.stats.getCount(this.stats.PLACE) + " place names";
