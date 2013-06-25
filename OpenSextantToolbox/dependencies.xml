@@ -87,7 +87,7 @@
     <pathelement location="${gate.lib}/javacc.jar"/>
     <pathelement location="${gate.lib}/jdom.jar"/>
     <pathelement location="${gate.lib}/junit.jar"/>
-    <pathelement location="${gate.lib}/xercesImpl.jar"/>
+    <!-- Supposedly Provided in Java6+ <pathelement location="${gate.lib}/xercesImpl.jar"/> -->
     <pathelement location="${gate.lib}/dom4j.jar"/>
     <pathelement location="${gate.lib}/jaxen.jar"/>
     <pathelement location="${gate.lib}/xmlbeans.jar"/>
