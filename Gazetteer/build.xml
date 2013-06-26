@@ -13,7 +13,7 @@
 	        !!! USGS - http://geonames.usgs.gov/domestic/download_data.htm  !!!
 		!!! NGA - http://earth-info.nga.mil/gns/html/namefiles.htm - this updates weekly. !!!
 	-->
-	<property name="NGA_date" value="20130610" />
+	<property name="NGA_date" value="20130624" />
 	<property name="USGS_date" value="20130602" />
 
 	<!-- where did you install Pentaho Data Integration aka Kettle? -->
