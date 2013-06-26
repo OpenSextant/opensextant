@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mitre.opensextant</groupId>
     <artifactId>opensextant-apps</artifactId>
-    <version>1.4</version>
+    <version>1.4.1-SNAPSHOT</version>
     <!-- This is not an official distribution of OpenSextant -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>org.mitre.opensextant</groupId>
             <artifactId>opensextant-toolbox</artifactId>
-            <version>1.4</version>
+            <version>1.4.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
