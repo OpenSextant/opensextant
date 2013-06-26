@@ -122,11 +122,14 @@ public class ConfigHelper {
             if (version != VERSION) {
                 File configBackup = new File(CONFIG_FILE+"_v"+version);
                 File jobsBackup = new File(JOBS_FILE+"_v"+version);
-                FileUtils.copyFile(new File(CONFIG_FILE), configBackup);
-                FileUtils.copyFile(new File(JOBS_FILE), jobsBackup);
-                JOptionPane.showMessageDialog(null, "Your OpenSextant configuration files are from an incompatable version and cannot be used.  They have been backed up to: " + configBackup.getAbsolutePath() + ".");
-                FileUtils.deleteQuietly(new File(CONFIG_FILE));
-                FileUtils.deleteQuietly(new File(JOBS_FILE));
+                
+                if (settingsFile.exists()) {
+                    FileUtils.copyFile(new File(CONFIG_FILE), configBackup);
+                    if (new File(JOBS_FILE).exists()) FileUtils.copyFile(new File(JOBS_FILE), jobsBackup);
+                    JOptionPane.showMessageDialog(null, "Your OpenSextant configuration files are from an incompatable version and cannot be used.  They have been backed up to: " + configBackup.getAbsolutePath() + ".");
+                    FileUtils.deleteQuietly(new File(CONFIG_FILE));
+                    FileUtils.deleteQuietly(new File(JOBS_FILE));
+                }
                 settingsFile.createNewFile();
                 config = new PropertiesConfiguration(CONFIG_FILE);
             }
