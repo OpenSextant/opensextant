@@ -113,15 +113,10 @@ The core library is contained in this jar.
             <exclude name="org/mitre/opensextant/apps/**"/>
         </jar>
 
-        <jar destfile="${jar.location}" update="true" basedir="${resources.home}/resources" >
-            <include name="filters/**.txt"/>
-        </jar>
-
         <jar destfile="${jar.location}" update="true" basedir="${gaz.home}/GazetteerETL/Resources">
             <include name="country-names-2013.csv" />
             <include name="feature-metadata-2013.csv" />
         </jar>
-
 
         <!-- Other JARS produced from the Toolbox source tree:  Apps and Phonetics lib
           -->

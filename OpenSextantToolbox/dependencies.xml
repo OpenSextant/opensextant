@@ -18,7 +18,7 @@
     <!-- project level libraries -->
     <pathelement location="${release.dir}/lib/OpenSextantToolbox.jar" />
     <pathelement location="${release.dir}/lib/opensextant-commons.jar" />
-    <pathelement location="${release.dir}/lib/opensextant-xponents-1.6.jar" />
+    <pathelement location="${release.dir}/lib/opensextant-xponents-1.7.jar" />
     <pathelement location="${release.dir}/lib/geodesy-1.9.24.jar" />
     <pathelement location="${release.dir}/lib/joda-time-2.2.jar" />
     <!-- <pathelement location="${release.dir}/lib/giscore-1.8.jar" /> 
