@@ -32,7 +32,7 @@ Build file for OpenSextant Desktop
 		<pathelement location="${opensextant.libs}/OpenSextantToolbox.jar" />
 		<pathelement location="${opensextant.libs}/opensextant-apps.jar" />
 		<pathelement location="${opensextant.libs}/opensextant-commons.jar" />
-		<pathelement location="${opensextant.libs}/opensextant-xponents-1.6.jar" />
+		<pathelement location="${opensextant.libs}/opensextant-xponents-1.7.jar" />
 		<pathelement location="${opensextant.libs}/commons-lang-2.6.jar" />
 
 		<pathelement location="${opensextant.libs}/slf4j-api-1.7.4.jar" />
