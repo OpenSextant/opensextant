@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.mitre.giscore.events.Feature;
 import org.mitre.giscore.events.SimpleField;
+import org.mitre.giscore.utils.SafeDateFormat;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.GeoExtraction;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.TimeAssociation;
 import org.mitre.opensextant.processing.Geocoding;
@@ -19,6 +20,9 @@ import org.mitre.opensextant.processing.output.result.TimedGeocodingResult;
 
 public class TimeGISDataModel extends FilteringGISDataModel {
 
+    private static final String DATE_FMT = "yyyy-MM-dd";
+    private SafeDateFormat dateFormatter;
+    
     private static final String TIME_FIELD = "time";
     @SuppressWarnings("serial")
     private static final Set<String> CUSTOM_FIELDS = new HashSet<String>() {
@@ -45,6 +49,15 @@ public class TimeGISDataModel extends FilteringGISDataModel {
     public GeocodingResult buildGeocodingResults(String name) {
         return new TimedGeocodingResult(name, geoExtraction, timeAssociation);
     }
+    
+    // Thread-safe date formatter helper method
+    private SafeDateFormat getDateFormatter() {
+        if (dateFormatter == null) {
+            dateFormatter = new SafeDateFormat(DATE_FMT);
+        }
+        return dateFormatter;
+    }
+
 
     @Override
     public Feature buildRow(int id, Geocoding g, Map<String, Object> rowAttributes, String recordFile, String recordTextFile)
@@ -54,7 +67,7 @@ public class TimeGISDataModel extends FilteringGISDataModel {
             String delim = "";
             StringBuffer times = new StringBuffer();
             for (ParsedTime time : ((TimedGeocoding) g).times) {
-                times.append(delim).append(time.getYear());
+                times.append(delim).append(getDateFormatter().format(time.getNormalizedDate()));
                 delim = ",";
             }
             addColumn(row, getField("time"), times);
