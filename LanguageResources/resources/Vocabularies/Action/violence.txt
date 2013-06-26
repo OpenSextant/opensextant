@@ -1,5 +1,4 @@
 actrocities
-aggravated batteries
 altercation
 altercations
 ambush
@@ -10,91 +9,44 @@ atrocities
 atrocity
 attack
 attacks
-attempted murders
-blackmails
 bloodshed
-bomb threats
 bombing
 bombings
-breaking and enterings
-briberies
-child abuses
-child pornographies
 clash
 clashes
 conflict
 conflicts
 confrontation
 confrontations
-conspiracy to defrauds
-conspiracy to murders
-copyright infringements
-corruptions
-counterfeitings
 coup
 coups
-dangerous drivings
-defamations
 destruction
 detonation
 detonations
 discord
-drug possessions
-drug traffickings
-embezzlements
 execution
 executions
-extortions
 fight
 fighting
 fights
 fisticuffs
-forced entries
-forcible entries
-forgeries
-frauds
-genocides
 gun fire
 gunfight
 gunfights
 gunfire
-harassments
-hate crimes
-hit and runs
-home invasions
-human traffickings
-identity thefts
-illegal entries
-indecent exposures
 infighting
-insurance frauds
 insurgencies
 insurgency
 jehad
 jehads
 jihad
 jihads
-libels
-loiterings
-lootings
-malfeasances
-manslaughters
 martyrdom
 martyrdoms
-mass murders
-perjuries
-piracies
-pornographies
-possession of stolen properties
-profiteerings
-prostitutions
 protest
 protests
 provocation
 provocations
-public intoxications
-public nuisances
-racketeerings
 raid
 raids
 rapes
@@ -113,36 +65,18 @@ revolutions
 riot
 rioting
 riots
-sabotages
-seditions
-sexual exploitations
-sexual misconducts
-shopliftings
 siege
 sieges
-slanders
 small arms fire
 small-arms fire
 smallarms fire
-smugglings
-sodomies
 strife
 struggle
 struggles
-suborning perjuries
-suicides
-terrorisms
-thefts
 torture
-treasons
-tresspassings
-unlawful acts
-unlawful assemblies
 unrest
 uprising
 uprisings
-usuries
 violence
 violent act
 violent acts
-war crimes
