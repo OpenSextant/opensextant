@@ -189,7 +189,8 @@ The core library is contained in this jar.
             </fileset>
         </copy>
         <copy file="${jar.location}" todir="${gate7.home}/plugins/OpenSextantToolbox/lib" /> 
-        <copy file="${basedir}/creole.xml" todir="${gate7.home}/plugins/OpenSextantToolbox" /> 
+    	<!-- copy and rename creole LOCAL -->
+        <copy file="${basedir}/creole_LOCAL.xml" tofile="${gate7.home}/plugins/OpenSextantToolbox/creole.xml" /> 
     </target>
 	
     <!-- create release directory structure -->
