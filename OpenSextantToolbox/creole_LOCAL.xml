@@ -1,50 +1,44 @@
 <!--
 This file defines the dependencies for the OpenSextantToolbox
-NOTE this creole presumes that the commented out dependencies  below are already on the JVM path and thus do not
-need to be loaded by the GATE class loader. See creole_LOCAL.xml for the creole that uses the GATE classloader
+NOTE this creole presumes that the dependencies defined below will be loaded by the GATE classloader
+See creole.xml for the creole that presumes the dependencies are on the JVM classpath
 -->
 
 <CREOLE-DIRECTORY>
-    <JAR SCAN="True" >lib/OpenSextantToolbox.jar</JAR>
-</CREOLE-DIRECTORY>
+    <JAR SCAN="True">lib/OpenSextantToolbox.jar</JAR>
 
-<!-- As of OpenSextant v1.4 these are the Toolbox dependencies
-     We  have only one copy of JARs the all appear at OPENSEXTANT_HOME/lib/
-     or anywhere in your JVM runtime classpath
 
-     ==============================================================
-
-    <JAR SCAN="False" >lib/opensextant-commons.jar</JAR>
+	<JAR SCAN="False" >lib/opensextant-commons.jar</JAR>
     <JAR SCAN="False" >lib/opensextant-xponents-1.6.jar</JAR>
     
-    <! XCoord dep >
+    <!-- XCoord dep -->
     <JAR SCAN="False">lib/geodesy-1.9.24.jar</JAR>
-    <! XTemp dep >
+    <!-- XTemp dep -->
     <JAR SCAN="False">lib/joda-time-2.2.jar</JAR>
     
-    <! General purpose tagger dep >
+    <!-- General purpose tagger dep -->
     <JAR SCAN="False">lib/JITAR.jar</JAR>
     
     <JAR SCAN="False">lib/slf4j-api-1.7.4.jar</JAR>
     <JAR SCAN="False">lib/slf4j-log4j12-1.7.4.jar</JAR>
         
-    <! Solr 4.x support >
+    <!-- Solr 4.x support -->
 
-    <! OpenSextant extension for tagging text. >
+    <!-- OpenSextant extension for tagging text. -->
     <JAR SCAN="False">lib/solr-text-tagger-1.1.jar</JAR>
     
-    <! Solr Spatial - Lucene + add-ons >
-    <!JTS not needed unless you need to search geospatially in a pipeline
-     JAR SCAN="False">lib/solr/jts-1.13.jar</JAR>
+    <!-- Solr Spatial - Lucene + add-ons -->
+    <!--JTS not needed unless you need to search geospatially in a pipeline
+     JAR SCAN="False">lib/solr/jts-1.13.jar</JAR-->
 
     <JAR SCAN="False">lib/lucene-spatial-4.2.1.jar</JAR>
     <JAR SCAN="False">lib/spatial4j-0.3.jar</JAR>
 
-    <! Solr Core/Client >
+    <!-- Solr Core/Client -->
     <JAR SCAN="False">lib/solr-core-4.2.1.jar</JAR>
     <JAR SCAN="False">lib/solr-solrj-4.2.1.jar</JAR>
 
-    <! Lucene analyzers >
+    <!-- Lucene analyzers -->
     
     <JAR SCAN="False">lib/lucene-analyzers-common-4.2.1.jar</JAR>
     <JAR SCAN="False">lib/lucene-analyzers-kuromoji-4.2.1.jar</JAR>
@@ -59,7 +53,7 @@ need to be loaded by the GATE class loader. See creole_LOCAL.xml for the creole 
     <JAR SCAN="False">lib/lucene-queryparser-4.2.1.jar</JAR>
     <JAR SCAN="False">lib/lucene-suggest-4.2.1.jar</JAR>
     
-    <! Solr support libs >
+    <!-- Solr support libs -->
     <JAR SCAN="False">lib/wstx-asl-3.2.7.jar</JAR>
     <JAR SCAN="False">lib/zookeeper-3.4.5.jar</JAR>
     <JAR SCAN="False">lib/commons-io-2.1.jar</JAR>
@@ -72,4 +66,4 @@ need to be loaded by the GATE class loader. See creole_LOCAL.xml for the creole 
     <JAR SCAN="False">lib/httpcore-4.2.2.jar</JAR>
     <JAR SCAN="False">lib/httpmime-4.2.3.jar</JAR>
      
-   -->
+</CREOLE-DIRECTORY>

@@ -8,14 +8,19 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.commons.io.FileUtils;
 import org.mitre.opensextant.desktop.ui.forms.ConfigFrame;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ConfigHelper {
+    
+    private static final int VERSION = 1;
 
     private static Logger log = LoggerFactory.getLogger(ConfigFrame.class);
     public static final String DATA_HOME = getUserHome() + File.separator + "Documents" + File.separator + "OpenSextant";
@@ -26,6 +31,22 @@ public class ConfigHelper {
     private static final int CONFIG_VERSION = 1;
     public static enum TimeAssociation {
         CSV, CROSS
+    }
+    public static enum GeoExtraction {
+        PLACE(true,false),COORD(false,true),BOTH(true,true), NONE(false,false);
+        
+        private boolean extractPlaces;
+        private boolean extractCoordinates;
+        private GeoExtraction(boolean extractPlaces, boolean extractCoordinate) {
+            this.extractPlaces = extractPlaces;
+            this.extractCoordinates = extractCoordinate;
+        }
+        public boolean extractPlaces() {
+            return extractPlaces;
+        }
+        public boolean extractCoordinates() {
+            return extractCoordinates;
+        }
     }
 
     public static final int ROW_ID = 0;
@@ -66,6 +87,7 @@ public class ConfigHelper {
     private boolean extractTime = true;
     private boolean extractIdentifiers = true;
     private TimeAssociation timeAssociation = TimeAssociation.CSV;
+    private GeoExtraction geoExtraction = GeoExtraction.BOTH;
 
     private List<PropertyChangeListener> listeners = new ArrayList<PropertyChangeListener>();
 
@@ -92,10 +114,25 @@ public class ConfigHelper {
                 dataHome.mkdirs();
 
             File settingsFile = new File(CONFIG_FILE);
+            boolean settingsFileExisted = true;
             if (!settingsFile.exists()) {
+                settingsFileExisted = false;
                 settingsFile.createNewFile();
             }
             config = new PropertiesConfiguration(CONFIG_FILE);
+            int version = config.getInt("version", 0);
+            if (settingsFileExisted && version != VERSION) {
+                File configBackup = new File(CONFIG_FILE+"_v"+version);
+                File jobsBackup = new File(JOBS_FILE+"_v"+version);
+                
+                FileUtils.copyFile(new File(CONFIG_FILE), configBackup);
+                if (new File(JOBS_FILE).exists()) FileUtils.copyFile(new File(JOBS_FILE), jobsBackup);
+                JOptionPane.showMessageDialog(null, "Your OpenSextant configuration files are from an incompatable version and cannot be used.  They have been backed up to: " + configBackup.getAbsolutePath() + ".");
+                FileUtils.deleteQuietly(new File(CONFIG_FILE));
+                FileUtils.deleteQuietly(new File(JOBS_FILE));
+                settingsFile.createNewFile();
+                config = new PropertiesConfiguration(CONFIG_FILE);
+            }
 
             settingsFile = new File(JOBS_FILE);
             if (!settingsFile.exists())
@@ -118,6 +155,9 @@ public class ConfigHelper {
     public synchronized void saveSettings() {
 
         try {
+            
+            config.setProperty("version", VERSION);
+            
             if (outTypes == null || outTypes.size() == 0) outTypes = DEFAULT_OUT_TYPE;
             config.setProperty("outType", outTypes);
             config.setProperty("outLocation", outLocation);
@@ -133,6 +173,7 @@ public class ConfigHelper {
             config.setProperty("extractTime", extractTime);
             config.setProperty("extractIdentifiers", extractIdentifiers);
             config.setProperty("timeAssociation", timeAssociation.toString());
+            config.setProperty("geoExtraction", geoExtraction.toString());
             config.save();
             jobs.save();
             fireUpdate();
@@ -165,6 +206,7 @@ public class ConfigHelper {
         extractTime = config.getBoolean("extractTime", true);
         extractIdentifiers = config.getBoolean("extractIdentifiers", true);
         timeAssociation = TimeAssociation.valueOf(config.getString("timeAssociation", "CSV"));
+        geoExtraction = GeoExtraction.valueOf(config.getString("geoExtraction", "BOTH"));
     }
 
     public void loadRows(ApiHelper apiHelper, MainFrameTableHelper tableHelper) {
@@ -288,6 +330,14 @@ public class ConfigHelper {
     
     public void setTimeAssociation(TimeAssociation timeAssociation) {
         this.timeAssociation = timeAssociation;
+    }
+
+    public GeoExtraction getGeoExtraction() {
+        return geoExtraction;
+    }
+
+    public void setGeoExtraction(GeoExtraction geoExtraction) {
+        this.geoExtraction = geoExtraction;
     }
 
     public void setOutTypes(List<String> outTypes) {

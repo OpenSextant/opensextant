@@ -5,6 +5,7 @@
 package org.mitre.opensextant.desktop.ui.forms;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -14,6 +15,8 @@ import org.apache.commons.io.FileUtils;
 import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 import org.mitre.opensextant.desktop.ui.table.OSRow;
 import org.mitre.opensextant.desktop.util.FileSize;
+import org.mitre.opensextant.desktop.util.JobStatistics;
+import org.mitre.opensextant.processing.Geocoding;
 
 /**
  *
@@ -112,19 +115,30 @@ public class StatisticsFrame extends javax.swing.JFrame {
         String fileSizeString = "";
         long bytesPerSecond = 0;
         ArrayList<String> fileSizes = new ArrayList<String>();
-        if (currentRow.hasChildren()) {
+        if (currentRow.hasChildren())
+        {
                 long size = 0;
-                for (OSRow child : currentRow.getChildren()) {
+                for (OSRow child : currentRow.getChildren()) 
+                {
                         size += FileUtils.sizeOf(child.getInputFile());
                         fileSizes.add(FileSize.byteCountToDisplaySize(FileUtils.sizeOf(child.getInputFile())));
                 }
                 bytesPerSecond = size/(currentRow.getDurationPanel().getDuration()/1000); 
                 fileSizeString += FileSize.byteCountToDisplaySize(size);
                 fileSizeString += " (" + currentRow.getChildren().size() + " files)";
-        } else {
+        } 
+        else 
+        {
                 long size = FileUtils.sizeOf(currentRow.getInputFile());
                 fileSizeString += FileSize.byteCountToDisplaySize(size);
-                bytesPerSecond = size/(currentRow.getDurationPanel().getDuration()/1000); 
+                try
+                {
+                    bytesPerSecond = size / (currentRow.getDurationPanel().getDuration()/1000); 
+                }
+                catch(Exception e)
+                {
+                    bytesPerSecond = 0;
+                }
         }
         
         
@@ -150,10 +164,51 @@ public class StatisticsFrame extends javax.swing.JFrame {
             }
         }
         
+        
+        JobStatistics currentStatistics = currentRow.getStatistics();
+        
+        Set<String> currentCoordinate = currentStatistics.getGeo(JobStatistics.COORDINATE);
+        Set<String> currentPlaces = currentStatistics.getGeo(JobStatistics.PLACE);
+        Set<String> currentCountry = currentStatistics.getGeo(JobStatistics.COUNTRY);
+        
+        int totalCount = currentCoordinate.size() + currentPlaces.size() + currentCountry.size();
+        
+        root.add(new DefaultMutableTreeNode("Total Objects: " + Integer.toString(totalCount)));
+        
+        DefaultMutableTreeNode objectsTree = (DefaultMutableTreeNode) root.getChildAt(3);
+        
+        objectsTree.add(new DefaultMutableTreeNode("Coordinate: " + Integer.toString(currentCoordinate.size())));
+        objectsTree.add(new DefaultMutableTreeNode("Places: " + Integer.toString(currentPlaces.size())));
+        objectsTree.add(new DefaultMutableTreeNode("Country: " + Integer.toString(currentCountry.size())));
+        
+        for(String geo: currentCoordinate)
+        {
+            DefaultMutableTreeNode locationTree = (DefaultMutableTreeNode) objectsTree.getChildAt(0);
+            locationTree.add(new DefaultMutableTreeNode(geo.toString() + ": " + currentStatistics.getCount(JobStatistics.COORDINATE, geo)));
+            
+        }
+        
+        for(String geo: currentPlaces)
+        {
+            DefaultMutableTreeNode locationTree = (DefaultMutableTreeNode) objectsTree.getChildAt(1);
+            locationTree.add(new DefaultMutableTreeNode(geo.toString() + ": " + currentStatistics.getCount(JobStatistics.PLACE, geo)));
+            
+        }
+        
+        for(String geo: currentCountry)
+        {
+            DefaultMutableTreeNode locationTree = (DefaultMutableTreeNode) objectsTree.getChildAt(2);
+            locationTree.add(new DefaultMutableTreeNode(geo.toString() + ": " + currentStatistics.getCount(JobStatistics.COUNTRY, geo)));
+            
+        }
+        
+        
+        
         DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) informationTree.getCellRenderer();
         renderer.setLeafIcon(null);
-        //renderer.setOpenIcon(null);
-        //renderer.setClosedIcon(null);
+        renderer.setOpenIcon(null);
+        renderer.setClosedIcon(null);
+        
         
         model.reload(root);
         

@@ -50,6 +50,9 @@ public class ConfigFrame extends javax.swing.JFrame {
         extractIdentifiersCheck = new javax.swing.JCheckBox();
         csvTimeRadioButton = new javax.swing.JRadioButton();
         cartProdTimeRadioButton = new javax.swing.JRadioButton();
+        extractGeoCheck = new javax.swing.JCheckBox();
+        extractPlacesCheck = new javax.swing.JCheckBox();
+        extractCoordinatesCheck = new javax.swing.JCheckBox();
         processingPanel = new javax.swing.JPanel();
         tempLabel = new javax.swing.JLabel();
         browseTempButton = new javax.swing.JButton();
@@ -67,7 +70,7 @@ public class ConfigFrame extends javax.swing.JFrame {
 
         setTitle("Configuration");
 
-        outputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Output", 0, 0, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
+        outputPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Output", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
 
         pathLabel.setText("Path:");
         pathLabel.setToolTipText("The location of the directory to place output files");
@@ -182,7 +185,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                             .add(shapefileCheck)
                             .add(wktCheck)
                             .add(gdbCheck))
-                        .add(0, 391, Short.MAX_VALUE)))
+                        .add(0, 394, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         outputPanelLayout.setVerticalGroup(
@@ -212,7 +215,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .add(0, 3, Short.MAX_VALUE))
         );
 
-        extractPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Extract", 0, 0, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
+        extractPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Extract", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
 
         extractTimeCheck.setSelected(true);
         extractTimeCheck.setText("Extract Time");
@@ -246,6 +249,33 @@ public class ConfigFrame extends javax.swing.JFrame {
         cartProdTimeRadioButton.setText("Create a copy of each Geo row per Time extracted (G x T)");
         cartProdTimeRadioButton.setToolTipText("Each extracted Geo element will appear with each time element associated with it.  This will produce a copied Geo element for each time element resulting in (Geo Elements) x (Time Elements) number of rows.");
 
+        extractGeoCheck.setSelected(true);
+        extractGeoCheck.setText("Extract Geo");
+        extractGeoCheck.setToolTipText("Extract geocoded places and coordinates when processing documents");
+        extractGeoCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractGeoCheckActionPerformed(evt);
+            }
+        });
+
+        extractPlacesCheck.setSelected(true);
+        extractPlacesCheck.setText("Geocode place names");
+        extractPlacesCheck.setToolTipText("Identify place names in the text of a document and geocode those place names to convert them into coordinates");
+        extractPlacesCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractPlacesCheckActionPerformed(evt);
+            }
+        });
+
+        extractCoordinatesCheck.setSelected(true);
+        extractCoordinatesCheck.setText("Parse Coordinate Patterns");
+        extractCoordinatesCheck.setToolTipText("Extract coordinate patterns when processing documents");
+        extractCoordinatesCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extractCoordinatesCheckActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout extractPanelLayout = new org.jdesktop.layout.GroupLayout(extractPanel);
         extractPanel.setLayout(extractPanelLayout);
         extractPanelLayout.setHorizontalGroup(
@@ -262,12 +292,27 @@ public class ConfigFrame extends javax.swing.JFrame {
                             .add(csvTimeRadioButton)))
                     .add(extractPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .add(extractIdentifiersCheck)))
+                        .add(extractIdentifiersCheck))
+                    .add(extractPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(extractGeoCheck))
+                    .add(extractPanelLayout.createSequentialGroup()
+                        .add(73, 73, 73)
+                        .add(extractPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(extractCoordinatesCheck)
+                            .add(extractPlacesCheck))))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         extractPanelLayout.setVerticalGroup(
             extractPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(extractPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(extractGeoCheck)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(extractPlacesCheck)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(extractCoordinatesCheck)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(extractTimeCheck)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(csvTimeRadioButton)
@@ -277,7 +322,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .add(extractIdentifiersCheck))
         );
 
-        processingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Processing", 0, 0, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
+        processingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Processing", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
 
         tempLabel.setText("Temp Path:");
         tempLabel.setToolTipText("The location to place temporary files used during job execution");
@@ -373,7 +418,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                     .add(tempLabel)))
         );
 
-        loggingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Logging", 0, 0, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
+        loggingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Logging", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
 
         loggingSlider.setMaximum(4);
         loggingSlider.setPaintLabels(true);
@@ -392,7 +437,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .add(logLevelLabel)
                 .add(26, 26, 26)
                 .add(loggingSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 445, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         loggingPanelLayout.setVerticalGroup(
             loggingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -437,7 +482,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .add(processingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(loggingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(doneButton)
                 .addContainerGap())
         );
@@ -523,6 +568,18 @@ public class ConfigFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sqliteCheckActionPerformed
 
+    private void extractGeoCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractGeoCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_extractGeoCheckActionPerformed
+
+    private void extractPlacesCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractPlacesCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_extractPlacesCheckActionPerformed
+
+    private void extractCoordinatesCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extractCoordinatesCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_extractCoordinatesCheckActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -574,8 +631,11 @@ public class ConfigFrame extends javax.swing.JFrame {
     protected javax.swing.JCheckBox csvCheck;
     protected javax.swing.JRadioButton csvTimeRadioButton;
     protected javax.swing.JButton doneButton;
+    protected javax.swing.JCheckBox extractCoordinatesCheck;
+    protected javax.swing.JCheckBox extractGeoCheck;
     protected javax.swing.JCheckBox extractIdentifiersCheck;
     private javax.swing.JPanel extractPanel;
+    protected javax.swing.JCheckBox extractPlacesCheck;
     protected javax.swing.JCheckBox extractTimeCheck;
     private javax.swing.JLabel formatLabel;
     protected javax.swing.JCheckBox gdbCheck;

@@ -49,7 +49,7 @@
 ./Object/aircraft_combat.txt:Aircraft:Object.vehicle.aircraft.combatAircraft
 ./Object/aircraft_combatSupport.txt:Aircraft:Object.vehicle.aircraft.combatSupportAircraft
 ./Object/animals.txt:Animal:Object.animal
-./Object/armoredVehicles.txt:MilitaryVehicle:Object.vehicle.militaryVehicle
+./Object/armoredVehicles.txt:MilitaryVehicle:Object.vehicle.militaryVehicle.armoredVehicle
 ./Object/clothing.txt:Clothing:Object.clothing
 ./Object/constructionEquipment.txt:ConstructionEquipment:Object.equipment.constructionEquipment
 ./Object/containers.txt:Container:Object.container
@@ -75,7 +75,7 @@
 ./Object/weapons.txt:Weapon:Object.weapon
 ./Organization/MilitaryUnitTypes.txt:MilitaryUnitType
 ./Organization/OrganizationContextPhrases.txt:OrganizationContextPhrase
-./Organization/OrganizationNameElements_Corp.txt:Organization:Organization.corporateOrganization
+./Organization/OrganizationNameElements_Corp.txt:CorporateOrganization:Organization.corporateOrganization
 ./Organization/OrganizationNameElements_Government.txt:Organization:Organization.governmentOrganization
 ./Organization/OrganizationNameElements_Informal.txt:Organization:Organization.informalOrganization
 ./Organization/OrganizationNameElements_Military.txt:Organization:Organization.militaryOrganization
