@@ -93,8 +93,6 @@ public class PlacenameMatcher {
     public PlacenameMatcher() throws IOException {
         PlacenameMatcher.initialize();
 
-        filter = new MatchFilter("/filters/tagging-filters.txt");
-
         // Instance variable that will have the transient payload to tag
         // this is not thread safe and is not static:
         tag_request = new SolrTaggerRequest(params, SolrRequest.METHOD.POST);
@@ -248,9 +246,7 @@ public class PlacenameMatcher {
         for (SolrDocument solrDoc : docList) {
 
             name = SolrProxy.getString(solrDoc, "name");
-            if (filter.filterOut(name.toLowerCase())) {
-                continue;
-            }
+            /* User filter: if (filter.filterOut(name.toLowerCase())) { continue; } */
 
             Place bean = new Place();
 
@@ -319,10 +315,9 @@ public class PlacenameMatcher {
              * different than "north"? This first pass filter should really
              * filter out only text we know to be false positives regardless of
              * case.
+             * deprecated:  use of filters here.  Filter out unwanted tags via GazetteerETL data model
+             * if (filter.filterOut(matchText.toLowerCase())) { continue; }
              */
-             if (filter.filterOut(matchText.toLowerCase())) {
-                continue;
-             }
 
             pc = new PlaceCandidate();
             pc.setStart(x1);
