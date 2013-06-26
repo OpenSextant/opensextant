@@ -170,6 +170,12 @@ telephone number
 telephone numbers
 telephone nums
 telephones
+toll free number
+toll free numbers
+toll-free number
+toll-free numbers
+tollfree number
+tollfree numbers
 transmitter
 transmitters
 video camera

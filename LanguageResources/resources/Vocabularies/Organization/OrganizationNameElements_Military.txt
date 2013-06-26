@@ -13,9 +13,12 @@ armed group
 armed groups
 armed service
 armed services
+armored column
+armored columns
 army
 army group
 army groups
+army intelligence
 army national guard
 batallion
 batallions
@@ -88,6 +91,7 @@ military units
 militia
 militias
 national guard
+naval intelligence
 navy
 patrol
 patrols

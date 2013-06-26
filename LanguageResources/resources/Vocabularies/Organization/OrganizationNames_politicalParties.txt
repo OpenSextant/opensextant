@@ -1,6 +1,10 @@
 action party
 agrarian party
 alliance party
+ba'ath party
+ba`ath party
+baath party
+bath party
 centre party
 christian democratic party
 christian democratic union

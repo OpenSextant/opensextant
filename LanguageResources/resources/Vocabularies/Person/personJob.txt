@@ -390,6 +390,8 @@ cabinet member
 cabinet members
 cabinet minister
 cabinet ministers
+cabinet position
+cabinet positions
 cabinetmaker
 cabinetmakers
 caddie
@@ -2062,7 +2064,10 @@ military personnel
 military personnels
 military volunteer
 military volunteers
+militia man
+militia men
 militiaman
+militiamen
 milkmaid
 milkmaids
 milkman
@@ -2125,6 +2130,8 @@ moderator
 moderators
 molawi
 molawis
+molester
+molesters
 molvi
 molvis
 monitor
@@ -2932,6 +2939,8 @@ serving girl
 serving girls
 servitor
 servitors
+settler
+settlers
 sex offender
 sex offenders
 sex predator

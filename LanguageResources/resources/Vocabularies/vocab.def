@@ -103,7 +103,7 @@
 ./Person/person.txt:Person:Person
 ./Person/PersonContextPhrases.txt:PersonContextPhrase
 ./Person/personJob.txt:JobOrRole:Person.jobOrRole
-./Person/personName_individual.txt:Person:Person.name.personName
+./Person/personName_individual.txt:PersonName:Person.name.personName
 ./Person/PersonName_AfghaniFemale.txt:PersonName:Person.name.personName
 ./Person/PersonName_AfghaniMale.txt:PersonName:Person.name.personName
 ./Person/PersonName_AfghaniOther.txt:PersonName:Person.name.personName

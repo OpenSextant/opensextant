@@ -1,6 +1,8 @@
 abdomen
 abdomens
 ankle
+ankle joint
+ankle joints
 ankles
 arm
 arms
@@ -24,6 +26,8 @@ dreadlocks
 ear
 ears
 elbow
+elbow joint
+elbow joints
 elbows
 eye
 eyebrow
@@ -35,6 +39,8 @@ face
 faces
 feet
 finger
+finger joint
+finger joints
 fingernail
 fingernails
 fingers
@@ -49,12 +55,16 @@ hand
 hands
 head
 heads
+hip joint
+hip joints
 hips
 incisor
 incisors
 kidney
 kidneys
 knee
+knee joint
+knee joints
 knees
 leg
 legs
@@ -77,6 +87,8 @@ noses
 shoulder
 shoulders
 skin
+skull
+skulls
 spleen
 spleens
 stomach
