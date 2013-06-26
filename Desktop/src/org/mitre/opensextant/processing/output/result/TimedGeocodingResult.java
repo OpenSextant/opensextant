@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.GeoExtraction;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.TimeAssociation;
 import org.mitre.opensextant.processing.Geocoding;
 import org.mitre.opensextant.processing.GeocodingResult;
@@ -18,7 +19,7 @@ import org.mitre.opensextant.processing.ProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TimedGeocodingResult extends GeocodingResult {
+public class TimedGeocodingResult extends FilteredGeocodingResult {
 
     private static Logger log = LoggerFactory.getLogger(TimedGeocodingResult.class);
 
@@ -30,8 +31,8 @@ public class TimedGeocodingResult extends GeocodingResult {
 
     private TimeAssociation timeAssociation;
 
-    public TimedGeocodingResult(String rid, TimeAssociation timeAssociation) {
-        super(rid);
+    public TimedGeocodingResult(String rid, GeoExtraction geoExtraction, TimeAssociation timeAssociation) {
+        super(rid, geoExtraction);
         this.timeAssociation = timeAssociation;
     }
 

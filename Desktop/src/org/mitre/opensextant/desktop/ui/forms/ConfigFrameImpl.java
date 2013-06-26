@@ -16,6 +16,7 @@ import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
+import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.GeoExtraction;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.TimeAssociation;
 import org.mitre.opensextant.desktop.ui.helpers.ViewHelper;
 
@@ -68,6 +69,10 @@ public class ConfigFrameImpl extends ConfigFrame {
         }
         extractIdentifiersCheck.setSelected(configHelper.isExtractIdentifiers());
 
+        extractGeoCheck.setSelected(ConfigHelper.getInstance().getGeoExtraction().extractPlaces() || ConfigHelper.getInstance().getGeoExtraction().extractCoordinates());
+        extractPlacesCheck.setSelected(ConfigHelper.getInstance().getGeoExtraction().extractPlaces());
+        extractCoordinatesCheck.setSelected(ConfigHelper.getInstance().getGeoExtraction().extractCoordinates());
+        
         displayWarnings();
         ((SpinnerNumberModel) threadCount.getModel()).setMaximum(coreLimit);
 
@@ -116,6 +121,35 @@ public class ConfigFrameImpl extends ConfigFrame {
                 doneButtonActionPerformed(e);
             }
         });
+        
+
+        
+        extractGeoCheck.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (extractGeoCheck.isSelected()) {
+                    extractPlacesCheck.setSelected(true);
+                    extractCoordinatesCheck.setSelected(true);
+                } else {
+                    extractPlacesCheck.setSelected(false);
+                    extractCoordinatesCheck.setSelected(false);
+                }
+            }
+        });
+
+        ActionListener uncheckGeoActionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!extractPlacesCheck.isSelected() && !extractCoordinatesCheck.isSelected()) {
+                    if (extractGeoCheck.isSelected()) extractGeoCheck.setSelected(false);
+                } else {
+                    if (!extractGeoCheck.isSelected()) extractGeoCheck.setSelected(true);
+                }
+            }
+        };
+        
+        extractPlacesCheck.addActionListener(uncheckGeoActionListener);
+        extractCoordinatesCheck.addActionListener(uncheckGeoActionListener);
 
         extractTimeCheck.addActionListener(new ActionListener() {
             @Override
@@ -188,6 +222,16 @@ public class ConfigFrameImpl extends ConfigFrame {
         configHelper.setExtractTime(extractTimeCheck.isSelected());
         configHelper.setTimeAssociation((csvTimeRadioButton.isSelected()) ? TimeAssociation.CSV : TimeAssociation.CROSS);
 
+        if (extractPlacesCheck.isSelected() && extractCoordinatesCheck.isSelected()) {
+            configHelper.setGeoExtraction(GeoExtraction.BOTH);
+        } else if (extractPlacesCheck.isSelected()) {
+            configHelper.setGeoExtraction(GeoExtraction.PLACE);
+        } else if (extractCoordinatesCheck.isSelected()) {
+            configHelper.setGeoExtraction(GeoExtraction.COORD);
+        } else {
+            configHelper.setGeoExtraction(GeoExtraction.NONE);
+        }
+        
         configHelper.saveSettings();
 
         this.dispose();

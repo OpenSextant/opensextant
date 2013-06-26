@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.mitre.giscore.events.Feature;
 import org.mitre.giscore.events.SimpleField;
+import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.GeoExtraction;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.TimeAssociation;
 import org.mitre.opensextant.processing.Geocoding;
 import org.mitre.opensextant.processing.GeocodingResult;
@@ -16,7 +17,7 @@ import org.mitre.opensextant.processing.output.result.ParsedTime;
 import org.mitre.opensextant.processing.output.result.TimedGeocoding;
 import org.mitre.opensextant.processing.output.result.TimedGeocodingResult;
 
-public class TimeGISDataModel extends GISDataModel {
+public class TimeGISDataModel extends FilteringGISDataModel {
 
     private static final String TIME_FIELD = "time";
     @SuppressWarnings("serial")
@@ -28,8 +29,8 @@ public class TimeGISDataModel extends GISDataModel {
 
     private TimeAssociation timeAssociation;
 
-    public TimeGISDataModel(String jobName, boolean includeOffsets, boolean includeCoordinate, TimeAssociation timeAssociation) {
-        super(jobName, includeOffsets, includeCoordinate, false);
+    public TimeGISDataModel(String jobName, boolean includeOffsets, boolean includeCoordinate, GeoExtraction geoExtraction, TimeAssociation timeAssociation) {
+        super(jobName, includeOffsets, includeCoordinate, geoExtraction);
         defaultFields();
         try {
             this.schema = super.buildSchema(jobName);
@@ -42,7 +43,7 @@ public class TimeGISDataModel extends GISDataModel {
 
     @Override
     public GeocodingResult buildGeocodingResults(String name) {
-        return new TimedGeocodingResult(name, timeAssociation);
+        return new TimedGeocodingResult(name, geoExtraction, timeAssociation);
     }
 
     @Override

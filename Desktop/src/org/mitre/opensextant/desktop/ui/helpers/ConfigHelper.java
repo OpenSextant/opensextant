@@ -27,6 +27,22 @@ public class ConfigHelper {
     public static enum TimeAssociation {
         CSV, CROSS
     }
+    public static enum GeoExtraction {
+        PLACE(true,false),COORD(false,true),BOTH(true,true), NONE(false,false);
+        
+        private boolean extractPlaces;
+        private boolean extractCoordinates;
+        private GeoExtraction(boolean extractPlaces, boolean extractCoordinate) {
+            this.extractPlaces = extractPlaces;
+            this.extractCoordinates = extractCoordinate;
+        }
+        public boolean extractPlaces() {
+            return extractPlaces;
+        }
+        public boolean extractCoordinates() {
+            return extractCoordinates;
+        }
+    }
 
     public static final int ROW_ID = 0;
     public static final int ROW_TITLE = 1;
@@ -66,6 +82,7 @@ public class ConfigHelper {
     private boolean extractTime = true;
     private boolean extractIdentifiers = true;
     private TimeAssociation timeAssociation = TimeAssociation.CSV;
+    private GeoExtraction geoExtraction = GeoExtraction.BOTH;
 
     private List<PropertyChangeListener> listeners = new ArrayList<PropertyChangeListener>();
 
@@ -133,6 +150,7 @@ public class ConfigHelper {
             config.setProperty("extractTime", extractTime);
             config.setProperty("extractIdentifiers", extractIdentifiers);
             config.setProperty("timeAssociation", timeAssociation.toString());
+            config.setProperty("geoExtraction", geoExtraction.toString());
             config.save();
             jobs.save();
             fireUpdate();
@@ -165,6 +183,7 @@ public class ConfigHelper {
         extractTime = config.getBoolean("extractTime", true);
         extractIdentifiers = config.getBoolean("extractIdentifiers", true);
         timeAssociation = TimeAssociation.valueOf(config.getString("timeAssociation", "CSV"));
+        geoExtraction = GeoExtraction.valueOf(config.getString("geoExtraction", "BOTH"));
     }
 
     public void loadRows(ApiHelper apiHelper, MainFrameTableHelper tableHelper) {
@@ -288,6 +307,14 @@ public class ConfigHelper {
     
     public void setTimeAssociation(TimeAssociation timeAssociation) {
         this.timeAssociation = timeAssociation;
+    }
+
+    public GeoExtraction getGeoExtraction() {
+        return geoExtraction;
+    }
+
+    public void setGeoExtraction(GeoExtraction geoExtraction) {
+        this.geoExtraction = geoExtraction;
     }
 
     public void setOutTypes(List<String> outTypes) {
