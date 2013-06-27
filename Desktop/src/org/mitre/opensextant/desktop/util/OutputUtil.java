@@ -19,48 +19,51 @@ import org.mitre.opensextant.processing.output.TimeGISDataModel;
 
 public class OutputUtil {
 
-	public static AbstractFormatter createFormatter(OSRow row) throws IOException, ProcessingException {
-		// params.inputFile = row.getInputFile().getAbsolutePath();
-		// params.addOutputFormat(row.getOutputType());
-		
-		MultiFormatter formatter = new MultiFormatter(row);
-		
-		for (String outputType : row.getOutputTypes()) {
+    public static AbstractFormatter createFormatter(OSRow row) throws IOException, ProcessingException {
+        // params.inputFile = row.getInputFile().getAbsolutePath();
+        // params.addOutputFormat(row.getOutputType());
 
-			String outputLocation = row.getOutputLocations().get(outputType);
+        MultiFormatter formatter = new MultiFormatter(row);
 
-			if ("SHAPEFILE".equals(outputType)) {
-				outputLocation = outputLocation.substring(0, outputLocation.length() - 4);
-			}
+        for (String outputType : row.getOutputTypes()) {
 
-			File outputFile = new File(outputLocation);
-			
-			String filename = outputFile.getName();
-			
-			Parameters params = new Parameters();
-	        params.isdefault = false;
-	        params.inputFile = row.getInputFile().getAbsolutePath();
-	        params.addOutputFormat(outputType);
-	        params.outputDir = outputFile.getParent();
-	        params.setJobName(filename);
+            String outputLocation = row.getOutputLocations().get(outputType);
 
-	        AbstractFormatter childFormatter = AppBase.createFormatter(outputType, params);
-			childFormatter.setOutputFilename(filename);
-            if (childFormatter instanceof GISDataFormatter && ConfigHelper.getInstance().isExtractTime()) {
-                ((GISDataFormatter)childFormatter).setGisDataModel(new TimeGISDataModel(childFormatter.getJobName(), childFormatter.includeOffsets, childFormatter.includeCoordinate, ConfigHelper.getInstance().getGeoExtraction(), ConfigHelper.getInstance().getTimeAssociation()));
-            } else {
-                ((GISDataFormatter)childFormatter).setGisDataModel(new FilteringGISDataModel(childFormatter.getJobName(), childFormatter.includeOffsets, childFormatter.includeCoordinate, ConfigHelper.getInstance().getGeoExtraction()));
+            if ("SHAPEFILE".equals(outputType)) {
+                outputLocation = outputLocation.substring(0, outputLocation.length() - 4);
             }
-			childFormatter.start((String) params.getJobName());
-			formatter.addChild(childFormatter);
 
-		}
-		
-		if (ConfigHelper.getInstance().isExtractIdentifiers()) {
+            File outputFile = new File(outputLocation);
+
+            String filename = outputFile.getName();
+
+            Parameters params = new Parameters();
+            params.isdefault = false;
+            params.inputFile = row.getInputFile().getAbsolutePath();
+            params.addOutputFormat(outputType);
+            params.outputDir = outputFile.getParent();
+            params.setJobName(filename);
+
+            AbstractFormatter childFormatter = AppBase.createFormatter(outputType, params);
+            childFormatter.setOutputFilename(filename);
+            if (childFormatter instanceof GISDataFormatter && ConfigHelper.getInstance().isExtractTime()) {
+                ((GISDataFormatter) childFormatter).setGisDataModel(new TimeGISDataModel(childFormatter.getJobName(),
+                        childFormatter.includeOffsets, childFormatter.includeCoordinate, ConfigHelper.getInstance().getGeoExtraction(),
+                        ConfigHelper.getInstance().getTimeAssociation()));
+            } else {
+                ((GISDataFormatter) childFormatter).setGisDataModel(new FilteringGISDataModel(childFormatter.getJobName(),
+                        childFormatter.includeOffsets, childFormatter.includeCoordinate, ConfigHelper.getInstance().getGeoExtraction()));
+            }
+            childFormatter.start((String) params.getJobName());
+            formatter.addChild(childFormatter);
+
+        }
+
+        if (ConfigHelper.getInstance().isExtractIdentifiers()) {
             String outputLocation = row.getIdentitifiersOutputLocation();
             File outputFile = new File(outputLocation);
             String filename = outputFile.getName();
-            
+
             Parameters params = new Parameters();
             params.isdefault = false;
             params.inputFile = row.getInputFile().getAbsolutePath();
@@ -70,21 +73,20 @@ public class OutputUtil {
 
             AbstractFormatter childFormatter = AppBase.createFormatter("XLS", params);
             childFormatter.setOutputFilename(filename);
-            ((GISDataFormatter)childFormatter).setGisDataModel(new IdentifierDataModel(filename, true, false));
+            ((GISDataFormatter) childFormatter).setGisDataModel(new IdentifierDataModel(filename, true, false));
             childFormatter.start((String) params.getJobName());
             formatter.addChild(childFormatter);
-		}
+        }
 
         return formatter;
-	}
-	
+    }
 
-	public static synchronized void writeResults(AbstractFormatter formatter, Corpus corpus) throws ProcessingException {
-		try {
-			formatter.formatResults(corpus);
-		} catch (Exception e) {
-			throw new ProcessingException(e);
-		}	
-	}
+    public static synchronized void writeResults(AbstractFormatter formatter, Corpus corpus) throws ProcessingException {
+        try {
+            formatter.formatResults(corpus);
+        } catch (Exception e) {
+            throw new ProcessingException(e);
+        }
+    }
 
 }
