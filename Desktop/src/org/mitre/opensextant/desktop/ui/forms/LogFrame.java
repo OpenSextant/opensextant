@@ -54,11 +54,12 @@ public class LogFrame extends javax.swing.JFrame {
         logTypeLabel = new java.awt.Label();
         jScrollPane1 = new javax.swing.JScrollPane();
         logJTextArea = new javax.swing.JTextArea();
+        warnCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Application Log");
 
-        closeButton.setText("Close");
+        closeButton.setLabel("Close");
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeButtonActionPerformed(evt);
@@ -105,6 +106,14 @@ public class LogFrame extends javax.swing.JFrame {
         logJTextArea.setRows(5);
         jScrollPane1.setViewportView(logJTextArea);
 
+        warnCheckBox.setSelected(true);
+        warnCheckBox.setText("Warn");
+        warnCheckBox.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                warnCheckBoxStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,7 +127,9 @@ public class LogFrame extends javax.swing.JFrame {
                 .addComponent(debugCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(errorCheckBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(warnCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
                 .addComponent(closeButton)
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -145,7 +156,8 @@ public class LogFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(infoCheckBox)
                             .addComponent(debugCheckBox)
-                            .addComponent(errorCheckBox))))
+                            .addComponent(errorCheckBox)
+                            .addComponent(warnCheckBox))))
                 .addGap(20, 20, 20))
         );
 
@@ -172,6 +184,10 @@ public class LogFrame extends javax.swing.JFrame {
     private void errorCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_errorCheckBoxStateChanged
         refillLog();
     }//GEN-LAST:event_errorCheckBoxStateChanged
+
+    private void warnCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_warnCheckBoxStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_warnCheckBoxStateChanged
 
     /**
      * @param args the command line arguments
@@ -231,6 +247,7 @@ public class LogFrame extends javax.swing.JFrame {
                     boolean infoIncluded = false;
                     boolean debugIncluded = false;
                     boolean errorIncluded = false;
+                    boolean warnIncluded = false;
 
                     if(aux.contains("INFO"))
                         infoIncluded = true;
@@ -238,12 +255,16 @@ public class LogFrame extends javax.swing.JFrame {
                         debugIncluded = true;
                     else if(aux.contains("ERROR"))
                         errorIncluded = true;
+                    else if(aux.contains("WARN"))
+                        warnIncluded = true;
 
                     if(infoCheckBox.isSelected() && infoIncluded)
                         builder.append(aux + "\n");
                     else if(debugCheckBox.isSelected() && debugIncluded)
                         builder.append(aux + "\n");
                     else if(errorCheckBox.isSelected() && errorIncluded)
+                        builder.append(aux + "\n");
+                    else if(warnCheckBox.isSelected() && warnIncluded)
                         builder.append(aux + "\n");
 
                 }
@@ -308,6 +329,7 @@ public class LogFrame extends javax.swing.JFrame {
                         boolean infoIncluded = false;
                         boolean debugIncluded = false;
                         boolean errorIncluded = false;
+                        boolean warnIncluded = false;
                         
                         if(aux.contains("INFO"))
                             infoIncluded = true;
@@ -315,12 +337,16 @@ public class LogFrame extends javax.swing.JFrame {
                             debugIncluded = true;
                         else if(aux.contains("ERROR"))
                             errorIncluded = true;
+                        else if(aux.contains("WARN"))
+                            warnIncluded = true;
                         
                         if(infoCheckBox.isSelected() && infoIncluded)
                             builder.append(aux + "\n");
                         else if(debugCheckBox.isSelected() && debugIncluded)
                             builder.append(aux + "\n");
                         else if(errorCheckBox.isSelected() && errorIncluded)
+                            builder.append(aux + "\n");
+                        else if(warnCheckBox.isSelected() && warnIncluded)
                             builder.append(aux + "\n");
                             
                     }
@@ -358,5 +384,6 @@ public class LogFrame extends javax.swing.JFrame {
     private static javax.swing.JTextArea logJTextArea;
     private java.awt.Label logTypeLabel;
     private javax.swing.JCheckBox snapScrollCheckBox;
+    private javax.swing.JCheckBox warnCheckBox;
     // End of variables declaration//GEN-END:variables
 }
