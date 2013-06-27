@@ -4,6 +4,7 @@
  */
 package org.mitre.opensextant.desktop.ui.forms;
 
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -297,21 +298,16 @@ public class LogFrame extends javax.swing.JFrame {
                 while(true)
                 {
                     /**Check for highlighting**/
-                    if(logTextCaret.isSelectionVisible())
+                    
+                    if(logTextCaret.isSelectionVisible() || logTextCaret.isActive())
                     {
                         logTextCaret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
                         snapScrollCheckBox.setSelected(false);
                     }
-                    else
-                    {
-                        logTextCaret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-                        logJTextArea.setCaretPosition(logJTextArea.getLineStartOffset(logJTextArea.getLineCount() - 1));
-                        snapScrollCheckBox.setSelected(true);
-                    }
                     /**************************/
                     
                     /**Auto Scroll**/
-                    if(snapScrollCheckBox.isSelected())
+                    if(snapScrollCheckBox.isSelected() && !logTextCaret.isActive())
                     {
                         //Set the update policy to always update
                         logTextCaret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
