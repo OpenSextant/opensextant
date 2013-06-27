@@ -8,6 +8,7 @@ commerce department
 commerce ministry
 commission
 commissions
+congress
 defence department
 defence ministry
 defense department
@@ -65,6 +66,7 @@ governments
 health and human services department
 health and human services ministry
 health department
+health departments
 health ministry
 highway patrol
 intelligence agencies
@@ -94,6 +96,8 @@ leadership council
 legislative bodies
 legislative body
 liaison office
+marshal service
+marshal services
 ministries
 ministry
 ministry of
@@ -129,6 +133,8 @@ panels
 parliament
 parliaments
 police
+police department
+police departments
 police force
 police forces
 political parties
@@ -144,6 +150,12 @@ ruling parties
 ruling party
 security service
 security services
+senate
+sheriff department
+sheriff departments
+sheriff's department
+sheriff's departments
+sheriffs departments
 shura
 shura council
 state department

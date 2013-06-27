@@ -131,6 +131,7 @@ rabies
 radiation poisoning
 radiation sickness
 relapsing fever
+respiratory distress
 rickettsiosis
 ross river virus
 rubella
@@ -151,6 +152,8 @@ streptococcus pneumoniae
 streptococcus suis infection
 syphilis
 tetanus
+toxic shock
+toxic-shock
 trichinosis
 tuberculosis
 tularemia

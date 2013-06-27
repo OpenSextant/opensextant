@@ -5,6 +5,8 @@ armaments
 artillery
 artillery piece
 artillery pieces
+artillery round
+artillery rounds
 bullet
 bullets
 cannon

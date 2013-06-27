@@ -1,7 +1,84 @@
 ######################################################
-###### OpenSextant Desktop release 31May2013
+###### OpenSextant Desktop release v1.4 30June2013
 ######################################################
-URL                 Issue Type      Summary
+ID                  Issue Type      Summary
+OPENSEXTANT-330		Improvement 	Remove Serialization between PlacenameMatcher & tagger Solr request handler.
+OPENSEXTANT-329		Improvement 	Refactor so Solr starting + stopping is done at consistent level
+OPENSEXTANT-328		New Feature 	OSD is hanging up
+OPENSEXTANT-202		Task    		Polish github.com presence
+OPENSEXTANT-181		Task    		Commons API redevelopment/merger
+OPENSEXTANT-178		Task    		Github Checkout, Build, Test
+OPENSEXTANT-148		Task    		User API
+OPENSEXTANT-262		New Feature 	Select Entity Types to Extract
+OPENSEXTANT-342		Task    		20130630 VERSIONING
+OPENSEXTANT-312		Task    		Reduce Duplicative Jars + Further Separate Data from Software
+OPENSEXTANT-276		Improvement 	Weird behavior with high number of threads - see description + attached screenshot
+OPENSEXTANT-263		Improvement 	Configuration - Output Formats - Checkbox behavior (not radio buttons)
+OPENSEXTANT-260		Bug 			Resolve Twitter processing errors
+OPENSEXTANT-239		Improvement 	Cannot override format behavior for runner
+OPENSEXTANT-191		Improvement 	Unique Identifier Extraction
+OPENSEXTANT-316		Improvement 	Optimize OSD Initial Processing
+OPENSEXTANT-218		Improvement 	Sqlite storage of extraction results
+OPENSEXTANT-261		Improvement 	Identify raw tagging time v. gazetteer retrieval time
+OPENSEXTANT-286		Improvement 	Main gui locks up when multiple (>5) threads are running
+OPENSEXTANT-336		Bug 			Disabled buttons still fire events
+OPENSEXTANT-319		Sub-task    	OPENSEXTANT-326 Geocoding Error - Banco Delta Asia Accounts as Banco
+OPENSEXTANT-318		Improvement 	KML Output - Insert Placename as Placemark title
+OPENSEXTANT-323		Sub-task    	OPENSEXTANT-326 Geocoding Error - Tinian (Northern Marianas) being tagged as Tinian, New Mexico
+OPENSEXTANT-321		Sub-task    	OPENSEXTANT-326 Geocoding Error - North Korean State Academy of Sciences as Academy of Sciences
+OPENSEXTANT-324		Sub-task    	OPENSEXTANT-326 Geocoding Error - Ryukyu Island Chain as someplace in South Korea
+OPENSEXTANT-320		Sub-task    	OPENSEXTANT-326 Geocoding Error - United States being geocoded as United
+OPENSEXTANT-322		Sub-task    	OPENSEXTANT-326 Geocoding Error - New York Times being geocoded as New York
+OPENSEXTANT-317		Bug 			Sorting broken for duration
+OPENSEXTANT-313		Improvement 	Output Column - Add Full Path to Source File
+OPENSEXTANT-311		Task    		Discuss Precision / Confidence Metrics in Help Pages
+OPENSEXTANT-304		Improvement 	Toolbar with Add File(s), Add Text, Configure
+OPENSEXTANT-296		Bug 			Tech Refresh - Solr 4.3
+OPENSEXTANT-295		Bug 			Tech Refresh - GATE 7.1
+OPENSEXTANT-293		Improvement 	Rethrow interrupt exceptions
+OPENSEXTANT-292		Improvement 	Process Folder files on separate threads
+OPENSEXTANT-291		Improvement 	Add new column: Path + Filename
+OPENSEXTANT-283		Improvement 	Add new Action Button to open output folder, highlight output
+OPENSEXTANT-284		Improvement 	Estimated v. Actual time difference shown at end
+OPENSEXTANT-285		Improvement 	Allow columns to be dragged to change column order
+OPENSEXTANT-272		Improvement 	Config - Allow user to set logging level (debug, info, warn, error)
+OPENSEXTANT-270		Improvement 	Column Title, Right Mouse Click Add/Remove Columns
+OPENSEXTANT-264		Improvement 	Specify tmp folder location in config
+OPENSEXTANT-243		Improvement 	Re-evaluate outputing Confidence & Precision Values
+OPENSEXTANT-217		Improvement 	Save jobs until deleted
+OPENSEXTANT-206		Improvement 	Place Caching in SolrMatcher
+OPENSEXTANT-189		Improvement 	Output format - Microsoft xlsx
+OPENSEXTANT-142		Sub-task    	OPENSEXTANT-118 MAT Workbench
+OPENSEXTANT-138		Task    		Geotagging Review
+OPENSEXTANT-135		Improvement 	Output JSON directly from web service (not as file download)
+OPENSEXTANT-108		Improvement 	Performance review -- Place candidates, get, sort, etc.
+OPENSEXTANT-99		Task    		Create Developers' Guide
+OPENSEXTANT-68		Task    		Create Integrator's Guide
+OPENSEXTANT-54		New Feature 	XTemp Improvements
+OPENSEXTANT-15		New Feature 	Row data geocoding, Spreadsheets, Database tables, etc.
+OPENSEXTANT-339		Bug 			Add PoLi Identifiers to the GPE
+OPENSEXTANT-341		Bug 			add release.target property to desktop build.xml
+OPENSEXTANT-343		Bug 			Column hide/reorder logic missing
+OPENSEXTANT-235		Task    		OSD User Manual
+OPENSEXTANT-199		Improvement 	Rollup view status
+OPENSEXTANT-340		Improvement 	Add back in parsed Date object to GPE Time.date extractions
+OPENSEXTANT-287		Improvement 	Progress Bar is pretty erratic, can we smooth it out to be more consistent in its progress portrayal
+OPENSEXTANT-307		Improvement 	Hover Job Tooltip - Add # objects geocoded (total, # placenames, # coordinates)
+OPENSEXTANT-305		Improvement 	View Log Entries
+OPENSEXTANT-345		Improvement 	Add version number and check against latest in conf.properties and rows.properties
+OPENSEXTANT-347		Improvement 	Extract coordinates vs places selection in config
+OPENSEXTANT-271		Improvement 	Output Format File Geodatabase is missing
+OPENSEXTANT-306		Improvement 	Add View Results Statistics Action Button
+OPENSEXTANT-344		Improvement 	Clean OSD release directories
+OPENSEXTANT-337		Bug 			Fix titlebars
+OPENSEXTANT-309		Task    		Reduce JAR Hell
+OPENSEXTANT-300		Bug 			Tmp file structure extra folders (very minor nit pick)
+OPENSEXTANT-303		Improvement 	Change log output entry from "Created ODS Desktop runner" to "Created OSD Desktop runner"
+
+######################################################
+###### OpenSextant Desktop release v1.3 31May2013
+######################################################
+ID                  Issue Type      Summary
 OPENSEXTANT-185		Improvement		Start SolrTextTagger first	-	When a user launches OSD, automatically start the SolrTextTagger as a background thread to minimize the time a user must wait for this to initialize
 OPENSEXTANT-187		Improvement		Drag/Drop files/folders to start OSD processing	-	allow user to drag/drop files/folders onto the OSD GUI to start data processing
 OPENSEXTANT-188		Improvement		Implement Vertical Scrollbar	-	show a vertical scrollbar when the number of jobs is greater than the GUI size.

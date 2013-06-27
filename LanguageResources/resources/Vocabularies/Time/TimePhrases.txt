@@ -51,6 +51,7 @@ midday
 middle of the day
 midnight
 moment
+moments
 morning
 near term
 next day

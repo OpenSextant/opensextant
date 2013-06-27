@@ -412,6 +412,7 @@ u.s. immigration and customs enforcement
 u.s. international trade commission
 u.s. joint forces command
 u.s. marine corps
+u.s. marshal service
 u.s. military academy, west point
 u.s. mint
 u.s. mission to the united nations
@@ -512,6 +513,7 @@ us immigration and customs enforcement
 us international trade commission
 us joint forces command
 us marine corps
+us marshal service
 us military academy
 us military academy at west point
 us military academy, west point

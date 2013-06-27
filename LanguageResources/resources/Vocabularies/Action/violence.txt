@@ -5,6 +5,7 @@ ambush
 ambush attack
 ambush attacks
 ambushes
+artillery fire
 atrocities
 atrocity
 attack
@@ -43,6 +44,7 @@ jihad
 jihads
 martyrdom
 martyrdoms
+mortar fire
 protest
 protests
 provocation

@@ -9,7 +9,7 @@
     <!-- This is not an official distribution of OpenSextant -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4j.version>1.7.0</slf4j.version>
+        <slf4j.version>1.7.4</slf4j.version>
     </properties>
 
     <dependencies>
@@ -69,18 +69,5 @@
         </dependency>
     </dependencies>
 
-
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9</version>
-        <configuration>
-          <version>true</version>
-          <windowtitle>OpenSextant Apps</windowtitle>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>
