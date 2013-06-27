@@ -130,7 +130,7 @@ public class GISDataModel {
         addColumn(row, OpenSextantSchema.MATCH_METHOD, g.method);
     }
 
-    public Feature buildRow(int id, Geocoding g, Map<String, Object> rowAttributes, String recordFile, String recordTextFile) throws ProcessingException {
+    public List<Feature> buildRows(int id, Geocoding g, Map<String, Object> rowAttributes, String recordFile, String recordTextFile, GeocodingResult allResults) throws ProcessingException {
 
         Feature row = new Feature();
         // Administrative settings:
@@ -161,7 +161,11 @@ public class GISDataModel {
 
         addFilePaths(row, recordFile, recordTextFile);
         
-        return row;
+        // this is a list for M x N times
+        List<Feature> features = new ArrayList<Feature>();
+        features.add(row);
+        
+        return features;
 
     }
 

@@ -1,5 +1,6 @@
 package org.mitre.opensextant.processing.output;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +16,6 @@ import org.mitre.opensextant.processing.Geocoding;
 import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.ProcessingException;
 import org.mitre.opensextant.processing.output.result.ParsedTime;
-import org.mitre.opensextant.processing.output.result.TimedGeocoding;
 import org.mitre.opensextant.processing.output.result.TimedGeocodingResult;
 
 public class TimeGISDataModel extends FilteringGISDataModel {
@@ -47,7 +47,7 @@ public class TimeGISDataModel extends FilteringGISDataModel {
 
     @Override
     public GeocodingResult buildGeocodingResults(String name) {
-        return new TimedGeocodingResult(name, geoExtraction, timeAssociation);
+        return new TimedGeocodingResult(name, geoExtraction);
     }
     
     // Thread-safe date formatter helper method
@@ -60,28 +60,54 @@ public class TimeGISDataModel extends FilteringGISDataModel {
 
 
     @Override
-    public Feature buildRow(int id, Geocoding g, Map<String, Object> rowAttributes, String recordFile, String recordTextFile)
-            throws ProcessingException {
-        Feature row = super.buildRow(id, g, rowAttributes, recordFile, recordTextFile);
-        if (timeAssociation == TimeAssociation.CSV) {
-            String delim = "";
-            StringBuffer times = new StringBuffer();
-            for (ParsedTime time : ((TimedGeocoding) g).times) {
-                times.append(delim).append(getDateFormatter().format(time.getNormalizedDate()));
-                delim = ",";
-            }
-            addColumn(row, getField("time"), times);
-        } else {
-            addColumn(row, getField("time"), getFirst(((TimedGeocoding) g).times));
-        }
-        return row;
-    }
+    public List<Feature> buildRows(int id, Geocoding g, Map<String, Object> rowAttributes, String recordFile, String recordTextFile, GeocodingResult allResults) throws ProcessingException {
+        
+        List<Feature> timedRows = new ArrayList<Feature>();
+        List<ParsedTime> allParsedTimes = ((TimedGeocodingResult)allResults).getParsedTimes();
 
-    private Date getFirst(List<ParsedTime> times) {
-        if (times.size() > 0) {
-            return times.get(0).getNormalizedDate();
+        if (timeAssociation == TimeAssociation.CSV) {
+
+            List<Feature> untimedRows = super.buildRows(id, g, rowAttributes, recordFile, recordTextFile, allResults);
+
+            String timesString = null;
+
+            for (Feature untimedRow : untimedRows) {
+                if (timesString == null) {
+                    String delim = "";
+                    StringBuffer times = new StringBuffer();
+                    for (ParsedTime time : allParsedTimes) {
+                        times.append(delim).append(getDateFormatter().format(time.getNormalizedDate()));
+                        delim = ",";
+                    }
+                    timesString = times.toString();
+                }
+                
+                addColumn(untimedRow, getField("time"), timesString);
+                timedRows.add(untimedRow);
+            }
+            
+        } else {
+            // the || i == 0 is there to make sure we make at least one pass
+            for (int i=0; i < allParsedTimes.size() || i == 0; i++) {
+                List<Feature> untimedRows = super.buildRows(id, g, rowAttributes, recordFile, recordTextFile, allResults);
+
+                // get the parsed time if there is one, if not, leave it null
+                ParsedTime parsedTime = null;
+                if (allParsedTimes.size() > 0) {
+                    parsedTime = allParsedTimes.get(i);
+                }
+                
+                for (Feature untimedRow : untimedRows) {
+                    // if we don't have any times, just add the row without the time.
+                    if (parsedTime != null) {
+                        addColumn(untimedRow, getField("time"), parsedTime.getNormalizedDate());
+                    }
+                    timedRows.add(untimedRow);
+                }
+            }
         }
-        return null;
+
+        return timedRows;
     }
 
     @Override

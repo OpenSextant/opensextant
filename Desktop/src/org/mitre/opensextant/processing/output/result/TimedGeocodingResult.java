@@ -5,6 +5,7 @@ import gate.Document;
 import gate.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -23,50 +24,57 @@ public class TimedGeocodingResult extends FilteredGeocodingResult {
 
     private static Logger log = LoggerFactory.getLogger(TimedGeocodingResult.class);
 
+    List<ParsedTime> times;
+    
     public final static String NOUN_PHRASE = "NounPhrase";
     @SuppressWarnings("serial")
     public final static Set<String> NOUN_ANNOTATIONS = new HashSet<String>() {{
         add(NOUN_PHRASE);
     }};
 
-    private TimeAssociation timeAssociation;
 
-    public TimedGeocodingResult(String rid, GeoExtraction geoExtraction, TimeAssociation timeAssociation) {
+    public TimedGeocodingResult(String rid, GeoExtraction geoExtraction) {
         super(rid, geoExtraction);
-        this.timeAssociation = timeAssociation;
     }
 
     @Override
     public void retrieveGeocodes(Document doc, Parameters params) throws ProcessingException {
         super.retrieveGeocodes(doc, params);
         
-        List<ParsedTime> times = new ArrayList<ParsedTime>();
+        Set<ParsedTime> uniqueTimes = new HashSet<ParsedTime>();
         for (Annotation a : doc.getAnnotations().get(NOUN_ANNOTATIONS)) {
             if (a.getFeatures().get("EntityType") != null && ((String)a.getFeatures().get("EntityType")).equals("Date")) {
                 String matchText = Utils.cleanStringFor(doc, a);
                 Date normalizedDate = (Date)a.getFeatures().get("normedDate");
-                times.add(new ParsedTime(matchText, normalizedDate));
+                uniqueTimes.add(new ParsedTime(matchText, normalizedDate));
                 
             }
         }
         
-        int id = 0;
-        List<Geocoding> timedGeocodings = new ArrayList<Geocoding>();
-        for (Geocoding geocoding : geocodes) {
-            switch (timeAssociation) {
-            case CSV:
-                timedGeocodings.add(new TimedGeocoding(String.valueOf(id++), geocoding, times));
-                break;
-            case CROSS:
-                for (ParsedTime time : times) {
-                    timedGeocodings.add(new TimedGeocoding(String.valueOf(id++), geocoding, time));
-                }
-                break;
-            }
-        }
+        this.times = new ArrayList<ParsedTime>(uniqueTimes);
+        Collections.sort(this.times);
+        
+//        int id = 0;
+//        List<Geocoding> timedGeocodings = new ArrayList<Geocoding>();
+//        for (Geocoding geocoding : geocodes) {
+//            switch (timeAssociation) {
+//            case CSV:
+//                timedGeocodings.add(new TimedGeocoding(String.valueOf(id++), geocoding, times));
+//                break;
+//            case CROSS:
+//                for (ParsedTime time : times) {
+//                    timedGeocodings.add(new TimedGeocoding(String.valueOf(id++), geocoding, time));
+//                }
+//                break;
+//            }
+//        }
         
         
-        geocodes = timedGeocodings;
+//        geocodes = timedGeocodings;
+    }
+
+    public List<ParsedTime> getParsedTimes() {
+        return times;
     }
 
     
