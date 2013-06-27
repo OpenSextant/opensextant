@@ -93,6 +93,8 @@ public class OSRow implements Comparable<OSRow> {
 
     private String identitifiersOutputLocation;
 
+    private String info;
+
 	public OSRow() {
 
 	}
@@ -263,22 +265,29 @@ public class OSRow implements Comparable<OSRow> {
 	}
 
 	public String getInfo() {
-		String info = "<html>Original file: " + this.inputFile.getAbsolutePath() + "<BR/>";
+	    
+	    // we can store this and only clear it on a progress update
+	    // use a private variable for building so that we don't conflict with it being cleared.
+	    String thisInfo = info;
+	    if (thisInfo != null) return thisInfo;
+	    
+	    thisInfo = "<html>Original file: " + this.inputFile.getAbsolutePath() + "<BR/>";
 
 		for (int i = 0; i < outputTypes.size(); i++) {
 			if (i > 0)
-				info += "<BR/>";
-			info += "Output file: " + this.outputLocations.get(outputTypes.get(i));
+			    thisInfo += "<BR/>";
+			thisInfo += "Output file: " + this.outputLocations.get(outputTypes.get(i));
 		}
         
         if(this.stats != null) {
-          info += "<BR/><BR/>Statistics: " + this.stats.getObjCount() + " objects";
-          info += "<BR/>&nbsp;&nbsp;&nbsp;&nbsp;" + this.stats.getCount(this.stats.PLACE) + " place names";
-          info += "<BR/>&nbsp;&nbsp;&nbsp;&nbsp;" + this.stats.getCount(this.stats.COUNTRY) + " countries";
-          info += "<BR/>&nbsp;&nbsp;&nbsp;&nbsp;" + this.stats.getCount(this.stats.COORDINATE) + " coordinates";
+            thisInfo += "<BR/><BR/>Statistics: " + this.stats.getObjCount() + " objects";
+            thisInfo += "<BR/>&nbsp;&nbsp;&nbsp;&nbsp;" + this.stats.getCount(this.stats.PLACE) + " place names";
+            thisInfo += "<BR/>&nbsp;&nbsp;&nbsp;&nbsp;" + this.stats.getCount(this.stats.COUNTRY) + " countries";
+            thisInfo += "<BR/>&nbsp;&nbsp;&nbsp;&nbsp;" + this.stats.getCount(this.stats.COORDINATE) + " coordinates";
         }
-		info += "</html>";
-		return info;
+        thisInfo += "</html>";
+        this.info = thisInfo;
+		return thisInfo;
 	}
 
 	public String getTitle() {
@@ -343,7 +352,9 @@ public class OSRow implements Comparable<OSRow> {
     */
 	public void setProgress(int percent, OSRow.STATUS status, boolean force) {
 
-
+	    // clear out info because progress changed
+	    this.info = null;
+	    
 		if ((this.status != STATUS.ERROR && this.status != STATUS.CANCELED) || force) {
 			this.percent = percent;
             if(force) this.percent = percent;
