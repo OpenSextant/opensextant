@@ -170,36 +170,48 @@ public class StatisticsFrame extends javax.swing.JFrame {
         Set<String> currentCoordinate = currentStatistics.getGeo(JobStatistics.COORDINATE);
         Set<String> currentPlaces = currentStatistics.getGeo(JobStatistics.PLACE);
         Set<String> currentCountry = currentStatistics.getGeo(JobStatistics.COUNTRY);
+        int coordinateCount = 0;
+        if(currentCoordinate != null) coordinateCount = currentCoordinate.size();
+        int placeCount = 0;
+        if(currentPlaces != null) placeCount = currentPlaces.size();
+        int countryCount = 0;
+        if(currentCountry != null) countryCount = currentCountry.size();
         
-        int totalCount = currentCoordinate.size() + currentPlaces.size() + currentCountry.size();
+        
+        int totalCount = currentStatistics.getObjCount();
         
         root.add(new DefaultMutableTreeNode("Total Objects: " + Integer.toString(totalCount)));
         
         DefaultMutableTreeNode objectsTree = (DefaultMutableTreeNode) root.getChildAt(3);
         
-        objectsTree.add(new DefaultMutableTreeNode("Coordinate: " + Integer.toString(currentCoordinate.size())));
-        objectsTree.add(new DefaultMutableTreeNode("Places: " + Integer.toString(currentPlaces.size())));
-        objectsTree.add(new DefaultMutableTreeNode("Country: " + Integer.toString(currentCountry.size())));
+        objectsTree.add(new DefaultMutableTreeNode("Coordinate: " + coordinateCount));
+        objectsTree.add(new DefaultMutableTreeNode("Places: " + placeCount));
+        objectsTree.add(new DefaultMutableTreeNode("Country: " + countryCount));
         
-        for(String geo: currentCoordinate)
-        {
+        if(currentCoordinate != null){
+          for(String geo: currentCoordinate)
+          {
             DefaultMutableTreeNode locationTree = (DefaultMutableTreeNode) objectsTree.getChildAt(0);
             locationTree.add(new DefaultMutableTreeNode(geo.toString() + ": " + currentStatistics.getCount(JobStatistics.COORDINATE, geo)));
             
+          }
         }
         
-        for(String geo: currentPlaces)
-        {
+        if(currentPlaces != null) {
+          for(String geo: currentPlaces)
+          {
             DefaultMutableTreeNode locationTree = (DefaultMutableTreeNode) objectsTree.getChildAt(1);
             locationTree.add(new DefaultMutableTreeNode(geo.toString() + ": " + currentStatistics.getCount(JobStatistics.PLACE, geo)));
             
+          }
         }
         
-        for(String geo: currentCountry)
-        {
+        if(currentCountry != null) {
+          for(String geo: currentCountry)
+          {
             DefaultMutableTreeNode locationTree = (DefaultMutableTreeNode) objectsTree.getChildAt(2);
             locationTree.add(new DefaultMutableTreeNode(geo.toString() + ": " + currentStatistics.getCount(JobStatistics.COUNTRY, geo)));
-            
+          }        
         }
         
         

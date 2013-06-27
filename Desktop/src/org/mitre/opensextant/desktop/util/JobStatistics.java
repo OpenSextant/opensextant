@@ -40,6 +40,7 @@ public class JobStatistics {
     }
     
     public Set<String> getGeo(int arrayLoc) {
+        if(geoHash[arrayLoc] == null) return null;
         return geoHash[arrayLoc].keySet();
     }
     
