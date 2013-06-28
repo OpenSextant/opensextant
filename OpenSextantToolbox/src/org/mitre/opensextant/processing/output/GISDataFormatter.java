@@ -202,15 +202,14 @@ public abstract class GISDataFormatter extends AbstractFormatter {
                 log.debug("Add " + id + "#" + g.toString());
             }
 
-            Feature row;
             try {
-                row = gisDataModel.buildRow(id, g, rowdata.attributes, rowdata.recordFile, rowdata.recordTextFile);
-                
-                if (log.isDebugEnabled()) {
-                    log.debug("FEATURE: " + row.toString());
+                for (Feature row : gisDataModel.buildRows(id, g, rowdata.attributes, rowdata.recordFile, rowdata.recordTextFile, rowdata)) {
+                    if (log.isDebugEnabled()) {
+                        log.debug("FEATURE: " + row.toString());
+                    }
+                    
+                    this.os.write(row);
                 }
-                
-                this.os.write(row);
 
             } catch (ProcessingException fieldErr) {
                 

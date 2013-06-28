@@ -1,5 +1,7 @@
 package org.mitre.opensextant.processing.output;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.mitre.giscore.events.Feature;
@@ -23,7 +25,7 @@ public class IdentifierDataModel extends GISDataModel {
     }
 
     @Override
-    public Feature buildRow(int id, Geocoding g, Map<String, Object> rowAttributes, String recordFile, String recordTextFile) throws ProcessingException {
+    public List<Feature> buildRows(int id, Geocoding g, Map<String, Object> rowAttributes, String recordFile, String recordTextFile, GeocodingResult allResults) throws ProcessingException {
         
         Feature row = new Feature();
         row.setSchema(schema.getId());
@@ -44,7 +46,9 @@ public class IdentifierDataModel extends GISDataModel {
         addAdditionalAttributes(row, rowAttributes);
         addFilePaths(row, recordFile, recordTextFile);
         
-        return row;
+        List<Feature> rows = new ArrayList<Feature>();
+        rows.add(row);
+        return rows;
         
     }
     

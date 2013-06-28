@@ -425,6 +425,8 @@ public class PlacenameMatcher {
             namekey = namekey.toLowerCase();
 
             for (Place p : candidate.getPlaces()) {
+                if (p == null) { continue; }
+
                 if (p.isAbbreviation()) {
                     log.debug("Ignore all abbreviations for now " + candidate.getText());
                     _break = true;

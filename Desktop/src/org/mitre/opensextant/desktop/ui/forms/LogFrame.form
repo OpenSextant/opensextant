@@ -33,7 +33,9 @@
               <Component id="debugCheckBox" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="errorCheckBox" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="422" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="warnCheckBox" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="371" max="32767" attributes="0"/>
               <Component id="closeButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
@@ -65,6 +67,7 @@
                           <Component id="infoCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="debugCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="errorCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="warnCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -145,5 +148,14 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JCheckBox" name="warnCheckBox">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Warn"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="warnCheckBoxStateChanged"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
