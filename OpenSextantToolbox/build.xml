@@ -75,6 +75,10 @@ The core library is contained in this jar.
     </path>
 
     <!--====================== Targets ============================-->
+    <target name="setup" >
+        <mkdir dir="${build.dir}" />
+    </target>
+	
     <!-- clean up created jars  -->
     <target name="clean" depends="javadoc.clean,cleanDependencies">
         <delete dir="${build.dir}" />
@@ -97,7 +101,7 @@ The core library is contained in this jar.
 	
 	
     <!-- compile the source  NOTE: dependencies should be built ahead of time by master build ../build.xml NOT by this module. -->
-    <target name="compile" depends="dependencies.update">
+    <target name="compile" depends="setup,dependencies.update">
         <javac classpathref="compile.classpath" srcdir="${src.dir}" destdir="${build.dir}" 
             debug="true" debuglevel="lines,source" source="${java_level}" encoding="utf-8" />
     </target>
