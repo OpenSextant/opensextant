@@ -1,5 +1,10 @@
+& company
 airline
 airlines
+airways
+bancorp
+bancorporation
+bancshares
 bank
 bank of
 banks
@@ -28,6 +33,7 @@ foundations
 franchise
 franchises
 gmbh
+holding company
 inc
 inc.
 incorporated
@@ -43,8 +49,6 @@ management group
 management groups
 manufacturer
 manufacturers
-news agencies
-news agency
 ngo
 ngos
 non governmental organization

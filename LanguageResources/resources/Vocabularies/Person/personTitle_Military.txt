@@ -89,3 +89,5 @@ technical sergeant
 vice admiral
 warrant officer
 wing commander
+private first class
+pfc

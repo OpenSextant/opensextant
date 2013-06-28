@@ -26,3 +26,5 @@ person
 persons
 woman
 women
+youth
+youths

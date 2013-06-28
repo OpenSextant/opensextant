@@ -1,6 +1,8 @@
 assemblage
 assemblages
 authorities
+basketball team
+basketball teams
 cadre
 cadres
 clan
@@ -25,6 +27,8 @@ families
 family
 flock
 flocks
+football team
+football teams
 fraternities
 fraternity
 gathering
@@ -35,11 +39,15 @@ gatherings of people
 gatherings of personnel
 group of people
 groups of people
+hockey team
+hockey teams
 horde
 hordes
 huddle
 huddles
 inner circle
+lacrosse team
+lacrosse teams
 locals
 mob
 mobs
@@ -50,6 +58,8 @@ party
 population
 section
 sections
+soccer team
+soccer teams
 sport team
 sport teams
 the public

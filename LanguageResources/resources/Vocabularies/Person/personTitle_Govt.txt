@@ -123,7 +123,7 @@ secretary of the treasury
 secretary of transportation
 secretary of treasury
 secretary of veterans affairs
-secretary-generall
+secretary-general
 security chief
 security director
 security officer
@@ -151,6 +151,8 @@ treasury secretary
 trooper
 under secretary
 undersecretary
+undersecretary general
+undersecretary-general
 vice chairman
 vice chancellor
 vice-regent

@@ -1,5 +1,3 @@
-KM
-KM.
 block
 blocks
 feet

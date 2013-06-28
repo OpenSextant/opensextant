@@ -101,3 +101,7 @@ voice
 voices
 waist
 wrist
+platelet
+platelets
+bone
+bones

@@ -80,6 +80,10 @@ amir
 amirs
 analyst
 analysts
+anchorman
+anchormen
+anchorwoman
+anchorwomen
 anesthesiologist
 anesthesiologists
 angler
@@ -2191,6 +2195,7 @@ net controller
 net controllers
 neurosurgeon
 neurosurgeons
+news anchor
 newsboy
 newsboys
 newspaper editor
@@ -3622,3 +3627,15 @@ yachtswoman
 yardmaster
 yardmasters
 zionists
+photojournalist
+photojournalists
+school principal
+school principals
+sys admin
+sys adm
+sys admins
+sys adms
+tree hugger
+tree huggers
+gangster
+gangsters

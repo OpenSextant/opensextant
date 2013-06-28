@@ -29,3 +29,7 @@ tournaments
 wedding
 weddings
 winter olympics
+church service
+church services
+religious service
+religious services

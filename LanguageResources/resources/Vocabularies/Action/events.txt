@@ -103,7 +103,6 @@ responses
 retirement
 retirements
 return
-returns
 scandal
 scandals
 situation

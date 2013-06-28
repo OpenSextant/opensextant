@@ -1,3 +1,5 @@
+air operation
+air operations
 air strike
 air strikes
 airdrop
@@ -39,6 +41,8 @@ friendly fire
 friendly fire incident
 friendly fire incidents
 friendly fires
+ground operation
+ground operations
 hostilities
 incursion
 incursions
@@ -46,12 +50,18 @@ invasion
 invasions
 live fire drill
 live fire drills
+marine operation
+marine operations
+maritime operation
+maritime operations
 military action
 military actions
 military activities
 military activity
 military campaign
 military campaigns
+military operation
+military operations
 missile attack
 missile attacks
 missile launch
@@ -71,6 +81,8 @@ redeployment
 redeployments
 rocket attack
 rocket attacks
+sea operation
+sea operations
 sortie
 sorties
 troop rotation

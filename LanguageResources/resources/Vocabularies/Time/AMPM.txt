@@ -1,9 +1,6 @@
-A M
-A.M.
-AM
-P M
-P.M.
-PM
+a m
 a.m.
+am
+p m
 p.m.
 pm

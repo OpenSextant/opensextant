@@ -19,6 +19,7 @@ e-mail account
 e-mail accounts
 email account
 email accounts
+ftp
 ftp server
 ftp servers
 internet
@@ -46,3 +47,5 @@ web site
 web sites
 website
 websites
+unix
+linux

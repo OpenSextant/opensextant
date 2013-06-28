@@ -1,3 +1,7 @@
+barrio azteca
+beltrán-leyva cartel
+cali cartel
+colima cartel
 crime inc
 crime ring
 crime rings
@@ -7,5 +11,24 @@ drug cartel
 drug cartels
 drug ring
 drug rings
+guadalajara cartel
+gulf cartel
+independent cartel of acapulco
+jalisco new generation cartel
+juárez cartel
+knights templar cartel
+la barredora
+la familia michoacana
+los zetas
 mafia
+medellin cartel
+milenio cartel
+norte del valle cartel
+norte valle cartel
+north coast cartel
+oaxaca cartel
+office of envigado
 organized crime
+sinaloa cartel
+sonora cartel
+tijuana cartel

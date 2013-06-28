@@ -26,6 +26,7 @@ antitrust division
 appalachian regional commission
 architect of the capitol
 arctic research commission
+armed forces institute of pathology
 armed forces retirement home
 arms control and international security
 army corps of engineers
@@ -545,7 +546,10 @@ veterans' employment and training service
 vietnam education foundation
 voice of america
 washington headquarters services
+water reed army institute
+water reed army institute of research
 western area power administration
 white house commission on presidential scholars
 white house office of administration
 woodrow wilson international center for scholars
+irs

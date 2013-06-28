@@ -21,6 +21,8 @@ bibliography
 biographies
 biography
 blog
+blog postings
+blog posts
 blogs
 blue print
 blue prints
@@ -95,6 +97,8 @@ imagery
 images
 intelligence estimate
 intelligence estimates
+internet postings
+internet posts
 invoice
 invoices
 journal
@@ -127,6 +131,8 @@ monthly reports
 movies
 news report
 news reports
+news stories
+news story
 newsletter
 newsletters
 newspaper
@@ -176,6 +182,8 @@ social security card
 social security cards
 social security number
 social security numbers
+student visa
+student visas
 studies
 study
 subpoena
@@ -186,6 +194,8 @@ textbook
 textbooks
 theses
 thesis
+tourist visa
+tourist visas
 trademark
 trademarks
 transcript
@@ -217,3 +227,5 @@ white papers
 wiki
 wikipedia
 wikis
+work visa
+work visas
