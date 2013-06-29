@@ -1,4 +1,3 @@
-actrocities
 altercation
 altercations
 ambush
@@ -72,6 +71,7 @@ strife
 struggle
 struggles
 torture
+tortures
 unrest
 uprising
 uprisings

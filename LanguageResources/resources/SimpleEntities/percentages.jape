@@ -1,0 +1,57 @@
+/*
+
+  This phase finds percentages
+
+*/
+
+Imports: {
+import static gate.Utils.*;
+}
+ 
+
+Phase:	Percentages
+Input:	Token Number
+Options: control = appelt
+
+
+// -------------The rules -------------
+
+// 34% , 34.45 %
+Rule:BasicPercent
+(
+  {Number} {Token.string ==~ "%|percent|Percent|PERCENT"}
+)
+:num
+-->
+{
+	gate.AnnotationSet numSet = (gate.AnnotationSet)bindings.get("num");
+	Node numStartNode = numSet.firstNode(); 
+	Node numEndNode   = numSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,numSet));
+
+	outputAS.add(numStartNode, numEndNode, "Percentage",tempFeatures);
+}
+
+
+// 7 of 10 , 45 out of 100
+Rule:NOutofM
+(
+  {Number} ({Token.string ==~ "out|Out|OUT"})? {Token.string ==~ "of|Of|OF"} {Number} 
+)
+:num
+-->
+{
+	gate.AnnotationSet numSet = (gate.AnnotationSet)bindings.get("num");
+	Node numStartNode = numSet.firstNode(); 
+	Node numEndNode   = numSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,numSet));
+
+	outputAS.add(numStartNode, numEndNode, "Percentage",tempFeatures);
+}
+

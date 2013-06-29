@@ -218,6 +218,7 @@ interagency council on homelessness
 internal revenue service
 international trade administration
 international trade commission
+irs
 james madison memorial fellowship foundation
 japan-united states friendship commission
 job corps
@@ -552,4 +553,3 @@ western area power administration
 white house commission on presidential scholars
 white house office of administration
 woodrow wilson international center for scholars
-irs

@@ -143,8 +143,6 @@ public class ChunkCategorizerPR2 extends AbstractLanguageAnalyser implements
 			if (DoCoref) {
 				addToCorefMap(np);
 			}
-			// output any entities derived from the noun phrase
-			createDerivedEntities(np, annotSet);
 		}
 
 		// categorize any noun phrase not handled by above by co-referencing to
@@ -152,10 +150,16 @@ public class ChunkCategorizerPR2 extends AbstractLanguageAnalyser implements
 		if (DoCoref) {
 			for (Annotation np : npSet) {
 				coRef(np);
-				// output any entities derived from the nounphrase
-				createDerivedEntities(np, annotSet);
 			}
 		}
+		
+		// output any entities derived from the noun phrase
+		for (Annotation np : npSet) {
+			createDerivedEntities(np, annotSet);
+		}
+		
+		
+		
 	}// end execute
 
 	/**
@@ -429,7 +433,7 @@ public class ChunkCategorizerPR2 extends AbstractLanguageAnalyser implements
 		String tmpType = (String) np.getFeatures().get("EntityType");
 
 		// only coref if not already categorized
-		if (tmpType != null && tmpType.length() != 0){
+		if (tmpType != null && tmpType.length() > 0){
 			return;
 		}
 

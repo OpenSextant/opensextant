@@ -1344,6 +1344,8 @@ gandy dancer
 gandy dancers
 ganger
 gangers
+gangster
+gangsters
 garbage collector
 garbage collectors
 garbage man
@@ -2397,6 +2399,8 @@ photographer
 photographer''s model
 photographer''s models
 photographers
+photojournalist
+photojournalists
 physician
 physicians
 physicist
@@ -2819,6 +2823,8 @@ sceneshifter
 sceneshifters
 scholar
 scholars
+school principal
+school principals
 school superintendent
 school superintendents
 schoolteacher
@@ -3216,6 +3222,10 @@ swineherd
 swineherds
 sympathizer
 sympathizers
+sys adm
+sys admin
+sys admins
+sys adms
 tally clerk
 tally clerks
 tallyman
@@ -3356,6 +3366,8 @@ treasurers
 treasury
 treasury secretaries
 treasury secretary
+tree hugger
+tree huggers
 trend-setter
 trend-setters
 trial judge
@@ -3627,15 +3639,3 @@ yachtswoman
 yardmaster
 yardmasters
 zionists
-photojournalist
-photojournalists
-school principal
-school principals
-sys admin
-sys adm
-sys admins
-sys adms
-tree hugger
-tree huggers
-gangster
-gangsters

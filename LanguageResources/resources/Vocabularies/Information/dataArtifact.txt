@@ -21,6 +21,8 @@ bibliography
 biographies
 biography
 blog
+blog post
+blog posting
 blog postings
 blog posts
 blogs
@@ -33,6 +35,7 @@ book jacket
 book jackets
 books
 broadcasts
+brochure
 brochures
 bulletin
 bulletins
@@ -97,6 +100,8 @@ imagery
 images
 intelligence estimate
 intelligence estimates
+internet post
+internet posting
 internet postings
 internet posts
 invoice
@@ -128,6 +133,7 @@ missive
 missives
 monthly report
 monthly reports
+movie
 movies
 news report
 news reports
@@ -188,6 +194,10 @@ studies
 study
 subpoena
 subpoenas
+television program
+television programme
+television programmes
+television programs
 television show
 television shows
 textbook
@@ -205,6 +215,7 @@ tv programme
 tv programmes
 tv programs
 tv show
+tv shows
 video
 video footage
 videos

@@ -68,6 +68,8 @@ master-at-arms
 msgt
 msgt.
 petty officer
+pfc
+private first class
 quartermaster
 quartermaster general
 rear admiral
@@ -89,5 +91,3 @@ technical sergeant
 vice admiral
 warrant officer
 wing commander
-private first class
-pfc

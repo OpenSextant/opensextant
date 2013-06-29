@@ -23,6 +23,8 @@ buys
 capital gain
 capital gains
 cash
+cash deposit
+cash deposits
 cash withdrawal
 cash withdrawals
 checkbook
@@ -95,6 +97,10 @@ letter of credit
 letters of credit
 monetary support
 money
+pay check
+pay checks
+paycheck
+paychecks
 payment
 payments
 payroll

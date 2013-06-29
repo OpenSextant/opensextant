@@ -16,6 +16,8 @@ metre
 metres
 mile
 miles
+mm
+mm.
 nautical mile
 nautical miles
 nm

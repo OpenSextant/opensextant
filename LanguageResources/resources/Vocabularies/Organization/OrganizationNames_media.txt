@@ -1,4 +1,6 @@
 akron beacon journal
+al jazeera
+al-jazeera
 albuquerque journal
 arizona daily star
 arizona republic
@@ -208,8 +210,6 @@ xinmin evening news
 yangcheng evening news
 yangtse evening post
 yanzhao metropolis daily
-yomiuri shimbun
 yediot ahronot
 yedioth ahronoth
-al jazeera
-al-jazeera
+yomiuri shimbun

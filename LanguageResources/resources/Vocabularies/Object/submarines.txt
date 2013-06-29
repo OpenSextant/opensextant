@@ -1,2 +1,54 @@
 submarine
 submarines
+uss albany
+uss albuquerque
+uss alexandria
+uss annapolis
+uss asheville
+uss boise
+uss bremerton
+uss buffalo
+uss charlotte
+uss cheyenne
+uss chicago
+uss city of corpus christi
+uss columbia
+uss columbus
+uss connecticut
+uss dallas
+uss greeneville
+uss hampton
+uss hartford
+uss hawaii
+uss helena
+uss houston
+uss jacksonville
+uss jefferson city
+uss jimmy carter
+uss key west
+uss la jolla
+uss louisville
+uss miami
+uss missouri
+uss montpelier
+uss new hampshire
+uss new mexico
+uss newport news
+uss norfolk
+uss north carolina
+uss oklahoma city
+uss olympia
+uss pasadena
+uss pittsburgh
+uss providence
+uss san francisco
+uss san juan
+uss santa fe
+uss scranton
+uss seawolf
+uss springfield
+uss texas
+uss toledo
+uss topeka
+uss tucson
+uss virginia

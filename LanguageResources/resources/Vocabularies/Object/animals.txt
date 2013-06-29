@@ -27,6 +27,7 @@ cow
 cows
 dog
 dogs
+fish
 fowl
 fowls
 goat
@@ -44,6 +45,7 @@ monkeys
 mouse
 organism
 organisms
+poultry
 puppies
 puppy
 rat

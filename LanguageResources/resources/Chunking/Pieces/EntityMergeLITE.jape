@@ -5,7 +5,7 @@
 
 Phase: EntityMerge
 Input: geocoord PLACE DocumentTitle MACAddress TelephoneNumber Money Date Identifier Time TimePeriod DayOfTheMonth
-		EMail URL WebSite IPAddress
+		EMail URL WebSite IPAddress Distance Weight
 Options: control = all
 
 
@@ -25,7 +25,9 @@ Macro: TYPES_TO_BE_MERGED
 	{EMail}|
 	{URL}|
 	{WebSite}|
-	{IPAddress}
+	{IPAddress}|
+	{Distance}|
+	{Weight}
 )
 
 

@@ -1,0 +1,37 @@
+/*
+
+  This phase finds weights/mass
+
+*/
+
+Imports: {
+import static gate.Utils.*;
+}
+ 
+
+Phase:	Weight
+Input:	Token Number WeightUnit
+Options: control = appelt
+
+
+// -------------The rules -------------
+
+// 12 lbs 23.45 kilograms
+Rule:BasicWeight
+(
+  {Number} ({Token.string == "-"})? {WeightUnit}
+)
+:num
+-->
+{
+	gate.AnnotationSet numSet = (gate.AnnotationSet)bindings.get("num");
+	Node numStartNode = numSet.firstNode(); 
+	Node numEndNode   = numSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,numSet));
+	 tempFeatures.put("hierarchy","Attribute.weight");
+
+	outputAS.add(numStartNode, numEndNode, "Weight",tempFeatures);
+}

@@ -4362,6 +4362,7 @@ kkr financial holdings llc
 kkr financial llc
 kla-tencor
 kla-tencor corporation
+kmart
 kmg chemicals
 kmg chemicals inc
 knight capital group
@@ -7659,6 +7660,7 @@ tetra technologies inc
 tetraphase pharmaceuticals
 tetraphase pharmaceuticals inc
 teva pharmaceutical industries limited
+texaco
 texas capital bancshares
 texas capital bancshares inc
 texas industries
@@ -8415,13 +8417,13 @@ waddell & reed financial
 waddell & reed financial inc
 wageworks
 wageworks inc
-walmart
 wal-mart stores
 wal-mart stores inc
 walgreen
 walgreen co
 walker & dunlop
 walker & dunlop inc
+walmart
 walt disney
 walt disney company
 walter energy
@@ -8736,5 +8738,3 @@ zygo
 zygo corporation
 zynga
 zynga inc
-kmart
-texaco

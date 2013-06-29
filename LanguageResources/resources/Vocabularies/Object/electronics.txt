@@ -7,6 +7,8 @@ camcorder
 camcorders
 camera
 cameras
+car stereo
+car stereos
 cellphone
 cellphones
 circuit board
@@ -201,5 +203,3 @@ xmitter
 xmitters
 xmtr
 xmtrs
-car stereo
-car stereos

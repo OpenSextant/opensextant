@@ -1,0 +1,78 @@
+/*
+
+  This phase finds distances and areas
+
+*/
+
+Imports: {
+import static gate.Utils.*;
+}
+ 
+
+Phase:	Distances
+Input:	Token Number DistanceUnit AreaUnit
+Options: control = appelt
+
+
+// -------------The rules -------------
+
+// 34 feet 45.56 kilometers
+Rule:BasicDistance
+(
+  {Number} ({Token.string == "-"})? {DistanceUnit}
+)
+:num
+-->
+{
+	gate.AnnotationSet numSet = (gate.AnnotationSet)bindings.get("num");
+	Node numStartNode = numSet.firstNode(); 
+	Node numEndNode   = numSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,numSet));
+	 tempFeatures.put("hierarchy","Geo.distance");
+
+	outputAS.add(numStartNode, numEndNode, "Distance",tempFeatures);
+}
+
+// 34 square feet 45.56 sq km
+Rule:SquareDistance
+(
+  {Number} ({Token.string ==~ "square|Square|SQUARE|sq|sq."}) {DistanceUnit}
+)
+:num
+-->
+{
+	gate.AnnotationSet numSet = (gate.AnnotationSet)bindings.get("num");
+	Node numStartNode = numSet.firstNode(); 
+	Node numEndNode   = numSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,numSet));
+	 tempFeatures.put("hierarchy","Geo.area");
+
+	outputAS.add(numStartNode, numEndNode, "Area",tempFeatures);
+}
+
+
+// 34 square feet 45.56 sq km
+Rule:BasicArea
+(
+  {Number} ({Token.string == "-"})? {AreaUnit}
+)
+:num
+-->
+{
+	gate.AnnotationSet numSet = (gate.AnnotationSet)bindings.get("num");
+	Node numStartNode = numSet.firstNode(); 
+	Node numEndNode   = numSet.lastNode();
+ 
+	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
+	 tempFeatures.put("rule",ruleName());
+	 tempFeatures.put("string", stringFor(doc,numSet));
+	 tempFeatures.put("hierarchy","Geo.area");
+
+	outputAS.add(numStartNode, numEndNode, "Area",tempFeatures);
+}

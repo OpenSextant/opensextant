@@ -26,6 +26,7 @@ internet
 internet chat
 ip address
 ip addresses
+linux
 password
 passwords
 software
@@ -33,6 +34,7 @@ software package
 software packages
 uniform resource locator
 uniform resource locators
+unix
 url
 urls
 user name
@@ -47,5 +49,3 @@ web site
 web sites
 website
 websites
-unix
-linux
