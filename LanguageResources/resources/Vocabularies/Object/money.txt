@@ -150,3 +150,7 @@ wages
 wealth
 wire transfer
 wire transfers
+tax cut
+tax cuts
+budget cut
+budget cuts

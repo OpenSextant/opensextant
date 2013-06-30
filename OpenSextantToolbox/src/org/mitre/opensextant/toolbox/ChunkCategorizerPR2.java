@@ -230,33 +230,26 @@ public class ChunkCategorizerPR2 extends AbstractLanguageAnalyser implements
 			FeatureMap tmpMap = a.getFeatures();
 
 			// first layer - Part of Speech already on Token
-			tmpMap.put("Category",
-					"P." + reducePOSTags((String) tmpMap.get("pos")));
+			tmpMap.put("Category","P." + reducePOSTags((String) tmpMap.get("pos")));
 
-			// second layer - building block vocab (i.e. doesn't have a
-			// hierarchical feature)
-			// AnnotationSet bSet = thinnedBBSet.get(start, end);
-			// if (bSet.size() >= 1) {
-			// String tmpCat = (String)
-			// bSet.iterator().next().getFeatures().get("majorType");
-			// tmpMap.put("Category", tmpCat);
-			// }
-
-			// third layer - type from any overlapping Vocab
+			// could add non hierarchical vocab here
+			
+			// second layer - type from any overlapping Vocab
 			AnnotationSet vSet = thinnedVocabSet.get(start, end);
 			if (vSet.size() >= 1) {
-				String tmpCatLabel = (String) vSet.iterator().next().getType();
-				String tmpCatHier = (String) vSet.iterator().next()
-						.getFeatures().get("hierarchy");
+				Annotation tmpVocab = vSet.iterator().next();
+				String tmpCatLabel = (String) tmpVocab.getType();
+				String tmpCatHier = (String) tmpVocab.getFeatures().get("hierarchy");
 				tmpMap.put("Category", "V." + tmpCatLabel + "/" + tmpCatHier);
 			}
 
-			// fourth layer - type from any overlapping Entities
+			// third layer - type from any overlapping Entities
 			AnnotationSet eSet = entitySet.get(start, end);
 			if (eSet.size() >= 1) {
-				String tmpCat = (String) eSet.iterator().next().getFeatures()
-						.get("EntityType");
-				tmpMap.put("Category", "E." + tmpCat);
+				Annotation tmpEntity = vSet.iterator().next();
+				String tmpCatLabel = (String) tmpEntity.getType();
+				String tmpCatHier = (String) tmpEntity.getFeatures().get("hierarchy");
+				tmpMap.put("Category", "E." + tmpCatLabel + "/" + tmpCatHier);
 			}
 
 		}
