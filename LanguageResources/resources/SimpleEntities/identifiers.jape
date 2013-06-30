@@ -87,6 +87,7 @@ Rule: typeNumber
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
@@ -106,6 +107,7 @@ Rule: typeNumberRoman
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
@@ -127,6 +129,7 @@ Rule: simpleID
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
@@ -146,6 +149,7 @@ Rule: nameNumberID
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
@@ -166,6 +170,7 @@ Rule: simpleIDMod
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);	
 }
@@ -185,6 +190,7 @@ Rule: simpleIDMultiNum
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);	
 }
@@ -206,6 +212,7 @@ Rule: compundID
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }

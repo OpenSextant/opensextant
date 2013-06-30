@@ -812,18 +812,18 @@
                   <string>UTF-8</string>
                 </entry>
                 <entry>
+                  <string>grammarURL</string>
+                  <gate.util.persistence.PersistenceManager-URLHolder>
+                    <urlString>$relpath$../resources/JAPE/main.jape</urlString>
+                  </gate.util.persistence.PersistenceManager-URLHolder>
+                </entry>
+                <entry>
                   <string>annotationAccessors</string>
                   <null/>
                 </entry>
                 <entry>
                   <string>operators</string>
                   <null/>
-                </entry>
-                <entry>
-                  <string>grammarURL</string>
-                  <gate.util.persistence.PersistenceManager-URLHolder>
-                    <urlString>$relpath$../resources/JAPE/main.jape</urlString>
-                  </gate.util.persistence.PersistenceManager-URLHolder>
                 </entry>
               </localMap>
             </initParams>
@@ -911,18 +911,18 @@
                   <string>UTF-8</string>
                 </entry>
                 <entry>
+                  <string>grammarURL</string>
+                  <gate.util.persistence.PersistenceManager-URLHolder>
+                    <urlString>$relpath$../resources/JAPE/main_SCORING.jape</urlString>
+                  </gate.util.persistence.PersistenceManager-URLHolder>
+                </entry>
+                <entry>
                   <string>annotationAccessors</string>
                   <null/>
                 </entry>
                 <entry>
                   <string>operators</string>
                   <null/>
-                </entry>
-                <entry>
-                  <string>grammarURL</string>
-                  <gate.util.persistence.PersistenceManager-URLHolder>
-                    <urlString>$relpath$../resources/JAPE/main_SCORING.jape</urlString>
-                  </gate.util.persistence.PersistenceManager-URLHolder>
                 </entry>
               </localMap>
             </initParams>
@@ -963,7 +963,7 @@
               </localMap>
             </runtimeParams>
             <resourceType>gate.creole.Transducer</resourceType>
-            <resourceName>MergeEntities</resourceName>
+            <resourceName>Flattener</resourceName>
             <initParams class="gate.util.persistence.MapPersistence">
               <mapType>gate.util.SimpleFeatureMapImpl</mapType>
               <localMap>
@@ -982,7 +982,7 @@
                 <entry>
                   <string>grammarURL</string>
                   <gate.util.persistence.PersistenceManager-URLHolder>
-                    <urlString>$relpath$../resources/Chunking/Pieces/EntityMergeLITE.jape</urlString>
+                    <urlString>$relpath$../resources/Chunking/Pieces/EntityFlattening.jape</urlString>
                   </gate.util.persistence.PersistenceManager-URLHolder>
                 </entry>
                 <entry>

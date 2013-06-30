@@ -1,0 +1,31 @@
+/* This phase creates a single annotation of type "Entity"
+ *  from all the annotation types which have the feature "isEntity" set to true.
+ * so that the chunker will respect their boundaries during NounPhrase creation
+ */
+ 
+// TODO triggering on single token to run a scrap of Java is a hack 
+Phase: EntityFlagging
+Input: Token
+
+Options: control = once
+
+Rule: FlagEntity
+(
+		{Token}
+):cl
+-->
+{
+	// get anything with the "isEntity" feature
+	Set<String> featureNameSet = new HashSet<String>();
+	featureNameSet.add("isEntity");
+	gate.AnnotationSet entSet = doc.getAnnotations().get(null,featureNameSet);
+
+	for(Annotation a : entSet){
+		Node startNode = a.getStartNode();
+		Node endNode = a.getEndNode();
+	 	FeatureMap tempFeatures = a.getFeatures();
+		outputAS.add(startNode,endNode, "tempEntity",tempFeatures);	
+	}
+}
+
+

@@ -24,7 +24,8 @@ Rule: ChunkCleanUp
 		removeSetTypes.add("tempVP_HEAD");
 		removeSetTypes.add("tempVP_MOD");
 		removeSetTypes.add("tempVP_MODAL");
-	
+	    removeSetTypes.add("tempEntity");
+	    
 	outputAS.removeAll(outputAS.get(removeSetTypes));
 	
 }

@@ -32,6 +32,7 @@ Rule:BasicWeight
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,numSet));
 	 tempFeatures.put("hierarchy","Attribute.weight");
+	 tempFeatures.put("isEntity",true);
 
 	outputAS.add(numStartNode, numEndNode, "Weight",tempFeatures);
 }

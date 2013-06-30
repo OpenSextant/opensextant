@@ -1,0 +1,33 @@
+/* This phase creates the "flattened" version of the OpenSextant entities.
+ *  It creates a single annotation of type "Entity" from all annotation
+ *  types which have the feature "isEntity" set to true.
+ * It also add a "EntityType" feature based on the Annotation type.
+ */
+ 
+// TODO triggering on single token to run a scrap of Java is a hack 
+Phase: EntityFlattening
+Input: Token
+
+Options: control = once
+
+Rule: Flatten
+(
+		{Token}
+):cl
+-->
+{
+	// get anything with the "isEntity" feature
+	Set<String> featureNameSet = new HashSet<String>();
+	featureNameSet.add("isEntity");
+	gate.AnnotationSet entSet = doc.getAnnotations().get(null,featureNameSet);
+
+	for(Annotation a : entSet){
+		Node startNode = a.getStartNode();
+		Node endNode = a.getEndNode();
+	 	FeatureMap tempFeatures = a.getFeatures();
+	 	tempFeatures.put("EntityType", a.getType());
+		outputAS.add(startNode,endNode, "Entity",tempFeatures);	
+	}
+}
+
+

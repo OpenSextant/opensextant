@@ -109,6 +109,7 @@ Rule: EMAIL
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", cleanStringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.web.emailAddress");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(sentStartNode, sentEndNode, "EMail",tempFeatures);
 }
@@ -129,6 +130,7 @@ Rule: URL
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", cleanStringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.web.url");
+	 tempFeatures.put("isEntity",true);
 
 	outputAS.add(sentStartNode, sentEndNode, "URL",tempFeatures);	
 }
@@ -149,6 +151,7 @@ Rule: URLNoScheme
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", cleanStringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.web.url");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(sentStartNode, sentEndNode, "URL",tempFeatures);	
 }
@@ -171,6 +174,7 @@ Rule: WebSite
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", cleanStringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.web.webSite");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(sentStartNode, sentEndNode, "WebSite",tempFeatures);
 }
@@ -191,6 +195,7 @@ Rule: IPAddress
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", cleanStringFor(doc,sentSet));
 	 tempFeatures.put("hierarchy","Information.web.IPAddress");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(sentStartNode, sentEndNode, "IPAddress",tempFeatures);	
 }

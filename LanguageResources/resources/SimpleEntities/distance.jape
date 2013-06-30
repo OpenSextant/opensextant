@@ -32,7 +32,8 @@ Rule:BasicDistance
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,numSet));
 	 tempFeatures.put("hierarchy","Geo.distance");
-
+	 tempFeatures.put("isEntity",true);
+	  
 	outputAS.add(numStartNode, numEndNode, "Distance",tempFeatures);
 }
 
@@ -52,6 +53,7 @@ Rule:SquareDistance
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,numSet));
 	 tempFeatures.put("hierarchy","Geo.area");
+	 tempFeatures.put("isEntity",true);
 
 	outputAS.add(numStartNode, numEndNode, "Area",tempFeatures);
 }
@@ -73,6 +75,7 @@ Rule:BasicArea
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,numSet));
 	 tempFeatures.put("hierarchy","Geo.area");
+	 tempFeatures.put("isEntity",true);
 
 	outputAS.add(numStartNode, numEndNode, "Area",tempFeatures);
 }

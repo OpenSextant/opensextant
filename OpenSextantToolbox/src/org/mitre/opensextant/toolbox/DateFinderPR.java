@@ -158,6 +158,7 @@ public class DateFinderPR extends AbstractLanguageAnalyser implements
 			feats.put("normedDate", d.datenorm);
 			feats.put("datePattern", d.pattern_id);
 			feats.put("hierarchy", "Time.date");
+			feats.put("isEntity", true);
 
 			// create a "date" annotation
 			try {

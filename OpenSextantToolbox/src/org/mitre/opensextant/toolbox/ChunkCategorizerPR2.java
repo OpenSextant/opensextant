@@ -62,7 +62,7 @@ public class ChunkCategorizerPR2 extends AbstractLanguageAnalyser implements
 	// boolean MarkModifierAndHead = true;
 
 	// also create a Entity annotation "flattened model"
-	boolean MakeFlatten = true;
+	boolean MakeFlatten = false;
 
 	boolean DoCoref = true;
 
@@ -117,12 +117,14 @@ public class ChunkCategorizerPR2 extends AbstractLanguageAnalyser implements
 		// get all of the vocabulary and simple entity annotations.
 
 		// get all of the hierarchically tagged vocab
-		Set<String> featureNameSet = new HashSet<String>();
-		featureNameSet.add("hierarchy");
-		AnnotationSet vocabSet = document.getAnnotations().get(null,featureNameSet);
+		Set<String> hierFeatureNameSet = new HashSet<String>();
+		hierFeatureNameSet.add("hierarchy");
+		AnnotationSet vocabSet = document.getAnnotations().get(null,hierFeatureNameSet);
 
-		// get all of the entities
-		AnnotationSet entitySet = document.getAnnotations().get("Entity");
+		// get all of the previously tagged entities (has feature "isEntity")
+		Set<String> entityFeatureNameSet = new HashSet<String>();
+		entityFeatureNameSet.add("isEntity");
+		AnnotationSet entitySet = document.getAnnotations().get(null,entityFeatureNameSet);
 
 		// get all of the tokens
 		AnnotationSet tokenSet = document.getAnnotations().get("Token");
@@ -392,13 +394,14 @@ public class ChunkCategorizerPR2 extends AbstractLanguageAnalyser implements
 			fm.put("string", str);
 			fm.put("hierarchy", hier);
 			fm.put("EntityType", entType);
+			fm.put("isEntity", true);
 
 			try {
 				as.add(start, end, entType, fm);
 				// if we are producing the flatten model entities as well
-				if (MakeFlatten) {
-					as.add(start, end, "Entity", fm);
-				}
+				//if (MakeFlatten) {
+				//	as.add(start, end, "Entity", fm);
+				//}
 
 			} catch (InvalidOffsetException e) {
 				log.error("ChunkCategorizerPR: Invalid Offset exception when creating Entity annotation"
