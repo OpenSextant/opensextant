@@ -141,11 +141,11 @@ public class PlacenameMatcher {
         // in the same gazetteer.  
         // 
         String config_solr_home = System.getProperty("solr.solr.home");
-        if (config_solr_home != null)
+        if (config_solr_home != null) {
             solr = new SolrProxy(config_solr_home, "gazetteer");
-        else
+        } else {
             solr = new SolrProxy(System.getProperty("solr.url"));//e.g. http://localhost:8983/solr/gazetteer/
-
+        }
         ModifiableSolrParams _params = new ModifiableSolrParams();
         _params.set(CommonParams.QT, requestHandler);
         //request all fields in the Solr index
@@ -175,7 +175,10 @@ public class PlacenameMatcher {
     private int getNamesTime = 0;
     private int totalTime = 0;
 
-    /** Emphemeral metric for the current tagText() call.  Caller must get these numbers immediately after call.
+    /**
+     * Emphemeral metric for the current tagText() call. Caller must get these
+     * numbers immediately after call.
+     *
      * @return time to tag
      */
     public int getTaggingNamesTime() {
@@ -188,14 +191,13 @@ public class PlacenameMatcher {
     public int getRetrievingNamesTime() {
         return getNamesTime;
     }
-    
+
     /**
      * @return time to get gazetteer records.
      */
     public int getTotalTime() {
         return totalTime;
     }
-    
 
     /**
      * Tag a document, returning PlaceCandidates for the mentions in document.
@@ -234,7 +236,7 @@ public class PlacenameMatcher {
         }
 
         this.tagNamesTime = response.getQTime();
-        
+
         // -- Process Solr Response
 
         //List<GeoBean> geoBeans = response.getBeans(GeoBean.class); maybe works but probably slow
@@ -314,11 +316,10 @@ public class PlacenameMatcher {
              * "north" You might consider two different stop filters, Is "North"
              * different than "north"? This first pass filter should really
              * filter out only text we know to be false positives regardless of
-             * case.
-             * deprecated:  use of filters here.  Filter out unwanted tags via GazetteerETL data model
-             * if (filter.filterOut(matchText.toLowerCase())) { continue; }
+             * case. deprecated: use of filters here. Filter out unwanted tags
+             * via GazetteerETL data model if
+             * (filter.filterOut(matchText.toLowerCase())) { continue; }
              */
-
             pc = new PlaceCandidate();
             pc.setStart(x1);
             pc.setEnd(x2);
@@ -383,7 +384,7 @@ public class PlacenameMatcher {
              * token/place/name is not valid.
              *
              */
-            if (!_is_valid  || ! pc.hasPlaces()) {
+            if (!_is_valid || !pc.hasPlaces()) {
                 continue;
             }
 
@@ -401,9 +402,9 @@ public class PlacenameMatcher {
         }
 
         //this.tagNamesTime = (int)(t1 - t0);
-        this.getNamesTime = (int)(t2 - t1);
-        this.totalTime = (int)(t3 - t0);
-        
+        this.getNamesTime = (int) (t2 - t1);
+        this.totalTime = (int) (t3 - t0);
+
         return candidates;
     }
 
@@ -417,15 +418,24 @@ public class PlacenameMatcher {
         }
         log.debug("DOC=" + docid + " PLACE CANDIDATES SIZE = " + candidates.size());
         Map<String, Integer> countries = new HashMap<String, Integer>();
+        int nullCount=0;
 
         // This loops through findings and reports out just Country names for now.
         for (PlaceCandidate candidate : candidates) {
             boolean _break = false;
             String namekey = TextUtils.normalize_text_entity(candidate.getText()); // .toLowerCase();
-            namekey = namekey.toLowerCase();
+            if (namekey == null) {
+                // Why is this Null?
+                countries.put("null", ++nullCount);
+                continue;
+            } else {
+                namekey = namekey.toLowerCase();
+            }
 
             for (Place p : candidate.getPlaces()) {
-                if (p == null) { continue; }
+                if (p == null) {
+                    continue;
+                }
 
                 if (p.isAbbreviation()) {
                     log.debug("Ignore all abbreviations for now " + candidate.getText());
