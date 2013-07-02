@@ -68,8 +68,7 @@ public class SimpleGeocoder extends AppBase {
     private ExtractionMetrics processingMetric = new ExtractionMetrics("processing");
 
     /**
-     * Demonstration main program -- demonstrates using OpenSextant from cmd
-     * line
+     * A default Geocoding app that demonstrates how to invoke the geocoding pipline start to finish.
      *
      * @throws Exception
      */

@@ -19,7 +19,7 @@ The core library is contained in this jar.
     <property name="build.dir" location="build" />
 		
     <!-- documentation directory -->
-    <property name="doc.dir" location="${basedir}/../doc" />
+    <property name="doc.dir" location="${basedir}/doc" />
 
     <!-- JavaDoc documentation directory -->
     <property name="javadoc.dir" location="${basedir}/doc/javadoc" />
@@ -148,17 +148,6 @@ The core library is contained in this jar.
         </javadoc>
     </target>
 	
-    <!-- Generate JavaDoc documentation for all projects -->
-    <target name="all-javadoc" depends="javadoc.prepare">
-        <javadoc destdir="${javadoc.dir}" packagenames="*" classpathref="compile.classpath" 
-            encoding="utf-8" access="public" windowtitle="OpenSextant JavaDoc" source="${java_level}">
-            <sourcepath>
-                <pathelement location="${src.dir}" />
-                <pathelement location="${commons.home}/src/main/java" />
-            </sourcepath>
-        </javadoc>
-    </target>
-
     <!--  Latest Dependency issues have been minimized to copy available builds;   
           Actual builds are done by ../build.xml master
       -->
@@ -273,7 +262,8 @@ The core library is contained in this jar.
         </copy>
     </target>
 
-    <!-- Copy over the documentation -->
+    <!-- Copy over the documentation 
+         @deprecated  For release pacakging license, javadoc and usage will be managed up one level. -->
     <target name="copy.doc" >
         <copy todir="${release.dir}/doc">
             <fileset dir="${doc.dir}">
@@ -309,18 +299,17 @@ The core library is contained in this jar.
                 <include name="**" />
             </fileset>
         </chmod>
-<!--
+
         <copy todir="${release.dir}/test">
             <fileset dir="${basedir}/test"> <filename name="*.txt"/> </fileset>
         </copy>
--->
         <copy todir="${release.dir}/resources" file="${basedir}/test/log4j.properties" />
     </target>
 	
-    <!-- copy over everything to the release directory 
-    -->
-    <target name="release" depends="build, all-javadoc, prepare.release, copy.gate.home, copy.lib, copy.resources, copy.doc">
-    </target>
+    <!-- copy over everything to the release directory -->
+    <target name="release" depends="build, javadoc, prepare.release, copy.gate.home, copy.lib, copy.resources " />
 
+    <!-- copy over everything to the release directory adding developer/integrator content -->
+    <target name="release-dev" depends="build, javadoc, prepare.release, copy.gate.home, copy.lib, copy.resources, copy.doc, copy.scripts" />
 		
 </project>
