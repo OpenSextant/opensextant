@@ -166,6 +166,7 @@ chromyl
 chromyl chloride
 cis-platinum chloride diammine
 cisplatin
+co2
 coal
 cobalt
 cobalt bromide

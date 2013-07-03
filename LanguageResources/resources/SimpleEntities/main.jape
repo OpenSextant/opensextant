@@ -5,6 +5,9 @@
 MultiPhase:SimpleEntities
 Phases: 
 ./numbers
+./percentages
+./distance
+./weight
 ./identifiers
 ./time
 ./web

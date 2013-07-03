@@ -6,6 +6,8 @@ ceremonies
 ceremony
 childbirth
 childbirths
+church service
+church services
 divorce
 divorces
 extramarital affair
@@ -21,6 +23,8 @@ marriages
 olympics
 parade
 parades
+religious service
+religious services
 summer olympics
 super bowl
 super bowls

@@ -1,4 +1,3 @@
-actrocities
 altercation
 altercations
 ambush
@@ -51,12 +50,8 @@ provocation
 provocations
 raid
 raids
-rapes
 rebellion
 rebellions
-reckless conducts
-reckless drivings
-reckless endangerments
 retaliation
 retaliations
 revenge
@@ -76,6 +71,7 @@ strife
 struggle
 struggles
 torture
+tortures
 unrest
 uprising
 uprisings

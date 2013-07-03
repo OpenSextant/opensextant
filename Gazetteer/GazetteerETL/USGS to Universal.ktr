@@ -417,7 +417,7 @@
     <endedLine/>
     <fileNameInField>N</fileNameInField>
     <fileNameField/>
-    <create_parent_folder>N</create_parent_folder>
+    <create_parent_folder>Y</create_parent_folder>
     <file>
       <name>${Internal.Transformation.Filename.Directory}\GeoData\Merged\USGS</name>
       <is_command>N</is_command>

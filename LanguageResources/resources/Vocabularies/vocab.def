@@ -12,6 +12,8 @@
 ./Attribute/colors.txt:Color
 ./Attribute/Nationalities.txt:Nationality
 ./Attribute/numberWords.txt:NumberWord
+./Attribute/weightUnits.txt:WeightUnit
+./Geo/areaUnits.txt:AreaUnit
 ./Geo/cardinalDirections.txt:CardinalDirection
 ./Geo/distanceUnits.txt:DistanceUnit
 ./Geo/facilityComponents.txt:FacilityComponent:Geo.facilityComponents
@@ -66,6 +68,7 @@
 ./Object/money.txt:FinancialInstrument:Object.finance.financialInstrument
 ./Object/objects.txt:Object:Object
 ./Object/ships.txt:Ship:Object.vehicle.ship
+./Object/spacecraft.txt:Spacecraft:Object.vehicle.spacecraft
 ./Object/submarines.txt:Submarine:Object.vehicle.submarine
 ./Object/tools.txt:Tool:Object.equipment.tool
 ./Object/vehicles.txt:Vehicle:Object.vehicle
@@ -128,13 +131,13 @@
 ./Person/personVerb.txt:PersonVerb
 ./Substance/chemicals.txt:Chemical:Substance.chemical
 ./Substance/drugs.txt:Drug:Substance.drug
-./Substance/materials.txt:Material:Substance.Material
+./Substance/materials.txt:Material:Substance.material
 ./Substance/substances.txt:Substance:Substance
 ./Time/AMPM.txt:AMPM
 ./Time/daysOfTheWeek.txt:DayOfWeek:Time.dayOfTheWeek
 ./Time/holidays.txt:Holiday:Time.holiday
 ./Time/months.txt:Month:Time.month
-./Time/Seasons.txt:Season:Time.Season
+./Time/Seasons.txt:Season:Time.season
 ./Time/TimeModifiers.txt:TimeModifier
 ./Time/TimePhrases.txt:TimePhrase:Time.timePhrase
 ./Time/TimeUnits.txt:TimeUnit

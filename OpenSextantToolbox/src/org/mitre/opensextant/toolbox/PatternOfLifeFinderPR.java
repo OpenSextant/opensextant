@@ -165,6 +165,7 @@ public class PatternOfLifeFinderPR extends AbstractLanguageAnalyser implements
 				}
 
 				feats.put("hierarchy", tmpHier);
+				feats.put("isEntity", true);
 				// create a annotation
 				try {
 					annotSet.add((long) p.start, (long) p.end, tmpType, feats);

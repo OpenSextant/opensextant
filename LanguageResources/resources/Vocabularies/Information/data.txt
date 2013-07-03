@@ -23,6 +23,7 @@ context
 coverage
 coverages
 data
+datum
 decision
 decisions
 demographic
@@ -110,6 +111,7 @@ suggestions
 summaries
 summary
 text
+texts
 thoughts
 tip-off
 tip-offs

@@ -55,6 +55,7 @@ food-borne disease
 food-borne diseases
 foodborne disease
 foodborne diseases
+giardia
 giardiasis
 gonococcal infection
 gonorrhea
@@ -131,6 +132,7 @@ rabies
 radiation poisoning
 radiation sickness
 relapsing fever
+renal failure
 respiratory distress
 rickettsiosis
 ross river virus

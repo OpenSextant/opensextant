@@ -1,7 +1,3 @@
-POL storage tank
-POL storage tanks
-POL tank
-POL tanks
 backpack
 backpacks
 bag
@@ -93,6 +89,10 @@ pipe
 pipe section
 pipe sections
 pipes
+pol storage tank
+pol storage tanks
+pol tank
+pol tanks
 pot
 pots
 retort

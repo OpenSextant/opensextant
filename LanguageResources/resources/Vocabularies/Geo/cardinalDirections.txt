@@ -1,7 +1,3 @@
-NE
-NW
-SE
-SW
 center
 central
 centre
@@ -9,6 +5,7 @@ east
 eastern
 greater
 lower
+ne
 north
 north-east
 north-eastern
@@ -19,6 +16,8 @@ northeastern
 northern
 northwest
 northwestern
+nw
+se
 south
 south-east
 south-eastern
@@ -29,6 +28,7 @@ southeastern
 southern
 southwest
 southwestern
+sw
 upper
 west
 western

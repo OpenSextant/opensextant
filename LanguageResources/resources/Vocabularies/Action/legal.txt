@@ -72,6 +72,10 @@ jury duties
 jury duty
 jury trial
 jury trials
+law enforcement activities
+law enforcement activity
+law enforcement operation
+law enforcement operations
 lawsuit
 lawsuits
 life imprisonment

@@ -8,7 +8,7 @@ import static gate.Utils.*;
 
 
 Phase:	Identifiers
-Input:	Token SpaceToken
+Input:	Token SpaceToken Lookup
 Options: control = appelt
 
 
@@ -37,17 +37,17 @@ Macro: NUM_TOKEN_ROMAN
 
 Macro: LEAD_CHAR_TOKEN
 (	
-	({Token.string ==~ "[A-Z][A-Za-z]{0,2}(-)?"})| ({Token.string ==~ "[A-Z][A-Za-z]{0,2}"}({Token.string ==~ "[-.]"})?    )
+	({Token.string ==~ "[A-Z][A-Za-z]{0,2}(-)?", Token notWithin Lookup  })| ({Token.string ==~ "[A-Z][A-Za-z]{0,2}" , Token notWithin Lookup  }({Token.string ==~ "[-.]" , Token notWithin Lookup  })?    )
 )
 
 Macro: CHAR_TOKEN
 (	
-	{Token.string ==~ "[A-Z][A-Za-z]{0,4}"}
+	{Token.string ==~ "[A-Z][A-Za-z]{0,4}" , Token notWithin Lookup  }
 )
 
 Macro: CHAR_TOKEN_UPPER
 (	
-	{Token.string ==~ "[A-Z]{1,5}-"}
+	{Token.string ==~ "[A-Z]{1,5}-", Token notWithin Lookup  }
 )
 
 
@@ -61,6 +61,15 @@ Macro: TYPE_WORDS
 	{Token.string ==~ "type|Type|TYPE|mk|Mk|MK|mark|Mark|Mark|model|Model|MODEL"}
 )
 
+// don't tag as identifier if in vocab
+Rule: DontTagVocab
+(	
+	{Lookup}
+):whole
+-->
+{
+
+}
 
 
 // type-4
@@ -78,6 +87,7 @@ Rule: typeNumber
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
@@ -97,6 +107,7 @@ Rule: typeNumberRoman
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
@@ -118,6 +129,7 @@ Rule: simpleID
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
@@ -137,6 +149,7 @@ Rule: nameNumberID
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
@@ -157,6 +170,7 @@ Rule: simpleIDMod
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);	
 }
@@ -176,6 +190,7 @@ Rule: simpleIDMultiNum
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);	
 }
@@ -197,6 +212,7 @@ Rule: compundID
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
 	 tempFeatures.put("hierarchy","Information.identifier");
+	 tempFeatures.put("isEntity",true);
 	 
 	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
 }
@@ -204,7 +220,7 @@ Rule: compundID
 // all consonants
 Rule: Abbrev
 (	
-   ({Token.string ==~ "[B-D,F-H,J-N,P-T,V-X,Z]{2,5}" }):id 
+   ({Token.string ==~ "[B-D,F-H,J-N,P-T,V-X,Z]{2,5}|[b-d,f-h,j-n,p-t,v-x,z]{2,5}" }):id 
 ):whole
 -->
 {
@@ -215,15 +231,10 @@ Rule: Abbrev
 	 gate.FeatureMap tempFeatures = Factory.newFeatureMap();
 	 tempFeatures.put("rule",ruleName());
 	 tempFeatures.put("string", stringFor(doc,idSet));
-	 tempFeatures.put("hierarchy","Information.identifier.abbreviation");
+	// tempFeatures.put("hierarchy","Information.identifier.abbreviation");
 	 
-	outputAS.add(idStartNode, idEndNode, "Identifier",tempFeatures);
+	outputAS.add(idStartNode, idEndNode, "Abbreviation",tempFeatures);
 }
-
-
-
-
-
 
 
 /*

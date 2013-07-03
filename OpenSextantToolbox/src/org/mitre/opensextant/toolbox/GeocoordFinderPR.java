@@ -164,6 +164,7 @@ public class GeocoordFinderPR extends AbstractLanguageAnalyser implements
             feats.put("mgrs", g.toMGRS());
             feats.put("geo", geo);
             feats.put("hierarchy", "Geo.place.geocoordinate");
+            feats.put("isEntity", true);
 
             // create a "geocoord" annotation
             try {

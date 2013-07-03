@@ -141,6 +141,7 @@ murders
 mutinies
 mutiny
 obstruction of justice
+offenses
 perjuries
 perjury
 piracies
@@ -211,6 +212,8 @@ suicide attacks
 suicides
 terrorism
 terrorisms
+terrorist act
+terrorist acts
 terrorist attack
 terrorist attacks
 theft

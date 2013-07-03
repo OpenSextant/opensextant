@@ -1,4 +1,3 @@
-IVO
 adjacent to
 all over
 based in
@@ -32,6 +31,7 @@ in the vicinity of
 inhabitant of
 inhabitants of
 inside of
+ivo
 leave for
 leaves for
 leaving for

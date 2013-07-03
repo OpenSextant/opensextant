@@ -100,7 +100,6 @@ railcar
 railcars
 sedan
 sedans
-spacecraft
 sport utility vehicle
 sport utility vehicles
 stake bed

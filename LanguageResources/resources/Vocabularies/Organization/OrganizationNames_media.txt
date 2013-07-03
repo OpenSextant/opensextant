@@ -1,5 +1,6 @@
-Union-Tribune
 akron beacon journal
+al jazeera
+al-jazeera
 albuquerque journal
 arizona daily star
 arizona republic
@@ -8,16 +9,20 @@ arkansas democrat-gazette
 asahi shimbun
 asbury park press
 asia times
+associated press
 atlanta journal constitution
 atlanta journal-constitution
 atlantic city press
 austin american statesman
 austin american-statesman
+bbc
 beijing evening news
 being youth daily
 boston globe
 boston herald
+broadcasting corporation
 buffalo news
+cbs news
 charlotte observer
 chattanooga times free press
 chengdu economic daily
@@ -29,6 +34,7 @@ chunichi shimbun
 chunichi sports
 chutian metro daily
 cincinnati enquirer
+cnn
 columbus dispatch
 commercial appeal
 courier journal
@@ -59,6 +65,7 @@ florida times union
 florida times-union
 fort worth star telegram
 fort worth star-telegram
+fox news
 fresno bee
 global times
 guangzhou daily
@@ -75,6 +82,8 @@ indianapolis star
 information times
 intelligencer journal
 investor's business daily
+itar tass
+itar-tass
 joongang ilbo
 kansas city star
 knoxville news sentinel
@@ -102,9 +111,12 @@ morning call
 moskovskij komsomolets
 nanfang daily
 naples daily news
+national public radio
 new york post
 new york times
 news & observer
+news agencies
+news agency
 news and observer
 news journal
 news of the world
@@ -113,6 +125,7 @@ newsday
 nihon keizai shimbun
 nikkan sports
 nishinippon shimbun
+npr
 oklahoman
 omaha world herald
 omaha world-herald
@@ -141,6 +154,7 @@ qianjiang evening news
 qilu evening news
 rajasthan patrika
 rakyat merdeka
+reuters
 richmond times dispatch
 richmond times-dispatch
 sacramento bee
@@ -183,6 +197,8 @@ tulsa world
 u t san diego
 u-t san diego
 union tribune
+union-tribune
+united press
 usa today
 virginian pilot
 virginian-pilot
@@ -194,4 +210,6 @@ xinmin evening news
 yangcheng evening news
 yangtse evening post
 yanzhao metropolis daily
+yediot ahronot
+yedioth ahronoth
 yomiuri shimbun

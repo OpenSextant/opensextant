@@ -1,5 +1,5 @@
 Phase: NounPhraseParts
-Input: Token Number Entity
+Input: Token Number tempEntity
 Options: control = appelt
 
 
@@ -26,7 +26,7 @@ Rule: HeadSimpleCommon
 (
 		{Token.pos ==NN }|  // singular common
 		{Token.pos ==NNS }| // plural common
-		{Entity}
+		{tempEntity}
 ):head
 -->
 	:head.tempNP_HEAD = {nounType = "common"}
@@ -79,7 +79,7 @@ Rule: Modifier
 		({Token.pos == NP}{Token.pos ==POSS })|
 		({Token.pos == NPS}{Token.pos ==POSS })|
 		{Number}|
-		{Entity}
+		{tempEntity}
 ):mod
 -->
 		:mod.tempNP_MOD = {}

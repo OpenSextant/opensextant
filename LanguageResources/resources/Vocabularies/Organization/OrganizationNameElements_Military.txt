@@ -43,6 +43,8 @@ brigades
 co
 co.
 coast guard
+combat team
+combat teams
 command
 commands
 convoy

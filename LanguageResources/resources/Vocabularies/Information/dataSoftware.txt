@@ -19,12 +19,14 @@ e-mail account
 e-mail accounts
 email account
 email accounts
+ftp
 ftp server
 ftp servers
 internet
 internet chat
 ip address
 ip addresses
+linux
 password
 passwords
 software
@@ -32,6 +34,7 @@ software package
 software packages
 uniform resource locator
 uniform resource locators
+unix
 url
 urls
 user name

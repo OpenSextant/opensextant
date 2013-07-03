@@ -21,6 +21,10 @@ bibliography
 biographies
 biography
 blog
+blog post
+blog posting
+blog postings
+blog posts
 blogs
 blue print
 blue prints
@@ -31,6 +35,7 @@ book jacket
 book jackets
 books
 broadcasts
+brochure
 brochures
 bulletin
 bulletins
@@ -95,6 +100,10 @@ imagery
 images
 intelligence estimate
 intelligence estimates
+internet post
+internet posting
+internet postings
+internet posts
 invoice
 invoices
 journal
@@ -124,9 +133,12 @@ missive
 missives
 monthly report
 monthly reports
+movie
 movies
 news report
 news reports
+news stories
+news story
 newsletter
 newsletters
 newspaper
@@ -176,16 +188,24 @@ social security card
 social security cards
 social security number
 social security numbers
+student visa
+student visas
 studies
 study
 subpoena
 subpoenas
+television program
+television programme
+television programmes
+television programs
 television show
 television shows
 textbook
 textbooks
 theses
 thesis
+tourist visa
+tourist visas
 trademark
 trademarks
 transcript
@@ -195,6 +215,7 @@ tv programme
 tv programmes
 tv programs
 tv show
+tv shows
 video
 video footage
 videos
@@ -217,3 +238,5 @@ white papers
 wiki
 wikipedia
 wikis
+work visa
+work visas

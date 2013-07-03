@@ -80,6 +80,10 @@ amir
 amirs
 analyst
 analysts
+anchorman
+anchormen
+anchorwoman
+anchorwomen
 anesthesiologist
 anesthesiologists
 angler
@@ -1340,6 +1344,8 @@ gandy dancer
 gandy dancers
 ganger
 gangers
+gangster
+gangsters
 garbage collector
 garbage collectors
 garbage man
@@ -2191,6 +2197,7 @@ net controller
 net controllers
 neurosurgeon
 neurosurgeons
+news anchor
 newsboy
 newsboys
 newspaper editor
@@ -2392,6 +2399,8 @@ photographer
 photographer''s model
 photographer''s models
 photographers
+photojournalist
+photojournalists
 physician
 physicians
 physicist
@@ -2814,6 +2823,8 @@ sceneshifter
 sceneshifters
 scholar
 scholars
+school principal
+school principals
 school superintendent
 school superintendents
 schoolteacher
@@ -3211,6 +3222,10 @@ swineherd
 swineherds
 sympathizer
 sympathizers
+sys adm
+sys admin
+sys admins
+sys adms
 tally clerk
 tally clerks
 tallyman
@@ -3351,6 +3366,8 @@ treasurers
 treasury
 treasury secretaries
 treasury secretary
+tree hugger
+tree huggers
 trend-setter
 trend-setters
 trial judge
@@ -3622,3 +3639,7 @@ yachtswoman
 yardmaster
 yardmasters
 zionists
+drug kingpin
+crime kingpin
+drug kingpins
+crime kingpins

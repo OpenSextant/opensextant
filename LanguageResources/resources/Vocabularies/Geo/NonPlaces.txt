@@ -1,8 +1,3 @@
-CO2
-ak 47
-ak 47s
-ak-47
-ak-47s
 area code
 area codes
 code section
@@ -12,10 +7,6 @@ mass destruction
 mass transit
 nobel peace prize
 nobel prize
-shuttle colombia
-shuttle columbia
-spaceshuttle colombia
-spaceshuttle columbia
 state of the union
 web site
 web sites
