@@ -48,8 +48,13 @@ import org.mitre.opensextant.placedata.PlaceCandidate;
 import org.mitre.opensextant.util.TextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.google.common.cache.CacheBuilder;
+// import com.google.common.cache.LoadingCache;
+import com.google.common.cache.Cache;
+import java.util.concurrent.TimeUnit;
 
 /**
+ *
  * Connects to a Solr sever via HTTP and tags place names in document. The
  * <code>SOLR_HOME</code> environment variable must be set to the location of
  * the Solr server.
@@ -72,6 +77,15 @@ public class PlacenameMatcher {
      */
     protected static SolrParams params = null;
     protected static SolrProxy solr = null;
+    /**
+     * Guava Cache. Concurrency level should be set to approx. # of threads that
+     * might be hitting it.
+     */
+    protected final static Cache<Integer, Place> placeCache = CacheBuilder.newBuilder()
+            .maximumSize(50000)
+            .expireAfterWrite(60, TimeUnit.MINUTES).concurrencyLevel(2)
+            .build();
+    protected boolean useCache = true;
     /**
      * Gazetteer specific stuff:
      */
@@ -243,9 +257,18 @@ public class PlacenameMatcher {
         SolrDocumentList docList = (SolrDocumentList) response.getResponse().get("matchingDocs");
 
         long t1 = System.currentTimeMillis();
-        beanMap.clear();
+        if (!useCache) {
+            beanMap.clear();
+        }
+        
         String name = null;
         for (SolrDocument solrDoc : docList) {
+            // Hashed on "id"
+            Integer id = (Integer) solrDoc.getFirstValue("id");
+
+            if (useCache && placeCache.getIfPresent(id) != null) {
+                continue;
+            }
 
             name = SolrProxy.getString(solrDoc, "name");
             /* User filter: if (filter.filterOut(name.toLowerCase())) { continue; } */
@@ -272,9 +295,11 @@ public class PlacenameMatcher {
             bean.setName_bias(SolrProxy.getDouble(solrDoc, "name_bias"));
             bean.setId_bias(SolrProxy.getDouble(solrDoc, "id_bias"));
 
-            // Hashed on "id"
-            Integer id = (Integer) solrDoc.getFirstValue("id");
-            beanMap.put(id, bean);
+            if (useCache) {
+                placeCache.put(id, bean);
+            } else {
+                beanMap.put(id, bean);
+            }
         }
 
         long t2 = System.currentTimeMillis();
@@ -338,7 +363,14 @@ public class PlacenameMatcher {
             boolean _is_lower = StringUtils.isAllLowerCase(pc.getText());
 
             for (Integer solrId : placeRecordIds) {
-                Pgeo = beanMap.get(solrId);
+                Pgeo = null;
+
+                if (useCache) {
+                    Pgeo = placeCache.getIfPresent(solrId);
+                } else {
+                    Pgeo = beanMap.get(solrId);
+                }
+
                 if (Pgeo == null) {
                     continue;
                 }
@@ -418,7 +450,7 @@ public class PlacenameMatcher {
         }
         log.debug("DOC=" + docid + " PLACE CANDIDATES SIZE = " + candidates.size());
         Map<String, Integer> countries = new HashMap<String, Integer>();
-        int nullCount=0;
+        int nullCount = 0;
 
         // This loops through findings and reports out just Country names for now.
         for (PlaceCandidate candidate : candidates) {
