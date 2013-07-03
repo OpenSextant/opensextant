@@ -154,7 +154,8 @@
 
     <!-- DEVELOPER RELEASE:  Build all Java Doc, as well as copying over scripts -->
     <target name="release-dev" depends="clean,build,assemble,javadoc,copy.doc.dev" >
-        <copy todir="${release.target}">
+        <mkdir dir="${release.target}/script" />
+        <copy todir="${release.target}/script">
             <fileset dir="${toolbox.home}/script">
                 <include name="**/*" />
             </fileset>
