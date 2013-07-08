@@ -82,10 +82,14 @@ public class PlacenameMatcher {
      * might be hitting it.
      */
     protected final static Cache<Integer, Place> placeCache = CacheBuilder.newBuilder()
-            .maximumSize(50000)
-            .expireAfterWrite(60, TimeUnit.MINUTES).concurrencyLevel(2)
+            .maximumSize(100000)
+            .recordStats()
+            .expireAfterWrite(60, TimeUnit.MINUTES)
+            .concurrencyLevel(2)
             .build();
-    protected boolean useCache = true;
+    protected static boolean useCache = false;
+    
+    
     /**
      * Gazetteer specific stuff:
      */
@@ -257,19 +261,21 @@ public class PlacenameMatcher {
         SolrDocumentList docList = (SolrDocumentList) response.getResponse().get("matchingDocs");
 
         long t1 = System.currentTimeMillis();
-        if (!useCache) {
+        if (!PlacenameMatcher.useCache) {
             beanMap.clear();
         }
-        
+
         String name = null;
         for (SolrDocument solrDoc : docList) {
             // Hashed on "id"
             Integer id = (Integer) solrDoc.getFirstValue("id");
 
-            if (useCache && placeCache.getIfPresent(id) != null) {
+            if (PlacenameMatcher.useCache && placeCache.getIfPresent(id) != null) {
                 continue;
             }
 
+            // Otherwise, retrieve solr record from index and popluate cache
+            //
             name = SolrProxy.getString(solrDoc, "name");
             /* User filter: if (filter.filterOut(name.toLowerCase())) { continue; } */
 
@@ -295,7 +301,7 @@ public class PlacenameMatcher {
             bean.setName_bias(SolrProxy.getDouble(solrDoc, "name_bias"));
             bean.setId_bias(SolrProxy.getDouble(solrDoc, "id_bias"));
 
-            if (useCache) {
+            if (PlacenameMatcher.useCache) {
                 placeCache.put(id, bean);
             } else {
                 beanMap.put(id, bean);
@@ -365,7 +371,7 @@ public class PlacenameMatcher {
             for (Integer solrId : placeRecordIds) {
                 Pgeo = null;
 
-                if (useCache) {
+                if (PlacenameMatcher.useCache) {
                     Pgeo = placeCache.getIfPresent(solrId);
                 } else {
                     Pgeo = beanMap.get(solrId);
@@ -433,6 +439,11 @@ public class PlacenameMatcher {
             summarizeExtraction(candidates, docid);
         }
 
+        if (PlacenameMatcher.useCache) {
+            log.info("PlaceCache stats = " + placeCache.stats().toString());
+            log.info("PlaceCache count = " + placeCache.size());
+        }
+        
         //this.tagNamesTime = (int)(t1 - t0);
         this.getNamesTime = (int) (t2 - t1);
         this.totalTime = (int) (t3 - t0);
@@ -448,6 +459,7 @@ public class PlacenameMatcher {
             log.error("Something is very wrong.");
             return;
         }
+
         log.debug("DOC=" + docid + " PLACE CANDIDATES SIZE = " + candidates.size());
         Map<String, Integer> countries = new HashMap<String, Integer>();
         int nullCount = 0;

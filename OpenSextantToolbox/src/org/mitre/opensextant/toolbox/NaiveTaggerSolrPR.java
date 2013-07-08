@@ -82,6 +82,7 @@ public class NaiveTaggerSolrPR
     
     private static ExtractionMetrics taggingTimes = new  ExtractionMetrics("tagging");
     private static ExtractionMetrics retrievalTimes = new  ExtractionMetrics("retrieval");
+    private static ExtractionMetrics matcherTotalTimes = new  ExtractionMetrics("matcher-total");
 
     /**
      *
@@ -105,6 +106,9 @@ public class NaiveTaggerSolrPR
     }
     public static ExtractionMetrics getRetrievalMetric(){
         return retrievalTimes;
+    }
+    public static ExtractionMetrics getTotalsMetric(){
+        return matcherTotalTimes;
     }
 
     /**
@@ -141,6 +145,7 @@ public class NaiveTaggerSolrPR
             matches = matcher.tagText(document.getContent().toString(), document.getName());
             retrievalTimes.addTime( matcher.getRetrievingNamesTime() );
             taggingTimes.addTime( matcher.getTaggingNamesTime() );
+            matcherTotalTimes.addTime( matcher.getTotalTime() );
             
         } catch (Exception err) {
             log.error("Error when tagging document " + document.getName(), err);
