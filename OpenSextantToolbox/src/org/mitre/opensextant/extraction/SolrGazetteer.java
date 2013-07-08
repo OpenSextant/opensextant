@@ -167,8 +167,8 @@ public class SolrGazetteer {
         loadCountryNameMap();
         loadFeatureMetaMap();
 
-        String config_solr_home = System.getProperty("solr.solr.home");
-        solr = new SolrProxy(config_solr_home, "gazetteer");
+        String config_solr_home = System.getProperty("solr.solr.home");        
+        solr = new SolrProxy(config_solr_home, "gazetteer", false);
 
         params.set(CommonParams.Q, "*:*");
         params.set(CommonParams.FL, "id,name,cc,adm1,adm2,feat_class,feat_code,lat,lon,place_id,name_bias,id_bias,name_type");
@@ -318,6 +318,7 @@ public class SolrGazetteer {
         // -- Process Solr Response;  This for loop matches the one in SolrMatcher
         // 
         SolrDocumentList docList = response.getResults();
+        
         for (SolrDocument solrDoc : docList) {
             Place bean = new Place(SolrProxy.getString(solrDoc, "place_id"),
                     SolrProxy.getString(solrDoc, "name"));

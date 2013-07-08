@@ -51,8 +51,6 @@ import org.mitre.solr.NoSerializeEmbeddedSolrServer;
  */
 public class SolrProxy {
 
-    private static boolean avoidSerialization = true;
-
     /**
      * Initializes a Solr server from a URL
      *
@@ -84,6 +82,17 @@ public class SolrProxy {
         this.server_url = null;
         setupCore(solr_home, core);
     }
+    
+    /**
+     * Initializes a Solr server from the SOLR_HOME environment variable
+     *
+     * @throws IOException
+     */
+    public SolrProxy(String solr_home, String core, boolean noSerialize) throws IOException {
+        this.server_url = null;
+        setupCore(solr_home, core, noSerialize);
+    }
+    
     protected Logger logger = LoggerFactory.getLogger(SolrProxy.class);
     private SolrServer solrServer = null;
     private UpdateRequest solrUpdate = null;
@@ -140,12 +149,17 @@ public class SolrProxy {
      * still relies on the presence of solr.xml
      */
     public final void setupCore(String solr_home, String corename) throws IOException {
-        this.solrServer = SolrProxy.initialize_embedded(solr_home, corename);
+        this.solrServer = SolrProxy.initialize_embedded(solr_home, corename, true);
+    }
+
+    public final void setupCore(String solr_home, String corename, boolean serializationMode) throws IOException {
+        this.solrServer = SolrProxy.initialize_embedded(solr_home, corename, serializationMode);
     }
 
     /**
+     * 
      */
-    public static SolrServer initialize_embedded(String solr_home, String corename)
+    public static SolrServer initialize_embedded(String solr_home, String corename, boolean avoidSerialization)
             throws IOException {
 
         try {
@@ -166,12 +180,17 @@ public class SolrProxy {
         }
     }
 
+    public static SolrServer initialize_embedded()
+            throws IOException {
+        return initialize_embedded(true);
+    }
+
     /**
      * Much simplified EmbeddedSolr setup.
      *
      * @throws IOException
      */
-    public static SolrServer initialize_embedded()
+    public static SolrServer initialize_embedded(boolean avoidSerialization)
             throws IOException {
 
         try {
