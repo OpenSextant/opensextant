@@ -33,7 +33,6 @@ import java.net.MalformedURLException;
 import java.util.Date;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.embedded.EmbeddedSolrServer;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.request.UpdateRequest;
 import org.apache.solr.common.SolrDocument;
@@ -42,6 +41,8 @@ import org.apache.solr.common.util.DateUtil;
 import org.apache.solr.core.CoreContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.solr.client.solrj.embedded.EmbeddedSolrServer;
+import org.mitre.solr.NoSerializeEmbeddedSolrServer;
 
 /**
  * This class creates a read-only instance of Solr for querying.
@@ -49,6 +50,8 @@ import org.slf4j.LoggerFactory;
  * @author ubaldino
  */
 public class SolrProxy {
+
+    private static boolean avoidSerialization = true;
 
     /**
      * Initializes a Solr server from a URL
@@ -149,7 +152,15 @@ public class SolrProxy {
             File solr_xml = new File(solr_home + File.separator + "solr.xml");
             CoreContainer solrContainer = new CoreContainer(solr_home);
             solrContainer.load(solr_home, solr_xml);
-            return new EmbeddedSolrServer(solrContainer, corename);
+
+            if (avoidSerialization) {
+                // DEFAULT Per SolrTextTagger optimization:
+                return new NoSerializeEmbeddedSolrServer(solrContainer, corename);
+            } else {
+                // CONVENTIONAL: 
+                return new EmbeddedSolrServer(solrContainer, corename);
+            }
+
         } catch (Exception err) {
             throw new IOException("Failed to set up Embedded Solr", err);
         }
@@ -166,7 +177,14 @@ public class SolrProxy {
         try {
             CoreContainer.Initializer initializer = new CoreContainer.Initializer();
             CoreContainer solrContainer = initializer.initialize();
-            return new EmbeddedSolrServer(solrContainer, "");
+
+            if (avoidSerialization) {
+                // DEFAULT Per SolrTextTagger optimization:
+                return new NoSerializeEmbeddedSolrServer(solrContainer, "");
+            } else {
+                // CONVENTIONAL
+                return new EmbeddedSolrServer(solrContainer, "");
+            }
         } catch (Exception err) {
             throw new IOException("Failed to set up Embedded Solr", err);
         }
@@ -343,10 +361,8 @@ public class SolrProxy {
             return null;
         }
         if (obj instanceof Date) {
-            //logDebug("Date object for PUBDATE: "+obj.toString());
             return (Date) obj;
         } else if (obj instanceof String) {
-            //logDebug("String object for PUBDATE: "+obj.toString());
             return DateUtil.parseDate((String) obj);
         }
         return null;
