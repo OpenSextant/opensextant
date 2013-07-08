@@ -23,7 +23,7 @@ Build file for OpenSextant Desktop
 	<property name="release.target" refid="release.target.root"/> 
 
 	<property name="build.dir" location="${basedir}/build" />
-    <property name="dist.dir" location="${release.target}/desktop" />
+    <property name="dist.dir" location="${release.target}" />
     <property name="opensextant.libs" location="${release.target}/lib" />
 
 	<path id="compile.classpath">
