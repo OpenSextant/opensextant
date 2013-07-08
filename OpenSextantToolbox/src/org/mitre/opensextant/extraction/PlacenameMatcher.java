@@ -83,11 +83,12 @@ public class PlacenameMatcher {
      */
     protected final static Cache<Integer, Place> placeCache = CacheBuilder.newBuilder()
             .maximumSize(100000)
-            .recordStats()
+            // .recordStats() -- use only with debugging.  Not supporting this in operation.
             .expireAfterWrite(60, TimeUnit.MINUTES)
             .concurrencyLevel(2)
             .build();
-    protected static boolean useCache = false;
+
+    protected static boolean useCache = true;
     
     
     /**
@@ -437,12 +438,11 @@ public class PlacenameMatcher {
 
         if (debug) {
             summarizeExtraction(candidates, docid);
+            if (PlacenameMatcher.useCache) {
+                log.info("PlaceCache stats: SIZE=" + placeCache.size() + " STATS=" + placeCache.stats().toString());
+            }
         }
 
-        if (PlacenameMatcher.useCache) {
-            log.info("PlaceCache stats = " + placeCache.stats().toString());
-            log.info("PlaceCache count = " + placeCache.size());
-        }
         
         //this.tagNamesTime = (int)(t1 - t0);
         this.getNamesTime = (int) (t2 - t1);
