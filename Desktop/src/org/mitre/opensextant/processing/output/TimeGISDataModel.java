@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.mitre.giscore.events.Feature;
-import org.mitre.giscore.events.SimpleField;
-import org.mitre.giscore.utils.SafeDateFormat;
+import org.opensextant.giscore.events.Feature;
+import org.opensextant.giscore.events.SimpleField;
+import org.opensextant.giscore.utils.SafeDateFormat;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.GeoExtraction;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper.TimeAssociation;
 import org.mitre.opensextant.processing.Geocoding;
