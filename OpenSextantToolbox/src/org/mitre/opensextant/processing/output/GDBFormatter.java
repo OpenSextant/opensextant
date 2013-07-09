@@ -30,8 +30,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.zip.ZipOutputStream;
 
-import org.mitre.giscore.DocumentType;
-import org.mitre.giscore.output.esri.FileGdbOutputStream;
+import org.opensextant.giscore.DocumentType;
+import org.opensextant.giscore.output.gdb.FileGdbOutputStream;
 
 import org.mitre.opensextant.processing.ProcessingException;
 
@@ -69,6 +69,8 @@ public class GDBFormatter extends FolderGISDataFormatter {
         File zipfile = new File(_temp + File.separator + gdb.getName() + ".zip");
         FileOutputStream fos = new FileOutputStream(zipfile);
         this.zos = new ZipOutputStream(fos);
-        this.os = new FileGdbOutputStream(this.zos, gdb, null);
+        Object[] args = new Object[1];
+        args[0] = gdb;
+        this.os = new FileGdbOutputStream(this.zos, args);
     }
 }
