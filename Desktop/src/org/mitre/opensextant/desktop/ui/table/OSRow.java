@@ -182,7 +182,9 @@ public class OSRow implements Comparable<OSRow> {
 		this.progressBarContainer = new RowProgressBarImpl();
 		this.buttonContainer = new RowButtonsImpl(this);
 
-		// this.setProgress(this.percent, this.status);
+        if(this.percent < 100) this.percent = 0;
+        progressBarContainer.getProgressBar().setValue(this.percent);
+        progressBarContainer.getProgressBar().setString(this.status.toString());
 		this.tableHelper = tableHelper;
 	}
 
@@ -330,26 +332,6 @@ public class OSRow implements Comparable<OSRow> {
 		durationContainer.toggleColor(isSelected);
 	}
 
-    /*
-    private float updatePercentView(boolean didChange, float lastDiffPercent, float curPercent, float curDisplayPercent, int sameCount){
-        float ret = curDisplayPercent;
-        if(curPercent >= 100) ret = 100;
-        else if(curPercent == curDisplayPercent) ret = curDisplayPercent;
-        else if(didChange) {
-            float logCalc = (float) Math.log((curPercent + 15) - lastDiffPercent);
-            if(logCalc < 0.02) logCalc = (float) 0.02;
-            ret += logCalc;
-        } else {
-            if(sameCount < 3) sameCount = 3;
-            float logCalc = (float) Math.log(((curPercent + 15) - lastDiffPercent)/sameCount);
-            if(logCalc < 0.02) logCalc = (float) 0.02;
-            ret += logCalc;
-        }
-        if( ret > curPercent + 14) ret = curPercent + 14;
-        if(ret >= 100) ret = 100;
-        return ret;
-    }
-    */
 	public void setProgress(int percent, OSRow.STATUS status, boolean force) {
 
 	    // clear out info because progress changed
