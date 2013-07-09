@@ -60,7 +60,8 @@
     -->
   <lib path="${opensextant.home}/lib/solr-text-tagger-1.1.jar" />
   <lib path="${opensextant.home}/lib/OpenSextantToolbox.jar" />
-  <lib path="${opensextant.home}/lib/jts-1.13.jar" />
+  <!--  JTS is loaded only via CLASSPATH, but noted here as it gazetteer schema is geospatially searchable using both spatial4j + JTS
+  <lib path="${opensextant.home}/lib/jts-1.13.jar" /> -->
   <lib path="${opensextant.home}/lib/javax.servlet-api-3.0.1.jar" />
 
   <!-- A 'dir' option by itself adds any files found in the directory 
