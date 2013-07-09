@@ -229,13 +229,6 @@ The core library is contained in this jar.
 
         <copy file="${release.dir}/lib/OpenSextantToolbox.jar" todir="${opensextant.plugin}/lib" />
           
-        <!-- @deprecated, version=1.4:  No longer copying in the full runtime deps.  JARS in runtime.dependencies must exist in CLASSPATH
-             Once complete then copy  
-        <copy todir="${opensextant.plugin}/lib" flatten="true">
-            <path refid="runtime.dependencies"/>
-        </copy>
-         -->
-
         <!-- Finally, copy in OS native libs from GISCore or other place -->
         <unzip src="${basedir}/../external/giscore-native-libs.zip" dest="${release.dir}"/>
 
