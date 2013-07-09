@@ -58,7 +58,7 @@
      (optional)Java Topo Suite (JTS) for geospatial search against gazetteer.  Schema field geo is linked to use of JTS.
      (optional)Java Servlet API - for use outside of servlet container
     -->
-  <lib path="${opensextant.home}/lib/solr-text-tagger-1.1.jar" />
+  <lib path="${opensextant.home}/lib/solr-text-tagger-1.2.jar" />
   <lib path="${opensextant.home}/lib/OpenSextantToolbox.jar" />
   <!--  JTS is loaded only via CLASSPATH, but noted here as it gazetteer schema is geospatially searchable using both spatial4j + JTS
   <lib path="${opensextant.home}/lib/jts-1.13.jar" /> -->
@@ -820,7 +820,7 @@
       -->
     </requestHandler>
 
-  <requestHandler name="/tag" class="org.mitre.solr.tagger.TaggerRequestHandler">
+  <requestHandler name="/tag" class="org.opensextant.solrtexttagger.TaggerRequestHandler">
     <!-- HEY! if you change this configuration then remove the cacheFile -->
     <str name="indexedField">name</str>
     <str name="storedField">name</str>

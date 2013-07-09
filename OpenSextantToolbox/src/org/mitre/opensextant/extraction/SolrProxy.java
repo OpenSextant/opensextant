@@ -42,7 +42,7 @@ import org.apache.solr.core.CoreContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.solr.client.solrj.embedded.EmbeddedSolrServer;
-import org.mitre.solr.NoSerializeEmbeddedSolrServer;
+import org.opensextant.solrtexttagger.NoSerializeEmbeddedSolrServer;
 
 /**
  * This class creates a read-only instance of Solr for querying.

@@ -169,7 +169,7 @@
 	</target>
 
 	<target name="create">
-		<java classname="org.mitre.solr.tagger.loader.EmbeddedSolrUpdater" classpathref="runtime.classpath" fork="yes" dir="${exec_dir}">
+		<java classname="org.opensextant.solrtexttagger.EmbeddedSolrUpdater" classpathref="runtime.classpath" fork="yes" dir="${exec_dir}">
 			<jvmarg value="-Xmx2G" />
                         <!-- This MaxPermSize appears to be helpful for loading numerous JARs -->
 			<jvmarg value="-XX:MaxPermSize=256m" />
@@ -182,7 +182,7 @@
 
 	<!-- 2 GB to build current gazetteer with 13 million rows -->
 	<target name="build-fst">
-		<java classname="org.mitre.solr.tagger.loader.EmbeddedSolrUpdater" classpathref="runtime.classpath" fork="yes" dir="${exec_dir}">
+		<java classname="org.opensextant.solrtexttagger.EmbeddedSolrUpdater" classpathref="runtime.classpath" fork="yes" dir="${exec_dir}">
 			<jvmarg value="-Xmx2G" />
                         <!-- This MaxPermSize appears to be helpful for loading numerous JARs -->
 			<jvmarg value="-XX:MaxPermSize=256m" />
