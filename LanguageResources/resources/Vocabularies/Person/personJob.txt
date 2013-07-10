@@ -3643,3 +3643,9 @@ drug kingpin
 crime kingpin
 drug kingpins
 crime kingpins
+ringleader
+ring leader
+ringleaders
+ring leaders
+troublemaker
+troublemakers

@@ -1,11 +1,14 @@
 
-Currently there are three OpenSextant extraction pipelines, each defined in its own GATE application (GAPP) file:
-1) The OpenSextant Geotagger (defined in OpenSextant_Solr.gapp)
-2) The OpenSextant General Purpose Extractor LITE (defined in OpenSextant_GeneralPurpose_LITE.gapp)
-3) The OpenSextant General Purpose Extractor FULL (defined in OpenSextant_GeneralPurpose.gapp)
+Currently there are five OpenSextant extraction pipelines, each defined in its own GATE application (GAPP) file:
+1) The OpenSextant Geotagger (OpenSextant_Solr.gapp)
+2) The OpenSextant General Purpose Extractor LITE (OpenSextant_GeneralPurpose_LITE.gapp)
+3) The OpenSextant General Purpose Extractor FULL (OpenSextant_GeneralPurpose.gapp)
+4) The OpenSextant Geocoord Finder (OpenSextant_GeocoordsOnly.gapp)
+5) The OpenSextant Basic Extractor (OpenSextant_Basic.gapp)
 
 
 The OpenSextant Entities spreadsheet (OpenSextant Entities.xlsx) defines the GATE annotations (types,features and feature values)produced by these OpenSextant processes.
+
 Annotation Model
 
 Every OpenSextant annotation has the following standard features: 

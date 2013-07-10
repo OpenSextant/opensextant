@@ -7,13 +7,34 @@ import static gate.Utils.*;
 }
 
 Phase:	VocabularyCoverage
-Input:	Token Lookup PLACE
+Input:	Token Lookup Entity
 Options: control = appelt
 
-// NOTE: notWithin operator is GATE 7.x
+
+Rule: LookupCoveredToken
+( 
+	{Token within Lookup}
+)
+:tok
+-->
+{
+
+}
+
+Rule: EntityCoveredToken
+( 
+	{Token within Entity}
+)
+:tok
+-->
+{
+
+}
+
+
 Rule: NotCoveredToken
 ( 
-	{Token notWithin Lookup,Token notWithin PLACE}
+	{Token.pos ==~ "N.*"}
 )
 :tok
 -->

@@ -22,3 +22,7 @@ nautical mile
 nautical miles
 nm
 nm.
+millimeter
+millimeters
+inch
+inches

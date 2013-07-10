@@ -28,3 +28,7 @@ woman
 women
 youth
 youths
+youngster
+youngsters
+toddler
+toddlers
