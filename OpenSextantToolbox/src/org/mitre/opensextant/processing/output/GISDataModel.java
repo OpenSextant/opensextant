@@ -10,10 +10,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.io.FilenameUtils;
-import org.mitre.giscore.events.Feature;
-import org.mitre.giscore.events.Schema;
-import org.mitre.giscore.events.SimpleField;
-import org.mitre.giscore.geometry.Point;
+import org.opensextant.giscore.events.Feature;
+import org.opensextant.giscore.events.Schema;
+import org.opensextant.giscore.events.SimpleField;
+import org.opensextant.giscore.geometry.Point;
 import org.mitre.opensextant.processing.Geocoding;
 import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.OpenSextantSchema;

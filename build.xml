@@ -12,11 +12,14 @@
     <property name="toolbox.home" location="./OpenSextantToolbox" />
     <property name="xponents.home" location="./Xponents" />
     <property name="desktop.home" location="./Desktop" />
+    <property name="doc.home" location="./doc" />
 
     <!-- the release dir -->
     <property name="release.dir" location="./Release" />
     <property name="release.target" value="${release.dir}/OpenSextant-v${version}" />
-	<property name="release.zip.file" value="${release.dir}/OpenSextant-Release-v${version}.zip"/>
+    <property name="release.zip.file" value="${release.dir}/OpenSextant-Release-v${version}.zip"/>
+    <property name="release.zip.dev.file" value="${release.dir}/OpenSextant-Dev-Release-v${version}.zip"/>
+    <property name="release.doc" value="${release.target}/doc" />
 
 
     <!--====================== Targets ============================-->
@@ -54,8 +57,69 @@
 
 
 
-    <!-- Build the release, then package it -->
-    <target name="release" depends="clean,build">
+
+    <!-- Generate JavaDoc documentation for all projects -->
+    <path id="compile.classpath">
+        <fileset dir="${release.target}/lib" includes="**/*.jar" />
+    </path>
+    <target name="javadoc" >
+        <javadoc destdir="${release.doc}/javadoc" packagenames="*" classpathref="compile.classpath"
+            encoding="utf-8" access="public" windowtitle="OpenSextant JavaDoc" source="${java_level}">
+            <sourcepath>
+                <pathelement location="${toolbox.home}/src" />
+                <pathelement location="${commons.home}/src/main/java" />
+
+                <!-- Xponents -->
+                <pathelement location="${xponents.home}/FlexPat/src/main/java" />
+                <pathelement location="${xponents.home}/XCoord/src/main/java" />
+                <pathelement location="${xponents.home}/XText/src/main/java" />
+                <pathelement location="${xponents.home}/XTemporal/src/main/java" />
+                <pathelement location="${xponents.home}/PoLi/src/main/java" />
+
+            </sourcepath>
+        </javadoc>
+    </target>
+
+    <!-- Copy over the documentation -->
+    <target name="copy.doc" >
+       <mkdir dir="${release.doc}" />
+
+        <!-- Copy over the User Documentation - soon to be HTML; currently MS Word  -->
+        <copy todir="${release.doc}">
+            <fileset dir="${doc.home}">
+                <filename name="OpenSextant Users Guide.docx"/>
+            </fileset>
+        </copy>
+
+        <!-- Copy NOTICE, LICENSE, etc.--> 
+        <copy todir="${release.target}">
+            <fileset dir="${basedir}"> <filename name="*.txt"/> </fileset>
+        </copy>
+
+        <copy todir="${release.doc}">
+            <fileset dir="${doc.home}"> <filename name="Apache*.txt"/> </fileset>
+        </copy>
+
+    </target>
+
+    <target name="copy.doc.dev" depends="copy.doc" >
+        <copy todir="${release.doc}">
+            <fileset dir="${doc.home}">
+                <filename name="*.docx"/>
+            </fileset>
+        </copy>
+    </target>
+
+
+    <!-- Final Zip --> 
+    <target name="package" >
+        <zip destfile="${release.zip.file}" 
+            basedir="${release.dir}" 
+            includes="OpenSextant-v${version}/**" />
+    </target>
+
+    <!-- Assemble pieces in Release folder --> 
+    <target name="assemble" >
 
         <!-- For now use the existing "release" target inside Toolbox and copy the result up -->
         <subant target="release">
@@ -73,9 +137,33 @@
         <subant target="release" inheritall="true">
             <fileset dir="${desktop.home}" includes="build.xml" />
         </subant>
-                
-        <zip destfile="${release.zip.file}" 
-            basedir="${release.dir}" 
+
+    </target>
+
+
+    <!-- Build the release, then package it -->
+    <target name="release" depends="clean,build,assemble,copy.doc">
+
+        <!-- Package up a release. -->
+        <zip destfile="${release.zip.file}"
+            basedir="${release.dir}"
+            includes="OpenSextant-v${version}/**" />
+
+    </target>
+
+
+    <!-- DEVELOPER RELEASE:  Build all Java Doc, as well as copying over scripts -->
+    <target name="release-dev" depends="clean,build,assemble,javadoc,copy.doc.dev" >
+        <mkdir dir="${release.target}/script" />
+        <copy todir="${release.target}/script">
+            <fileset dir="${toolbox.home}/script">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+
+        <!-- Package up a release for developers -->
+        <zip destfile="${release.zip.dev.file}"
+            basedir="${release.dir}"
             includes="OpenSextant-v${version}/**" />
     </target>
 

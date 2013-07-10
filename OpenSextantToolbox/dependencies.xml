@@ -12,17 +12,21 @@
   
    path = gate.dependencies
   
+  project level libraries: 
+
+  This runtime.dependencies  listing was used only to compose the load for OpenSextant plugin in GATE
+  with local JARS packaged in that plugin.  As long as all these JARS appear in the classpath, the plugin 
+  need not have them all on in GATE locally.  These version numbers are frozen as of July 10, 2013;  v1.4+
   -->
+  <!-- 
+  @deprecated
   <path id="runtime.dependencies">
 
-    <!-- project level libraries -->
     <pathelement location="${release.dir}/lib/OpenSextantToolbox.jar" />
     <pathelement location="${release.dir}/lib/opensextant-commons.jar" />
     <pathelement location="${release.dir}/lib/opensextant-xponents-1.7.jar" />
-    <pathelement location="${release.dir}/lib/geodesy-1.9.24.jar" />
+    <pathelement location="${release.dir}/lib/geodesy-2.0.0.jar" />
     <pathelement location="${release.dir}/lib/joda-time-2.2.jar" />
-    <!-- <pathelement location="${release.dir}/lib/giscore-1.8.jar" /> 
-      -->
     <pathelement location="${release.dir}/lib/solr-text-tagger-1.1.jar" />
 
     <pathelement location="${release.dir}/lib/JITAR.jar" />
@@ -66,6 +70,8 @@
 
   </path>
 
+  -->
+
 	
   <!-- Current as of GATE 7.0 -->
 	
@@ -87,8 +93,13 @@
     <pathelement location="${gate.lib}/javacc.jar"/>
     <pathelement location="${gate.lib}/jdom.jar"/>
     <pathelement location="${gate.lib}/junit.jar"/>
-    <!-- Supposedly Provided in Java6+ <pathelement location="${gate.lib}/xercesImpl.jar"/> -->
+    
+    <!--  These few XML support JARS  are included in our lib folder:
+       Supposedly Provided in Java6+ ; but required by Solr:
+       <pathelement location="${gate.lib}/xercesImpl.jar"/> -->
+    <!-- required by Tika: Dom4J 
     <pathelement location="${gate.lib}/dom4j.jar"/>
+    -->
     <pathelement location="${gate.lib}/jaxen.jar"/>
     <pathelement location="${gate.lib}/xmlbeans.jar"/>
     <pathelement location="${gate.lib}/xmlunit.jar"/>

@@ -117,6 +117,7 @@ public abstract class AppBase {
         log.info( "=======================\nTAGGING METRICS");
         log.info(org.mitre.opensextant.toolbox.NaiveTaggerSolrPR.getRetrievalMetric().toString());
         log.info(org.mitre.opensextant.toolbox.NaiveTaggerSolrPR.getTaggingMetric().toString());
+        log.info(org.mitre.opensextant.toolbox.NaiveTaggerSolrPR.getTotalsMetric().toString());
     }
 
     /**

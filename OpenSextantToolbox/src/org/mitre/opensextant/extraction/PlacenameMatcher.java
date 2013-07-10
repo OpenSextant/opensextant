@@ -48,8 +48,13 @@ import org.mitre.opensextant.placedata.PlaceCandidate;
 import org.mitre.opensextant.util.TextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.google.common.cache.CacheBuilder;
+// import com.google.common.cache.LoadingCache;
+import com.google.common.cache.Cache;
+import java.util.concurrent.TimeUnit;
 
 /**
+ *
  * Connects to a Solr sever via HTTP and tags place names in document. The
  * <code>SOLR_HOME</code> environment variable must be set to the location of
  * the Solr server.
@@ -72,6 +77,20 @@ public class PlacenameMatcher {
      */
     protected static SolrParams params = null;
     protected static SolrProxy solr = null;
+    /**
+     * Guava Cache. Concurrency level should be set to approx. # of threads that
+     * might be hitting it.
+     */
+    protected final static Cache<Integer, Place> placeCache = CacheBuilder.newBuilder()
+            .maximumSize(100000)
+            // .recordStats() -- use only with debugging.  Not supporting this in operation.
+            .expireAfterWrite(60, TimeUnit.MINUTES)
+            .concurrencyLevel(2)
+            .build();
+
+    protected static boolean useCache = true;
+    
+    
     /**
      * Gazetteer specific stuff:
      */
@@ -141,11 +160,11 @@ public class PlacenameMatcher {
         // in the same gazetteer.  
         // 
         String config_solr_home = System.getProperty("solr.solr.home");
-        if (config_solr_home != null)
+        if (config_solr_home != null) {
             solr = new SolrProxy(config_solr_home, "gazetteer");
-        else
+        } else {
             solr = new SolrProxy(System.getProperty("solr.url"));//e.g. http://localhost:8983/solr/gazetteer/
-
+        }
         ModifiableSolrParams _params = new ModifiableSolrParams();
         _params.set(CommonParams.QT, requestHandler);
         //request all fields in the Solr index
@@ -175,7 +194,10 @@ public class PlacenameMatcher {
     private int getNamesTime = 0;
     private int totalTime = 0;
 
-    /** Emphemeral metric for the current tagText() call.  Caller must get these numbers immediately after call.
+    /**
+     * Emphemeral metric for the current tagText() call. Caller must get these
+     * numbers immediately after call.
+     *
      * @return time to tag
      */
     public int getTaggingNamesTime() {
@@ -188,14 +210,13 @@ public class PlacenameMatcher {
     public int getRetrievingNamesTime() {
         return getNamesTime;
     }
-    
+
     /**
      * @return time to get gazetteer records.
      */
     public int getTotalTime() {
         return totalTime;
     }
-    
 
     /**
      * Tag a document, returning PlaceCandidates for the mentions in document.
@@ -234,17 +255,28 @@ public class PlacenameMatcher {
         }
 
         this.tagNamesTime = response.getQTime();
-        
+
         // -- Process Solr Response
 
         //List<GeoBean> geoBeans = response.getBeans(GeoBean.class); maybe works but probably slow
         SolrDocumentList docList = (SolrDocumentList) response.getResponse().get("matchingDocs");
 
         long t1 = System.currentTimeMillis();
-        beanMap.clear();
+        if (!PlacenameMatcher.useCache) {
+            beanMap.clear();
+        }
+
         String name = null;
         for (SolrDocument solrDoc : docList) {
+            // Hashed on "id"
+            Integer id = (Integer) solrDoc.getFirstValue("id");
 
+            if (PlacenameMatcher.useCache && placeCache.getIfPresent(id) != null) {
+                continue;
+            }
+
+            // Otherwise, retrieve solr record from index and popluate cache
+            //
             name = SolrProxy.getString(solrDoc, "name");
             /* User filter: if (filter.filterOut(name.toLowerCase())) { continue; } */
 
@@ -270,9 +302,11 @@ public class PlacenameMatcher {
             bean.setName_bias(SolrProxy.getDouble(solrDoc, "name_bias"));
             bean.setId_bias(SolrProxy.getDouble(solrDoc, "id_bias"));
 
-            // Hashed on "id"
-            Integer id = (Integer) solrDoc.getFirstValue("id");
-            beanMap.put(id, bean);
+            if (PlacenameMatcher.useCache) {
+                placeCache.put(id, bean);
+            } else {
+                beanMap.put(id, bean);
+            }
         }
 
         long t2 = System.currentTimeMillis();
@@ -314,11 +348,10 @@ public class PlacenameMatcher {
              * "north" You might consider two different stop filters, Is "North"
              * different than "north"? This first pass filter should really
              * filter out only text we know to be false positives regardless of
-             * case.
-             * deprecated:  use of filters here.  Filter out unwanted tags via GazetteerETL data model
-             * if (filter.filterOut(matchText.toLowerCase())) { continue; }
+             * case. deprecated: use of filters here. Filter out unwanted tags
+             * via GazetteerETL data model if
+             * (filter.filterOut(matchText.toLowerCase())) { continue; }
              */
-
             pc = new PlaceCandidate();
             pc.setStart(x1);
             pc.setEnd(x2);
@@ -337,7 +370,14 @@ public class PlacenameMatcher {
             boolean _is_lower = StringUtils.isAllLowerCase(pc.getText());
 
             for (Integer solrId : placeRecordIds) {
-                Pgeo = beanMap.get(solrId);
+                Pgeo = null;
+
+                if (PlacenameMatcher.useCache) {
+                    Pgeo = placeCache.getIfPresent(solrId);
+                } else {
+                    Pgeo = beanMap.get(solrId);
+                }
+
                 if (Pgeo == null) {
                     continue;
                 }
@@ -383,7 +423,7 @@ public class PlacenameMatcher {
              * token/place/name is not valid.
              *
              */
-            if (!_is_valid  || ! pc.hasPlaces()) {
+            if (!_is_valid || !pc.hasPlaces()) {
                 continue;
             }
 
@@ -398,12 +438,16 @@ public class PlacenameMatcher {
 
         if (debug) {
             summarizeExtraction(candidates, docid);
+            if (PlacenameMatcher.useCache) {
+                log.info("PlaceCache stats: SIZE=" + placeCache.size() + " STATS=" + placeCache.stats().toString());
+            }
         }
 
-        //this.tagNamesTime = (int)(t1 - t0);
-        this.getNamesTime = (int)(t2 - t1);
-        this.totalTime = (int)(t3 - t0);
         
+        //this.tagNamesTime = (int)(t1 - t0);
+        this.getNamesTime = (int) (t2 - t1);
+        this.totalTime = (int) (t3 - t0);
+
         return candidates;
     }
 
@@ -415,17 +459,27 @@ public class PlacenameMatcher {
             log.error("Something is very wrong.");
             return;
         }
+
         log.debug("DOC=" + docid + " PLACE CANDIDATES SIZE = " + candidates.size());
         Map<String, Integer> countries = new HashMap<String, Integer>();
+        int nullCount = 0;
 
         // This loops through findings and reports out just Country names for now.
         for (PlaceCandidate candidate : candidates) {
             boolean _break = false;
             String namekey = TextUtils.normalize_text_entity(candidate.getText()); // .toLowerCase();
-            namekey = namekey.toLowerCase();
+            if (namekey == null) {
+                // Why is this Null?
+                countries.put("null", ++nullCount);
+                continue;
+            } else {
+                namekey = namekey.toLowerCase();
+            }
 
             for (Place p : candidate.getPlaces()) {
-                if (p == null) { continue; }
+                if (p == null) {
+                    continue;
+                }
 
                 if (p.isAbbreviation()) {
                     log.debug("Ignore all abbreviations for now " + candidate.getText());

@@ -12,15 +12,15 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.mitre.giscore.events.Feature;
-import org.mitre.giscore.events.IGISObject;
-import org.mitre.giscore.events.Row;
-import org.mitre.giscore.events.Schema;
-import org.mitre.giscore.events.SimpleField;
-import org.mitre.giscore.events.SimpleField.Type;
-import org.mitre.giscore.output.IGISOutputStream;
-import org.mitre.giscore.output.StreamVisitorBase;
-import org.mitre.giscore.utils.SafeDateFormat;
+import org.opensextant.giscore.events.Feature;
+import org.opensextant.giscore.events.IGISObject;
+import org.opensextant.giscore.events.Row;
+import org.opensextant.giscore.events.Schema;
+import org.opensextant.giscore.events.SimpleField;
+import org.opensextant.giscore.events.SimpleField.Type;
+import org.opensextant.giscore.output.IGISOutputStream;
+import org.opensextant.giscore.output.StreamVisitorBase;
+import org.opensextant.giscore.utils.SafeDateFormat;
 
 //import org.apache.poi.ss.usermodel.Row;
 

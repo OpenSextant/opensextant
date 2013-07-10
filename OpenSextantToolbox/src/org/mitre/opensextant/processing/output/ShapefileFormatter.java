@@ -30,8 +30,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.zip.ZipOutputStream;
 import org.apache.commons.io.FileUtils;
-import org.mitre.giscore.DocumentType;
-import org.mitre.giscore.GISFactory;
+import org.opensextant.giscore.DocumentType;
+import org.opensextant.giscore.GISFactory;
 import org.mitre.opensextant.processing.ProcessingException;
 
 /**

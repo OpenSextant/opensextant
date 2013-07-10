@@ -33,7 +33,6 @@ import java.net.MalformedURLException;
 import java.util.Date;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.embedded.EmbeddedSolrServer;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.request.UpdateRequest;
 import org.apache.solr.common.SolrDocument;
@@ -42,6 +41,8 @@ import org.apache.solr.common.util.DateUtil;
 import org.apache.solr.core.CoreContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.solr.client.solrj.embedded.EmbeddedSolrServer;
+import org.opensextant.solrtexttagger.NoSerializeEmbeddedSolrServer;
 
 /**
  * This class creates a read-only instance of Solr for querying.
@@ -81,6 +82,17 @@ public class SolrProxy {
         this.server_url = null;
         setupCore(solr_home, core);
     }
+    
+    /**
+     * Initializes a Solr server from the SOLR_HOME environment variable
+     *
+     * @throws IOException
+     */
+    public SolrProxy(String solr_home, String core, boolean noSerialize) throws IOException {
+        this.server_url = null;
+        setupCore(solr_home, core, noSerialize);
+    }
+    
     protected Logger logger = LoggerFactory.getLogger(SolrProxy.class);
     private SolrServer solrServer = null;
     private UpdateRequest solrUpdate = null;
@@ -137,22 +149,40 @@ public class SolrProxy {
      * still relies on the presence of solr.xml
      */
     public final void setupCore(String solr_home, String corename) throws IOException {
-        this.solrServer = SolrProxy.initialize_embedded(solr_home, corename);
+        this.solrServer = SolrProxy.initialize_embedded(solr_home, corename, true);
+    }
+
+    public final void setupCore(String solr_home, String corename, boolean serializationMode) throws IOException {
+        this.solrServer = SolrProxy.initialize_embedded(solr_home, corename, serializationMode);
     }
 
     /**
+     * 
      */
-    public static SolrServer initialize_embedded(String solr_home, String corename)
+    public static SolrServer initialize_embedded(String solr_home, String corename, boolean avoidSerialization)
             throws IOException {
 
         try {
             File solr_xml = new File(solr_home + File.separator + "solr.xml");
             CoreContainer solrContainer = new CoreContainer(solr_home);
             solrContainer.load(solr_home, solr_xml);
-            return new EmbeddedSolrServer(solrContainer, corename);
+
+            if (avoidSerialization) {
+                // DEFAULT Per SolrTextTagger optimization:
+                return new NoSerializeEmbeddedSolrServer(solrContainer, corename);
+            } else {
+                // CONVENTIONAL: 
+                return new EmbeddedSolrServer(solrContainer, corename);
+            }
+
         } catch (Exception err) {
             throw new IOException("Failed to set up Embedded Solr", err);
         }
+    }
+
+    public static SolrServer initialize_embedded()
+            throws IOException {
+        return initialize_embedded(true);
     }
 
     /**
@@ -160,13 +190,20 @@ public class SolrProxy {
      *
      * @throws IOException
      */
-    public static SolrServer initialize_embedded()
+    public static SolrServer initialize_embedded(boolean avoidSerialization)
             throws IOException {
 
         try {
             CoreContainer.Initializer initializer = new CoreContainer.Initializer();
             CoreContainer solrContainer = initializer.initialize();
-            return new EmbeddedSolrServer(solrContainer, "");
+
+            if (avoidSerialization) {
+                // DEFAULT Per SolrTextTagger optimization:
+                return new NoSerializeEmbeddedSolrServer(solrContainer, "");
+            } else {
+                // CONVENTIONAL
+                return new EmbeddedSolrServer(solrContainer, "");
+            }
         } catch (Exception err) {
             throw new IOException("Failed to set up Embedded Solr", err);
         }
@@ -343,10 +380,8 @@ public class SolrProxy {
             return null;
         }
         if (obj instanceof Date) {
-            //logDebug("Date object for PUBDATE: "+obj.toString());
             return (Date) obj;
         } else if (obj instanceof String) {
-            //logDebug("String object for PUBDATE: "+obj.toString());
             return DateUtil.parseDate((String) obj);
         }
         return null;

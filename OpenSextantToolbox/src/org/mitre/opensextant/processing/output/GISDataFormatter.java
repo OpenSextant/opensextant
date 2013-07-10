@@ -31,12 +31,12 @@ import gate.Document;
 
 import java.io.File;
 
-import org.mitre.giscore.DocumentType;
-import org.mitre.giscore.events.ContainerEnd;
-import org.mitre.giscore.events.ContainerStart;
-import org.mitre.giscore.events.DocumentStart;
-import org.mitre.giscore.events.Feature;
-import org.mitre.giscore.output.IGISOutputStream;
+import org.opensextant.giscore.DocumentType;
+import org.opensextant.giscore.events.ContainerEnd;
+import org.opensextant.giscore.events.ContainerStart;
+import org.opensextant.giscore.events.DocumentStart;
+import org.opensextant.giscore.events.Feature;
+import org.opensextant.giscore.output.IGISOutputStream;
 import org.mitre.opensextant.processing.Geocoding;
 import org.mitre.opensextant.processing.GeocodingResult;
 import org.mitre.opensextant.processing.OpenSextantSchema;

@@ -29,7 +29,7 @@ package org.mitre.opensextant.processing;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.mitre.giscore.events.SimpleField;
+import org.opensextant.giscore.events.SimpleField;
 
 /**
  *
