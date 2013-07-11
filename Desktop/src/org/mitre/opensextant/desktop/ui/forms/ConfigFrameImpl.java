@@ -30,7 +30,7 @@ public class ConfigFrameImpl extends ConfigFrame {
     private static final int coreLimit = 2 * Runtime.getRuntime().availableProcessors();
     
     private void displayWarnings(){
-        int val = (int)threadCount.getValue();
+        int val = (Integer)threadCount.getValue();
         boolean breaksMem = false;
         boolean breaksCores = false;
         String warning = null;
@@ -93,6 +93,8 @@ public class ConfigFrameImpl extends ConfigFrame {
                 gdbCheck.setSelected(true);
             else if (("SQLITE").equals(t))
                 sqliteCheck.setSelected(true);
+            else if (("ABI").equals(t))
+                abiToolCheck.setSelected(true);
         }
 
         ViewHelper.centerTheWindow(this);
@@ -189,6 +191,8 @@ public class ConfigFrameImpl extends ConfigFrame {
             outTypes.add("GDB");
         if (sqliteCheck.isSelected())
             outTypes.add("SQLITE");
+        if (abiToolCheck.isSelected())
+            outTypes.add("ABI");
 
         configHelper.setOutLocation(outputText.getText());
         configHelper.setCacheRoot(cacheText.getText());

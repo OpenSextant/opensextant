@@ -98,9 +98,15 @@ public class OpenSextantWorker implements Runnable {
 			geoCoder.removeProgressListener(listener);
 			geoCoder.shutdown();
 
-		} catch (ProcessingException | ResourceInstantiationException | IOException e) {
-			log.error("error processing file", e);
-			row.setProgress(-1, OSRow.STATUS.ERROR);
+        } catch (ProcessingException e) {
+            log.error("error processing file", e);
+            row.setProgress(-1, OSRow.STATUS.ERROR);
+        } catch (ResourceInstantiationException e) {
+            log.error("error processing file", e);
+            row.setProgress(-1, OSRow.STATUS.ERROR);
+        } catch (IOException e) {
+            log.error("error processing file", e);
+            row.setProgress(-1, OSRow.STATUS.ERROR);
 		} catch (Throwable t) {
 			// things like class loader exceptions
 			log.error("error processing file", t);
