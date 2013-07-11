@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 public class MainFrameTableHelper {
 
     private static Logger log = LoggerFactory.getLogger(OpenSextantMainFrameImpl.class);
-    private OpenSextantMainFrameImpl frame;
+    private static OpenSextantMainFrameImpl frame;
     private Timer timer = new Timer(true);
 
     public MainFrameTableHelper(OpenSextantMainFrameImpl frame) {
@@ -105,7 +105,7 @@ public class MainFrameTableHelper {
         }
     }
 
-    public OpenSextantMainFrameImpl getMainFrame() {
+    public static OpenSextantMainFrameImpl getMainFrame() {
         return frame;
     }
     

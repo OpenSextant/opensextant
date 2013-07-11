@@ -241,6 +241,14 @@ public class OpenSextantMainFrameImpl extends OpenSextantMainFrame {
         }
     }
 
+    public void hideStatusBar(){
+        this.statusPanel.setVisible(false);
+    }
+    
+    public void updateStatusBar(String text){
+        this.statusLabel.setText(text);
+    }
+    
     private void textMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new TextEntryFrame(apiHelper);

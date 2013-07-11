@@ -19,7 +19,9 @@ import org.mitre.opensextant.apps.Config;
 import org.mitre.opensextant.apps.OpenSextantRunner;
 import org.mitre.opensextant.desktop.executor.opensextant.ext.converter.XTextConverter;
 import org.mitre.opensextant.desktop.executor.opensextant.ext.geocode.OSGeoCoder;
+import org.mitre.opensextant.desktop.ui.OpenSextantMainFrameImpl;
 import org.mitre.opensextant.desktop.ui.helpers.ConfigHelper;
+import org.mitre.opensextant.desktop.ui.helpers.MainFrameTableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,6 +51,8 @@ public class Initialize implements Runnable {
             OSGeoCoder geoCoder = new OSGeoCoder();
             geoCoder.initialize();
             log.info("runner initialized");
+            OpenSextantMainFrameImpl frame = MainFrameTableHelper.getMainFrame();
+            frame.updateStatusBar("Priming Solr Index...");            
             log.info("Priming the pump by running data");
             
             File primer = File.createTempFile("world_and_us_cities", ".txt");
@@ -64,6 +68,9 @@ public class Initialize implements Runnable {
             }
             log.info("Done priming.");
             
+            frame.updateStatusBar("Initialization Done");
+            frame.hideStatusBar();
+
             
 		} catch (Throwable e) {
 			log.error("error initializing: ", e);

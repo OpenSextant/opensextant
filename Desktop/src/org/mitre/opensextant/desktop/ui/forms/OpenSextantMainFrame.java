@@ -37,6 +37,8 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(15, 0), new java.awt.Dimension(15, 0), new java.awt.Dimension(15, 32767));
         configButton = new javax.swing.JButton();
         logButton = new javax.swing.JButton();
+        statusPanel = new javax.swing.JPanel();
+        statusLabel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         addFileMenuItem = new javax.swing.JMenuItem();
@@ -102,19 +104,41 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
         });
         actionToolbar.add(logButton);
 
+        statusPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
+        statusPanel.setPreferredSize(new java.awt.Dimension(4, 20));
+
+        statusLabel.setText("Initializing Gate and Solr...");
+
+        org.jdesktop.layout.GroupLayout statusPanelLayout = new org.jdesktop.layout.GroupLayout(statusPanel);
+        statusPanel.setLayout(statusPanelLayout);
+        statusPanelLayout.setHorizontalGroup(
+            statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(statusLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        statusPanelLayout.setVerticalGroup(
+            statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, statusPanelLayout.createSequentialGroup()
+                .add(0, 0, Short.MAX_VALUE)
+                .add(statusLabel))
+        );
+
         org.jdesktop.layout.GroupLayout treePanelLayout = new org.jdesktop.layout.GroupLayout(treePanel);
         treePanel.setLayout(treePanelLayout);
         treePanelLayout.setHorizontalGroup(
             treePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
             .add(actionToolbar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(statusPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
         );
         treePanelLayout.setVerticalGroup(
             treePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, treePanelLayout.createSequentialGroup()
                 .add(actionToolbar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
+                .add(tableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                .add(0, 0, 0)
+                .add(statusPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, 0))
         );
 
         jMenu1.setText("File");
@@ -260,6 +284,8 @@ public class OpenSextantMainFrame extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     protected javax.swing.JButton logButton;
     protected javax.swing.JMenuItem logMenuItem;
+    protected javax.swing.JLabel statusLabel;
+    protected javax.swing.JPanel statusPanel;
     protected javax.swing.JScrollPane tableScrollPane;
     protected javax.swing.JButton textButton;
     protected javax.swing.JMenuItem textMenuItem;
