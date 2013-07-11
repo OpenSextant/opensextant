@@ -49,12 +49,14 @@ public class RowButtonsImpl extends RowButtons {
                     if (row.getOutputTypes().size() > 1 || ConfigHelper.getInstance().isExtractIdentifiers()) {
                         JPopupMenu popup = new JPopupMenu();
                         for (final String format : row.getOutputTypes()) {
-                            popup.add(new AbstractAction(format) {
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    row.viewResults(format);
-                                }
-                            });
+                            if (!"ABI".equals(format)) {
+                                popup.add(new AbstractAction(format) {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        row.viewResults(format);
+                                    }
+                                });
+                            }
                         }
                         if (ConfigHelper.getInstance().isExtractIdentifiers()) {
                         	popup.add(new AbstractAction("Identifiers") {
