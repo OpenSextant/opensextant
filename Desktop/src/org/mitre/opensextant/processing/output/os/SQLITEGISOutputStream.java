@@ -4,13 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang.WordUtils;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.opensextant.giscore.events.Feature;
 import org.opensextant.giscore.events.IGISObject;
 import org.opensextant.giscore.events.Row;
@@ -18,9 +17,11 @@ import org.opensextant.giscore.events.Schema;
 import org.opensextant.giscore.events.SimpleField;
 import org.opensextant.giscore.output.IGISOutputStream;
 import org.opensextant.giscore.output.StreamVisitorBase;
+import org.mitre.opensextant.desktop.persistence.MyBatisConnectionFactory;
+import org.mitre.opensextant.desktop.persistence.dao.ExecutionDao;
+import org.mitre.opensextant.desktop.persistence.dao.ResultDao;
 import org.mitre.opensextant.desktop.persistence.model.Execution;
 import org.mitre.opensextant.desktop.persistence.model.Result;
-import org.mitre.opensextant.desktop.persistence.util.HibernateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,29 +32,35 @@ public class SQLITEGISOutputStream extends StreamVisitorBase implements IGISOutp
     private static Logger log = LoggerFactory.getLogger(SQLITEGISOutputStream.class);
 
     private Schema schema;
-    private Session session;
-    private SessionFactory sessionFactory;
     private Execution execution;
     private int counter = 0;
-
-    private Transaction transaction;
+    
+    private ResultDao resultDao;
+    private ExecutionDao executionDao;
+    
+    private List<Result> batchOfResults = new ArrayList<Result>();
 
     public SQLITEGISOutputStream(File dbFile) {
 
-
-        this.sessionFactory = HibernateUtil.getSessionFactory(dbFile);
-        this.session = sessionFactory.openSession();
+    	resultDao = new ResultDao(dbFile);
+    	executionDao = new ExecutionDao(dbFile);
+    	
+    	executionDao.createTable();
+    	resultDao.createTable();
 
     }
 
     @Override
     public void close() throws IOException {
-        this.transaction.commit();
-        session.close();
-        sessionFactory.close();
+        saveResultsBatch();
     }
 
-    @Override
+    private void saveResultsBatch() {
+		resultDao.insertBatch(batchOfResults, MyBatisConnectionFactory.BATCH_SIZE);
+		batchOfResults.clear();
+	}
+
+	@Override
     public void write(IGISObject gisData) {
         gisData.accept(this);
     }
@@ -64,13 +71,9 @@ public class SQLITEGISOutputStream extends StreamVisitorBase implements IGISOutp
             throw new IllegalArgumentException("row should never be null");
         }
 
-        if (counter % HibernateUtil.BATCH_SIZE == 0) {
-            session.flush();
-            if (counter > 0) {
-                log.info("Committing");
-                this.transaction.commit();
-            }
-            this.transaction = session.beginTransaction();
+        if (counter % MyBatisConnectionFactory.BATCH_SIZE == 0 && counter > 0) {
+            log.info("Committing batch");
+            saveResultsBatch();
         }
         counter ++;
         
@@ -80,33 +83,9 @@ public class SQLITEGISOutputStream extends StreamVisitorBase implements IGISOutp
         }
 
         Result result = createResult(schema.getFields(), row);
+        
+        batchOfResults.add(result);
 
-        session.save(result);
-
-        // if (schema != null && row.getSchema() != null) {
-        // URI schemauri = row.getSchema();
-        // if (schemauri == null || !schemauri.equals(schema.getId())) {
-        // throw new RuntimeException("Row schema doesn't match schema given");
-        // }
-        // try {
-        // for (String fieldname : schema.getKeys()) {
-        // SimpleField field = schema.get(fieldname);
-        // // addCell(index, row, field, xlsRow);
-        // }
-        // } catch (IOException e) {
-        // throw new RuntimeException(e);
-        // }
-        // } else {
-        // try {
-        // int index = 0;
-        // for (SimpleField field : row.getFields()) {
-        // addCell(index, row, field, xlsRow);
-        // index ++;
-        // }
-        // } catch (IOException e) {
-        // throw new RuntimeException(e);
-        // }
-        // }
     }
 
     private Result createResult(Collection<SimpleField> fields, Row row) {
@@ -131,7 +110,7 @@ public class SQLITEGISOutputStream extends StreamVisitorBase implements IGISOutp
             }
         }
 
-        result.setExecution(execution);
+        result.setExecutionId(execution.getId());  
 
         return result;
     }
@@ -157,10 +136,7 @@ public class SQLITEGISOutputStream extends StreamVisitorBase implements IGISOutp
         this.execution = new Execution();
         this.execution.setTimestamp(new Date());
 
-        Transaction tx = session.beginTransaction();
-        tx.begin();
-        session.save(execution);
-        tx.commit();
+        executionDao.insert(execution);
 
     }
 
