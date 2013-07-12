@@ -84,5 +84,6 @@
 	<classpathentry kind="lib" path="/opensextant/Release/OpenSextant-v1.4/lib/xstream.jar"/>
 	<classpathentry kind="lib" path="/opensextant/Release/OpenSextant-v1.4/lib/zookeeper-3.4.5.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis/mybatis-3.2.2.jar"/>
+	<classpathentry kind="lib" path="/opensextant/Release/OpenSextant-v1.4/lib/mod-persistence-0.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
