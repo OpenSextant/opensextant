@@ -54,7 +54,6 @@ Build file for OpenSextant Desktop
         <pathelement location="${basedir}/lib/mybatis/" />
         <pathelement location="${basedir}/lib/mybatis/mybatis-3.2.2.jar" />
         <pathelement location="${basedir}/lib/mybatis/sqlite-jdbc-3.7.2.jar" />
-        <pathelement location="${basedir}/lib/mybatis/mod-persistence-0.0.1.jar" />
         <pathelement location="${basedir}/lib/xercesImpl.jar" />
 
 	</path>

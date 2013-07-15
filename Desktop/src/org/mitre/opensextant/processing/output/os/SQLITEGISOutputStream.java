@@ -10,11 +10,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.WordUtils;
-import org.mitre.abi.MyBatisConnectionFactory;
-import org.mitre.abi.opensextant.persistence.dao.ExecutionDao;
-import org.mitre.abi.opensextant.persistence.dao.ResultDao;
-import org.mitre.abi.opensextant.persistence.model.Execution;
-import org.mitre.abi.opensextant.persistence.model.Result;
+import org.mitre.opensextant.desktop.persistence.MyBatisConnectionFactory;
+import org.mitre.opensextant.desktop.persistence.dao.ExecutionDao;
+import org.mitre.opensextant.desktop.persistence.dao.ResultDao;
+import org.mitre.opensextant.desktop.persistence.model.Execution;
+import org.mitre.opensextant.desktop.persistence.model.Result;
 import org.opensextant.giscore.events.Feature;
 import org.opensextant.giscore.events.IGISObject;
 import org.opensextant.giscore.events.Row;
