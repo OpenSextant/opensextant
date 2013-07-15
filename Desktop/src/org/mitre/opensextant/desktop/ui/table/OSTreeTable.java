@@ -215,9 +215,7 @@ public class OSTreeTable {
 					if (formats.size() > 1 || ConfigHelper.getInstance().isExtractIdentifiers()) {
 						JMenu formatsMenu = new JMenu("View Results");
 						for (String format : formats) {
-                            if (!"ABI".equals(format)) {
-                                formatsMenu.add(new ViewResultsAction(format));
-                            }
+                            formatsMenu.add(new ViewResultsAction(format));
 						}
                         if (ConfigHelper.getInstance().isExtractIdentifiers()) {
                         	formatsMenu.add(new ViewResultsAction("Identifiers"));

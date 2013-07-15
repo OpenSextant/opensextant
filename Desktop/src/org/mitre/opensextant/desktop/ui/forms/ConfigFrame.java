@@ -45,7 +45,6 @@ public class ConfigFrame extends javax.swing.JFrame {
         xlsCheck = new javax.swing.JCheckBox();
         csvCheck = new javax.swing.JCheckBox();
         sqliteCheck = new javax.swing.JCheckBox();
-        abiToolCheck = new javax.swing.JCheckBox();
         extractPanel = new javax.swing.JPanel();
         extractTimeCheck = new javax.swing.JCheckBox();
         extractIdentifiersCheck = new javax.swing.JCheckBox();
@@ -158,14 +157,6 @@ public class ConfigFrame extends javax.swing.JFrame {
             }
         });
 
-        abiToolCheck.setText("ABI Tool");
-        abiToolCheck.setToolTipText("Esri Shapefile");
-        abiToolCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abiToolCheckActionPerformed(evt);
-            }
-        });
-
         org.jdesktop.layout.GroupLayout outputPanelLayout = new org.jdesktop.layout.GroupLayout(outputPanel);
         outputPanel.setLayout(outputPanelLayout);
         outputPanelLayout.setHorizontalGroup(
@@ -192,13 +183,10 @@ public class ConfigFrame extends javax.swing.JFrame {
                         .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(sqliteCheck)
                             .add(gdbCheck)
-                            .add(outputPanelLayout.createSequentialGroup()
-                                .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(shapefileCheck)
-                                    .add(wktCheck))
-                                .add(18, 18, 18)
-                                .add(abiToolCheck)))
-                        .add(0, 0, Short.MAX_VALUE)))
+                            .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(shapefileCheck)
+                                .add(wktCheck)))
+                        .add(0, 394, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         outputPanelLayout.setVerticalGroup(
@@ -212,8 +200,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(formatLabel)
                     .add(csvCheck)
-                    .add(wktCheck)
-                    .add(abiToolCheck))
+                    .add(wktCheck))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(xlsCheck)
@@ -594,10 +581,6 @@ public class ConfigFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_extractCoordinatesCheckActionPerformed
 
-    private void abiToolCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abiToolCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_abiToolCheckActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -640,7 +623,6 @@ public class ConfigFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JCheckBox abiToolCheck;
     private javax.swing.JButton browseCacheButton;
     private javax.swing.JButton browseOutButton;
     private javax.swing.JButton browseTempButton;

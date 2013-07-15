@@ -108,16 +108,12 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="sqliteCheck" min="-2" max="-2" attributes="0"/>
                               <Component id="gdbCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="shapefileCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="wktCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="abiToolCheck" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Component id="shapefileCheck" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="wktCheck" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="394" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -137,7 +133,6 @@
                       <Component id="formatLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="csvCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="wktCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="abiToolCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -283,18 +278,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sqliteCheckActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="abiToolCheck">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="ABI Tool"/>
-            <Property name="toolTipText" type="java.lang.String" value="Esri Shapefile"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abiToolCheckActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
