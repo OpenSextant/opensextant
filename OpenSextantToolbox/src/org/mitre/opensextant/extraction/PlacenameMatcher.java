@@ -82,13 +82,13 @@ public class PlacenameMatcher {
      * might be hitting it.
      */
     protected final static Cache<Integer, Place> placeCache = CacheBuilder.newBuilder()
-            .maximumSize(100000)
+            .maximumSize(50000)
             // .recordStats() -- use only with debugging.  Not supporting this in operation.
             .expireAfterWrite(60, TimeUnit.MINUTES)
             .concurrencyLevel(2)
             .build();
 
-    protected static boolean useCache = true;
+    protected static boolean useCache = false;
     
     
     /**

@@ -32,7 +32,7 @@ public class JobStatistics {
         
         if(geoHash[arrayLoc].containsKey(s))
         {
-            int count = (int)geoHash[arrayLoc].get(s);
+            int count = (Integer)geoHash[arrayLoc].get(s);
             geoHash[arrayLoc].put(s, ++count);
         }
         else
@@ -45,7 +45,7 @@ public class JobStatistics {
     }
     
     public int getCount(int arrayLoc, String val){
-        return (int)geoHash[arrayLoc].get(val);
+        return (Integer)geoHash[arrayLoc].get(val);
     }
     
     public int getCount(int arrayLoc){

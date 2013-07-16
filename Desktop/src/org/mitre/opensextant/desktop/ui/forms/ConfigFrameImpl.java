@@ -30,7 +30,7 @@ public class ConfigFrameImpl extends ConfigFrame {
     private static final int coreLimit = 2 * Runtime.getRuntime().availableProcessors();
     
     private void displayWarnings(){
-        int val = (int)threadCount.getValue();
+        int val = (Integer)threadCount.getValue();
         boolean breaksMem = false;
         boolean breaksCores = false;
         String warning = null;

@@ -113,16 +113,16 @@ public class TimeGISDataModel extends FilteringGISDataModel {
     @Override
     protected SimpleField getField(String field) throws ProcessingException {
         if (CUSTOM_FIELDS.contains(field)) {
-            switch (field) {
-                case TIME_FIELD:
-                    if (timeAssociation == TimeAssociation.CSV) {
-                        return new SimpleField(field, SimpleField.Type.STRING);
-                    } else {
-                        return new SimpleField(field, SimpleField.Type.DATE);
-                    }
-                 default: 
-                     throw new ProcessingException("Unknown custom field: " + field);
+            if (TIME_FIELD.equals(field)) {
+                if (timeAssociation == TimeAssociation.CSV) {
+                    return new SimpleField(field, SimpleField.Type.STRING);
+                } else {
+                    return new SimpleField(field, SimpleField.Type.DATE);
+                }
+            } else {
+                throw new ProcessingException("Unknown custom field: " + field);
             }
+            
         } else {
             return super.getField(field);
         }

@@ -182,9 +182,10 @@ public class ConfigFrame extends javax.swing.JFrame {
                         .add(29, 29, 29)
                         .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(sqliteCheck)
-                            .add(shapefileCheck)
-                            .add(wktCheck)
-                            .add(gdbCheck))
+                            .add(gdbCheck)
+                            .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(shapefileCheck)
+                                .add(wktCheck)))
                         .add(0, 394, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -212,7 +213,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .add(outputPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jsonCheck)
                     .add(sqliteCheck))
-                .add(0, 3, Short.MAX_VALUE))
+                .add(0, 16, Short.MAX_VALUE))
         );
 
         extractPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Extract", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N

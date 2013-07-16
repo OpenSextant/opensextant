@@ -2,16 +2,6 @@ package org.mitre.opensextant.desktop.persistence.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="results")
 @SuppressWarnings("serial")
 public class Result implements Serializable{
 
@@ -35,7 +25,7 @@ public class Result implements Serializable{
 	private int start;
 	private int end;
 	private String time;
-	private Execution execution;
+	private long executionId;
 	
 	public Result() {
 	    super();
@@ -66,9 +56,6 @@ public class Result implements Serializable{
         this.time = time;
     }
 
-    @Id
-	@GeneratedValue
-	@Column(name="result_id")
 	public long getId() {
 		return id;
 	}
@@ -76,8 +63,6 @@ public class Result implements Serializable{
         this.id = id;
     }
     
-    
-	@Column
     public String getPlacename() {
         return placename;
     }
@@ -85,7 +70,6 @@ public class Result implements Serializable{
         this.placename = placename;
     }
 
-    @Column
     public String getProvince() {
         return province;
     }
@@ -93,7 +77,6 @@ public class Result implements Serializable{
         this.province = province;
     }
 
-    @Column
     public String getIsoCc() {
         return isoCc;
     }
@@ -101,7 +84,6 @@ public class Result implements Serializable{
         this.isoCc = isoCc;
     }
 
-    @Column
     public double getLat() {
         return lat;
     }
@@ -109,7 +91,6 @@ public class Result implements Serializable{
         this.lat = lat;
     }
 
-    @Column
     public double getLon() {
         return lon;
     }
@@ -117,7 +98,6 @@ public class Result implements Serializable{
         this.lon = lon;
     }
 
-    @Column
     public String getMatchtext() {
         return matchtext;
     }
@@ -125,7 +105,6 @@ public class Result implements Serializable{
         this.matchtext = matchtext;
     }
 
-    @Column
     public String getContext() {
         return context;
     }
@@ -133,7 +112,6 @@ public class Result implements Serializable{
         this.context = context;
     }
 
-    @Column
     public String getFilename() {
         return filename;
     }
@@ -141,7 +119,6 @@ public class Result implements Serializable{
         this.filename = filename;
     }
 
-    @Column
     public String getFilepath() {
         return filepath;
     }
@@ -149,7 +126,6 @@ public class Result implements Serializable{
         this.filepath = filepath;
     }
 
-    @Column
     public String getTextpath() {
         return textpath;
     }
@@ -157,7 +133,6 @@ public class Result implements Serializable{
         this.textpath = textpath;
     }
 
-    @Column
     public String getMethod() {
         return method;
     }
@@ -165,7 +140,6 @@ public class Result implements Serializable{
         this.method = method;
     }
 
-    @Column
     public String getFeatClass() {
         return featClass;
     }
@@ -173,7 +147,6 @@ public class Result implements Serializable{
         this.featClass = featClass;
     }
 
-    @Column
     public String getFeatCode() {
         return featCode;
     }
@@ -181,7 +154,6 @@ public class Result implements Serializable{
         this.featCode = featCode;
     }
 
-    @Column
     public String getConfidence() {
         return confidence;
     }
@@ -189,7 +161,6 @@ public class Result implements Serializable{
         this.confidence =confidence;
     }
 
-    @Column
     public int getPrecision() {
         return precision;
     }
@@ -197,7 +168,6 @@ public class Result implements Serializable{
         this.precision = precision;
     }
 
-    @Column
     public int getStart() {
         return start;
     }
@@ -205,7 +175,6 @@ public class Result implements Serializable{
         this.start = start;
     }
 
-    @Column
     public int getEnd() {
         return end;
     }
@@ -213,7 +182,6 @@ public class Result implements Serializable{
         this.end = end;
     }
 
-    @Column
     public String getTime() {
         return time;
     }
@@ -221,19 +189,19 @@ public class Result implements Serializable{
         this.time = time;
     }
     
-    @ManyToOne
-    @JoinColumn(name="execution_id")
-    public Execution getExecution() {
-        return execution;
-    }
+    
+    
+    public long getExecutionId() {
+		return executionId;
+	}
 
-    public void setExecution(Execution execution) {
-        this.execution = execution;
-    }
+	public void setExecutionId(long executionId) {
+		this.executionId = executionId;
+	}
 
-    @Override
+	@Override
     public String toString() {
-        return "Result [id=" + id + ", execution_id=" + execution.getId() + ", placename=" + placename + ", province=" + province + ", isoCc=" + isoCc + ", lat=" + lat + ", lon="
+        return "Result [id=" + id + ", execution_id=" + executionId + ", placename=" + placename + ", province=" + province + ", isoCc=" + isoCc + ", lat=" + lat + ", lon="
                 + lon + ", matchtext=" + matchtext + ", context=" + context + ", filename=" + filename + ", filepath=" + filepath
                 + ", textpath=" + textpath + ", method=" + method + ", featClass=" + featClass + ", featCode=" + featCode + ", confidence="
                 + confidence + ", precision=" + precision + ", start=" + start + ", end=" + end + ", time=" + time + "]";
