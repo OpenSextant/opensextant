@@ -8,11 +8,11 @@ See creole.xml for the creole that presumes the dependencies are on the JVM clas
     <JAR SCAN="True">lib/OpenSextantToolbox.jar</JAR>
 
 
-	<JAR SCAN="False" >lib/opensextant-commons.jar</JAR>
-    <JAR SCAN="False" >lib/opensextant-xponents-1.6.jar</JAR>
+    <JAR SCAN="False" >lib/opensextant-commons.jar</JAR>
+    <JAR SCAN="False" >lib/opensextant-xponents-1.7.jar</JAR>
     
     <!-- XCoord dep -->
-    <JAR SCAN="False">lib/geodesy-1.9.24.jar</JAR>
+    <JAR SCAN="False">lib/geodesy-2.0.0.jar</JAR>
     <!-- XTemp dep -->
     <JAR SCAN="False">lib/joda-time-2.2.jar</JAR>
     
@@ -25,7 +25,7 @@ See creole.xml for the creole that presumes the dependencies are on the JVM clas
     <!-- Solr 4.x support -->
 
     <!-- OpenSextant extension for tagging text. -->
-    <JAR SCAN="False">lib/solr-text-tagger-1.1.jar</JAR>
+    <JAR SCAN="False">lib/solr-text-tagger-1.2.jar</JAR>
     
     <!-- Solr Spatial - Lucene + add-ons -->
     <!--JTS not needed unless you need to search geospatially in a pipeline
