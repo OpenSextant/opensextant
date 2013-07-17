@@ -34,11 +34,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.common.base.Throwables;
 import org.apache.commons.lang.StringUtils;
-import org.apache.solr.client.solrj.SolrRequest;
+import org.apache.solr.client.solrj.StreamingResponseCallback;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.params.CommonParams;
 import org.apache.solr.common.params.ModifiableSolrParams;
 import org.apache.solr.common.params.SolrParams;
@@ -49,18 +49,20 @@ import org.mitre.opensextant.util.TextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.google.common.cache.CacheBuilder;
-// import com.google.common.cache.LoadingCache;
 import com.google.common.cache.Cache;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  *
  * Connects to a Solr sever via HTTP and tags place names in document. The
  * <code>SOLR_HOME</code> environment variable must be set to the location of
  * the Solr server.
+ *
+ * Instances of this class are not threadsafe.
  *
  * @author David Smiley - dsmiley@mitre.org
  * @author Marc Ubaldino - ubaldino@mitre.org
@@ -252,48 +254,58 @@ public class PlacenameMatcher {
 
         // Setup request to tag...
 
+        beanMap.clear();
+        final AtomicLong startStreamingTime = new AtomicLong();
         SolrTaggerRequest tag_request = new SolrTaggerRequest(params, buffer);
+        // Stream the response to avoid serialization and to save memory by
+        //  only keeping one SolrDocument materialized at a time
+        tag_request.setStreamingResponseCallback(new StreamingResponseCallback() {
 
-        QueryResponse response = null;
+            @Override
+            public void streamDocListInfo(long l, long l2, Float aFloat) {
+                startStreamingTime.set(System.currentTimeMillis());
+            }
+
+            //Future optimization: it would be nice if Solr could give us the doc id without
+            // giving us a SolrDocument, allowing us to conditionally get it.
+            // it would save disk IO & speed, at the expense of putting ids into memory.
+
+            @Override
+            public void streamSolrDocument(final SolrDocument solrDoc) {
+                Integer id = (Integer) solrDoc.getFirstValue("id");
+
+                Place bean;
+                if (placeCache != null) {
+                    try {
+                        bean = placeCache.get(id, new Callable<Place>() {
+                            @Override
+                            public Place call() {
+                                return makePlaceFromSolrDoc(solrDoc);
+                            }
+                        });
+                    } catch (ExecutionException e) {
+                        throw Throwables.propagate(e.getCause());
+                    }
+                } else {
+                    bean = makePlaceFromSolrDoc(solrDoc);
+                }
+                beanMap.put(id, bean);
+            }
+        });
+
+        QueryResponse response;
         try {
             response = tag_request.process(solr.getInternalSolrServer());
+            //see the logic above in the callback
         } catch (Exception err) {
             throw new MatcherException("Failed to tag document=" + docid, err);
         }
 
         this.tagNamesTime = response.getQTime();//doesn't include doc retrieval
+        long t1 = startStreamingTime.get();
+        long t2 = System.currentTimeMillis();//t2-t1 is doc retrieval + translation to Place
 
         // -- Process Solr Response
-
-        //List<GeoBean> geoBeans = response.getBeans(GeoBean.class); maybe works but probably slow
-        SolrDocumentList docList = (SolrDocumentList) response.getResponse().get("matchingDocs");
-
-        long t1 = System.currentTimeMillis();
-        beanMap.clear();
-
-        for (final SolrDocument solrDoc : docList) {
-            // Hashed on "id"
-            Integer id = (Integer) solrDoc.getFirstValue("id");
-
-            Place bean;
-            if (placeCache != null) {
-                try {
-                    bean = placeCache.get(id, new Callable<Place>() {
-                        @Override
-                        public Place call() {
-                            return makePlaceFromSolrDoc(solrDoc);
-                        }
-                    });
-                } catch (ExecutionException e) {
-                    throw new MatcherException(e.toString(), e.getCause());
-                }
-            } else {
-                bean =  makePlaceFromSolrDoc(solrDoc);
-            }
-            beanMap.put(id, bean);
-        }
-
-        long t2 = System.currentTimeMillis();
 
         @SuppressWarnings("unchecked")
         List<NamedList<?>> tags = (List<NamedList<?>>) response.getResponse().get("tags");
