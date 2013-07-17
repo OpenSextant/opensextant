@@ -33,14 +33,16 @@ import gate.Document;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.mitre.opensextant.placedata.Geocoord;
-import org.mitre.opensextant.placedata.Place;
+import org.mitre.xcoord.GeocoordMatch;
+import org.mitre.opensextant.data.Place;
 import org.mitre.opensextant.processing.*;
 
 /**
  * A formatter for JSON output. Place objects, along with naked Geocoords, are
  * serialized. By default, only the highest scoring place for each
  * PlaceCandidate is selected. Optionally, all of them can be printed out.
+ *
+ * @deprecated as of v1.4;  this JSON outputter needs to be re-examined and tested.
  *
  * @author Rich Markeloff, MITRE Corp. Initial version created on Jan 17, 2012
  */
@@ -144,9 +146,9 @@ public class JSONFormatter extends AbstractFormatter {
         try {
             for (Geocoding g : rowdata.geocodes) {
                 if (g.is_coordinate) {
-                    this.xstream.alias("Coordinate", Geocoord.class);
+                    this.xstream.alias("Coord", GeocoordMatch.class);
                 } else {
-                    this.xstream.alias("NamedPlace", Place.class);
+                    this.xstream.alias("Place", Place.class);
                 }
                 this.writer.write(xstream.toXML(g.place));
             }
