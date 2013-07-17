@@ -33,9 +33,9 @@
 	<property name="opensextant.build" value="${basedir}/../OpenSextantToolbox/build" />
 	<property name="opensextant.lib" value="${basedir}/../OpenSextantToolbox/lib" />
         <!-- Important:  Country Code by default is 'cc', it was ISO_cc 
-             Note:       source appears after adm3, but can be inferred from place_id; TODO: store explicit source instead of place_id = source+id
+             Note:       TODO: source can be inferred from place_id; evaluate if ADM1, AMD2 can go w/out country prefix in index; if Place ID can go w/out source prefix
          -->
-	<property name="fieldnames" value="id,place_id,name,lat,lon,feat_class,feat_code,FIPS_cc,cc,ISO3_cc,adm1,adm2,adm3,,,,,,,,name_bias,id_bias,name_type," />
+	<property name="fieldnames" value="id,place_id,name,lat,lon,feat_class,feat_code,FIPS_cc,cc,ISO3_cc,adm1,adm2,adm3,,,source,,,,,name_bias,id_bias,name_type," />
 
 	<property name="kitchen.script.win" location="${kettle.home}/kitchen.bat" />
 	<property name="kitchen.script.unix" location="${kettle.home}/kitchen.sh" />
