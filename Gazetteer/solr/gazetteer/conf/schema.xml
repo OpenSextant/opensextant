@@ -91,9 +91,11 @@
       trailing underscores (e.g. _version_) are reserved.
    -->
    
+   <!-- Integer ID from gazetteer ETL; Integer for performance reasons -->
    <field name="id" type="int" required="true" />   
    <field name="_version_" type="long" indexed="true" stored="true"/>
 
+   <!-- Place ID from source gazetteer -->
    <field name="place_id" type="string" required="true" />
    <field name="name"     type="name_idx2" required="true" /> 
   
@@ -103,36 +105,60 @@
    <copyField source="name" dest="name_idx" />
    --> 
    
-   <!-- phonetic variant for deep name matching -->
+   <!-- phonetic variant for deep name matching 
+    -->
+   <!-- TODO: Phonetic name matching later.
    <field name="name_phoneme"  type="phonetic"               stored="false"  omitTermFreqAndPositions="true" omitNorms="true"/>
    
    <copyField source="name" dest="name_phoneme" /> 
+    -->
    
-   <!-- this is kind of a trick without requiring a latLon "lat,lon" in the incoming CSV -->
+   <!-- geo = XY coordinate in the form 'lat,lon' Update-script.js handles merging fields
+        lat,lon are now ignored
+    -->
    <field name="geo" type="geo" />
+   <!-- 
+    @deprecation
+    Optimizations:  we do not store lat,lon separately as of OpSx v1.5
    <field name="lat" type="tdouble" />
-   <field name="lon" type="tdouble" />
+   <field name="lon" type="tdouble" /> -->
+   <field name="lat" type="ignored" />
+   <field name="lon" type="ignored" />
    
+   <!-- Name and ID bias stats are generated ahead of time and built in using ETL scripts
+     these numbers offer tuning for downstream geocoding rules
+    -->
    <field name="name_bias" type="tfloat" />
    <field name="id_bias" type="tfloat" />
    
+   <!-- Geonames style Feature Class - A, P, L, H, V, S, T, R -->
    <field name="feat_class" type="string" />
+   <!-- Geonames style Feature Code - ADM1, PPL, etc-->
    <field name="feat_code"  type="string" />
    
-   <field name="cc"       type="string" /> <!-- ISO -->
+   <!-- ISO country code is 'cc' -->
+   <field name="cc"       type="string" /> 
    <field name="FIPS_cc"  type="string" />
-   <field name="ISO_cc"   type="string" />
    <field name="ISO3_cc"  type="string" />
-   
+   <!-- 
+    @deprecation
+    Optimizations: each distinct country code standard is stored once.
+    cc is ISO 2-alpha;  as of OpSx v1.5 ISO_cc is no longer used.
+   <field name="ISO_cc"   type="string" /> 
    <copyField source="ISO_cc" dest="cc" />
+    -->
 
    <field name="adm1"       type="string" /> 
    <field name="adm2"       type="string" /> 
    <field name="adm3"       type="string" /> 
 
+   <!-- Name type is a flag that tells us if an entry is a code, abbrev (A), or a name (N) -->
    <field name="name_type"    type="string" stored="true" /> 
+
+   <!--  TODO: Make use of Currently unused fields, e.g., source is source of gazetteer records, e.g., NGA, user, USGS, etc.
    <field name="script"       type="string" stored="false" /> 
    <field name="source"       type="string" stored="false" /> 
+    -->
 
    <!--
 
