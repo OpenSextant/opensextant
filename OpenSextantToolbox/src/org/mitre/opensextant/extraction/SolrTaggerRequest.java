@@ -42,10 +42,11 @@ import org.apache.solr.common.util.ContentStreamBase;
 @SuppressWarnings("serial")
 public class SolrTaggerRequest extends QueryRequest {
 
-    public String input = null;
+    private final String input;
 
-    public SolrTaggerRequest(SolrParams p, SolrRequest.METHOD m) {
-        super(p, m);
+    public SolrTaggerRequest(SolrParams params, String input) {
+        super(params, SolrRequest.METHOD.POST);
+        this.input = input;
     }
 
     @Override

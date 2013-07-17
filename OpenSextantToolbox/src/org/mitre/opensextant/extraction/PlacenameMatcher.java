@@ -51,6 +51,9 @@ import org.slf4j.LoggerFactory;
 import com.google.common.cache.CacheBuilder;
 // import com.google.common.cache.LoadingCache;
 import com.google.common.cache.Cache;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -70,6 +73,7 @@ public class PlacenameMatcher {
     protected final static String requestHandler = "/tag";
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
     protected final boolean debug = log.isDebugEnabled();
+
     /**
      * In the interest of optimization we made the Solr instance a static class
      * attribute that should be thread safe and shareable across instances of
@@ -77,26 +81,33 @@ public class PlacenameMatcher {
      */
     protected static SolrParams params = null;
     protected static SolrProxy solr = null;
+
     /**
      * Guava Cache. Concurrency level should be set to approx. # of threads that
      * might be hitting it.
      */
-    protected final static Cache<Integer, Place> placeCache = CacheBuilder.newBuilder()
-            .maximumSize(50000)
-            // .recordStats() -- use only with debugging.  Not supporting this in operation.
-            .expireAfterWrite(60, TimeUnit.MINUTES)
-            .concurrencyLevel(2)
-            .build();
+    protected final static Cache<Integer, Place> placeCache;
+    static {
+        if (true/*useCache?*/) {
+            placeCache = CacheBuilder.newBuilder()
+                    .maximumSize(50000)
+                            // .recordStats() -- use only with debugging.  Not supporting this in operation.
+                    .expireAfterWrite(60, TimeUnit.MINUTES)
+                    .concurrencyLevel(2)
+                    .build();
+        } else {
+            placeCache = null;
+        }
+    }
 
-    protected static boolean useCache = false;
-    
-    
     /**
      * Gazetteer specific stuff:
      */
     private final String APRIORI_NAME_RULE = "AprioriNameBias";
-    private SolrTaggerRequest tag_request = null;
-    private Map<Integer, Place> beanMap = new HashMap<Integer, Place>(100); // initial size
+
+    //re-used Map across tagging requests to save memory
+    private final Map<Integer, Place> beanMap = new HashMap<Integer, Place>(100); // initial size
+
     /**
      * In the interest of optimization we made the Solr instance a static class
      * attribute that should be thread safe and shareable across instances of
@@ -111,10 +122,6 @@ public class PlacenameMatcher {
      */
     public PlacenameMatcher() throws IOException {
         PlacenameMatcher.initialize();
-
-        // Instance variable that will have the transient payload to tag
-        // this is not thread safe and is not static:
-        tag_request = new SolrTaggerRequest(params, SolrRequest.METHOD.POST);
 
         // Pre-loading the Solr FST
         // 
@@ -169,10 +176,8 @@ public class PlacenameMatcher {
         _params.set(CommonParams.QT, requestHandler);
         //request all fields in the Solr index
         // Do we need specific fields or *?  If faster use specific fields. TODO.
-        //_params.set(CommonParams.FL, "*,score");
-        // Note -- removed score for now, as we have not evaluated how score could be used in this sense.
-        // Score depends on FST creation and other factors.
-        // 
+        //_params.set(CommonParams.FL, "*");
+        //
         // TODO: verify that all the right metadata is being retrieved here
         _params.set(CommonParams.FL, "id,name,cc,adm1,adm2,feat_class,feat_code,lat,lon,place_id,name_bias,id_bias,name_type");
 
@@ -245,8 +250,10 @@ public class PlacenameMatcher {
 
         List<PlaceCandidate> candidates = new ArrayList<PlaceCandidate>();
 
-        // Setup request to tag... 
-        tag_request.input = buffer;
+        // Setup request to tag...
+
+        SolrTaggerRequest tag_request = new SolrTaggerRequest(params, buffer);
+
         QueryResponse response = null;
         try {
             response = tag_request.process(solr.getInternalSolrServer());
@@ -254,7 +261,7 @@ public class PlacenameMatcher {
             throw new MatcherException("Failed to tag document=" + docid, err);
         }
 
-        this.tagNamesTime = response.getQTime();
+        this.tagNamesTime = response.getQTime();//doesn't include doc retrieval
 
         // -- Process Solr Response
 
@@ -262,51 +269,28 @@ public class PlacenameMatcher {
         SolrDocumentList docList = (SolrDocumentList) response.getResponse().get("matchingDocs");
 
         long t1 = System.currentTimeMillis();
-        if (!PlacenameMatcher.useCache) {
-            beanMap.clear();
-        }
+        beanMap.clear();
 
-        String name = null;
-        for (SolrDocument solrDoc : docList) {
+        for (final SolrDocument solrDoc : docList) {
             // Hashed on "id"
             Integer id = (Integer) solrDoc.getFirstValue("id");
 
-            if (PlacenameMatcher.useCache && placeCache.getIfPresent(id) != null) {
-                continue;
-            }
-
-            // Otherwise, retrieve solr record from index and popluate cache
-            //
-            name = SolrProxy.getString(solrDoc, "name");
-            /* User filter: if (filter.filterOut(name.toLowerCase())) { continue; } */
-
-            Place bean = new Place();
-
-            bean.setName_type(SolrProxy.getChar(solrDoc, "name_type"));
-
-            // Gazetteer place name & country:
-            //   NOTE: this may be different than "matchtext" or PlaceCandidate.name field.
-            // 
-            bean.setPlaceName(name);
-            bean.setCountryCode(SolrProxy.getString(solrDoc, "cc"));
-
-            // Other metadata.
-            bean.setAdmin1(SolrProxy.getString(solrDoc, "adm1"));
-            bean.setAdmin2(SolrProxy.getString(solrDoc, "adm2"));
-            bean.setFeatureClass(SolrProxy.getString(solrDoc, "feat_class"));
-            bean.setFeatureCode(SolrProxy.getString(solrDoc, "feat_code"));
-            bean.setLatitude(SolrProxy.getDouble(solrDoc, "lat"));
-            bean.setLongitude(SolrProxy.getDouble(solrDoc, "lon"));
-
-            bean.setPlaceID(SolrProxy.getString(solrDoc, "place_id"));
-            bean.setName_bias(SolrProxy.getDouble(solrDoc, "name_bias"));
-            bean.setId_bias(SolrProxy.getDouble(solrDoc, "id_bias"));
-
-            if (PlacenameMatcher.useCache) {
-                placeCache.put(id, bean);
+            Place bean;
+            if (placeCache != null) {
+                try {
+                    bean = placeCache.get(id, new Callable<Place>() {
+                        @Override
+                        public Place call() {
+                            return makePlaceFromSolrDoc(solrDoc);
+                        }
+                    });
+                } catch (ExecutionException e) {
+                    throw new MatcherException(e.toString(), e.getCause());
+                }
             } else {
-                beanMap.put(id, bean);
+                bean =  makePlaceFromSolrDoc(solrDoc);
             }
+            beanMap.put(id, bean);
         }
 
         long t2 = System.currentTimeMillis();
@@ -372,13 +356,10 @@ public class PlacenameMatcher {
             for (Integer solrId : placeRecordIds) {
                 Pgeo = null;
 
-                if (PlacenameMatcher.useCache) {
-                    Pgeo = placeCache.getIfPresent(solrId);
-                } else {
-                    Pgeo = beanMap.get(solrId);
-                }
+                Pgeo = beanMap.get(solrId);
 
                 if (Pgeo == null) {
+                    log.error("Tag request referred to place {} but that doc wasn't returned.", solrId);
                     continue;
                 }
 
@@ -438,8 +419,8 @@ public class PlacenameMatcher {
 
         if (debug) {
             summarizeExtraction(candidates, docid);
-            if (PlacenameMatcher.useCache) {
-                log.info("PlaceCache stats: SIZE=" + placeCache.size() + " STATS=" + placeCache.stats().toString());
+            if (placeCache != null) {
+                log.debug("PlaceCache stats: SIZE=" + placeCache.size() + " STATS=" + placeCache.stats().toString());
             }
         }
 
@@ -449,6 +430,36 @@ public class PlacenameMatcher {
         this.totalTime = (int) (t3 - t0);
 
         return candidates;
+    }
+
+    private Place makePlaceFromSolrDoc(SolrDocument solrDoc) {
+        // Otherwise, retrieve solr record from index and popluate cache
+        //
+        String name = SolrProxy.getString(solrDoc, "name");
+            /* User filter: if (filter.filterOut(name.toLowerCase())) { return null; } */
+
+        Place bean = new Place();
+
+        bean.setName_type(SolrProxy.getChar(solrDoc, "name_type"));
+
+        // Gazetteer place name & country:
+        //   NOTE: this may be different than "matchtext" or PlaceCandidate.name field.
+        //
+        bean.setPlaceName(name);
+        bean.setCountryCode(SolrProxy.getString(solrDoc, "cc"));
+
+        // Other metadata.
+        bean.setAdmin1(SolrProxy.getString(solrDoc, "adm1"));
+        bean.setAdmin2(SolrProxy.getString(solrDoc, "adm2"));
+        bean.setFeatureClass(SolrProxy.getString(solrDoc, "feat_class"));
+        bean.setFeatureCode(SolrProxy.getString(solrDoc, "feat_code"));
+        bean.setLatitude(SolrProxy.getDouble(solrDoc, "lat"));
+        bean.setLongitude(SolrProxy.getDouble(solrDoc, "lon"));
+
+        bean.setPlaceID(SolrProxy.getString(solrDoc, "place_id"));
+        bean.setName_bias(SolrProxy.getDouble(solrDoc, "name_bias"));
+        bean.setId_bias(SolrProxy.getDouble(solrDoc, "id_bias"));
+        return bean;
     }
 
     /**
