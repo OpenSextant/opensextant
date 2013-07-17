@@ -116,7 +116,7 @@ look at case,vocabulary and suffix</note>
     </notepad>
   </notepads>
   <order>
-  <hop> <from>Tokenize BaseName</from><to>Case Stats Lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Build Sequences</from><to>Discard internal records</to><enabled>Y</enabled> </hop>  <hop> <from>WordStat Input</from><to>Process Case Info</to><enabled>Y</enabled> </hop>  <hop> <from>Process Case Info</from><to>Case Stats Lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Vocab Input</from><to>Vocab Lookup</to><enabled>Y</enabled> </hop>  <hop> <from>PriorWeightsFromMining</from><to>MinedWeightLookup</to><enabled>Y</enabled> </hop>  <hop> <from>Discard internal records</from><to>CreateNamePattern</to><enabled>Y</enabled> </hop>  <hop> <from>PatternWeights Input</from><to>PatternWeightLookup</to><enabled>Y</enabled> </hop>  <hop> <from>CreateNamePattern</from><to>MinedWeightLookup</to><enabled>Y</enabled> </hop>  <hop> <from>MinedWeightLookup</from><to>PatternWeightLookup</to><enabled>Y</enabled> </hop>  <hop> <from>Clean gazetteers In</from><to>RecordID Sequence</to><enabled>Y</enabled> </hop>  <hop> <from>RecordID Sequence</from><to>Create base Name</to><enabled>Y</enabled> </hop>  <hop> <from>Estimate PLACE_NAME_BIAS</from><to>Merged and Biased out</to><enabled>Y</enabled> </hop>  <hop> <from>Suffix Input</from><to>EstimateFromSuffix</to><enabled>Y</enabled> </hop>  <hop> <from>Vocab Lookup</from><to>EstimateFromSuffix</to><enabled>Y</enabled> </hop>  <hop> <from>EstimateFromSuffix</from><to>Build Sequences</to><enabled>Y</enabled> </hop>  <hop> <from>Country Weight input</from><to>ID Biase from Country</to><enabled>Y</enabled> </hop>  <hop> <from>FeatureType Weight Input</from><to>ID Bias from Feature Type</to><enabled>Y</enabled> </hop>  <hop> <from>ID Bias from Feature Type</from><to>ID Biase from Country</to><enabled>Y</enabled> </hop>  <hop> <from>ID Bias from well known</from><to>ID Bias from Feature Type</to><enabled>Y</enabled> </hop>  <hop> <from>ID Biase from Country</from><to>Calculate Total ID bias</to><enabled>Y</enabled> </hop>  <hop> <from>Is well known</from><to>ID Bias from well known</to><enabled>Y</enabled> </hop>  <hop> <from>Well Known Places Weight input</from><to>Is well known</to><enabled>Y</enabled> </hop>  <hop> <from>Create base Name</from><to>Is well known</to><enabled>Y</enabled> </hop>  <hop> <from>Calculate Total ID bias</from><to>Tokenize BaseName</to><enabled>Y</enabled> </hop>  <hop> <from>Adjustments</from><to>Estimate PLACE_NAME_BIAS</to><enabled>Y</enabled> </hop>  <hop> <from>PatternWeightLookup</from><to>Adjustments</to><enabled>Y</enabled> </hop>  <hop> <from>Case Stats Lookup</from><to>Adjust for unseen&#47;common tokens</to><enabled>Y</enabled> </hop>  <hop> <from>Adjust for unseen&#47;common tokens</from><to>Vocab Lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Estimate PLACE_NAME_BIAS</from><to>Countries,Provinces and National Capitals</to><enabled>Y</enabled> </hop>  <hop> <from>Countries,Provinces and National Capitals</from><to>Merged and Biased out BASE</to><enabled>Y</enabled> </hop>  <hop> <from>Countries,Provinces and National Capitals</from><to>Create file Path</to><enabled>Y</enabled> </hop>  <hop> <from>Create file Path</from><to>Merged and Biased out Country Split</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Tokenize BaseName</from><to>Case Stats Lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Build Sequences</from><to>Discard internal records</to><enabled>Y</enabled> </hop>  <hop> <from>WordStat Input</from><to>Process Case Info</to><enabled>Y</enabled> </hop>  <hop> <from>Process Case Info</from><to>Case Stats Lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Vocab Input</from><to>Vocab Lookup</to><enabled>Y</enabled> </hop>  <hop> <from>PriorWeightsFromMining</from><to>MinedWeightLookup</to><enabled>Y</enabled> </hop>  <hop> <from>Discard internal records</from><to>CreateNamePattern</to><enabled>Y</enabled> </hop>  <hop> <from>PatternWeights Input</from><to>PatternWeightLookup</to><enabled>Y</enabled> </hop>  <hop> <from>CreateNamePattern</from><to>MinedWeightLookup</to><enabled>Y</enabled> </hop>  <hop> <from>MinedWeightLookup</from><to>PatternWeightLookup</to><enabled>Y</enabled> </hop>  <hop> <from>Clean gazetteers In</from><to>RecordID Sequence</to><enabled>Y</enabled> </hop>  <hop> <from>RecordID Sequence</from><to>Create base Name</to><enabled>Y</enabled> </hop>  <hop> <from>Estimate PLACE_NAME_BIAS</from><to>Merged and Biased out</to><enabled>Y</enabled> </hop>  <hop> <from>Suffix Input</from><to>EstimateFromSuffix</to><enabled>Y</enabled> </hop>  <hop> <from>Vocab Lookup</from><to>EstimateFromSuffix</to><enabled>Y</enabled> </hop>  <hop> <from>EstimateFromSuffix</from><to>Build Sequences</to><enabled>Y</enabled> </hop>  <hop> <from>Country Weight input</from><to>ID Biase from Country</to><enabled>Y</enabled> </hop>  <hop> <from>FeatureType Weight Input</from><to>ID Bias from Feature Type</to><enabled>Y</enabled> </hop>  <hop> <from>ID Bias from Feature Type</from><to>ID Biase from Country</to><enabled>Y</enabled> </hop>  <hop> <from>ID Bias from well known</from><to>ID Bias from Feature Type</to><enabled>Y</enabled> </hop>  <hop> <from>ID Biase from Country</from><to>Calculate Total ID bias</to><enabled>Y</enabled> </hop>  <hop> <from>Is well known</from><to>ID Bias from well known</to><enabled>Y</enabled> </hop>  <hop> <from>Well Known Places Weight input</from><to>Is well known</to><enabled>Y</enabled> </hop>  <hop> <from>Create base Name</from><to>Is well known</to><enabled>Y</enabled> </hop>  <hop> <from>Calculate Total ID bias</from><to>Tokenize BaseName</to><enabled>Y</enabled> </hop>  <hop> <from>Adjustments</from><to>Estimate PLACE_NAME_BIAS</to><enabled>Y</enabled> </hop>  <hop> <from>PatternWeightLookup</from><to>Adjustments</to><enabled>Y</enabled> </hop>  <hop> <from>Case Stats Lookup</from><to>Adjust for unseen&#47;common tokens</to><enabled>Y</enabled> </hop>  <hop> <from>Adjust for unseen&#47;common tokens</from><to>Vocab Lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Estimate PLACE_NAME_BIAS</from><to>Countries,Provinces and National Capitals</to><enabled>Y</enabled> </hop>  <hop> <from>Countries,Provinces and National Capitals</from><to>Merged and Biased out BASE</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Adjust for unseen&#47;common tokens</name>
     <type>UserDefinedJavaClass</type>
@@ -941,8 +941,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Merged and Biased out BASE</send_true_to>
-<send_false_to>Create file Path</send_false_to>
+<send_true_to/>
+<send_false_to/>
     <compare>
 <condition>
  <negated>N</negated>
@@ -952,7 +952,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
    <leftvalue>FEATURE_CODE</leftvalue>
    <function>REGEXP</function>
    <rightvalue/>
-   <value><name>constant</name><type>String</type><text>PCL*</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+   <value><name>constant</name><type>String</type><text>PCL.*</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
   <condition>
    <negated>N</negated>
    <operator>OR</operator>
@@ -972,8 +972,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2590</xloc>
-      <yloc>367</yloc>
+      <xloc>2630</xloc>
+      <yloc>343</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -2287,8 +2287,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2630</xloc>
-      <yloc>246</yloc>
+      <xloc>2644</xloc>
+      <yloc>236</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -2626,8 +2626,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2863</xloc>
-      <yloc>364</yloc>
+      <xloc>2823</xloc>
+      <yloc>345</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3673,430 +3673,6 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1136</xloc>
       <yloc>89</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Merged and Biased out Country Split</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <separator>	</separator>
-    <enclosure/>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding>UTF-8</encoding>
-    <endedLine/>
-    <fileNameInField>Y</fileNameInField>
-    <fileNameField>countrySplit_file</fileNameField>
-    <create_parent_folder>N</create_parent_folder>
-    <file>
-      <name>${Internal.Transformation.Filename.Directory}\GeoData\Merged\</name>
-      <is_command>N</is_command>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-      <field>
-        <name>Record_ID</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>PLACE_ID</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>PLACE_NAME</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>LATITUDE</name>
-        <type>Number</type>
-        <format>0.#####</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>LONGITUDE</name>
-        <type>Number</type>
-        <format>0.#####</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>FEATURE_CLASS</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>FEATURE_CODE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>FIPS_COUNTRY_CODE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ISO2_COUNTRY_CODE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ISO3_COUNTRY_CODE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ADMIN_LEVEL_1</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ADMIN_LEVEL_2</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ADMIN_LEVEL_3</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ADMIN_LEVEL_4</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ADMIN_LEVEL_5</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>SOURCE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>SOURCE_FEATURE_ID</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>SOURCE_NAME_ID</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>SCRIPT</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>CONFLATE_KEY</name>
-        <type>Integer</type>
-        <format>0</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>PLACE_NAME_BIAS</name>
-        <type>Number</type>
-        <format>0.#####</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>PLACE_ID_BIAS</name>
-        <type>Number</type>
-        <format>0.#####</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>NAME_TYPE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>NAME_TYPE_SYSTEM</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>countrySplit_file</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2890</xloc>
-      <yloc>491</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Create file Path</name>
-    <type>UserDefinedJavaClass</type>
-    <description/>
-    <distribute>N</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-
-    <definitions>
-        <definition>
-        <class_type>TRANSFORM_CLASS</class_type>
-
-        <class_name>Processor</class_name>
-
-        <class_source><![CDATA[
-static String path_root = "";
-
-public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
-{
-	Object[] r = getRow();
-	if (r == null) {
-		setOutputDone();
-		return false;
-	}
-
-    if (first)
-    {
-        first = false;
-		path_root = getParameter("file_path_root");
-    }
-
-    r = createOutputRow(r, data.outputRowMeta.size());
-
-
-	String cc = get(Fields.In, "FIPS_COUNTRY_CODE").getString(r);
-
-
-	get(Fields.Out, "countrySplit_file").setValue(r, path_root+cc);
-
-	// Send the row on to the next step.
-    putRow(data.outputRowMeta, r);
-
-	return true;
-}
-]]></class_source>
-        </definition>
-    </definitions>
-    <fields>
-        <field>
-        <field_name>countrySplit_file</field_name>
-
-        <field_type>String</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-    </fields><clear_result_fields>N</clear_result_fields>
-<info_steps></info_steps><target_steps></target_steps><usage_parameters><usage_parameter><parameter_tag>file_path_root</parameter_tag>
-<parameter_value>${Internal.Transformation.Filename.Directory}\GeoData\Merged\Merged_</parameter_value>
-<parameter_description>root for county split files</parameter_description>
-</usage_parameter></usage_parameters>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2745</xloc>
-      <yloc>460</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
