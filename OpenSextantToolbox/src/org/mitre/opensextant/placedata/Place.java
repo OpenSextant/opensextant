@@ -62,6 +62,12 @@ public class Place implements Comparable<Object>, Serializable {
     public Place() {
     }
 
+    /** Interim place ctor similar to data.Place in Commons */
+    public Place(String id, String name) {
+       setPlaceID(id);
+       setPlaceName(name);
+    }
+
     @Override
     public String toString() {
         String output = this.placeName + "(" + this.getAdmin1() + ","

@@ -43,13 +43,14 @@ import org.apache.solr.common.params.CommonParams;
 import org.apache.solr.common.params.ModifiableSolrParams;
 import org.apache.solr.common.params.SolrParams;
 import org.apache.solr.common.util.NamedList;
+// TOOD: migrate to commons data.Place
+// import org.mitre.opensextant.data.Place;
 import org.mitre.opensextant.placedata.Place;
 import org.mitre.opensextant.placedata.PlaceCandidate;
 import org.mitre.opensextant.util.TextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.google.common.cache.CacheBuilder;
-// import com.google.common.cache.LoadingCache;
 import com.google.common.cache.Cache;
 import java.util.concurrent.TimeUnit;
 
@@ -87,10 +88,7 @@ public class PlacenameMatcher {
             .expireAfterWrite(60, TimeUnit.MINUTES)
             .concurrencyLevel(2)
             .build();
-
     protected static boolean useCache = false;
-    
-    
     /**
      * Gazetteer specific stuff:
      */
@@ -174,7 +172,7 @@ public class PlacenameMatcher {
         // Score depends on FST creation and other factors.
         // 
         // TODO: verify that all the right metadata is being retrieved here
-        _params.set(CommonParams.FL, "id,name,cc,adm1,adm2,feat_class,feat_code,lat,lon,place_id,name_bias,id_bias,name_type");
+        _params.set(CommonParams.FL, "id,name,cc,adm1,adm2,feat_class,feat_code,geo,place_id,name_bias,id_bias,name_type");
 
         _params.set("tagsLimit", 100000);
         _params.set(CommonParams.ROWS, 100000);
@@ -277,30 +275,7 @@ public class PlacenameMatcher {
 
             // Otherwise, retrieve solr record from index and popluate cache
             //
-            name = SolrProxy.getString(solrDoc, "name");
-            /* User filter: if (filter.filterOut(name.toLowerCase())) { continue; } */
-
-            Place bean = new Place();
-
-            bean.setName_type(SolrProxy.getChar(solrDoc, "name_type"));
-
-            // Gazetteer place name & country:
-            //   NOTE: this may be different than "matchtext" or PlaceCandidate.name field.
-            // 
-            bean.setPlaceName(name);
-            bean.setCountryCode(SolrProxy.getString(solrDoc, "cc"));
-
-            // Other metadata.
-            bean.setAdmin1(SolrProxy.getString(solrDoc, "adm1"));
-            bean.setAdmin2(SolrProxy.getString(solrDoc, "adm2"));
-            bean.setFeatureClass(SolrProxy.getString(solrDoc, "feat_class"));
-            bean.setFeatureCode(SolrProxy.getString(solrDoc, "feat_code"));
-            bean.setLatitude(SolrProxy.getDouble(solrDoc, "lat"));
-            bean.setLongitude(SolrProxy.getDouble(solrDoc, "lon"));
-
-            bean.setPlaceID(SolrProxy.getString(solrDoc, "place_id"));
-            bean.setName_bias(SolrProxy.getDouble(solrDoc, "name_bias"));
-            bean.setId_bias(SolrProxy.getDouble(solrDoc, "id_bias"));
+            Place bean = createPlace(solrDoc);
 
             if (PlacenameMatcher.useCache) {
                 placeCache.put(id, bean);
@@ -443,12 +418,23 @@ public class PlacenameMatcher {
             }
         }
 
-        
+
         //this.tagNamesTime = (int)(t1 - t0);
         this.getNamesTime = (int) (t2 - t1);
         this.totalTime = (int) (t3 - t0);
 
         return candidates;
+    }
+
+    public static Place createPlace(SolrDocument gazEntry) {
+
+        // Creates for now org.opensextant.placedata.Place
+        Place bean = SolrProxy.createPlace(gazEntry);
+
+        bean.setName_bias(SolrProxy.getDouble(gazEntry, "name_bias"));
+        bean.setId_bias(SolrProxy.getDouble(gazEntry, "id_bias"));
+
+        return bean;
     }
 
     /**

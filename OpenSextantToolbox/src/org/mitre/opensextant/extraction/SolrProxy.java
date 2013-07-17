@@ -43,6 +43,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.solr.client.solrj.embedded.EmbeddedSolrServer;
 import org.opensextant.solrtexttagger.NoSerializeEmbeddedSolrServer;
+// TODO: move to .data.Place:
+import org.mitre.opensextant.placedata.Place;
 
 /**
  * This class creates a read-only instance of Solr for querying.
@@ -82,7 +84,7 @@ public class SolrProxy {
         this.server_url = null;
         setupCore(solr_home, core);
     }
-    
+
     /**
      * Initializes a Solr server from the SOLR_HOME environment variable
      *
@@ -92,7 +94,6 @@ public class SolrProxy {
         this.server_url = null;
         setupCore(solr_home, core, noSerialize);
     }
-    
     protected Logger logger = LoggerFactory.getLogger(SolrProxy.class);
     private SolrServer solrServer = null;
     private UpdateRequest solrUpdate = null;
@@ -157,7 +158,7 @@ public class SolrProxy {
     }
 
     /**
-     * 
+     *
      */
     public static SolrServer initialize_embedded(String solr_home, String corename, boolean avoidSerialization)
             throws IOException {
@@ -427,6 +428,73 @@ public class SolrProxy {
         } else {
             return Double.parseDouble(result.toString());
         }
+    }
+
+    /**
+     * Parse XY pair stored in Solr Spatial4J record. No validation is done.
+     *
+     * @return XY double array, [lat, lon]
+     */
+    public static double[] getCoordinate(SolrDocument solrDoc, String field) {
+        String xy = (String) solrDoc.getFirstValue(field);
+        if (xy == null) {
+            throw new IllegalStateException("Blank: " + field + " in " + solrDoc);
+        }
+
+        final double[] xyPair = {0.0, 0.0};
+        String[] lat_lon = xy.split(",", 2);
+        xyPair[0] = Double.parseDouble(lat_lon[0]);
+        xyPair[1] = Double.parseDouble(lat_lon[1]);
+
+        return xyPair;
+    }
+
+    /**
+     * Parse XY pair stored in Solr Spatial4J record. No validation is done.
+     *
+     * @return XY double array, [lat, lon]
+     */
+    public static double[] getCoordinate(String xy) {
+
+        final double[] xyPair = {0.0, 0.0};
+        String[] lat_lon = xy.split(",", 2);
+        xyPair[0] = Double.parseDouble(lat_lon[0]);
+        xyPair[1] = Double.parseDouble(lat_lon[1]);
+
+        return xyPair;
+    }
+
+    /** Creates the bare minimum Gazetteer Place record
+     * @return Place
+     */
+    public static Place createPlace(SolrDocument gazEntry) {
+
+        // Creates for now org.opensextant.placedata.Place
+        Place bean = new Place(SolrProxy.getString(gazEntry, "place_id"), 
+                SolrProxy.getString(gazEntry, "name"));
+
+        bean.setName_type(SolrProxy.getChar(gazEntry, "name_type"));
+
+        // Gazetteer place name & country:
+        //   NOTE: this may be different than "matchtext" or PlaceCandidate.name field.
+        // 
+        bean.setCountryCode(SolrProxy.getString(gazEntry, "cc"));
+
+        // Other metadata.
+        bean.setAdmin1(SolrProxy.getString(gazEntry, "adm1"));
+        bean.setAdmin2(SolrProxy.getString(gazEntry, "adm2"));
+        bean.setFeatureClass(SolrProxy.getString(gazEntry, "feat_class"));
+        bean.setFeatureCode(SolrProxy.getString(gazEntry, "feat_code"));
+
+        // Geo field is specifically Spatial4J lat,lon format.
+        // Note -- Spatial4J ParseUtils offers a full validation of the parsing.
+        // But since we validate on entry into the gazetteer, we need not pay that price here
+        // 
+        double[] xy = SolrProxy.getCoordinate(gazEntry, "geo");
+        bean.setLatitude(xy[0]);
+        bean.setLongitude(xy[1]);
+
+        return bean;
     }
 
     /**

@@ -40,9 +40,8 @@ import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.params.CommonParams;
 import org.apache.solr.common.params.ModifiableSolrParams;
-import org.mitre.opensextant.data.Place;
+import org.mitre.opensextant.placedata.Place;
 import org.mitre.opensextant.data.Country;
-//import org.mitre.opensextant.util.TextUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,13 +90,14 @@ public class SolrGazetteer {
     public static String normalizeCountryName(String c) {
         return StringUtils.capitalize(c.toLowerCase());
     }
-    
-    /** Find a readable name or description of a class/code
-     * 
-     * @param cls  feature class, e.g., P
+
+    /**
+     * Find a readable name or description of a class/code
+     *
+     * @param cls feature class, e.g., P
      * @param code feature code, e.g., PPL
      */
-    public String getFeatureName(String cls, String code){
+    public String getFeatureName(String cls, String code) {
         String lookup = String.format("%s/%s", cls, code);
         return features.get(lookup);
     }
@@ -167,11 +167,11 @@ public class SolrGazetteer {
         loadCountryNameMap();
         loadFeatureMetaMap();
 
-        String config_solr_home = System.getProperty("solr.solr.home");        
+        String config_solr_home = System.getProperty("solr.solr.home");
         solr = new SolrProxy(config_solr_home, "gazetteer", false);
 
         params.set(CommonParams.Q, "*:*");
-        params.set(CommonParams.FL, "id,name,cc,adm1,adm2,feat_class,feat_code,lat,lon,place_id,name_bias,id_bias,name_type");
+        params.set(CommonParams.FL, "id,name,cc,adm1,adm2,feat_class,feat_code,geo,place_id,name_bias,id_bias,name_type");
         try {
             loadCountries();
         } catch (SolrServerException loadErr) {
@@ -222,7 +222,7 @@ public class SolrGazetteer {
         country_lookup = new HashMap<String, Country>();
 
         ModifiableSolrParams ctryparams = new ModifiableSolrParams();
-        ctryparams.set(CommonParams.FL, "id,name,cc,FIPS_cc,ISO3_cc,adm1,adm2,feat_class,feat_code,lat,lon,name_type");
+        ctryparams.set(CommonParams.FL, "id,name,cc,FIPS_cc,ISO3_cc,adm1,adm2,feat_class,feat_code,geo,name_type");
 
         ctryparams.set("q", "+feat_class:A +feat_code:PCL* +name_type:N");
         ctryparams.set("rows", 2000);
@@ -232,10 +232,10 @@ public class SolrGazetteer {
         // -- Process Solr Response;  This for loop matches the one in SolrMatcher
         // 
         SolrDocumentList docList = response.getResults();
-        for (SolrDocument solrDoc : docList) {
-            String code = SolrProxy.getString(solrDoc, "cc");
+        for (SolrDocument gazEntry : docList) {
+            String code = SolrProxy.getString(gazEntry, "cc");
             //String fips = SolrProxy.getString(solrDoc, "cc_fips");
-            String name = SolrProxy.getString(solrDoc, "name");
+            String name = SolrProxy.getString(gazEntry, "name");
 
             // NOTE: FIPS could be "*", where ISO2 column is always non-trivial. if ("*".equals(code)){code = fips; }
 
@@ -246,10 +246,14 @@ public class SolrGazetteer {
             }
 
             C = new Country(code, name);
-            C.setName_type(SolrProxy.getChar(solrDoc, "name_type"));
-            C.setLatitude(SolrProxy.getDouble(solrDoc, "lat"));
-            C.setLongitude(SolrProxy.getDouble(solrDoc, "lon"));
-            C.addAlias(C.name); // don't loose this entry as a likely variant.
+            C.setName_type(SolrProxy.getChar(gazEntry, "name_type"));
+
+            // Geo field is specifically Spatial4J lat,lon format.
+            double[] xy = SolrProxy.getCoordinate(gazEntry, "geo");
+            C.setLatitude(xy[0]);
+            C.setLongitude(xy[1]);
+
+            C.addAlias(C.getName()); // don't loose this entry as a likely variant.
 
             country_lookup.put(code, C);
         }
@@ -258,7 +262,7 @@ public class SolrGazetteer {
          * Finally choose default official names given the map of name:iso2
          */
         for (Country C : country_lookup.values()) {
-            String n = _default_country_names.get(C.country_id);
+            String n = _default_country_names.get(C.getCountryCode());
             if (n != null) {
                 for (String alias : C.getAliases()) {
                     if (n.equalsIgnoreCase(alias.toLowerCase())) {
@@ -318,27 +322,10 @@ public class SolrGazetteer {
         // -- Process Solr Response;  This for loop matches the one in SolrMatcher
         // 
         SolrDocumentList docList = response.getResults();
-        
-        for (SolrDocument solrDoc : docList) {
-            Place bean = new Place(SolrProxy.getString(solrDoc, "place_id"),
-                    SolrProxy.getString(solrDoc, "name"));
 
-            bean.setName_type(SolrProxy.getChar(solrDoc, "name_type"));
-
-            // Gazetteer place name & country:
-            //   NOTE: this may be different than "matchtext" or PlaceCandidate.name field.
-            // 
-            //bean.setPlaceName(SolrProxy.getString(solrDoc, "name"));
-            bean.country_id = SolrProxy.getString(solrDoc, "cc");
-
-            // Other metadata.
-            bean.province_id = SolrProxy.getString(solrDoc, "adm1");
-            // bean.setAdmin2(SolrProxy.getString(solrDoc, "adm2"));
-            bean.setFeatureClass(SolrProxy.getString(solrDoc, "feat_class"));
-            bean.setFeatureCode(SolrProxy.getString(solrDoc, "feat_code"));
-            bean.setLatitude(SolrProxy.getDouble(solrDoc, "lat"));
-            bean.setLongitude(SolrProxy.getDouble(solrDoc, "lon"));
-
+        for (SolrDocument gazEntry : docList) {
+            Place bean = SolrProxy.createPlace(gazEntry);
+            
             places.add(bean);
         }
 
