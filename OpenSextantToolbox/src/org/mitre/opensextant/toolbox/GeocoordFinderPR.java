@@ -135,40 +135,30 @@ public class GeocoordFinderPR extends AbstractLanguageAnalyser implements
                 continue;
             }
 
-            GeocoordMatch g = (GeocoordMatch) t;
+            GeocoordMatch geomatch = (GeocoordMatch) t;
 
-            // create and populate a geocoord 
-            Geocoord geo = new Geocoord();
-            // TextEntity.copy():
-            geo.copy(t);
-            
-            // The normalized coordinate
-            geo.setExpression(g.coord_text);
-            geo.setLatitude(g.latitude);
-            geo.setLongitude(g.longitude);
 
             // fill in all the annotation features
             FeatureMap feats = Factory.newFeatureMap();
             // The matched text:
-            feats.put("string", g.getText());
-            feats.put("latitude", g.formatLatitude());
-            feats.put("longitude", g.formatLongitude());
+            feats.put("string", geomatch.getText());
+            feats.put("geomatch", geomatch);
 
-            // Precision is in meters of error, e.g., 44.1deg is on the order of 10,000m of error.
-            // 44.12345 is on the order of 1 meter resolution
-            //   Beyond that sub-meter resolution is not the focus of this system.
-            // 
-            geo.precision = g.getPrecision();
-
-            feats.put("geoform", g.pattern_id);
-            feats.put("mgrs", g.toMGRS());
+            // create and populate a geocoord -- This XY point is 
+            // only used for place name disambiguation in the pipeline.
+            // the output is still the GeocoordMatch, g
+            Geocoord geo = new Geocoord(geomatch.latitude, geomatch.longitude);
+            
+            // The normalized coordinate
+            geo.setExpression(geomatch.coord_text);
             feats.put("geo", geo);
+
             feats.put("hierarchy", "Geo.place.geocoordinate");
             feats.put("isEntity", true);
 
             // create a "geocoord" annotation
             try {
-                annotSet.add(g.start, g.end, "geocoord", feats);
+                annotSet.add(geomatch.start, geomatch.end, "geocoord", feats);
             } catch (InvalidOffsetException e) {
                 log.error("GeoCoordFinder: Invalid Offset exception when creating geocoord annotation" + e.getMessage());
             }

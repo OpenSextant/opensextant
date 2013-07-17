@@ -34,8 +34,8 @@ import org.mitre.opensextant.extraction.TextEntity;
 public class Geocoord extends TextEntity implements java.io.Serializable {
 
    
-	private static final long serialVersionUID = -3313528469542406371L;
-	// canonical form is decimal degree
+    private static final long serialVersionUID = -3313528469542406371L;
+    // canonical form is decimal degree
     Double latitude = null;
     Double longitude = null;
 
@@ -51,6 +51,12 @@ public class Geocoord extends TextEntity implements java.io.Serializable {
     // empty public constructor so this class be used like a Bean
     public Geocoord() {
         isValid = true;        
+    }
+
+    public Geocoord(double lat, double lon) {
+        isValid = true;        
+        setLatitude(lat);
+        setLongitude(lon);
     }
 
     
