@@ -213,12 +213,12 @@ public class GeocodingResult {
                 ResultsUtility.setContextFor(content, geo, (int) geo.start, match.length(), content_length);
             }
 
-            // Enrich with geohash.
-            // TODO:  incorporate Geohash as a core field for  enrichment.
-            int ghlen = ResultsUtility.getGeohashPrecision(geo.place.getFeatureClass(), geo.place.getFeatureCode());
-            String gh = GeohashUtils.encodeLatLon(geo.place.getLatitude().doubleValue(), geo.place.getLatitude().doubleValue(), ghlen);
-            
-            geo.place.setGeohash(gh);
+            if (params.output_geohash) {
+                // TODO:  incorporate Geohash as a core field for enrichment.
+                int ghlen = ResultsUtility.getGeohashPrecision(geo.place.getFeatureClass(), geo.place.getFeatureCode());
+                String gh = GeohashUtils.encodeLatLon(geo.place.getLatitude().doubleValue(), geo.place.getLatitude().doubleValue(), ghlen);
+                geo.place.setGeohash(gh);
+            }
 
             geocodes.add(geo);
         }

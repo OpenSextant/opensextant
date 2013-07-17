@@ -49,10 +49,13 @@ public class Parameters extends java.util.Properties {
     public boolean output_countries = true;
     public boolean output_places = true;
     public boolean output_coordinates = true;
+    /** Default is to not generate Geohash 
+     */
+    public boolean output_geohash = false;
 
     /** Is the concept of duplicate filtering more general than for just coords?
      */
-    public boolean output_coordinate_duplicates = false;
+    public boolean output_coordinate_duplicates = true;
     
     public String tempDir = "/tmp";
     public String outputDir = ".";
