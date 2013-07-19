@@ -6,7 +6,7 @@
 
   <groupId>org.mitre.opensextant</groupId>
   <artifactId>opensextant-parent</artifactId>
-  <version>1.4</version>
+  <version>1.4.1</version>
   <packaging>pom</packaging>
 
   <name>OpenSextant</name>

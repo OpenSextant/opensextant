@@ -199,8 +199,23 @@ The core library is contained in this jar.
         </copy>
 
         <unzip src="${basedir}/gate/GATE-plugin-ANNIE.zip" dest="${gate.home.install}/plugins"/>
-
+    	
     </target>
+	
+	<target name="jar-basic-gapp" depends="release">
+       <jar destfile="${release.dir}/basic-gapp.jar"> 
+            <zipfileset dir="${release.dir}/gate" prefix="gate">
+                <include name="**"/>
+                <exclude name="plugins/ANNIE/resources/gazetteer/**" />
+            </zipfileset>
+        <zipfileset dir="${release.dir}/resources/patterns" prefix="resources/patterns">
+            <include name="**"/>
+        </zipfileset>
+        <zipfileset dir="${release.dir}/resources/Chunking" prefix="resources/Chunking">
+            <include name="**"/>
+        </zipfileset>
+        </jar>
+	</target>
 
     <!-- copy over jars to the release directory -->
     <target name="copy.lib" depends="prepare.release, jar">
@@ -231,6 +246,8 @@ The core library is contained in this jar.
           
         <!-- Finally, copy in OS native libs from GISCore or other place -->
         <unzip src="${basedir}/../external/giscore-native-libs.zip" dest="${release.dir}"/>
+    	
+    	
 
     </target>
 		
