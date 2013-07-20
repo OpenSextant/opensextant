@@ -30,7 +30,7 @@ import org.mitre.opensextant.placedata.PlaceCandidate;
 }
 
 Phase: PCScoring_POS_Multi
-Input: Token Lookup Split placecandidate FeatureType
+Input: Token placecandidate FeatureType
 LocationContextPhrase  CardinalDirection LocationVerb
 Options: control = all
 

@@ -30,7 +30,7 @@ import org.mitre.opensextant.placedata.PlaceCandidate;
 }
 
 Phase: FeatureTyping
-Input: Token Lookup placecandidate FeatureType
+Input: Token placecandidate FeatureType
 Options: control = appelt
 
 // Wazi village

@@ -30,7 +30,7 @@ import org.mitre.opensextant.placedata.PlaceCandidate;
 }
 
 Phase: PCScoring_NEG_Single
-Input: Token Lookup Split placecandidate Country  Nationality Ethnicity PersonTitle PersonRelation 
+Input: Token Lookup placecandidate Country  Nationality Ethnicity PersonTitle PersonRelation 
 PersonVerb PersonPossession Month DayOfWeek Organization OrganizationNameElement OrganizationContextPhrase PersonContextPhrase
 NonPlaceContextPhrase NonPlacePrep LocationPrepWeak LocationVerb LocationPrepStrong NonPlace PersonName PersonNameFragment PersonNameSuffix 
 Initials Disease
@@ -309,10 +309,10 @@ Rule: PCsHouse
 
 }
 //-------------------------------------------------------------
-
+/*
 Rule: PCPersonVerb
 (
-		({Token.string !=~ "in|at|In|At|IN|AT"}|{Split})({placecandidate,!Country}):pc {PersonVerb}
+		{Token.string !=~ "in|at|In|At|IN|AT"}({placecandidate,!Country}):pc {PersonVerb}
 ):phrase
 -->
 {
@@ -328,7 +328,7 @@ Rule: PCPersonVerb
 
 Rule: PCPersonVerbPast
 (
-		({Token.string !=~ "in|at|In|At|IN|AT"}|{Split})({placecandidate,!Country}):pc {Token.string ==~ "has|had|have|Has|Had|Have|HAS|HAD|HAVE"} {PersonVerb}
+		{Token.string !=~ "in|at|In|At|IN|AT"}({placecandidate,!Country}):pc {Token.string ==~ "has|had|have|Has|Had|Have|HAS|HAD|HAVE"} {PersonVerb}
 ):phrase
 -->
 {
@@ -359,7 +359,7 @@ Rule: PCVerbPast
 
 }
 
-
+*/
 //-------------------------------------------------------------
 
 Rule: PCisLanguage

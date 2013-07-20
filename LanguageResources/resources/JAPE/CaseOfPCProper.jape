@@ -35,7 +35,7 @@ import org.mitre.opensextant.placedata.PlaceCandidate;
 
 
 Phase: CheckCaseofPCProper
-Input: Token Lookup placecandidate Country PersonName Admin1
+Input: Token placecandidate Country PersonName Admin1
 Options: control = all
 
 Rule: allLowerPCProper

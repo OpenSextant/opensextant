@@ -32,7 +32,7 @@ import org.mitre.opensextant.placedata.PlaceCandidate;
 
 
 Phase: PCScoring_POS_Single
-Input: Token Lookup Split FeatureType Country CountryCode BigCity
+Input: Token  FeatureType Country CountryCode 
 LocationPrepStrong LocationPrepWeak LocationPrepNeedsVerb LocationVerb LocationVerbNeedsPrep Person PersonTitle PersonVerb
 LocationContextPhrase geocoord CardinalDirection Organization placecandidate
 Options: control = all

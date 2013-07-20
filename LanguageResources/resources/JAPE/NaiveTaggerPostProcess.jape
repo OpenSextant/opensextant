@@ -31,7 +31,6 @@
  for the OpenSextant system
 */
 
-MultiPhase:	OpenSextant
+MultiPhase:	NaiveTaggerPostProcess
 Phases:
-//ResolveOverlaps
 GenerateCountryAdminAndCaps

@@ -37,7 +37,7 @@ Imports:{
 
 
 Phase: Organization
-Input: Token Lookup OrganizationNameElement Country Nationality Ethnicity
+Input: Token OrganizationNameElement Nationality Ethnicity
 Options: control = brill
 
 

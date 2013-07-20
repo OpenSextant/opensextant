@@ -30,7 +30,7 @@ import org.mitre.opensextant.placedata.PlaceCandidate;
 }
 
 Phase: CountryAdminAssociation
-Input: Token  Lookup placecandidate FeatureType Country Admin1 CardinalDirection
+Input: Token placecandidate FeatureType Country Admin1 CardinalDirection
 Options: control = all
 
 // Patterns to look for

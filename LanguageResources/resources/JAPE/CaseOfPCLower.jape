@@ -34,7 +34,7 @@ import org.mitre.opensextant.placedata.PlaceCandidate;
 
 
 Phase: CheckCaseofPCLower
-Input: Token Lookup placecandidate Country
+Input: Token placecandidate Country
 Options: control = all
 
 // TODO: change this to use abbreviation info when that info is added to the placecandidate

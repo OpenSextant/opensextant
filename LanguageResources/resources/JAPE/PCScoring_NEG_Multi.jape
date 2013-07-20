@@ -30,7 +30,7 @@ import org.mitre.opensextant.placedata.PlaceCandidate;
 }
 
 Phase: PCScoring_NEG_Multi
-Input: Token Lookup Split placecandidate Country FeatureType
+Input: Token placecandidate Country FeatureType
 PersonContextPhrase OrganizationContextPhrase PersonRelation InterOrgPersonPhrase
 Options: control = all
 

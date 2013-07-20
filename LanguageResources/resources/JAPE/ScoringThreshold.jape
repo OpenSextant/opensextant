@@ -37,7 +37,7 @@ Imports: {
  
 
 Phase:	ScoringThreshold
-Input:	Token Lookup placecandidate
+Input:	placecandidate
 Options: control = all
 
 Rule: Score

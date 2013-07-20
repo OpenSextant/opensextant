@@ -38,8 +38,8 @@ import org.mitre.opensextant.placedata.Place;
 }
 
 
-Phase:	ResolveOverlapsLongest
-Input:	Token Lookup placecandidate CardinalDirection
+Phase:	GenerateCountryAdminAndCapitals
+Input: placecandidate CardinalDirection
 Options: control = appelt
 
 

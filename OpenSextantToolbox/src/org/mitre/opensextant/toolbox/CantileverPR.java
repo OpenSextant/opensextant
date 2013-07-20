@@ -71,7 +71,6 @@ public class CantileverPR extends AbstractLanguageAnalyser implements
 	static Logger log = LoggerFactory.getLogger(CantileverPR.class);
 
 	private void initialize() {
-		log.info("Initializing Cantilever");
 		cntlvr = new Cantilever();
 		scr = new Scorer();
 	}

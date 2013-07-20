@@ -158,7 +158,7 @@
     </notepad>
   </notepads>
   <order>
-  <hop> <from>Expand on NameList</from><to>Expand on CountryList</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Errors</from><to>Error Log</to><enabled>Y</enabled> </hop>  <hop> <from>Coord Check</from><to>Name Check</to><enabled>Y</enabled> </hop>  <hop> <from>NGA Geonames</from><to>Rework fields</to><enabled>Y</enabled> </hop>  <hop> <from>Rework fields</from><to>Expand on NameList</to><enabled>Y</enabled> </hop>  <hop> <from>Remove Fields</from><to>Rename Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Country Code Lookup</from><to>Map FIPS to ISO</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Errors</from><to>Create Conflate Key</to><enabled>Y</enabled> </hop>  <hop> <from>Create Conflate Key</from><to>Dedup</to><enabled>Y</enabled> </hop>  <hop> <from>Expand on CountryList</from><to>Map FIPS to ISO</to><enabled>Y</enabled> </hop>  <hop> <from>Field Validation</from><to>Coord Check</to><enabled>Y</enabled> </hop>  <hop> <from>Map FIPS to ISO</from><to>Remove Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Rename Fields</from><to>Add Source Field</to><enabled>Y</enabled> </hop>  <hop> <from>Auto Fixer</from><to>Add Error Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Add Error Fields</from><to>Feature Class&#47;Code Check</to><enabled>Y</enabled> </hop>  <hop> <from>Feature Class&#47;Code Check</from><to>Field Validation</to><enabled>Y</enabled> </hop>  <hop> <from>Feature Code Lookup</from><to>Feature Class&#47;Code Check</to><enabled>Y</enabled> </hop>  <hop> <from>Add Source Field</from><to>Auto Fixer</to><enabled>Y</enabled> </hop>  <hop> <from>Name Check</from><to>Script Check</to><enabled>Y</enabled> </hop>  <hop> <from>Script Check</from><to>Filter Errors</to><enabled>Y</enabled> </hop>  <hop> <from>Dedup</from><to>Duplicate Log</to><enabled>Y</enabled> </hop>  <hop> <from>Dedup</from><to>Set name type</to><enabled>Y</enabled> </hop>  <hop> <from>Set name type</from><to>Clean NGA Output</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Expand on NameList</from><to>Expand on CountryList</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Errors</from><to>Error Log</to><enabled>Y</enabled> </hop>  <hop> <from>Coord Check</from><to>Name Check</to><enabled>Y</enabled> </hop>  <hop> <from>NGA Geonames</from><to>Rework fields</to><enabled>Y</enabled> </hop>  <hop> <from>Rework fields</from><to>Expand on NameList</to><enabled>Y</enabled> </hop>  <hop> <from>Remove Fields</from><to>Rename Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Country Code Lookup</from><to>Map FIPS to ISO</to><enabled>Y</enabled> </hop>  <hop> <from>Create Conflate Key</from><to>Dedup</to><enabled>Y</enabled> </hop>  <hop> <from>Expand on CountryList</from><to>Map FIPS to ISO</to><enabled>Y</enabled> </hop>  <hop> <from>Field Validation</from><to>Coord Check</to><enabled>Y</enabled> </hop>  <hop> <from>Map FIPS to ISO</from><to>Remove Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Rename Fields</from><to>Add Source Field</to><enabled>Y</enabled> </hop>  <hop> <from>Auto Fixer</from><to>Add Error Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Add Error Fields</from><to>Feature Class&#47;Code Check</to><enabled>Y</enabled> </hop>  <hop> <from>Feature Class&#47;Code Check</from><to>Field Validation</to><enabled>Y</enabled> </hop>  <hop> <from>Feature Code Lookup</from><to>Feature Class&#47;Code Check</to><enabled>Y</enabled> </hop>  <hop> <from>Add Source Field</from><to>Auto Fixer</to><enabled>Y</enabled> </hop>  <hop> <from>Name Check</from><to>Script Check</to><enabled>Y</enabled> </hop>  <hop> <from>Script Check</from><to>Filter Errors</to><enabled>Y</enabled> </hop>  <hop> <from>Dedup</from><to>Duplicate Log</to><enabled>Y</enabled> </hop>  <hop> <from>Dedup</from><to>Set name type</to><enabled>Y</enabled> </hop>  <hop> <from>Set name type</from><to>Clean NGA Output</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Errors</from><to>Create base Name</to><enabled>Y</enabled> </hop>  <hop> <from>Create base Name</from><to>Create Conflate Key</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Add Error Fields</name>
     <type>Constant</type>
@@ -670,8 +670,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2609</xloc>
-      <yloc>394</yloc>
+      <xloc>2735</xloc>
+      <yloc>399</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -944,6 +944,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
 	// get the name
 	String name = get(Fields.In, "PLACE_NAME").getString(r);
+    String baseName = get(Fields.In, "baseName").getString(r);
 
 	// get the cc
 	String cc = get(Fields.In, "ISO2_COUNTRY_CODE").getString(r);
@@ -954,6 +955,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
 	// create the key by concating name,country_code,type, latitude and longitude
 	String keyString = name + "-" + cc +"-" + type +"-" + lat +"-" + lon;
+	//String keyString = baseName + "-" + cc +"-" + type +"-" + lat +"-" + lon;
+
 	Long key = ((Integer)keyString.hashCode()).longValue();
 
  	// Set conflate_key field
@@ -983,8 +986,106 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </fields><clear_result_fields>N</clear_result_fields>
 <info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2195</xloc>
-      <yloc>394</yloc>
+      <xloc>2332</xloc>
+      <yloc>399</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Create base Name</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[
+import org.mitre.opensextant.phonetic.Phoneticizer;
+
+static double confThresh = 0.9;
+static Phoneticizer phoner = new Phoneticizer();
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	Object[] r = getRow();
+
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+    r = createOutputRow(r, data.outputRowMeta.size());
+
+	// get the name
+	String name = get(Fields.In, "PLACE_NAME").getString(r);
+
+	// get the reduction algorithm to be used
+	String algo = getParameter("phoneticAlgorithm");
+
+	// phoneticize the name
+	String base = phoner.phoneticForm(name, algo);
+
+	// temp hack (add these to Phoneticizer ?)
+	base = base.replaceAll("Ã¸","o").replaceAll("Ã�".toLowerCase(),"d").replaceAll("ÃŸ","ss");
+
+	// prepare base name for tokenization
+	base = base.replaceAll("[-\\s]+"," ");
+
+	// get tokencount
+	Long tokenCount = new Long(base.split(" ").length);
+
+	get(Fields.Out, "tokenCount").setValue(r, tokenCount);
+	get(Fields.Out, "baseName").setValue(r, base);
+
+	putRow(data.outputRowMeta, r);
+
+	return true;
+}
+
+
+
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+        <field>
+        <field_name>baseName</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>tokenCount</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters><usage_parameter><parameter_tag>phoneticAlgorithm</parameter_tag>
+<parameter_value>Simple_Phonetic0</parameter_value>
+<parameter_description>The algorithm used to produce the reduced form of the names for matching purposes</parameter_description>
+</usage_parameter></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2218</xloc>
+      <yloc>396</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1005,8 +1106,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <fields>      <field>        <name>CONFLATE_KEY</name>
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2319</xloc>
-      <yloc>394</yloc>
+      <xloc>2445</xloc>
+      <yloc>399</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1212,8 +1313,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2317</xloc>
-      <yloc>529</yloc>
+      <xloc>2443</xloc>
+      <yloc>534</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1751,7 +1852,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Create Conflate Key</send_true_to>
+<send_true_to>Create base Name</send_true_to>
 <send_false_to>Error Log</send_false_to>
     <compare>
 <condition>
@@ -2791,8 +2892,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </fields><clear_result_fields>N</clear_result_fields>
 <info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2462</xloc>
-      <yloc>389</yloc>
+      <xloc>2588</xloc>
+      <yloc>394</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
