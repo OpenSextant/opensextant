@@ -5,6 +5,7 @@ Currently there are five OpenSextant extraction pipelines, each defined in its o
 3) The OpenSextant General Purpose Extractor FULL (OpenSextant_GeneralPurpose.gapp)
 4) The OpenSextant Geocoord Finder (OpenSextant_GeocoordsOnly.gapp)
 5) The OpenSextant Basic Extractor (OpenSextant_Basic.gapp)
+6) The OpenSextant BasicPlus Extractor (OpenSextant_BasicPlus.gapp)
 
 
 The OpenSextant Entities spreadsheet (OpenSextant Entities.xlsx) defines the GATE annotations (types,features and feature values)produced by these OpenSextant processes.
@@ -22,7 +23,7 @@ The OpenSextant Entities spreadsheet  contains the following information:
 	Type specific features - the features names and value types which are specific to that annotation type. Written as <FEATURE_NAME>(<VALUE_TYPE>)
 	Geotagger - if produced by the OpenSextant Geotagger process
 	GeneralPurpose Lite - if produced by the OpenSextant General Purpose LITE process 
-	General Purpose Full	Source - if produced by the Full OpenSextant General Purpose process 
+	General Purpose Full - if produced by the Full OpenSextant General Purpose process 
 	Source - the internal OpenSextant component which generates this type (info only)
 
 Flattened entities
