@@ -910,7 +910,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         <repeat>N</repeat>
       </field>
     </fields>
-    <limit>10000</limit>
+    <limit>0</limit>
     <error_ignored>N</error_ignored>
     <skip_bad_files>N</skip_bad_files>
     <file_error_field/>
